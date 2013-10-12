@@ -1,3 +1,4 @@
 = RedBase
 
-This project rocks and uses MIT-LICENSE.
+RedBase is a ruby on rails engine which provides a very basic web application
+to use with other ruby on rails applications.
