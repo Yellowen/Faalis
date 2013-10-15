@@ -1,3 +1,4 @@
+require "devise"
 require "red_base/engine"
 
 module RedBase
