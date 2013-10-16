@@ -1,0 +1,22 @@
+==================================================
+Steps to finish up installation:
+
+  1. Ensure you have defined default url options in your environments files. Here
+     is an example of default_url_options appropriate for a development environment
+     in config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+     In production, :host should be set to the actual host of your application.
+
+  2. You can override your root controller through RedBase::HomeController class.
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     Only if you want to change the layout
+
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+  4. Make sure you take a look and configured conf/initializer/devise.rb

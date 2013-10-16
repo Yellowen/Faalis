@@ -4,10 +4,16 @@ module RedBase
       source_root File.expand_path('../templates', __FILE__)
 
       desc "Copy all the necessary files to use Red Base"
+      class_option :orm
+
       def copy_init_files
         template "devise.rb", "config/initializers/devise.rb"
       end
-    end
 
+      def show_readme
+        readme "README" if behavior == :invoke
+      end
+
+    end
   end
 end
