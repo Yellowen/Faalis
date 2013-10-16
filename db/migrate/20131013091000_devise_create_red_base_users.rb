@@ -19,16 +19,28 @@ class DeviseCreateRedBaseUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
-      ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+
+      t.string   :first_name
+      t.string   :last_name
+
+      if not Devise.omniauth_providers.empty?
+        # Service
+        t.string   :provider
+        t.string   :uid
+      end
+
+      if Rails.env.production?
+        ## Confirmable
+        t.string   :confirmation_token
+        t.datetime :confirmed_at
+        t.datetime :confirmation_sent_at
+        t.string   :unconfirmed_email # Only if using reconfirmable
+      end
 
       ## Lockable
-      # t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
+      t.string   :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
 
       ## Token authenticatable
       # t.string :authentication_token
@@ -39,8 +51,11 @@ class DeviseCreateRedBaseUsers < ActiveRecord::Migration
 
     add_index :red_base_users, :email,                :unique => true
     add_index :red_base_users, :reset_password_token, :unique => true
-    # add_index :red_base_users, :confirmation_token,   :unique => true
-    # add_index :red_base_users, :unlock_token,         :unique => true
+
+    if Rails.env.production?
+      add_index :red_base_users, :confirmation_token,   :unique => true
+    end
+    add_index :red_base_users, :unlock_token,         :unique => true
     # add_index :red_base_users, :authentication_token, :unique => true
   end
 end

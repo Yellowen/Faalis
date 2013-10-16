@@ -20,3 +20,6 @@ Steps to finish up installation:
        <p class="alert"><%= alert %></p>
 
   4. Make sure you take a look and configured conf/initializer/devise.rb
+
+     NOTE: if you want to use devise with omniauth configure them in
+           conf/initializer/devise.rb according to devise wiki
