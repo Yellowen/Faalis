@@ -18,11 +18,10 @@ module RedBase
 
     if Devise.omniauth_configs.any?
       @@devise_options << :omniauthable
-      @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
+      # @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
     end
 
     devise *@@devise_options
-
 
     def self.find_from_oauth(auth, signed_in_resource=nil)
       user = User.where(:provider => auth.provider, :uid => auth.uid).first
