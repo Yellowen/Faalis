@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
                 "README.rdoc"]
 
   s.test_files = Dir["test/**/*"]
+  s.require_paths = ["lib"]
 
   s.add_dependency "omniauth"
   s.add_dependency "devise", ">= 3.0.0"
