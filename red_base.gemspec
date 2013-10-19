@@ -22,6 +22,14 @@ Gem::Specification.new do |s|
   s.add_dependency "omniauth"
   s.add_dependency "devise", ">= 3.0.0"
   s.add_dependency "cancan"
+  s.add_dependency "jquery-rails"
+  s.add_dependency "sass-rails", '>= 4.0.0'
+  s.add_dependency 'compass-rails'
+  s.add_dependency 'zurb-foundation', '~> 4.0.0'
+  s.add_dependency "font-awesome-rails"
+  s.add_dependency 'turbolinks'
+  s.add_dependency 'jquery-turbolinks'
+
   s.add_dependency "rails", ">= 4.0.0"
 
   s.add_development_dependency "sqlite3"

@@ -15,6 +15,9 @@ module RedBase
         end
       end
 
+      def google_oauth2
+        raise "asdad<"
+      end
       include RedBase::Omniauth::Callbacks
     end
   end

@@ -7,6 +7,7 @@ module RedBase
 
       def copy_views_file
         directory "views/red_base", "app/views/red_base"
+        directory "views/layouts/red_base", "app/views/layouts/red_base"
       end
 
       def copy_assets_file
