@@ -2,8 +2,10 @@ module RedBase
   module Omniauth
     class CallbacksController < Devise::OmniauthCallbacksController
 
+      # Create a method for each service you want to override
+      # If you do not provide a method a default one will used
+      # Here is facebook method for an example
       def facebook
-
         create_or_find_user
 
         if @user.persisted?
@@ -15,10 +17,8 @@ module RedBase
         end
       end
 
-      def google_oauth2
-        raise "asdad<"
-      end
       include RedBase::Omniauth::Callbacks
+
     end
   end
 end
