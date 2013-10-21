@@ -17,6 +17,49 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-module RedBase
-  VERSION = "0.0.1"
+module ActiveRecord
+  class Base
+
+    class Permissions
+      @@permissions = {
+        :read => nil,
+        :update => nil,
+        :create => nil,
+        :destory => nil,
+      }
+
+      @@only_owner = false
+
+      # Define permissions using this method
+      def self.permissions(*args)
+
+        args.each do |permission|
+          if permission.class == Symbol
+            if not @@permissions.include? permission
+              @@permission[permission] = nil
+
+            elsif permission.class == Hash
+
+              permission.each do |key, value|
+                @@permissions[key.to_sym] = value
+              end
+
+            end
+          end
+
+
+        end
+      end
+
+      # This force user to have access to resources which is his.
+      def self.only_his_objects
+        @@only_owner = true
+      end
+
+      def self.only_his_objects?
+        @@only_owner
+      end
+
+    end
+  end
 end

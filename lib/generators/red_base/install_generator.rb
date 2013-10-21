@@ -8,6 +8,7 @@ module RedBase
 
       def copy_init_files
         template "devise.rb", "config/initializers/devise.rb"
+        template "red_base.rb", "config/initializers/red_base.rb"
       end
 
       def show_readme
