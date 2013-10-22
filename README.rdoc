@@ -21,6 +21,14 @@ For example (Only if you want to change default layout):
        <p class="alert"><%= alert %></p>
 '''
 
-3. Add "fast_gettext" to your Gemfile.
+3. Add these to your Gemfile:
+
+'''
+gem "fast_gettext"
+gem "gettext"
+gem "ruby_parser"
+gem 'gettext_i18n_rails'
+'''
+
 4. Perfrom "rails generate red_base:install_all" to copy necessary files.
 5. Perform "rake db:migrate" and enjoy RedBase
