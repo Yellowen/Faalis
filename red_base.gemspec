@@ -19,9 +19,15 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
   s.require_paths = ["lib"]
 
+  s.add_dependency "rails", ">= 4.0.0"
+
+  # Authentication
   s.add_dependency "omniauth"
   s.add_dependency "devise", ">= 3.0.0"
+  # Authorization
   s.add_dependency "cancan"
+
+  # Assets
   s.add_dependency "jquery-rails"
   s.add_dependency "sass-rails", '>= 4.0.0'
   s.add_dependency 'compass-rails'
@@ -30,7 +36,15 @@ Gem::Specification.new do |s|
   s.add_dependency 'turbolinks'
   s.add_dependency 'jquery-turbolinks'
 
-  s.add_dependency "rails", ">= 4.0.0"
+  # i18n
+  s.add_dependency "fast_gettext"
+  s.add_dependency "gettext"
+  s.add_dependency "ruby_parser"
+  s.add_dependency 'gettext_i18n_rails'
+
+  # Forms
+  s.add_dependency 'formtastic'
+
 
   s.add_development_dependency "sqlite3"
 

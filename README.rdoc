@@ -14,9 +14,13 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 In production, :host should be set to the actual host of your application.
 
 2. Ensure you have flash messages in app/views/layouts/application.html.erb.
-For example:
+For example (Only if you want to change default layout):
 
 '''
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 '''
+
+3. Add "fast_gettext" to your Gemfile.
+4. Perfrom "rails generate red_base:install_all" to copy necessary files.
+5. Perform "rake db:migrate" and enjoy RedBase

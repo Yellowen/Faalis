@@ -19,21 +19,18 @@
 
 module RedBase
   module Generators
-    class ViewsGenerator < Rails::Generators::Base
-      source_root File.expand_path('../../../../app/', __FILE__)
+    class InstallAllGenerator < Rails::Generators::Base
+      source_root File.expand_path('../templates', __FILE__)
 
-      desc "Copy all templates to and assets to main application"
+      desc "Copy all the necessary files to use Red Base (migrations included)"
+      hook_for :install_generator
 
-      def copy_views_file
-        directory "views/red_base", "app/views/red_base"
-        directory "views/layouts/red_base", "app/views/layouts/red_base"
+      def copy_migrations
+        rake("red_base:install:migrations")
       end
 
-      def copy_assets_file
-        directory "assets/javascripts/red_base", "app/assets/javascripts/red_base"
-        directory "assets/stylesheets/red_base", "app/assets/stylesheets/red_base"
-        directory "assets/images/red_base", "app/assets/images/red_base"
-
+      def copy_install
+        invoke "red_base:install"
       end
 
     end
