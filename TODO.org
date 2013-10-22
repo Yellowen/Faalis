@@ -1,2 +1,3 @@
 * Bugs
 * Tasks
+**TODO fix the authentication assets issue (authentication should included only in device controllers)
