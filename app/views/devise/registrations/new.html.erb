@@ -1,18 +1,92 @@
-<h2>Sign up</h2>
+<%=stylesheet_link_tag("registrations") %>
+<div class="wrapper_signup">
+  <div class="row">
+    <div class="layout_signup">
+      <div class="row">
+	<div class="large-7 columns">
+          <h1><%=_("Sign Up") %></h1>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+	  <div class="justify row">
+            <i class="icon-coffee icon-big"></i>
+            <p>
+	      <%= _("Some text comes here some text comes here.") %>
+            </p>
+	  </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+	  <br />
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+	  <div class="justify row">
+	    <i class="icon-globe icon-big"></i>
+            <p>
+	      <%= _("Some text comes here some text comes here.") %>
+            </p>
+	  </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+	  <br />
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+	  <div class="justify row">
+            <i class="icon-money icon-big"></i>
+            <p>
+	      <%= _("Some text") %>
+            </p>
+	  </div>
 
-<%= render "devise/shared/links" %>
+	  <br />
+
+	  <div class="justify row">
+	    <i class="icon-group icon-big"></i>
+            <p>
+	      <%= _("some text.") %>
+            </p>
+	  </div>
+
+	</div>
+	<div class="large-4 columns">
+
+	  <div class="row">
+	    <section class="">
+	      <div class="form">
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+		  <div class="field">
+		    <label><%=_("Email") %></label>
+		    <%= f.email_field :email, :autofocus => true, :type => "text", :class => "input email", :placeholder=>_("E-mail") %>
+
+		    <% if resource.errors[:email] -%>
+		      <dd class="danger abel"><%= resource.errors[:email][0] %></dd>
+		    <% end -%>
+		  </div>
+
+		  <% if resource.password_required? %>
+		    <div class="field">
+		      <label><%=_("Password") %></label>
+		      <%= f.password_field :password, :class => "password input" %>
+		      <% if resource.errors[:password] -%>
+			<dd class="danger abel"><%= resource.errors[:password][0] %></dd>
+		      <% end -%>
+
+		    </div>
+
+		    <div class="field">
+		      <label><%=_("Confim Password") %></label>
+		      <%= f.password_field :password_confirmation, :class => "password input" %>
+
+		    </div>
+
+		  <% end %>
+		  <br>
+		  <div class="submit"><%= f.submit "Sign up" , :class => "button" %></div>
+		<% end %>
+
+	      </div>
+
+	    </section>
+	  </div>
+
+
+	</div>
+
+      </div>
+    </div>
+  </div>
+</div>
