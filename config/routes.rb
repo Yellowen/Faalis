@@ -1,5 +1,10 @@
 RedBase::Engine.routes.draw do
 
+  scope RedBase::Engine.dashboard_namespace.to_sym do
+    get "" => "dashboard#index"
+
+  end
+
   # Authentications
   devise_for :users, {
     :class_name => "RedBase::User",

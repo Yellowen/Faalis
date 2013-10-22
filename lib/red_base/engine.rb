@@ -30,6 +30,10 @@ module RedBase
     # Permissions configuration
     mattr_accessor :models_with_permission
 
+    # Dashboard url prefix
+    @@dashboard_namespace = :dashboard
+    mattr_accessor :dashboard_namespace
+
     def self.setup
       yield self
     end
