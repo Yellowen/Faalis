@@ -1,0 +1,107 @@
+$base_unit: 150px;
+
+$wet_asphalt: #34495E;
+$midnight_blue: #2C3E50;
+
+$headerbg: #3f4143;
+$darkbg: #202224;
+
+$clouds: #ecf0f1;
+$silver: #bdc3c7;
+
+
+$emerald: #2ecc71;
+$nephritis: #27ae60;
+
+$alizarin: #e74c3c;
+$pomegranate: #c0392b;
+
+$turquoise: #1ABC9C;
+$green_sea: #16A085;
+
+$peter_river: #3498db;
+$belize_hole: #2980b9;
+
+$amethyst: #9b59b6;
+$wisteria: #8e44ad;
+
+$sun_flower: #f1c40f;
+$orange: #f39c12;
+
+$carrot: #E67E22;
+$pumpkin: #D35400;
+
+$darkergray: #2f2f2f;
+$darkgray: #4f4f4f;
+$lightgray: #7F8C8D;
+$lightergray: #E3E3E3;
+
+$ultra_blue: #F4F4F4;
+
+$header-height: 50px;
+$box-bottom-border: 4px;
+$hover-box: $emerald;
+
+.emerald {
+    background: $emerald;
+}
+
+.orange {
+    Background: $orange;
+}
+
+
+.alizarin {
+    Background: $alizarin;
+}
+
+.sun_flower {
+    Background: $sun_flower;
+}
+
+.peter_river {
+    Background: $peter_river;
+}
+
+.wisteria {
+    Background: $wisteria;
+}
+
+.amethyst {
+    Background: $amethyst;
+}
+
+.pomegranate {
+    Background: $pomegranate;
+}
+
+.belize_hole {
+    Background: $belize_hole;
+}
+
+.nephritis {
+    background: $nephritis;
+}
+
+.color-white {
+    h1, h2, h3, h4, h5, span, p {
+	color: white;
+    }
+}
+
+.employment {
+    background: $nephritis;
+    color: white;
+
+}
+
+.computer {
+    background: $orange;
+    color: white;
+
+}
+.stock {
+  background: $alizarin;
+  color: white;
+
+}
