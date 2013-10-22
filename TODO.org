@@ -1,3 +1,4 @@
 * Bugs
 * Tasks
-**TODO fix the authentication assets issue (authentication should included only in device controllers)
+** TODO Fix the authentication assets issue (authentication should included only in device controllers)
+** TODO Add font awesome support

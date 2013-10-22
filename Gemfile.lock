@@ -12,6 +12,7 @@ PATH
       gettext_i18n_rails
       jquery-rails
       jquery-turbolinks
+      modernizr-rails
       omniauth
       rails (>= 4.0.0)
       ruby_parser
@@ -99,6 +100,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     minitest (4.7.5)
+    modernizr-rails (2.6.2.3)
     multi_json (1.8.2)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
@@ -160,6 +162,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  font-awesome-rails
   red_base!
   sqlite3
-  zurb-foundation (~> 4.0.0)
