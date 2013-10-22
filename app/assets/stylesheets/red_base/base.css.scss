@@ -1,6 +1,6 @@
-@import 'foundation_and_overrides';
-@import "foundation/components/global";
-@import "foundation/components/alert-boxes";
+//@import 'foundation_and_overrides';
+//@import "foundation/components/global";
+//@import "foundation/components/alert-boxes";
 
 
 @mixin transition ($a) {
@@ -27,7 +27,7 @@ header {
 	 display:inline;
 	 float:right;
 	 width:$logoWidth;
-	 height:#logoHeight;
+	 height:$logoHeight;
          margin-top: -23px;
 	 h1 {
 	    display:block;
