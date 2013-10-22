@@ -1,16 +1,44 @@
-<h2>Change your password</h2>
+<%=stylesheet_link_tag("registrations") %>
+<div class="wrapper_signin">
+  <div class="row">
+    <div class="layout_signin">
+      <div class="row">
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+	<div class="large-7 columns">
+	  <h1><%= _("Change your password")%></h1>
+	  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae porta quam, a congue est. Maecenas vel tortor in sem convallis commodo
+	</div>
+	<div class="large-5 columns">
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password, :autofocus => true %></div>
+	  <div class="form">
+	    <h2>Change your password</h2>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
+	    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+	      <%= devise_error_messages! %>
+	      <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
+	      <div class="field">
+		<label>
+		  <%= f.label :password, "New password" %>
+		</label>
+		<%= f.password_field :password, :autofocus => true %></div>
 
-<%= render "devise/shared/links" %>
+	      <div class="field">
+		<label>
+		  <%= f.label :password_confirmation, "Confirm new password" %>
+		  </label>
+		<%= f.password_field :password_confirmation %>
+
+	      <div class="submit"><%= f.submit "Change my password" %></div>
+<br>
+	    <%= render "devise/shared/links" %>
+
+	    <% end %>
+
+	  </div>
+
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
