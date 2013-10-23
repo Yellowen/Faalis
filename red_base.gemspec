@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "sass-rails", '>= 4.0.0'
   s.add_dependency 'compass-rails'
   s.add_dependency 'zurb-foundation', '~> 4.0.0'
-  s.add_dependency "font-awesome-rails"
+  #s.add_dependency "font-awesome-rails"
   s.add_dependency 'turbolinks'
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'modernizr-rails'

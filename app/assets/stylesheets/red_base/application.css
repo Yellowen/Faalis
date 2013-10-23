@@ -10,7 +10,7 @@
  *
  *= require red_base/variables
  *= require red_base/foundation_and_overrides
- *= require font_awesome
+ *= require font-awesome
  *= require_self
  *= require_tree .
 */
