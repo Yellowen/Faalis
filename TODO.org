@@ -2,3 +2,5 @@
 * Tasks
 ** TODO Fix the authentication assets issue (authentication should included only in device controllers)
 ** TODO Add font awesome support
+** TODO fix password_require? in user model
+** TODO fix layout titles to be like "site_title | page_title"
