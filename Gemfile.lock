@@ -161,4 +161,3 @@ PLATFORMS
 DEPENDENCIES
   red_base!
   sqlite3
-  zurb-foundation (~> 4.0.0)

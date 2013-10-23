@@ -21,21 +21,34 @@ module RedBase
   class Engine < ::Rails::Engine
     isolate_namespace RedBase
 
+    require 'red_base/initialize'
+
     engine_name "red_base"
 
     # Configure logger
-    @@logger = Logger.new(STDOUT)
     mattr_accessor :logger
+    @@logger = Logger.new(STDOUT)
 
     # Permissions configuration
     mattr_accessor :models_with_permission
 
-    # Dashboard url prefix
-    @@dashboard_namespace = :dashboard
-    mattr_accessor :dashboard_namespace
+    # TODO: create a basic setup for this option
+    @@models_with_permission = []
 
-    @@layout_direction = :ltr
+    def models_with_permission=(value)
+        @@models_with_permission.concat(value).uniq!
+    end
+
+    # Dashboard url prefix
+    mattr_accessor :dashboard_namespace
+    @@dashboard_namespace = :dashboard
+
     mattr_accessor :layout_direction
+    @@layout_direction = :ltr
+
+    # Site Title
+    mattr_accessor :site_title
+    @@site_title = _("Red Base")
 
     def self.setup
       yield self
