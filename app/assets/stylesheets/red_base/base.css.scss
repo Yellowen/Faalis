@@ -2,6 +2,15 @@
 //@import "foundation/components/global";
 //@import "foundation/components/alert-boxes";
 
+table{
+   th{
+      text-align:center !important;
+   }
+   width:90%;
+   margin-left:auto ;
+   margin-right:auto ;
+}
+
 .warning{
    text-shadow:1px 2px 2px 1px black;
 }
@@ -45,7 +54,7 @@ header {
    color: white;
    width: 100%;
    //min-width: 1000px;
-   height: $header-height;
+   height: $headerHeight;
    margin-bottom: 25px;
    padding-top: 5px;
    nav {
@@ -253,13 +262,4 @@ fieldset {
          }
       }
    }
-}
-
-table{
-   th{
-      text-align:center !important;
-   }
-   width:90%;
-   margin-left:auto ;
-   margin-right:auto ;
 }
