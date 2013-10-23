@@ -2,6 +2,35 @@
 //@import "foundation/components/global";
 //@import "foundation/components/alert-boxes";
 
+.warning{
+   text-shadow:1px 2px 2px 1px black;
+}
+
+.error{
+   text-shadow:1px 2px 2px 1px black;
+}
+
+.vertical {
+  list-style: none;
+  li {
+    display: inline;
+  }
+}
+.icon-big {
+   font-size:80px;
+}
+
+.icon-ultrabig {
+   font-size:190px;
+}
+
+.inline{
+   display:inline;
+}
+
+.justify{
+   text-align:justify;
+}
 
 @mixin transition ($a) {
   transition: $a;
@@ -139,18 +168,15 @@ footer {
 }
 
 fieldset {
-   background-color:#2ba6cb;
-   color:white;
    legend {
       margin-top:-40px;
-      background-color:#2ba6cb;
       color:white;
       padding:10px 10px 20px 10px;
       margin-right:-30px;
    }
 }
 
-.form, {
+.form {
    border: solid 1px $lightergray;
    background-color: $ultra_blue;
    padding:10px;
@@ -167,14 +193,6 @@ fieldset {
    }
 }
 
-
-.inline{
-   display:inline;
-}
-
-.justify{
-   text-align:justify;
-}
 
 .flash-success {
    @include alert-base;
@@ -244,27 +262,4 @@ table{
    width:90%;
    margin-left:auto ;
    margin-right:auto ;
-}
-
-
-.warning{
-   text-shadow:1px 2px 2px 1px black;
-}
-
-.error{
-   text-shadow:1px 2px 2px 1px black;
-}
-
-.vertical {
-  list-style: none;
-  li {
-    display: inline;
-  }
-}
-.icon-big {
-   font-size:80px;
-}
-
-.icon-ultrabig {
-   font-size:190px;
 }

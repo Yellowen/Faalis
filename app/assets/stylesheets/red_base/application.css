@@ -12,5 +12,4 @@
  *= require font_awesome
  *= require variables
  *= require_self
- *= require_tree .
- */
+ *= require_tree . */
