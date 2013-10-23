@@ -7,11 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
 
+  </header>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-<%= yield %>
+  <aside class="iconbar">
+  </aside>
+
+  <aside class="log-dock">
+  </aside>
+
+  <section class="dashboard-body">
+    <%= yield %>
+  </section>
+
 
 </body>
 </html>
