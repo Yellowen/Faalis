@@ -1,6 +1,7 @@
-//@import 'foundation_and_overrides';
-//@import "foundation/components/global";
-//@import "foundation/components/alert-boxes";
+@import 'foundation_and_overrides';
+@import "foundation/components/global";
+@import "foundation/components/alert-boxes";
+@import "variables";
 
 table{
    th{
@@ -74,7 +75,7 @@ header {
 	    background-image:url("/images/logo.png");
 	    a{
 	       display:block;
-	       width:$logoWith;
+	       width:$logoWidth;
 	       height:$logoHeight;
 	       span {
 		  display:none;

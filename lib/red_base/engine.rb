@@ -34,6 +34,9 @@ module RedBase
     @@dashboard_namespace = :dashboard
     mattr_accessor :dashboard_namespace
 
+    @@layout_direction = :ltr
+    mattr_accessor :layout_direction
+
     def self.setup
       yield self
     end
