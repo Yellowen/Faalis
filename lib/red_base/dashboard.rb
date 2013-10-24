@@ -37,5 +37,24 @@ module RedBase
       end
     end
 
+    # Return content for given section by calling related
+    # method in each registered module which registered to
+    # specified section
+    def content_for(section)
+      puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", @@modules, @@sections
+
+      result = []
+      if @@sections.include? section
+        @@sections[section].each do |module_name|
+          # Get module object form @@modules
+          result << [@@modules[module_name].priority,
+                     @@modules[modue_name].send("content_for_#{section}")]
+        end
+      end
+      result.sort.reverse.join("\n").html_safe
+    end
   end
 end
+
+require "red_base/dashboard/module"
+require "red_base/dashboard/controller"

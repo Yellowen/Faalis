@@ -17,12 +17,13 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-require "devise"
-
 module RedBase
-end
+  class Dashboard
+    module Controller
 
-require "red_base/engine"
-require "red_base/dashboard"
-require "red_base/omniauth"
-require "red_base/active_record"
+      # Register
+      def self.dashboard_modules(modules)
+      end
+    end
+  end
+end

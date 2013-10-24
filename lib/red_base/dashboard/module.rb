@@ -20,9 +20,26 @@
 module RedBase
   class Dashboard
     module Module
-      def show_me_on(section)
+
+      @@priority = 50
+      @@name = "default_name"
+      # Register the module on given section with given priority
+      def self.show_me_on(section, priority = nil)
         RedBase::Dashboard.instance.register_module(section, self)
+        if not priority.nil?
+          @@priority = priority
+        end
       end
+
+      def self.priority(priority_)
+        @@priority = priority_.to_i
+      end
+
+      def self.name(name_)
+        @@name = name_.to_s
+      end
+
+
     end
   end
 end
