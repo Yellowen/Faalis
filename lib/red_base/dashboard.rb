@@ -27,6 +27,7 @@ module RedBase
     @@sections = {}
 
     def register_module(section, dashboard_module)
+      puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<", section, dashboard_module.to_yml
       if not @@modules.include? dashboard_module.name
         @@modules[dashboard_module.name.to_sym] = dashboard_module
 
