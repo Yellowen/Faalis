@@ -54,5 +54,12 @@ module RedBase
       yield self
     end
 
+    config.to_prepare do
+      Devise::SessionsController.layout "red_base/application"
+      Devise::RegistrationsController.layout  "red_base/application"
+      Devise::ConfirmationsController.layout "red_base/application"
+      Devise::UnlocksController.layout "red_base/application"
+      Devise::PasswordsController.layout "red_base/application"
+    end
   end
 end
