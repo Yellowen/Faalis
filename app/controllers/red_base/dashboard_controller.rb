@@ -6,8 +6,9 @@ module RedBase
     include RedBase::Dashboard::Controller
 
     layout "red_base/dashboard"
-
     before_filter :authenticate_user!
+
+    dashboard_modules ["RedBase::HomeController"]
 
     def index
     end

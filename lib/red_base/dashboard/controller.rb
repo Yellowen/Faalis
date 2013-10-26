@@ -21,8 +21,22 @@ module RedBase
   class Dashboard
     module Controller
 
-      # Register
-      def self.dashboard_modules(modules)
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
+
+      module ClassMethods
+        # List of controllers which dashboard should load before rendering
+        # dashboard
+        def dashboard_modules(modules)
+          modules.each do |module_name|
+            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sdsdsd<", $:
+            logger.info "Loading Dashboard Module [#{module_name}]."
+            const_get(module_name)
+            #require "#{module_name}"
+          end
+        end
+
       end
     end
   end
