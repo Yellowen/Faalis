@@ -1,0 +1,44 @@
+<div class="wrapper_signin">
+  <div class="row">
+    <div class="layout_signin">
+      <div class="row">
+
+	<div class="large-7 columns">
+	  <h1><%= _("Change your password")%></h1>
+	  <% _("For changing your password fill and submit the form.") %?>
+
+	     <div class="large-5 columns">
+
+	       <div class="form panel radius">
+	         <h2><%= _("Change your password")%></h2>
+
+	         <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+	           <%= devise_error_messages! %>
+	           <%= f.hidden_field :reset_password_token %>
+
+	           <div class="field">
+		     <label>
+		       <%= f.label :password, <%= _("New Password")%> %>
+		     </label>
+		     <%= f.password_field :password, :autofocus => true %></div>
+
+	           <div class="field">
+		     <label>
+		       <%= f.label :password_confirmation,  <%= _("Confirm passeord")%>%>
+		     </label>
+		     <%= f.password_field :password_confirmation %>
+
+	             <div class="submit"><%= f.submit  <%= _("Change my password")%></div>
+                     <br>
+	             <%= render "devise/shared/links" %>
+
+	         <% end %>
+
+	         </div>
+	       </div>
+             </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
