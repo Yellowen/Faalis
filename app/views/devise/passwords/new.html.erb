@@ -9,7 +9,7 @@
 	</div>
 	<div class="large-5 columns">
 
-	  <div class="form">
+	  <div class="form radius panel">
 	  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
 	    <%= devise_error_messages! %>
 
@@ -18,8 +18,9 @@
 	      <%= f.email_field :email, :autofocus => true %></div>
 
 	    <div class="submit"><%= f.submit _("Send me reset password instructions"), :class=>"button" %>
-	      <br>
+	      <br /><br /><br />
 	      <%= render "devise/shared/links" %>
+              <br />
 	    </div>
 	  <% end %>
 	  </div>

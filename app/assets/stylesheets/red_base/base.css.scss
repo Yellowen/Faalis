@@ -31,7 +31,7 @@ table{
 }
 
 .icon-ultrabig {
-   font-size:170px;
+   font-size:210px;
 }
 
 .inline{
@@ -187,16 +187,12 @@ fieldset {
 }
 
 .form {
-   border: solid 1px $lightergray;
-   background-color: $ultra_blue;
-   padding:10px;
     /*@include border-radius(5px);
-    @include single-box-shadow(rgba(black, 0.4));
+    @include single-box-shadow(rgba(black, 1));
     */
-
+   line-height:25px;
    img {
       padding :5px;
-      border:#D9E3DC;
    }
    .submit{
       text-align:center;
