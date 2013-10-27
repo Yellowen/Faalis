@@ -7,47 +7,47 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-<div class="">
-  <div class="large-12 columns">
+    <div class="header">
+      <div class="large-12 columns">
+        <div class="row">
+          <!-- Navigation -->
+          <nav class="top-bar">
+            <ul class="title-area">
+              <!-- Title Area -->
+              <li class="name">
+                <h1>
+                  <a href="#">
+                    <%= RedBase::Engine.site_title %>
+                  </a>
+                </h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+            </ul>
 
-    <!-- Navigation -->
-    <nav class="top-bar">
-      <ul class="title-area">
-        <!-- Title Area -->
-        <li class="name">
-          <h1>
-            <a href="#">
-              <%= RedBase::Engine.site_title %>
-            </a>
-          </h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-      </ul>
+            <section class="top-bar-section">
+              <ul class="left">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
 
-      <section class="top-bar-section">
-        <ul class="left">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+              <ul class="right">
+                <li class="search">
+                  <form>
+                    <input type="search">
+                  </form>
+                </li>
 
-        <ul class="right">
-          <li class="search">
-            <form>
-              <input type="search">
-            </form>
-          </li>
+                <li class="has-button">
+                  <a class="small button" href="#">Search</a>
+                </li>
+              </ul>
+            </section>
+          </nav>
 
-          <li class="has-button">
-            <a class="small button" href="#">Search</a>
-          </li>
-        </ul>
-      </section>
-    </nav>
-
-    <!-- End Navigation -->
-
-  </div>
-</div>
+          <!-- End Navigation -->
+        </div>
+      </div>
+    </div>
 
     <%= yield %>
 
