@@ -76,6 +76,5 @@ module RedBase
       Devise::PasswordsController.layout "red_base/application"
     end
 
-    #config.ember.variant = Rails.env
   end
 end

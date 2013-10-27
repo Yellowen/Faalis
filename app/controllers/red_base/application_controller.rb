@@ -26,6 +26,7 @@ module RedBase
         "application/RedBase"
       else
         "application"
+      end
     end
   end
 end
