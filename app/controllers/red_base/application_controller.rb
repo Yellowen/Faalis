@@ -19,14 +19,5 @@
 
 module RedBase
   class ApplicationController < ActionController::Base
-    layout by_controller
-
-    def by_controlle
-      if devise_controller?
-        "application/RedBase"
-      else
-        "application"
-      end
-    end
   end
 end

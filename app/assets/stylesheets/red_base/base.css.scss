@@ -31,7 +31,7 @@ table{
 }
 
 .icon-ultrabig {
-   font-size:190px;
+   font-size:210px;
 }
 
 .inline{
@@ -50,114 +50,9 @@ table{
   -ms-transition: $a;
 }
 
-header {
+.header {
    Background: $headerbg;
-   color: white;
-   width: 100%;
-   //min-width: 1000px;
    height: $headerHeight;
-   margin-bottom: 25px;
-   padding-top: 5px;
-   nav {
-      padding: 10px 0px;
-      width: 100%;
-      display:inline;
-      .logo{
-	 display:inline;
-	 float:right;
-	 width:$logoWidth;
-	 height:$logoHeight;
-         margin-top: -23px;
-	 h1 {
-	    display:block;
-	    width:$logoWidth;
-	    height:$logoHeight;
-	    background-image:url("/images/logo.png");
-	    a{
-	       display:block;
-	       width:$logoWidth;
-	       height:$logoHeight;
-	       span {
-		  display:none;
-	       }
-	    }
-	    a:hover{
-	       Background:none !important;
-	    }
-	 }
-      }
-
-   }
-   ul {
-      list-style: none;
-
-      li {
-         display: inline;
-         min-width: 58px;
-         padding: 5px 5px 14px;
-
-           .search {
-               position: absolute;
-               top: 10px;
-
-             .search-icon {
-               display: inline;
-               z-index: 900;
-               position: absolute;
-               top: 4px;
-               right: 8px;
-               color: lighten($headerbg, 30%);
-             }
-
-
-             #search {
-               z-index: 200;
-               background: darken($headerbg, 8%);
-               position: absolute;
-               top: 0px;
-
-               width: 14em;
-               height: 30px;
-               font-size: 12px;
-               outline: none;
-               box-shadow: none;
-               border: 1px solid lighten($headerbg, 10%);
-               border-radius: 4px;
-               color: lighten($headerbg, 30%);
-               padding: 0 26px 0 10px;
-
-               &:focus {
-                 width: 25em;
-                 background: darken($headerbg, 15%);
-                 border: 1px solid lighten($headerbg, 10%);
-                 border-bottom: 1px solid $orange;
-                 color: white;
-                 @include transition(background 300ms linear 0ms);
-                 @include transition(border 300ms linear 0ms);
-                 @include transition(width 300ms linear 0ms);
-
-
-               }
-             }
-           }
-         a {
-            font-size: 16px;
-            color: $clouds !important;
-            text-decoration: none;
-            padding: 0px 10px 0px;
-            line-height: 40px;
-            display: inline-block;
-
-         }
-         a.active {
-           border-bottom: 5px solid $belize_hole;
-         }
-         a:hover {
-           border-bottom: 5px solid $hover-box;
-         }
-      }
-   }
-
 }
 
 footer {
@@ -187,16 +82,12 @@ fieldset {
 }
 
 .form {
-   border: solid 1px $lightergray;
-   background-color: $ultra_blue;
-   padding:10px;
     /*@include border-radius(5px);
-    @include single-box-shadow(rgba(black, 0.4));
+    @include single-box-shadow(rgba(black, 1));
     */
-
+   line-height:25px;
    img {
       padding :5px;
-      border:#D9E3DC;
    }
    .submit{
       text-align:center;

@@ -1,12 +1,34 @@
-<h2>Resend confirmation instructions</h2>
+<div class="wrapper_signin">
+  <div class="row">
+    <div class="layout_signin">
+      <div class="row">
 
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+	<div class="large-7 columns">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+          <h1><%= _("Resend confirmation instructions")%></h1>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+          <div class="large-5 columns">
+
+            <div class="form panel radius">
+              <h2><%= _("Resend condirmation")%></h2>
+
+              <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="field"><%= f.label :email %><br />
+                  <%= f.email_field :email, :autofocus => true %></div>
+
+                <div class="field"><%= f.submit "Resend confirmation instructions" %></div>
+              <% end %>
+
+              <%= render "devise/shared/links" %>
+
+            </div>
+	  </div>
+
+	</div>
+      </div>
+    </div>
+  </div>
+</div>

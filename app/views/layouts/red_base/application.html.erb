@@ -1,17 +1,75 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= RedBase::Engine.site_title %></title>
-  <%= stylesheet_link_tag    "red_base/dashboard/application", media: "all" %>
-  <%= javascript_include_tag :modernizer, "red_base/dashboard/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= RedBase::Engine.site_title %></title>
+    <%= stylesheet_link_tag    "red_base/application", media: "all" %>
+    <%= javascript_include_tag :modernizer, "red_base/dashboard/application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="header">
+      <div class="large-12 columns">
+        <div class="">
+          <!-- Navigation -->
+          <nav class="top-bar">
+            <ul class="title-area">
+              <!-- Title Area -->
+              <li class="name">
+                <h1>
+                  <a href="#">
+                    <%= RedBase::Engine.site_title %>
+                  </a>
+                </h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+            </ul>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+            <section class="top-bar-section">
+              <ul class="left">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
 
-<%= yield %>
+              <ul class="right">
+                <li class="search">
+                  <form>
+                    <input type="search">
+                  </form>
+                </li>
 
-</body>
+                <li class="has-button">
+                  <a class="small button" href="#">Search</a>
+                </li>
+              </ul>
+            </section>
+          </nav>
+
+          <!-- End Navigation -->
+        </div>
+      </div>
+    </div>
+
+    <%= yield %>
+
+    <!-- Footer -->
+
+    <footer class="">
+      <div class="large-12 columns">
+        <hr>
+        <div class="row">
+          <div class="large-6 columns">
+            <p>&copy; Copyright no one at all. Go to town.</p>
+          </div>
+          <div class="large-6 columns">
+            <ul class="inline-list right">
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+              <li><a href="#">Link 3</a></li>
+              <li><a href="#">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
