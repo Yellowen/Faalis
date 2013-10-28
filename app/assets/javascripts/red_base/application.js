@@ -10,22 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//s= require modernizer
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
 //= require jquery.turbolinks
-//= require handlebars
-//= require ember
-//= require ember-data
 //= require_self
-//= require app
-
-// for more details see: http://emberjs.com/guides/application/
-App = Ember.Application.create();
-
-//= require_tree .
+//= require_directory .
 $(function(){
     $(document).foundation();
 });
