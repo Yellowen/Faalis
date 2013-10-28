@@ -1,0 +1,36 @@
+@import "red_base/variables";
+
+aside {
+  background: white;
+  padding: 0 !important;
+  ul {
+    list-style: none;
+
+    li {
+      padding: 10px 15px;
+      border-bottom: 1px solid $lightergray;
+      border-left: 1px solid $lightergray;
+      border-right: 1px solid $lightergray;
+
+      &.active {
+        background: $dashboard-background;
+        border-right: none;
+      }
+
+      &.active > a {
+        color: $darkergray;
+      }
+      &:first-child {
+        border-top: 1px solid $lightergray;
+      }
+      i {
+        padding-left: 5px;
+        padding-right: 5px;
+
+      }
+      & > a {
+        color: $lightgray;
+      }
+    }
+  }
+}
