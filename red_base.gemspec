@@ -37,6 +37,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'modernizr-rails'
 
+  # Emberjs
+  s.add_dependency "ember-rails"
+  s.add_dependency "ember-source", "1.1.0"
+
   # i18n
   s.add_dependency "fast_gettext"
   s.add_dependency "gettext"

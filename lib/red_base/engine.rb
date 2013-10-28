@@ -21,7 +21,7 @@ module RedBase
   class Engine < ::Rails::Engine
     isolate_namespace RedBase
 
-    require 'red_base/initialize'
+    #require 'red_base/initialize'
 
     engine_name "red_base"
 
@@ -46,13 +46,27 @@ module RedBase
     mattr_accessor :layout_direction
     @@layout_direction = :ltr
 
-    # Site Title
-    mattr_accessor :site_title
-    @@site_title = _("Red Base")
+
+    # locales
+    mattr_accessor :locales
+    @@locales = ['en', 'fa']
 
     def self.setup
       yield self
     end
+
+    # Fast Gettext Configuration
+    require 'fast_gettext'
+    require 'gettext_i18n_rails'
+    # TODO: Check for possible error in this configurations
+    FastGettext.add_text_domain 'app', :path => 'config/locales', :type => :po
+    # All languages you want to allow
+    FastGettext.default_available_locales = @@locales
+    FastGettext.default_text_domain = 'app'
+
+    # Site Title
+    mattr_accessor :site_title
+    @@site_title = _("Red Base")
 
     config.to_prepare do
       Devise::SessionsController.layout "red_base/application"
@@ -61,5 +75,6 @@ module RedBase
       Devise::UnlocksController.layout "red_base/application"
       Devise::PasswordsController.layout "red_base/application"
     end
+
   end
 end
