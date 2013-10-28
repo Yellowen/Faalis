@@ -16,6 +16,18 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
+require 'fast_gettext'
+require "gettext"
+require "ruby_parser"
+require 'gettext_i18n_rails'
+require 'modernizr-rails'
+require "compass-rails"
+require 'zurb-foundation'
+require "font-awesome-rails"
+require 'jquery-turbolinks'
+require "ember-rails"
+require "ember/source"
+
 
 module RedBase
   class Engine < ::Rails::Engine
@@ -56,8 +68,6 @@ module RedBase
     end
 
     # Fast Gettext Configuration
-    require 'fast_gettext'
-    require 'gettext_i18n_rails'
     # TODO: Check for possible error in this configurations
     FastGettext.add_text_domain 'app', :path => 'config/locales', :type => :po
     # All languages you want to allow
@@ -76,5 +86,6 @@ module RedBase
       Devise::PasswordsController.layout "red_base/application"
     end
 
+    config.ember.variant = Rails.env
   end
 end
