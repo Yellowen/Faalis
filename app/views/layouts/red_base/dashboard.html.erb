@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= RedBase::Engine.site_title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "red_base/dashboard/application", media: "all" %>
   <%= javascript_include_tag :modernizr %>
   <%= csrf_meta_tags %>
@@ -13,16 +14,21 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-  <aside class="iconbar">
-  </aside>
-
-  <aside class="log-dock">
-  </aside>
-
   <section class="dashboard-body">
-    <%= yield %>
+
+    <div class="row">
+      <aside class="modulebar small-3 columns">
+        asdasd
+        <%= render "red_base/dashboard/sidebar" %>
+      </aside>
+      <section class="small-9 columns">
+        <%= yield %>
+      </section>
+
+    </div>
   </section>
 
+  <%= render "red_base/dashboard/ember" %>
   <%= javascript_include_tag "red_base/dashboard/application" %>
 </body>
 </html>

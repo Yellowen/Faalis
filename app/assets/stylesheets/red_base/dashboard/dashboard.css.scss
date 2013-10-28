@@ -1,0 +1,49 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+@import "red_base/variables";
+
+body {
+   background: #efefef;
+}
+
+.full {
+   width: 100% !important;
+   max-width: 100% !important;
+}
+
+header {
+   background: $lightergray;
+
+   .topheader {
+      Background: $darkergray;
+      box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
+      color: white;
+      font-size: 0.8em;
+      height: 4.45em;
+
+      h1 {
+         font-size: 1.2em;
+         color: white;
+      }
+
+   }
+   nav {
+      ul {
+         list-style: none;
+      }
+      li {
+         display: inline-block;
+         padding: 1em 2em;
+
+         &:hover { Background: red }
+         &.brand {
+            background: lighten($darkergray, 10%);
+         }
+      }
+   }
+   .modulebar {
+      margin-top: 20px;
+   }
+}
