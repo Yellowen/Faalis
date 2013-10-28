@@ -3,34 +3,66 @@
 aside {
   background: white;
   padding: 0 !important;
+  border-radius: 4px;
+  margin-top: 20px;
+
   ul {
     list-style: none;
+    margin-bottom: 0;
 
     li {
       padding: 10px 15px;
       border-bottom: 1px solid $lightergray;
       border-left: 1px solid $lightergray;
       border-right: 1px solid $lightergray;
+      cursor: pointer;
+      color: $lightgray;
 
       &.active {
         background: $dashboard-background;
         border-right: none;
-      }
-
-      &.active > a {
         color: $darkergray;
       }
+
+      &:hover {
+        &:not(.active) {
+          background: darken(white, 2%);
+          color: darken($lightgray, 10%);
+        }
+      }
+
       &:first-child {
         border-top: 1px solid $lightergray;
+        border-radius: 4px 4px 0 0;
+
       }
       i {
         padding-left: 5px;
         padding-right: 5px;
 
       }
-      & > a {
-        color: $lightgray;
-      }
+
+    }
+  }
+
+  .brand {
+    border-bottom: 1px solid $lightergray;
+    border-left: 1px solid $lightergray;
+    border-right: 1px solid $lightergray;
+    margin-top: -5px;
+    padding: 50px 20px 20px;
+    line-size: 1;
+    border-radius: 0 0 4px 4px;
+
+    h1 {
+      font-size: 1.3em;
+      margin: 0;
+      color: gray;
+    }
+    span {
+      color: $lightgray;
+      font-size: 0.8em;
+      margin: 0;
     }
   }
 }
