@@ -26,7 +26,13 @@
 
             <section class="top-bar-section">
               <ul class="left">
-                <li><a href="#">About</a></li>
+                <%if user_signed_in? %>
+                <li><%= link_to _("Register"),new_user_registration_path %></li>
+                <li><%= link_to _("Sign in"),user_session_path %></li>
+                <%else%>
+                <li><%= link_to _("Dashboard"),"/dashboard" %></li>
+                <li><%= link_to _("Sign Out"),destroy_user_session_path,:method=>:delete %></li>
+                <% end  %>
                 <li><a href="#"><%=_("About")%></a></li>
                 <li><a href="#"><%=_("Contact")%></a></li>
               </ul>
