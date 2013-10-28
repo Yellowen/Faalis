@@ -17,7 +17,7 @@ header {
    background: $lightergray;
 
    .topheader {
-      Background: $darkergray;
+      Background: $dashboard-nav-background;
       box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
       color: white;
       font-size: 0.8em;
@@ -37,10 +37,16 @@ header {
          display: inline-block;
          padding: 1em 2em;
 
-         &:hover { Background: red }
+         &:hover { Background: lighten($dashboard-nav-hover, 5%)}
          &.brand {
-            background: lighten($darkergray, 10%);
+            background: lighten($dashboard-nav-hover, 3%);
          }
+      }
+      li.spliter{
+        width:1px;
+         border-left:1px white solid;
+         padding:0;
+         margin:0;
       }
    }
    .modulebar {

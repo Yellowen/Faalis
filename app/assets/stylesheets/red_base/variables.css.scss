@@ -13,7 +13,6 @@ $darkbg: #202224;
 $clouds: #ecf0f1;
 $silver: #bdc3c7;
 
-
 $emerald: #2ecc71;
 $nephritis: #27ae60;
 
@@ -46,8 +45,9 @@ $header-height: 50px;
 $box-bottom-border: 4px;
 $hover-box: $emerald;
 
-$dashboard-background:  #efefef;
-
+$dashboard-nav-background: #232A30;
+$dashboard-background: #efefef;
+$dashboard-nav-hover: #2E3639;
 .emerald {
     background: $emerald;
 }
