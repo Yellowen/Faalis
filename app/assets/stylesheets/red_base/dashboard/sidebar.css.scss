@@ -13,7 +13,6 @@ aside {
     li {
       padding: 10px 15px;
       border-bottom: 1px solid $lightergray;
-      border-left: 1px solid $lightergray;
       border-right: 1px solid $lightergray;
       cursor: pointer;
       color: $lightgray;
@@ -33,7 +32,7 @@ aside {
 
       &:first-child {
         border-top: 1px solid $lightergray;
-        border-radius: 4px 4px 0 0;
+        border-radius: 0px 4px 0 0;
 
       }
       i {
@@ -47,12 +46,11 @@ aside {
 
   .brand {
     border-bottom: 1px solid $lightergray;
-    border-left: 1px solid $lightergray;
     border-right: 1px solid $lightergray;
     margin-top: -5px;
     padding: 50px 20px 20px;
     line-size: 1;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 0px;
 
     h1 {
       font-size: 1.3em;

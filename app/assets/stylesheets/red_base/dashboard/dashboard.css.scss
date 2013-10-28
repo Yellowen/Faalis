@@ -4,6 +4,10 @@
 */
 @import "red_base/variables";
 
+.row {
+  width: 100% !important;
+  max-width: 100%;
+}
 body {
    background: $dashboard-background;
 }
