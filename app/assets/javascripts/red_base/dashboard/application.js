@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require foundation
-//= require jquery.turbolinks
 //= require handlebars
 //= require ember
 //= require ember-data

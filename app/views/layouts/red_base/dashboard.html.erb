@@ -8,27 +8,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <%= yield :header %>
-  </header>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
-  <section class="dashboard-body">
+  <%= yield %>
 
-    <div class="row">
-      <aside class="modulebar small-2 columns">
-
-        <%= render "red_base/dashboard/sidebar" %>
-      </aside>
-      <section class="small-10 columns">
-        <%= yield %>
-      </section>
-
-    </div>
-  </section>
-
-  <%= render "red_base/dashboard/ember" %>
   <%= javascript_include_tag "red_base/dashboard/application" %>
+
 </body>
 </html>
