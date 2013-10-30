@@ -2,6 +2,7 @@
 
 Dashboard.Router.map(function(match) {
     this.resource("modules");
+    this.resource("users");
     //this.resource("navigation");
     //this.resource("user", {path: "me"});
 

@@ -51,6 +51,18 @@ module RedBase
         @@models_with_permission.concat(value).uniq!
     end
 
+    # Dashboard configurations
+    mattr_accessor :dashboard_modules
+
+    @@dashboard_modules = {
+      :users => {},
+    }
+
+
+    def dashboard_modules=(value)
+        @@dashboard_modules.merge!(value)
+    end
+
     # Dashboard url prefix
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard

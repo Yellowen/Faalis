@@ -2,16 +2,24 @@ var modules = [
     {
         title: "sameer",
         icon: "icon-twitter",
-        url: "index"
+        resource: "index"
     },
     {
         title: "ali",
-        url: "modules"
+        resource: "modules"
     }
 ];
 
 Dashboard.ApplicationRoute = Ember.Route.extend({
     setupController: function(controller, model){
-        return this.controllerFor('modules').set('model', modules);
+        var that = this;
+        Ember.$.getJSON("modules.json")
+            .done(function(data) {
+                console.dir(modules);
+                that.controllerFor('modules').set('model',data.modules);
+            })
+            .fail(function(data){
+                console.log("Fix me");
+            });
     }
 });
