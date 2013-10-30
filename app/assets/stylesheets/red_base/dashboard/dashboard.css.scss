@@ -28,7 +28,8 @@ header {
       height: 4.45em;
 
       h1 {
-         font-size: 1.1em;
+         padding-top:-2px;
+         font-size: 2.1em;
          color: white;
       }
 
@@ -36,24 +37,22 @@ header {
    nav {
       ul {
          list-style: none;
-
       }
       li {
          display: inline-block;
-         padding-top: 1.1em;
-         padding-bottom:1em;
          padding-left:2em;
          padding-right:2em;
          &:hover { Background: lighten($dashboard-nav-hover, 5%)}
          &.brand {
             background: lighten($dashboard-nav-hover, 3%);
          }
-      }
-      li.spliter{
-        width:1px;
-         border-left:1px white solid;
-         padding:0;
-         margin:0;
+         line-height:4.4em;
+         a{
+            line-height:4.4em;
+            font-weight:700;
+         }
+         border-left: 1px solid $darkgray;
+         border-right: 1px solid $darkergray;
       }
    }
    .modulebar {
@@ -62,7 +61,7 @@ header {
 }
 
 
-  ul{
-     margin-bottom:0px !important;
-     margin-bottom:0;
-    }
+ul{
+   margin-bottom:0px !important;
+   margin-bottom:0;
+}
