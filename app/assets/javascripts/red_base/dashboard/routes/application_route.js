@@ -1,9 +1,12 @@
 var modules = [
     {
-        title: "sameer"
+        title: "sameer",
+        icon: "icon-twitter",
+        url: "index"
     },
     {
-        title: "ali"
+        title: "ali",
+        url: "modules"
     }
 ];
 

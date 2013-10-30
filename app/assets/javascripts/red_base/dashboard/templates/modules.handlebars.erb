@@ -1,9 +1,8 @@
 <ul>
-  <li><i class="icon-user"></i> {{# link-to 'index' }}<%= _("Dashboard") %>{{/link-to}}</li>
-  <li><i class="icon-user"></i> some text</li>
-  <li><i class="icon-user"></i> some text</li>
-  <li class="active"><i class="icon-user"></i> some text</li>
-  <li><i class="icon-user"></i> some text</li>
+  <li>{{# link-to 'index' }}<i class="icon-user"></i> <%= _("Dashboard") %>{{/link-to}}</li>
+  {{#each}}
+  <li>{{# link-to url }} <i {{bind-attr class=icon }}></i> {{ title }}{{/link-to}}</li>
+  {{/each}}
 </ul>
 
 <div class="brand">
