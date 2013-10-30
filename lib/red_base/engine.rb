@@ -25,8 +25,11 @@ require "compass-rails"
 require 'zurb-foundation'
 require "font-awesome-rails"
 require 'jquery-turbolinks'
+require "devise"
+require "warden"
 require "ember-rails"
 require "ember/source"
+require "grape"
 
 
 module RedBase
@@ -54,6 +57,12 @@ module RedBase
     # Dashboard configurations
     mattr_accessor :dashboard_modules
 
+    # This class variable should be a hash
+    # that each key is a resource name and its value
+    # is some of these:
+    #       resource: provide resource name explicitly
+    #       title: resource title (will show in dashboard)
+    #       icon: icon class checkout font-awesome
     @@dashboard_modules = {
       :users => {},
     }
@@ -90,6 +99,7 @@ module RedBase
     mattr_accessor :site_title
     @@site_title = _("Red Base")
 
+    # Override devise layout
     config.to_prepare do
       Devise::SessionsController.layout "red_base/application"
       Devise::RegistrationsController.layout  "red_base/application"
@@ -98,7 +108,12 @@ module RedBase
       Devise::PasswordsController.layout "red_base/application"
     end
 
+    # Emberjs variant
     config.ember.variant = Rails.env
+
+    # Grape configuration
+    config.paths.add "app/api", glob: "**/*.rb"
+    config.autoload_paths += Dir["#{Rails.root}/app/api/*", "../../app/api/"]
 
   end
 end

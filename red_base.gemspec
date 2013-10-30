@@ -24,8 +24,12 @@ Gem::Specification.new do |s|
   # Authentication
   s.add_dependency "omniauth"
   s.add_dependency "devise", ">= 3.0.0"
+
   # Authorization
   s.add_dependency "cancan"
+
+  # API
+  s.add_dependency "grape"
 
   # Assets
   s.add_dependency "jquery-rails"
