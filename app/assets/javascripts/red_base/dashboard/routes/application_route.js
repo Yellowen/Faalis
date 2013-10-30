@@ -15,7 +15,6 @@ Dashboard.ApplicationRoute = Ember.Route.extend({
         var that = this;
         Ember.$.getJSON("modules.json")
             .done(function(data) {
-                console.dir(modules);
                 that.controllerFor('modules').set('model',data.modules);
             })
             .fail(function(data){

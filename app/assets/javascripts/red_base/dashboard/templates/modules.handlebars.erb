@@ -1,7 +1,9 @@
 <ul>
-  <li>{{# link-to 'index' }}<i class="fa fa-dashboard"></i> <%= _("Dashboard") %>{{/link-to}}</li>
+
+  {{#view Dashboard.LinkView route="index" content="" classes="asd dfs"}}<i class="fa fa-dashboard"></i> <%= _("Dashboard") %>{{/view}}
+
   {{#each}}
-  <li {{bind-attr data-resource=resource }}>{{# link-to resource }} <i {{bind-attr class=icon }}></i> {{ title }}{{/link-to}}</li>
+  {{#view Dashboard.LinkView resource=resource route="users" content=""}}<i {{bind-attr class=icon }}></i> {{ title }}{{/view}}
   {{/each}}
 </ul>
 

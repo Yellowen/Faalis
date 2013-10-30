@@ -1,0 +1,22 @@
+@import "red_base/variables";
+@import "red_base/foundation_and_overrides";
+
+.btn {
+  @include button-base;
+  @include single-transition;
+}
+.green {
+  @include button-style($emerald, $border-radius, false);
+}
+
+.blue {
+  @include button-style($peter_river, $border-radius, false);
+
+}
+.small {
+  @include button-size($button-sml, false, false);
+}
+
+.medium {
+  @include button-size($button-med, false, false);
+}
