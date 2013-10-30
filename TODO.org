@@ -4,3 +4,5 @@
 ** TODO Add font awesome support
 ** TODO fix password_require? in user model
 ** TODO fix layout titles to be like "site_title | page_title"
+** TODO fix the "Fix me"s in javascript code
+** TODO fix the permission check in /dashboard/modules action

@@ -6,6 +6,7 @@ RedBase::Engine.routes.draw do
 
   end
 
+  mount RedBase::API => "api"
   # Authentications
   devise_for :users, {
     :class_name => "RedBase::User",
