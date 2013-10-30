@@ -20,7 +20,14 @@
 //= require red_base/dashboard/app
 
 // for more details see: http://emberjs.com/guides/application/
-window.Dashboard = Ember.Application.create();
+window.Dashboard = Ember.Application.create({
+    Resolver: Ember.DefaultResolver.extend({
+        resolveTemplate: function(parsedName) {
+            parsedName.fullNameWithoutType = "red_base/dashboard/" + parsedName.fullNameWithoutType;
+            return this._super(parsedName);
+        }
+    })
+});
 
 //= require_tree .
 $(function(){

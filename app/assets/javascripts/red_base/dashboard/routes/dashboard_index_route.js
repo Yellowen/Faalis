@@ -1,5 +1,5 @@
 Dashboard.IndexRoute = Ember.Route.extend({
-    renderTemplate: function(model, controller) {
+/*    renderTemplate: function(model, controller) {
         //this.render("navigation", {outlet: "nav"});
         this.render("index");
         this.render("modules", { outlet: "sidebar",
@@ -7,4 +7,5 @@ Dashboard.IndexRoute = Ember.Route.extend({
                                });
         //this.render("user", { into: "content"});
     }
+*/
 });

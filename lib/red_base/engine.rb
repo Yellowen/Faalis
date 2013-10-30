@@ -87,5 +87,6 @@ module RedBase
     end
 
     config.ember.variant = Rails.env
+
   end
 end
