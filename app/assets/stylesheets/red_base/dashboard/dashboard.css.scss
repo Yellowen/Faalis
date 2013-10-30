@@ -48,8 +48,11 @@ header {
          }
          line-height:4.4em;
          a{
+            display:block;
             line-height:4.4em;
             font-weight:700;
+            height:100%;
+            width:100%;
          }
          border-left: 1px solid $darkgray;
          border-right: 1px solid $darkergray;
