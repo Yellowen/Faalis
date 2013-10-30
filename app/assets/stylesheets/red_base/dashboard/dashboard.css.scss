@@ -28,7 +28,7 @@ header {
       height: 4.45em;
 
       h1 {
-         font-size: 1.2em;
+         font-size: 1.1em;
          color: white;
       }
 
@@ -36,6 +36,7 @@ header {
    nav {
       ul {
          list-style: none;
+
       }
       li {
          display: inline-block;
@@ -57,3 +58,9 @@ header {
       margin-top: 20px;
    }
 }
+
+
+  ul{
+     margin-bottom:0px !important;
+     margin-bottom:0;
+    }
