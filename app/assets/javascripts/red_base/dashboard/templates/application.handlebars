@@ -1,10 +1,21 @@
-  <header>
+<header>
   {{ render "navigation" }}
-  </header>
+</header>
 
-  <section class="dashboard-body">
+<section class="dashboard-body">
 
-    <div class="row">
-      {{ outlet }}
-    </div>
-  </section>
+  <div class="row">
+    <aside class="modulebar small-2 columns">
+      {{ render "modules"}}
+    </aside>
+    <section class="small-10 columns">
+
+      <div class="row">
+
+        {{ outlet }}
+      </div>
+
+    </section>
+
+  </div>
+</section>
