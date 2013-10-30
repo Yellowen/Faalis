@@ -12,6 +12,7 @@
  *= require red_base/dashboard/foundation_and_overrides
  *= require font-awesome
  *= require red_base/base
+ *= require red_base/buttons
  *= require_self
  *= require_directory .
 */
