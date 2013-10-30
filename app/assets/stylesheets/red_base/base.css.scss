@@ -116,6 +116,11 @@ fieldset {
 }
 
 $table-list-line-height: 40px;
+/*
+  <.table-list>
+    .buttons
+    .details
+*/
 .table-list{
    ul {
       border-top:2px solid $lightergray;
@@ -135,8 +140,24 @@ $table-list-line-height: 40px;
            padding-right: 20px;
            color: lighten(black, 20%);
 
+           // TODO: Create a mixin for user-select;
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -khtml-user-select: none;
+           -ms-user-select: none;
+           -o-user-select: none;
+
+           &.selected {
+             background: $selected-bg;
+           }
            .details {
              display: none;
+           }
+
+           .buttons {
+             margin-top: -$table-list-line-height;
+             opacity: 0;
+             @include transition(opacity 300ms linear 0ms);
            }
            i {
              font-size: 0.6em;
@@ -153,6 +174,10 @@ $table-list-line-height: 40px;
            }
            &:hover {
               opacity: 1;
+              & > .buttons {
+                opacity: 1;
+                @include transition("opacity 300ms linear 0ms");
+              }
            }
            div {
               padding-right:10px;
