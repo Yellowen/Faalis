@@ -9,12 +9,11 @@ Dashboard.ListViewComponent = Ember.Component.extend({
             record.save();
         },
         select_item: function(record){
-            console.dir(record);
-            //this.controllerFor(record).toggleProperty('is_selected');
+            record.set('is_selected', !record.get('is_selected'));
         },
 
         toggle_details: function(record){
-            console.log("ASd");
+            console.log(this.$);
             var details = this.$.find(".details");
             this.$.parent().find(".details").not(this.$).slideUp();
             this.$.parent().find(".handle").not(this.$.find(".handle")).removeClass("fa-rotate-90");

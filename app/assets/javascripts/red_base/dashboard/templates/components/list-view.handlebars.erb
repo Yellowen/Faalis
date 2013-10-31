@@ -3,8 +3,8 @@
     <li><%= _("There is not record") %></li>
     {{/unless}}
     {{#each record in model}}
-    <li {{bind-attr class="is_selected:selected :pointer"}} {{ action "select_item" record}} {{action "toggle_details" record on="doubleClick"}}>
-      <i class="handle fa fa-angle-right"></i> {{ __title__  record title-field}}
+    <li {{bind-attr class="record.is_selected:selected :pointer"}} {{ action "select_item" record}}>
+      <i {{action "toggle_details" record on="doubleClick"}} class="handle fa fa-angle-right"></i> {{ __title__  record title-field}}
       <div class="buttons text-right"><span><i class="fa fa-edit"></i></span> <span class="pointer delete-icon" {{ action 'delete' record}}><i class="fa fa-times"></i></span></div>
       <div class="details">
         asdfsdf
