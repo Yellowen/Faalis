@@ -25,9 +25,7 @@ header {
       height:60px;
     border-left: 1px solid $darkgray;
     border-right: 1px solid $darkergray;
-      a{
-        height:4.5em;
-        }
+
       &.brand {
         background: lighten($dashboard-nav-hover, 5%);
           padding-left:2em;
@@ -61,6 +59,13 @@ ul{
 }
 
 
-.top-bar-section li a:not(.button):hover {
-    background: lighten($dashboard-nav-hover, 5%) !important;
+.top-bar-section li a:not(.button){
+   &:hover {
+      background: lighten($dashboard-nav-hover, 5%) !important;
+   }
+   i{
+      padding-top:0.7em;
+   }
+   height:4.5em;
+   line-height:3em;
 }

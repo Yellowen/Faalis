@@ -7,6 +7,7 @@
         <!-- Title Area -->
         <li class="name brand">
           <h1><%= RedBase::Engine.site_title %></h1>
+
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -15,9 +16,11 @@
 
       <section class="top-bar-section">
         <ul class="right">
-          <li class="has-dropdown"><a href="#">{{ current_user.email }}</a>
+          <li class="has-dropdown"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a>
           <ul class="dropdown">
-            <li><a href="#">Sign out</a></li>
+            <li><a href="">Dashboard</a></li>
+            <li><a href="">Change Password</a></li>
+            <li><a href="">Sign Out</a></li>
           </ul>
           </li>
         </ul>
