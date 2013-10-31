@@ -18,44 +18,22 @@ body {
 }
 
 header {
-   background: $lightergray;
-
-   .topheader {
-      Background: $dashboard-nav-background;
-      box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
-      color: white;
-      font-size: 0.8em;
-      height: 4.45em;
-
-      h1 {
-         padding-top:-2px;
-         font-size: 2.1em;
-         color: white;
-      }
-
-   }
    nav {
-      ul {
-         list-style: none;
-      }
-      li {
-         display: inline-block;
-         padding-left:2em;
-         padding-right:2em;
-         &:hover { Background: lighten($dashboard-nav-hover, 5%)}
-         &.brand {
-            background: lighten($dashboard-nav-hover, 3%);
-         }
-         line-height:4.4em;
-         a{
-            display:block;
-            line-height:4.4em;
-            font-weight:700;
-            height:100%;
-            width:100%;
-         }
-         border-left: 1px solid $darkgray;
-         border-right: 1px solid $darkergray;
+    Background: $dashboard-nav-background;
+    box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
+    li {
+      height:60px;
+    border-left: 1px solid $darkgray;
+    border-right: 1px solid $darkergray;
+
+      &.brand {
+        background: lighten($dashboard-nav-hover, 5%);
+          padding-left:2em;
+            padding-right:2em;
+              h1{
+                color:#FFFFFF;
+            }
+        }
       }
    }
    .modulebar {
@@ -78,4 +56,16 @@ ul{
     color: $darkergray;
   }
 
+}
+
+
+.top-bar-section li a:not(.button){
+   &:hover {
+      background: lighten($dashboard-nav-hover, 5%) !important;
+   }
+   i{
+      padding-top:0.7em;
+   }
+   height:4.5em;
+   line-height:3em;
 }
