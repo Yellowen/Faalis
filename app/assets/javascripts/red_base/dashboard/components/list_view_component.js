@@ -1,6 +1,6 @@
 Dashboard.ListViewComponent = Ember.Component.extend({
     classNames: ["table-list"],
-    is_selected: false,
+    selected_list: [],
 
     actions: {
 
@@ -8,10 +8,11 @@ Dashboard.ListViewComponent = Ember.Component.extend({
             record.deleteRecord();
             record.save();
         },
-
-        select_item: function(){
-            this.set('is_selected', !this.get('is_selected'));
+        select_item: function(record){
+            console.dir(record);
+            //this.controllerFor(record).toggleProperty('is_selected');
         },
+
         toggle_details: function(record){
             console.log("ASd");
             var details = this.$.find(".details");
