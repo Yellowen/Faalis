@@ -22,13 +22,13 @@
 
 // for more details see: http://emberjs.com/guides/application/
 window.Dashboard = Ember.Application.create({
-    Resolver: Ember.DefaultResolver.extend({
-        resolveTemplate: function(parsedName) {
-            parsedName.fullNameWithoutType = "red_base/dashboard/" + parsedName.fullNameWithoutType;
-            return this._super(parsedName);
-        }
-    })
+    //LOG_TRANSITIONS: true,
+    //LOG_VIEW_LOOKUPS: true,
+    //LOG_TRANSITIONS_INTERNAL: true,
 });
+
+//window.Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend();
+
 
 //= require_tree .
 $(function(){

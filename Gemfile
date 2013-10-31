@@ -13,3 +13,4 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+gem "ember-rails", :path => "/home/lxsameer/src/ember-rails/"
