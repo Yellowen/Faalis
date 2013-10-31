@@ -1,14 +1,28 @@
-<div class="topheader">
-  <div class="row ">
-    <nav class="clearpadding  columns small-6">
-      <ul>
-        <li><a href="#"><i class="fa-cog fa icon-medium fa-2x"></i></a></li><li class="brand"><h1><%= RedBase::Engine.site_title %></h1></li><li><a href="http://ww.c.c">Sample</i></a></li>
+<div class="">
+  <div class="">
+    <nav class="clearpadding top-bar">
+      <section class="top-bar-section">
+      <ul class="title-area">
+        <li><a href="#"><i class="fa-cog fa icon-medium fa-2x"></i></a></li>
+        <!-- Title Area -->
+        <li class="name brand">
+          <h1><%= RedBase::Engine.site_title %></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
       </ul>
-    </nav>
-    <nav class="columns small-6 text-right">
-      <ul class="columns small-12">
-        <li>{{ current_user.email }}</li>
-      </ul>
-    </nav>
-  </div>
+</section>
+
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="has-dropdown"><a href="#">{{ current_user.email }}</a>
+          <ul class="dropdown">
+            <li><a href="#">Sign out</a></li>
+          </ul>
+          </li>
+        </ul>
+</section>
+
+</nav>
+</div>
 </div>
