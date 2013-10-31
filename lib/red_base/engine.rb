@@ -111,7 +111,7 @@ module RedBase
     # Emberjs variant
     config.ember.variant = Rails.env
     config.ember.ember_path = "red_base/dashboard"
-    config.handlebars.templates_root = "red_base/dashboard/templates"
+    config.handlebars.templates_root = "red_base/dashboard/templates/"
 
     # Grape configuration
     config.paths.add "app/api", glob: "**/*.rb"
