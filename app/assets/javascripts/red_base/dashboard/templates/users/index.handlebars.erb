@@ -1,31 +1,12 @@
-<h2><i class="fa fa-group"></i> <%= _("User") %></h2>
+
 <div class="row  clearmargin">
-  <div class="small-12 columns text-right clearpadding">
+  <div class="small-6 column text-left clearpadding">
+    <h3><i class="fa fa-group"></i> <%= _("User") %></h3>
+  </div>
+  <div class="small-6 columns text-right clearpadding">
     <a class="btn green small"><i class="fa fa-plus"></i> <%= _("New") %></a>
     <a class="btn blue small"><i class="fa fa-plus"></i> <%= _("New") %></a>
   </div>
 </div>
 
-<div class="table-list">
-  <ul>
-    <li><i class="handle fa fa-angle-right"></i> asd
-      <div class="buttons text-right"><a href="#"><i class="fa fa-edit"></i></a> <a href="#"><i class="fa fa-times"></i></a></div>
-      <div class="details">
-        asdfsdf
-        sdfsdf
-        sdfsdfs
-      </div>
-    </li>
-    <li><i class="handle fa fa-angle-right"></i> asd
-      <div class="buttons text-right">asd asd </div>
-
-      <div class="details">
-        asdfsdf
-        sdfsdf
-        sdfsdfs
-      </div>
-
-    </li>
-    <li><i class="handle fa fa-angle-right"></i> asdas</li>
-  </ul>
-</div>
+{{list-view model=model title-field="email"}}
