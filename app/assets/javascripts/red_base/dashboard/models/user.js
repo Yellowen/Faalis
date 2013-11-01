@@ -1,6 +1,7 @@
 Dashboard.User = DS.Model.extend({
     email: DS.attr('string'),
-    is_selected: false
+    is_selected: false,
+    view_details: false
 });
 
 Dashboard.User.FIXTURES =[

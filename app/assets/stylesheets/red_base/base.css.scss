@@ -127,6 +127,7 @@ $table-list-line-height: 40px;
       border-bottom: 5px solid $hover-box;
       list-style: none;
       border-radius: $border-radius;
+      overflow: hidden;
 
         li {
            min-height: $table-list-line-height;
@@ -139,6 +140,7 @@ $table-list-line-height: 40px;
            padding-left: 20px;
            padding-right: 20px;
            color: lighten(black, 20%);
+           overflow: hidden;
 
            // TODO: Create a mixin for user-select;
            -webkit-user-select: none;
@@ -154,13 +156,32 @@ $table-list-line-height: 40px;
              display: none;
            }
 
+           .show_details {
+             display: block;
+             @include transition(display 300ms linear 0ms);
+           }
+           .hide_details {
+             display: hide;
+             @include transition(display 300ms linear 0ms);
+           }
+           .title {
+             display: inline;
+             position: absolute;
+             width: 75%;
+             height: $table-list-line-height;
+
+           }
            .buttons {
              margin-top: -$table-list-line-height;
              opacity: 0;
+
              @include transition(opacity 300ms linear 0ms);
            }
            i {
-             font-size: 0.6em;
+             font-size: 1.2em;
+             width: 1em;
+             height: 1em;
+             text-align: center;
            }
            a{
                color:#000000;
@@ -174,6 +195,8 @@ $table-list-line-height: 40px;
            }
            &:hover {
               opacity: 1;
+              overflow: hidden;
+
               & > .buttons {
                 opacity: 1;
                 @include transition("opacity 300ms linear 0ms");
