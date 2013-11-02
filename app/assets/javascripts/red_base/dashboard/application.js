@@ -21,9 +21,9 @@
 
 // for more details see: http://emberjs.com/guides/application/
 window.Dashboard = Ember.Application.create({
-    //LOG_TRANSITIONS: true,
-    //LOG_VIEW_LOOKUPS: true,
-    //LOG_TRANSITIONS_INTERNAL: true,
+    LOG_TRANSITIONS: true,
+    LOG_VIEW_LOOKUPS: true,
+    LOG_TRANSITIONS_INTERNAL: true,
 });
 
 //window.Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend();

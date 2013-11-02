@@ -1,9 +1,9 @@
 <ul>
 
-  {{#view Dashboard.LinkView route="index" content="" classes="asd dfs"}}<i class="fa fa-dashboard"></i> <%= _("Dashboard") %>{{/view}}
+  {{#view Dashboard.LinkView route="widgets" content="" classes=""}}<i class="fa fa-dashboard"></i> <%= _("Dashboard") %>{{/view}}
 
   {{#each}}
-  {{#view Dashboard.LinkView resource=resource route="users" content=""}}<i {{bind-attr class=icon }}></i> {{ title }}{{/view}}
+      {{#view Dashboard.LinkView resource=resource route="users" content=""}}<i {{bind-attr class=icon }}></i> {{ title }}{{/view}}
   {{/each}}
 </ul>
 
