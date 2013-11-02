@@ -18,7 +18,6 @@
 //= require ember-data
 //= require_self
 //= require red_base/dashboard/app
-//= require_tree ./plugins/
 
 // for more details see: http://emberjs.com/guides/application/
 window.Dashboard = Ember.Application.create({
