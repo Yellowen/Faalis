@@ -1,5 +1,2 @@
-Dashboard.UsersController = Ember.ArrayController.extend({
-    is_selected: false,
-    actions: {
-    }
+Dashboard.UsersController = Ember.ArrayController.extend(Dashboard.DController, {
 });

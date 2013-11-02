@@ -1,15 +1,38 @@
 Dashboard.ListViewComponent = Ember.Component.extend({
     classNames: ["table-list"],
-    selected_list: [],
+    is_all_selected: true,
+
+    count: function(){
+        var model = this.get("model");
+        return model.get("content").get("length");
+
+
+    }.property(),
 
     actions: {
 
-        delete: function(record){
-            record.deleteRecord();
-            record.save();
+        delete: function(model){
+            this.sendAction('delete', model);
+            /*var records = model.filterBy('is_selected', true);
+
+            records.forEach(function(x){
+                console.dir(x.toString());
+                x.record.deleteRecord();
+            });
+            records.save();*/
         },
         select_item: function(record){
             record.set('is_selected', !record.get('is_selected'));
+        },
+
+        toggle_select: function(model){
+            model.get("content").forEach (function(x){
+                x.record.toggleProperty("is_selected");
+            });
+        },
+        select_all: function(model){
+            model.get("content").setEach("record.is_selected", this.is_all_selected);
+            this.is_all_selected = !this.is_all_selected;
         },
 
         toggle_details: function(record){

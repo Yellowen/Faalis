@@ -1,4 +1,5 @@
 //= require ./store
+//= require ./mixins
 //= require_tree ./models
 //= require_tree ./controllers
 //= require_tree ./views

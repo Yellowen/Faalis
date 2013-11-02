@@ -17,12 +17,12 @@
     {{/each}}
     <li class="table-summery">
       <div class="small-6 columns">
-        <span>There is {{ asd }}</span>
+        <span>There is {{count}}</span>
       </div>
       <div class="small-6 columns text-right">
-        <span class="btn yellow tiny"><%= _("Toggle Select") %></span>
-        <span class="btn blue tiny"><%= _("Select All") %></span>
-        <span class="btn red tiny" {{ action 'delete'}}> <%= _("Delete") %></span>
+        <span class="btn yellow tiny" {{ action "toggle_select" model}}><%= _("Toggle Select") %></span>
+        <span class="btn blue tiny" {{ action "select_all" model}}><%= _("Select All") %></span>
+        <span class="btn red tiny" {{ action 'delete' model}}><%= _("Delete") %></span>
       </div>
     </li>
   </ul>

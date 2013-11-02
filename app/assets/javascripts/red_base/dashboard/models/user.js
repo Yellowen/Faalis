@@ -1,7 +1,5 @@
-Dashboard.User = DS.Model.extend({
-    email: DS.attr('string'),
-    is_selected: false,
-    view_details: false
+Dashboard.User = DS.Model.extend(Dashboard.DModel, {
+    email: DS.attr('string')
 });
 
 Dashboard.User.FIXTURES =[
@@ -12,5 +10,9 @@ Dashboard.User.FIXTURES =[
     {
         id: 2,
         email: "b3hnam@gnu.org"
+    },
+    {
+        id: 3,
+        email: "lxsameer@lxsameer.com"
     }
 ];
