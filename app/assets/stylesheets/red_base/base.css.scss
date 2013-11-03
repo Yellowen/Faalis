@@ -240,3 +240,27 @@ $table-list-line-height: 40px;
 .delete-icon {
   color: $alizarin;
 }
+
+#flash {
+  padding: 10px 5px;
+  border-radius: $border-radius;
+  margin: 10px auto;
+
+  &.error {
+    background: $alizarin;
+    border: 1px solid darken($alizarin, 5%);
+    color: white;
+  }
+  &.warning {
+    background: $sun_flower;
+    border: 1px solid darken($sun_flower, 5%);
+    color: white;
+
+  }
+  &.success {
+    background: $emerald;
+    border: 1px solid darken($emerald, 5%);
+    color: white;
+
+  }
+}
