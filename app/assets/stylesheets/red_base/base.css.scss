@@ -136,7 +136,7 @@ $table-list-line-height: 40px;
            border-left: solid 1px $lightergray;
            border-right: solid 1px $lightergray;
            border-bottom: solid 1px $lightergray;
-           background-color: white;
+           background-color: $verylightgray;
            opacity: 0.8;
            padding-left: 20px;
            padding-right: 20px;
@@ -185,7 +185,15 @@ $table-list-line-height: 40px;
              text-align: center;
            }
            a{
-               color:#000000;
+               color: $darkgray;
+           }
+           span.btn > a {
+             color: white;
+           }
+           &.table-header {
+             background: white;
+             padding-top: 15px;
+             opacity: 1;
            }
            .overload{
               display:none;
@@ -195,7 +203,8 @@ $table-list-line-height: 40px;
               border-top:solid 1px #E6E6E6;
            }
            &:hover {
-              opacity: 1;
+              //opacity: 1;
+              background: white;
               overflow: hidden;
 
               & > .buttons {
@@ -208,6 +217,8 @@ $table-list-line-height: 40px;
               padding-left:10px;
            }
            &.table-summery {
+             opacity: 1;
+             background: white;
             .small-text {
               font-size: 0.8em;
               padding: 0 10px;
