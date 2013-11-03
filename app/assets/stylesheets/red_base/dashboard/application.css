@@ -9,10 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require red_base/variables
- *= require red_base/dashboard/foundation_and_overrides
  *= require font-awesome
  *= require red_base/base
- *= require red_base/buttons
+ *= require red_base/dashboard/buttons
  *= require_self
- *= require_directory .
+ *= require red_base/dashboard/dashboard
+ *= require red_base/dashboard/sidebar
 */

@@ -1,5 +1,5 @@
 @import "red_base/variables";
-@import "red_base/dashboard/foundation_and_overrides";
+@import "red_base/foundation_and_overrides.<%= RedBase::I18n.direction(I18n.locale) %>";
 
 .btn {
   @include button-base;
@@ -13,19 +13,6 @@
   @include button-style($peter_river, $border-radius, false);
 
 }
-
-.red {
-  @include button-style($alizarin, $border-radius, false);
-}
-
-.yellow {
-  @include button-style($sun_flower, $border-radius, false);
-}
-
-.tiny {
-  @include button-size($button-tny, false, false);
-}
-
 .small {
   @include button-size($button-sml, false, false);
 }
