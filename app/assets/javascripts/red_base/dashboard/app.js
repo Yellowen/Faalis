@@ -1,3 +1,4 @@
+//= require ./functions
 //= require ./store
 //= require ./mixins
 //= require_tree ./models

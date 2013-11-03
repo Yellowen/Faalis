@@ -245,7 +245,8 @@ $table-list-line-height: 40px;
   padding: 10px 5px;
   border-radius: $border-radius;
   margin: 10px auto;
-
+  display: none;
+  cursor: pointer;
   &.error {
     background: $alizarin;
     border: 1px solid darken($alizarin, 5%);
