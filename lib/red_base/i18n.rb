@@ -17,13 +17,19 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-require "devise"
-
 module RedBase
-end
+  class I18n
 
-require "red_base/engine"
-require "red_base/dashboard"
-require "red_base/omniauth"
-require "red_base/active_record"
-require "red_base/i18n"
+    RTL = [
+           :fa,
+           :ar
+          ]
+    def self.direction(locale)
+      if RTL.include? locale.to_sym
+        "rtl"
+      else
+        "ltr"
+      end
+    end
+  end
+end

@@ -75,13 +75,9 @@ module RedBase
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
 
-    mattr_accessor :layout_direction
-    @@layout_direction = :ltr
-
-
     # locales
-    mattr_accessor :locales
-    @@locales = ['en', 'fa']
+    #mattr_accessor :locales
+    #@@locales = ['en', 'fa']
 
     def self.setup
       yield self
@@ -91,7 +87,7 @@ module RedBase
     # TODO: Check for possible error in this configurations
     FastGettext.add_text_domain 'app', :path => 'config/locales', :type => :po
     # All languages you want to allow
-    FastGettext.default_available_locales = @@locales
+    FastGettext.default_available_locales = I18n.available_locales
     FastGettext.default_text_domain = 'app'
 
     # Site Title
