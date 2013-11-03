@@ -1,4 +1,5 @@
 Dashboard.ListViewComponent = Ember.Component.extend({
+    // by this.userSpecifiedParameter we can access to user params
     classNames: ["table-list"],
     is_all_selected: true,
 

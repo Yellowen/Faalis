@@ -1,11 +1,11 @@
 
 <div class="row  clearmargin">
   <div class="small-6 column text-left clearpadding">
-    <h3><i class="fa fa-group"></i> <%= _("User") %></h3>
+
   </div>
   <div class="small-6 columns text-right clearpadding">
     <a class="btn green small"><i class="fa fa-plus"></i> <%= _("New") %></a>
   </div>
 </div>
 
-{{list-view model=model title-field="email" delete_items="delete_items"}}
+{{list-view model=model title-field="email" delete_items="delete_items" title="<i class='fa fa-group'></i> <%= _("User") %>"}}
