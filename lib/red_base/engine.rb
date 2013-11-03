@@ -24,7 +24,6 @@ require 'modernizr-rails'
 require "compass-rails"
 require 'zurb-foundation'
 require "font-awesome-rails"
-require 'jquery-turbolinks'
 require "devise"
 require "warden"
 require "ember-rails"
