@@ -1,6 +1,6 @@
 Dashboard.DController = Ember.Mixin.create({
     actions: {
-        delete_handler: function(model){
+        delete_items: function(model){
             var records = this.get("model").filterBy('is_selected', true);
             records.forEach(function(x){
                 console.dir(x.toString());

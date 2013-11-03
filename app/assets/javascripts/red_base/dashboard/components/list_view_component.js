@@ -11,8 +11,8 @@ Dashboard.ListViewComponent = Ember.Component.extend({
 
     actions: {
 
-        delete: function(model){
-            this.sendAction('delete', model);
+        delete_items: function(model){
+            this.sendAction('delete_items', model);
             /*var records = model.filterBy('is_selected', true);
 
             records.forEach(function(x){
