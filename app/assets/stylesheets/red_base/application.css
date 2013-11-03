@@ -8,10 +8,10 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *= require red_base/variables
- *= require font-awesomesadasd
  *= require red_base/base
  *= require red_base/buttons
  *= require red_base/devise
  *= require red_base/home
  *= require_self
+ *= require font-awesome
 */
