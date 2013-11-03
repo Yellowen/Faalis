@@ -1,8 +1,17 @@
-  <ul>
-    {{#unless model}}
+<ul>
+  <li class="">
+    <div class="small-7 columns">
+      <h4>asdasd</h4>
+    </div>
+    <div class="small-3 columns text-right">
+      <input type="search" />
+    </div>
+
+  </li>
+  {{#unless model}}
     <li><%= _("There is not record") %></li>
-    {{/unless}}
-    {{#each record in model}}
+  {{/unless}}
+  {{#each record in model}}
 
     <li {{bind-attr class="record.is_selected:selected :pointer"}}>
       <i {{action "toggle_details" record}} {{bind-attr class="record.view_details:fa-rotate-90 :handle :fa :fa-angle-right"}}></i>
@@ -14,15 +23,15 @@
         sdfsdfs
       </div>
     </li>
-    {{/each}}
-    <li class="table-summery">
-      <div class="small-6 columns">
-        <span>There is {{count}}</span>
-      </div>
-      <div class="small-6 columns text-right">
-        <span class="btn yellow tiny" {{ action "toggle_select" model}}><%= _("Toggle Select") %></span>
-        <span class="btn blue tiny" {{ action "select_all" model}}><%= _("Select All") %></span>
-        <span class="btn red tiny" {{ action 'delete_items' model}}><%= _("Delete") %></span>
-      </div>
-    </li>
-  </ul>
+  {{/each}}
+  <li class="table-summery">
+    <div class="small-6 columns">
+      <span class="small-text"><%= _("Item(s)") %>: <strong>{{count}}</strong></span><span class="small-text"> <%= _("Selected") %>: <strong>{{ selected_count }}</strong></span>
+    </div>
+    <div class="small-6 columns text-right">
+      <span class="btn yellow tiny" {{ action "toggle_select" model}}><%= _("Toggle Select") %></span>
+      <span class="btn blue tiny" {{ action "select_all" model}}><%= _("Select All") %></span>
+      <span class="btn red tiny" {{ action 'delete_items' model}}><%= _("Delete") %></span>
+    </div>
+  </li>
+</ul>

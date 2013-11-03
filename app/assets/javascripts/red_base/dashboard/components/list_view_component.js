@@ -5,9 +5,12 @@ Dashboard.ListViewComponent = Ember.Component.extend({
     count: function(){
         var model = this.get("model");
         return model.get("content").get("length");
+    }.property("model.content.length"),
 
-
-    }.property(),
+    selected_count: function(){
+        var model = this.get("model");
+        return model.filterBy("is_selected", true).get("length");
+    }.property("model.@each.is_selected"),
 
     actions: {
 

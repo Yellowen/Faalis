@@ -207,6 +207,12 @@ $table-list-line-height: 40px;
               padding-right:10px;
               padding-left:10px;
            }
+           &.table-summery {
+            .small-text {
+              font-size: 0.8em;
+              padding: 0 10px;
+            }
+          }
         }
    }
 }
