@@ -14,5 +14,38 @@ Dashboard.User.FIXTURES =[
     {
         id: 3,
         email: "lxsameer@lxsameer.com"
+    },
+    {
+        id: 4,
+        email: "lxsameer@gnu.org"
+    },
+    {
+        id: 5,
+        email: "b3hnam@gnu.org"
+    },
+    {
+        id: 6,
+        email: "lxsameer@lxsameer.com"
+    },
+    {
+        id: 7,
+        email: "lxsameer@gnu.org"
+    },
+    {
+        id: 8,
+        email: "b3hnam@gnu.org"
+    },
+    {
+        id: 9,
+        email: "lxsameer@lxsameer.com"
+    },
+    {
+        id: 10,
+        email: "lxsameer@gnu.org"
+    },
+    {
+        id: 11,
+        email: "b3hnam@gnu.org"
     }
+
 ];

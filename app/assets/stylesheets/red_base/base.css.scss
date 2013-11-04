@@ -149,7 +149,6 @@ $table-list-line-height: 40px;
          -khtml-user-select: none;
          -ms-user-select: none;
          -o-user-select: none;
-
          &.selected {
             background: $selected-bg;
          }
@@ -215,7 +214,7 @@ $table-list-line-height: 40px;
                @include transition("opacity 300ms linear 0ms");
             }
          }
-         div {
+         div:not(.pagination) {
             padding-right:10px;
             padding-left:10px;
          }
@@ -226,6 +225,28 @@ $table-list-line-height: 40px;
                font-size: 0.8em;
                padding: 0 10px;
             }
+
+            .pagination {
+              display: inline-block;
+              font-size: 1em;
+              padding-top: $table-list-line-height / 6;
+              input {
+                display: inline;
+                width: 1.6em;
+                padding: 0 0.1em;
+                margin: 0;
+                font-size: 1.1em;
+                height: 1.2em;
+                background: lighten($lightergray, 5%);
+                border: 1px solid $lightergray;
+              }
+                .label {
+
+                  position: relative;
+                  font-size: 0.7em;
+                }
+            }
+
          }
          .details{
            font-size:emCalc(13px);

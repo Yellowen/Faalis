@@ -2,16 +2,48 @@ Dashboard.ListViewComponent = Ember.Component.extend({
     // by this.userSpecifiedParameter we can access to user params
     classNames: ["table-list"],
     is_all_selected: true,
+    page: 1,
+
+    has_pagination: function(){
+        if (this.get("total_pages") > 1){
+            return true;
+        }
+        return false;
+    }.property("total_pages"),
+
+    total_pages: function(){
+        var pages = parseInt(this.get("count") / this.get("items_pp"), 10);
+        if (parseInt(this.get("count") % this.get("items_pp"), 10) > 0) {
+            pages++;
+        }
+        return pages;
+    }.property('item_pp', 'count'),
+
+    current_page: function(){
+        return parseInt(this.page, 10);
+    }.property(),
+
+    // Items Per Page
+    items_pp: function(){
+        return this.items_per_page;
+    }.property('items_per_page'),
+
+    this_page: function(){
+        return this.model.slice((this.get("current_page") * this.get("items_pp")) - this.get("items_pp"),
+                                (this.get("current_page") * this.get("items_pp")) - 1);
+
+    }.property('model.content.length', 'current_page'),
 
     count: function(){
         var model = this.get("model");
-        return model.get("content").get("length");
+        return parseInt(model.get("content").get("length"), 10);
     }.property("model.content.length"),
 
     selected_count: function(){
         var model = this.get("model");
         return model.filterBy("is_selected", true).get("length");
     }.property("model.@each.is_selected"),
+
 
     actions: {
 
@@ -41,6 +73,37 @@ Dashboard.ListViewComponent = Ember.Component.extend({
 
         toggle_details: function(record){
             record.toggleProperty("view_details");
+        },
+
+        // Pagination action handlers ------------------
+        go_to_next_page: function(){
+            var cp = this.get("current_page");
+            var tp = this.get("total_pages");
+            console.log(cp);
+            console.log(tp);
+            if (cp < tp ) {
+                this.incrementProperty("current_page");
+            }
+        },
+        go_to_prev_page: function(){
+            var cp = this.get("current_page");
+            var tp = this.get("total_pages");
+            console.log(cp);
+            console.log(tp);
+            if (1 < cp ) {
+
+                this.decrementProperty("current_page");
+            }
+        },
+        go_to_last_page: function(){
+            var tp = this.get("total_pages");
+            this.set("current_page", tp - 1);
+        },
+        go_to_first_page: function(){
+            var tp = this.get("total_pages");
+            this.set("current_page", 1);
         }
+        // -----------------------------------------------
+
     }
 });

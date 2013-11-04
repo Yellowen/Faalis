@@ -6,17 +6,11 @@ Dashboard.DController = Ember.Mixin.create({
                 console.dir(x.toString());
                 x.deleteRecord();
                 x.save();
-                success_message("<%= _("Selected record(s) removed successfully.") %>");
             });
+            success_message("<%= _("Selected record(s) removed successfully.") %>");
 
         }
 
     }
 
-});
-
-
-Dashboard.DModel = Ember.Mixin.create({
-    is_selected: false,
-    view_details: false
 });
