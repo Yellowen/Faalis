@@ -17,11 +17,11 @@
       <i {{action "toggle_details" record}} {{bind-attr class="record.view_details:fa-rotate-90 :handle :fa :fa-angle-right"}}></i>
       <div class="title" {{ action "select_item" record}}> {{ __title__  record title-field}}</div>
       <div class="buttons text-right"><span><i class="fa fa-edit"></i></span></div>
-      <div {{bind-attr class="record.view_details:show_details:hide_details :details"}}>
-        asdfsdf
-        sdfsdf
-        sdfsdfs
-      </div>
+      {{#if details-template}}
+        <div {{bind-attr class="record.view_details:show_details:hide_details :details"}}>
+          {{ dynamic_render details-template record }}
+        </div>
+      {{/if}}
     </li>
   {{/each}}
   <li class="table-summery">
