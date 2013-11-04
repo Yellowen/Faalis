@@ -23,9 +23,6 @@ header {
     box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
     li {
       height:60px;
-    border-left: 1px solid $darkgray;
-    border-right: 1px solid $darkergray;
-
       &.brand {
         background: lighten($dashboard-nav-hover, 5%);
           padding-left:2em;
@@ -67,7 +64,7 @@ ul{
       padding-top:0.7em;
    }
    height:4.5em;
-   line-height:3em;
+   line-height:4.5em;
 }
 
 
