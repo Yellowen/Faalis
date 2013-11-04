@@ -153,6 +153,9 @@ $table-list-line-height: 40px;
          &.selected {
             background: $selected-bg;
          }
+         &:hover.selected{
+           background: darken($selected-bg, 5%);;
+         }
          .details {
             display: none;
          }
