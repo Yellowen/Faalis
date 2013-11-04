@@ -123,14 +123,14 @@ $table-list-line-height: 40px;
     .details
 */
 .table-list{
-   ul {
+   ul:not(.button-group){
       border-top:2px solid $lightergray;
       border-bottom: 5px solid $hover-box;
       list-style: none;
       border-radius: $border-radius;
       overflow: hidden;
 
-      li {
+      li:not(.btn) {
          min-height: $table-list-line-height;
          line-height: $table-list-line-height;
          border-left: solid 1px $lightergray;
@@ -248,7 +248,10 @@ $table-list-line-height: 40px;
             }
 
          }
-
+         .details{
+           font-size:emCalc(13px);
+           padding:0 emCalc(50px);
+          }
       }
    }
 }
