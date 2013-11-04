@@ -4,29 +4,44 @@
       <span class="left btn green tiny">{{#link-to model.new }}<i class="fa fa-plus"></i><%= _("Add") %>{{/link-to}}</span>
     </div>
     <div class="small-4 columns text-right search-bar">
-      <input type="search" class="small-8 columns right" placeholder="Search ..."/>
+      <input type="search" class="small-8 columns right" placeholder="<%= _("Search") %> ..."/>
     </div>
 
   </li>
   {{#unless model}}
     <li><%= _("There is not record") %></li>
   {{/unless}}
-  {{#each record in model}}
+  {{#each record in this_page}}
 
     <li {{bind-attr class="record.is_selected:selected :pointer"}}>
       <i {{action "toggle_details" record}} {{bind-attr class="record.view_details:fa-rotate-90 :handle :fa :fa-angle-right"}}></i>
-      <div class="title" {{ action "select_item" record}}> {{ __title__  record title-field}}</div>
-      <div class="buttons text-right"><span><i class="fa fa-edit"></i></span></div>
-      {{#if details-template}}
+      <div class="title" {{ action "select_item" record}}> {{ __title__  record title_field}}</div>
+
+      {{#if details_template}}
         <div {{bind-attr class="record.view_details:show_details:hide_details :details"}}>
-          {{ dynamic_render details-template record }}
+          {{ dynamic_render details_template record }}
         </div>
       {{/if}}
     </li>
   {{/each}}
   <li class="table-summery">
     <div class="small-6 columns">
-      <span class="small-text"><%= _("Item(s)") %>: <strong>{{count}}</strong></span><span class="small-text"> <%= _("Selected") %>: <strong>{{ selected_count }}</strong></span>
+        <div class="pagination">
+        {{# if has_pagination}}
+            <i class="fa fa-angle-double-left" {{ action go_to_first_page }}></i>
+            <i class="fa fa-angle-left" {{ action go_to_prev_page }}></i>
+            {{ input type="text" class="pagination_input" }}
+            <i class="fa fa-angle-right" {{ action go_to_next_page }}></i>
+            <i class="fa fa-angle-double-right" {{ action go_to_last_page }}></i>
+
+            <span class="label rounded lightergray" title="<%= _("Current Page") %>"><i class="fa fa-file-o"></i> {{ current_page }}</span>
+            <span class="label rounded lightergray" title="<%= _("Total Pages") %>"><i class="fa fa-files-o"></i> {{ total_pages }}</span>
+        {{/if}}
+        <span class="label rounded lightergray" title="<%= _("Item(s)") %>"><i class="fa fa-list-ul"></i> {{count}}</span>
+        <span class="label rounded lightergray" title="<%= _("Selected") %>"><i class="fa fa-hand-o-right"></i> {{ selected_count }}
+        </span>
+        </div>
+
     </div>
     <div class="small-6 columns text-right">
       <span class="btn yellow tiny" {{ action "toggle_select" model}}><%= _("Toggle Select") %></span>

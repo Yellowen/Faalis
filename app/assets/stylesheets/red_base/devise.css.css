@@ -1,0 +1,19 @@
+/* Authentication sccs */
+.wrapper_signin {
+  background: url("/images/bg1.jpg") no-repeat top left; }
+
+.wrapper_signup {
+  background: url("/images/bg2.jpg") no-repeat top left; }
+
+.layout_signin, .layout_signup {
+  background-color: rgba(255, 255, 255, 0.7); }
+  .layout_signin .big_box, .layout_signup .big_box {
+    text-align: center; }
+    .layout_signin .big_box p, .layout_signup .big_box p {
+      text-align: justify; }
+  .layout_signin .icon-big, .layout_signup .icon-big {
+    float: right;
+    padding-left: 7px;
+    padding-top: -7px; }
+  .layout_signin .form, .layout_signup .form {
+    margin-top: 35px; }
