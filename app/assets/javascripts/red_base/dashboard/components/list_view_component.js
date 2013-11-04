@@ -5,7 +5,6 @@ Dashboard.ListViewComponent = Ember.Component.extend({
     page: 1,
 
     has_pagination: function(){
-        console.log(this.get("total_pages"));
         if (this.get("total_pages") > 1){
             return true;
         }
@@ -13,11 +12,15 @@ Dashboard.ListViewComponent = Ember.Component.extend({
     }.property("total_pages"),
 
     total_pages: function(){
-        return parseInt(this.get("count") / this.get("items_pp"));
+        var pages = parseInt(this.get("count") / this.get("items_pp"), 10);
+        if (parseInt(this.get("count") % this.get("items_pp"), 10) > 0) {
+            pages++;
+        }
+        return pages;
     }.property('item_pp', 'count'),
 
     current_page: function(){
-        return parseInt(this.page);
+        return parseInt(this.page, 10);
     }.property(),
 
     // Items Per Page
@@ -33,7 +36,7 @@ Dashboard.ListViewComponent = Ember.Component.extend({
 
     count: function(){
         var model = this.get("model");
-        return parseInt(model.get("content").get("length"));
+        return parseInt(model.get("content").get("length"), 10);
     }.property("model.content.length"),
 
     selected_count: function(){
@@ -70,6 +73,37 @@ Dashboard.ListViewComponent = Ember.Component.extend({
 
         toggle_details: function(record){
             record.toggleProperty("view_details");
+        },
+
+        // Pagination action handlers ------------------
+        go_to_next_page: function(){
+            var cp = this.get("current_page");
+            var tp = this.get("total_pages");
+            console.log(cp);
+            console.log(tp);
+            if (cp < tp ) {
+                this.incrementProperty("current_page");
+            }
+        },
+        go_to_prev_page: function(){
+            var cp = this.get("current_page");
+            var tp = this.get("total_pages");
+            console.log(cp);
+            console.log(tp);
+            if (1 < cp ) {
+
+                this.decrementProperty("current_page");
+            }
+        },
+        go_to_last_page: function(){
+            var tp = this.get("total_pages");
+            this.set("current_page", tp - 1);
+        },
+        go_to_first_page: function(){
+            var tp = this.get("total_pages");
+            this.set("current_page", 1);
         }
+        // -----------------------------------------------
+
     }
 });
