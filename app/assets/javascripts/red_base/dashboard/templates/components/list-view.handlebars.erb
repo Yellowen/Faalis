@@ -30,7 +30,7 @@
         {{# if has_pagination}}
             <i class="fa fa-angle-double-left" {{ action go_to_first_page }}></i>
             <i class="fa fa-angle-left" {{ action go_to_prev_page }}></i>
-            {{ input type="text" class="pagination_input" }}
+            {{ input type="text" class="pagination_input"  insert-newline="go_to_page"}}
             <i class="fa fa-angle-right" {{ action go_to_next_page }}></i>
             <i class="fa fa-angle-double-right" {{ action go_to_last_page }}></i>
 

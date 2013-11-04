@@ -231,6 +231,7 @@ $table-list-line-height: 40px;
               font-size: 1em;
               padding-top: $table-list-line-height / 6;
               input {
+                text-align: center;
                 display: inline;
                 width: 1.6em;
                 padding: 0 0.1em;
@@ -241,7 +242,7 @@ $table-list-line-height: 40px;
                 border: 1px solid $lightergray;
               }
                 .label {
-
+                  text-align: center;
                   position: relative;
                   font-size: 0.7em;
                 }

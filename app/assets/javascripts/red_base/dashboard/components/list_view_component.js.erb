@@ -76,6 +76,17 @@ Dashboard.ListViewComponent = Ember.Component.extend({
         },
 
         // Pagination action handlers ------------------
+        go_to_page: function(value) {
+            var tp = this.get("total_pages");
+            if (value <= tp) {
+                this.set("current_page", value);
+            }
+            else {
+                error_message("<%= _("Given page does not exists") %>");
+            }
+
+        },
+
         go_to_next_page: function(){
             var cp = this.get("current_page");
             var tp = this.get("total_pages");
