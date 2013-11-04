@@ -22,10 +22,10 @@ table{
 }
 
 .vertical {
-  list-style: none;
-  li {
-    display: inline;
-  }
+   list-style: none;
+   li {
+      display: inline;
+   }
 }
 
 .inline{
@@ -37,11 +37,11 @@ table{
 }
 
 @mixin transition ($a) {
-  transition: $a;
-  -moz-transition: $a;
-  -webkit-transition: $a;
-  -o-transition: $a;
-  -ms-transition: $a;
+   transition: $a;
+   -moz-transition: $a;
+   -webkit-transition: $a;
+   -o-transition: $a;
+   -ms-transition: $a;
 }
 
 .header {
@@ -130,155 +130,162 @@ $table-list-line-height: 40px;
       border-radius: $border-radius;
       overflow: hidden;
 
-        li {
-           min-height: $table-list-line-height;
-           line-height: $table-list-line-height;
-           border-left: solid 1px $lightergray;
-           border-right: solid 1px $lightergray;
-           border-bottom: solid 1px $lightergray;
-           background-color: $verylightgray;
-           opacity: 0.8;
-           padding-left: 20px;
-           padding-right: 20px;
-           color: lighten(black, 20%);
-           overflow: hidden;
+      li {
+         min-height: $table-list-line-height;
+         line-height: $table-list-line-height;
+         border-left: solid 1px $lightergray;
+         border-right: solid 1px $lightergray;
+         border-bottom: solid 1px $lightergray;
+         background-color: $verylightgray;
+         opacity: 0.8;
+         padding-left: 20px;
+         padding-right: 20px;
+         color: lighten(black, 20%);
+         overflow: hidden;
 
            // TODO: Create a mixin for user-select;
-           -webkit-user-select: none;
-           -moz-user-select: none;
-           -khtml-user-select: none;
-           -ms-user-select: none;
-           -o-user-select: none;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -khtml-user-select: none;
+         -ms-user-select: none;
+         -o-user-select: none;
 
-           &.selected {
-             background: $selected-bg;
-           }
-           .details {
-             display: none;
-           }
+         &.selected {
+            background: $selected-bg;
+         }
+         .details {
+            display: none;
+         }
 
-           .show_details {
-             display: block;
-             @include transition(display 300ms linear 0ms);
-           }
-           .hide_details {
-             display: hide;
-             @include transition(display 300ms linear 0ms);
-           }
-           .title {
-             display: inline;
-             position: absolute;
-             width: 75%;
-             height: $table-list-line-height;
+         .show_details {
+            display: block;
+            @include transition(display 300ms linear 0ms);
+         }
+         .hide_details {
+            display: hide;
+            @include transition(display 300ms linear 0ms);
+         }
+         .title {
+            display: inline;
+            position: absolute;
+            width: 75%;
+            height: $table-list-line-height;
 
-           }
-           .buttons {
-             margin-top: -$table-list-line-height;
-             opacity: 0;
+         }
+         .buttons {
+            margin-top: -$table-list-line-height;
+            opacity: 0;
 
-             @include transition(opacity 300ms linear 0ms);
-           }
-           i {
-             font-size: 1.2em;
-             width: 1em;
-             height: 1em;
-             text-align: center;
-           }
-           a{
-               color: $darkgray;
-           }
-           span.btn > a {
-             color: white;
-           }
-           &.table-header {
-             background: white;
-             padding-top: 15px;
-             opacity: 1;
-           }
-           .overload{
-              display:none;
-              height:300px;
-           }
-           &:first-child{
-              border-top:solid 1px #E6E6E6;
-           }
-           &:hover {
+            @include transition(opacity 300ms linear 0ms);
+         }
+         i {
+            font-size: 1.2em;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+         }
+         a{
+            color: $darkgray;
+         }
+         span.btn > a {
+            color: white;
+         }
+         &.table-header {
+            background: white;
+            padding-top: 15px;
+            opacity: 1;
+         }
+         .overload{
+            display:none;
+            height:300px;
+         }
+         &:first-child{
+            border-top:solid 1px #E6E6E6;
+         }
+         &:hover {
               //opacity: 1;
-              background: white;
-              overflow: hidden;
+            background: white;
+            overflow: hidden;
 
-              & > .buttons {
-                opacity: 1;
-                @include transition("opacity 300ms linear 0ms");
-              }
-           }
-           div {
-              padding-right:10px;
-              padding-left:10px;
-           }
-           &.table-summery {
-             opacity: 1;
-             background: white;
-            .small-text {
-              font-size: 0.8em;
-              padding: 0 10px;
+            & > .buttons {
+               opacity: 1;
+               @include transition("opacity 300ms linear 0ms");
             }
-          }
-        }
+         }
+         div {
+            padding-right:10px;
+            padding-left:10px;
+         }
+         &.table-summery {
+            opacity: 1;
+            background: white;
+            .small-text {
+               font-size: 0.8em;
+               padding: 0 10px;
+            }
+         }
+      }
    }
 }
 
 .table {
-  background: white;
-  border-radius: $border-radius;
-  -webkit-font-smoothing: antialiased;
-  width: auto;
-  overflow: auto;
-  display: block;
-  th {
+   background: white;
+   border-radius: $border-radius;
+   -webkit-font-smoothing: antialiased;
+   width: auto;
+   overflow: auto;
+   display: block;
+   th {
 
-  }
+   }
 }
 
 .clearmargin {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+   margin-left: 0 !important;
+   margin-right: 0 !important;
 }
 
 .clearpadding {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+   padding-left: 0 !important;
+   padding-right: 0 !important;
 }
 
 .pointer {
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .delete-icon {
-  color: $alizarin;
+   color: $alizarin;
 }
 
 #flash {
-  padding: 10px 5px;
-  border-radius: $border-radius;
-  margin: 10px auto;
-  display: none;
-  cursor: pointer;
-  &.error {
-    background: $alizarin;
-    border: 1px solid darken($alizarin, 5%);
-    color: white;
-  }
-  &.warning {
-    background: $sun_flower;
-    border: 1px solid darken($sun_flower, 5%);
-    color: white;
+   padding: 10px 5px;
+   border-radius: $border-radius;
+   margin: 10px auto;
+   display: none;
+   cursor: pointer;
+   &.error {
+      background: $alizarin;
+      border: 1px solid darken($alizarin, 5%);
+      color: white;
+   }
+   &.warning {
+      background: $sun_flower;
+      border: 1px solid darken($sun_flower, 5%);
+      color: white;
 
-  }
-  &.success {
-    background: $emerald;
-    border: 1px solid darken($emerald, 5%);
-    color: white;
+   }
+   &.success {
+      background: $emerald;
+      border: 1px solid darken($emerald, 5%);
+      color: white;
 
-  }
+   }
+}
+
+
+.search-bar{
+   input {
+      border-radius:5px;
+   }
 }
