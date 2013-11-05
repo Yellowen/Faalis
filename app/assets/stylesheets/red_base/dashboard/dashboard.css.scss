@@ -3,6 +3,7 @@
   They will automatically be included in application.css.
 */
 @import "red_base/variables";
+@import "red_base/mixins";
 
 .row {
   width: 100% !important;
@@ -68,13 +69,18 @@ ul{
 }
 
 
-   .widget {
-      background-color:white;
-      -webkit-box-shadow: 0px 1px 1px rgba(48, 50, 50, 0.2);
-      -moz-box-shadow:    0px 1px 1px rgba(48, 50, 50, 0.2);
-      box-shadow:         0px 1px 1px rgba(48, 50, 50, 0.2);
-      min-height:5em;
-      margin:5px;
-      padding:10px;
-      border-radius:3px;
+.widget {
+
+  -webkit-box-shadow: 0px 1px 1px rgba(48, 50, 50, 0.2);
+  -moz-box-shadow:    0px 1px 1px rgba(48, 50, 50, 0.2);
+   box-shadow:         0px 1px 1px rgba(48, 50, 50, 0.2);
+   @include box-shadow (0px 1px 1px rgba(48, 50, 50, 0.2));
+   min-height: 5em;
+   margin: 5px;
+   padding: 10px;
+   border-radius: 3px;
+
+   .icon {
+     display: block;
    }
+}

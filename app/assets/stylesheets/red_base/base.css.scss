@@ -2,7 +2,8 @@
 @import "foundation";
 @import "foundation/components/global";
 @import "foundation/components/alert-boxes";
-@import "variables";
+@import "red_base/variables";
+@import "red_base/mixins";
 
 table{
    th{
@@ -36,13 +37,6 @@ table{
    text-align:justify;
 }
 
-@mixin transition ($a) {
-   transition: $a;
-   -moz-transition: $a;
-   -webkit-transition: $a;
-   -o-transition: $a;
-   -ms-transition: $a;
-}
 
 .header {
    Background: $headerbg;
@@ -327,4 +321,53 @@ $table-list-line-height: 40px;
     color: #4f4f4f;
     h5 { color: #4f4f4f;}
   }
+}
+
+
+.red {
+  background-color: $alizarin;
+  color: white;
+}
+
+.green {
+  background-color: $emerald;
+  color: white;
+}
+
+.yellow {
+  background-color: $sun_flower;
+  color: white;
+}
+
+.blue {
+  background-color: $peter_river;
+  color: white;
+}
+.lightgray {
+  background-color: $lightgray;
+}
+.lightergray {
+  background-color: $lightergray;
+}
+.rounded {
+  border-radius: $border-radius;
+}
+
+.text-4x {
+  font-size: 4em;
+}
+.text-2x {
+  font-size: 2em;
+}
+
+.elabel {
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  padding: 0.1875em 0.625em 0.25em;
+  font-size: 0.875em;
 }

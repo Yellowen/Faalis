@@ -7,30 +7,32 @@
 .btn {
    @include button-base;
    @include single-transition;
-}
-.green {
-   @include button-style($emerald, $border-radius, false);
-   color: white;
-}
 
-.blue {
-   @include button-style($peter_river, $border-radius, false);
-   color: white;
-}
+   &.green {
+     @include button-style($emerald, $border-radius, false);
+     color: white;
+   }
 
-.red {
-   @include button-style($alizarin, $border-radius, false);
-   color: white;
-}
+   &.blue {
+     @include button-style($peter_river, $border-radius, false);
+     color: white;
+   }
 
-.yellow {
-   @include button-style($sun_flower, $border-radius, false);
-}
-.lightgray {
-   @include button-style($lightgray, $border-radius, false);
-}
-.lightergray {
-   @include button-style($lightergray, $border-radius, false);
+   &.red {
+     @include button-style($alizarin, $border-radius, false);
+     color: white;
+   }
+
+   &.yellow {
+     @include button-style($sun_flower, $border-radius, false);
+   }
+   &.lightgray {
+     @include button-style($lightgray, $border-radius, false);
+   }
+   &.lightergray {
+     @include button-style($lightergray, $border-radius, false);
+   }
+
 }
 
 .tiny {
