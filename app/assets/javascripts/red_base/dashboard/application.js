@@ -26,8 +26,8 @@ window.Dashboard = Ember.Application.create({
     //LOG_TRANSITIONS_INTERNAL: true,
 });
 
-//window.Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend();
-
+window.Modules = [];
+window.ErrorQueue = [];
 
 //= require_tree .
 $(function(){

@@ -46,7 +46,6 @@ Gem::Specification.new do |s|
   # i18n
   s.add_dependency "fast_gettext"
   s.add_dependency "gettext"
-  s.add_dependency "ruby_parser"
   s.add_dependency 'gettext_i18n_rails'
 
   # Forms
@@ -54,5 +53,6 @@ Gem::Specification.new do |s|
 
 
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "ruby_parser"
 
 end

@@ -1,0 +1,17 @@
+Dashboard.Router.map(function() {
+    var that = this;
+
+    this.resource("widgets", {path: "/"});
+    this.resource("users");
+
+    get_modules();
+    Modules.forEach(function(module) {
+        if ("path" in module) {
+            that.resource(module.resource, {path: module.path});
+        }
+        else {
+            that.resource(module.resource);
+        }
+    });
+
+});
