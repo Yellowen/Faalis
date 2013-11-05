@@ -16,8 +16,12 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
+class RedBase::ApplicationController < ActionController::Base
+    include FastGettext::Translation
+    before_filter :set_locale
 
-module RedBase
-  class ApplicationController < ActionController::Base
-  end
+    def set_locale
+      FastGettext.set_locale(params[:locale] || session[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'])
+      session[:locale] = I18n.locale = FastGettext.locale
+    end
 end

@@ -17,9 +17,9 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 require 'fast_gettext'
-require "gettext"
-require "ruby_parser"
-require 'gettext_i18n_rails'
+#require "gettext"
+#require "ruby_parser"
+#require 'gettext_i18n_rails'
 require 'modernizr-rails'
 require "compass-rails"
 require 'zurb-foundation'
@@ -77,18 +77,21 @@ module RedBase
 
     # locales
     #mattr_accessor :locales
-    #@@locales = ['en', 'fa']
+    @@locales = ['en', 'fa']
 
     def self.setup
       yield self
     end
 
     # Fast Gettext Configuration
+    Object.send(:include, FastGettext::Translation)
+
     # TODO: Check for possible error in this configurations
     FastGettext.add_text_domain 'app', :path => 'config/locales', :type => :po
     # All languages you want to allow
-    FastGettext.default_available_locales = I18n.available_locales
+    FastGettext.default_available_locales = @@locales
     FastGettext.default_text_domain = 'app'
+
 
     # Site Title
     mattr_accessor :site_title
