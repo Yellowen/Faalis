@@ -19,10 +19,16 @@ Steps to finish up installation:
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
-  4. Make sure you take a look and configured conf/initializer/devise.rb
+  4. Create a javascript manifest in 'app/assets/javascripts/dashboard/application.js'
+     and require 'red_base/dashboard/application.js'.
+
+     NOTE: You can change the default manifest name and path via 'config.dashboard_js_manifest'
+           in 'config/initializers/red_base.rb'.
+
+  5. Make sure you take a look and configured conf/initializer/devise.rb
 
      NOTE: if you want to use devise with omniauth configure them in
            conf/initializer/devise.rb according to devise wiki
 
-  5. Make sure you take a look and configured conf/initializer/fast_gettext.rb
-  6. Make sure you take a look and configured conf/initializer/formtastic.rb
+  6. Make sure you take a look and configured conf/initializer/fast_gettext.rb
+  7. Make sure you take a look and configured conf/initializer/formtastic.rb

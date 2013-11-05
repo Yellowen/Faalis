@@ -75,6 +75,7 @@ module RedBase
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
 
+
     # locales
     #mattr_accessor :locales
     @@locales = ['en', 'fa']
@@ -106,14 +107,30 @@ module RedBase
       Devise::PasswordsController.layout "red_base/application"
     end
 
+
+    # Emberjs configuration ---------------
+
+    # Dashboard default javascript manifest
+    mattr_accessor :dashboard_js_manifest
+    @@dashboard_js_manifest = "controlpanel/application.js"
+
+    def self.em_template_path(manifest_path)
+      path = manifest_path.split("/")[0..-2].join("/")
+      "#{path}/templates"
+    end
+
     # Emberjs variant
     config.ember.variant = Rails.env
     config.ember.ember_path = "red_base/dashboard"
-    config.handlebars.templates_root = "red_base/dashboard/templates/"
+    config.handlebars.templates_root = [em_template_path(dashboard_js_manifest),
+                                       "red_base/dashboard/templates",]
+
 
     # Grape configuration
     config.paths.add "app/api", glob: "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app/api/*", "../../app/api/"]
+
+
 
   end
 end
