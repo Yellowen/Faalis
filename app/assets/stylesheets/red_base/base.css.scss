@@ -246,6 +246,11 @@ $table-list-line-height: 40px;
          .details{
            font-size:emCalc(13px);
            margin:0 emCalc(50px);
+
+            .button-group{
+               background-color:$lightergray;
+               border-radius: 1em 1em 0 0;
+            }
           }
       }
    }
@@ -308,10 +313,17 @@ $table-list-line-height: 40px;
 
 
 .search-bar{
-   input {
-      border-radius:5px;
+   input[type="search"]{
+      border-top-left-radius:5px;
+      border-bottom-left-radius:5px;
+   }
+
+   input[type="submit"]{
+      border-top-left-radius:5px;
+      border-bottom-left-radius:5px;
    }
 }
+
 
 #mainloader {
   .text {
