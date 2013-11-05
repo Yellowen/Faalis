@@ -254,7 +254,7 @@ $table-list-line-height: 40px;
            margin:0 emCalc(50px);
 
             .button-group{
-               background-color:$smoke;
+               background-color:$;
             }
           }
       }
