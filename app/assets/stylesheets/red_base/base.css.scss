@@ -315,12 +315,12 @@ $table-list-line-height: 40px;
 .search-bar{
    input[type="search"]{
       border-top-left-radius:5px;
-      border-bottom-left-radius:5px;
+      border-bottom-left-radius:5px !important;
    }
 
    input[type="submit"]{
-      border-top-left-radius:5px;
-      border-bottom-left-radius:5px;
+      border-top-right-radius:5px !important;
+      border-bottom-right-radius:5px;
    }
 }
 
