@@ -1,4 +1,5 @@
 @import "red_base/dashboard/ltr/foundation_and_overrides";
+@import "red_base/variables";
 
 .float-right {
   float: right !important;
@@ -12,4 +13,26 @@
 }
 .text-left {
     text-align: left !important;
+}
+
+.append {
+  @include prefix-postfix-base;
+  @include postfix;
+  @include grid-column($columns:3,$float:right);
+  border-radius: 0 $border-radius $border-radius 0 !important;
+
+  text-align: center;
+  i {
+    color: gray;
+  }
+}
+
+input[type="search"].append, input[type="text"].append {
+  text-align: left;
+  @include grid-column($columns:9);
+  border-radius: $border-radius 0 0 $border-radius !important;
+    border-color: lightgray;
+  &:focus {
+    border-color: lightgray;
+  }
 }
