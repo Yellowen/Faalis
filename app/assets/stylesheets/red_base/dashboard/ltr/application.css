@@ -8,10 +8,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require red_base/dashboard/ltr/foundation_and_overrides
+ *= require ./direction
  *= require red_base/variables
  *= require font-awesome
- *= require ./base
- *= require red_base/dashboard/buttons
+ *= require red_base/base
+ *= require ./buttons
  *= require_self
  *= require red_base/dashboard/dashboard
  *= require red_base/dashboard/sidebar

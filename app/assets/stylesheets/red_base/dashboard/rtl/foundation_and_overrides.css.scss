@@ -26,6 +26,7 @@
 // $font-smoothing: antialiased;
 
 // We use these to control text direction settings
+
 $text-direction: rtl;
 
 // We use these as default colors throughout
@@ -1011,17 +1012,3 @@ $topbar-breakpoint: emCalc(768px); // Change to 9999px for always mobile layout
 
 
 @import 'foundation';
-
-.float-right {
-    float: left !important;
-}
-.float-left {
-    float: right !important;
-}
-
-.text-right {
-    text-align: left !important;
-}
-.text-left {
-    text-align: right !important;
-}
