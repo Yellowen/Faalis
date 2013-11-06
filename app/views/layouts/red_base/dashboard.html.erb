@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= ::I18n.locale %>" dir="<%= RedBase::I18n.direction(I18n.locale) %>">
 <head>
   <title><%= RedBase::Engine.site_title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag   "red_base/dashboard/application." + RedBase::I18n.direction(I18n.locale), media: "all" %>
+  <%= stylesheet_link_tag   "red_base/dashboard/" + RedBase::I18n.direction(I18n.locale) + "/application", media: "all" %>
   <%= javascript_include_tag :modernizr %>
   <%= csrf_meta_tags %>
 </head>
 <body data-current-user="<%= current_user.to_json %>">
 
   <%= yield %>
-
   <%= javascript_include_tag RedBase::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>

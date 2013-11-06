@@ -1,0 +1,15 @@
+@import "red_base/dashboard/rtl/foundation_and_overrides";
+
+.float-right {
+  float: left !important;
+}
+.float-left {
+    float: right !important;
+}
+
+.text-right {
+    text-align: left !important;
+}
+.text-left {
+    text-align: right !important;
+}

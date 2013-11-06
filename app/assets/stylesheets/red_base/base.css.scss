@@ -1,7 +1,7 @@
 //@import 'foundation_and_overrides';
-@import "foundation";
-@import "foundation/components/global";
-@import "foundation/components/alert-boxes";
+//@import "foundation";
+//@import "foundation/components/global";
+//@import "foundation/components/alert-boxes";
 @import "red_base/variables";
 @import "red_base/mixins";
 
@@ -82,33 +82,6 @@ fieldset {
    }
 }
 
-
-.flash-success {
-   @include alert-base;
-   color: white;
-   @include alert-style($emerald);
-   p {
-      display: inline;
-   }
-   .close {
-      @include alert-close;
-      cursor: pointer;
-   }
-
-}
-.flash-alert {
-   @include alert-base;
-   color: white;
-   @include alert-style($alizarin);
-   p {
-      display: inline;
-   }
-   .close {
-      @include alert-close;
-      cursor: pointer;
-   }
-
-}
 
 $table-list-line-height: 40px;
 /*
