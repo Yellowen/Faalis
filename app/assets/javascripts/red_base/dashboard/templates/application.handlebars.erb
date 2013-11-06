@@ -8,6 +8,7 @@
       <aside class="modulebar small-2 columns">
         {{ render "modules"}}
       </aside>
+
       <section class="small-10 columns dashboard-content">
 
         <div class="row content">
@@ -24,18 +25,19 @@
                 <input type="search"  placeholder="search ..."/>
               </div>
               <div class="small-2 columns">
-                <input type="submit" class=" prefix button" /><i class="fa fa-search"></i></button>
+                <input type="submit" class="prefix button" /><i class="fa fa-search"></i></button>
               </div>
             </div>
           </div>
         </div>
-    </div>
-    <div class="row content">
-      {{ outlet }}
-    </div>
 
-    </section>
 
-</div>
-</section>
+        <div class="row content">
+          {{ outlet }}
+        </div>
+
+      </section>
+
+    </div>
+  </section>
 </div>
