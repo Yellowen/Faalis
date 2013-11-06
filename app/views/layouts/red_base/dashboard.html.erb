@@ -10,7 +10,6 @@
 <body data-current-user="<%= current_user.to_json %>">
 
   <%= yield %>
-
   <%= javascript_include_tag RedBase::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>

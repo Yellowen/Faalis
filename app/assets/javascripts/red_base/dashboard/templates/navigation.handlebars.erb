@@ -1,3 +1,6 @@
+<% environment.context_class.instance_eval { include ActionView::Helpers::UrlHelper } %>
+<% url = RedBase::Engine.routes.url_helpers %>
+
 <div class="">
   <div class="">
     <nav class="clearpadding top-bar">
@@ -15,14 +18,15 @@
 
 </section>
       <section class="top-bar-section">
-        <ul class="right">
-
-            <li><a href="#">Persian</a></li>
+        <ul class="float-right">
+        <% ::I18n.available_locales.each do |locale| %>
+        <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
+        <% end %>
           <li class="has-dropdown"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a>
           <ul class="dropdown">
             <li><a href="">Dashboard</a></li>
             <li><a href="">Change Password</a></li>
-            <li><a href="">Sign Out</a></li>
+            <li><a href="<%= url.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
           </ul>
           </li>
         </ul>
