@@ -19,10 +19,16 @@
 </section>
       <section class="top-bar-section">
         <ul class="float-right">
-        <% ::I18n.available_locales.each do |locale| %>
-        <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
+          <li class="has-dropdown"><a href="#"> <%= _("Languages") %></a>
+         <ul class="dropdown">
+         <% ::I18n.available_locales.each do |locale| %>
+         <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
         <% end %>
-          <li class="has-dropdown"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a>
+          </ul>
+          </li>
+
+          <li class="has-dropdown"><a href="#">User{{ current_user.first_name }} {{ current_user.last_name }}</a>
+
           <ul class="dropdown">
             <li><a href="">Dashboard</a></li>
             <li><a href="">Change Password</a></li>
