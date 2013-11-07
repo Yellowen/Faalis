@@ -1,5 +1,8 @@
 Dashboard.User = DS.Model.extend(Dashboard.DModel, {
-    email: DS.attr('string')
+    email: DS.attr('string'),
+    form: {
+
+    }
 });
 
 Dashboard.User.FIXTURES =[

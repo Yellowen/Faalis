@@ -1,4 +1,5 @@
 //= require ./functions
+//= require_tree ./routers
 //= require ./store
 //= require_tree ./mixins
 //= require_tree ./models

@@ -1,0 +1,15 @@
+<p><%= _("ID") %>: <strong>{{ id }}</strong></p>
+<p><%= _("Name") %>: <strong>{{ name }}</strong></p>
+<div class="row">
+  <div class="small-12 column text-right">
+<ul class="button-group float-right">
+    {{#link-to user.edit class=" small"}}
+    <span class="fa fa-edit"></span> <%= _("Edit") %>
+    {{/link-to}}
+    {{#link-to user.show class="small"}}
+    <span class="fa fa-eye"> <%= _("Show") %>{{/link-to}}
+    {{#link-to user.show class="small"}}
+    <span class="fa fa-check-circle-o"> <%= _("Active") %>{{/link-to}}
+</ul>
+  </div>
+</div>

@@ -17,9 +17,6 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 require 'fast_gettext'
-#require "gettext"
-#require "ruby_parser"
-#require 'gettext_i18n_rails'
 require 'modernizr-rails'
 require "compass-rails"
 require 'zurb-foundation'
@@ -53,23 +50,6 @@ module RedBase
         @@models_with_permission.concat(value).uniq!
     end
 
-    # Dashboard configurations
-    mattr_accessor :dashboard_modules
-
-    # This class variable should be a hash
-    # that each key is a resource name and its value
-    # is some of these:
-    #       resource: provide resource name explicitly
-    #       title: resource title (will show in dashboard)
-    #       icon: icon class checkout font-awesome
-    @@dashboard_modules = {
-      :users => {},
-    }
-
-
-    def dashboard_modules=(value)
-        @@dashboard_modules.merge!(value)
-    end
 
     # Dashboard url prefix
     mattr_accessor :dashboard_namespace
@@ -107,6 +87,26 @@ module RedBase
       Devise::PasswordsController.layout "red_base/application"
     end
 
+
+    # Dashboard configurations
+    mattr_accessor :dashboard_modules
+
+    # This class variable should be a hash
+    # that each key is a resource name and its value
+    # is some of these:
+    #       resource: provide resource name explicitly
+    #       title: resource title (will show in dashboard)
+    #       icon: icon class checkout font-awesome
+    @@dashboard_modules = {
+      :auth => {
+        :title => _("Authentication"),
+      }
+    }
+
+
+    def dashboard_modules=(value)
+        @@dashboard_modules.merge!(value)
+    end
 
     # Emberjs configuration ---------------
 

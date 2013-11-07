@@ -1,0 +1,31 @@
+<div class="row clearmargin">
+
+  <div class="columns large-5 small-offset-1 clearpadding">
+    {{#link-to 'users'}}
+    <div class="widget red">
+
+      <div class="text-center">
+        <span class="icon text-4x"><i class="fa fa-user"></i></span>
+        <span class="text-2x"><%= _("Users") %></span>
+      </div>
+
+    </div>
+    {{/link-to}}
+  </div>
+
+
+  <div class="columns large-5 clearpadding">
+    {{#link-to 'groups'}}<div class="widget blue">
+
+      <div class=" text-center">
+        <span class="icon text-4x"><i class="fa fa-group"></i></span>
+        <span class="text-2x"><%= _("Flights") %></span>
+      </div>
+
+
+    </div>{{/link-to}}
+  </div>
+
+</div>
+
+{{outlet}}

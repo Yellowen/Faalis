@@ -1,0 +1,7 @@
+<div class="row  clearmargin">
+  <div class="small-6 column text-left clearpadding">
+  <h3><i class="fa fa-group"></i> <%= _("Groups") %></h3>
+  </div>
+</div>
+
+{{list-view model=model title_field="name" delete_items="delete_items" details_template="auth/groups/details" items_per_page=5}}
