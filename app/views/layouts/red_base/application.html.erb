@@ -1,3 +1,5 @@
+<% url = RedBase::Engine.routes.url_helpers %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,7 +20,6 @@
               <!-- Title Area -->
               <li class="name">
                 <h1>
-
                   <a href="<%= red_base.root_path %>">
                     <%= RedBase::Engine.site_title %>
                   </a>
@@ -28,28 +29,32 @@
             </ul>
 
             <section class="top-bar-section">
-              <ul class="left">
-                <% if not user_signed_in? %>
-                <li><%= link_to _("Register"), red_base.new_user_registration_path %></li>
-                <li><%= link_to _("Sign in"), red_base.user_session_path %></li>
-                <%else%>
-                <li><%= link_to _("Dashboard"), "/dashboard" %></li>
-                <li><%= link_to _("Sign Out"), destroy_user_session_path, :method => :delete %></li>
-                <% end  %>
-                <li><a href="#"><%=_("About")%></a></li>
-                <li><a href="#"><%=_("Contact")%></a></li>
-              </ul>
-
-              <ul class="right">
-                <li><a href="#"><%=_("Persian")%></a></li>
-                <li class="search">
-                  <form>
-                    <input type="search">
-                  </form>
+              <ul class="float-right">
+                <li class="has-dropdown"><a href="#"> <%= _("Languages") %></a>
+                  <ul class="dropdown">
+                    <% ::I18n.available_locales.each do |locale| %>
+                      <li><a href="<%= "/#{locale.to_s}/" %>"><%= locale %></a></li>
+                    <% end %>
+                  </ul>
                 </li>
 
-                <li class="has-button">
-                  <a class="small button" href="#">Search</a>
+                <li class="has-dropdown">
+                  <% if not user_signed_in? %>
+                    <a href="#"><%= _("Membership")%></a>
+                    <%else%>
+                    <a href="#">User<%= current_user.first_name %> <%= current_user.first_name %></a>
+                    <%end%>
+
+                    <ul class="dropdown">
+                      <% if user_signed_in? %>
+                        <li><a href="">Dashboard</a></li>
+                        <li><a href="">Change Password</a></li>
+                        <li><a href="<%= url.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
+                        <%else%>
+                        <li><%= link_to _("Register"), red_base.new_user_registration_path %></li>
+                        <li><%= link_to _("Sign in"), red_base.user_session_path %></li>
+                        <%end%>
+                    </ul>
                 </li>
               </ul>
             </section>
