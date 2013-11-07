@@ -7,16 +7,16 @@ to use with other ruby on rails applications.
 
 1. Add this to your `config/environments/development.rb`
 
-'''ruby
-config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-'''
+```ruby
+    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+```
 
 In production, :host should be set to the actual host of your application.
 
 2. Ensure you have flash messages in app/views/layouts/application.html.erb.
 For example (Only if you want to change default layout):
 
-'''
+'''html
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 '''
