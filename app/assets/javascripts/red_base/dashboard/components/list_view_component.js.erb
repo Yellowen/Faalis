@@ -44,9 +44,19 @@ Dashboard.ListViewComponent = Ember.Component.extend({
         return model.filterBy("is_selected", true).get("length");
     }.property("model.@each.is_selected"),
 
+    // Buttons in Action bar
     action_buttons: function(){
         return this.buttons;
     }.property(),
+
+    // Is current layout left to right ?
+    is_ltr: function(){
+        if($("html").attr("dir") == "ltr") {
+            return true;
+        }
+        return false;
+    }.property(),
+
 
     actions: {
 

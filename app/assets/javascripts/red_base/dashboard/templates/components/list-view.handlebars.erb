@@ -15,9 +15,8 @@
     <li><%= _("There is not record") %></li>
   {{/unless}}
   {{#each record in this_page}}
-
     <li {{bind-attr class="record.is_selected:selected :pointer"}}>
-      {{#if window.is_ltr}}
+      {{#if is_ltr}}
         <i {{action "toggle_details" record}} {{bind-attr class="record.view_details:fa-rotate-90 :handle :fa :fa-angle-right"}}></i>
       {{else}}
         <i {{action "toggle_details" record}} {{bind-attr class="record.view_details:fa-rotate-270 :handle :fa :fa-angle-left"}}></i>
