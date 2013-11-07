@@ -29,6 +29,12 @@ window.Dashboard = Ember.Application.create({
 window.Modules = [];
 window.ErrorQueue = [];
 
+window.is_ltr = function(){
+    if($("html").attr("dir") == "ltr") {
+        return true;
+    }
+    return false;
+};
 //= require_tree .
 $(function(){
     $(document).foundation();
