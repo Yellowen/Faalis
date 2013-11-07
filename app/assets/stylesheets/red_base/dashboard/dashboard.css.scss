@@ -18,20 +18,28 @@ header {
    nav {
     Background: $dashboard-nav-background;
     box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
-    li {
-      height:60px;
-      &.brand {
-        background: lighten($dashboard-nav-hover, 5%);
-          padding-left:2em;
-            padding-right:2em;
-              h1{
-                color:#FFFFFF;
-            }
-        }
+
+      .float-right{
+         margin-right:70px;
+         margin-left:70px;
       }
+    li {
+       &:hover {
+          background: lighten($dashboard-nav-hover, 5%) !important;
+       }
+
+       &.brand {
+          background: lighten($dashboard-nav-hover, 5%);
+          padding-left:2em;
+          padding-right:2em;
+          h1{
+             color:#FFFFFF;
+          }
+       }
+    }
    }
    .modulebar {
-      margin-top: 20px;
+//      margin-top: 20px;
    }
 }
 
@@ -50,18 +58,6 @@ ul{
     color: $darkergray;
   }
 
-}
-
-
-.top-bar-section li a:not(.button){
-   &:hover {
-      background: lighten($dashboard-nav-hover, 5%) !important;
-   }
-   i{
-      padding-top:0.7em;
-   }
-   height:4.5em;
-   line-height:4.5em;
 }
 
 
