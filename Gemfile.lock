@@ -192,6 +192,7 @@ GEM
       equalizer (~> 0.0.7)
     warden (1.2.3)
       rack (>= 1.0)
+    yard (0.8.7.3)
     zurb-foundation (4.0.9)
       sass (>= 3.2.0)
 
@@ -202,3 +203,4 @@ DEPENDENCIES
   red_base!
   ruby_parser
   sqlite3
+  yard
