@@ -44,7 +44,7 @@
 
                     <ul class="dropdown">
                       <% if user_signed_in? %>
-                        <li><a href=""><%= _("Dashboard") %></a></li>
+                        <li><a href="<%= red_base.dashboard_path %>"><%= _("Dashboard") %></a></li>
                         <li><a href="">Change Password</a></li>
                         <li><a href="<%= red_base.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
                         <%else%>

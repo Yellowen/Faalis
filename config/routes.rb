@@ -9,7 +9,7 @@ RedBase::Engine.routes.draw do
 
   scope "(:locale)", :locale => Regexp.new(::I18n.available_locales.join("|")) do
     scope RedBase::Engine.dashboard_namespace.to_sym do
-      get "" => "dashboard#index"
+      get "" => "dashboard#index", :as => "dashboard"
       get "modules" => "dashboard#modules"
     end
 
