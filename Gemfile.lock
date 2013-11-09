@@ -159,6 +159,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
+    rdoc (4.0.0)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
     sass (3.2.12)
@@ -201,6 +202,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rdoc
   red_base!
   ruby_parser
   sqlite3

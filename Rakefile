@@ -7,9 +7,12 @@ end
 require 'rdoc/task'
 
 RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
+  rdoc.rdoc_dir = 'docs'
   rdoc.title    = 'RedBase'
   rdoc.options << '--line-numbers'
+  rdoc.options << '--markup=markdown'
+
+  rdoc.main = "README.rdoc"
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
