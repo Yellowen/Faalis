@@ -55,8 +55,8 @@
 		  </div>
 		  <div class="field">
 		    <% if devise_mapping.rememberable? -%>
-		      <div><%= f.check_box :remember_me,:class=>"checkbox" %> <%= f.label :remember_me %></div>
-		    <% end -%>
+		      <div><%= f.check_box :remember_me, :class=>"checkbox" %> <%= f.label _("remember me") %></div>
+		    <% end %>
 		  </div>
 		  <div class="submit">
 		    <%= f.submit _("  Sign in  "), :class => "button"%><br><br>

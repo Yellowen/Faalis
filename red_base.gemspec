@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
 
   # i18n
   s.add_dependency "fast_gettext"
-  s.add_dependency "gettext"
+  s.add_development_dependency "gettext"
   s.add_dependency 'gettext_i18n_rails'
 
   # Forms

@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/ruby-gettext/gettext.git
+  revision: 0fc66b57b67d3f295b67688ea6af5cd6410340b0
+  specs:
+    gettext (3.0.3)
+      locale (>= 2.0.5)
+      text
+
 PATH
   remote: .
   specs:
@@ -10,7 +18,6 @@ PATH
       fast_gettext
       font-awesome-rails
       formtastic
-      gettext
       gettext_i18n_rails
       grape
       jquery-rails
@@ -101,9 +108,6 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.10)
-    gettext (3.0.2)
-      locale (>= 2.0.5)
-      text
     gettext_i18n_rails (1.0.1)
       fast_gettext (>= 0.4.8)
     grape (0.6.1)
@@ -124,6 +128,7 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    json (1.8.1)
     locale (2.0.9)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -159,7 +164,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.0)
-    rdoc (4.0.0)
+    rdoc (4.0.1)
+      json (~> 1.4)
     ruby_parser (3.2.2)
       sexp_processor (~> 4.1)
     sass (3.2.12)
@@ -194,7 +200,6 @@ GEM
       equalizer (~> 0.0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    yard (0.8.7.3)
     zurb-foundation (4.0.9)
       sass (>= 3.2.0)
 
@@ -202,8 +207,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fast_gettext
+  gettext!
+  gettext_i18n_rails
   rdoc
   red_base!
   ruby_parser
   sqlite3
-  yard
