@@ -2,8 +2,8 @@
 @import "red_base/mixins";
 
 .row {
-  width: 100% !important;
-  max-width: 100%;
+   width: 100% !important;
+   max-width: 100%;
 }
 body {
    background: $dashboard-background;
@@ -16,27 +16,27 @@ body {
 
 header {
    nav {
-    Background: $dashboard-nav-background;
-    box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
+      Background: $dashboard-nav-background;
+      box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
 
       .float-right{
          margin-right:70px;
          margin-left:70px;
       }
-    li {
-       &:hover {
-          background: lighten($dashboard-nav-hover, 5%) !important;
-       }
+      li {
+         &:hover {
+            background: lighten($dashboard-nav-hover, 5%) !important;
+         }
 
-       &.brand {
-          background: lighten($dashboard-nav-hover, 5%);
-          padding-left:2em;
-          padding-right:2em;
-          h1{
-             color:#FFFFFF;
-          }
-       }
-    }
+         &.brand {
+            background: lighten($dashboard-nav-hover, 5%);
+            padding-left:2em;
+            padding-right:2em;
+            h1{
+               color:#FFFFFF;
+            }
+         }
+      }
    }
    .modulebar {
 //      margin-top: 20px;
@@ -45,34 +45,39 @@ header {
 
 
 ul{
-  margin-bottom:0px !important;
-  margin-bottom:0;
+   margin-bottom:0px !important;
+   margin-bottom:0;
 }
 
 
 .dashboard-content {
-  .content {
-    padding: 0 20px;
-  }
-  h1, h2, h3, h4, h5 {
-    color: $darkergray;
-  }
+   .content {
+      padding: 0 20px;
+   }
+   h1, h2, h3, h4, h5 {
+      color: $darkergray;
+   }
 
 }
 
 
 .widget {
-
-  -webkit-box-shadow: 0px 1px 1px rgba(48, 50, 50, 0.2);
-  -moz-box-shadow:    0px 1px 1px rgba(48, 50, 50, 0.2);
+   -webkit-box-shadow: 0px 1px 1px rgba(48, 50, 50, 0.2);
+   -moz-box-shadow:    0px 1px 1px rgba(48, 50, 50, 0.2);
    box-shadow:         0px 1px 1px rgba(48, 50, 50, 0.2);
    @include box-shadow (0px 1px 1px rgba(48, 50, 50, 0.2));
-   min-height: 5em;
+   min-height:11em;
    margin: 5px;
    padding: 10px;
    border-radius: 3px;
+   border-bottom:solid 10px #FFFFFF;
+   .text-center {
+      vertical-align: middle;
+      min-height:100%;
+      padding-top:2em;
+      .icon {
+         display: block;
+      }
 
-   .icon {
-     display: block;
    }
 }
