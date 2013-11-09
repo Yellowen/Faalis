@@ -21,7 +21,7 @@ class RedBase::ApplicationController < ActionController::Base
   before_filter :set_locale
 
   def set_locale
-    FastGettext.set_locale(params[:locale] || session[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'])
+    FastGettext.set_locale(params[:locale] || session[:locale] || I18n.default_locale)
     session[:locale] = I18n.locale = FastGettext.locale
   end
 end
