@@ -28,6 +28,7 @@ window.Dashboard = Ember.Application.create({
 
 window.Modules = [];
 window.ErrorQueue = [];
+window.I18n = {};
 
 //= require_tree .
 $(function(){

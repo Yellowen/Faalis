@@ -16,7 +16,7 @@ namespace :red_base do
       # ---------------------------------------
 
       #path = "app/assets/javascripts/red_base/dashboard/**/*.{erb,js.erb,handlebars.erb,handlebars}"
-      path = "app/assets/javascripts/red_base/dashboard/**/*.{handlebars, handlebars.erb}"
+      path = "app/assets/javascripts/red_base/dashboard/templates/**/*.{handlebars,handlebars.erb}"
 
       files = Dir.glob(path)
       files.each do |filename|

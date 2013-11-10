@@ -6,13 +6,13 @@
         {{/each}}
     </div>
     <div class="small-4 columns text-right search-bar">
-      <input type="search" class="append " placeholder="<%= _("Search") %> ..."/>
+      <input type="search" class="append " placeholder="{{_ 'Search'}} ..."/>
       <span class="append radius"><i class="fa fa-search"></i></span>
     </div>
 
   </li>
   {{#unless model}}
-    <li><%= _("There is not record") %></li>
+    <li>{{_ 'There is not record'}}</li>
   {{/unless}}
   {{#each record in this_page}}
     <li {{bind-attr class="record.is_selected:selected :pointer"}}>
@@ -41,19 +41,19 @@
             <i {{bind-attr class=":fa is_ltr:fa-angle-right:fa-angle-left"}} {{ action go_to_next_page }}></i>
             <i {{bind-attr class=":fa is_ltr:fa-angle-double-right:fa-angle-double-left"}} {{ action go_to_last_page }}></i>
 
-            <span class="elabel rounded lightergray" title="<%= _("Current Page") %>"><i class="fa fa-file-o"></i> {{ current_page }}</span>
-            <span class="elabel rounded lightergray" title="<%= _("Total Pages") %>"><i class="fa fa-files-o"></i> {{ total_pages }}</span>
+            <span class="elabel rounded lightergray" title="{{_ 'Current Page'}}"><i class="fa fa-file-o"></i> {{ current_page }}</span>
+            <span class="elabel rounded lightergray" title="{{_ 'Total Pages'}}"><i class="fa fa-files-o"></i> {{ total_pages }}</span>
         {{/if}}
         <span class="elabel rounded lightergray" title="<%= _("Item(s)") %>"><i class="fa fa-list-ul"></i> {{count}}</span>
-        <span class="elabel rounded lightergray" title="<%= _("Selected") %>"><i {{bind-attr class=":fa is_ltr:fa-hand-o-right:fa-hand-o-left"}}></i> {{ selected_count }}
+        <span class="elabel rounded lightergray" title="{{_ 'Selected'}}"><i {{bind-attr class=":fa is_ltr:fa-hand-o-right:fa-hand-o-left"}}></i> {{ selected_count }}
         </span>
         </div>
 
     </div>
     <div class="small-6 columns text-right">
-      <span class="btn yellow tiny" {{ action "toggle_select" model}}><%= _("Toggle Select") %></span>
-      <span class="btn blue tiny" {{ action "select_all" model}}><%= _("Select All") %></span>
-      <span class="btn red tiny" {{ action 'delete_items' model}}><%= _("Delete") %></span>
+      <span class="btn yellow tiny" {{ action "toggle_select" model}}>{{_ 'Toggle Select'}}</span>
+      <span class="btn blue tiny" {{ action "select_all" model}}>{{_ 'Select All'}}</span>
+      <span class="btn red tiny" {{ action 'delete_items' model}}>{{_ 'Delete'}}</span>
     </div>
   </li>
 </ul>
