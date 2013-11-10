@@ -57,22 +57,25 @@ module RedBase
 
 
     # locales
-    #mattr_accessor :locales
+    mattr_accessor :locales
     @@locales = ['en', 'fa']
 
     def self.setup
       yield self
     end
 
+    I18n.locale = :fa
     # Fast Gettext Configuration
     Object.send(:include, FastGettext::Translation)
 
     # TODO: Check for possible error in this configurations
-    FastGettext.add_text_domain 'app', :path => 'config/locales', :type => :po
+    @@locale_path = "#{root}/config/locales"
+    FastGettext.add_text_domain 'red_base', :path => @@locale_path, :type => :po
     # All languages you want to allow
     FastGettext.default_available_locales = @@locales
-    FastGettext.default_text_domain = 'app'
 
+    FastGettext.default_text_domain = 'red_base'
+    FastGettext.locale = :fa
 
     # Site Title
     mattr_accessor :site_title
@@ -86,6 +89,7 @@ module RedBase
       Devise::UnlocksController.layout "red_base/application"
       Devise::PasswordsController.layout "red_base/application"
     end
+    #Devise.omniauth_path_prefix = ["/en", "/fa"]
 
 
     # Dashboard configurations

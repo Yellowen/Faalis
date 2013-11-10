@@ -13,3 +13,8 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+
+gem "fast_gettext"
+gem "gettext", :github => "ruby-gettext/gettext", :group => :development, :require => false
+gem "ruby_parser", :group => :development, :require => false
+gem 'gettext_i18n_rails'

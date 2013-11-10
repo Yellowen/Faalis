@@ -1,5 +1,3 @@
-<% url = RedBase::Engine.routes.url_helpers %>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,10 +44,9 @@
 
                     <ul class="dropdown">
                       <% if user_signed_in? %>
-                        <li><a href="/dashboard"><%= _("Dashboard") %></a></li>
-
-                        <li><%= link_to _("Change Password"), red_base.edit_user_password_path %></li>
-                        <li><a href="<%= url.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
+                        <li><a href="<%= red_base.dashboard_path %>"><%= _("Dashboard") %></a></li>
+                        <li><a href="">Change Password</a></li>
+                        <li><a href="<%= red_base.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
                         <%else%>
                         <li><%= link_to _("Register"), red_base.new_user_registration_path %></li>
                         <li><%= link_to _("Sign in"), red_base.user_session_path %></li>
@@ -67,6 +64,7 @@
 
     <%= yield %>
 
+    <%= debug I18n.locale %>
     <!-- Footer -->
 
     <footer class="">
