@@ -15,8 +15,8 @@ namespace :red_base do
       end
       # ---------------------------------------
 
-      #path = "app/assets/javascripts/red_base/dashboard/**/*.{erb,js.erb,handlebars.erb,handlebars}"
-      path = "app/assets/javascripts/red_base/dashboard/templates/**/*.{handlebars,handlebars.erb}"
+      path = "app/assets/javascripts/red_base/dashboard/mixins/**/*.{js,js.erb}"
+      #path = "app/assets/javascripts/red_base/dashboard/templates/**/*.{handlebars,handlebars.erb}"
 
       files = Dir.glob(path)
       files.each do |filename|
@@ -27,7 +27,7 @@ namespace :red_base do
 
         matches.each do |str|
           #print "Found: #{str[0]}\n"
-          data.gsub!(/<\%= _\([\"|\']#{str[0]}[\"|\']\) \%>/, "{{_ '#{str[0]}'}}")
+          data.gsub!(/[\"|\']<\%= _\([\"|\']#{str[0]}[\"|\']\) \%>[\"|\']/, "_('#{str[0]}')")
 
         end
 

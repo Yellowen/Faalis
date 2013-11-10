@@ -88,7 +88,7 @@ Dashboard.ListViewComponent = Ember.Component.extend({
                 this.set("current_page", value);
             }
             else {
-                error_message("<%= _("Given page does not exists") %>");
+                error_message(_('Given page does not exists'));
             }
 
         },

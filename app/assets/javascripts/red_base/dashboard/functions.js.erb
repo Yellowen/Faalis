@@ -27,7 +27,7 @@ function get_modules(){
                 return Modules;
             })
             .fail(function(data){
-                ErrorQueue.push("<%= _('Can not connect to remote, please try again') %>");
+                ErrorQueue.push(_('Can not connect to remote, please try again'));
                 return null;
             }).always(function(){
                 $("#mainloader").hide();
