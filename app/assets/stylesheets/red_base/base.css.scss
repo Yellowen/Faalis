@@ -120,7 +120,7 @@ $table-list-line-height: 40px;
             background: $selected-bg;
          }
          &:hover.selected{
-           background: darken($selected-bg, 5%);;
+           background: darken($selected-bg, 5%);
          }
          .details {
             display: none;
