@@ -41,7 +41,7 @@
             <i {{bind-attr class=":fa is_ltr:fa-angle-right:fa-angle-left"}} {{ action go_to_next_page }}></i>
             <i {{bind-attr class=":fa is_ltr:fa-angle-double-right:fa-angle-double-left"}} {{ action go_to_last_page }}></i>
 
-            <span class="elabel rounded lightergray" title="{{_ 'Current Page'}}"><i class="fa fa-file-o"></i> {{ current_page }}</span>
+            <span class="elabel rounded lightergray" {{bind-attr title="asd"}}"><i class="fa fa-file-o"></i> {{ current_page }}</span>
             <span class="elabel rounded lightergray" title="{{_ 'Total Pages'}}"><i class="fa fa-files-o"></i> {{ total_pages }}</span>
         {{/if}}
         <span class="elabel rounded lightergray" title="<%= _("Item(s)") %>"><i class="fa fa-list-ul"></i> {{count}}</span>
