@@ -19,16 +19,25 @@
 //= require_self
 //= require red_base/dashboard/app
 
-// for more details see: http://emberjs.com/guides/application/
+
+
+window.Modules = [];
+window.ErrorQueue = [];
+window.lang = $("html").attr("lang");
+window.I18n = {};
+$.getJSON("/assets/red_base/locale/" + $("html").attr("lang") + ".json")
+    .done(function(data){
+        I18n[lang] = data;
+    })
+    .fail(function(data){
+        error_message("Can't load locale file please try to refresh the page");
+    });
+
 window.Dashboard = Ember.Application.create({
     //LOG_TRANSITIONS: true,
     //LOG_VIEW_LOOKUPS: true,
     //LOG_TRANSITIONS_INTERNAL: true,
 });
-
-window.Modules = [];
-window.ErrorQueue = [];
-window.I18n = {};
 
 //= require_tree .
 $(function(){
