@@ -210,12 +210,12 @@ $include-html-classes: true;
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;
 // $fieldset-border-width: 1px;
-$fieldset-border-color: #eee;
-$fieldset-padding: emCalc(20px) emCalc(30px) emCalc(10px);
-// $fieldset-margin: emCalc(18px) 0;
+$fieldset-border-color: #dedede;
+$fieldset-padding: emCalc(20px) emCalc(30px) emCalc(20px);
+$fieldset-margin: emCalc(18px) 0;
 
 // We use these to style the legends when you use them
-// $legend-bg: #fff;
+$legend-bg: none;
 // $legend-font-weight: bold;
 // $legend-padding: 0 emCalc(3px);
 

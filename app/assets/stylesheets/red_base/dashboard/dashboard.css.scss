@@ -81,3 +81,36 @@ ul{
 
    }
 }
+
+fieldset {
+  label {
+    padding: 0px 0px 5px 0px;
+  }
+  .permissions {
+    .controlls {
+      text-align: center;
+      color: gray;
+      font-size: 1.5em;
+      line-height: 1.5;
+      vertical-align: middle;
+      i {
+        cursor: pointer;
+        &:hover {
+          color: $darkgray;
+        }
+      }
+    }
+    .field {
+      height: 12em;
+      border-radius: $border-radius;
+      padding: 5px 10px;
+      overflow-y: auto;
+      ul {
+        list-style: none;
+        li {
+
+        }
+      }
+    }
+  }
+}

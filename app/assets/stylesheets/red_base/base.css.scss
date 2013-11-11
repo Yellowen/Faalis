@@ -61,18 +61,23 @@ footer {
 }
 
 fieldset {
-   legend {
-      margin-top:-40px;
-      color:white;
-      padding:10px 10px 20px 10px;
-      margin-right:-30px;
-   }
+  border-radius: $border-radius;
+  background: #fff;
+
+  legend {
+    color: $darkgray;
+    padding: 10px 10px 20px 10px;
+    background: none;
+  }
+  .row {
+    padding-bottom: 20px;
+
+  }
+
 }
 
 .form {
-    /*@include border-radius(5px);
-    @include single-box-shadow(rgba(black, 1));
-    */
+
    line-height:25px;
    img {
       padding :5px;

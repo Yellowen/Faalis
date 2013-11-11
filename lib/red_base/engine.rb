@@ -44,10 +44,12 @@ module RedBase
     mattr_accessor :models_with_permission
 
     # TODO: create a basic setup for this option
-    @@models_with_permission = []
+    @@models_with_permission = ["RedBase::User",
+                                "RedBase::Group",
+                               ]
 
-    def models_with_permission=(value)
-        @@models_with_permission.concat(value).uniq!
+    def self.models_with_permission=(value)
+      @@models_with_permission.concat(value).uniq!
     end
 
 
@@ -108,7 +110,7 @@ module RedBase
     }
 
 
-    def dashboard_modules=(value)
+    def self.dashboard_modules=(value)
         @@dashboard_modules.merge!(value)
     end
 
@@ -133,7 +135,6 @@ module RedBase
     # Grape configuration
     config.paths.add "app/api", glob: "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app/api/*", "../../app/api/"]
-
 
 
   end
