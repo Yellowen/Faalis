@@ -6,3 +6,5 @@ Dashboard.GroupsIndexController = Ember.ArrayController.extend(Dashboard.DContro
                 route: 'groups.new'
             }]
 });
+Dashboard.GroupsNewController = Ember.ArrayController.extend(Dashboard.DController, {
+});

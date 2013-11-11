@@ -9,3 +9,4 @@
 ** TODO view some loading icon or message before sending and processing modules.json request
 ** TODO Add a initializer script for red_base with all the possible options and comments
 ** TODO add formtastic initializer script to install generator.
+** TODO Check for admin user only in api interface

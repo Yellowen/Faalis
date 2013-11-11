@@ -1,1 +1,56 @@
-asdasd
+<div class="newform">
+  <fieldset class="form">
+
+  <legend>{{_ 'New Group'}}</legend>
+
+  <div class="row">
+    <div class="small-6 columns">
+      <label for="name" >{{_ 'Name'}}:</label>
+      {{input value=name id="name" type="text" name="name" value=name class="small-8 columns"}}
+    </div>
+  </div>
+
+  <div class="row">
+    <label>{{_ "Permissions"}}</label>
+    <div class="small-10 small-offset-1 columns permissions">
+      <div class="row">
+        <div class="small-5 columns yellow field">
+          <ul>
+
+          </ul>
+        </div>
+
+        <div class="small-2 columns controlls">
+          {{#if is_ltr}}
+            <i class="fa fa-angle-right"></i><br/>
+            <i class="fa fa-angle-double-right"></i><br/>
+
+            <i class="fa fa-angle-left"></i><br/>
+            <i class="fa fa-angle-double-left"></i><br/>
+
+          {{else}}
+            <i class="fa fa-angle-left"></i><br/>
+            <i class="fa fa-angle-double-left"></i><br/>
+
+            <i class="fa fa-angle-right"></i><br/>
+            <i class="fa fa-angle-double-right"></i><br/>
+
+          {{/if}}
+        </div>
+        <div class="small-5 columns red field">
+          <ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </fieldset>
+
+
+  <div class="row">
+      <div class="small-6 columns">
+          <button class="btn small green"><i class="fa fa-check"></i> {{_ "Save"}}</button>
+          <button class="btn small red"><i class="fa fa-times"></i> {{_ "Cancel"}}</button>
+      </div>
+  </div>
+</div>

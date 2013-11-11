@@ -30,6 +30,15 @@ module ActiveRecord
 
       @@only_owner = false
 
+      # return an array of strings representation of permissions
+      def self.permission_strings(model_name)
+        strings = []
+        @@permissions.each do |key, value|
+          strings << _("can %s %s") % [_(key.to_s), model_name]
+        end
+        strings
+      end
+
       # Define permissions using this method
       def self.permissions(*args)
 

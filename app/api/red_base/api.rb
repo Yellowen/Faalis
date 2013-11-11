@@ -31,9 +31,27 @@ module RedBase
       desc "Return all the users"
       get do
         authenticated_user
+        # TODO: Check for admin user only
         RedBase::User.all
       end
 
     end
+
+    resource :permissions do
+
+      desc "Return all permissions available"
+      get do
+        authenticated_user
+        # TODO: Check for admin user only
+        permissions = []
+
+        RedBase::Engine.models_with_permission.each do |model|
+          name = Object.const_get(model).model_name.human
+          permissions.concat(Object.const_get(model)::Permissions.permission_strings(name)).uniq!
+        end
+        permissions
+      end
+    end
+
   end
 end
