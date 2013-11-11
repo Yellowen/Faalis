@@ -1,5 +1,11 @@
 Dashboard.User = DS.Model.extend(Dashboard.DModel, {
+    id: DS.attr("number"),
+    first_name: DS.attr("string"),
+    last_name: DS.attr("string"),
+    created_at: DS.attr("date"),
+    updated_at: DS.attr("date"),
     email: DS.attr('string'),
+
     form: {
 
     }
@@ -10,6 +16,8 @@ Dashboard.User.FIXTURES =[
         id: 1,
         email: "lxsameer@gnu.org"
     },
+
+
     {
         id: 2,
         email: "b3hnam@gnu.org"

@@ -1,5 +1,33 @@
 <div class="newform">
-  <h5>{{_ 'New User'}}</h5>
+  <fieldset class="form">
 
-  {{model-form model=Dashboard.User}}
+    <legend>{{_ 'New User'}}</legend>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <label for="first_name" >{{_ 'First Name'}}:</label>
+        {{input value=first_name id="first_name" type="text" name="first_name" value=first_name class="small-8 columns"}}
+      </div>
+
+      <div class="small-6 columns">
+        <label for="last_name" >{{_ 'Last Name'}}:</label>
+        {{input value=last_name id="last_name" type="text" name="last_name" value=last_name class="small-8 columns"}}
+      </div>
+
+      <div class="small-6 columns float-left">
+        <label for="email" >{{_ 'E-mail'}}:</label>
+        {{input value=email id="email" type="text" name="email" value=email class="small-8 columns"}}
+      </div>
+
+    </div>
+
+  </fieldset>
+
+
+  <div class="row">
+    <div class="small-6 columns">
+      <button class="btn small green"><i class="fa fa-check"></i> {{_ "Save"}}</button>
+      <button class="btn small red"><i class="fa fa-times"></i> {{_ "Cancel"}}</button>
+    </div>
+  </div>
 </div>
