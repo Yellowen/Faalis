@@ -19,7 +19,7 @@
 </section>
       <section class="top-bar-section">
         <ul class="float-right">
-          <li class="has-dropdown"><a href="#"> <%= _("Languages") %></a>
+          <li class="has-dropdown"><a href="#"> {{_ 'Languages'}}</a>
          <ul class="dropdown">
          <% ::I18n.available_locales.each do |locale| %>
          <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>

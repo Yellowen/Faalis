@@ -2,13 +2,13 @@ Dashboard.UsersIndexController = Ember.ArrayController.extend(Dashboard.DControl
     action_buttons: [
             {
                 classes: "btn small green",
-                label: "<%= _('New') %>",
+                label: _('New'),
                 icon: "fa fa-plus",
                 route: 'users.new'
             },
             {
                 classes: "btn small yellow",
-                label: "<%= _('Activate') %>",
+                label: _('Activate'),
                 icon: "fa fa-check-circle-o"
             }]
 });

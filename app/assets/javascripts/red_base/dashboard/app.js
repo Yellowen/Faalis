@@ -1,3 +1,4 @@
+//= require red_base/i18n
 //= require ./functions
 //= require_tree ./routers
 //= require ./store
