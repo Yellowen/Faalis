@@ -20,11 +20,12 @@
 //= require red_base/dashboard/app
 
 
-
+window.API_PREFIX = "/api/v1/";
 window.Modules = [];
 window.ErrorQueue = [];
 window.lang = $("html").attr("lang");
 window.I18n = {};
+
 $.getJSON("/assets/red_base/locale/" + $("html").attr("lang") + ".json")
     .done(function(data){
         I18n[lang] = data;

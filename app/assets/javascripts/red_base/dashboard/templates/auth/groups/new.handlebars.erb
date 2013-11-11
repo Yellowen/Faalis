@@ -11,34 +11,16 @@
   </div>
 
   <div class="row">
-    <label>{{_ "Permissions"}}</label>
-    <div class="small-10 small-offset-1 columns permissions">
+    <label for="permissions">{{_ "Permissions"}}:</label>
+
+    <div class="small-10 columns permissions">
+
       <div class="row">
-        <div class="small-5 columns yellow field">
+        <div id="permissions" class="small-8 columns field">
           <ul>
-
-          </ul>
-        </div>
-
-        <div class="small-2 columns controlls">
-          {{#if is_ltr}}
-            <i class="fa fa-angle-right"></i><br/>
-            <i class="fa fa-angle-double-right"></i><br/>
-
-            <i class="fa fa-angle-left"></i><br/>
-            <i class="fa fa-angle-double-left"></i><br/>
-
-          {{else}}
-            <i class="fa fa-angle-left"></i><br/>
-            <i class="fa fa-angle-double-left"></i><br/>
-
-            <i class="fa fa-angle-right"></i><br/>
-            <i class="fa fa-angle-double-right"></i><br/>
-
-          {{/if}}
-        </div>
-        <div class="small-5 columns red field">
-          <ul>
+            {{#each permission in permissions}}
+              <li {{bind-attr id=permission.name class=permission.is_selected:selected}} {{action 'select_permission' permission}}><i {{bind-attr class=":fa :fa-check permission.is_selected:green-text:hide"}}></i> {{ permission.string }} </li>
+            {{/each}}
           </ul>
         </div>
       </div>
