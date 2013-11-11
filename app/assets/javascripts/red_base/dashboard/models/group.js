@@ -1,5 +1,6 @@
 Dashboard.Group = DS.Model.extend(Dashboard.DModel, {
-    name: DS.attr('string')
+    name: DS.attr('string'),
+    permissions: DS.hasMany("permission")
 });
 
 Dashboard.Group.FIXTURES =[

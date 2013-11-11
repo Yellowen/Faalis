@@ -4,9 +4,10 @@
   <legend>{{_ 'New Group'}}</legend>
 
   <div class="row">
-    <div class="small-6 columns">
-      <label for="name" >{{_ 'Name'}}:</label>
-      {{input value=name id="name" type="text" name="name" value=name class="small-8 columns"}}
+    <div class="small-4 columns">
+      <label >{{_ 'Name'}}:</label>
+      {{input  id="new_name" type="text" value=new_name class=""}}
+      <small></small>
     </div>
   </div>
 
@@ -31,8 +32,8 @@
 
   <div class="row">
       <div class="small-6 columns">
-          <button class="btn small green"><i class="fa fa-check"></i> {{_ "Save"}}</button>
-          <button class="btn small red"><i class="fa fa-times"></i> {{_ "Cancel"}}</button>
+          <button class="btn small green" {{action "save_group"}}><i class="fa fa-check"></i> {{_ "Save"}}</button>
+          <button class="btn small red" {{action "cancel"}}><i class="fa fa-times"></i> {{_ "Cancel"}}</button>
       </div>
   </div>
 </div>
