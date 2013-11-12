@@ -49,6 +49,8 @@ Dashboard.GroupsNewController = Ember.ArrayController.extend(Dashboard.DControll
 
             group.save();
             success_message(_("Your group created successfully."));
+            this.set("new_name", "");
+            $(".permissions li.selected").removeClass("selected");
             this.transitionToRoute('groups');
 
         },
