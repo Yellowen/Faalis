@@ -49,7 +49,7 @@ module RedBase
           model = Object.const_get(model)
           permissions.concat(model::Permissions.permission_strings(model))
         end
-        permissions
+        {:permissions => permissions}
       end
     end
 

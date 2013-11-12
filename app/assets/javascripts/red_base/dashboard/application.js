@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require foundation
 //= require handlebars
-//= require ember
-//= require ember-data
+//= require red_base/dashboard/lib/ember
+//= require red_base/dashboard/lib/ember-data
 //= require_self
 //= require red_base/dashboard/app
 
@@ -40,6 +40,10 @@ window.Dashboard = Ember.Application.create({
     //LOG_TRANSITIONS_INTERNAL: true,
 });
 
+Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend({});
+/*Dashboard.ApplicationAdapter = DS.RESTAdapter.extend({
+    namespace: 'api/v1'
+});*/
 //= require_tree .
 $(function(){
     $(document).foundation();
