@@ -50,10 +50,11 @@ window.Dashboard = Ember.Application.create({
     //LOG_TRANSITIONS_INTERNAL: true,
 });
 
-Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend({});
-/*Dashboard.ApplicationAdapter = DS.RESTAdapter.extend({
+//Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend({});
+//Dashboard.ApplicationAdapter
+Dashboard.ApplicationAdapter = DS.RESTAdapter.extend({
     namespace: 'api/v1'
-});*/
+});
 //= require_tree .
 $(function(){
     $(document).foundation();

@@ -49,6 +49,12 @@ module RedBase
           model = Object.const_get(model)
           permissions.concat(model::Permissions.permission_strings(model))
         end
+
+        i = 1
+        permissions.each do |perm|
+          perm["id"] = i
+          i += 1
+        end
         {:permissions => permissions}
       end
     end

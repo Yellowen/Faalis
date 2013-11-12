@@ -1,6 +1,6 @@
 Dashboard.Permission = DS.Model.extend(Dashboard.DModel, {
     name: DS.attr('string'),
-    string: DS.attr('string'),
+    string: DS.attr('string')
     //groups: DS.hasMany("group")
 });
 

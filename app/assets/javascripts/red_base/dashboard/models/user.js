@@ -1,5 +1,4 @@
 Dashboard.User = DS.Model.extend(Dashboard.DModel, {
-    id: DS.attr("number"),
     first_name: DS.attr("string"),
     last_name: DS.attr("string"),
     created_at: DS.attr("date"),
