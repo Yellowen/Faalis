@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require handlebars
-//= require red_base/dashboard/lib/ember
-//= require red_base/dashboard/lib/ember-data
+//= require red_base/dashboard/lib/angular
+//= require red_base/dashboard/lib/angular-route
+//= require red_base/dashboard/lib/angular-resource
 //= require_self
 //= require red_base/dashboard/app
 
@@ -43,18 +43,6 @@ $.getJSON("/assets/red_base/locale/" + $("html").attr("lang") + ".json")
         error_message("Can't load locale file please try to refresh the page");
     });
 // ----------------------------------------------
-
-window.Dashboard = Ember.Application.create({
-    //LOG_TRANSITIONS: true,
-    //LOG_VIEW_LOOKUPS: true,
-    //LOG_TRANSITIONS_INTERNAL: true,
-});
-
-//Dashboard.ApplicationAdapter = DS.FixtureAdapter.extend({});
-//Dashboard.ApplicationAdapter
-Dashboard.ApplicationAdapter = DS.RESTAdapter.extend({
-    namespace: 'api/v1'
-});
 //= require_tree .
 $(function(){
     $(document).foundation();
