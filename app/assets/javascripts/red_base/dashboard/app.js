@@ -5,3 +5,5 @@
 //= require_tree ./controllers
 //= require_tree ./routes
 //= require_self
+
+var Dashboard = angular.module('Dashboard', ["gettext"]);

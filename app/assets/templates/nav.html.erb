@@ -19,7 +19,7 @@
 </section>
       <section class="top-bar-section">
         <ul class="float-right">
-          <li class="has-dropdown"><a href="#"> {{ _'Languages'}}</a>
+          <li class="has-dropdown"><a href="#" translate>Languages</a>
          <ul class="dropdown">
          <% ::I18n.available_locales.each do |locale| %>
          <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
@@ -30,9 +30,9 @@
           <li class="has-dropdown"><a href="#">User{{ current_user.first_name }} {{ current_user.last_name }}</a>
 
           <ul class="dropdown">
-            <li><a href="">Dashboard</a></li>
-            <li><a href="">Change Password</a></li>
-            <li><a href="<%= url.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
+            <li><a href="<%= url.dashboard_path %>" translate>Dashboard</a></li>
+            <li><a href="" translate>Change Password</a></li>
+            <li><a href="<%= url.destroy_user_session_path %>" data-method="delete" translte>Sign Out</a></li>
           </ul>
           </li>
         </ul>
