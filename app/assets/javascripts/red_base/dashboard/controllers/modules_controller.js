@@ -4,6 +4,11 @@ var Modules = angular.module("Modules", [])
             $http({method: 'GET', responseType: 'json',
                    url: DashboardURL + '/modules.json'})
                 .success(function(data, status, headers, config){
-                    that.modules = data.modules;
+                    Modules = data.modules;
+                    that.modules = Modules;
+                    Modules.forEach(function(module){
+
+                    });
                 });
+
         }]);

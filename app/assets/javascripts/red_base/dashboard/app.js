@@ -6,4 +6,9 @@
 //= require_self
 //= require ./locale/translations
 
-var Dashboard = angular.module('Dashboard', ["gettext", "Modules"]);
+var Dashboard = angular.module('Dashboard', ["gettext", "Modules", "ngRoute"]);
+
+
+Dashboard.config(['$routeProvider', function($routeProvider) {
+
+}]);
