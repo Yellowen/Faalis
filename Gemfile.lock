@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/ruby-gettext/gettext.git
-  revision: 0fc66b57b67d3f295b67688ea6af5cd6410340b0
-  specs:
-    gettext (3.0.3)
-      locale (>= 2.0.5)
-      text
-
 PATH
   remote: .
   specs:
@@ -13,8 +5,6 @@ PATH
       cancan
       compass-rails
       devise (>= 3.0.0)
-      ember-rails
-      ember-source (= 1.1.0)
       fast_gettext
       font-awesome-rails
       formtastic
@@ -39,8 +29,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_model_serializers (0.8.1)
-      activemodel (>= 3.0)
     activemodel (4.0.1)
       activesupport (= 4.0.1)
       builder (~> 3.1.0)
@@ -62,10 +50,6 @@ GEM
       descendants_tracker (~> 0.0.1)
       ice_nine (~> 0.9)
     backports (3.3.5)
-    barber (0.4.2)
-      ember-source
-      execjs
-      handlebars-source
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
     cancan (1.6.10)
@@ -80,25 +64,12 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     descendants_tracker (0.0.3)
-    devise (3.2.0)
+    devise (3.2.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    ember-data-source (0.14)
-      ember-source
-    ember-rails (0.14.0)
-      active_model_serializers
-      barber (>= 0.4.1)
-      ember-data-source
-      ember-source
-      execjs (>= 1.2)
-      handlebars-source
-      jquery-rails (>= 1.0.17)
-      railties (>= 3.1)
-    ember-source (1.1.0)
-      handlebars-source (= 1.0.12)
     equalizer (0.0.7)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -108,6 +79,9 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.10)
+    gettext (3.0.2)
+      locale (>= 2.0.5)
+      text
     gettext_i18n_rails (1.0.1)
       fast_gettext (>= 0.4.8)
     grape (0.6.1)
@@ -120,7 +94,6 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
-    handlebars-source (1.0.12)
     hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
@@ -135,13 +108,13 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     minitest (4.7.5)
-    modernizr-rails (2.6.2.3)
+    modernizr-rails (2.6.3)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
-    orm_adapter (0.4.0)
+    orm_adapter (0.5.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-accept (0.4.5)
@@ -207,9 +180,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  fast_gettext
-  gettext!
-  gettext_i18n_rails
+  execjs
+  gettext
   rdoc
   red_base!
   ruby_parser

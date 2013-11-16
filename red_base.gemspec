@@ -38,10 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'zurb-foundation', '~> 4.0.0'
   s.add_dependency "font-awesome-rails"
   s.add_dependency 'modernizr-rails'
-
-  # Emberjs
-  s.add_dependency "ember-rails"
-  s.add_dependency "ember-source", "1.1.0"
+  s.add_development_dependency "execjs"
 
   # i18n
   s.add_dependency "fast_gettext"

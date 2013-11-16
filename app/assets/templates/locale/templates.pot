@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: app/assets/templates/nav.html
+msgid "Menu"
+msgstr ""
+
+#: app/assets/templates/nav.html
+msgid "Languages"
+msgstr ""
+
+#: app/assets/templates/nav.html
+msgid "Dashboard"
+msgstr ""
+
+#: app/assets/templates/nav.html
+msgid "Change Password"
+msgstr ""
+
+#: app/assets/templates/nav.html
+msgid "Sign Out"
+msgstr ""

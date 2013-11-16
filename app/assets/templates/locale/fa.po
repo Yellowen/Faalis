@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+
+#: app/assets/templates/nav.html
+msgid "Menu"
+msgstr "منو"
+
+#: app/assets/templates/nav.html
+msgid "Languages"
+msgstr "زبان ها"
+
+#: app/assets/templates/nav.html
+msgid "Dashboard"
+msgstr "بخش کاربری"
+
+#: app/assets/templates/nav.html
+msgid "Change Password"
+msgstr "تغییر کامه عبور"
+
+#: app/assets/templates/nav.html
+msgid "Sign Out"
+msgstr "خروج"

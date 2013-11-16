@@ -29,3 +29,5 @@ config/initializers/secret_token.rb
 .*\#*#
 \#*#
 docs/*
+node_modules/
+
