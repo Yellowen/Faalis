@@ -6,4 +6,4 @@
 //= require_self
 //= require ./locale/translations
 
-var Dashboard = angular.module('Dashboard', ["gettext"]);
+var Dashboard = angular.module('Dashboard', ["gettext", "Modules"]);

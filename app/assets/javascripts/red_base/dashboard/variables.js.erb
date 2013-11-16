@@ -1,0 +1,11 @@
+//<% environment.context_class.instance_eval { include ActionView::Helpers::UrlHelper } %>
+//<% url = RedBase::Engine.routes.url_helpers %>
+
+// Prefix url of API
+window.API_PREFIX = "/api/v1/";
+// Modules is an array of dashboard modules
+window.Modules = [];
+
+// Any element of this queue will be appear as error after load event
+window.ErrorQueue = [];
+window.DashboardURL = "<%= url.dashboard_path %>";

@@ -1,0 +1,14 @@
+<ul data-ng-controller="ModulesController as controller">
+
+  <li><i class="fa fa-dashboard"></i> <span translate>Dashboard</span></li>
+
+  <li data-ng-repeat="module in controller.modules">
+    <i class="{{ module.icon }}"></i> <span translate>{{ module.title }}</span>
+  </li>
+
+</ul>
+
+<div class="brand">
+  <h1 translate>Site_Title</h1>
+  <span translate>Some_Slug</span>
+</div>
