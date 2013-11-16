@@ -32,8 +32,8 @@ $text-direction: rtl;
 // We use these as default colors throughout
 // $primary-color: #2ba6cb;
 // $secondary-color: #e9e9e9;
-// $alert-color: #c60f13;
-// $success-color: #5da423;
+$alert-color: $alizarin;
+$success-color: $emerald;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -196,7 +196,7 @@ $include-html-classes: true;
 // $label-font-color: lighten(#000, 30%);
 // $label-bottom-margin: emCalc(3px);
 // $input-font-family: inherit;
-// $input-font-color: rgba(0,0,0,0.75);
+$input-font-color: $darkgray;
 // $input-font-size: emCalc(14px);
 // $input-bg-color: #fff;
 // $input-focus-bg-color: darken(#fff, 2%);

@@ -46,10 +46,16 @@ module RedBase
         permissions = []
 
         RedBase::Engine.models_with_permission.each do |model|
-          name = Object.const_get(model).model_name.human
-          permissions.concat(Object.const_get(model)::Permissions.permission_strings(name)).uniq!
+          model = Object.const_get(model)
+          permissions.concat(model::Permissions.permission_strings(model))
         end
-        permissions
+
+        i = 1
+        permissions.each do |perm|
+          perm["id"] = i
+          i += 1
+        end
+        {:permissions => permissions}
       end
     end
 

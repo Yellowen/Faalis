@@ -370,3 +370,10 @@ $table-list-line-height: 40px;
   border: 1px #dfdfdf solid;
 
 }
+
+input {
+  &.has-error {
+    border: 1px solid $alizarin;
+    &:focus {border: 1px solid $alizarin;}
+  }
+}

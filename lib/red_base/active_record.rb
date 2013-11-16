@@ -31,10 +31,14 @@ module ActiveRecord
       @@only_owner = false
 
       # return an array of strings representation of permissions
-      def self.permission_strings(model_name)
+      def self.permission_strings(model)
         strings = []
         @@permissions.each do |key, value|
-          strings << _("can %s %s") % [_(key.to_s), model_name]
+          strings << {
+            :name => "#{key}|#{model.model_name}",
+            :string => _("can %s %s") % [_(key.to_s), model.model_name.human]
+          }
+
         end
         strings
       end
