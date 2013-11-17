@@ -1,11 +1,8 @@
-function auth_routes(that) {
-    that.resource("auth", function(){
-        this.resource("users", function(){
-            this.route("new");
+function auth_routes(router) {
+    console.log(router);
+    router.
+        when("/auth", {
+            templateUrl: templates_path + "auth/index.html",
+            controller: 'AuthController'
         });
-        this.resource("groups", function(){
-            this.route("new");
-        });
-    });
-
 }
