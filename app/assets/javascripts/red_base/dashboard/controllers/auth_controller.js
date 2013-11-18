@@ -1,4 +1,4 @@
-var AuthController = angular.module("Auth", [])
-        .controller("AuthController", function(){
-
-        });
+var Auth = angular.module("Auth", [])
+        .controller("AuthController", [function(){
+            console.log("samn");
+        }]);

@@ -1,20 +1,25 @@
 var Modules = angular.module("Modules", ["ngRoute"])
-        .controller("ModulesController", ["$http", "$scope", function($http, $scope){
+        .config(["$routeProvider", function($routeProvider){
 
-            var $injector = angular.injector();
-            var that = this;
-
-            $http({method: 'GET', responseType: 'json',
-                   url: DashboardURL + '/modules.json'})
+            // Get all the modules syncly
+            $.ajax({method: 'GET', type: 'json', async: false,
+                    url: DashboardURL + '/modules.json'})
                 .success(function(data, status, headers, config){
-                    Modules = data.modules;
-                    that.modules = Modules;
-                    Modules.forEach(function(module){
-                        var module_route_function = module.resource + "_route";
+
+                    DModules = data.modules;
+
+                    DModules.forEach(function(module){
+                        var module_route_function = module.resource + "_routes";
                         if (module_route_function in window) {
-                            $injector.invoke("$routeProvider", window[module_route_function]);
+                            var url_list = window[module_route_function]($routeProvider);
                         }
                     });
+
                 });
+
+        }])
+        .controller("ModulesController", ["$http", "$scope", function($http, $scope){
+
+            this.modules = DModules;
 
         }]);

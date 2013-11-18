@@ -1,8 +1,15 @@
-function auth_routes(router) {
-    console.log(router);
-    router.
+
+function auth_routes($routeProvider) {
+
+    $routeProvider.
         when("/auth", {
             templateUrl: templates_path + "auth/index.html",
-            controller: 'AuthController'
+            controller: function(){
+                var $injector = angular.injector(["Auth"]);
+                var a = $injector.get("AuthController");
+                console.log(a);
+                return a;
+            }
         });
+
 }
