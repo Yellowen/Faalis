@@ -19,6 +19,7 @@
 //= require red_base/dashboard/lib/angular-resource
 //= require red_base/dashboard/lib/angular-gettext
 //= require_self
+//= require red_base/dashboard/init
 //= require red_base/dashboard/app
 
 
