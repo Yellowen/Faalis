@@ -19,13 +19,43 @@
 
 var ListView = angular.module("ListView", []);
 
+ListView.directive("objectAction", function(){
+
+    function link(scope, element, attrs){
+        console.dir(scope);
+        console.dir(element);
+        console.dir(attrs);
+
+        var object = scope.object;
+        var action = scope.action;
+
+        if ("route" in object){
+            element.attr("href", object.route);
+        }
+        else if ("action" in object) {
+            var controller = element.controller();
+            element.on("click", function(){ controller[object.action]();});
+        }
+    }
+
+    return {
+        restrict: "A",
+        scope: {
+            object: "="
+        },
+        link: link
+    };
+
+});
+
 ListView.directive('listView', function() {
     return {
         templateUrl: template("list-view/index"),
         restrict: "E",
         transclude: true,
         scope: {
-
+            buttons: "=buttons",
+            objects: "="
         }
 
     };

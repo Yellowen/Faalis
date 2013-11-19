@@ -1,9 +1,26 @@
-<ul>
-  <li class="table-header">
-    <div class="small-6 columns text-left">
+<div class="row  clearmargin" data-ng-transclude>
+</div>
 
-          <span data-ng-repeat="button in buttons" class="{{ button.classes }}"><a data=ng-href="{{ button.route }}"><i class="{{ button.icon }}"></i> {{ button.label }}</a></span>
+<div class="table-list">
+  <ul>
+    <li class="table-header">
+      <div class="small-6 columns text-left">
 
-    </div>
-  </li>
-</ul>
+        <span data-ng-repeat="button in buttons" class="{{ button.classes }}"><a  object-action object="button"><i class="{{ button.icon }}"></i>{{ button.title | translate }}</a></span>
+
+      </div>
+
+      <div class="small-4 columns text-right search-bar">
+        <input type="search" class="append " ng-model="search" placeholder="{{ 'Search' | translate}} ..."/>
+        <span class="append radius"><i class="fa fa-search"></i></span>
+      </div>
+
+    </li>
+
+    <li ng-if="objects.length == 0" translate>There is no data!</li>
+    <li ng-repeat="object in objects" class="pointer">
+      <i ng-click="toggle_details(object)" ng-class="{object.view_details: fa-rotate-90, 'handle fa fa-angle-righ'}"></i>
+    </li>
+
+  </ul>
+</div>

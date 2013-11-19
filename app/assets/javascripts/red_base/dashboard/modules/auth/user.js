@@ -22,7 +22,8 @@ User.config(["$routeProvider", function($routeProvider){
     $routeProvider.
         when("/auth/users", {
             templateUrl: template("auth/users/index"),
-            controller: "UsersController"
+            controller: "UsersController",
+            controllerAs: "controller"
         }).
         when("/auth/users/new",{
             templateUrl: template("auth/users/new"),
@@ -34,7 +35,30 @@ User.config(["$routeProvider", function($routeProvider){
         });
 }]);
 
-User.controller("UsersController", [function(){
+User.controller("UsersController", ["$scope", function($scope){
+    this.alert = function(){ console.log("Asdasd"); };
+    $scope.users = [
+        {
+            id: 2,
+            emial: "lxsameer@gnu.org"
+        }
+    ];
+
+    $scope.buttons = [
+        {
+            title: "New",
+            icon: "fa fa-plus",
+            classes: "btn small green",
+            route: "#/auth/users/new"
+        },
+        {
+            title: "Someshiasdast",
+            icon: "fa fa-times",
+            classes: "btn small red",
+            action: "alert"
+        }
+
+    ];
 }]);
 
 User.controller("AddUsersController", [function(){
