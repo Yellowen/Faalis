@@ -16,29 +16,33 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", []);
 
-User.config(["$routeProvider", function($routeProvider){
+var Group = angular.module("Group", []);
+
+Group.config(["$routeProvider", function($routeProvider){
     $routeProvider.
-        when("/auth/users", {
-            templateUrl: template("auth/users/index"),
-            controller: "UsersController"
+        when("/auth/groups",{
+            templateUrl: template("auth/groups/index"),
+            controller: "GroupsController"
         }).
-        when("/auth/users/new",{
-            templateUrl: template("auth/users/new"),
-            controller: "AddUsersController"
+        when("/auth/groups/new",{
+            templateUrl: template("auth/groups/new"),
+            controller: "AddGroupController"
         }).
-        when("/auth/users/edit/:id",{
-            templateUrl: template("auth/users/edit"),
-            controller: "EditUsersController"
+        when("/auth/groups/edit/:id",{
+            templateUrl: template("auth/groups/edit"),
+            controller: "EditGroupsController"
         });
 }]);
 
-User.controller("UsersController", [function(){
+
+Group.controller("GroupsController", [function(){
 }]);
 
-User.controller("AddUsersController", [function(){
+Group.controller("AddGroupsController", [function(){
+
 }]);
 
-User.controller("EditUsersController", [function($scope, $routeParams){
+Group.controller("EditGroupController",[function($scope, $routeParams){
+
 }]);

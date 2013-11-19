@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var Auth = angular.module("Auth", ["User"]);
+var Auth = angular.module("Auth", ["User" "Group"]);
 
 Auth.config(["$routeProvider", function($routeProvider){
     $routeProvider.
