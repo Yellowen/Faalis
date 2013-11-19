@@ -30,7 +30,7 @@ Group.config(["$routeProvider", function($routeProvider){
             controller: "AddGroupController"
         }).
         when("/auth/groups/edit/:id",{
-            templateUrl: template("auth/groups/edit"),
+            templateUrl: template("auth/groups/new"),
             controller: "EditGroupsController"
         });
 }]);
