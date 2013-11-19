@@ -16,16 +16,17 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", ["ListView"]);
 
-User.config(["$routeProvider", function($routeProvider){
-    $routeProvider.
-        when("/auth/users", {
-            templateUrl: template("auth/users/index"),
-            controller: "UsersController"
-        });
-}]);
+var ListView = angular.module("ListView", []);
 
+ListView.directive('listView', function() {
+    return {
+        templateUrl: template("list-view/index"),
+        restrict: "E",
+        transclude: true,
+        scope: {
 
-User.controller("UsersController", [function(){
-}]);
+        }
+
+    };
+});
