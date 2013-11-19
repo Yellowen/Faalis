@@ -17,15 +17,8 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-//= require ./functions
-//= require_tree ./modules
-//= require_self
-//= require ./locale/translations
+var Auth = angular.module("Auth", []);
 
-var dependencies = ["gettext", "Modules", "ngRoute"].concat(dashboard_dependencies);
-console.log(dependencies);
-
-var Dashboard = angular.module('Dashboard', dependencies);
-
-Dashboard.config(['$routeProvider', function($routeProvider) {
+Auth.controller("AuthController", [function(){
+    console.log("samn");
 }]);
