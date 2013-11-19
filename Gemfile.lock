@@ -82,7 +82,7 @@ GEM
     gettext (3.0.2)
       locale (>= 2.0.5)
       text
-    gettext_i18n_rails (1.0.1)
+    gettext_i18n_rails (1.0.2)
       fast_gettext (>= 0.4.8)
     grape (0.6.1)
       activesupport

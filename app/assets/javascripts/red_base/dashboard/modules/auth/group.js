@@ -17,11 +17,32 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var Auth = angular.module("Auth", ["User","Group"]);
+var Group = angular.module("Group", []);
 
-Auth.config(["$routeProvider", function($routeProvider){
+Group.config(["$routeProvider", function($routeProvider){
     $routeProvider.
-        when("/auth", {
-            templateUrl: template("auth/index")
+        when("/auth/groups",{
+            templateUrl: template("auth/groups/index"),
+            controller: "GroupsController"
+        }).
+        when("/auth/groups/new",{
+            templateUrl: template("auth/groups/new"),
+            controller: "AddGroupController"
+        }).
+        when("/auth/groups/edit/:id",{
+            templateUrl: template("auth/groups/edit"),
+            controller: "EditGroupsController"
         });
+}]);
+
+
+Group.controller("GroupsController", [function(){
+}]);
+
+Group.controller("AddGroupsController", [function(){
+
+}]);
+
+Group.controller("EditGroupController",[function($scope, $routeParams){
+
 }]);

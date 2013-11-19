@@ -23,9 +23,22 @@ User.config(["$routeProvider", function($routeProvider){
         when("/auth/users", {
             templateUrl: template("auth/users/index"),
             controller: "UsersController"
+        }).
+        when("/auth/users/new",{
+            templateUrl: template("auth/users/new"),
+            controller: "AddUsersController"
+        }).
+        when("/auth/users/edit/:id",{
+            templateUrl: template("auth/users/edit"),
+            controller: "EditUsersController"
         });
 }]);
 
-
 User.controller("UsersController", [function(){
+}]);
+
+User.controller("AddUsersController", [function(){
+}]);
+
+User.controller("EditUsersController", [function($scope, $routeParams){
 }]);
