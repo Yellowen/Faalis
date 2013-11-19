@@ -17,11 +17,22 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
+/*
+ * This function convert snake_type to CamelCase
+ */
 function camelCase(input) {
     return input.toLowerCase().replace(/(^(.)|_(.))/g, function(match, group1) {
         return group1.toUpperCase();
     }).replace("_", "");
 }
+
+/*
+ * This function returns the currect path to a template
+ */
+function template(path){
+    return templates_path + path + ".html";
+}
+
 
 function show_flash_message(msg, klass) {
     var flash = $("#flash");
@@ -40,29 +51,7 @@ function show_error_queue(){
     }
 }
 
-function get_modules(){
-    if (Modules.length == 0) {
 
-        Ember.$.ajax({url :"/<%= RedBase::Engine.dashboard_namespace.to_s %>/modules.json",
-                      async: false,
-                      dataType: 'json',
-                      type: 'GET'})
-            .done(function(data) {
-                Modules = data.modules;
-                return Modules;
-            })
-            .fail(function(data){
-                ErrorQueue.push(_('Can not connect to remote, please try again'));
-                return null;
-            }).always(function(){
-                $("#mainloader").hide();
-                $("#content").show();
-
-            });
-    }
-    $("#mainloader").hide();
-    $("#content").show();
-}
 $(function(){
     $("#flash").on("click", hide_flash);
     show_error_queue();

@@ -17,22 +17,11 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-//= require red_base/dashboard/functions
+var Auth = angular.module("Auth", ["User"]);
 
-// Get all the modules syncly
-$.ajax({method: 'GET', type: 'json', async: false,
-        url: DashboardURL + '/modules.json'})
-    .success(function(data, status, headers, config){
-        DModules = data.modules;
-
-        DModules.forEach(function(module){
-            dashboard_dependencies.push(camelCase(module.resource));
+Auth.config(["$routeProvider", function($routeProvider){
+    $routeProvider.
+        when("/auth", {
+            templateUrl: template("auth/index")
         });
-    })
-    .fail(function(data){
-        ErrorQueue.push(_('Can not connect to remote, please try again'));
-        return null;
-    }).always(function(){
-        $("#mainloader").hide();
-        $("#content").show();
-    });
+}]);

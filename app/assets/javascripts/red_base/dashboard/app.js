@@ -23,6 +23,8 @@
 //= require ./locale/translations
 
 var dependencies = ["gettext", "Modules", "ngRoute"].concat(dashboard_dependencies);
+
+console.log("Dashboard dependencies:");
 console.log(dependencies);
 
 var Dashboard = angular.module('Dashboard', dependencies);

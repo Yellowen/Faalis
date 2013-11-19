@@ -16,9 +16,16 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
+var User = angular.module("User", []);
 
-var Auth = angular.module("Auth", []);
+User.config(["$routeProvider", function($routeProvider){
+    $routeProvider.
+        when("/auth/users", {
+            templateUrl: template("auth/users/index"),
+            controller: "UsersController"
+        });
+}]);
 
-Auth.controller("AuthController", [function(){
-    console.log("samn");
+
+User.controller("UsersController", [function(){
 }]);
