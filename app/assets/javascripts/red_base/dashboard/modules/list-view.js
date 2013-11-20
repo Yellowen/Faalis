@@ -19,12 +19,12 @@
 
 var ListView = angular.module("ListView", []);
 
+/*
+ * <element object-action></element> directive defination
+ */
 ListView.directive("objectAction", function(){
 
     function link(scope, element, attrs){
-        console.dir(scope);
-        console.dir(element);
-        console.dir(attrs);
 
         var object = scope.object;
         var action = scope.action;
@@ -38,6 +38,7 @@ ListView.directive("objectAction", function(){
         }
     }
 
+    // Actual object
     return {
         restrict: "A",
         scope: {
@@ -48,15 +49,162 @@ ListView.directive("objectAction", function(){
 
 });
 
-ListView.directive('listView', function() {
+
+/*
+ * <list-view></list-view> directive defination
+ */
+ListView.directive('listView', function($filter) {
+
+    function link(scope, element, attrs){
+        var ltr = is_ltr();
+        var _item_per_page = parseInt(scope.item_per_page, 10) || 10;
+        var _current_page = 1;
+        var filtered_objects = function(){
+            return $filter('filter')(scope.objects, scope.searchterm);
+        };
+
+        scope.is_ltr = ltr;
+        scope.handle_icon = ltr ? "fa-angle-right" : "fa-angle-left";
+        scope.first_page_icon = ltr ? "fa-angle-double-left" : "fa-angle-double-right";
+        scope.last_page_icon = ltr ? "fa-angle-double-right" : "fa-angle-double-left";
+        scope.prev_page_icon = ltr ? "fa-angle-left" : "fa-angle-right";
+        scope.next_page_icon = ltr ? "fa-angle-right" : "fa-angle-left";
+        scope.hand_icon = ltr ? "fa-hand-o-right" : "fa-hand-o-left";
+
+        scope.handle_icon_expand = function(object){
+            if(scope.should_view(object)) {
+                return ltr ? "fa-rotate-90" : "fa-rotate-270";
+            }
+            return "";
+        };
+
+        // Select a row in table
+        scope.select_item = function(object) {
+            if ("is_selected" in object) {
+                object.is_selected = ! object.is_selected;
+            }
+            else {
+                object.is_selected = true;
+            }
+
+        };
+
+        // View an item details
+        scope.toggle_details = function(object){
+            if ("view_details" in object){
+                object.view_details = ! object.view_details;
+            }
+            else {
+                object.view_details = true;
+            }
+        };
+
+        // Should we open details section
+        scope.should_view = function(object){
+            if ("view_details" in object) {
+                return object.view_details;
+
+            }
+            return false;
+        };
+
+        scope.selected_count = function(){
+
+        };
+        // Pagination methods ---------------------------------
+
+        scope.has_pagination = function(){
+            return scope.total_pages() > 1 ? true : false;
+        };
+
+        scope.total_pages = function(){
+            var len = filtered_objects().length;
+            var pages = parseInt(len / _item_per_page);
+
+            if (len % _item_per_page > 0 || len < _item_per_page) {
+                pages++;
+            }
+
+            return pages;
+        };
+
+        scope.current_page = function(){
+            return _current_page;
+        };
+
+        scope.go_to_next_page = function(){
+            if (_current_page < scope.total_pages()) {
+                _current_page++;
+            }
+            else {
+                _current_page = scope.total_pages();
+            }
+        };
+
+        scope.go_to_prev_page = function(){
+            if (_current_page > 1) {
+                _current_page--;
+            }
+            else {
+                _current_page = 1;
+            }
+        };
+
+        scope.go_to_last_page = function(){
+            _current_page = scope.total_pages();
+        };
+
+        scope.go_to_first_page = function(){
+            _current_page = 1;
+        };
+
+        scope.go_to_page = function(){
+            var page = parseInt(scope.pagination_input, 10);
+            if (page > 0 && page <= scope.total_pages()) {
+                _current_page = page;
+            }
+            else {
+                scope.pagination_input = _current_page;
+            }
+        };
+
+        scope.get_current_page = function(){
+            var start = (scope.current_page() * _item_per_page) - _item_per_page;
+            var end = (scope.current_page() * _item_per_page);
+            var a =  filtered_objects().slice(start, end);
+            return a;
+        };
+
+        scope.objects_count = function(){
+            return filtered_objects().length;
+        };
+        // ----------------------------------------------------
+        // TODO: create some methods in scope for those buttons
+        //       which need to call a method instead of changing location
+    }
+
+
+    // Actual object of <list-view> directive
     return {
         templateUrl: template("list-view/index"),
         restrict: "E",
         transclude: true,
         scope: {
+            // Header section custom buttons
             buttons: "=buttons",
-            objects: "="
-        }
 
+            // Objects which should listed
+            objects: "=",
+
+            // Object attribute which should show as title in main li
+            title_attr: "=titleAttribute",
+
+            // Template address for details section
+            details_template: "=detailsTemplate",
+
+            // Number of item per pages
+            item_per_page: "=itemPerPage"
+        },
+        link: link
     };
 });

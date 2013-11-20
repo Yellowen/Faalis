@@ -33,6 +33,12 @@ function template(path){
     return templates_path + path + ".html";
 }
 
+/*
+ * Check for page direction
+ */
+function is_ltr(){
+    return $("html").attr("dir") == "ltr" ? true : false;
+}
 
 function show_flash_message(msg, klass) {
     var flash = $("#flash");

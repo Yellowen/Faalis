@@ -11,16 +11,58 @@
       </div>
 
       <div class="small-4 columns text-right search-bar">
-        <input type="search" class="append " ng-model="search" placeholder="{{ 'Search' | translate}} ..."/>
+        <input type="search" class="append " ng-model="searchterm" placeholder="{{ 'Search' | translate}} ..."/>
         <span class="append radius"><i class="fa fa-search"></i></span>
       </div>
 
     </li>
 
     <li ng-if="objects.length == 0" translate>There is no data!</li>
-    <li ng-repeat="object in objects" class="pointer">
-      <i ng-click="toggle_details(object)" ng-class="{object.view_details: fa-rotate-90, 'handle fa fa-angle-righ'}"></i>
+
+    <li ng-repeat="object in get_current_page()" ng-class="{'selected': object.is_selected}" class="pointer">
+      <i ng-click="toggle_details(object)"  class="{{ handle_icon }} {{ handle_icon_expand(object) }} handle fa "></i>
+
+      <div class="title" ng-click="select_item(object)">
+        {{ object[title_attr] }}
+      </div>
+
+      <div ng-show="should_view(object)" class="details">
+        <div ng-include="details_template">
+        </div>
+      </div>
+
     </li>
+
+    <li class="table-summery">
+      <div class="small-6 columns">
+        <div class="pagination">
+          <span ng-if="has_pagination()">
+            <i class="fa {{ first_page_icon }}" ng-click="go_to_first_page()"></i>
+            <i class="fa {{ prev_page_icon }}" ng-click="go_to_prev_page()"></i>
+
+            <input type="text" class="pagination_input"  ng-keypress="go_to_page()" value="{{current_page()}}"/>
+
+            <i class="fa {{ next_page_icon }}" ng-click="go_to_next_page()"></i>
+            <i class="fa {{ last_page_icon }}" ng-click="go_to_last_page()"></i>
+
+            <span class="elabel rounded lightergray" title="{{ 'Current Page' | translate }}"><i class="fa fa-file-o"></i> {{ current_page() }}</span>
+            <span class="elabel rounded lightergray" title="{{ 'Total Pages' | translate}}"><i class="fa fa-files-o"></i> {{ total_pages() }}</span>
+          </span>
+
+        <span class="elabel rounded lightergray" title="{{ 'Item(s)' | translate }}"><i class="fa fa-list-ul"></i> {{ objects_count() }}</span>
+        <span class="elabel rounded lightergray" title="{{ 'Selected' | translate }}"><i class="fa {{ hand_icon }}"></i> {{ selected_count() }}
+        </span>
+        </div>
+
+    </div>
+    <div class="small-6 columns text-right">
+      <span class="btn yellow tiny" ng-click="toggle_select(objects)" translate>Toggle Select</span>
+      <span class="btn blue tiny" ng-click="select_all(objects)" translate>Select All</span>
+      <span class="btn red tiny" ng-click="delete_items(objects)" translate>Delete</span>
+    </div>
+
+  </li>
+
 
   </ul>
 </div>

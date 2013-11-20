@@ -37,12 +37,42 @@ User.config(["$routeProvider", function($routeProvider){
 
 User.controller("UsersController", ["$scope", function($scope){
     this.alert = function(){ console.log("Asdasd"); };
+
     $scope.users = [
         {
             id: 2,
-            emial: "lxsameer@gnu.org"
+            email: "lasdasdxsameer@gnu.org"
+        },
+        {
+            id: 2,
+            email: "lxsameesdfsdfgr@gnu.org"
+        },
+        {
+            id: 2,
+            email: "r23erglxsameer@gnu.org"
+        },
+        {
+            id: 2,
+            email: "lxsamvafvadfvadfvdfveer@gnu.org"
+        },
+        {
+            id: 2,
+            email: "@gnu.org"
+        },
+        {
+            id: 2,
+            email: "lasdassss!!!xsameer@gnu.org"
+        },
+
+        {
+            id: 3,
+            email: "lasdxsameer@gnu.org"
         }
+
+
     ];
+
+    $scope.details_template = template("auth/users/details");
 
     $scope.buttons = [
         {
