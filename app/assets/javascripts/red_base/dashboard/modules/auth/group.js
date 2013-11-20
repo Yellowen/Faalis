@@ -39,7 +39,7 @@ Group.config(["$routeProvider", function($routeProvider){
 Group.controller("GroupsController", [function(){
 }]);
 
-Group.controller("AddGroupsController", [function(){
+Group.controller("AddGroupController", [function(){
 
 }]);
 

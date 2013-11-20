@@ -19,10 +19,10 @@
 //= require red_base/dashboard/lib/angular-resource
 //= require red_base/dashboard/lib/angular-animate
 //= require red_base/dashboard/lib/angular-gettext
+//= require red_base/dashboard/lib/lodash.underscore
 //= require_self
 //= require red_base/dashboard/init
 //= require red_base/dashboard/app
-
 
 //= require_tree .
 

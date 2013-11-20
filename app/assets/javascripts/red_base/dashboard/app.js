@@ -22,7 +22,7 @@
 //= require_self
 //= require ./locale/translations
 
-var dependencies = ["gettext", "Modules", "ngRoute"].concat(dashboard_dependencies);
+var dependencies = ["gettext", "Modules", "ngRoute", "restangular"].concat(dashboard_dependencies);
 
 console.log("Dashboard dependencies:");
 console.log(dependencies);
@@ -31,3 +31,7 @@ var Dashboard = angular.module('Dashboard', dependencies);
 
 Dashboard.config(['$routeProvider', function($routeProvider) {
 }]);
+
+Dashboard.config(function(RestangularProvider) {
+  RestangularProvider.setBaseUrl('/api/v1');
+});

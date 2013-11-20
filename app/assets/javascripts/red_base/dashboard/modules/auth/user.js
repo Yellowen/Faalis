@@ -16,7 +16,7 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", ["ListView"]);
+var User = angular.module("User", ["ListView", "restangular"]);
 
 User.config(["$routeProvider", function($routeProvider){
     $routeProvider.
@@ -35,8 +35,14 @@ User.config(["$routeProvider", function($routeProvider){
         });
 }]);
 
-User.controller("UsersController", ["$scope", function($scope){
-    this.alert = function(){ console.log("Asdasd"); };
+
+User.controller("UsersController", ["$scope", "Restangular", function($scope, Restangular){
+
+    $scope.allUsers = Restangular.all('users').getList().then(function(users){
+        $scope.allUsers = users;
+        console.log(users);
+
+    });
 
     $scope.users = [
         {
@@ -91,9 +97,9 @@ User.controller("UsersController", ["$scope", function($scope){
     ];
 }]);
 
-User.controller("AddUsersController", [function(){
+User.controller("AddUsersController", [function(Restangular){
 }]);
 
-User.controller("EditUsersController", [function($scope, $routeParams){
+User.controller("EditUsersController", [function($scope, $routeParams, Restangular){
 
 }]);
