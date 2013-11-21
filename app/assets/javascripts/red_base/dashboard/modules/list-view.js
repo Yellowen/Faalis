@@ -53,14 +53,28 @@ ListView.directive("objectAction", function(){
 /*
  * <list-view></list-view> directive defination
  */
-ListView.directive('listView', function($filter) {
+ListView.directive('listView', function($filter, gettext) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
         var _item_per_page = parseInt(scope.item_per_page, 10) || 10;
         var _current_page = 1;
+
         var filtered_objects = function(){
-            return $filter('filter')(scope.objects, scope.searchterm);
+            var filterby = {};
+            filterby[scope.title_attr] = scope.searchterm;
+            return $filter('filter')(scope.objects, filterby, function(expected, actual){
+                var re = new RegExp(".*" + actual + ".*", "ig");
+                scope.go_to_first_page();
+                if( expected.match(re) ){
+                    return true;
+                }
+                return false;
+            });
+        };
+
+        var delete_method = scope.on_delete || function(x){
+            console.log( "undefined on delete method" );
         };
 
         scope.is_ltr = ltr;
@@ -70,23 +84,13 @@ ListView.directive('listView', function($filter) {
         scope.prev_page_icon = ltr ? "fa-angle-left" : "fa-angle-right";
         scope.next_page_icon = ltr ? "fa-angle-right" : "fa-angle-left";
         scope.hand_icon = ltr ? "fa-hand-o-right" : "fa-hand-o-left";
+        scope.is_all_selected = false;
 
         scope.handle_icon_expand = function(object){
             if(scope.should_view(object)) {
                 return ltr ? "fa-rotate-90" : "fa-rotate-270";
             }
             return "";
-        };
-
-        // Select a row in table
-        scope.select_item = function(object) {
-            if ("is_selected" in object) {
-                object.is_selected = ! object.is_selected;
-            }
-            else {
-                object.is_selected = true;
-            }
-
         };
 
         // View an item details
@@ -108,8 +112,77 @@ ListView.directive('listView', function($filter) {
             return false;
         };
 
-        scope.selected_count = function(){
+        scope.delete_items = function(){
+            var len = scope.selected_count();
+            var objects_to_delete = [];
 
+            if( confirm(gettext("Are sure you want to delete ") + len + gettext(" item(s)?")) ){
+                var objects_list = filtered_objects();
+
+                for(i = 0 ; i < objects_list.length; i++){
+
+                    if (objects_list[i].is_selected === true) {
+                        objects_to_delete.push(objects_list[i]);
+                    }
+
+                }
+
+                delete_method(objects_to_delete);
+            }
+
+
+        };
+        // Selection related methods -----------------------------------
+        // Select a row in table
+        scope.select_item = function(object) {
+            if ("is_selected" in object) {
+                object.is_selected = ! object.is_selected;
+            }
+            else {
+                object.is_selected = true;
+            }
+
+        };
+
+        scope.toggle_select = function (){
+            var objects_list = filtered_objects();
+
+            for(i = 0 ; i < objects_list.length; i++){
+                objects_list[i].is_selected = ! objects_list[i].is_selected;
+            }
+        };
+
+        scope.toggle_select = function (){
+            var objects_list = filtered_objects();
+
+            for(i = 0 ; i < objects_list.length; i++){
+                objects_list[i].is_selected = ! objects_list[i].is_selected;
+            }
+        };
+
+        scope.select_all = function (){
+            var objects_list = filtered_objects();
+
+            for(i = 0 ; i < objects_list.length; i++){
+                objects_list[i].is_selected = ! scope.is_all_selected;
+            }
+
+            scope.is_all_selected = ! scope.is_all_selected;
+
+        };
+
+        scope.selected_count = function(){
+            var myobjects = filtered_objects();
+            var count = 0;
+            for(i = 0; i < myobjects.length; i++) {
+                if("is_selected" in myobjects[i]){
+                    if(myobjects[i].is_selected) {
+                        count++;
+                    }
+                }
+
+            }
+            return count;
         };
         // Pagination methods ---------------------------------
 
@@ -119,7 +192,7 @@ ListView.directive('listView', function($filter) {
 
         scope.total_pages = function(){
             var len = filtered_objects().length;
-            var pages = parseInt(len / _item_per_page);
+            var pages = parseInt(len / _item_per_page, 10);
 
             if (len % _item_per_page > 0 || len < _item_per_page) {
                 pages++;
@@ -158,21 +231,27 @@ ListView.directive('listView', function($filter) {
             _current_page = 1;
         };
 
-        scope.go_to_page = function(){
-            var page = parseInt(scope.pagination_input, 10);
-            if (page > 0 && page <= scope.total_pages()) {
-                _current_page = page;
+        scope.go_to_page = function($event, value){
+            if( $event.which == 13 ){
+
+                var page = parseInt(value, 10);
+
+                if (page > 0 && page <= scope.total_pages()) {
+                    _current_page = page;
+                }
+                else {
+                    value = _current_page;
+                }
+
             }
-            else {
-                scope.pagination_input = _current_page;
-            }
+
         };
 
         scope.get_current_page = function(){
             var start = (scope.current_page() * _item_per_page) - _item_per_page;
             var end = (scope.current_page() * _item_per_page);
-            var a =  filtered_objects().slice(start, end);
-            return a;
+
+            return filtered_objects().slice(start, end);
         };
 
         scope.objects_count = function(){
@@ -203,7 +282,10 @@ ListView.directive('listView', function($filter) {
             details_template: "=detailsTemplate",
 
             // Number of item per pages
-            item_per_page: "=itemPerPage"
+            item_per_page: "=itemPerPage",
+
+            // On delete method
+            on_delete: "=onDelete"
         },
         link: link
     };

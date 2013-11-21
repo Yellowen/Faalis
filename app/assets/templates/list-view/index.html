@@ -40,7 +40,7 @@
             <i class="fa {{ first_page_icon }}" ng-click="go_to_first_page()"></i>
             <i class="fa {{ prev_page_icon }}" ng-click="go_to_prev_page()"></i>
 
-            <input type="text" class="pagination_input"  ng-keypress="go_to_page()" value="{{current_page()}}"/>
+            <input type="text" class="pagination_input" ng-model="targetpage" ng-keypress="go_to_page($event, targetpage)" tabindex="3" value="{{current_page()}}"/>
 
             <i class="fa {{ next_page_icon }}" ng-click="go_to_next_page()"></i>
             <i class="fa {{ last_page_icon }}" ng-click="go_to_last_page()"></i>
@@ -56,9 +56,10 @@
 
     </div>
     <div class="small-6 columns text-right">
-      <span class="btn yellow tiny" ng-click="toggle_select(objects)" translate>Toggle Select</span>
-      <span class="btn blue tiny" ng-click="select_all(objects)" translate>Select All</span>
-      <span class="btn red tiny" ng-click="delete_items(objects)" translate>Delete</span>
+      <span class="btn yellow tiny" ng-click="toggle_select()" translate>Toggle Select</span>
+      <span class="btn blue tiny" ng-if="! is_all_selected" ng-click="select_all()" >Select All</span>
+      <span class="btn blue tiny" ng-if="is_all_selected" ng-click="select_all()">Deselect All</span>
+      <span class="btn red tiny" ng-click="delete_items()" translate>Delete</span>
     </div>
 
   </li>
