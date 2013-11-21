@@ -53,12 +53,13 @@ ListView.directive("objectAction", function(){
 /*
  * <list-view></list-view> directive defination
  */
-ListView.directive('listView', function($filter) {
+ListView.directive('listView', function($filter, gettext) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
         var _item_per_page = parseInt(scope.item_per_page, 10) || 10;
         var _current_page = 1;
+
         var filtered_objects = function(){
             var filterby = {};
             filterby[scope.title_attr] = scope.searchterm;
@@ -72,6 +73,10 @@ ListView.directive('listView', function($filter) {
             });
         };
 
+        var delete_method = scope.on_delete || function(x){
+            console.log( "undefined on delete method" );
+        };
+
         scope.is_ltr = ltr;
         scope.handle_icon = ltr ? "fa-angle-right" : "fa-angle-left";
         scope.first_page_icon = ltr ? "fa-angle-double-left" : "fa-angle-double-right";
@@ -79,6 +84,7 @@ ListView.directive('listView', function($filter) {
         scope.prev_page_icon = ltr ? "fa-angle-left" : "fa-angle-right";
         scope.next_page_icon = ltr ? "fa-angle-right" : "fa-angle-left";
         scope.hand_icon = ltr ? "fa-hand-o-right" : "fa-hand-o-left";
+        scope.is_all_selected = false;
 
         scope.handle_icon_expand = function(object){
             if(scope.should_view(object)) {
@@ -106,7 +112,27 @@ ListView.directive('listView', function($filter) {
             return false;
         };
 
-        // Selection related methods
+        scope.delete_items = function(){
+            var len = scope.selected_count();
+            var objects_to_delete = [];
+
+            if( confirm(gettext("Are sure you want to delete ") + len + gettext(" item(s)?")) ){
+                var objects_list = filtered_objects();
+
+                for(i = 0 ; i < objects_list.length; i++){
+
+                    if (objects_list[i].is_selected === true) {
+                        objects_to_delete.push(objects_list[i]);
+                    }
+
+                }
+
+                delete_method(objects_to_delete);
+            }
+
+
+        };
+        // Selection related methods -----------------------------------
         // Select a row in table
         scope.select_item = function(object) {
             if ("is_selected" in object) {
@@ -115,6 +141,33 @@ ListView.directive('listView', function($filter) {
             else {
                 object.is_selected = true;
             }
+
+        };
+
+        scope.toggle_select = function (){
+            var objects_list = filtered_objects();
+
+            for(i = 0 ; i < objects_list.length; i++){
+                objects_list[i].is_selected = ! objects_list[i].is_selected;
+            }
+        };
+
+        scope.toggle_select = function (){
+            var objects_list = filtered_objects();
+
+            for(i = 0 ; i < objects_list.length; i++){
+                objects_list[i].is_selected = ! objects_list[i].is_selected;
+            }
+        };
+
+        scope.select_all = function (){
+            var objects_list = filtered_objects();
+
+            for(i = 0 ; i < objects_list.length; i++){
+                objects_list[i].is_selected = ! scope.is_all_selected;
+            }
+
+            scope.is_all_selected = ! scope.is_all_selected;
 
         };
 
@@ -139,7 +192,7 @@ ListView.directive('listView', function($filter) {
 
         scope.total_pages = function(){
             var len = filtered_objects().length;
-            var pages = parseInt(len / _item_per_page);
+            var pages = parseInt(len / _item_per_page, 10);
 
             if (len % _item_per_page > 0 || len < _item_per_page) {
                 pages++;
@@ -229,7 +282,10 @@ ListView.directive('listView', function($filter) {
             details_template: "=detailsTemplate",
 
             // Number of item per pages
-            item_per_page: "=itemPerPage"
+            item_per_page: "=itemPerPage",
+
+            // On delete method
+            on_delete: "=onDelete"
         },
         link: link
     };

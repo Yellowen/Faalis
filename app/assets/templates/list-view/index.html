@@ -56,9 +56,10 @@
 
     </div>
     <div class="small-6 columns text-right">
-      <span class="btn yellow tiny" ng-click="toggle_select(objects)" translate>Toggle Select</span>
-      <span class="btn blue tiny" ng-click="select_all(objects)" translate>Select All</span>
-      <span class="btn red tiny" ng-click="delete_items(objects)" translate>Delete</span>
+      <span class="btn yellow tiny" ng-click="toggle_select()" translate>Toggle Select</span>
+      <span class="btn blue tiny" ng-if="! is_all_selected" ng-click="select_all()" >Select All</span>
+      <span class="btn blue tiny" ng-if="is_all_selected" ng-click="select_all()">Deselect All</span>
+      <span class="btn red tiny" ng-click="delete_items()" translate>Delete</span>
     </div>
 
   </li>
