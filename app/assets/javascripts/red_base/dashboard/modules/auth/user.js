@@ -37,7 +37,7 @@ User.config(["$routeProvider", function($routeProvider){
 }]);
 
 
-User.controller("UsersController", ["$scope", "Restangular", function($scope, Restangular){
+User.controller("UsersController", ["$scope", "restangular", function($scope, Restangular){
     console.log($scope );
     var users = Restangular.all("users");
 
@@ -59,9 +59,11 @@ User.controller("UsersController", ["$scope", "Restangular", function($scope, Re
 }]);
 
 
-User.controller("AddUsersController", ["$scope",function($scope, Restangular){
+User.controller("AddUsersController", ["$scope","restangular",function($scope, Restangular){
     $scope.new_user = function() {
-        Restangular.all('users').post(user);
+        console.log( $scope.user );
+
+        Restangular.all('users').post($scope.user);
     };
 }]);
 
