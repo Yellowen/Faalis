@@ -40,7 +40,7 @@
             <i class="fa {{ first_page_icon }}" ng-click="go_to_first_page()"></i>
             <i class="fa {{ prev_page_icon }}" ng-click="go_to_prev_page()"></i>
 
-            <input type="text" class="pagination_input"  ng-keypress="go_to_page()" value="{{current_page()}}"/>
+            <input type="text" class="pagination_input" ng-model="targetpage" ng-keypress="go_to_page($event, targetpage)" tabindex="3" value="{{current_page()}}"/>
 
             <i class="fa {{ next_page_icon }}" ng-click="go_to_next_page()"></i>
             <i class="fa {{ last_page_icon }}" ng-click="go_to_last_page()"></i>

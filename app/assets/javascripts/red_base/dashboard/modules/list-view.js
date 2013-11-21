@@ -109,7 +109,17 @@ ListView.directive('listView', function($filter) {
         };
 
         scope.selected_count = function(){
+            var myobjects = filtered_objects();
+            var count = 0;
+            for(i = 0; i < myobjects.length; i++) {
+                if("is_selected" in myobjects[i]){
+                    if(myobjects[i].is_selected) {
+                        count++;
+                    }
+                }
 
+            }
+            return count;
         };
         // Pagination methods ---------------------------------
 
@@ -158,21 +168,27 @@ ListView.directive('listView', function($filter) {
             _current_page = 1;
         };
 
-        scope.go_to_page = function(){
-            var page = parseInt(scope.pagination_input, 10);
-            if (page > 0 && page <= scope.total_pages()) {
-                _current_page = page;
+        scope.go_to_page = function($event, value){
+            if( $event.which == 13 ){
+
+                var page = parseInt(value, 10);
+
+                if (page > 0 && page <= scope.total_pages()) {
+                    _current_page = page;
+                }
+                else {
+                    value = _current_page;
+                }
+
             }
-            else {
-                scope.pagination_input = _current_page;
-            }
+
         };
 
         scope.get_current_page = function(){
             var start = (scope.current_page() * _item_per_page) - _item_per_page;
             var end = (scope.current_page() * _item_per_page);
-            var a =  filtered_objects().slice(start, end);
-            return a;
+
+            return filtered_objects().slice(start, end);
         };
 
         scope.objects_count = function(){
