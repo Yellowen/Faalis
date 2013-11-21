@@ -19,6 +19,7 @@
 var User = angular.module("User", ["ListView", "restangular"]);
 
 User.config(["$routeProvider", function($routeProvider){
+
     $routeProvider.
         when("/auth/users", {
             templateUrl: template("auth/users/index"),
@@ -37,46 +38,13 @@ User.config(["$routeProvider", function($routeProvider){
 
 
 User.controller("UsersController", ["$scope", "Restangular", function($scope, Restangular){
+    console.log($scope );
+    var users = Restangular.all("users");
 
-    $scope.allUsers = Restangular.all('users').getList().then(function(users){
-        $scope.allUsers = users;
-        console.log(users);
+    users.getList().then(function(user_list){
+        $scope.users = user_list;
 
     });
-
-    $scope.users = [
-        {
-            id: 2,
-            email: "lasdasdxsameer@gnu.org"
-        },
-        {
-            id: 2,
-            email: "lxsameesdfsdfgr@gnu.org"
-        },
-        {
-            id: 2,
-            email: "r23erglxsameer@gnu.org"
-        },
-        {
-            id: 2,
-            email: "lxsamvafvadfvadfvdfveer@gnu.org"
-        },
-        {
-            id: 2,
-            email: "@gnu.org"
-        },
-        {
-            id: 2,
-            email: "lasdassss!!!xsameer@gnu.org"
-        },
-
-        {
-            id: 3,
-            email: "lasdxsameer@gnu.org"
-        }
-
-
-    ];
 
     $scope.details_template = template("auth/users/details");
 
@@ -86,18 +54,15 @@ User.controller("UsersController", ["$scope", "Restangular", function($scope, Re
             icon: "fa fa-plus",
             classes: "btn small green",
             route: "#/auth/users/new"
-        },
-        {
-            title: "Someshiasdast",
-            icon: "fa fa-times",
-            classes: "btn small red",
-            action: "alert"
         }
-
     ];
 }]);
 
-User.controller("AddUsersController", [function(Restangular){
+
+User.controller("AddUsersController", ["$scope",function($scope, Restangular){
+    $scope.new_user = function() {
+        Restangular.all('users').post(user);
+    };
 }]);
 
 User.controller("EditUsersController", [function($scope, $routeParams, Restangular){
