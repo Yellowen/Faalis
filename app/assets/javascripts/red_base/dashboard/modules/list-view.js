@@ -63,7 +63,7 @@ ListView.directive('listView', function($filter, gettext) {
         var filtered_objects = function(){
             var filterby = {};
             filterby[scope.title_attr] = scope.searchterm;
-            return $filter('filter')(scope.objects, filterby, function(expected, actual){
+            var result =  $filter('filter')(scope.objects, filterby, function(expected, actual){
                 var re = new RegExp(".*" + actual + ".*", "ig");
                 scope.go_to_first_page();
                 if( expected.match(re) ){
@@ -71,6 +71,8 @@ ListView.directive('listView', function($filter, gettext) {
                 }
                 return false;
             });
+            // TODO: Double check this or condition
+            return result  || [];
         };
 
         var delete_method = scope.on_delete || function(x){

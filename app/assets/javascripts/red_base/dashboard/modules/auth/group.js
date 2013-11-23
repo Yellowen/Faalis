@@ -36,7 +36,9 @@ Group.config(["$routeProvider", function($routeProvider){
 }]);
 
 
-Group.controller("GroupsController", [function(){
+Group.controller("GroupsController", ["$scope", function($scope){
+    $scope.details_template = template("auth/groups/details");
+    $scope.groups = [{name:"asdasd"}];
 }]);
 
 Group.controller("AddGroupController", [function(){
