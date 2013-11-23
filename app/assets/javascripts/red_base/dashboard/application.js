@@ -16,7 +16,6 @@
 //= require foundation
 //= require red_base/dashboard/lib/angular
 //= require red_base/dashboard/lib/angular-route
-//= require red_base/dashboard/lib/angular-resource
 //= require red_base/dashboard/lib/angular-animate
 //= require red_base/dashboard/lib/angular-gettext
 //= require red_base/dashboard/lib/lodash.underscore
