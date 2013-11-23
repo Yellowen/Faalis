@@ -24,10 +24,10 @@ Modules.config(["$routeProvider", function($routeProvider){
 
 }]);
 
-Modules.controller("ModulesController", function(){
+Modules.controller("ModulesController", ["$location", function($location){
     this.modules = DModules;
 
     this.on_click = function(resource){
         $location.path("/" + resource);
     };
-});
+}]);
