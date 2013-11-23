@@ -32,6 +32,6 @@ var Dashboard = angular.module('Dashboard', dependencies);
 Dashboard.config(['$routeProvider', function($routeProvider) {
 }]);
 
-Dashboard.config(function(RestangularProvider) {
+Dashboard.config(["RestangularProvider", function(RestangularProvider) {
   RestangularProvider.setBaseUrl('/api/v1');
-});
+}]);

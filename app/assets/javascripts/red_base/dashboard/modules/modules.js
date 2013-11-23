@@ -26,4 +26,8 @@ Modules.config(["$routeProvider", function($routeProvider){
 
 Modules.controller("ModulesController", function(){
     this.modules = DModules;
+
+    this.on_click = function(resource){
+        $location.path("/" + resource);
+    };
 });

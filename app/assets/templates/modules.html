@@ -3,7 +3,7 @@
   <li><i class="fa fa-dashboard"></i> <span translate>Dashboard</span></li>
 
   <li data-ng-repeat="module in controller.modules">
-    <i class="{{ module.icon }}"></i> <span translate>{{ module.title }}</span>
+    <i class="{{ module.icon }}" ng-click="controller.on_click(module.resource)"></i> <span translate>{{ module.title }}</span>
   </li>
 
 </ul>
