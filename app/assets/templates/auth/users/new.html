@@ -1,5 +1,6 @@
 
 <div class="newform">
+  <form  ng-submit="new_user()" >
   <fieldset class="form">
 
     <legend id="module_title" translate>New User</legend>
@@ -7,17 +8,17 @@
     <div class="row">
       <div class="small-6 columns">
         <label for="first_name" translate>First Name :</label>
-        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required>
+        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required ng-model="user.first_name">
       </div>
 
       <div class="small-6 columns">
         <label for="last_name" translate>Last Name :</label>
-        <input  id="last_name" type="text" name="last_name"  class="small-8 columns" required>
+        <input  id="last_name" type="text" name="last_name"  class="small-8 columns" required ng-model="user.last_name">
       </div>
 
       <div class="small-6 columns float-left">
         <label for="email" translate>E-mail :</label>
-        <input  id="email" type="email" name="email" class="small-8 columns" required>
+        <input  id="email" type="email" name="email" class="small-8 columns" required ng-model="user.email">
       </div>
 
     </div>
@@ -31,4 +32,5 @@
       <button class="btn small red"><i class="fa fa-times"></i><span translate>Cansel</span></button>
     </div>
   </div>
+</form>
 </div>
