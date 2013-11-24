@@ -24,7 +24,7 @@ module RedBase
 
           Group.create!({
                           name: params[:name],
-                          permisssions: permissions,
+                          permissions: permissions,
                         })
         end
       end

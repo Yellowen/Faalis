@@ -57,7 +57,7 @@ Group.controller("GroupsController", ["$scope", "API", "gettext",
 
 }]);
 
-Group.controller("AddGroupController", ["Restangular", "$scope", "API", function(Restangular, $scope, API){
+Group.controller("AddGroupController", ["Restangular", "$scope", "API", "$location", function(Restangular, $scope, API, $location){
 
     var permissions = Restangular.all('permissions').getList()
             .then(function(data){
@@ -98,8 +98,10 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "API", function
 
         var group = {name: $scope.new_name,
                      permissions: permissions};
-        API.post(group);
-        console.log(_);
+        API.post(group).then(function(){
+            $location.path("/auth/groups");
+        });
+
     };
 }]);
 

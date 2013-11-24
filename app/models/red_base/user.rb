@@ -44,6 +44,7 @@ module RedBase
 
     def password_required?
       # TODO: nil? is not suitable for here we should use empty? or blink?
+
       (provider.nil? || !password.nil?) && super
     end
 
