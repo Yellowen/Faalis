@@ -18,10 +18,44 @@
 # -----------------------------------------------------------------------------
 
 module RedBase
-  class Group < ActiveRecord::Base
-    #validate :name, :presence => true, :unique => true
+  module API
 
-    has_and_belongs_to_many :permissions
+    #autoload UsersAPI, "red_base/api/users_api"
+    #autoload GroupsAPI, "red_base/api/groups_api"
+    #autoload PermissionsAPI, "red_base/api/permissions_api"
 
+    class Base < Grape::API
+
+      def self.setup_api
+
+        # TODO: Allow user to configure this section
+        version 'v1', :vendor => "Yellowen"
+        format :json
+        default_format :json
+
+        # TODO: Give this class a logger
+
+        helpers do
+
+          def warden
+            env['warden']
+          end
+
+          def current_user
+            warden.user
+          end
+
+          def authenticated_user
+            if warden.authenticated?
+              return true
+            else
+              error!('401 Unauthorized', 401)
+            end
+          end
+
+        end
+
+      end
+    end
   end
 end

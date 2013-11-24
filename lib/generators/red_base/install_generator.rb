@@ -30,7 +30,7 @@ module RedBase
         template "red_base.rb", "config/initializers/red_base.rb"
         template "fast_gettext.rb", "config/initializers/fast_gettext.rb"
         template "formtastic.rb", "config/initializers/formstatic.rb"
-
+        template "api/application_api.rb", "app/controllers/api/application_api.rb"
       end
 
       def show_readme

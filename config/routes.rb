@@ -18,5 +18,7 @@ RedBase::Engine.routes.draw do
     root :to => "home#index"
   end
 
-  mount RedBase::API => "api"
+  mount ::API::ApplicationAPI => "api"
+
+
 end
