@@ -127,9 +127,6 @@ $table-list-line-height: 40px;
          &:hover.selected{
            background: darken($selected-bg, 5%);
          }
-         .details {
-
-         }
 
          .show_details {
             display: block;
@@ -222,9 +219,10 @@ $table-list-line-height: 40px;
 
          }
          .details{
-           font-size:emCalc(13px);
-           margin:0 emCalc(50px);
-
+            font-size:0.9em;
+            margin: 0 1em;
+            padding:1em 0;
+            background-color:white;
             .button-group{
                background-color:$lightergray;
                border-radius: 1em 1em 0 0;
