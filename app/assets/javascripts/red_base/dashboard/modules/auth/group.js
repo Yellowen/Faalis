@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var Group = angular.module("Group", ["API"]);
+var Group = angular.module("Group", ["API", "ListView"]);
 
 Group.config(["$routeProvider", "APIProvider", function($routeProvider, APIProvider){
     $routeProvider.
@@ -29,7 +29,7 @@ Group.config(["$routeProvider", "APIProvider", function($routeProvider, APIProvi
             templateUrl: template("auth/groups/new"),
             controller: "AddGroupController"
         }).
-        when("/auth/groups/edit/:id",{
+        when("/auth/groups/:id/edit",{
             templateUrl: template("auth/groups/new"),
             controller: "EditGroupsController"
         });
@@ -38,8 +38,8 @@ Group.config(["$routeProvider", "APIProvider", function($routeProvider, APIProvi
 
 }]);
 
-Group.controller("GroupsController", ["$scope", "API", "gettext",
-                                      function($scope, API, gettext){
+Group.controller("GroupsController", ["$scope", "API", "gettext", "Restangular",
+                                      function($scope, API, gettext, Restangular){
     $scope.details_template = template("auth/groups/details");
 
     $scope.buttons = [
@@ -51,6 +51,20 @@ Group.controller("GroupsController", ["$scope", "API", "gettext",
 
         }
     ];
+
+    $scope.on_delete = function(groups){
+
+        var query = [];
+        groups.forEach(function(group){
+            query.push(group.id);
+        });
+
+        API.customDELETE("", {id: query.join(",")}).then(function() {
+            // TODO: this without function did not work
+            $scope.groups = _.without($scope.groups, query);
+        });
+    };
+
     API.getList().then(function(data){
         $scope.groups = data;
     });
