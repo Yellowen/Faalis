@@ -16,15 +16,14 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", ["ListView", "restangular"]);
+var User = angular.module("User", ["API"]);
 
-User.config(["$routeProvider", function($routeProvider){
+User.config(["$routeProvider","APIProvider", function($routeProvider, APIProvider){
 
     $routeProvider.
         when("/auth/users", {
             templateUrl: template("auth/users/index"),
-            controller: "UsersController",
-            controllerAs: "controller"
+            controller: "UsersController"
         }).
         when("/auth/users/new",{
             templateUrl: template("auth/users/new"),
@@ -34,11 +33,12 @@ User.config(["$routeProvider", function($routeProvider){
             templateUrl: template("auth/users/new"),
             controller: "EditUsersController"
         });
+    APIProvider.resource("users");
 }]);
 
+User.controller("UsersController", ["$scope", "API","gettext",
+                                    function($scope, API, gettext){
 
-User.controller("UsersController", ["$scope", "Restangular", function($scope, Restangular){
-    console.log($scope );
     var users = Restangular.all("users");
 
     users.getList().then(function(user_list){
