@@ -39,10 +39,8 @@ User.config(["$routeProvider","APIProvider", function($routeProvider, APIProvide
 User.controller("UsersController", ["$scope", "API","gettext",
                                     function($scope, API, gettext){
 
-    var users = Restangular.all("users");
-
-    users.getList().then(function(user_list){
-        $scope.users = user_list;
+    API.getList().then(function(data){
+        $scope.users = data;
 
     });
 
@@ -50,7 +48,7 @@ User.controller("UsersController", ["$scope", "API","gettext",
 
     $scope.buttons = [
         {
-            title: "New",
+            title: gettext("New"),
             icon: "fa fa-plus",
             classes: "btn small green",
             route: "#/auth/users/new"
@@ -59,14 +57,12 @@ User.controller("UsersController", ["$scope", "API","gettext",
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular",function($scope, Restangular){
+User.controller("AddUsersController", ["$scope","API",function($scope, API){
     $scope.new_user = function() {
-        console.log( $scope.user );
-
-        Restangular.all('users').post($scope.user);
+        API.all('users').post($scope.user);
     };
 }]);
 
-User.controller("EditUsersController", [function($scope, $routeParams, Restangular){
+User.controller("EditUsersController", [function($scope, API){
 
 }]);
