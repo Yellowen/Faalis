@@ -16,7 +16,7 @@
       </div>
 
     </li>
-    <li ng-if="get_current_page().length == 0"><span  translate>There is no data!</span></li>
+    <li ng-if="get_current_page().length == 0"><span translate>There is no data!</span></li>
 
     <li ng-repeat="object in get_current_page()" ng-class="{'selected': object.is_selected}" class="pointer">
       <i ng-click="toggle_details(object)"  class="{{ handle_icon }} {{ handle_icon_expand(object) }} handle fa "></i>

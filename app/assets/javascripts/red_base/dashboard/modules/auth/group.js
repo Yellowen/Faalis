@@ -17,9 +17,9 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var Group = angular.module("Group", ["API", "ListView"]);
+var Group = angular.module("Group", ["ListView"]);
 
-Group.config(["$routeProvider", "APIProvider", function($routeProvider, APIProvider){
+Group.config(["$routeProvider", function($routeProvider){
     $routeProvider.
         when("/auth/groups",{
             templateUrl: template("auth/groups/index"),
@@ -34,12 +34,10 @@ Group.config(["$routeProvider", "APIProvider", function($routeProvider, APIProvi
             controller: "EditGroupsController"
         });
 
-    APIProvider.resource("groups");
-
 }]);
 
-Group.controller("GroupsController", ["$scope", "API", "gettext", "Restangular",
-                                      function($scope, API, gettext, Restangular){
+Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
+                                      function($scope, gettext, API){
     $scope.details_template = template("auth/groups/details");
 
     $scope.buttons = [
@@ -59,7 +57,7 @@ Group.controller("GroupsController", ["$scope", "API", "gettext", "Restangular",
             query.push(group.id);
         });
 
-        API.customDELETE("", {id: query.join(",")}).then(function() {
+        API.all("groups").customDELETE("", {id: query.join(",")}).then(function() {
 
             query.forEach(function(x){
                 $scope.groups = _.without($scope.groups, x);
@@ -68,15 +66,15 @@ Group.controller("GroupsController", ["$scope", "API", "gettext", "Restangular",
         });
     };
 
-    API.getList().then(function(data){
+    API.all("groups").getList().then(function(data){
         $scope.groups = data;
     });
 
 }]);
 
-Group.controller("AddGroupController", ["Restangular", "$scope", "API", "$location", function(Restangular, $scope, API, $location){
+Group.controller("AddGroupController", ["Restangular", "$scope", "$location", function(API, $scope, $location){
 
-    var permissions = Restangular.all('permissions').getList()
+    var permissions = API.all('permissions').getList()
             .then(function(data){
                 $scope.permissions = data;
                 console.dir($scope.permissions);
@@ -115,7 +113,7 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "API", "$locati
 
         var group = {name: $scope.new_name,
                      permissions: permissions};
-        API.post(group).then(function(){
+        API.all("groups").post(group).then(function(){
             $location.path("/auth/groups");
         });
 
