@@ -8,6 +8,22 @@ module RedBase
       @groups = Group.includes(:permissions).all
     end
 
+    def create
+      permissions = [];
+
+      params[:permissions].each do |perm_string|
+        perm, model = perm_string.split "|"
+        permission = Permission.find_or_create_by_model_and_permission_type(model, perm)
+        permissions << permission
+      end
+
+      @group = Group.create!({
+                               name: params[:name],
+                               permissions: permissions,
+                             })
+
+    end
+
     def show
     end
 
