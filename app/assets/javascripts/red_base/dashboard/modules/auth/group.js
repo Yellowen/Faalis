@@ -57,7 +57,7 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
             query.push(group.id);
         });
 
-        API.all("groups").customDELETE("", {id: query.join(",")}).then(function() {
+        API.several("groups", 2, 4).remove().then(function() {//.customDELETE("", {id: query.join(",")})
 
             query.forEach(function(x){
                 $scope.groups = _.without($scope.groups, x);
