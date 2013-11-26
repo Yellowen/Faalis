@@ -22,6 +22,6 @@ module RedBase
     #validate :name, :presence => true, :unique => true
 
     has_and_belongs_to_many :permissions
-
+    has_many :users
   end
 end
