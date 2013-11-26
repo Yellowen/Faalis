@@ -1,7 +1,7 @@
-require_dependency "red_base/application_controller"
+require_dependency "red_base/api_controller"
 
 module RedBase
-  class API::V1::GroupsController < ApplicationController
+  class API::V1::GroupsController < APIController
 
     # GET /api/v1/groups
     def index
@@ -34,6 +34,7 @@ module RedBase
     end
 
     def destroy
+      puts ">>>> ", params
     end
   end
 
