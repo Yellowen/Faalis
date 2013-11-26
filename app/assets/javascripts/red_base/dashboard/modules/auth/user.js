@@ -59,7 +59,7 @@ User.controller("UsersController", ["$scope", "API","gettext",
 
 User.controller("AddUsersController", ["$scope","API",function($scope, API){
     $scope.new_user = function() {
-        API.all('users').post($scope.user);
+        API.post($scope.user);
     };
 }]);
 
