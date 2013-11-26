@@ -1,5 +1,4 @@
 RedBase::Engine.routes.draw do
-
   # Authentications
   devise_for :users, {
     :class_name => "RedBase::User",
@@ -22,6 +21,7 @@ RedBase::Engine.routes.draw do
     namespace :v1 do
       get "permissions", :to => "permissions#index"
       resources :groups
+      resources :users
     end
   end
   #mount ::API::ApplicationAPI => "api"
