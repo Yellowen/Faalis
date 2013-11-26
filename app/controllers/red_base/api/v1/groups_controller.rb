@@ -6,9 +6,6 @@ module RedBase
     # GET /api/v1/groups
     def index
       @groups = Group.includes(:permissions).all
-      respond_to do |format|
-        format.json { render :json => @groups }
-      end
     end
 
     def show
