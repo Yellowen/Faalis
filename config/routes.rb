@@ -18,7 +18,12 @@ RedBase::Engine.routes.draw do
     root :to => "home#index"
   end
 
-  mount ::API::ApplicationAPI => "api"
+  namespace :api, :defaults => {:format => :json} do
+    namespace :v1 do
+      resources :groups
+    end
+  end
+  #mount ::API::ApplicationAPI => "api"
 
 
 end

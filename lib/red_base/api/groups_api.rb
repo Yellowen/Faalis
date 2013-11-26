@@ -8,7 +8,7 @@ module RedBase
         get do
           authenticated_user
           # TODO: Check for admin user only
-          RedBase::Group.all
+          RedBase::Group.includes(:permissions)
         end
 
         delete do
@@ -18,6 +18,7 @@ module RedBase
           #end
           Group.delete(params[:id].split(","))
         end
+
         post do
           authenticated_user
 

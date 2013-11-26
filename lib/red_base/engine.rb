@@ -28,11 +28,14 @@ require "grape"
 
 module RedBase
   class Engine < ::Rails::Engine
+
     isolate_namespace RedBase
-
-    #require 'red_base/initialize'
-
     engine_name "red_base"
+
+    ActiveSupport::Inflector.inflections(:en) do |inflect|
+      inflect.acronym 'API'
+    end
+
 
     # Configure logger
     mattr_accessor :logger
