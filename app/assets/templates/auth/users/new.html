@@ -1,6 +1,6 @@
 
-<div class="newform">
-  <form  ng-submit="new_user()" >
+<div class="form">
+  <form  ng-submit="save()" >
   <fieldset class="form">
 
     <legend id="module_title" translate>New User</legend>
@@ -24,7 +24,9 @@
 
       <div class="small-6 columns float-left">
         <label for="group" translate>Group :</label>
-        <input  id="email" type="group" name="group" class="small-8 columns" required ng-model="user.group">
+        <select  id="group" name="group" class="small-8 columns" required ng-model="user.group">
+          <option ng-model="group" ng-repeat="group in groups" value="group.id">{{group.name}}</option>
+        </select>
       </div>
 
     </div>

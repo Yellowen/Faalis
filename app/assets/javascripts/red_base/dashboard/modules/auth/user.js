@@ -67,9 +67,19 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
 }]);
 
 
-User.controller("AddUsersController", ["$scope","API",function($scope, API){
-    $scope.new_user = function() {
-        API.post($scope.user);
+User.controller("AddUsersController", ["$scope","Restangular","$location",function($scope, API){
+
+    API.all("groups").getList().then(
+        function(data){
+            $scope.groups = data;
+        });
+
+    $scope.save = function() {
+        API.all("users").post($scope.user);
+    };
+
+    $scope.cansel = function(){
+        $(".form input").val("");
     };
 }]);
 
