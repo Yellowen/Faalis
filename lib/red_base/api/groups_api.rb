@@ -11,6 +11,13 @@ module RedBase
           RedBase::Group.all
         end
 
+        delete do
+          authenticated_user
+
+          #if can? :delete, Group
+          #end
+          Group.delete(params[:id].split(","))
+        end
         post do
           authenticated_user
 

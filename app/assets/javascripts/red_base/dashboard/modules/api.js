@@ -27,6 +27,6 @@ API.provider("API", function(){
     };
 
     this.$get = ["Restangular", function(Restangular){
-        return Restangular.all(_resource);
+        return new Restangular.all(_resource);
     }];
 });

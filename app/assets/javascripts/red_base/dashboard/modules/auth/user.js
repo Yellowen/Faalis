@@ -16,7 +16,7 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", ["API"]);
+var User = angular.module("User", ["API", "ListView"]);
 
 User.config(["$routeProvider","APIProvider", function($routeProvider, APIProvider){
 
@@ -39,9 +39,9 @@ User.config(["$routeProvider","APIProvider", function($routeProvider, APIProvide
 User.controller("UsersController", ["$scope", "API","gettext",
                                     function($scope, API, gettext){
 
+
     API.getList().then(function(data){
         $scope.users = data;
-
     });
 
     $scope.details_template = template("auth/users/details");
