@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "cancan"
 
   # API
-  s.add_dependency "grape"
+  s.add_dependency "jbuilder"
 
   # Assets
   s.add_dependency "jquery-rails"
