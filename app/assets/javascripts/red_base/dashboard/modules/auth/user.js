@@ -16,9 +16,9 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", ["API", "ListView"]);
+var User = angular.module("User", ["ListView"]);
 
-User.config(["$routeProvider","APIProvider", function($routeProvider, APIProvider){
+User.config(["$routeProvider", function($routeProvider, APIProvider){
 
     $routeProvider.
         when("/auth/users", {
@@ -33,16 +33,10 @@ User.config(["$routeProvider","APIProvider", function($routeProvider, APIProvide
             templateUrl: template("auth/users/new"),
             controller: "EditUsersController"
         });
-    APIProvider.resource("users");
 }]);
 
-User.controller("UsersController", ["$scope", "API","gettext",
+User.controller("UsersController", ["$scope", "Restangular","gettext",
                                     function($scope, API, gettext){
-
-
-    API.getList().then(function(data){
-        $scope.users = data;
-    });
 
     $scope.details_template = template("auth/users/details");
 
@@ -54,12 +48,38 @@ User.controller("UsersController", ["$scope", "API","gettext",
             route: "#/auth/users/new"
         }
     ];
+
+    $scope.on_delete = function(users){
+        var query = [];
+        users.forEach(function(user){
+            query.push(user.id);
+        });
+
+        API.all("users").customDELETE("", {id: query.join(",")}).then(function() {
+
+            query.forEach(function(x){
+                $scope.users = _.without($scope.users, x);
+            });
+
+        });
+    };
+
 }]);
 
 
-User.controller("AddUsersController", ["$scope","API",function($scope, API){
-    $scope.new_user = function() {
-        API.all('users').post($scope.user);
+User.controller("AddUsersController", ["$scope","Restangular","$location",function($scope, API){
+
+    API.all("groups").getList().then(
+        function(data){
+            $scope.groups = data;
+        });
+
+    $scope.save = function() {
+        API.all("users").post($scope.user);
+    };
+
+    $scope.cansel = function(){
+        $(".form input").val("");
     };
 }]);
 
