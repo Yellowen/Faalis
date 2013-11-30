@@ -10,6 +10,7 @@ module RedBase
     end
 
     def show
+
     end
 
     def distroy
@@ -19,6 +20,14 @@ module RedBase
     end
 
     def create
+      group = group.find(params[:group])
+      @user = User.create!({
+                             first_name: params[:first_name],
+                             last_name: params[:last_name],
+                             email: params[:email],
+                             password: params[:passwprd],
+                             group: params[:group],
+                           })
     end
   end
 end

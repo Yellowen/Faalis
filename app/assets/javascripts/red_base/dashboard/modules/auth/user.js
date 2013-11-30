@@ -40,6 +40,10 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
 
     $scope.details_template = template("auth/users/details");
 
+    API.all("users").getList().then(function(data){
+        $scope.users = data;
+    });
+
     $scope.buttons = [
         {
             title: gettext("New"),
