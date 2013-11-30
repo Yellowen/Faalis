@@ -3,6 +3,8 @@ require_dependency "red_base/api_controller"
 module RedBase
   class API::V1::GroupsController < APIController
 
+    # TODO: Use strong params
+
     # GET /api/v1/groups
     def index
       @groups = Group.includes(:permissions).all
@@ -25,6 +27,7 @@ module RedBase
     end
 
     def show
+      @group = Group.find(params[:id])
     end
 
     def edit

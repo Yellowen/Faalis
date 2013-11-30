@@ -30,6 +30,7 @@ console.log(dependencies);
 var Dashboard = angular.module('Dashboard', dependencies);
 
 Dashboard.config(['$routeProvider', function($routeProvider) {
+
 }]);
 
 Dashboard.config(["RestangularProvider", function(RestangularProvider) {

@@ -31,7 +31,7 @@ Group.config(["$routeProvider", function($routeProvider){
         }).
         when("/auth/groups/:id/edit",{
             templateUrl: template("auth/groups/new"),
-            controller: "EditGroupsController"
+            controller: "AddGroupController"
         });
 
 }]);
@@ -72,13 +72,39 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
 
 }]);
 
-Group.controller("AddGroupController", ["Restangular", "$scope", "$location", function(API, $scope, $location){
+Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$routeParams", function(API, $scope, $location, $routeParams){
+
+    $scope.selected_perms = [];
+    $scope.permissions = [];
+
+    $scope.$on("update_perms", function(event) {
+        console.dir( event );
+
+        event.targetScope.selected_perms.forEach(function(perm){
+            if(perm.name in event.targetScope.permissions) {
+                event.targetScope.permissions[perm.name].is_selected = true;
+            }
+        });
+    });
+
+    $scope.obj_id = null;
+    if( "id" in $routeParams ){
+        $scope.obj_id = $routeParams.id;
+        var obj = API.one("groups", $scope.obj_id).get()
+                .then(function(data) {
+                    $scope.new_name = data.name;
+                    $scope.selected_perms = data.permissions;
+                    $scope.$emit("update_perms");
+                });
+    }
+
 
     var permissions = API.all('permissions').getList()
             .then(function(data){
                 $scope.permissions = data;
-                console.dir($scope.permissions);
+                $scope.$emit("update_perms");
             });
+
 
     $scope.select_permission = function(perm){
         if( "is_selected" in perm ){
