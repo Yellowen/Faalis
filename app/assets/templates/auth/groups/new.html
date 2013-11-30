@@ -1,8 +1,8 @@
-
 <div class="newform">
   <fieldset class="form">
 
-  <legend translate>New Group</legend>
+  <legend ng-if="!editing"><span translate>New Group</span></legend>
+  <legend ng-if="editing"><span translate>Edit Group</span></legend>
 
   <div class="row">
     <div class="small-4 columns">

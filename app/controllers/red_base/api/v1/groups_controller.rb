@@ -4,6 +4,7 @@ module RedBase
   class API::V1::GroupsController < APIController
 
     # TODO: Use strong params
+    # TODO: implement authorization
 
     # GET /api/v1/groups
     def index
@@ -30,7 +31,17 @@ module RedBase
       @group = Group.find(params[:id])
     end
 
-    def edit
+    def update
+      permissions = [];
+
+      params[:permissions].each do |perm_string|
+        perm, model = perm_string.split "|"
+        permission = Permission.find_or_create_by_model_and_permission_type(model, perm)
+        permissions << permission
+      end
+
+      @group = Group.update(params[:id], :name => params[:name],
+                            :permissions => permissions)
     end
 
     def new

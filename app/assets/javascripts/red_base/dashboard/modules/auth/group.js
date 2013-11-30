@@ -72,24 +72,31 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
 
 }]);
 
-Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$routeParams", function(API, $scope, $location, $routeParams){
+Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", function(API, $scope, $location, $routeParams, gettext){
 
     $scope.selected_perms = [];
     $scope.permissions = [];
+    $scope.editing = false;
 
     $scope.$on("update_perms", function(event) {
-        console.dir( event );
-
+        var sel_perms = [];
         event.targetScope.selected_perms.forEach(function(perm){
-            if(perm.name in event.targetScope.permissions) {
-                event.targetScope.permissions[perm.name].is_selected = true;
+
+            var tmpobj = _.find(event.targetScope.permissions, function(x) {
+                return perm.name == x.name;
+            });
+
+            if ( tmpobj ) {
+                event.targetScope.select_permission(tmpobj);
             }
         });
+
     });
 
     $scope.obj_id = null;
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
+        $scope.editing = true;
         var obj = API.one("groups", $scope.obj_id).get()
                 .then(function(data) {
                     $scope.new_name = data.name;
@@ -139,9 +146,19 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
 
         var group = {name: $scope.new_name,
                      permissions: permissions};
-        API.all("groups").post(group).then(function(){
-            $location.path("/auth/groups");
-        });
+        if ($scope.obj_id) {
+            API.one("groups", $scope.obj_id).patch(group).then(function(){
+                success_message(gettext("Group updated successfully."));
+                $location.path("/auth/groups");
+            });
+        }
+        else {
+            API.all("groups").post(group).then(function(){
+                success_message(gettext("Group created successfully."));
+                $location.path("/auth/groups");
+
+            });
+        }
 
     };
 }]);
