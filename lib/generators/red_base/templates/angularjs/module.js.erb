@@ -27,15 +27,15 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     // Add any route you need here
     $routeProvider.
-        when("/<%= resource_path %>", {
+        when("/<%= resource_url %>", {
             templateUrl: template("<%= resource_path %>/index"),
             controller: "<%= resource %>Controller"
         }).
-        when("/<%= resource_path %>/new",{
+        when("/<%= resource_url %>/new",{
             templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         }).
-        when("/<%= resource_path %>/:id/edit",{
+        when("/<%= resource_url %>/:id/edit",{
             templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         });
@@ -72,7 +72,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
             query.push(item.id);
         });
 
-        API.all("<%= resource.pluralize %>").customDELETE(query.join(","))
+        API.all("<%= resource.pluralize.underscore %>").customDELETE(query.join(","))
             .then(function(data) {
 
                 $scope.<%= resource.underscore %> = _.filter($scope.<%= resource.underscore %>, function(x){
@@ -83,8 +83,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
             .catch(catch_error);
     };
 
-
-    API.all("<%= resource.underscore %>").getList()
+    API.all("<%= resource.pluralize.underscore %>").getList()
         .then(function(data){
             $scope.<%= resource.underscore %> = data;
         })
@@ -99,7 +98,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
-        var obj = API.one("<%= resource.pluralize %>", $scope.obj_id).get()
+        var obj = API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
                 .then(function(data) {
                 <% fields.each do |field_name, field_type| %>
                     $scope.<%= field_name %> = <% if not ["string", "integer"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
@@ -110,7 +109,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     $scope.cancel = function(){
         $(".form input").val("");
-        $location.path("<%= resource_path %>");
+        $location.path("<%= resource_url %>");
     };
 
     $scope.save = function(){
@@ -120,17 +119,17 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
             <% end %>
         };
         if ($scope.obj_id) {
-            API.one("<%= resource.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
+            API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
                 .then(function(){
                     success_message(gettext("<%= resource %> updated successfully."));
-                    $location.path("<%= resource_path %>");
+                    $location.path("<%= resource_url %>");
                 })
                 .catch(catch_error);
         }
         else {
-            API.all("<%= resource.pluralize %>").post(<%= resource.underscore %>).then(function(){
+            API.all("<%= resource.pluralize.underscore %>").post(<%= resource.underscore %>).then(function(){
                 success_message(gettext("<%= resource %> created successfully."));
-                $location.path("<%= resource_path %>");
+                $location.path("<%= resource_url %>");
             }).catch(catch_error);
         }
 

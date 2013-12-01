@@ -1,2 +1,5 @@
-<h1><%= resource %></h1>
-<p>Overwrite me in '<%= "app/assets/templates/#{resource.underscore}/index.html" %>'</p>
+<list-view buttons="buttons" objects="<%= resource.underscore %>" title-attribute="'name'" details-template="details_template" item-per-page="10" on_delete="on_delete">
+  <div class="small-6 column text-left clearpadding">
+    <h3><i class="fa fa-group"></i> <span translate><%= resource.pluralize %></span></h3>
+  </div>
+</list-view>

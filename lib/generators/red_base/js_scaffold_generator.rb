@@ -36,6 +36,13 @@ module RedBase
       def create_template
         template "angularjs/index.html.erb", "app/assets/templates/#{resource.underscore}/index.html"
         template "angularjs/new.html.erb", "app/assets/templates/#{resource.underscore}/new.html"
+        template "angularjs/details.html.erb", "app/assets/templates/#{resource.underscore}/details.html"
+
+        template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
+      end
+
+      def create_api
+        template "api/controller.rb.erb", "app/controllers/api/v1/#{resource.pluralize.underscore}_controller.rb"
       end
 
       private
@@ -46,6 +53,14 @@ module RedBase
           return "#{path_parts(0..-2).join("/")}/#{path_parts[-1].underscore}"
         end
         resource_name.underscore
+      end
+
+      def resource_url
+        path_parts = resource_name.split("/")
+        if path_parts.length > 1
+          return "#{path_parts(0..-2).join("/")}/#{path_parts[-1].pluralize.underscore}"
+        end
+        resource_name.pluralize.underscore
       end
 
       def fields

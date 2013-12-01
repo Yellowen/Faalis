@@ -1,0 +1,13 @@
+<div class="details">
+  <p>
+    <% fields.each do |field_name, field_type| %>
+      <b translate><%= field_name %> :</b>{{this.object.<%= field_name %>}}
+    <% end %>
+  </p>
+
+  <ul class="button-group float-right">
+    <a ng-href="#/auth/groups/{{ this.object.id }}/edit" class="small">
+      <span class="fa fa-edit"></span> <span translated>Edit</span>
+    </a>
+  </ul>
+</div>

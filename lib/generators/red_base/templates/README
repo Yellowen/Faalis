@@ -32,3 +32,10 @@ Steps to finish up installation:
 
   6. Make sure you take a look and configured conf/initializer/fast_gettext.rb
   7. Make sure you take a look and configured conf/initializer/formtastic.rb
+  8. Add your resources to routes.rb like this:
+
+       namespace :api, :defaults => {:format => :json} do
+           namespace :v1 do
+              resources :resource
+           end
+       end
