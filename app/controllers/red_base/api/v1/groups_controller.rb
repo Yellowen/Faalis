@@ -17,7 +17,7 @@ module RedBase
 
       permissions = [];
 
-      params[:permissions].each do |perm_string|
+      (params[:permissions] || []).each do |perm_string|
         perm, model = perm_string.split "|"
         permission = Permission.find_or_create_by_model_and_permission_type(model, perm)
         permissions << permission
@@ -41,7 +41,7 @@ module RedBase
       authorize! :update, @group
 
       permissions = [];
-      params[:permissions].each do |perm_string|
+      (params[:permissions] || []).each do |perm_string|
         perm, model = perm_string.split "|"
         permission = Permission.find_or_create_by_model_and_permission_type(model, perm)
         permissions << permission
@@ -55,7 +55,7 @@ module RedBase
       ids = params[:id].split(",")
       @groups = Group.where(:id => ids)
       authorize! :destory, @groups
-      @groups.destroy
+      @groups.destroy_all
     end
   end
 

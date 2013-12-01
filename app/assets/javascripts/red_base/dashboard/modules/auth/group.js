@@ -56,14 +56,16 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular", functi
             query.push(group.id);
         });
 
-        console.dir(API.several("groups", 2, 4));
-        API.all("groups").customDELETE(query.join(",")).then(function() {
-            query.forEach(function(x){
-                $scope.groups = _.without($scope.groups, x);
-            });
+        API.all("groups").customDELETE(query.join(",")).then(function(data) {
 
+            $scope.groups = _.filter($scope.groups, function(x){
+                return !(query.indexOf(x.id) != -1);
+            });
+            success_message(data.msg);
         });
+
     };
+
 
     API.all("groups").getList()
         .then(function(data){

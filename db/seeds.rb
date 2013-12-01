@@ -1,7 +1,7 @@
 # Database initial data
 
 RedBase::Group.create({:name => "Admin"})
-RedBase::Group.create({:name => "Guest", :id => 999})
+RedBase::Group.create({:name => "Guest", :id => 2})
 
 RedBase::User.create({
                        :email => "admin@example.com",
