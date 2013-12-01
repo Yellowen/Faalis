@@ -36,8 +36,7 @@ Group.config(["$routeProvider", function($routeProvider){
 
 }]);
 
-Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
-                                      function($scope, gettext, API){
+Group.controller("GroupsController", ["$scope", "gettext", "Restangular", function($scope, gettext, API){
     $scope.details_template = template("auth/groups/details");
 
     $scope.buttons = [
@@ -57,8 +56,8 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
             query.push(group.id);
         });
 
-        API.several("groups", 2, 4).remove().then(function() {//.customDELETE("", {id: query.join(",")})
-
+        console.dir(API.several("groups", 2, 4));
+        API.all("groups").customDELETE(query.join(",")).then(function() {
             query.forEach(function(x){
                 $scope.groups = _.without($scope.groups, x);
             });
@@ -66,9 +65,14 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular",
         });
     };
 
-    API.all("groups").getList().then(function(data){
-        $scope.groups = data;
-    });
+    API.all("groups").getList()
+        .then(function(data){
+            $scope.groups = data;
+        })
+        .catch(function(error){
+            console.log(error.data);
+            error_message(error.data.error);
+        });
 
 }]);
 

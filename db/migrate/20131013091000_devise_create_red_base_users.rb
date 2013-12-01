@@ -24,7 +24,7 @@ class DeviseCreateRedBaseUsers < ActiveRecord::Migration
       t.string   :last_name
 
       # Group
-      t.integer :group_id
+      t.integer :group_id, :default => 999
 
       if not Devise.omniauth_providers.empty?
         # Service
