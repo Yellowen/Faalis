@@ -80,6 +80,9 @@ User.controller("AddUsersController", ["$scope","Restangular","$location",functi
 
     $scope.save = function() {
         API.all("users").post($scope.user);
+        success_message(gettext("User created successfully."));
+        $location.path("/auth/users");
+
     };
 
     $scope.cansel = function(){
