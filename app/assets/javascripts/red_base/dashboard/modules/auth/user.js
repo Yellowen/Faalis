@@ -31,7 +31,7 @@ User.config(["$routeProvider", function($routeProvider, APIProvider){
         }).
         when("/auth/users/edit/:id",{
             templateUrl: template("auth/users/new"),
-            controller: "EditUsersController"
+            controller: "AddUsersController"
         });
 }]);
 
@@ -71,18 +71,40 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular","$location",function($scope, API){
+User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $routeParams, gettext){
 
     API.all("groups").getList().then(
         function(data){
             $scope.groups = data;
         });
-
+    $scope.obj_id = null;
+    if("id" in $routeParams){
+        $scope.obj_id = $routeParams.id;
+        var obj = API.one("users", $scope.obj_id).get()
+                .then(function(data){
+                    $scope.first_name = data.first_name;
+                    $scope.last_name = data.last_name;
+                    $scope.email = data.email;
+                });
+    }
     $scope.save = function() {
-        API.all("users").post($scope.user);
-        success_message(gettext("User created successfully."));
-        $location.path("/auth/users");
+        var user = {
+            first_name: $scope.first_name,
+            last_name: $scope.last_name,
+            email: $scope.email
+        };
 
+        if ($scope.obj_id){
+            API.one("users",$scope.obj_id).patch(user).then(function(){
+                success_message(gettext("User updated successfully."));
+                $location.path("/auth/user");
+                });
+        }else{
+            API.all("users").post($scope.user).then(function(){
+                success_message(gettext("User created successfully."));
+                $location.path("/auth/users");
+            });
+        }
     };
 
     $scope.cansel = function(){
