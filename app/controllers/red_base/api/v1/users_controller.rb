@@ -20,14 +20,17 @@ module RedBase
     end
 
     def create
-      group = group.find(params[:group])
+      puts "################################################"
+      group = Group.find(params[:group])
+      if group
       @user = User.create!({
                              first_name: params[:first_name],
                              last_name: params[:last_name],
                              email: params[:email],
-                             password: params[:passwprd],
-                             group: params[:group],
+                             password: params[:password],
+                             group: group,
                            })
+      end
     end
   end
 end

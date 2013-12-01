@@ -1,4 +1,3 @@
-
 <div class="form">
   <form  ng-submit="save()" >
   <fieldset class="form">
@@ -26,18 +25,16 @@
         <input  id="email" type="email" name="email" class="small-8 columns" required ng-model="user.email">
       </div>
 
-
       <div class="small-6 columns float-left">
         <label for="group" translate>Group :</label>
         <select  id="group" name="group" class="small-8 columns" required ng-model="user.group">
-          <option ng-model="group" ng-repeat="group in groups" value="group.id">{{group.name}}</option>
+          <option ng-model="group" ng-repeat="group in groups" value="{{group.id}}">{{group.name}}</option>
         </select>
       </div>
 
     </div>
 
   </fieldset>
-
 
   <div class="row">
     <div class="small-6 columns">
