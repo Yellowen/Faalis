@@ -19,24 +19,24 @@
 ----------------------------------------------------------------------------- */
 
 <% end %>
-// <%= resource %> Module
-var <%= resource %> = angular.module("<%= resource %>", ["ListView"]);
+// <%= resource.pluralize %> Module
+var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
-// <%= resource %> configuration section ---------------------------
-<%= resource %>.config(["$routeProvider", function($routeProvider){
+// <%= resource.pluralize %> configuration section ---------------------------
+<%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){
 
     // Add any route you need here
     $routeProvider.
-        when("/<%= resource.underscore %>", {
-            templateUrl: template("<%= resource.underscore %>/index"),
+        when("/<%= resource_path %>", {
+            templateUrl: template("<%= resource_path %>/index"),
             controller: "<%= resource %>Controller"
         }).
-        when("/<%= resource.underscore %>/new",{
-            templateUrl: template("<%= resource.underscore %>/new"),
+        when("/<%= resource_path %>/new",{
+            templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         }).
-        when("/<%= resource.underscore %>/:id/edit",{
-            templateUrl: template("<%= resource.underscore %>/new"),
+        when("/<%= resource_path %>/:id/edit",{
+            templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         });
 
@@ -44,7 +44,7 @@ var <%= resource %> = angular.module("<%= resource %>", ["ListView"]);
 
 // <%= resource %> index controller -------------------------------------------------------
 // This controller is responsible for list page (index)
-<%= resource %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular",
+<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular",
                                       function($scope, gettext, API){
 
     // details_template is the address of template which should load for
@@ -68,21 +68,71 @@ var <%= resource %> = angular.module("<%= resource %>", ["ListView"]);
     $scope.on_delete = function(items){
 
         var query = [];
-        items.forEach(function(item){
+        groups.forEach(function(item){
             query.push(item.id);
         });
 
-        API.several("<%= resource.underscore %>", query).remove().then(function() {//.customDELETE("", {id: query.join(",")})
+        API.all("<%= resource.pluralize %>").customDELETE(query.join(","))
+            .then(function(data) {
 
-            query.forEach(function(x){
-                $scope.groups = _.without($scope.groups, x);
-            });
-
-        });
+                $scope.<%= resource.underscore %> = _.filter($scope.<%= resource.underscore %>, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
     };
 
-    API.all("<%= resource.underscore %>").getList().then(function(data){
-        $scope.<%= resource.underscore %> = data;
-    });
 
+    API.all("<%= resource.underscore %>").getList()
+        .then(function(data){
+            $scope.<%= resource.underscore %> = data;
+        })
+        .catch(catch_error);
+
+}]);
+
+<%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", function(API, $scope, $location, $routeParams, gettext){
+
+    $scope.editing = false;
+    $scope.obj_id = null;
+    if( "id" in $routeParams ){
+        $scope.obj_id = $routeParams.id;
+        $scope.editing = true;
+        var obj = API.one("<%= resource.pluralize %>", $scope.obj_id).get()
+                .then(function(data) {
+                <% fields.each do |field_name, field_type| %>
+                    $scope.<%= field_name %> = <% if not ["string", "integer"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
+                })
+                .catch(catch_error);
+    }
+
+
+    $scope.cancel = function(){
+        $(".form input").val("");
+        $location.path("<%= resource_path %>");
+    };
+
+    $scope.save = function(){
+        var <%= resource.underscore %> = {
+            <% fields.each do |field_name, field_type| %>
+                <%= field_name %>: $scope.<%= field_name %>,
+            <% end %>
+        };
+        if ($scope.obj_id) {
+            API.one("<%= resource.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
+                .then(function(){
+                    success_message(gettext("<%= resource %> updated successfully."));
+                    $location.path("<%= resource_path %>");
+                })
+                .catch(catch_error);
+        }
+        else {
+            API.all("<%= resource.pluralize %>").post(<%= resource.underscore %>).then(function(){
+                success_message(gettext("<%= resource %> created successfully."));
+                $location.path("<%= resource_path %>");
+            }).catch(catch_error);
+        }
+
+    };
 }]);

@@ -1,0 +1,26 @@
+ <div class="newform">
+  <fieldset class="form">
+
+  <legend ng-if="!editing"><span translate>New <%= resource %></span></legend>
+  <legend ng-if="editing"><span translate>Edit <%= resource %></span></legend>
+
+  <% fields.each do |field_name, field_type| %>
+    <%= cycle("<div class='row'>", "") %>
+    <div class="small-4 columns <%= cycle("", "small-offset-2") %>">
+      <label translate><%= field_name %> :</label>
+      <input  ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field">
+      <small></small>
+    </div>
+    <%= cycle("", "</div>") %>
+  <% end %>
+  </fieldset>
+
+
+  <div class="row">
+      <div class="small-6 columns">
+        <button class="btn small green" ng-click="save()"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn small blue" ng-click="save_and_add()"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
+        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i><span translate>Cansel</span></button>
+      </div>
+  </div>
+</div>

@@ -20,10 +20,13 @@
 module RedBase
   module Generators
     class JsScaffoldGenerator < Rails::Generators::Base
+
+      include ActionView::Helpers::TextHelper
+
       source_root File.expand_path('../templates', __FILE__)
 
       argument :resource_name, :type => :string, :required => true
-      argument :fields, type: :array, default: [], banner: "fields[:types]"
+      argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
 
       desc "Create a new resource for client side application"
       def create_module
@@ -43,6 +46,14 @@ module RedBase
           return "#{path_parts(0..-2).join("/")}/#{path_parts[-1].underscore}"
         end
         resource_name.underscore
+      end
+
+      def fields
+        fields = []
+        resource_fields.each do |field|
+          fields << field.split(":")
+        end
+        fields
       end
 
       def resource
