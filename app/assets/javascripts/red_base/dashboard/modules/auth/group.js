@@ -56,13 +56,15 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular", functi
             query.push(group.id);
         });
 
-        API.all("groups").customDELETE(query.join(",")).then(function(data) {
+        API.all("groups").customDELETE(query.join(","))
+            .then(function(data) {
 
-            $scope.groups = _.filter($scope.groups, function(x){
-                return !(query.indexOf(x.id) != -1);
-            });
-            success_message(data.msg);
-        });
+                $scope.groups = _.filter($scope.groups, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
 
     };
 
@@ -71,10 +73,7 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular", functi
         .then(function(data){
             $scope.groups = data;
         })
-        .catch(function(error){
-            console.log(error.data);
-            error_message(error.data.error);
-        });
+        .catch(catch_error);
 
 }]);
 
@@ -108,7 +107,8 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
                     $scope.new_name = data.name;
                     $scope.selected_perms = data.permissions;
                     $scope.$emit("update_perms");
-                });
+                })
+                .catch(catch_error);
     }
 
 
@@ -116,7 +116,8 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
             .then(function(data){
                 $scope.permissions = data;
                 $scope.$emit("update_perms");
-            });
+            })
+            .catch(catch_error);
 
 
     $scope.select_permission = function(perm){
@@ -153,22 +154,20 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
         var group = {name: $scope.new_name,
                      permissions: permissions};
         if ($scope.obj_id) {
-            API.one("groups", $scope.obj_id).patch(group).then(function(){
-                success_message(gettext("Group updated successfully."));
-                $location.path("/auth/groups");
-            });
+            API.one("groups", $scope.obj_id).patch(group)
+                .then(function(){
+                    success_message(gettext("Group updated successfully."));
+                    $location.path("/auth/groups");
+                })
+                .catch(catch_error);
         }
         else {
             API.all("groups").post(group).then(function(){
                 success_message(gettext("Group created successfully."));
                 $location.path("/auth/groups");
 
-            });
+            }).catch(catch_error);
         }
 
     };
-}]);
-
-Group.controller("EditGroupController",[function($scope, $routeParams){
-
 }]);
