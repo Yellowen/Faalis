@@ -29,9 +29,9 @@ User.config(["$routeProvider", function($routeProvider, APIProvider){
             templateUrl: template("auth/users/new"),
             controller: "AddUsersController"
         }).
-        when("/auth/users/edit/:id",{
+        when("/auth/users/:id/edit",{
             templateUrl: template("auth/users/new"),
-            controller: "EditUsersController"
+            controller: "AddUsersController"
         });
 }]);
 
@@ -59,7 +59,7 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
             query.push(user.id);
         });
 
-        API.all("users").customDELETE("", {id: query.join(",")}).then(function() {
+        API.several("users", 2, 4).remove().then(function() {//.customDELETE("", {id: query.join(",")})
 
             query.forEach(function(x){
                 $scope.users = _.without($scope.users, x);
@@ -71,15 +71,46 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular","$location",function($scope, API){
+User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $routeParams, gettext){
 
     API.all("groups").getList().then(
         function(data){
             $scope.groups = data;
         });
+    $scope.obj_id = null;
 
+    console.log( $routeParams );
+    if("id" in $routeParams){
+        console.log( "_________2_________" );
+        $scope.obj_id = $routeParams.id;
+        var obj = API.one("users", $scope.obj_id).get()
+                .then(function(data){
+                    $scope.first_name = data.first_name;
+                    $scope.last_name = data.last_name;
+                    $scope.email = data.email;
+                });
+    }
     $scope.save = function() {
-        API.all("users").post($scope.user);
+        var user = {
+            first_name: $scope.first_name,
+            last_name: $scope.last_name,
+            email: $scope.email
+        };
+
+        if ($scope.obj_id){
+
+            API.one("users",$scope.obj_id).patch(user).then(function(){
+                success_message(gettext("User updated successfully."));
+                $location.path("/auth/user");
+                });
+        }else{
+           console.log( "__________________" );
+
+            API.all("users").post($scope.user).then(function(){
+                success_message(gettext("User created successfully."));
+                $location.path("/auth/users");
+            });
+        }
     };
 
     $scope.cansel = function(){
