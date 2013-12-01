@@ -10,26 +10,34 @@ module RedBase
     end
 
     def show
-
+      @user = User.find(params[:id])
     end
 
     def distroy
     end
 
-    def edit
+    def update
+      group = Group.find(params[:group])
+      @user = User.update(params[:id])
+      @user.update({
+                     first_name: params[:first_name],
+                     last_name: params[:last_name],
+                     email: params[:email],
+                     password: params[:password],
+                     group: group,
+                   })
     end
 
     def create
-      puts "################################################"
       group = Group.find(params[:group])
       if group
-      @user = User.create!({
-                             first_name: params[:first_name],
-                             last_name: params[:last_name],
-                             email: params[:email],
-                             password: params[:password],
-                             group: group,
-                           })
+        @user = User.create!({
+                               first_name: params[:first_name],
+                               last_name: params[:last_name],
+                               email: params[:email],
+                               password: params[:password],
+                               group: group,
+                             })
       end
     end
   end
