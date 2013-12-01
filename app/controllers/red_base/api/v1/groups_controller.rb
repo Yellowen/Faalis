@@ -9,12 +9,15 @@ module RedBase
     # GET /api/v1/groups
     def index
       @groups = Group.includes(:permissions).all
+      authorize! :read, @groups
     end
 
     def create
+      authorize! :create, RedBase::Group
+
       permissions = [];
 
-      params[:permissions].each do |perm_string|
+      (params[:permissions] || []).each do |perm_string|
         perm, model = perm_string.split "|"
         permission = Permission.find_or_create_by_model_and_permission_type(model, perm)
         permissions << permission
@@ -29,26 +32,30 @@ module RedBase
 
     def show
       @group = Group.find(params[:id])
+      authorize! :read, @group
     end
 
     def update
-      permissions = [];
 
-      params[:permissions].each do |perm_string|
+      @group = Group.find(params[:id])
+      authorize! :update, @group
+
+      permissions = [];
+      (params[:permissions] || []).each do |perm_string|
         perm, model = perm_string.split "|"
         permission = Permission.find_or_create_by_model_and_permission_type(model, perm)
         permissions << permission
       end
 
-      @group = Group.update(params[:id], :name => params[:name],
-                            :permissions => permissions)
-    end
-
-    def new
+      @group.update(:name => params[:name],
+                    :permissions => permissions)
     end
 
     def destroy
-      puts ">>>> ", params
+      ids = params[:id].split(",")
+      @groups = Group.where(:id => ids)
+      authorize! :destory, @groups
+      @groups.destroy_all
     end
   end
 

@@ -57,8 +57,16 @@ function show_error_queue(){
     }
 }
 
+/*
+ * Catch the remote api error
+ */
+function catch_error(error){
+            console.log(error.data.error);
+            error_message(error.data.error);
+};
 
 $(function(){
     $("#flash").on("click", hide_flash);
     show_error_queue();
 });
+]

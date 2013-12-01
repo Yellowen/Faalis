@@ -23,6 +23,7 @@ require 'zurb-foundation'
 require "font-awesome-rails"
 require "devise"
 require "warden"
+require "cancan"
 
 
 module RedBase
