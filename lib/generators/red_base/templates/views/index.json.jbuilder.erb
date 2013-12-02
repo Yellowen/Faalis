@@ -1,4 +1,3 @@
 json.array! @<%= resource.pluralize.underscore %> do |<%= resource.underscore %>|
-  <% i = 0 %>
-  json.extract! group, :id, <% fields.each do |name, type| %>:<%= name %> <% i += 1 %><% if i < fields.length %>,<% end %><% end %>
+  json.extract! <%= resource.underscore %>, :id,<%= fields_as_params %>
 end

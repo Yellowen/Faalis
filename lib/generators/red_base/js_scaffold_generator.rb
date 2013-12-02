@@ -39,6 +39,11 @@ module RedBase
         template "angularjs/details.html.erb", "app/assets/templates/#{resource.underscore}/details.html"
 
         template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
+        template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"
+        template "views/create.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/create.json.jbuilder"
+        template "views/destroy.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/destroy.json.jbuilder"
+        template "views/update.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/update.json.jbuilder"
+
       end
 
       def create_api
@@ -63,14 +68,6 @@ module RedBase
         resource_name.pluralize.underscore
       end
 
-      def fields
-        fields = []
-        resource_fields.each do |field|
-          fields << field.split(":")
-        end
-        fields
-      end
-
       def resource
         path_parts = resource_name.split("/")
         if path_parts.length > 1
@@ -86,6 +83,65 @@ module RedBase
       def angularjs_app_path
         path = RedBase::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
         "app/assets/javascripts/#{path}/"
+      end
+
+
+      def fields
+        fields = []
+        resource_fields.each do |field|
+          name, type, to = field.split(":")
+          if ["belongs_to", "has_many"].include? type
+            type = Relation.new(type, to)
+          end
+
+          fields << [name, type]
+        end
+        fields
+      end
+
+      # Return an string to use as a function parameters each
+      # field appears as symbol
+      def fields_as_params
+        result = ""
+        field_num = 0
+        fields.each do |name, type|
+
+          unless ["belongs_to", "has_many"].include? type
+            result += " :#{name}"
+            field_num += 1
+            if field_num < fields.length
+              result += ","
+            end
+          end
+
+        end
+      end
+
+
+      class Relation < String
+        attr_accessor :to
+
+        def initialize(value, to_)
+          super(value)
+          self.to = to_
+        end
+
+        def resource_name
+          to.split("/").last
+        end
+
+        def restangular
+          result = "API"
+          to.split("/").each do |resource|
+            result = "#{result}.all(\"#{resource}\")"
+          end
+          result
+        end
+
+        def get_list
+          "#{restangular}.getList()"
+        end
+
       end
     end
   end

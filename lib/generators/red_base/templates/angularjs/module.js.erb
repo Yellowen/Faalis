@@ -95,6 +95,13 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     $scope.editing = false;
     $scope.obj_id = null;
+    <% fields.each do |name, type| %>
+    <% if ["belongs_to", "has_many"].include? type %>
+    <%= type.get_list %>.then(function(data){
+        $scope.<%= type.resource_name %> = data;
+    }).catch(catch_error);
+        <% end %>
+    <% end %>
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
