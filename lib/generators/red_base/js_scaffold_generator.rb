@@ -52,6 +52,7 @@ module RedBase
 
       private
 
+      # Path to the resource
       def resource_path
         path_parts = resource_name.split("/")
         if path_parts.length > 1
@@ -60,6 +61,7 @@ module RedBase
         resource_name.underscore
       end
 
+      # Url of resource
       def resource_url
         path_parts = resource_name.split("/")
         if path_parts.length > 1
@@ -85,7 +87,8 @@ module RedBase
         "app/assets/javascripts/#{path}/"
       end
 
-
+      # An array of fields like
+      # [name, type]
       def fields
         fields = []
         resource_fields.each do |field|
@@ -103,6 +106,7 @@ module RedBase
       # field appears as symbol
       def fields_as_params
         result = ""
+
         field_num = 0
         fields.each do |name, type|
 
@@ -115,6 +119,15 @@ module RedBase
           end
 
         end
+
+        if result
+          result = ", #{result}"
+          if result[-1] == ","
+            result = result[0..-2]
+          end
+        end
+
+        result
       end
 
 

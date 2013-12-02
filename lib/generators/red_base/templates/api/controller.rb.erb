@@ -1,15 +1,15 @@
-# require_dependency "red_base/api_controller"
-
 class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
 
   load_and_authorize_resource :except => [:destory]
-
+  before_filter :build_resource, :only => :create
 
   # GET /api/v1/<%= resource.pluralize.underscore %>
   def index
   end
 
   def create
+    <% fields.each do |name, type| %><% if ["belongs_to", "has_many"].include? type %>@<%= resource.underscore %>.<%= name %>_id = params[:<%= name %>]
+    <% end %><% end %>
     if @<%= resource.underscore %>.save
         @<%= resource.underscore %>
     else
@@ -21,7 +21,7 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
   end
 
   def update
-    if @<%= resource.underscore %>.update
+    if @<%= resource.underscore %>.update(resource_params)
         @<%= resource.underscore %>
     else
         @<%= resource.underscore %>.errors
@@ -30,8 +30,17 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
 
   def destroy
     ids = params[:id].split(",")
-    @<%= resource.pluralize.underscore %> = <%= resource.pluralize %>.where(:id => ids)
+    @<%= resource.pluralize.underscore %> = ::<%= resource %>.where(:id => ids)
     authorize! :destory, @<%= resource.pluralize.underscore %>
-    @@<%= resource.pluralize.underscore %>.destroy_all
+    @<%= resource.pluralize.underscore %>.destroy_all
   end
+
+  def build_resource
+    @<%= resource.underscore %> = ::<%= resource %>.new(resource_params)
+  end
+
+  def resource_params
+    params.permit(:id<%= fields_as_params %>)
+  end
+
 end

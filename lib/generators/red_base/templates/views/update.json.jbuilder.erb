@@ -1,4 +1,1 @@
-json.extract! @group, :id, :name
-json.permissions @group.permissions do |json, permission|
-  json.(permission, :string_repr)
-end
+json.extract! @<%= resource.underscore %>, :id<%= fields_as_params %>
