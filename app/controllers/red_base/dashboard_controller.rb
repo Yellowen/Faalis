@@ -10,8 +10,12 @@ module RedBase
 
     respond_to :json, :html
 
+    def jstemplate
+      render "angularjs_templates/#{params[:path]}"
+    end
 
     def index
+      @jstemplates_path = "/templates"
     end
 
     def modules
@@ -32,4 +36,5 @@ module RedBase
       respond_with dashboard_modules
     end
   end
+
 end

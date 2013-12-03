@@ -1,4 +1,6 @@
 RedBase::Engine.routes.draw do
+  get "templates/*path" => "dashboard#jstemplate"
+
   # Authentications
   devise_for :users, {
     :class_name => "RedBase::User",
@@ -17,6 +19,7 @@ RedBase::Engine.routes.draw do
     root :to => "home#index"
   end
 
+
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       get "permissions", :to => "permissions#index"
@@ -24,7 +27,6 @@ RedBase::Engine.routes.draw do
       resources :users
     end
   end
-  #mount ::API::ApplicationAPI => "api"
 
 
 end

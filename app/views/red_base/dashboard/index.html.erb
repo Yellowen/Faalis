@@ -1,6 +1,6 @@
 <div id="content" class="">
   <header>
-    <div ng-include="'/assets/nav.html'">
+    <div ng-include="'<%= @jstemplates_path %>/nav.html'">
     </div>
   </header>
 
@@ -8,7 +8,7 @@
     <div class="row">
 
       <aside class="modulebar small-2 columns">
-        <div ng-include="'/assets/modules.html'">
+        <div ng-include="'<%= @jstemplates_path %>/modules.html'">
         </div>
       </aside>
 
