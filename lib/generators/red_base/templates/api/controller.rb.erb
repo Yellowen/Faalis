@@ -1,15 +1,12 @@
 class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
-
-  load_and_authorize_resource :except => [:destory]
   before_filter :build_resource, :only => :create
+  load_and_authorize_resource :except => [:destory]
 
   # GET /api/v1/<%= resource.pluralize.underscore %>
   def index
   end
 
   def create
-    <% fields.each do |name, type| %><% if ["belongs_to", "has_many"].include? type %>@<%= resource.underscore %>.<%= name %>_id = params[:<%= name %>]
-    <% end %><% end %>
     if @<%= resource.underscore %>.save
         @<%= resource.underscore %>
     else
@@ -40,7 +37,7 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
   end
 
   def resource_params
-    params.permit(:id<%= fields_as_params %>)
+    params.require(:<%= resource.underscore %>).permit(:id<%= fields_as_params(:relations => true) %>)
   end
 
 end

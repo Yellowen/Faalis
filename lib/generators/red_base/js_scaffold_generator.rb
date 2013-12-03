@@ -50,6 +50,11 @@ module RedBase
         template "api/controller.rb.erb", "app/controllers/api/v1/#{resource.pluralize.underscore}_controller.rb"
       end
 
+      def show_readme
+        readme "js_scaffold.README" if behavior == :invoke
+      end
+
+      # PRIVATES --------------------------------------------
       private
 
       # Path to the resource
@@ -104,24 +109,35 @@ module RedBase
 
       # Return an string to use as a function parameters each
       # field appears as symbol
-      def fields_as_params
+      def fields_as_params(relations: false)
         result = ""
-
         field_num = 0
         fields.each do |name, type|
-
-          unless ["belongs_to", "has_many"].include? type
-            result += " :#{name}"
+          if relations
+            if ["belongs_to", "has_many"].include? type
+              result += " :#{name}_id"
+            else
+              result += " :#{name}"
+            end
             field_num += 1
             if field_num < fields.length
               result += ","
+            end
+
+          else
+            unless ["belongs_to", "has_many"].include? type
+              result += " :#{name}"
+              field_num += 1
+              if field_num < fields.length
+                result += ","
+              end
             end
           end
 
         end
 
         if result
-          result = ", #{result}"
+          result = ",#{result}"
           if result[-1] == ","
             result = result[0..-2]
           end
