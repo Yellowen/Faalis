@@ -34,9 +34,9 @@ module RedBase
       end
 
       def create_template
-        template "angularjs/index.html.erb", "app/assets/templates/#{resource.underscore}/index.html"
-        template "angularjs/new.html.erb", "app/assets/templates/#{resource.underscore}/new.html"
-        template "angularjs/details.html.erb", "app/assets/templates/#{resource.underscore}/details.html"
+        template "angularjs/index.html.erb", "app/angularjs_templates/#{resource.underscore}/index.html"
+        template "angularjs/new.html.erb", "app/angularjs_templates/#{resource.underscore}/new.html"
+        template "angularjs/details.html.erb", "app/angularjs_templates/#{resource.underscore}/details.html"
 
         template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
         template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"

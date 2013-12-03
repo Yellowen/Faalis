@@ -53,7 +53,7 @@ ListView.directive("objectAction", function(){
 /*
  * <list-view></list-view> directive defination
  */
-ListView.directive('listView', function($filter, gettext) {
+ListView.directive('listView', ["$filter", "gettext", function($filter, gettext) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
@@ -291,4 +291,4 @@ ListView.directive('listView', function($filter, gettext) {
         },
         link: link
     };
-});
+}]);
