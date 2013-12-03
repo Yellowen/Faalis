@@ -11,7 +11,7 @@ module RedBase
     respond_to :json, :html
 
     def jstemplate
-      render "angularjs_templates/#{params[:path]}"
+      render :template => "angularjs_templates/#{params[:path]}", :layout => nil
     end
 
     def index
