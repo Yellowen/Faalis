@@ -3,6 +3,10 @@
 RedBase is a ruby on rails engine which provides a very basic web application
 to use with other ruby on rails applications.
 
+== Dependencies
+
+* A rails application with configured RSpec, Capybara, factory_girl
+
 == Installation
 
 1. Add this to your `config/environments/development.rb`
