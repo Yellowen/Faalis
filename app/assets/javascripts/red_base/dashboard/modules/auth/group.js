@@ -99,7 +99,8 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
     });
 
     $scope.obj_id = null;
-    if( "id" in $routeParams ){
+
+    if("id" in $routeParams){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
         var obj = API.one("groups", $scope.obj_id).get()
