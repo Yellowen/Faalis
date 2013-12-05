@@ -10,3 +10,4 @@
 ** TODO Add a initializer script for red_base with all the possible options and comments
 ** TODO add formtastic initializer script to install generator.
 ** TODO Check for admin user only in api interface
+** TODO js_scaffold should add models to red_base.rb in initilizers

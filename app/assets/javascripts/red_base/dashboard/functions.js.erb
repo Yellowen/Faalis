@@ -30,6 +30,7 @@ function camelCase(input) {
  * This function returns the currect path to a template
  */
 function template(path){
+    console.log(templates_path + path + ".html");
     return templates_path + path + ".html";
 }
 
@@ -61,8 +62,14 @@ function show_error_queue(){
  * Catch the remote api error
  */
 function catch_error(error){
-            console.log(error.data.error);
-            error_message(error.data.error);
+    if (error.data.error) {
+        console.log(error.data.error);
+        error_message(error.data.error);
+    }
+    else {
+        console.log("Translate catch_error");
+        error_message("Unkown error: please try again or contact to administrator.");
+    }
 };
 
 $(function(){

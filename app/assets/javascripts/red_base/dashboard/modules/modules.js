@@ -19,13 +19,10 @@
 
 var Modules = angular.module("Modules", ["ngRoute"]);
 
-Modules.config(["$routeProvider", function($routeProvider){
-
-
-}]);
-
 Modules.controller("ModulesController", ["$location", function($location){
-    this.modules = DModules;
+    this.modules = _.filter(DModules, function(module){
+        return module.sidemenu || false;
+    });
 
     this.on_click = function(resource){
         $location.path("/" + resource);

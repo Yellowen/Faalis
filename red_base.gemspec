@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile",
                 "README.rdoc"]
 
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
   s.add_dependency "rails", ">= 4.0.0"
@@ -52,5 +52,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "ruby_parser"
   s.add_development_dependency "rdoc"
+  s.add_development_dependency 'rspec-rails', '~> 3.0.0.beta'
+  s.add_development_dependency "capybara"
+  s.add_development_dependency 'factory_girl_rails'
 
 end

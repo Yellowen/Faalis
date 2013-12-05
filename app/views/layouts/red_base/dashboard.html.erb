@@ -11,6 +11,7 @@
 
   <%= yield %>
 
+  <%= debug I18n.locale %>
   <%= javascript_include_tag RedBase::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>

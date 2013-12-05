@@ -4,23 +4,40 @@
   <legend ng-if="!editing"><span translate>New <%= resource %></span></legend>
   <legend ng-if="editing"><span translate>Edit <%= resource %></span></legend>
 
+  <% first = true %>
   <% fields.each do |field_name, field_type| %>
-    <%= cycle("<div class='row'>", "") %>
-    <div class="small-4 columns <%= cycle("", "small-offset-2") %>">
-      <label translate><%= field_name %> :</label>
-      <input  ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field">
+    <% if first %><div class="row"><% end %>
+      <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
+      <label translate><%= field_name.to_s.capitalize %> :</label>
+      <% case field_type
+         when "belongs_to" %>
+      <select ng-model="<%= field_name %>" name="<%= field_name %>">
+        <option ng-repeat="item in <%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
+      </select>
+      <% when "has_many" %>
+      <select ng-model="<%= field_name %>" name="<%= field_name %>" multiple>
+        <option ng-repeat="item in <%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
+      </select>
+      <% when "text" %>
+      <textarea ng-model="<%= field_name %>"></textarea>
+      <% when "string", nil %>
+      <input  ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field" />
+      <% else %>
+      <input  ng-model="<%= field_name %>" type="<%= field_type %>" class="<%= field_type %>_field" />
+      <% end %>
       <small></small>
-    </div>
-    <%= cycle("", "</div>") %>
+  </div>
+  <% if not first %></div><% end %>
+  <% first = !first %>
   <% end %>
   </fieldset>
 
 
   <div class="row">
       <div class="small-6 columns">
-        <button class="btn small green" ng-click="save()"><i class="fa fa-check"></i> <span translate>Save</span></button>
-        <button class="btn small blue" ng-click="save_and_add()"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
-        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i><span translate>Cansel</span></button>
+        <button class="btn small green" ng-click="save(false)"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn small blue" ng-click="save(true)"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
+        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cansel</span></button>
       </div>
   </div>
 </div>

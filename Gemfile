@@ -14,7 +14,7 @@ gemspec
 # To use debugger
 # gem 'debugger'
 
-#gem "fast_gettext"
-#gem "gettext", :github => "ruby-gettext/gettext", :group => :development, :require => false
-#gem "ruby_parser", :group => :development, :require => false
-#gem 'gettext_i18n_rails'
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "capybara"
+end

@@ -49,7 +49,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     // details_template is the address of template which should load for
     // each item details section
-    $scope.details_template = template("<%= resource.underscore %>/details");
+    $scope.details_template = template("<%= resource_path %>/details");
 
     // Buttons for top of the list-view
     $scope.buttons = [
@@ -57,7 +57,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
             title: gettext("New"),
             icon: "fa fa-plus",
             classes: "btn tiny green",
-            route: "#<%= resource.underscore %>/new"
+            route: "#<%= resource_url %>/new"
 
         }
     ];
@@ -68,14 +68,14 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
     $scope.on_delete = function(items){
 
         var query = [];
-        groups.forEach(function(item){
+        items.forEach(function(item){
             query.push(item.id);
         });
 
         API.all("<%= resource.pluralize.underscore %>").customDELETE(query.join(","))
             .then(function(data) {
 
-                $scope.<%= resource.underscore %> = _.filter($scope.<%= resource.underscore %>, function(x){
+                $scope.<%= resource.pluralize.underscore %> = _.filter($scope.<%= resource.pluralize.underscore %>, function(x){
                     return !(query.indexOf(x.id) != -1);
                 });
                 success_message(data.msg);
@@ -85,7 +85,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     API.all("<%= resource.pluralize.underscore %>").getList()
         .then(function(data){
-            $scope.<%= resource.underscore %> = data;
+            $scope.<%= resource.pluralize.underscore %> = data;
         })
         .catch(catch_error);
 
@@ -95,13 +95,17 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     $scope.editing = false;
     $scope.obj_id = null;
+    <% fields.each do |name, type| %><% if ["belongs_to", "has_many"].include? type %><%= type.get_list %>.then(function(data){
+        $scope.<%= type.resource_name %> = data;
+    }).catch(catch_error);<% end %><% end %>
+
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
         var obj = API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
                 .then(function(data) {
                 <% fields.each do |field_name, field_type| %>
-                    $scope.<%= field_name %> = <% if not ["string", "integer"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
+                    $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
                 })
                 .catch(catch_error);
     }
@@ -112,24 +116,33 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
         $location.path("<%= resource_url %>");
     };
 
-    $scope.save = function(){
-        var <%= resource.underscore %> = {
-            <% fields.each do |field_name, field_type| %>
-                <%= field_name %>: $scope.<%= field_name %>,
-            <% end %>
-        };
+    $scope.save = function(save_another){
+        var <%= resource.underscore %> = {<%= resource.underscore %>: {<% fields.each do |field_name, field_type| %>
+            <% if ["belongs_to", "has_many"].include? field_type %><%= field_name %>_id: $scope.<%= field_name %>,<% else %><%= field_name %>: $scope.<%= field_name %>,<% end %>
+                <% end %>
+        }};
         if ($scope.obj_id) {
             API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
                 .then(function(){
                     success_message(gettext("<%= resource %> updated successfully."));
-                    $location.path("<%= resource_url %>");
+                    if (save_another) {
+                        $(".form input").val("");
+                    }
+                    else {
+                        $location.path("<%= resource_url %>");
+                    }
                 })
                 .catch(catch_error);
         }
         else {
             API.all("<%= resource.pluralize.underscore %>").post(<%= resource.underscore %>).then(function(){
                 success_message(gettext("<%= resource %> created successfully."));
-                $location.path("<%= resource_url %>");
+                if (save_another) {
+                    $(".form input").val("");
+                }
+                else {
+                    $location.path("<%= resource_url %>");
+                }
             }).catch(catch_error);
         }
 

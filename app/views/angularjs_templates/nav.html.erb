@@ -1,6 +1,3 @@
-<% environment.context_class.instance_eval { include ActionView::Helpers::UrlHelper } %>
-<% url = RedBase::Engine.routes.url_helpers %>
-
 <div class="">
   <div class="">
     <nav class="clearpadding top-bar">
@@ -30,9 +27,9 @@
           <li class="has-dropdown"><a href="#">User{{ current_user.first_name }} {{ current_user.last_name }}</a>
 
             <ul class="dropdown">
-              <li><a href="<%= url.dashboard_path %>" translate>Dashboard</a></li>
+              <li><a href="<%= red_base.dashboard_path %>" translate>Dashboard</a></li>
               <li><a href="" translate>Change Password</a></li>
-              <li><a href="<%= url.destroy_user_session_path %>" data-method="delete" translate>Sign Out</a></li>
+              <li><a href="<%= red_base.destroy_user_session_path %>" data-method="delete" translate>Sign Out</a></li>
             </ul>
           </li>
         </ul>

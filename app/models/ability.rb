@@ -31,7 +31,7 @@ class Ability
 
     # IMPORTANT: Remove this snippet with more suitable one
     # TODO: Remove this snippet with more suitable one
-    puts ">>>>> ", user, user.to_json
+
     if user.group_id == 1
       can :manage, :all
     end

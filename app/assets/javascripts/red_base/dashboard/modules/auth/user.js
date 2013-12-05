@@ -18,7 +18,7 @@
 ----------------------------------------------------------------------------- */
 var User = angular.module("User", ["ListView"]);
 
-User.config(["$routeProvider", function($routeProvider, APIProvider){
+User.config(["$routeProvider", function($routeProvider){
 
     $routeProvider.
         when("/auth/users", {
@@ -114,8 +114,4 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
     $scope.cansel = function(){
         $(".form input").val("");
     };
-}]);
-
-User.controller("EditUsersController", [function($scope, API){
-
 }]);

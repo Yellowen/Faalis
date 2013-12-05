@@ -34,19 +34,30 @@ module RedBase
       end
 
       def create_template
-        template "angularjs/index.html.erb", "app/assets/templates/#{resource.underscore}/index.html"
-        template "angularjs/new.html.erb", "app/assets/templates/#{resource.underscore}/new.html"
-        template "angularjs/details.html.erb", "app/assets/templates/#{resource.underscore}/details.html"
+        template "angularjs/index.html.erb", "app/angularjs_templates/#{resource.underscore}/index.html"
+        template "angularjs/new.html.erb", "app/angularjs_templates/#{resource.underscore}/new.html"
+        template "angularjs/details.html.erb", "app/angularjs_templates/#{resource.underscore}/details.html"
 
         template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
+        template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"
+        template "views/create.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/create.json.jbuilder"
+        template "views/destroy.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/destroy.json.jbuilder"
+        template "views/update.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/update.json.jbuilder"
+
       end
 
       def create_api
         template "api/controller.rb.erb", "app/controllers/api/v1/#{resource.pluralize.underscore}_controller.rb"
       end
 
+      def show_readme
+        readme "js_scaffold.README" if behavior == :invoke
+      end
+
+      # PRIVATES --------------------------------------------
       private
 
+      # Path to the resource
       def resource_path
         path_parts = resource_name.split("/")
         if path_parts.length > 1
@@ -55,20 +66,13 @@ module RedBase
         resource_name.underscore
       end
 
+      # Url of resource
       def resource_url
         path_parts = resource_name.split("/")
         if path_parts.length > 1
           return "#{path_parts(0..-2).join("/")}/#{path_parts[-1].pluralize.underscore}"
         end
         resource_name.pluralize.underscore
-      end
-
-      def fields
-        fields = []
-        resource_fields.each do |field|
-          fields << field.split(":")
-        end
-        fields
       end
 
       def resource
@@ -86,6 +90,87 @@ module RedBase
       def angularjs_app_path
         path = RedBase::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
         "app/assets/javascripts/#{path}/"
+      end
+
+      # An array of fields like
+      # [name, type]
+      def fields
+        fields = []
+        resource_fields.each do |field|
+          name, type, to = field.split(":")
+          if ["belongs_to", "has_many"].include? type
+            type = Relation.new(type, to)
+          end
+
+          fields << [name, type]
+        end
+        fields
+      end
+
+      # Return an string to use as a function parameters each
+      # field appears as symbol
+      def fields_as_params(relations: false)
+        result = ""
+        field_num = 0
+        fields.each do |name, type|
+          if relations
+            if ["belongs_to", "has_many"].include? type
+              result += " :#{name}_id"
+            else
+              result += " :#{name}"
+            end
+            field_num += 1
+            if field_num < fields.length
+              result += ","
+            end
+
+          else
+            unless ["belongs_to", "has_many"].include? type
+              result += " :#{name}"
+              field_num += 1
+              if field_num < fields.length
+                result += ","
+              end
+            end
+          end
+
+        end
+
+        if result
+          result = ",#{result}"
+          if result[-1] == ","
+            result = result[0..-2]
+          end
+        end
+
+        result
+      end
+
+
+      class Relation < String
+        attr_accessor :to
+
+        def initialize(value, to_)
+          super(value)
+          self.to = to_
+        end
+
+        def resource_name
+          to.split("/").last
+        end
+
+        def restangular
+          result = "API"
+          to.split("/").each do |resource|
+            result = "#{result}.all(\"#{resource}\")"
+          end
+          result
+        end
+
+        def get_list
+          "#{restangular}.getList()"
+        end
+
       end
     end
   end

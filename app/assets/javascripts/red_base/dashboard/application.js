@@ -10,15 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require red_base/dashboard/variables
-//= require jquery
-//= require jquery_ujs
-//= require foundation
-//= require red_base/dashboard/lib/angular
-//= require red_base/dashboard/lib/angular-route
-//= require red_base/dashboard/lib/angular-animate
-//= require red_base/dashboard/lib/angular-gettext
-//= require red_base/dashboard/lib/lodash.underscore
 //= require_self
 //= require red_base/dashboard/init
 //= require red_base/dashboard/app
