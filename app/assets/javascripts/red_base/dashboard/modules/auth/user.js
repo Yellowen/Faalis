@@ -99,7 +99,6 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
             group: $scope.group
         };
         if ($scope.obj_id){
-
             API.one("users",$scope.obj_id).patch(user).then(function(){
                 success_message(gettext("User updated successfully."));
                 $location.path("/auth/users");

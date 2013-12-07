@@ -19,7 +19,8 @@ module RedBase
 
     def update
       group = Group.find(params[:group])
-      @user = User.update(params[:id])
+      @user = User.find(params[:id])
+      authorize! :update, @user
       @user.update({
                      first_name: params[:first_name],
                      last_name: params[:last_name],
