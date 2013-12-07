@@ -11,6 +11,7 @@ module RedBase
 
     def show
       @user = User.find(params[:id])
+      authorize! :read, @user
     end
 
     def distroy
@@ -29,6 +30,7 @@ module RedBase
     end
 
     def create
+      puts "##################################"
       group = Group.find(params[:group])
       if group
         @user = User.create!({

@@ -71,13 +71,12 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $routeParams, gettext){
+User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $location , $routeParams, gettext){
 
     API.all("groups").getList().then(
         function(data){
             $scope.groups = data;
         });
-    console.dir( $routeParams);
 
     $scope.obj_id = null;
     if("id" in $routeParams){
@@ -87,27 +86,29 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
                     $scope.first_name = data.first_name;
                     $scope.last_name = data.last_name;
                     $scope.email = data.email;
+                    $scope.group = data.group;
+                    $scope.password = data.password;
                 });
     }
     $scope.save = function() {
         var user = {
             first_name: $scope.first_name,
             last_name: $scope.last_name,
-            email: $scope.email
+            email: $scope.email,
+            password: $scope.password,
+            group: $scope.group
         };
         if ($scope.obj_id){
 
             API.one("users",$scope.obj_id).patch(user).then(function(){
                 success_message(gettext("User updated successfully."));
-                $location.path("/auth/user");
+                $location.path("/auth/users");
                 });
         }else{
-           console.log( "__________________" );
-
-            API.all("users").post($scope.user).then(function(){
-                success_message(gettext("User created successfully."));
+            API.all("users").post(user).then(function(){
+                success_message(gettext("User created Successfully"));
                 $location.path("/auth/users");
-            });
+            }).catch(catch_error);
         }
     };
 
