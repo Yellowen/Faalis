@@ -77,11 +77,10 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
         function(data){
             $scope.groups = data;
         });
-    $scope.obj_id = null;
+    console.dir( $routeParams);
 
-    console.log( $routeParams );
+    $scope.obj_id = null;
     if("id" in $routeParams){
-        console.log( "_________2_________" );
         $scope.obj_id = $routeParams.id;
         var obj = API.one("users", $scope.obj_id).get()
                 .then(function(data){
@@ -96,7 +95,6 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
             last_name: $scope.last_name,
             email: $scope.email
         };
-
         if ($scope.obj_id){
 
             API.one("users",$scope.obj_id).patch(user).then(function(){
