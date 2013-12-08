@@ -21,17 +21,19 @@ module RedBase
       group = Group.find(params[:group])
       @user = User.find(params[:id])
       authorize! :update, @user
-      @user.update({
+      user_fields = {
                      first_name: params[:first_name],
                      last_name: params[:last_name],
                      email: params[:email],
-                     password: params[:password],
                      group: group,
-                   })
+                   }
+      if params[:password]
+        user_fields["password"] =  params[:password]
+      end
+      @user.update(user_fields)
     end
 
     def create
-      puts "##################################"
       group = Group.find(params[:group])
       if group
         @user = User.create!({
