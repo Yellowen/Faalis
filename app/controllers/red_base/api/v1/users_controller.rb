@@ -14,7 +14,7 @@ module RedBase
       authorize! :read, @user
     end
 
-    def distroy
+    def destroy
       ids = params[:id].split(",")
       @users = User.where(:id => ids)
       authorize! :destory, @groups

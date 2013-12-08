@@ -53,20 +53,25 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
         }
     ];
 
+
     $scope.on_delete = function(users){
         var query = [];
         users.forEach(function(user){
             query.push(user.id);
         });
 
-        API.several("users", 2, 4).remove().then(function() {//.customDELETE("", {id: query.join(",")})
+        API.all("users").customDELETE(query.join(","))
+            .then(function(data) {
 
-            query.forEach(function(x){
-                $scope.users = _.without($scope.users, x);
-            });
+                $scope.users = _.filter($scope.users, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
 
-        });
     };
+
 
 }]);
 
