@@ -5,7 +5,17 @@ to use with other ruby on rails applications.
 
 == Dependencies
 
-* A rails application with configured RSpec, Capybara, factory_girl
+* Add this to your Gemfile:
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "capybara"
+  gem "factory_girl_rails", "~> 4.0", :require => false
+  gem "database_cleaner"
+  gem "email_spec"
+  gem "cucumber-rails", :require => false
+  gem "launchy"
+end
 
 == Installation
 
