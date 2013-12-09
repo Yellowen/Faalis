@@ -2,7 +2,6 @@ require_dependency "red_base/api_controller"
 
 module RedBase
   class API::V1::GroupsController < APIController
-
     # TODO: Use strong params
     # TODO: implement authorization
 
@@ -10,6 +9,7 @@ module RedBase
     def index
       @groups = Group.includes(:permissions).all
       authorize! :read, @groups
+      respond_with(@groups)
     end
 
     def create
@@ -27,12 +27,14 @@ module RedBase
                                name: params[:name],
                                permissions: permissions,
                              })
+      respond_with(@group)
 
     end
 
     def show
       @group = Group.find(params[:id])
       authorize! :read, @group
+      respond_with(@group)
     end
 
     def update
@@ -49,6 +51,7 @@ module RedBase
 
       @group.update(:name => params[:name],
                     :permissions => permissions)
+      respond_with(@group)
     end
 
     def destroy

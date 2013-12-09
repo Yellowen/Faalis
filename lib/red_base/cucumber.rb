@@ -16,36 +16,7 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-require_dependency "red_base/api_controller"
 
-
-class RedBase::APIController < ApplicationController
-  respond_to :json
-
-  before_filter :authenticate_user!
-
-  protect_from_forgery
-
-  after_filter :set_csrf_cookie_for_ng
-
-  def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
-
-  rescue_from CanCan::AccessDenied do |exception|
-
-    render :status => 403, :json => {
-      :error => _("You don't have access to this page"),
-      :orig_msg => exception.message,
-      :action => exception.action,
-    }
-  end
-
-  protected
-
-  def verified_request?
-    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-  end
-
-
-end
+# Some useful steps for cucumber scenarios
+require 'red_base/cucumber/auth'
+require 'red_base/cucumber/urls'
