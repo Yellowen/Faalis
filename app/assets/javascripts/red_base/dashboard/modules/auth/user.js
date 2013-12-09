@@ -53,31 +53,35 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
         }
     ];
 
+
     $scope.on_delete = function(users){
         var query = [];
         users.forEach(function(user){
             query.push(user.id);
         });
 
-        API.several("users", 2, 4).remove().then(function() {//.customDELETE("", {id: query.join(",")})
+        API.all("users").customDELETE(query.join(","))
+            .then(function(data) {
 
-            query.forEach(function(x){
-                $scope.users = _.without($scope.users, x);
-            });
+                $scope.users = _.filter($scope.users, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
 
-        });
     };
+
 
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $routeParams, gettext){
+User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $location , $routeParams, gettext){
 
     API.all("groups").getList().then(
         function(data){
             $scope.groups = data;
         });
-    console.dir( $routeParams);
 
     $scope.obj_id = null;
     if("id" in $routeParams){
@@ -87,27 +91,28 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
                     $scope.first_name = data.first_name;
                     $scope.last_name = data.last_name;
                     $scope.email = data.email;
+                    $scope.group = data.group;
+                    $scope.password = data.password;
                 });
     }
     $scope.save = function() {
         var user = {
             first_name: $scope.first_name,
             last_name: $scope.last_name,
-            email: $scope.email
+            email: $scope.email,
+            password: $scope.password,
+            group: $scope.group
         };
         if ($scope.obj_id){
-
             API.one("users",$scope.obj_id).patch(user).then(function(){
                 success_message(gettext("User updated successfully."));
-                $location.path("/auth/user");
+                $location.path("/auth/users");
                 });
         }else{
-           console.log( "__________________" );
-
-            API.all("users").post($scope.user).then(function(){
-                success_message(gettext("User created successfully."));
+            API.all("users").post(user).then(function(){
+                success_message(gettext("User created Successfully"));
                 $location.path("/auth/users");
-            });
+            }).catch(catch_error);
         }
     };
 

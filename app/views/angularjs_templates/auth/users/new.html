@@ -6,28 +6,28 @@
     <div class="row">
       <div class="small-6 columns">
         <label for="first_name" translate>First Name :</label>
-        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required ng-model="user.first_name">
+        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required ng-model="first_name">
       </div>
 
       <div class="small-6 columns">
         <label for="last_name" translate>Last Name :</label>
-        <input  id="last_name" type="text" name="last_name"  class="small-8 columns" required ng-model="user.last_name">
+        <input  id="last_name" type="text" name="last_name"  class="small-8 columns" required ng-model="last_name">
       </div>
 
       <div class="small-6 columns float-left">
         <label for="password" translate>Password :</label>
-        <input  id="passwprd" type="password" name="password" class="small-8 columns" required ng-model="user.password">
+        <input  id="passwprd" type="password" name="password" class="small-8 columns" required ng-model="password">
       </div>
 
       <div class="small-6 columns float-left">
         <label for="email" translate>E-mail :</label>
-        <input  id="email" type="email" name="email" class="small-8 columns" required ng-model="user.email">
+        <input  id="email" type="email" name="email" class="small-8 columns" required ng-model="email">
       </div>
 
       <div class="small-6 columns float-left">
         <label for="group" translate>Group :</label>
-        <select  id="group" name="group" class="small-8 columns" required ng-model="user.group">
-          <option ng-model="group" ng-repeat="group in groups" value="{{group.id}}">{{group.name}}</option>
+        <select  id="group" name="group" class="small-8 columns" required ng-model="group">
+          <option  ng-repeat="item in groups" value="{{item.id}}" ng-select="item.id === group">{{item.name}}</option>
         </select>
       </div>
 
