@@ -4,6 +4,7 @@ module RedBase
   class API::V1::UsersController < ApplicationController
     def index
       @users = User.all
+      authorize! :read, @users
       respond_to do |format|
         format.json { render :json => @users}
       end
@@ -38,6 +39,7 @@ module RedBase
     end
 
     def create
+      authoriz! :create, RedBase::User
       group = Group.find(params[:group])
       if group
         @user = User.create!({
