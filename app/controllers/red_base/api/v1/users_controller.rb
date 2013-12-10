@@ -4,7 +4,7 @@ module RedBase
   class API::V1::UsersController < APIController
 
     def index
-      @users = User.all
+      @users = User.joins(:group).all
       authorize! :read, @users
       respond_with(@users)
     end
