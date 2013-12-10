@@ -24,9 +24,6 @@ Then /^I should be on (.+?)$/ do |page_name|
 end
 
 Then(/^I should redirect to (.+?)$/) do |path_name|
-  #puts "<<<<<<< ", current_path, page.driver.headers('HTTP_REFERER')
-  #request.headers['HTTP_REFERER'].should_not be_nil
-  #page.status_code.should == 302
   Then "I should be on #{path_name}"
 end
 
@@ -39,6 +36,8 @@ When(/^I go to (.+)$/) do |path_name|
     visit "#{path_to(path_name)}"
   rescue ActionController::UnknownFormat => e
     @exception = e
+  rescue AbstractController::ActionNotFound => e
+    @exception = e
   end
 end
 
@@ -46,6 +45,8 @@ When(/^format is (.+) and I go to (.+)$/) do |format, path_name|
   begin
     visit "#{path_to(path_name)}.#{format}"
   rescue ActionController::UnknownFormat => e
+    @exception = e
+  rescue AbstractController::ActionNotFound => e
     @exception = e
   end
 end
@@ -57,7 +58,19 @@ Then(/^response type should be (.+?)$/) do |response_type|
    page.response_headers['Content-Type'].should include(response_type)
 end
 
-Then(/^I should get unknown format exception$/) do
-  @exception.should_not be_nil
-  @exception.class.should be(ActionController::UnknownFormat)
+
+When(/^format is (.+) and I send (.+) to (.+) with\:$/) do |format, method, path_name, raw_data|
+  path = "#{path_to(path_name)}.#{format}"
+  data = ""
+  raw_data.split(/\n/).each do |phrase|
+    data += phrase.strip
+  end
+
+  send(method, path, data)
+
+end
+
+When(/^format is (.+) and I send delete to (.+)$/) do |format, path_name|
+  path = "#{path_to(path_name)}.#{format}"
+  delete(path)
 end

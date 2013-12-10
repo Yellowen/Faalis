@@ -18,7 +18,13 @@
 # -----------------------------------------------------------------------------
 
 # Some useful steps for cucumber scenarios
-require 'red_base/cucumber/auth'
-require 'red_base/cucumber/urls'
-require 'red_base/cucumber/interaction'
-require 'red_base/cucumber/exceptions'
+
+Then(/^I should get unknown format exception$/) do
+  @exception.should_not be_nil
+  @exception.class.should be(ActionController::UnknownFormat)
+end
+
+Then(/^action should not be found$/) do
+  @exception.should_not be_nil
+  @exception.class.should be(AbstractController::ActionNotFound)
+end

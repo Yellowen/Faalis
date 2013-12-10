@@ -32,7 +32,7 @@ class Ability
     # IMPORTANT: Remove this snippet with more suitable one
     # TODO: Remove this snippet with more suitable one
 
-    if user.group_id == 1
+    if user and user.group_id == 1
       can :manage, :all
     end
   end
