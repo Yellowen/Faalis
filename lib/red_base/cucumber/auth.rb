@@ -16,36 +16,27 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-require_dependency "red_base/api_controller"
+
+# Some useful steps for cucumber scenarios
+Given(/^I am not authenticated$/) do
+  page.driver.submit :delete, "/users/sign_out", {}
+end
 
 
-class RedBase::APIController < ApplicationController
-  respond_to :json
+Given(/^I am authenticated$/) do
+  group = RedBase::Group.new(:name => "admin")
+  group.save!
+  email = 'admin@example.com'
+  password = '123123123'
+  RedBase::User.new(:email => email, :password => password, :password_confirmation => password,
+           :group => group).save!
 
-  before_filter :authenticate_user!
+  visit '/users/sign_in'
+  fill_in "user_email", :with => email
+  fill_in "user_password", :with => password
+  click_button "Sign in"
+end
 
-  protect_from_forgery
-
-  after_filter :set_csrf_cookie_for_ng
-
-  def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
-
-  rescue_from CanCan::AccessDenied do |exception|
-
-    render :status => 403, :json => {
-      :error => _("You don't have access to this page"),
-      :orig_msg => exception.message,
-      :action => exception.action,
-    }
-  end
-
-  protected
-
-  def verified_request?
-    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-  end
-
-
+Then(/^I should be in sign in page$/) do
+  should have_content("Sign in")
 end
