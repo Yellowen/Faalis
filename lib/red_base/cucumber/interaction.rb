@@ -18,7 +18,10 @@
 # -----------------------------------------------------------------------------
 
 # Some useful steps for cucumber scenarios
-require 'red_base/cucumber/auth'
-require 'red_base/cucumber/urls'
-require 'red_base/cucumber/interaction'
-require 'red_base/cucumber/exceptions'
+When(/^fill in "(.*?)" with "(.*?)"$/) do |input, value|
+  fill_in input, with: value
+end
+
+When(/^click on "(.*?)"$/) do |link|
+  click_on link
+end
