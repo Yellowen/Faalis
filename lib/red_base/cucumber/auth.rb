@@ -19,6 +19,8 @@
 
 # Some useful steps for cucumber scenarios
 Given(/^I am not authenticated$/) do
+  #Capybara.reset_sessions!
+  #delete "/users/sign_out"
   page.driver.submit :delete, "/users/sign_out", {}
 end
 
@@ -35,6 +37,7 @@ Given(/^I am authenticated$/) do
   fill_in "user_email", :with => email
   fill_in "user_password", :with => password
   click_button "Sign in"
+  should_not have_content("Sign in")
 end
 
 Then(/^I should be in sign in page$/) do

@@ -16,12 +16,28 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-
 # Some useful steps for cucumber scenarios
+def wait_for_ajax
+  Timeout.timeout(Capybara.default_wait_time) do
+    active = page.evaluate_script('$("#flash").is(":visible")')
+    until active == true
+      active = page.evaluate_script('$("#flash").is(":visible")')
+    end
+  end
+end
+
 When(/^fill in "(.*?)" with "(.*?)"$/) do |input, value|
   fill_in input, with: value
 end
 
 When(/^click on "(.*?)"$/) do |link|
+
   click_on link
+end
+
+When(/^wait for ajax to return$/) do
+  wait_for_ajax
+end
+Then (/^field "(.+)" contains "(.+)"$/) do |field, value|
+  find_field('name').value.should eq value
 end

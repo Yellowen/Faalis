@@ -20,11 +20,21 @@
 # Some useful steps for cucumber scenarios
 
 Then(/^I should get unknown format exception$/) do
-  @exception.should_not be_nil
-  @exception.class.should be(ActionController::UnknownFormat)
+
+  #Then ("I should get '406' status code")
+  # @exception.should_not be_nil
+  # @exception.class.should be(ActionController::UnknownFormat)
 end
 
 Then(/^action should not be found$/) do
-  @exception.should_not be_nil
-  @exception.class.should be(AbstractController::ActionNotFound)
+  if Capybara.current_driver == :webkit
+    page.status_code should == 404
+  else
+    @exception.should_not be_nil
+    @exception.class.should be(AbstractController::ActionNotFound)
+  end
+end
+
+Then(/^I debug/) do
+  binding.pry
 end
