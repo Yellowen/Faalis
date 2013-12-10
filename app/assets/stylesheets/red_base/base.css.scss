@@ -123,108 +123,110 @@ $table-list-line-height: 40px;
          &.selected {
             background: $selected-bg;
          }
+         &:hover.selected{
+            background: darken($selected-bg, 5%);
+         }
+       .show_details {
+          display: block;
+          @include transition(display 300ms linear 0ms);
+       }
+       .hide_details {
+          display: hide;
+          @include transition(display 300ms linear 0ms);
+       }
+       .title {
+          display: inline;
+          position: absolute;
+          width: 75%;
+          height: $table-list-line-height;
 
-         .show_details {
-            display: block;
-            @include transition(display 300ms linear 0ms);
-         }
-         .hide_details {
-            display: hide;
-            @include transition(display 300ms linear 0ms);
-         }
-         .title {
-            display: inline;
-            position: absolute;
-            width: 75%;
-            height: $table-list-line-height;
+       }
+       .buttons {
+          margin-top: -$table-list-line-height;
+          opacity: 0;
 
-         }
-         .buttons {
-            margin-top: -$table-list-line-height;
-            opacity: 0;
+          @include transition(opacity 300ms linear 0ms);
+       }
+       i {
+          font-size: 1.2em;
+          width: 1em;
+          height: 1em;
+          text-align: center;
+       }
+       a{
+          color: $darkgray;
+       }
+       span.btn > a {
+          color: white;
+       }
+       &.table-header {
+          background: white;
+          padding-top: 15px;
+          opacity: 1;
+       }
+       .overload{
+          display:none;
+          height:300px;
+       }
+       &:first-child{
+          border-top:solid 1px #E6E6E6;
+       }
+       &:hover {
+            //opacity: 1;
+          background: white;
+          overflow: hidden;
 
-            @include transition(opacity 300ms linear 0ms);
-         }
-         i {
-            font-size: 1.2em;
-            width: 1em;
-            height: 1em;
-            text-align: center;
-         }
-         a{
-            color: $darkgray;
-         }
-         span.btn > a {
-            color: white;
-         }
-         &.table-header {
-            background: white;
-            padding-top: 15px;
-            opacity: 1;
-         }
-         .overload{
-            display:none;
-            height:300px;
-         }
-         &:first-child{
-            border-top:solid 1px #E6E6E6;
-         }
-         &:hover {
-              //opacity: 1;
-            background: white;
-            overflow: hidden;
-
-            & > .buttons {
-               opacity: 1;
-               @include transition("opacity 300ms linear 0ms");
-            }
-         }
-         div:not(.pagination) {
-            padding-right:10px;
-            padding-left:10px;
-         }
-         &.table-summery {
-            opacity: 1;
-            background: white;
-            .small-text {
-               font-size: 0.8em;
-               padding: 0 10px;
-            }
-
-            .pagination {
-              display: inline-block;
-              font-size: 1em;
-              padding-top: $table-list-line-height / 6;
-              input {
-                text-align: center;
-                display: inline;
-                width: 1.6em;
-                padding: 0 0.1em;
-                margin: 0;
-                font-size: 1.1em;
-                height: 1.2em;
-                background: lighten($lightergray, 5%);
-                border: 1px solid $lightergray;
-              }
-                .label {
-                  text-align: center;
-                  position: relative;
-                  font-size: 0.7em;
-                }
-            }
-
-         }
-         .details{
-            font-size:0.9em;
-            margin: 0 1em;
-            padding:1em 0;
-            .button-group{
-               background-color:$lightergray;
-               border-radius: 1em 1em 0 0;
-            }
+          & > .buttons {
+             opacity: 1;
+             @include transition("opacity 300ms linear 0ms");
           }
-      }
-   }
+       }
+       div:not(.pagination) {
+          padding-right:10px;
+          padding-left:10px;
+       }
+       &.table-summery {
+          opacity: 1;
+          background: white;
+          .small-text {
+             font-size: 0.8em;
+             padding: 0 10px;
+          }
+
+          .pagination {
+            display: inline-block;
+            font-size: 1em;
+            padding-top: $table-list-line-height / 6;
+            input {
+              text-align: center;
+              display: inline;
+              width: 1.6em;
+              padding: 0 0.1em;
+              margin: 0;
+              font-size: 1.1em;
+              height: 1.2em;
+              background: lighten($lightergray, 5%);
+              border: 1px solid $lightergray;
+            }
+              .label {
+                text-align: center;
+                position: relative;
+                font-size: 0.7em;
+              }
+          }
+
+       }
+       .details{
+          font-size:0.9em;
+          margin: 0 1em;
+          padding:1em 0;
+          .button-group{
+             background-color:$lightergray;
+             border-radius: 1em 1em 0 0;
+          }
+        }
+    }
+ }
 }
 
 .table {
