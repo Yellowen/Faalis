@@ -1,14 +1,12 @@
 require_dependency "red_base/application_controller"
 
 module RedBase
-  class API::V1::UsersController < ApplicationController
+  class API::V1::UsersController < APIController
 
     def index
       @users = User.all
       authorize! :read, @users
-      respond_to do |format|
-        format.json { render :json => @users}
-      end
+      respond_with(@users)
     end
 
     def show

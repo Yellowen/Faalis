@@ -22,7 +22,7 @@ module RedBase
     class ViewsGenerator < Rails::Generators::Base
       source_root File.expand_path('../../../../app/', __FILE__)
 
-      desc "Copy all templates to and assets to main application"
+      desc "Copy all templates and assets to main application"
 
       def copy_views_file
         directory "views/red_base", "app/views/red_base"
