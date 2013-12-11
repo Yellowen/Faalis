@@ -66,11 +66,11 @@ When(/^format is (.+) and I send (.+) to (.+) with\:$/) do |format, method, path
     data += phrase.strip
   end
 
-  send(method, path, data)
+  page.driver.submit(method, path, data)
 
 end
 
 When(/^format is (.+) and I send delete to (.+)$/) do |format, path_name|
-  path = "#{path_to(path_name)}.#{format}"
-  delete(path)
+  path = "#{path_to(path_name)}"
+  page.driver.submit :delete, path, {}
 end
