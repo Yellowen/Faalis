@@ -27,29 +27,42 @@ module RedBase
 
       argument :resource_name, :type => :string, :required => true
       argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
+      class_option :without_specs, :type => :boolean, :default => false
+      class_option :only_specs, :type => :boolean, :default => false
 
       desc "Create a new resource for client side application"
       def create_module
-        template "angularjs/module.js.erb", "#{angularjs_app_path}modules/#{resource_path}.js"
+        unless options[:only_specs]
+          template "angularjs/module.js.erb", "#{angularjs_app_path}modules/#{resource_path}.js"
+        end
       end
 
       def create_template
-        template "angularjs/index.html.erb", "app/angularjs_templates/#{resource.underscore}/index.html"
-        template "angularjs/new.html.erb", "app/angularjs_templates/#{resource.underscore}/new.html"
-        template "angularjs/details.html.erb", "app/angularjs_templates/#{resource.underscore}/details.html"
+        unless options[:only_specs]
+          template "angularjs/index.html.erb", "app/angularjs_templates/#{resource.underscore}/index.html"
+          template "angularjs/new.html.erb", "app/angularjs_templates/#{resource.underscore}/new.html"
+          template "angularjs/details.html.erb", "app/angularjs_templates/#{resource.underscore}/details.html"
 
-        template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
-        template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"
-        template "views/create.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/create.json.jbuilder"
-        template "views/destroy.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/destroy.json.jbuilder"
-        template "views/update.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/update.json.jbuilder"
-
+          template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
+          template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"
+          template "views/create.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/create.json.jbuilder"
+          template "views/destroy.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/destroy.json.jbuilder"
+          template "views/update.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/update.json.jbuilder"
+        end
       end
 
       def create_api
-        template "api/controller.rb.erb", "app/controllers/api/v1/#{resource.pluralize.underscore}_controller.rb"
+        unless options[:only_specs]
+          template "api/controller.rb.erb", "app/controllers/api/v1/#{resource.pluralize.underscore}_controller.rb"
+        end
       end
 
+      def create_specs
+        unless options[:without_specs]
+          template "features/api.feature", "features/#{resource.underscore}.api.feature"
+          template "features/api.step.rb", "features/step_definitions/#{resource.underscore}.rb"
+        end
+      end
       def show_readme
         readme "js_scaffold.README" if behavior == :invoke
       end
@@ -146,6 +159,26 @@ module RedBase
         result
       end
 
+      def random_json_data
+        data = {}
+        fields.each do |field, type|
+          case type
+          when "belongs_to"
+            data["#{field}_id"] = 1
+          when "integer"
+            data[field] = 1+ rand(1000)
+          else
+            data[field] = random_string
+          end
+        end
+        data.to_json.to_s
+      end
+
+      def random_string
+        o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+        (0...50).map{ o[rand(o.length)] }.join
+      end
+
 
       class Relation < String
         attr_accessor :to
@@ -170,7 +203,6 @@ module RedBase
         def get_list
           "#{restangular}.getList()"
         end
-
       end
     end
   end
