@@ -23,8 +23,8 @@ RedBase::Engine.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       get "permissions", :to => "permissions#index"
-      resources :groups
-      resources :users
+      resources :groups, :except => [:new]
+      resources :users, :except => [:new]
     end
   end
 

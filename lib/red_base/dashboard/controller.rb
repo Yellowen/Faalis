@@ -30,7 +30,6 @@ module RedBase
         # dashboard
         def dashboard_modules(modules)
           modules.each do |module_name|
-            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sdsdsd<", $:
             logger.info "Loading Dashboard Module [#{module_name}]."
             const_get(module_name)
             #require "#{module_name}"

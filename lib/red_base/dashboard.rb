@@ -42,7 +42,6 @@ module RedBase
     # method in each registered module which registered to
     # specified section
     def content_for(section)
-      puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", @@modules, @@sections
 
       result = []
       if @@sections.include? section
