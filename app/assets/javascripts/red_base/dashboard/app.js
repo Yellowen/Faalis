@@ -33,6 +33,20 @@ Dashboard.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
-Dashboard.config(["RestangularProvider", function(RestangularProvider) {
-  RestangularProvider.setBaseUrl('/api/v1');
+Dashboard.config(["RestangularProvider", "$httpProvider", function(RestangularProvider, $httpProvider) {
+    RestangularProvider.setBaseUrl('/api/v1');
+
+    // Show loading icon on any request
+    $httpProvider.interceptors.push(function($q) {
+        return {
+            'request': function(config) {
+                $("#loading").show();
+                return config;
+            },
+            'response': function(response) {
+                $("#loading").hide();
+                return response;
+            }
+        };
+    });
 }]);
