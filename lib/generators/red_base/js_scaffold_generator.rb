@@ -39,9 +39,9 @@ module RedBase
 
       def create_template
         unless options[:only_specs]
-          template "angularjs/index.html.erb", "app/angularjs_templates/#{resource.underscore}/index.html"
-          template "angularjs/new.html.erb", "app/angularjs_templates/#{resource.underscore}/new.html"
-          template "angularjs/details.html.erb", "app/angularjs_templates/#{resource.underscore}/details.html"
+          template "angularjs/index.html.erb", "app/views/angularjs_templates/#{resource.underscore}/index.html"
+          template "angularjs/new.html.erb", "app/views/angularjs_templates/#{resource.underscore}/new.html"
+          template "angularjs/details.html.erb", "app/views/angularjs_templates/#{resource.underscore}/details.html"
 
           template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
           template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"
@@ -127,7 +127,7 @@ module RedBase
         field_num = 0
         fields.each do |name, type|
           if relations
-            if ["belongs_to", "has_many"].include? type
+            if ["belongs_to"].include? type
               result += " :#{name}_id"
             else
               result += " :#{name}"

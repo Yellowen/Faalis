@@ -16,7 +16,7 @@
       </select>
       <% when "has_many" %>
       <select ng-model="<%= field_name %>" name="<%= field_name %>" multiple>
-        <option ng-repeat="item in <%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
+        <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
       </select>
       <% when "text" %>
       <textarea ng-model="<%= field_name %>"></textarea>

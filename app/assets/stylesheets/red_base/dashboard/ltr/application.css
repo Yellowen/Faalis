@@ -13,6 +13,7 @@
  *= require red_base/variables
  *= require font-awesome
  *= require red_base/base
+ *= require ./base
  *= require ./buttons
  *= require_self
  *= require red_base/dashboard/dashboard

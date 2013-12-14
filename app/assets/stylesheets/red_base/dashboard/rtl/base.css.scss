@@ -1,0 +1,15 @@
+@import "red_base/variables";
+@import "red_base/dashboard/rtl/foundation_and_overrides";
+
+input[type="integer"] {
+  @include form-element;
+}
+
+select {
+  @include form-element;
+  min-height: 10em;
+}
+
+textarea {
+  height: 10em !important;
+}

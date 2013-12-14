@@ -7,6 +7,10 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
   end
 
   def create
+    <% fields.each do |name, type| %><% if type == "has_many" %>
+    <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
+    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %>
+    <% end %><% end %>
     if @<%= resource.underscore %>.save
         @<%= resource.underscore %>
     else
@@ -18,6 +22,11 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
   end
 
   def update
+    <% fields.each do |name, type| %><% if type == "has_many" %>
+    <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
+    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %>
+    <% end %><% end %>
+
     if @<%= resource.underscore %>.update(resource_params)
         @<%= resource.underscore %>
     else
