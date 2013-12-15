@@ -1,6 +1,16 @@
 @import "red_base/variables";
 @import "red_base/dashboard/rtl/foundation_and_overrides";
 
+@font-face {
+  font-family: 'Droid Arabic Naskh';
+  src: url('/fonts/DroidNaskh-Regular.ttf') format('truetype'); /* Saf3â€”5, Chrome4+, FF3.5, Opera 10+ */
+}
+
+
+* {
+    font-family: 'Droid Arabic Naskh', serif;
+}
+
 input[type="integer"] {
   @include form-element;
 }
