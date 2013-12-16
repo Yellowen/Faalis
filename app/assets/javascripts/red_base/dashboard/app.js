@@ -30,6 +30,10 @@ console.log(dependencies);
 var Dashboard = angular.module('Dashboard', dependencies);
 
 Dashboard.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.
+        when("/", {
+            templateUrl: template("index")
+        });
 
 }]);
 
@@ -43,7 +47,15 @@ Dashboard.config(["RestangularProvider", "$httpProvider", function(RestangularPr
                 $("#loading").show();
                 return config;
             },
+            'requestError': function(config) {
+                $("#loading").hide();
+                return config;
+            },
             'response': function(response) {
+                $("#loading").hide();
+                return response;
+            },
+            'responseError': function(response) {
                 $("#loading").hide();
                 return response;
             }
