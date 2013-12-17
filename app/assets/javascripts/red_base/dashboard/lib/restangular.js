@@ -20,7 +20,7 @@ module.provider('Restangular', function() {
             var absolutePattern = /^https?:\/\//i;
             config.isAbsoluteUrl = function(string) {
               return string && absolutePattern.test(string);
-            }
+            };
             /**
              * This is the BaseURL to be used with Restangular
              */

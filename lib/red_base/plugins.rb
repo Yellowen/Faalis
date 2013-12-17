@@ -17,14 +17,28 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-require "devise"
 
 module RedBase
-end
+  class Plugins
 
-require "red_base/engine"
-require "red_base/dashboard"
-require "red_base/omniauth"
-require "red_base/active_record"
-require "red_base/i18n"
-require "red_base/plugins"
+    @@plugins = {}
+
+    def self.register(plugin_name, plugin_class)
+      # TODO: Re-think this approach. Do we need to keep plugin classes too?
+      if not @@plugins.include? plugin_name
+        @@plugins[plugin_name] = plugin_class
+      end
+    end
+
+    # Return name of all registered plugins
+    def self.names
+      @@plugins.keys
+    end
+
+    # Return the actual plugins hash
+    def self.plugins
+      @@plugins
+    end
+
+  end
+end
