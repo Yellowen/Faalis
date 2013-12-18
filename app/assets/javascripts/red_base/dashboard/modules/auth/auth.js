@@ -25,3 +25,10 @@ Auth.config(["$routeProvider", function($routeProvider){
             templateUrl: template("auth/index")
         });
 }]);
+
+Auth.controller("AuthMenuController", ["$scope", "gettext", function($scope, gettext){
+    this.menu_items = [
+        {title: gettext("Users"), url: "/auth/users"},
+        {title: gettext("Groups"), url: "/auth/groups"}
+        ];
+}]);

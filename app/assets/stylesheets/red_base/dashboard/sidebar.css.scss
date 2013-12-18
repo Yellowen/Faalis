@@ -1,7 +1,8 @@
 @import "red_base/variables";
+@import "red_base/mixins";
 
 aside {
-  background: white;
+  background: $peter_river;
   padding: 0 !important;
   border-radius: 4px;
   margin-top: 20px;
@@ -11,11 +12,18 @@ aside {
     margin-bottom: 0;
 
     li {
-      padding: 10px 15px;
-      border-bottom: 1px solid $lightergray;
-      border-right: 1px solid $lightergray;
+      p {
+        margin: -10px 0 0;
+        padding: 5px 5px 10px;
+        width: 100%;
+        color: lighten($lightergray, 4%);
+        text-shadow: 0 1px 1px $darkgray;
+        display: inline-block;
+      }
+      padding: 10px 0px 0px 0px;
+      border-bottom: 1px solid darken($peter_river, 5%);
+      //border-right: 1px solid $lightergray;
       cursor: pointer;
-      color: $lightgray;
 
 
       &.active {
@@ -25,9 +33,10 @@ aside {
       }
 
       &:hover {
-        &:not(.active) {
-          background: darken(white, 2%);
-          color: darken($lightgray, 10%);
+        &:not(.active) > p {
+          //background: darken(white, 2%);
+          //color: darken($lightgray, 10%);
+          color: white;
         }
       }
 
@@ -45,9 +54,26 @@ aside {
     }
   }
 
+  .submenu {
+    background: white;
+    margin: 0px 0;
+    font-size: 0.8em;
+    display: none;
+    li {
+      color: $darkgray;
+      border:none;
+      cursor: pointer;
+      padding: 5px 10px;
+      @include transition(all 300ms linear);
+      &:hover  {
+        padding: 5px 20px;
+        @include transition(all 300ms linear);
+      }
+    }
+  }
   .brand {
     border-bottom: 1px solid $lightergray;
-    border-right: 1px solid $lightergray;
+    //border-right: 1px solid $lightergray;
     margin-top: -5px;
     padding: 50px 20px 20px;
     line-size: 1;
@@ -56,10 +82,10 @@ aside {
     h1 {
       font-size: 1.3em;
       margin: 0;
-      color: gray;
+      color: white;
     }
     span {
-      color: $lightgray;
+      color: $lightergray;
       font-size: 0.8em;
       margin: 0;
     }
