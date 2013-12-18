@@ -23,7 +23,7 @@ Modules.controller("ModulesController", ["$location", "$scope", "$controller", f
     var that = this;
     this.modules = _.filter(DModules, function(module){
         if (module.sidemenu === true) {
-            module.menu_items = $controller("AuthMenuController", {$scope: $scope}).menu_items;
+            module.menu_items = $controller(camelCase(module.resource) + "MenuController", {$scope: $scope}).menu_items;
             module.show_menu = false;
         }
         return module.sidemenu || false;
