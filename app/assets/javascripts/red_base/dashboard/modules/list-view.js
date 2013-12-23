@@ -33,8 +33,9 @@ ListView.directive("objectAction", function(){
             element.attr("href", object.route);
         }
         else if ("action" in object) {
-            var controller = element.controller();
-            element.on("click", function(){ controller[object.action]();});
+            element.on("click", function(){
+                object.action();
+            });
         }
     }
 

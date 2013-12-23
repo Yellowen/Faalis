@@ -161,7 +161,7 @@ $table-list-line-height: 40px;
        }
        &.table-header {
           background: white;
-          padding-top: 15px;
+          padding-top: 5px;
           opacity: 1;
        }
        .overload{
@@ -286,15 +286,16 @@ $table-list-line-height: 40px;
 
 
 .search-bar{
-   input[type="search"]{
-      border-top-left-radius:5px;
-      border-bottom-left-radius:5px !important;
-   }
+  margin-top: 10px;
+  input[type="search"]{
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px !important;
+  }
 
-   button[type="submit"]{
-      border-top-right-radius:5px !important;
-      border-bottom-right-radius:5px;
-   }
+  button[type="submit"]{
+    border-top-right-radius:5px !important;
+    border-bottom-right-radius:5px;
+  }
 }
 
 

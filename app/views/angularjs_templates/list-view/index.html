@@ -1,13 +1,12 @@
+
 <div class="row  clearmargin" data-ng-transclude>
 </div>
 
 <div class="table-list">
   <ul>
     <li class="table-header">
-      <div class="small-6 columns text-left">
-
+      <div class="small-6 columns text-left buttons-header">
         <span data-ng-repeat="button in buttons" class="{{ button.classes }}"><a  object-action object="button"><i class="{{ button.icon }}"></i> {{ button.title | translate }}</a></span>
-
       </div>
 
       <div class="small-4 columns text-right search-bar">
