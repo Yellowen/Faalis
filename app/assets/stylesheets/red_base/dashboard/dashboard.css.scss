@@ -162,3 +162,9 @@ fieldset {
 .dashboard-body {
   padding-top: $header-height + 20px;
 }
+
+.buttons-header {
+  span {
+    margin: 5px 5px 5px;
+  }
+}
