@@ -15,32 +15,79 @@ body {
 }
 
 header {
-   nav {
-      Background: $dashboard-nav-background;
-      box-shadow: 0 -5px 10px rgba(40, 40, 40, 1) inset;
+  background: white;
+  border-bottom: 1px solid $orange;
+  position: fixed;
+  z-index: 1000;
+  height: $header-height;
+  width: 100%;
+  ul {
+    list-style: none;
 
-      .float-right{
-         margin-right:70px;
-         margin-left:70px;
+    li {
+      display: inline;
+      h1 {
+        font-size: 1.5em;
+        display: inline-block;
+        font-weight: 300;
+        color: $darkgray;
       }
+      .search {
+        display: inline-block;
+        padding: 0 10px;
+        input {
+          display: inline-block;
+          border-radius: 4px;
+          border-color: $lightergray;
+          box-shadow: none;
+          padding: 0 0.5em;
+        }
+      }
+    }
+  }
+
+  nav {
+    ul {
       li {
-         &:hover {
-            background: lighten($dashboard-nav-hover, 5%) !important;
-         }
+        display: inline-block;
+        padding: (($header-height / 4) - 3px) 20px 0 ;
+        height: $header-height;
+        margin: 0 5px;
 
-         &.brand {
-            background: lighten($dashboard-nav-hover, 5%);
-            padding-left:2em;
-            padding-right:2em;
-            h1{
-               color:#FFFFFF;
-            }
-         }
+        &:hover {
+          border-bottom: 5px solid $alizarin;
+        }
+        span {
+          vertical-align: middle;
+          color: $darkgray;
+          cursor:pointer;
+          font-size: 1.2em;
+        }
+
       }
-   }
-   .modulebar {
-//      margin-top: 20px;
-   }
+    }
+  }
+
+  .subnav {
+    background: $alizarin;
+    position: fixed;
+    top: $header-height;
+    padding: 10px 20px;
+    border-radius: 0 0 5px 5px;
+    min-width: 100px;
+    right: 10px;
+    color: white;
+    ul li {
+      padding: 4px 10px;
+      a {
+        color: lighten($lightergray, 5%);
+        text-shadow: 0 1px 1px $darkgray;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
 }
 
 
@@ -110,4 +157,8 @@ fieldset {
       }
     }
   }
+}
+
+.dashboard-body {
+  padding-top: $header-height + 20px;
 }

@@ -1,41 +1,30 @@
-<div class="">
-  <div class="">
-    <nav class="clearpadding top-bar">
-      <section class="top-bar-section">
-        <ul class="title-area">
-          <li><a href="#"><i class="fa-cog fa icon-medium fa-2x"></i></a></li>
-          <!-- Title Area -->
-          <li class="name brand">
-            <h1><%= RedBase::Engine.site_title %></h1>
-
-          </li>
-          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <li class="toggle-topbar menu-icon"><a href="#"><span translate>Menu</span></a></li>
-        </ul>
-
-      </section>
-      <section class="top-bar-section">
-        <ul class="float-right">
-          <li></li>
-          <li class="has-dropdown"><a href="#" translate>Languages</a>
-            <ul class="dropdown">
-              <% ::I18n.available_locales.each do |locale| %>
-                <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
-              <% end %>
-            </ul>
-          </li>
-
-          <li class="has-dropdown"><a href="#">User{{ current_user.first_name }} {{ current_user.last_name }}</a>
-
-            <ul class="dropdown">
-              <li><a href="<%= red_base.dashboard_path %>" translate>Dashboard</a></li>
-              <li><a href="" translate>Change Password</a></li>
-              <li><a href="<%= red_base.destroy_user_session_path %>" data-method="delete" translate>Sign Out</a></li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-
+<div ng-controller="NavigationController as controller">
+  <div class="row">
+    <ul class="small-6 columns">
+      <li><h1 translate>Dashboard</h1></li>
+      <li>
+        <div class="search">
+          <input type="search" class="" placeholder="Search ..."/>
+        </div>
+      </li>
+    </ul>
+    <nav class="small-6 columns text-right">
+      <ul>
+        <li ng-repeat="menu_item in controller.menu_items" title="{{ menu_item.title }}" ng-class="{selected: menu_item.is_active}" ng-click="controller.on_click(menu_item)" class="float-right"><span><i class="{{ menu_item.icon }}"></i></span></li>
+      </ul>
     </nav>
+  </div>
+  <div class="subnav" id="subnav" ng-if="controller.menu_clicked">
+    <ul>
+      <li ng-repeat="item in controller.submenu_items">
+        <a ng-if="!item.method" ng-href="{{ item.url }}">
+          <i class="{{ item.icon }}"></i> {{ item.title }}
+        </a>
+        <a ng-if="item.method" data-method="{{ item.method }}" ng-href="{{ item.url }}">
+          <i class="{{ item.icon }}"></i> {{ item.title }}
+        </a>
+
+      </li>
+    </ul>
   </div>
 </div>

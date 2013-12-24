@@ -1,0 +1,92 @@
+/* -----------------------------------------------------------------------------
+    Red Base - Basic website skel engine
+    Copyright (C) 2012-2013 Yellowen
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+----------------------------------------------------------------------------- */
+
+var Nav = angular.module("Navigation", ["ngAnimate"]);
+
+Nav.controller("NavigationController", ["$location", "gettext", "$interval",  function($location, gettext, $interval){
+
+    this.menu_items = [
+        {
+            title: gettext("Messages"),
+            icon: "fa fa-comments",
+            url: "/user/comments"
+        },
+        {
+            title: gettext("Languages"),
+            icon: "fa fa-flag",
+            items: [
+                    <% ::I18n.available_locales.each do |locale| %>
+                    {
+                        url: '<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>',
+                        title: "<%=locale %>"
+                    },
+                    <% end %>
+            ]
+        },
+        {
+            title: gettext("User"),
+            icon: "fa fa-user",
+            items: [
+                {
+                    title: gettext("Logout"),
+                    icon: "fa fa-power-off",
+                    url: "/users/sign_out",
+                    method: "delete"
+                },
+                {
+                    title: gettext("Change Password"),
+                    icon: "fa fa-exchange",
+                    url: "#"
+                }
+            ]
+        }
+    ];
+
+    this.on_click = function(menu_item){
+        if ("url" in menu_item) {
+            $location.path(menu_item.url);
+            return;
+        }
+        this.menu_clicked = false;
+        var that = this;
+        $interval(function(){
+            that.menu_clicked = false;
+        }, 5000, 1);
+        if ("items" in menu_item) {
+            this.submenu_items = menu_item.items;
+            this.menu_clicked = true;
+
+        }
+    };
+    this.view_menu = function(module) {
+        module.show_menu = !module.show_menu;
+    };
+}]);
+
+Nav.animation(".subnav", function(){
+    return {
+        leave: function(elem, done){
+            $("#subnav").slideUp(700, done);
+        },
+        enter: function(elem, done){
+            $("#subnav").slideDown(700, done);
+            return function(cancelled){};
+        }
+    };
+});

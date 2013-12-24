@@ -41,6 +41,19 @@ function is_ltr(){
     return $("html").attr("dir") == "ltr" ? true : false;
 }
 
+/*
+ * Show subnav
+ */
+function show_subnav(){
+    $("#subnav").fadeIn(400);
+}
+
+/*
+ * hide subnav
+ */
+function hide_subnav(){
+}
+
 function show_flash_message(msg, klass) {
     var flash = $("#flash");
     $(flash).find("div").html(msg);
