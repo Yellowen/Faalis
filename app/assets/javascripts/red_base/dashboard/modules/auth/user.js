@@ -111,7 +111,7 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
         }else{
             API.all("users").post(user).then(function(){
                 success_message(gettext("User created Successfully"));
-                $location.path("/auth/users");
+                //$location.path("/auth/users");
             }).catch(catch_error);
         }
     };
