@@ -26,7 +26,8 @@ class RedBase::ApplicationController < ActionController::Base
     FastGettext.default_available_locales = RedBase::Engine.locales
     FastGettext.default_text_domain = 'red_base'
 
-    FastGettext.set_locale(params[:locale] || session[:locale] || I18n.default_locale)
-    session[:locale] = I18n.locale = FastGettext.locale
+    lang = request.env['lang'] || params[:locale] || session[:locale] || I18n.default_locale
+    FastGettext.set_locale(lang)
+    session[:locale] = I18n.locale = lang
   end
 end
