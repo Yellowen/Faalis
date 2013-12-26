@@ -38,7 +38,7 @@ module RedBase
     end
 
     def create
-      authoriz! :create, RedBase::User
+      authorize! :create, RedBase::User
       group = Group.find(params[:group])
       if group
         @user = User.create!({

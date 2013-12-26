@@ -6,7 +6,7 @@
     <div class="row">
       <div class="small-6 columns">
         <label for="first_name" translate>First Name :</label>
-        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required ng-model="first_name">
+        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required ng-model="first_name" required>
       </div>
 
       <div class="small-6 columns">
@@ -37,7 +37,7 @@
 
   <div class="row">
     <div class="small-6 columns">
-      <button ng-click="save()" class="btn small green"><i class="fa fa-check"></i> <span translate>Save</span></button>
+      <button ng-click="save()" class="btn small green" ng-disabled="form.first_name.$pristine || form.first_name.$dirty && form.fist_name.$invalid"><i class="fa fa-check"></i> <span translate>Save</span></button>
       <button class="btn small red"><i class="fa fa-times"></i><span translate>Cansel</span></button>
     </div>
   </div>
