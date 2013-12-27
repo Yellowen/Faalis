@@ -20,6 +20,7 @@ class RedBase::ApplicationController < ActionController::Base
   include FastGettext::Translation
   before_filter :set_locale
 
+
   def set_locale
     FastGettext.add_text_domain 'red_base', :path => "#{RedBase::Engine.root}/config/locales", :type => :po
     # All languages you want to allow
@@ -27,7 +28,7 @@ class RedBase::ApplicationController < ActionController::Base
     FastGettext.default_text_domain = 'red_base'
 
     lang = request.env['lang'] || params[:locale] || session[:locale] || I18n.default_locale
-    FastGettext.set_locale(lang)
+    FastGettext.set_locale(lang.to_sym)
     session[:locale] = I18n.locale = lang
   end
 end

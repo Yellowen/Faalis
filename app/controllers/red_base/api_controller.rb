@@ -19,7 +19,7 @@
 require_dependency "red_base/api_controller"
 
 
-class RedBase::APIController < ApplicationController
+class RedBase::APIController < RedBase::ApplicationController
   respond_to :json
 
   before_filter :authenticate_user!

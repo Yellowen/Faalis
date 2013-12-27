@@ -41,7 +41,6 @@ Dashboard.config(["RestangularProvider", "$httpProvider", function(RestangularPr
     RestangularProvider.setBaseUrl('/api/v1');
 
     $httpProvider.defaults.headers.common.lang = $("html").attr("lang");
-
     // Show loading icon on any request
     $httpProvider.interceptors.push(function($q) {
         return {
