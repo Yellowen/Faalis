@@ -20,7 +20,7 @@
 
 <% end %>
 // <%= resource.pluralize %> Module
-var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
+var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Anim"]);
 
 // <%= resource.pluralize %> configuration section ---------------------------
 <%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){
@@ -47,6 +47,33 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 <%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular",
                                       function($scope, gettext, API){
 
+    <% unless options[:no_bulk] %>// Cache object for each field name possible values
+    $scope.cache = {};
+
+    // Change event handler for field_name combobox in bulk edit
+    $scope.field_name_change = function(x){
+        var current_value = $("#field_name").val();
+        $scope.current_field= _.find($scope.fields, function(x){
+            return x.name == current_value;
+        });
+        if( "to" in $scope.current_field ){
+            if (! ($scope.current_field.name in $scope.cache)) {
+                $scope.current_field.to().then(function(x){
+                    $scope.cache[$scope.current_field.name] = x;
+                });
+            }
+        }
+    };
+
+    $scope.fields = [<% bulk_edit_fields.each do |name| %>
+        {
+            name: "<%= name %><% if ["belongs_to", "has_many"].include? fields_hash[name] %>_id<% end %>",
+            title: gettext("<%= name.capitalize %>"),
+            type: "<%= fields_hash[name] %>"<% if ["belongs_to", "has_many"].include? fields_hash[name] %>,
+            to: API.all("<%= fields_hash[name].to %>").getList<% end %>
+        },<% end %>
+    ];<% end %>
+
     // details_template is the address of template which should load for
     // each item details section
     $scope.details_template = template("<%= resource_path %>/details");
@@ -59,9 +86,74 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
             classes: "btn tiny green",
             route: "#<%= resource_url %>/new"
 
-        }
-    ];
+        }<% unless options[:no_bulk] %>,
+        {
+            title: gettext("Bulk Edit"),
+            icon: "fa fa-edit",
+            classes: "btn tiny yellow",
+            action: function(){
+                $scope.$apply("bulk_edit = ! bulk_edit");
+            }
+        }<% end %>
+    ];<% unless options[:no_bulk] %>
 
+    /*
+     * On bulk save event
+     */
+    $scope.bulk_save = function(){
+
+        $scope.view_progressbar = true;
+        var value = $("#field_value").val();
+        var field = $scope.current_field.name;
+        var type = $scope.current_field.type;
+        var field_name = $scope.current_field.title;
+        if ((type == "has_many") || (type == "belongs_to")) {
+            value = parseInt(value, 10);
+        }
+        var requests_count = 0;
+
+        $scope.rfiller = 0;
+        $scope.sfiller = 0;
+        $scope.success = 0;
+        $scope.failed = 0;
+        $scope.total = _.where($scope.<%= resource.pluralize.underscore %>, function(x){return x.is_selected === true;}).length;
+
+        _.each($scope.<%= resource.pluralize.underscore %>, function(x){
+            if( x.is_selected === true ){
+                x[field] = value;
+                requests_count++;
+
+                var rwidth = (requests_count * 100) / $scope.total;
+                if (requests_count == $scope.total) { rwidth = 100; }
+                $scope.rfiller = rwidth + "%";
+
+                API.one("<%= resource.pluralize.underscore %>", x.id).patch(x).then(function(data){
+                    $scope.success++;
+                    var swidth = parseInt(($scope.success * 100) / $scope.total);
+                    if ($scope.sucess == $scope.total) { swidth = 100; }
+                    $scope.sfiller = swidth + "%";
+                    x[field_name.toLowerCase()] = data[field_name.toLowerCase()];
+                })
+                .catch(function(data){
+                    $scope.failed++;
+                    catch_error(data);
+                });
+
+            }
+        });
+
+    };
+
+    /*
+     * On bulk cancel event
+     */
+    $scope.bulk_cancel = function(){
+        $("#field_name").val(0);
+        document.getElementById("bulk_form").reset();
+        $scope.view_progressbar = false;
+        $scope.bulk_edit = false;
+    };
+    <% end %>
     /*
      * On delete event handler - `items` is an array of objects to delete
      */
@@ -128,7 +220,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     $scope.save = function(save_another){
         var <%= resource.underscore %> = {<%= resource.underscore %>: {<% fields.each do |field_name, field_type| %>
-            <% if ["belongs_to"].include? field_type %><%= field_name %>_id: $scope.<%= field_name %>,<% else %><%= field_name %>: $scope.<%= field_name %>,<% end %>
+            <% if ["belongs_to"].include? field_type %><%= field_name %>_id: parseInt($scope.<%= field_name %>),<% else %><%= field_name %>: $scope.<%= field_name %>,<% end %>
                 <% end %>
         }};
         if ($scope.obj_id) {
@@ -159,3 +251,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView"]);
 
     };
 }]);
+<% unless options[:menu].empty? %>
+<%= resource.pluralize %>.controller("<%= resource %>MenuController", ["gettext", function(gettext){
+    this.menu_items = [<% options[:menu].split(",").each do |menu| %><% title, url = menu.split(":") %>
+        {title: gettext("<%= title %>"), url: "<%= url %>"},<% end %>
+        ];
+}]);<% end %>
