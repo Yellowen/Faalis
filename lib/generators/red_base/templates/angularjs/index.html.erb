@@ -1,3 +1,54 @@
+<div ng-if="bulk_edit" class="fade_anim">
+  <form id="bulk_form">
+    <fieldset class="row clearmargin">
+      <legend>Bulk Edit</legend>
+      <div class="row">
+        <div class="small-6 columns">
+          <label for="field_name" translate>Field Name:</label>
+
+          <select id="field_name" ng-model="field_name" ng-change="field_name_change()">
+            <option value="0" selected translate>-- Select a field --</option>
+            <option ng-repeat="field in fields" value="{{ field.name }}" data-type="{{ field.type }}" data-to="{{ field.to }}"><span translate>{{ field.title }}</span></option>
+          </select>
+        </div>
+        <div class="small-6 columns">
+          <label for="field_value" translate>Field Value:</label>
+          <div id="value_field">
+            <input id="field_value" ng-model="field_value" type="text" ng-if="current_field.type == 'string' || current_field.type == 'integer'">
+            <select id="field_value" ng-model="field_value" ng-if="current_field.type == 'belongs_to'">
+              <option ng-repeat="item in cache[current_field.name]" value="{{ item.id }}">{{ item.name }}</option>
+            </select>
+            <select id="field_value" ng-model="field_value" ng-if="current_field.type == 'has_many'" multiple>
+              <option ng-repeat="item in cache[current_field.name]" value="{{ item.id }}">{{ item.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row progressbar-container" ng-if="view_progressbar">
+        <div class="small-12 columns">
+          <div class="progressbar">
+            <div id="request_filler" class="filler yellow" style="width: {{ rfiller}};"></div>
+            <div id="success_filler" class="filler green" style="width: {{ sfiller}};"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-3 columns float-right text-right">
+            <small>
+              {{ success }} <span translate>of</span> {{ total }}<span ng-if="failed > 0"> - <span translate>field:</span><span class="text-error"> {{ failed }}</span></span>
+            </small>
+          </div>
+        </div>
+    </fieldset>
+    <br />
+    <div class="row">
+      <div class="small-6 columns">
+        <button class="btn tiny green" ng-click="bulk_save()"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn tiny red" ng-click="bulk_cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
+      </div>
+    </div>
+    </div>
+</div>
+
 <list-view buttons="buttons" objects="<%= resource.pluralize.underscore %>" title-attribute="'name'" details-template="details_template" item-per-page="10" on_delete="on_delete">
   <div class="small-6 column text-left clearpadding">
     <h3><i class="fa fa-group"></i> <span translate><%= resource.pluralize %></span></h3>

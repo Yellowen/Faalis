@@ -4,6 +4,7 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
 
   # GET /api/v1/<%= resource.pluralize.underscore %>
   def index
+    respond_with(@<%= resource.pluralize.underscore %>)
   end
 
   def create
@@ -12,13 +13,14 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
     @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %>
     <% end %><% end %>
     if @<%= resource.underscore %>.save
-        @<%= resource.underscore %>
+        respond_with(@<%= resource.underscore %>)
     else
-        @<%= resource.underscore %>.errors
+        respond_with(@<%= resource.underscore %>.errors)
     end
   end
 
   def show
+    respond_with(@<%= resource.underscore %>)
   end
 
   def update
@@ -28,9 +30,9 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
     <% end %><% end %>
 
     if @<%= resource.underscore %>.update(resource_params)
-        @<%= resource.underscore %>
+      respond_with(@<%= resource.underscore %>)
     else
-        @<%= resource.underscore %>.errors
+      respond_with(@<%= resource.underscore %>.errors)
     end
   end
 

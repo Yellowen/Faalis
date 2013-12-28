@@ -29,6 +29,7 @@ module RedBase
       argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
       class_option :without_specs, :type => :boolean, :default => false
       class_option :only_specs, :type => :boolean, :default => false
+      class_option :bulk_fields, :type => :string, :default => ""
 
       desc "Create a new resource for client side application"
       def create_module
@@ -118,6 +119,26 @@ module RedBase
           fields << [name, type]
         end
         fields
+      end
+
+      def fields_hash
+        Hash[fields]
+      end
+
+      # Returns fields which is needed to be in bulk edit
+      def bulk_edit_fields
+        unless options[:bulk_fields].empty?
+          bfields = options[:bulk_fields].split(",")
+          fields = fields_hash
+          bfields.each do |f|
+            unless fields.include? f
+              raise ::Exception.new "'#{f}' is not in scaffold fields."
+            end
+          end
+          return bfields
+        else
+          return fields.keys
+        end
       end
 
       # Return an string to use as a function parameters each

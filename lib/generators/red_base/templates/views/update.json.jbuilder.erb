@@ -1,3 +1,6 @@
 json.extract! @<%= resource.underscore %>, :id<%= fields_as_params %>
 <% fields.each do |name, type| %><% if type == "has_many" %>json.<%= name %> @<%= resource.underscore %>.<%= name %>, :id, :name
-<% end %><% end %>
+<% end %><% if type == "belongs_to" %>json.<%= name %> do
+  json.id @<%= resource.underscore %>.<%= name %>_id
+  json.name @<%= resource.underscore %>.<%= name %>.name
+end<% end %><% end %>
