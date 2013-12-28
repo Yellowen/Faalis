@@ -16,6 +16,8 @@
           <label for="field_value" translate>Field Value:</label>
           <div id="value_field">
             <input id="field_value" ng-model="field_value" type="text" ng-if="current_field.type == 'string' || current_field.type == 'integer'">
+            <textarea id="field_value" ng-model="field_value" ng-if="current_field.type == 'text'"></textarea>
+
             <select id="field_value" ng-model="field_value" ng-if="current_field.type == 'belongs_to'">
               <option ng-repeat="item in cache[current_field.name]" value="{{ item.id }}">{{ item.name }}</option>
             </select>

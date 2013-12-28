@@ -251,3 +251,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     };
 }]);
+<% unless options[:menu].empty? %>
+<%= resource.pluralize %>.controller("<%= resource %>MenuController", ["gettext", function(gettext){
+    this.menu_items = [<% options[:menu].split(",").each do |menu| %><% title, url = menu.split(":") %>
+        {title: gettext("<%= title %>"), url: "<%= url %>"},<% end %>
+        ];
+}]);<% end %>
