@@ -11,12 +11,6 @@
 
   <%= yield %>
 
-  <%= debug ::I18n.locale %>
-  <%= debug request.env['lang'] %>
-  <%= debug params[:locale] %>
-  <%= debug session[:locale] %>
-  <%= debug I18n.default_locale %>
-  <%= debug cookies %>
   <%= javascript_include_tag RedBase::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>
