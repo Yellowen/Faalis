@@ -27,11 +27,16 @@ Logs.config(["$routeProvider", function($routeProvider){
         });
 }]);
 
-Logs.controller("LogsController", ["$scope", "Restangular","gettext",
-                                    function($scope, API, gettext){
+Logs.controller("LogsController", ["$scope", "Restangular","$sce",
+                                    function($scope, API, $sce){
 
     API.all("logs").getList().then(function(data){
-        $scope.logs = data.content;
+        var content = data.content;
+        content = content.replace(/\n/gm, "<br />");
+        content = content.replace(/\t/gm, "&nbsp;");
+        content = content.replace(/\[1m\[(\d+)m(.*)\[0m/gm, "<strong class='m$1-$2'>$3</strong>");
+        //content = content.replace(/\[(\d+)m([/^]*)\[0m/gm, "<strong class='m$1'>$2</strong>");
+        $scope.logs = $sce.trustAsHtml(content);
     });
 
 }]);

@@ -6,7 +6,6 @@ module RedBase
     # GET /api/v1/logs
     def index
       @data = File.open("#{Rails.root}/log/#{Rails.env}.log").read(4096)
-      @data.gsub!(/\n/, "<br/>")
       respond_with(@data)
     end
   end
