@@ -47,7 +47,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 <%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular",
                                       function($scope, gettext, API){
 
-    // Cache object for each field name possible values
+    <% unless options[:no_bulk] %>// Cache object for each field name possible values
     $scope.cache = {};
 
     // Change event handler for field_name combobox in bulk edit
@@ -72,7 +72,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             type: "<%= fields_hash[name] %>"<% if ["belongs_to", "has_many"].include? fields_hash[name] %>,
             to: API.all("<%= fields_hash[name].to %>").getList<% end %>
         },<% end %>
-    ];
+    ];<% end %>
 
     // details_template is the address of template which should load for
     // each item details section
@@ -86,7 +86,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             classes: "btn tiny green",
             route: "#<%= resource_url %>/new"
 
-        },
+        }<% unless options[:no_bulk] %>,
         {
             title: gettext("Bulk Edit"),
             icon: "fa fa-edit",
@@ -94,9 +94,8 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             action: function(){
                 $scope.$apply("bulk_edit = ! bulk_edit");
             }
-        }
-
-    ];
+        }<% end %>
+    ];<% unless options[:no_bulk] %>
 
     /*
      * On bulk save event
@@ -107,7 +106,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         var value = $("#field_value").val();
         var field = $scope.current_field.name;
         var type = $scope.current_field.type;
-
+        var field_name = $scope.current_field.title;
         if ((type == "has_many") || (type == "belongs_to")) {
             value = parseInt(value, 10);
         }
@@ -133,6 +132,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
                     var swidth = parseInt(($scope.success * 100) / $scope.total);
                     if ($scope.sucess == $scope.total) { swidth = 100; }
                     $scope.sfiller = swidth + "%";
+                    x[field_name.toLowerCase()] = data[field_name.toLowerCase()];
                 })
                 .catch(function(data){
                     $scope.failed++;
@@ -153,7 +153,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         $scope.view_progressbar = false;
         $scope.bulk_edit = false;
     };
-
+    <% end %>
     /*
      * On delete event handler - `items` is an array of objects to delete
      */

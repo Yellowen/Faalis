@@ -30,6 +30,7 @@ module RedBase
       class_option :without_specs, :type => :boolean, :default => false
       class_option :only_specs, :type => :boolean, :default => false
       class_option :bulk_fields, :type => :string, :default => ""
+      class_option :no_bulk, :type => :boolean, :default => false
 
       desc "Create a new resource for client side application"
       def create_module
