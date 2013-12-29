@@ -34,8 +34,7 @@ Logs.controller("LogsController", ["$scope", "Restangular","$sce",
         var content = data.content;
         content = content.replace(/\n/gm, "<br />");
         content = content.replace(/\t/gm, "&nbsp;");
-        content = content.replace(/\[1m\[(\d+)m(.*)\[0m/gm, "<strong class='m$1-$2'>$3</strong>");
-        //content = content.replace(/\[(\d+)m([/^]*)\[0m/gm, "<strong class='m$1'>$2</strong>");
+        content = content.replace(/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]/gm, "");
         $scope.logs = $sce.trustAsHtml(content);
     });
 
