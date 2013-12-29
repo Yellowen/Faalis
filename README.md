@@ -1,7 +1,9 @@
 = RedBase
 
-RedBase is a ruby on rails engine which provides a very basic web application
-to use with other ruby on rails applications.
+{<img src="https://badge.fury.io/rb/red_base.png" alt="Gem Version" />}[http://badge.fury.io/rb/red_base]
+
+RedBase is a ruby on rails engine which provides a basic features of a web application. It provide a very
+robust dashboard subsystem with some fantastic generators which provide rapid productivity.
 
 == Dependencies
 
@@ -14,7 +16,6 @@ group :development, :test do
   gem "database_cleaner"
   gem "email_spec"
   gem "cucumber-rails", :require => false
-  gem "launchy"
 end
 
 == Installation
@@ -36,5 +37,5 @@ For example (Only if you want to change default layout):
 '''
 
 
-3. Perfrom "rails generate red_base:install_all" to copy necessary files.
-4. Perform "rake db:migrate" and enjoy RedBase
+3. Perfrom `rails generate red_base:install_all` to copy necessary files.
+4. Perform `rake db:migrate` and enjoy RedBase

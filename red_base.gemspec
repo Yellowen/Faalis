@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "RedBase is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile",
-                "README.rdoc"]
+                "README.md"]
 
   s.test_files = Dir["spec/**/*"]
   s.require_paths = ["lib"]
