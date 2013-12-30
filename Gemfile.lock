@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    red_base (0.5.0)
+    red_base (0.5.1)
       cancan
       compass-rails
       devise (>= 3.0.0)
