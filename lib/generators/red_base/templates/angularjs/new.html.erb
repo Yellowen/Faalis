@@ -8,7 +8,7 @@
   <% fields.each do |field_name, field_type| %>
     <% if first %><div class="row"><% end %>
       <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
-      <label translate><%= field_name.to_s.capitalize %> :</label>
+      <label translate><%= field_name.to_s.humanize.capitalize %> :</label>
       <% case field_type
          when "belongs_to" %>
       <select ng-model="<%= field_name %>" name="<%= field_name %>">
@@ -20,6 +20,10 @@
       </select>
       <% when "text" %>
       <textarea ng-model="<%= field_name %>"></textarea>
+      <% when "boolean" %>
+      <input  ng-model="<%= field_name %>" type="checkbox" class="<%= field_type %>_field" />
+      <% when "datetime" %>
+      <datepicker  ng-model="<%= field_name %>" class="datetime_field" placeholder="{{ 'Click to pick a date' | translate }}" />
       <% when "string", nil %>
       <input  ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field" />
       <% else %>

@@ -22,7 +22,7 @@
 //= require_self
 //= require ./locale/translations
 
-var dependencies = ["gettext", "Modules", "Navigation", "ngAnimate", "ngRoute", "restangular"].concat(dashboard_dependencies);
+var dependencies = ["gettext", "Modules", "Navigation", "ngAnimate", "ngRoute", "restangular", "ngQuickDate"].concat(dashboard_dependencies);
 
 console.log("Dashboard dependencies:");
 console.log(dependencies);
@@ -37,7 +37,15 @@ Dashboard.config(['$routeProvider', function($routeProvider) {
 
 }]);
 
-Dashboard.config(["RestangularProvider", "$httpProvider", function(RestangularProvider, $httpProvider) {
+Dashboard.config(["RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function(RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
+
+    ngQuickDateDefaultsProvider.set({
+        closeButtonHtml: "<i class='fa fa-times'></i>",
+        buttonIconHtml: "<i class='fa fa-calendar'></i>",
+        nextLinkHtml: "<i class='fa fa-chevron-right'></i>",
+        prevLinkHtml: "<i class='fa fa-chevron-left'></i>"
+    });
+
     RestangularProvider.setBaseUrl('/api/v1');
 
     $httpProvider.defaults.headers.common.lang = $("html").attr("lang");

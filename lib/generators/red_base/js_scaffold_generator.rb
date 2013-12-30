@@ -32,6 +32,7 @@ module RedBase
       class_option :bulk_fields, :type => :string, :default => ""
       class_option :no_bulk, :type => :boolean, :default => false
       class_option :menu, :type => :string, :default => ""
+      class_option :title_field, :type => :string, :default => "name"
 
       desc "Create a new resource for client side application"
       def create_module
