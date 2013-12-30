@@ -7,8 +7,8 @@ require "red_base/version"
 Gem::Specification.new do |s|
   s.name        = "red_base"
   s.version     = RedBase::VERSION
-  s.authors     = ["Sameer Rahmani"]
-  s.email       = ["lxsameer@gnu.org"]
+  s.authors     = ["Sameer Rahmani", "Behnam Ahmad Khan Beigi"]
+  s.email       = ["lxsameer@gnu.org", "yottanami@gnu.org"]
   s.homepage    = "https://github.com/Yellowen/Red_Base"
   s.summary     = "RedBase is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
   s.description = "RedBase is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
