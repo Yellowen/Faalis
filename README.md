@@ -39,3 +39,7 @@ For example (Only if you want to change default layout):
 
 3. Perfrom `rails generate red_base:install_all` to copy necessary files.
 4. Perform `rake db:migrate` and enjoy RedBase
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Yellowen/red_base/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
