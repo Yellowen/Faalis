@@ -115,7 +115,7 @@ module RedBase
         fields = []
         resource_fields.each do |field|
           name, type, to = field.split(":")
-          if ["belongs_to", "has_many"].include? type
+          if ["belongs_to", "has_many", "in"].include? type
             type = Relation.new(type, to)
           end
 

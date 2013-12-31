@@ -18,4 +18,6 @@
  *= require_self
  *= require red_base/dashboard/dashboard
  *= require red_base/dashboard/sidebar
+ *= require red_base/dashboard/ng-quick-date
+ *= require red_base/dashboard/ng-quick-date-default-theme
 */

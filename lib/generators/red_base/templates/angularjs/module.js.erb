@@ -190,14 +190,16 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     <% fields.each do |name, type| %><% if ["belongs_to", "has_many"].include? type %><%= type.get_list %>.then(function(data){
         $scope.all_<%= type.resource_name %> = data;
     }).catch(catch_error);<% end %><% end %>
-
+    <% fields.each do |name, type| %><% if type == "in" %>$scope.<%= name %>_choices = _.sortBy([<% type.to.split(",").each do |choice| %>
+        {name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>
+    ], "title");<% end %><% end %>
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
         var obj = API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
                 .then(function(data) {
                 <% fields.each do |field_name, field_type| %>
-                    $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
+                    $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many", "in"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
                 })
                 .catch(catch_error);
     }
