@@ -10,12 +10,13 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
   def create
     <% fields.each do |name, type| %><% if type == "has_many" %>
     <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
-    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %>
-    <% end %><% end %>
+    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %><% end %>
     if @<%= resource.underscore %>.save
-        respond_with(@<%= resource.underscore %>)
+      respond_with(@<%= resource.underscore %>)
     else
-        respond_with(@<%= resource.underscore %>.errors)
+      respond_to do |format|
+        format.json { render :json => {:fields => @<%= resource.underscore %>.errors}, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -26,13 +27,14 @@ class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
   def update
     <% fields.each do |name, type| %><% if type == "has_many" %>
     <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
-    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %>
-    <% end %><% end %>
+    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %><% end %>
 
     if @<%= resource.underscore %>.update(resource_params)
       respond_with(@<%= resource.underscore %>)
     else
-      respond_with(@<%= resource.underscore %>.errors)
+      respond_to do |format|
+        format.json { render :json => {:fields => @<%= resource.underscore %>.errors}, :status => :unprocessable_entity }
+      end
     end
   end
 

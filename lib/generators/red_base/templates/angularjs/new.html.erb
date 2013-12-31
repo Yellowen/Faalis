@@ -11,29 +11,29 @@
       <label translate><%= field_name.to_s.humanize.capitalize %> :</label>
       <% case field_type
          when "belongs_to" %>
-      <select ng-model="<%= field_name %>" name="<%= field_name %>">
+      <select id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>">
         <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
       </select>
       <% when "has_many" %>
-      <select ng-model="<%= field_name %>" name="<%= field_name %>" multiple>
+      <select ng-model="<%= field_name %>" id="id_<%= field_name %>" name="<%= field_name %>" multiple>
         <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
       </select>
       <% when "in" %>
-      <select ng-model="<%= field_name %>" name="<%= field_name %>">
+      <select id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>">
         <option ng-repeat="item in <%= field_name %>_choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="<%= field_name %> === item.name">{{ item.title }}</option>
       </select>
       <% when "text" %>
-      <textarea ng-model="<%= field_name %>"></textarea>
+      <textarea id="id_<%= field_name %>" ng-model="<%= field_name %>"></textarea>
       <% when "boolean" %>
-      <input  ng-model="<%= field_name %>" type="checkbox" class="<%= field_type %>_field" />
+      <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="checkbox" class="<%= field_type %>_field" />
       <% when "datetime" %>
-      <datepicker  ng-model="<%= field_name %>" class="datetime_field" placeholder="{{ 'Click to pick a date' | translate }}" />
+      <datepicker  id="id_<%= field_name %>" ng-model="<%= field_name %>" class="datetime_field" placeholder="{{ 'Click to pick a date' | translate }}" />
       <% when "string", nil %>
-      <input  ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field" />
+      <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field" />
       <% else %>
-      <input  ng-model="<%= field_name %>" type="<%= field_type %>" class="<%= field_type %>_field" />
+      <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="<%= field_type %>" class="<%= field_type %>_field" />
       <% end %>
-      <small></small>
+      <small id="id_<%= field_name %>_msg"></small>
   </div>
   <% if not first %></div><% end %>
   <% first = !first %>
