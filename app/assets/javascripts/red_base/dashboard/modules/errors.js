@@ -20,8 +20,7 @@ var Errors = angular.module("Errors", []);
 
 Errors.factory('catch_error', ["gettext", function(gettext) {
     return function(error) {
-        console.dir(error);
-        console.dir(typeof(error.data));
+
         if ("data" in error) {
             if ((typeof(error.data) == "object") && ("fields" in error.data)) {
                 _.each(error.data.fields, function(value, key) {
@@ -40,9 +39,8 @@ Errors.factory('catch_error', ["gettext", function(gettext) {
                 error_message(error.data.error);
                 return;
             }
-            return;
         }
-
+        console.log(error);
         error_message(gettext("Unkown error: please try again or contact to administrator."));
 
     };

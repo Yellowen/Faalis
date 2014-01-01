@@ -1,7 +1,7 @@
 * Bugs
 * Tasks
-** TODO Fix the authentication assets issue (authentication should included only in device controllers)
-** TODO Add font awesome support
+** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
+** DONE Add font awesome support
 ** TODO fix password_require? in user model
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code
@@ -11,4 +11,5 @@
 ** TODO add formtastic initializer script to install generator.
 ** TODO Check for admin user only in api interface
 ** TODO js_scaffold should add models to red_base.rb in initilizers
-** TODO Add support for 'datetime', 'boolean', 'combobox' for js_scaffold
+** DONE Add support for 'datetime', 'boolean', 'combobox' for js_scaffold
+** TODO Create documentations about form validation
