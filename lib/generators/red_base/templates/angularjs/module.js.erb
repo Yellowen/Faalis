@@ -20,7 +20,7 @@
 
 <% end %>
 // <%= resource.pluralize %> Module
-var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Anim"]);
+var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Anim"<% if options[:deps] %><% options[:deps].split(",").each do |dependency| %>, "<%= dependency.camelize %>"<% end %><% end %>]);
 
 // <%= resource.pluralize %> configuration section ---------------------------
 <%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){

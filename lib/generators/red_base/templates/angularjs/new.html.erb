@@ -1,3 +1,4 @@
+<form novalidate name="form">
  <div class="newform">
   <fieldset class="form">
 
@@ -8,44 +9,44 @@
   <% fields.each do |field_name, field_type| %>
     <% if first %><div class="row"><% end %>
       <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
-      <label translate><%= field_name.to_s.humanize.capitalize %> :</label>
-      <% case field_type
-         when "belongs_to" %>
-      <select id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>">
-        <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
-      </select>
-      <% when "has_many" %>
-      <select ng-model="<%= field_name %>" id="id_<%= field_name %>" name="<%= field_name %>" multiple>
-        <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
-      </select>
-      <% when "in" %>
-      <select id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>">
-        <option ng-repeat="item in <%= field_name %>_choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="<%= field_name %> === item.name">{{ item.title }}</option>
-      </select>
-      <% when "text" %>
-      <textarea id="id_<%= field_name %>" ng-model="<%= field_name %>"></textarea>
-      <% when "boolean" %>
-      <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="checkbox" class="<%= field_type %>_field" />
-      <% when "datetime" %>
-      <datepicker  id="id_<%= field_name %>" ng-model="<%= field_name %>" class="datetime_field" placeholder="{{ 'Click to pick a date' | translate }}" />
-      <% when "string", nil %>
-      <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="text" class="<%= field_type %>_field" />
-      <% else %>
-      <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="<%= field_type %>" class="<%= field_type %>_field" />
-      <% end %>
-      <small id="id_<%= field_name %>_msg"></small>
-  </div>
+        <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= field_name.to_s.humanize.capitalize %></span> :</label>
+        <% case field_type
+           when "belongs_to" %>
+          <select id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
+            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
+          </select>
+          <% when "has_many" %>
+          <select ng-model="<%= field_name %>" id="id_<%= field_name %>" name="<%= field_name %>" multiple <% if required_fields.include? field_name %>required<% end %>>
+            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
+          </select>
+          <% when "in" %>
+          <select id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
+            <option ng-repeat="item in <%= field_name %>_choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="<%= field_name %> === item.name">{{ item.title }}</option>
+          </select>
+          <% when "text" %>
+          <textarea id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>></textarea>
+          <% when "boolean" %>
+          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="checkbox" name="<%= field_name %>" class="<%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+          <% when "datetime" %>
+          <datepicker  id="id_<%= field_name %>" ng-model="<%= field_name %>" class="datetime_field" name="<%= field_name %>" placeholder="{{ 'Click to pick a date' | translate }}" <% if required_fields.include? field_name %>required<% end %> />
+          <% when "string", nil %>
+          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" type="text" class="<%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+        <% else %>
+          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="<%= field_type %>" name="<%= field_name %>" class="<%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+  <% end %>
+          <small id="id_<%= field_name %>_msg"></small>
+    </div>
   <% if not first %></div><% end %>
   <% first = !first %>
   <% end %>
   </fieldset>
-
+</form>
 
   <div class="row">
       <div class="small-6 columns">
-        <button class="btn small green" ng-click="save(false)"><i class="fa fa-check"></i> <span translate>Save</span></button>
-        <button class="btn small blue" ng-click="save(true)"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
-        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cansel</span></button>
+        <button class="btn small green" ng-click="save(false)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn small blue" ng-click="save(true)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
+        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
       </div>
   </div>
 </div>

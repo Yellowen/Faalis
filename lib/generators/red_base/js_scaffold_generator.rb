@@ -33,6 +33,8 @@ module RedBase
       class_option :no_bulk, :type => :boolean, :default => false
       class_option :menu, :type => :string, :default => ""
       class_option :title_field, :type => :string, :default => "name"
+      class_option :required, :type => :string, :default => ""
+      class_option :deps, :type => :string, :default => ""
 
       desc "Create a new resource for client side application"
       def create_module
@@ -203,7 +205,12 @@ module RedBase
         (0...50).map{ o[rand(o.length)] }.join
       end
 
-
+      def required_fields
+        if not options[:required].empty?
+          return options[:required].split(",")
+        end
+        []
+      end
       class Relation < String
         attr_accessor :to
 
