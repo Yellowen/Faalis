@@ -7,8 +7,8 @@
   <div class="row">
     <div class="small-4 columns">
       <label translate>Name :</label>
-      <input  ng-model="new_name" type="text" class="">
-      <small></small>
+      <input id="id_name" ng-model="new_name" type="text" class="">
+      <small id="id_name_msg"></small>
     </div>
   </div>
 
@@ -18,13 +18,14 @@
     <div class="small-10 columns permissions">
 
       <div class="row">
-        <div id="permissions" class="small-8 columns field">
+        <div id="id_permissions" class="small-8 columns field">
           <ul>
 
               <li ng-repeat="permission in permissions" id="{{permission.name}}" class="" ng-click="select_permission(permission)"> <i ng-show="is_selected(permission)" class="fa fa-check"></i> {{ permission.string }} </li>
 
           </ul>
         </div>
+        <small id="id_permissions_msg"></small>
       </div>
     </div>
   </div>

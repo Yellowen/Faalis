@@ -77,7 +77,7 @@ Group.controller("GroupsController", ["$scope", "gettext", "Restangular", "catch
 
 }]);
 
-Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", function(API, $scope, $location, $routeParams, gettext){
+Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
     $scope.selected_perms = [];
     $scope.permissions = [];

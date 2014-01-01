@@ -23,12 +23,17 @@ module RedBase
         permissions << permission
       end
 
-      @group = Group.create!({
-                               name: params[:name],
-                               permissions: permissions,
-                             })
-      respond_with(@group)
-
+      @group = Group.new({
+                           name: params[:name],
+                           permissions: permissions,
+                         })
+      if @group.save
+        respond_with(@group)
+      else
+        respond_to do |format|
+          format.json { render :json => {:fields => @group.errors}, :status => :unprocessable_entity }
+        end
+      end
     end
 
     def show
@@ -49,9 +54,14 @@ module RedBase
         permissions << permission
       end
 
-      @group.update(:name => params[:name],
+      if @group.update(:name => params[:name],
                     :permissions => permissions)
-      respond_with(@group)
+        respond_with(@group)
+      else
+        respond_to do |format|
+          format.json { render :json => {:fields => @group.errors}, :status => :unprocessable_entity }
+        end
+      end
     end
 
     def destroy

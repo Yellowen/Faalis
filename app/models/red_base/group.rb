@@ -19,7 +19,7 @@
 
 module RedBase
   class Group < ActiveRecord::Base
-    #validate :name, :presence => true, :unique => true
+    validates :name, :presence => true
 
     has_and_belongs_to_many :permissions
     has_many :users
