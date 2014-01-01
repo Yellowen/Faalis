@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var Group = angular.module("Group", ["ListView"]);
+var Group = angular.module("Group", ["ListView", "Errors"]);
 
 Group.config(["$routeProvider", function($routeProvider){
     $routeProvider.
@@ -36,7 +36,7 @@ Group.config(["$routeProvider", function($routeProvider){
 
 }]);
 
-Group.controller("GroupsController", ["$scope", "gettext", "Restangular", function($scope, gettext, API){
+Group.controller("GroupsController", ["$scope", "gettext", "Restangular", "catch_error", function($scope, gettext, API, catch_error){
     $scope.details_template = template("auth/groups/details");
 
     $scope.buttons = [

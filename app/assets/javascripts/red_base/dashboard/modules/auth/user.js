@@ -16,7 +16,7 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
-var User = angular.module("User", ["ListView"]);
+var User = angular.module("User", ["ListView", "Errors"]);
 
 User.config(["$routeProvider", function($routeProvider){
 
@@ -35,8 +35,8 @@ User.config(["$routeProvider", function($routeProvider){
         });
 }]);
 
-User.controller("UsersController", ["$scope", "Restangular","gettext",
-                                    function($scope, API, gettext){
+User.controller("UsersController", ["$scope", "Restangular","gettext", "catch_error",
+                                    function($scope, API, gettext, catch_error){
 
     $scope.details_template = template("auth/users/details");
 
@@ -48,7 +48,7 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
         {
             title: gettext("New"),
             icon: "fa fa-plus",
-            classes: "btn small green",
+            classes: "btn tiny green",
             route: "#/auth/users/new"
         }
     ];
@@ -76,7 +76,7 @@ User.controller("UsersController", ["$scope", "Restangular","gettext",
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext" ,function($scope, API, $location , $routeParams, gettext){
+User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext", "catch_error", function($scope, API, $location , $routeParams, gettext, catch_error){
 
     API.all("groups").getList().then(
         function(data){
@@ -116,7 +116,8 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
         }
     };
 
-    $scope.cansel = function(){
+    $scope.cancel = function(){
         $(".form input").val("");
+        $location.path("auth/users");
     };
 }]);

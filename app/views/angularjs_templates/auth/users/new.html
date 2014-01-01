@@ -1,34 +1,45 @@
-<div class="form">
+<div class="newform">
   <fieldset class="form">
 
-    <legend id="module_title" translate>New User</legend>
+    <legend translate>New User</legend>
 
     <div class="row">
-      <div class="small-6 columns">
+      <div class="small-4 columns">
         <label for="first_name" translate>First Name :</label>
-        <input  id="first_name" type="text" name="first_name"  class="small-8 columns" required ng-model="first_name" required>
+        <input  id="id_first_name" type="text" name="first_name"  required ng-model="first_name" required>
+        <small id="id_first_name_msg"></small>
       </div>
 
-      <div class="small-6 columns">
+      <div class="small-4 columns float-left small-offset-2">
         <label for="last_name" translate>Last Name :</label>
-        <input  id="last_name" type="text" name="last_name"  class="small-8 columns" required ng-model="last_name">
-      </div>
+        <input  id="id_last_name" type="text" name="last_name"  required ng-model="last_name">
+        <small id="id_last_name_msg"></small>
 
-      <div class="small-6 columns float-left">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-4 columns">
         <label for="password" translate>Password :</label>
-        <input  id="passwprd" type="password" name="password" class="small-8 columns" required ng-model="password">
+        <input  id="id_password" type="password" name="password" required ng-model="password">
+        <small id="id_password_msg"></small>
+
       </div>
 
-      <div class="small-6 columns float-left">
+      <div class="small-4 columns float-left small-offset-2">
         <label for="email" translate>E-mail :</label>
-        <input  id="email" type="email" name="email" class="small-8 columns" required ng-model="email">
-      </div>
+        <input  id="id_email" type="email" name="email" required ng-model="email">
+        <small id="id_email_msg"></small>
 
-      <div class="small-6 columns float-left">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-4 columns">
         <label for="group" translate>Group :</label>
-        <select  id="group" name="group" class="small-8 columns" required ng-model="group">
+        <select  id="id_group" name="group" required ng-model="group">
           <option  ng-repeat="item in groups" value="{{item.id}}" ng-select="item.id === group">{{item.name}}</option>
         </select>
+        <small id="id_group_msg"></small>
+
       </div>
 
     </div>
@@ -36,9 +47,9 @@
   </fieldset>
 
   <div class="row">
-    <div class="small-6 columns">
+    <div class="small-4 columns">
       <button ng-click="save()" class="btn small green" ng-disabled="form.first_name.$pristine || form.first_name.$dirty && form.fist_name.$invalid"><i class="fa fa-check"></i> <span translate>Save</span></button>
-      <button class="btn small red"><i class="fa fa-times"></i><span translate>Cansel</span></button>
+      <button ng-click="cancel()" class="btn small red"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
     </div>
   </div>
 

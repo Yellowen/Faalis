@@ -12,6 +12,7 @@ module RedBase
     def show
       @user = User.find(params[:id])
       authorize! :read, @user
+      respond_with(@user)
     end
 
     def destroy
@@ -22,32 +23,52 @@ module RedBase
     end
 
     def update
-      group = Group.find(params[:group])
       @user = User.find(params[:id])
       authorize! :update, @user
       user_fields = {
-                     first_name: params[:first_name],
-                     last_name: params[:last_name],
-                     email: params[:email],
-                     group: group,
-                   }
-      if params[:password]
-        user_fields["password"] =  params[:password]
+        :first_name => params[:first_name],
+        :last_name => params[:last_name],
+        :email => params[:email],
+      }
+
+      if params.include? :password and params[:password]
+        user_fields[:password] =  params[:password]
       end
-      @user.update(user_fields)
+
+      if params.include? :group and params[:group]
+        user_fields[:group] =  Group.find(params[:group]) || nil
+      end
+
+      if @user.update(user_fields)
+        respond_with(@user)
+      else
+        respond_to do |format|
+          format.json { render :json => {:fields => @user.errors}, :status => :unprocessable_entity }
+        end
+      end
     end
 
     def create
       authorize! :create, RedBase::User
-      group = Group.find(params[:group])
-      if group
-        @user = User.create!({
-                               first_name: params[:first_name],
-                               last_name: params[:last_name],
-                               email: params[:email],
-                               password: params[:password],
-                               group: group,
-                             })
+
+      @user = User.new({
+                         first_name: params[:first_name],
+                         last_name: params[:last_name],
+                         email: params[:email],
+                         password: params[:password],
+                       })
+
+      if params.include? :group
+        group = Group.find(params[:group]) || nil
+        @user.group = group
+      end
+
+      if @user.save
+        respond_with(@user)
+      else
+        respond_to do |format|
+          format.json { render :json => {:fields => @user.errors}, :status => :unprocessable_entity }
+        end
       end
     end
   end

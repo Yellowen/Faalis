@@ -34,7 +34,7 @@ Errors.factory('catch_error', ["gettext", function(gettext) {
                 error_message(gettext("Validation error. Fixup errors first."));
                 return;
             }
-            if (error.data.error) {
+            if ((typeof(error.data) == "object") && ("error" in error.data)) {
                 console.log(error.data.error);
                 error_message(error.data.error);
                 return;

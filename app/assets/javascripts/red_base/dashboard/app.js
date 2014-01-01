@@ -55,16 +55,16 @@ Dashboard.config(["RestangularProvider", "$httpProvider", "ngQuickDateDefaultsPr
     $httpProvider.interceptors.push(function($q) {
         return {
             'request': function(config) {
-                $("#loading").show();
+                $(".loading").show();
                 return config;
             },
             'response': function(response) {
-                $("#loading").hide();
+                $(".loading").hide();
                 return response;
             }
         };
     });
     RestangularProvider.setErrorInterceptor(function(){
-        $("#loading").hide();
+        $(".loading").hide();
     });
 }]);
