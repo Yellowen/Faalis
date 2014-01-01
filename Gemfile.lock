@@ -87,6 +87,7 @@ GEM
       text
     gettext_i18n_rails (1.0.3)
       fast_gettext (>= 0.4.8)
+    github-markup (1.0.0)
     hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
@@ -132,6 +133,7 @@ GEM
     rake (10.1.0)
     rdoc (4.0.1)
       json (~> 1.4)
+    redcarpet (3.0.0)
     rspec-collection_matchers (0.0.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.0.0.beta1)
@@ -192,8 +194,10 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   gettext
+  github-markup
   rdoc
   red_base!
+  redcarpet
   rspec-rails (~> 3.0.0.beta)
   ruby_parser
   sqlite3

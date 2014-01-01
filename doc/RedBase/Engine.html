@@ -114,8 +114,7 @@
         <dt id="models_with_permission-classvariable" class="">@@models_with_permission =
           <div class="docstring">
   <div class="discussion">
-    
-<p>TODO: create a basic setup for this option</p>
+    <p>TODO: create a basic setup for this option</p>
 
 
   </div>
@@ -125,7 +124,9 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span><span class='rbracket'>]</span></pre></dd>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RedBase::User</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+ <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RedBase::Group</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+<span class='rbracket'>]</span></pre></dd>
       
         <dt id="dashboard_namespace-classvariable" class="">@@dashboard_namespace =
           
@@ -133,10 +134,14 @@
         <dd><pre class="code"><span class='symbol'>:dashboard</span></pre></dd>
       
         <dt id="locales-classvariable" class="">@@locales =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>en</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fa</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="locale_path-classvariable" class="">@@locale_path =
           <div class="docstring">
   <div class="discussion">
-    
-<p>locales mattr_accessor :locales</p>
+    <p>TODO: Check for possible error in this configurations</p>
 
 
   </div>
@@ -146,7 +151,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>en</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fa</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/config/locales</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
         <dt id="site_title-classvariable" class="">@@site_title =
           
@@ -156,14 +161,12 @@
         <dt id="dashboard_modules-classvariable" class="">@@dashboard_modules =
           <div class="docstring">
   <div class="discussion">
-    
-<p>This class variable should be a hash that each key is a resource name and
-its value is some of these:</p>
-
-<pre class="code ruby"><code class="ruby">resource: provide resource name explicitly
-title: resource title (will show in dashboard)
-icon: icon class checkout font-awesome
-</code></pre>
+    <p>This class variable should be a hash
+that each key is a resource name and its value
+is some of these:
+      resource: provide resource name explicitly
+      title: resource title (will show in dashboard)
+      icon: icon class checkout font-awesome</p>
 
 
   </div>
@@ -204,7 +207,29 @@ icon: icon class checkout font-awesome
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#em_template_path-class_method" title="em_template_path (class method)">+ (Object) <strong>em_template_path</strong>(manifest_path) </a>
+      <a href="#dashboard_modules%3D-class_method" title="dashboard_modules= (class method)">+ (Object) <strong>dashboard_modules=</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#models_with_permission%3D-class_method" title="models_with_permission= (class method)">+ (Object) <strong>models_with_permission=</strong>(value) </a>
     
 
     
@@ -247,59 +272,6 @@ icon: icon class checkout font-awesome
       
     </ul>
   
-    <h2>
-      Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#dashboard_modules%3D-instance_method" title="#dashboard_modules= (instance method)">- (Object) <strong>dashboard_modules=</strong>(value) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#models_with_permission%3D-instance_method" title="#models_with_permission= (instance method)">- (Object) <strong>models_with_permission=</strong>(value) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-    </ul>
-  
 
 
   
@@ -309,9 +281,9 @@ icon: icon class checkout font-awesome
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="em_template_path-class_method">
+  <h3 class="signature first" id="dashboard_modules=-class_method">
   
-    + (<tt>Object</tt>) <strong>em_template_path</strong>(manifest_path) 
+    + (<tt>Object</tt>) <strong>dashboard_modules=</strong>(value) 
   
 
   
@@ -323,17 +295,45 @@ icon: icon class checkout font-awesome
       <pre class="lines">
 
 
-117
-118
-119
-120</pre>
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 120</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_em_template_path'>em_template_path</span><span class='lparen'>(</span><span class='id identifier rubyid_manifest_path'>manifest_path</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='id identifier rubyid_manifest_path'>manifest_path</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_content'>/templates</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dashboard_modules='>dashboard_modules=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='cvar'>@@dashboard_modules</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="models_with_permission=-class_method">
+  
+    + (<tt>Object</tt>) <strong>models_with_permission=</strong>(value) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_models_with_permission='>models_with_permission=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='cvar'>@@models_with_permission</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -383,8 +383,7 @@ icon: icon class checkout font-awesome
       
       
         &mdash;
-        <div class='inline'>
-<p>the object that the method was called on</p>
+        <div class='inline'><p>the object that the method was called on</p>
 </div>
       
     </li>
@@ -397,12 +396,12 @@ icon: icon class checkout font-awesome
       <pre class="lines">
 
 
-63
-64
-65</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_setup'>setup</span>
   <span class='kw'>yield</span> <span class='kw'>self</span>
@@ -414,78 +413,12 @@ icon: icon class checkout font-awesome
     
   </div>
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="dashboard_modules=-instance_method">
-  
-    - (<tt>Object</tt>) <strong>dashboard_modules=</strong>(value) 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-107
-108
-109</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 107</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_dashboard_modules='>dashboard_modules=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-    <span class='cvar'>@@dashboard_modules</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="models_with_permission=-instance_method">
-  
-    - (<tt>Object</tt>) <strong>models_with_permission=</strong>(value) 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-49
-50
-51</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/engine.rb', line 49</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_models_with_permission='>models_with_permission=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-    <span class='cvar'>@@models_with_permission</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
-
 </div>
 
     <div id="footer">
-  Generated on Thu Nov  7 17:16:26 2013 by
+  Generated on Wed Jan  1 22:11:09 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.1.0).
 </div>
 
   </body>

@@ -79,8 +79,8 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/red_base/i18n.rb<span class="defines">,<br />
-  lib/red_base.rb,<br /> lib/red_base/engine.rb,<br /> lib/red_base/version.rb,<br /> app/api/red_base/api.rb,<br /> lib/red_base/omniauth.rb,<br /> lib/red_base/dashboard.rb,<br /> app/models/red_base/user.rb,<br /> app/models/red_base/group.rb,<br /> lib/red_base/dashboard/module.rb,<br /> app/models/red_base/permission.rb,<br /> lib/red_base/omniauth/callbacks.rb,<br /> app/helpers/red_base/home_helper.rb,<br /> lib/red_base/dashboard/controller.rb,<br /> app/helpers/red_base/dashboard_helper.rb,<br /> lib/generators/red_base/views_generator.rb,<br /> app/helpers/red_base/application_helper.rb,<br /> app/controllers/red_base/home_controller.rb,<br /> lib/generators/red_base/install_generator.rb,<br /> app/controllers/red_base/dashboard_controller.rb,<br /> lib/generators/red_base/install_all_generator.rb,<br /> app/controllers/red_base/omniauth/callbacks_controller.rb</span>
+    <dd class="r1 last">app/models/red_base/user.rb<span class="defines">,<br />
+  app/models/red_base/group.rb,<br /> app/models/red_base/permission.rb,<br /> app/helpers/red_base/home_helper.rb,<br /> app/helpers/red_base/users_helper.rb,<br /> app/helpers/red_base/groups_helper.rb,<br /> app/helpers/red_base/dashboard_helper.rb,<br /> app/helpers/red_base/application_helper.rb,<br /> app/controllers/red_base/home_controller.rb,<br /> app/controllers/red_base/dashboard_controller.rb,<br /> app/controllers/red_base/api/v1/logs_controller.rb,<br /> app/controllers/red_base/api/v1/users_controller.rb,<br /> app/controllers/red_base/api/v1/groups_controller.rb,<br /> app/controllers/red_base/api/v1/permissions_controller.rb,<br /> app/controllers/red_base/omniauth/callbacks_controller.rb,<br /> lib/red_base.rb,<br /> lib/red_base/api.rb,<br /> lib/red_base/i18n.rb,<br /> lib/red_base/engine.rb,<br /> lib/red_base/version.rb,<br /> lib/red_base/plugins.rb,<br /> lib/red_base/api/root.rb,<br /> lib/red_base/omniauth.rb,<br /> lib/red_base/dashboard.rb,<br /> lib/red_base/exceptions.rb,<br /> lib/red_base/api/users_api.rb,<br /> lib/red_base/api/groups_api.rb,<br /> lib/red_base/dashboard/module.rb,<br /> lib/red_base/omniauth/callbacks.rb,<br /> lib/red_base/api/permissions_api.rb,<br /> lib/red_base/dashboard/controller.rb,<br /> lib/generators/red_base/views_generator.rb,<br /> lib/generators/red_base/install_generator.rb,<br /> lib/generators/red_base/js_scaffold_generator.rb,<br /> lib/generators/red_base/install_all_generator.rb,<br /> lib/generators/red_base/install_specs_generator.rb,<br /> lib/generators/red_base/angularjs_resource_generator.rb</span>
 </dd>
   
 </dl>
@@ -88,25 +88,25 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <hr style="height: 10px">
+    <hr>
 
-<pre class="code ruby"><code class="ruby">Red Base - Basic website skel engine
-Copyright (C) 2012-2013 Yellowen
+<p>Red Base - Basic website skel engine
+   Copyright (C) 2012-2013 Yellowen</p>
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+<p>This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.</p>
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+<p>This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.</p>
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.</code></pre>
-<hr style="height: 10px">
+<p>You should have received a copy of the GNU General Public License along
+   with this program; if not, write to the Free Software Foundation, Inc.,</p>
+
+<h2>   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.</h2>
 
 
   </div>
@@ -118,11 +118,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="RedBase/ApplicationHelper.html" title="RedBase::ApplicationHelper (module)">ApplicationHelper</a></span>, <span class='object_link'><a href="RedBase/DashboardHelper.html" title="RedBase::DashboardHelper (module)">DashboardHelper</a></span>, <span class='object_link'><a href="RedBase/Generators.html" title="RedBase::Generators (module)">Generators</a></span>, <span class='object_link'><a href="RedBase/HomeHelper.html" title="RedBase::HomeHelper (module)">HomeHelper</a></span>, <span class='object_link'><a href="RedBase/Omniauth.html" title="RedBase::Omniauth (module)">Omniauth</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="RedBase/API.html" title="RedBase::API (module)">API</a></span>, <span class='object_link'><a href="RedBase/ApplicationHelper.html" title="RedBase::ApplicationHelper (module)">ApplicationHelper</a></span>, <span class='object_link'><a href="RedBase/DashboardHelper.html" title="RedBase::DashboardHelper (module)">DashboardHelper</a></span>, <span class='object_link'><a href="RedBase/Exceptions.html" title="RedBase::Exceptions (module)">Exceptions</a></span>, <span class='object_link'><a href="RedBase/Generators.html" title="RedBase::Generators (module)">Generators</a></span>, <span class='object_link'><a href="RedBase/GroupsHelper.html" title="RedBase::GroupsHelper (module)">GroupsHelper</a></span>, <span class='object_link'><a href="RedBase/HomeHelper.html" title="RedBase::HomeHelper (module)">HomeHelper</a></span>, <span class='object_link'><a href="RedBase/Omniauth.html" title="RedBase::Omniauth (module)">Omniauth</a></span>, <span class='object_link'><a href="RedBase/UsersHelper.html" title="RedBase::UsersHelper (module)">UsersHelper</a></span>
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="RedBase/API.html" title="RedBase::API (class)">API</a></span>, <span class='object_link'><a href="RedBase/ApplicationController.html" title="RedBase::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="RedBase/Dashboard.html" title="RedBase::Dashboard (class)">Dashboard</a></span>, <span class='object_link'><a href="RedBase/DashboardController.html" title="RedBase::DashboardController (class)">DashboardController</a></span>, <span class='object_link'><a href="RedBase/Engine.html" title="RedBase::Engine (class)">Engine</a></span>, <span class='object_link'><a href="RedBase/Group.html" title="RedBase::Group (class)">Group</a></span>, <span class='object_link'><a href="RedBase/HomeController.html" title="RedBase::HomeController (class)">HomeController</a></span>, <span class='object_link'><a href="RedBase/I18n.html" title="RedBase::I18n (class)">I18n</a></span>, <span class='object_link'><a href="RedBase/Permission.html" title="RedBase::Permission (class)">Permission</a></span>, <span class='object_link'><a href="RedBase/User.html" title="RedBase::User (class)">User</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="RedBase/APIController.html" title="RedBase::APIController (class)">APIController</a></span>, <span class='object_link'><a href="RedBase/ApplicationController.html" title="RedBase::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="RedBase/Dashboard.html" title="RedBase::Dashboard (class)">Dashboard</a></span>, <span class='object_link'><a href="RedBase/DashboardController.html" title="RedBase::DashboardController (class)">DashboardController</a></span>, <span class='object_link'><a href="RedBase/Engine.html" title="RedBase::Engine (class)">Engine</a></span>, <span class='object_link'><a href="RedBase/Group.html" title="RedBase::Group (class)">Group</a></span>, <span class='object_link'><a href="RedBase/HomeController.html" title="RedBase::HomeController (class)">HomeController</a></span>, <span class='object_link'><a href="RedBase/I18n.html" title="RedBase::I18n (class)">I18n</a></span>, <span class='object_link'><a href="RedBase/Permission.html" title="RedBase::Permission (class)">Permission</a></span>, <span class='object_link'><a href="RedBase/Plugins.html" title="RedBase::Plugins (class)">Plugins</a></span>, <span class='object_link'><a href="RedBase/User.html" title="RedBase::User (class)">User</a></span>
     
   
 </p>
@@ -134,7 +134,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
         <dt id="VERSION-constant" class="">VERSION =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.0.1</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.7.0</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
     </dl>
   
@@ -150,9 +150,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 </div>
 
     <div id="footer">
-  Generated on Thu Nov  7 17:16:26 2013 by
+  Generated on Wed Jan  1 22:11:09 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.1.0).
 </div>
 
   </body>

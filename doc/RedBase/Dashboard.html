@@ -107,8 +107,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>This Module is the base module for dashboard</p>
+    <p>This Module is the base module for dashboard</p>
 
 
   </div>
@@ -175,9 +174,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Return content for given section by calling related method in each
-registered module which registered to specified section.</p>
+    <span class="summary_desc"><div class='inline'><p>Return content for given section by calling related method in each registered module which registered to specified section.</p>
 </div></span>
   
 </li>
@@ -226,9 +223,9 @@ registered module which registered to specified section.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Return content for given section by calling related method in each
-registered module which registered to specified section</p>
+    <p>Return content for given section by calling related
+method in each registered module which registered to
+specified section</p>
 
 
   </div>
@@ -253,14 +250,12 @@ registered module which registered to specified section</p>
 52
 53
 54
-55
-56</pre>
+55</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/red_base/dashboard.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_content_for'>content_for</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='cvar'>@@modules</span><span class='comma'>,</span> <span class='cvar'>@@sections</span>
 
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>if</span> <span class='cvar'>@@sections</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_section'>section</span>
@@ -308,7 +303,7 @@ registered module which registered to specified section</p>
       <pre class="code"><span class="info file"># File 'lib/red_base/dashboard.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_module'>register_module</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_dashboard_module'>dashboard_module</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_dashboard_module'>dashboard_module</span><span class='period'>.</span><span class='id identifier rubyid_to_yml'>to_yml</span>
+
   <span class='kw'>if</span> <span class='kw'>not</span> <span class='cvar'>@@modules</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_dashboard_module'>dashboard_module</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
     <span class='cvar'>@@modules</span><span class='lbracket'>[</span><span class='id identifier rubyid_dashboard_module'>dashboard_module</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_dashboard_module'>dashboard_module</span>
 
@@ -328,9 +323,9 @@ registered module which registered to specified section</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Nov  7 17:16:26 2013 by
+  Generated on Wed Jan  1 22:11:09 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.1.0).
 </div>
 
   </body>

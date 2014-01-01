@@ -147,6 +147,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#jstemplate-instance_method" title="#jstemplate (instance method)">- (Object) <strong>jstemplate</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#modules-instance_method" title="#modules (instance method)">- (Object) <strong>modules</strong> </a>
     
 
@@ -176,11 +198,6 @@
   
   
   
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="Dashboard/Controller.html" title="RedBase::Dashboard::Controller (module)">RedBase::Dashboard::Controller</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Dashboard/Controller.html#included-class_method" title="RedBase::Dashboard::Controller.included (method)">included</a></span></p>
-
   
   
   
@@ -214,13 +231,53 @@
       <pre class="lines">
 
 
-14
-15</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/red_base/dashboard_controller.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/red_base/dashboard_controller.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='ivar'>@jstemplates_path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/templates</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="jstemplate-instance_method">
+  
+    - (<tt>Object</tt>) <strong>jstemplate</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/red_base/dashboard_controller.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_jstemplate'>jstemplate</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user_signed_in?'>user_signed_in?</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:template</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>angularjs_templates/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:path</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:layout</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:login_required_page</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -242,14 +299,6 @@
       <pre class="lines">
 
 
-17
-18
-19
-20
-21
-22
-23
-24
 25
 26
 27
@@ -258,10 +307,18 @@
 30
 31
 32
-33</pre>
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/red_base/dashboard_controller.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/red_base/dashboard_controller.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_modules'>modules</span>
   <span class='id identifier rubyid_dashboard_modules'>dashboard_modules</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -290,9 +347,9 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Nov  7 17:16:26 2013 by
+  Generated on Wed Jan  1 22:11:09 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.1.0).
 </div>
 
   </body>

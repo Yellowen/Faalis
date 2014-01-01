@@ -61,44 +61,59 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'>
-<h1 id="label-RedBase">RedBase</h1>
+    <div id="content"><div id='filecontents'><h1>RedBase  <a href="http://badge.fury.io/rb/red_base"><img src="https://badge.fury.io/rb/red_base.png" alt="Gem Version"></a></h1>
 
-<p>RedBase is a ruby on rails engine which provides a very basic web
-application to use with other ruby on rails applications.</p>
+<p>RedBase is a ruby on rails engine which provides a basic features of a web application. It provide a very
+robust dashboard subsystem with some fantastic generators which provide rapid productivity.</p>
 
-<h2 id="label-Installation">Installation</h2>
-<ol><li>
-<p>Add this to your `config/environments/development.rb`</p>
-</li></ol>
+<h2>Dependencies</h2>
 
-<p>&#39;&#39;&#39;ruby config.action_mailer.default_url_options = { :host
-=&gt; &#39;localhost:3000&#39; } &#39;&#39;&#39;</p>
+<ul>
+<li>Add this to your Gemfile:</li>
+</ul>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_group'>group</span> <span class='symbol'>:development</span><span class='comma'>,</span> <span class='symbol'>:test</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rspec-rails</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>~&gt; 3.0.0.beta</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>capybara</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>factory_girl_rails</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>~&gt; 4.0</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:require</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>database_cleaner</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>email_spec</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cucumber-rails</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:require</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Add this to your <code>config/environments/development.rb</code></li>
+</ol>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_action_mailer'>action_mailer</span><span class='period'>.</span><span class='id identifier rubyid_default_url_options'>default_url_options</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:host</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost:3000</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
+</code></pre>
 
 <p>In production, :host should be set to the actual host of your application.</p>
-<ol><li>
-<p>Ensure you have flash messages in app/views/layouts/application.html.erb.</p>
-</li></ol>
 
-<p>For example (Only if you want to change default layout):</p>
+<ol>
+<li>Ensure you have flash messages in app/views/layouts/application.html.erb.
+For example (Only if you want to change default layout):</li>
+</ol>
 
-<p>&#39;&#39;&#39;</p>
+<pre class="code rhtml"><code class="rhtml">&lt;p class=&quot;notice&quot;&gt;&lt;%= notice %&gt;&lt;/p&gt;
+&lt;p class=&quot;alert&quot;&gt;&lt;%= alert %&gt;&lt;/p&gt;
+</code></pre>
 
-<pre class="code ruby"><code class="ruby">&lt;p class=&quot;notice&quot;&gt;&lt;%= notice %&gt;&lt;/p&gt;
-&lt;p class=&quot;alert&quot;&gt;&lt;%= alert %&gt;&lt;/p&gt;</code></pre>
+<ol>
+<li>Perfrom <code>rails generate red_base:install_all</code> to copy necessary files.</li>
+<li>Perform <code>rake db:migrate</code> and enjoy RedBase</li>
+</ol>
 
-<p>&#39;&#39;&#39;</p>
-<ol><li>
-<p>Perfrom “rails generate red_base:install_all” to copy necessary files.</p>
-</li><li>
-<p>Perform “rake db:migrate” and enjoy RedBase</p>
-</li></ol>
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/Yellowen/red_base/trend.png" alt="Bitdeli Badge"></a></p>
 </div></div>
 
     <div id="footer">
-  Generated on Thu Nov  7 17:16:26 2013 by
+  Generated on Wed Jan  1 22:11:09 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.1.0).
 </div>
 
   </body>

@@ -89,6 +89,8 @@
     
   
     
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Ability.html" title="Ability (class)">Ability</a></span>
+    
   
 </p>
 
@@ -98,14 +100,124 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wait_for_ajax-instance_method" title="#wait_for_ajax (instance method)">- (Object) <strong>wait_for_ajax</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>-----------------------------------------------------------------------------    Red Base - Basic website skel engine    Copyright (C) 2012-2013 Yellowen.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="wait_for_ajax-instance_method">
+  
+    - (<tt>Object</tt>) <strong>wait_for_ajax</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+
+<p>Red Base - Basic website skel engine
+   Copyright (C) 2012-2013 Yellowen</p>
+
+<p>This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along
+   with this program; if not, write to the Free Software Foundation, Inc.,</p>
+
+<h2>   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.</h2>
+
+<p>Some useful steps for cucumber scenarios</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red_base/cucumber/interaction.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wait_for_ajax'>wait_for_ajax</span>
+  <span class='const'>Timeout</span><span class='period'>.</span><span class='id identifier rubyid_timeout'>timeout</span><span class='lparen'>(</span><span class='const'>Capybara</span><span class='period'>.</span><span class='id identifier rubyid_default_wait_time'>default_wait_time</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_active'>active</span> <span class='op'>=</span> <span class='id identifier rubyid_page'>page</span><span class='period'>.</span><span class='id identifier rubyid_evaluate_script'>evaluate_script</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$(&quot;#flash&quot;).is(&quot;:visible&quot;)</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>until</span> <span class='id identifier rubyid_active'>active</span> <span class='op'>==</span> <span class='kw'>true</span>
+      <span class='id identifier rubyid_active'>active</span> <span class='op'>=</span> <span class='id identifier rubyid_page'>page</span><span class='period'>.</span><span class='id identifier rubyid_evaluate_script'>evaluate_script</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$(&quot;#flash&quot;).is(&quot;:visible&quot;)</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
     <div id="footer">
-  Generated on Thu Nov  7 17:16:26 2013 by
+  Generated on Wed Jan  1 22:11:09 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.1.0).
 </div>
 
   </body>

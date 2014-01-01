@@ -18,4 +18,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem "capybara"
   gem "yard"
+  gem 'redcarpet'
+  gem 'github-markup'
 end
