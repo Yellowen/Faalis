@@ -6,12 +6,16 @@ module RedBase
     include RedBase::Dashboard::Controller
 
     layout "red_base/dashboard"
-    before_filter :authenticate_user!
+    before_filter :authenticate_user!, :only => [:modules, :index]
 
     respond_to :json, :html
 
     def jstemplate
-      render :template => "angularjs_templates/#{params[:path]}", :layout => nil
+      if user_signed_in?
+        render :template => "angularjs_templates/#{params[:path]}", :layout => nil
+      else
+        render :login_required_page
+      end
     end
 
     def index

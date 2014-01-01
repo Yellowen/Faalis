@@ -50,6 +50,7 @@ Dashboard.config(["RestangularProvider", "$httpProvider", "ngQuickDateDefaultsPr
     RestangularProvider.setBaseUrl('/api/v1');
 
     $httpProvider.defaults.headers.common.lang = $("html").attr("lang");
+    $httpProvider.defaults.headers.common.RTYPE = "ajax";
 
     // Show loading icon on any request
     $httpProvider.interceptors.push(function($q) {
@@ -64,7 +65,11 @@ Dashboard.config(["RestangularProvider", "$httpProvider", "ngQuickDateDefaultsPr
             }
         };
     });
-    RestangularProvider.setErrorInterceptor(function(){
+    RestangularProvider.setErrorInterceptor(function(response, a){
         $(".loading").hide();
+        if (response.status == 401) {
+            error_message(response.data.error);
+            return false;
+        }
     });
 }]);
