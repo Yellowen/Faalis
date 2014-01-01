@@ -2,8 +2,8 @@
  <div class="newform">
   <fieldset class="form">
 
-  <legend ng-if="!editing"><span translate>New <%= resource %></span></legend>
-  <legend ng-if="editing"><span translate>Edit <%= resource %></span></legend>
+  <legend ng-if="!editing"><span translate>New <%= resource.underscore.pluralize.humanize %></span></legend>
+  <legend ng-if="editing"><span translate>Edit <%= resource.underscore.pluralize.humanize %></span></legend>
 
   <% first = true %>
   <% fields.each do |field_name, field_type| %>
