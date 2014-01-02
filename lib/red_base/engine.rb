@@ -59,7 +59,6 @@ module RedBase
       @@models_with_permission.concat(value).uniq!
     end
 
-
     # Dashboard url prefix
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
@@ -124,9 +123,6 @@ module RedBase
     # Dashboard default javascript manifest
     mattr_accessor :dashboard_js_manifest
     @@dashboard_js_manifest = "controlpanel/application.js"
-
-    # Grape configuration
-    config.paths.add "app/api", glob: "**/*.rb"
 
   end
 end

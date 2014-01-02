@@ -15,9 +15,6 @@
 //= require red_base/dashboard/init
 //= require red_base/dashboard/app
 //= require_tree .
-<% RedBase::Plugins.names.each do |plugin_name| %>
-    <% require_asset "#{plugin_name}/application.js" %>
-<% end %>
 
 $(function(){
     $(document).foundation();
