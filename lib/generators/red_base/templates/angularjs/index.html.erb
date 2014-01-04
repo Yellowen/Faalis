@@ -68,7 +68,7 @@
     </div>
 </div>
 <% end %>
-<list-view buttons="buttons" objects="<%= resource.pluralize.underscore %>" title-attribute="'<%= options[:title_field] %>'" details-template="details_template" item-per-page="10" on_delete="on_delete">
+<list-view buttons="buttons" objects="<%= resource.pluralize.underscore %>" title-attribute="'<%= options[:title_field] %>'" details-template="details_template" item-per-page="10" on_delete="on_delete" column_defs="columns">
   <div class="small-6 column text-left clearpadding">
     <h3><i class="fa fa-group"></i> <span translate><%= resource.underscore.pluralize.humanize %></span></h3>
   </div>

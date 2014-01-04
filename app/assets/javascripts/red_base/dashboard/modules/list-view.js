@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var ListView = angular.module("ListView", []);
+var ListView = angular.module("ListView", ['ngGrid']);
 
 /*
  * <element object-action></element> directive defination
@@ -58,6 +58,8 @@ ListView.directive('listView', ["$filter", "gettext", function($filter, gettext)
         var ltr = is_ltr();
         var _item_per_page = parseInt(scope.item_per_page, 10) || 10;
         var _current_page = 1;
+        scope.list_view = true;
+        scope.grid_view = false;
 
         var filtered_objects = function(){
             var filterby = {};
@@ -72,6 +74,13 @@ ListView.directive('listView', ["$filter", "gettext", function($filter, gettext)
             });
             // TODO: Double check this or condition
             return result  || [];
+        };
+        console.log(scope.column_defs);
+        scope.grid_options = {
+            data: 'objects',
+            headerRowHeight: 30,
+            rowHeight: 30,
+            columnDefs: scope.column_defs
         };
 
         var delete_method = scope.on_delete || function(x){
@@ -285,6 +294,11 @@ ListView.directive('listView', ["$filter", "gettext", function($filter, gettext)
             // Number of item per pages
             item_per_page: "=itemPerPage",
 
+            // Search input
+            search: "=",
+
+            // Grid columns
+            column_defs: "=columnDefs",
             // On delete method
             on_delete: "=onDelete"
         },

@@ -1,5 +1,7 @@
+
 <div class="row  clearmargin" data-ng-transclude>
 </div>
+
 
 <div class="table-list">
   <ul>
@@ -8,15 +10,21 @@
         <span data-ng-repeat="button in buttons" class="{{ button.classes }}"><a  object-action object="button"><i class="{{ button.icon }}"></i> {{ button.title | translate }}</a></span>
       </div>
 
-      <div class="small-4 columns text-right search-bar">
+      <div class="small-2 columns text-right list-type">
+        <span ng-click="grid_view = false; list_view = true" ng-class="{active: list_view == true}"><i class="fa fa-th-list"></i></span>
+        <span ng-click="grid_view = true; list_view = false" ng-class="{active: grid_view == true}"><i class="fa fa-table"></i></span>
+      </div>
+      <div class="small-4 columns text-right search-bar" ng-if="search == true">
         <input type="search" class="append " ng-model="searchterm" placeholder="{{ 'Search' | translate}} ..."/>
         <span class="append radius"><i class="fa fa-search"></i></span>
       </div>
 
     </li>
-    <li ng-if="get_current_page().length == 0"><span translate>There is no data!</span></li>
 
-    <li ng-repeat="object in get_current_page()" ng-class="{'selected': object.is_selected}" class="pointer">
+    <!-- List view data list -->
+    <li ng-if="(get_current_page().length == 0) && (list_view == true)"><span translate>There is no data!</span></li>
+
+    <li ng-repeat="object in get_current_page()" ng-if="list_view == true" ng-class="{'selected': object.is_selected}" class="pointer">
       <i ng-click="toggle_details(object)"  class="{{ handle_icon }} {{ handle_icon_expand(object) }} handle fa "></i>
 
       <div class="title" ng-click="select_item(object)">
@@ -29,6 +37,13 @@
       </div>
 
     </li>
+
+    <!-- Grid view data list -->
+    <li ng-if="grid_view == true" class="grid">
+      <div class="grid-style" ng-grid="grid_options"></div>
+    </li>
+
+
 
     <li class="table-summery">
       <div class="small-6 columns">

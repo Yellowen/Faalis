@@ -65,6 +65,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         }
     };
 
+    $scope.columns = [<% grid_fields.each do |name, type| %>
+        {field:'<%= name %>', displayName: gettext('<%= name.capitalize.humanize %>')},
+    <% end %>];
     $scope.fields = [<% bulk_edit_fields.each do |name| %>
         {
             name: "<%= name %><% if ["belongs_to", "has_many"].include? fields_hash[name] %>_id<% end %>",

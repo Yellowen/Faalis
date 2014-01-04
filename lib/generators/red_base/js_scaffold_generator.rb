@@ -138,8 +138,8 @@ module RedBase
       def any_tabs?
         options[:tabs].present?
       end
-
       # -----------------------------------
+
       # An array of fields like
       # [name, type]
       def fields
@@ -157,6 +157,10 @@ module RedBase
 
       def fields_hash
         Hash[fields]
+      end
+
+      def grid_fields
+        fields
       end
 
       # Returns fields which is needed to be in bulk edit
