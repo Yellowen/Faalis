@@ -98,7 +98,7 @@ ul{
 
 .dashboard-content {
    .content {
-      padding: 0 20px;
+      padding: 10px 20px 0;
    }
    h1, h2, h3, h4, h5 {
       color: $darkergray;
@@ -170,4 +170,49 @@ fieldset {
 
 .input-error {
   border-color: $alizarin !important;
+}
+
+// Tabs --------------------------------------------------------
+@mixin active-tab ($color){
+  border-bottom: $tab-bottom-border solid $color;
+}
+
+.tabs {
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid $lightergray;
+  border-bottom: $tab-bottom-border solid $lightgray;
+  padding: 0 10px;
+  font-size: 14px;
+  height: $tabs-height;
+  color: $lightergray;
+  ul {
+    list-style: none;
+
+    li {
+      color: $darkgray;
+      display: inline-block;
+      position: relative;
+      padding: 10px 20px;
+      cursor: pointer;
+      height: $tabs-height - 1px;
+
+      &.active {
+        &.tab1{
+          @include active-tab($emerald);
+        }
+        &.tab2{
+          @include active-tab($alizarin);
+        }
+        &.tab3{
+          @include active-tab($peter_river);
+        }
+        &.tab4{
+          @include active-tab($orange);
+        }
+
+      }
+    }
+  }
 }
