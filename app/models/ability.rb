@@ -31,6 +31,9 @@ class Ability
 
     # IMPORTANT: Remove this snippet with more suitable one
     # TODO: Remove this snippet with more suitable one
+    user.group.permissions.each do |permission|
+      can permission.permission_type.to_sym, permission.model.constantize
+    end
 
     if user and user.group_id == 1
       can :manage, :all
