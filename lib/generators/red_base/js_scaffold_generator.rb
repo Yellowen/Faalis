@@ -35,7 +35,7 @@ module RedBase
       class_option :title_field, :type => :string, :default => "name", :desc => "Field name to use as title of each object"
       class_option :required, :type => :string, :default => "", :desc => "Non optional fields, comma separated"
       class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
-      class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:field1;field2,tab2"
+      class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
 
       desc "Create a new resource for client side application"
       def create_module
@@ -112,6 +112,8 @@ module RedBase
         "app/assets/javascripts/#{path}/"
       end
 
+      # Tabs ------------------------------------
+
       # Process the user provided tabs
       # @return a Hash of tabs like
       def tabs
@@ -131,6 +133,12 @@ module RedBase
           {}
         end
       end
+
+      def any_tabs?
+        options[:tabs].present?
+      end
+
+      # -----------------------------------
       # An array of fields like
       # [name, type]
       def fields
