@@ -65,6 +65,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         }
     };
 
+    $scope.columns = [<% grid_fields.each do |name, type| %>
+        {field:'<%= name %>', displayName: gettext('<%= name.capitalize.humanize %>')},
+    <% end %>];
     $scope.fields = [<% bulk_edit_fields.each do |name| %>
         {
             name: "<%= name %><% if ["belongs_to", "has_many"].include? fields_hash[name] %>_id<% end %>",
@@ -187,7 +190,11 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 <%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
-    $scope.editing = false;
+    $scope.editing = false;<% if any_tabs? %>
+    $scope.current_tab = 1;
+    $scope.activate_tab = function(tab, $event){
+        $scope.current_tab = tab;
+    };<% end %>
     $scope.obj_id = null;
     <% fields.each do |name, type| %><% if ["belongs_to", "has_many"].include? type %><%= type.get_list %>.then(function(data){
         $scope.all_<%= type.resource_name %> = data;

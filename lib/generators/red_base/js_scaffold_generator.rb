@@ -27,14 +27,16 @@ module RedBase
 
       argument :resource_name, :type => :string, :required => true
       argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
-      class_option :without_specs, :type => :boolean, :default => false
-      class_option :only_specs, :type => :boolean, :default => false
-      class_option :bulk_fields, :type => :string, :default => ""
-      class_option :no_bulk, :type => :boolean, :default => false
-      class_option :menu, :type => :string, :default => ""
-      class_option :title_field, :type => :string, :default => "name"
-      class_option :required, :type => :string, :default => ""
-      class_option :deps, :type => :string, :default => ""
+      class_option :without_specs, :type => :boolean, :default => false, :desc => "Do not install specs"
+      class_option :only_specs, :type => :boolean, :default => false, :desc => "Generate only spec files"
+      class_option :bulk_fields, :type => :string, :default => "", :desc => "Fields to use in in bulk edit, comma separated"
+      class_option :no_bulk, :type => :boolean, :default => false, :desc => "No bulk edit needed"
+      class_option :menu, :type => :string, :default => "", :desc => "Provide menu items which should be in sidebar. format: menu1:url,menu2:url"
+      class_option :title_field, :type => :string, :default => "name", :desc => "Field name to use as title of each object"
+      class_option :required, :type => :string, :default => "", :desc => "Non optional fields, comma separated"
+      class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
+      class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
+      class_option :no_filter, :type => :boolean, :default => false, :desc => "Don't view a filter box"
 
       desc "Create a new resource for client side application"
       def create_module
@@ -111,6 +113,33 @@ module RedBase
         "app/assets/javascripts/#{path}/"
       end
 
+      # Tabs ------------------------------------
+
+      # Process the user provided tabs
+      # @return a Hash of tabs like
+      def tabs
+        if options[:tabs].present?
+          tabs = options[:tabs].split(",")
+          result = {}
+          tabs.each do |tab|
+            name, fields = tab.split(":")
+            fields_list = []
+            unless fields.nil?
+              fields_list = fields.split(";")
+            end
+            result[name] = fields_list
+          end
+          return result
+        else
+          {}
+        end
+      end
+
+      def any_tabs?
+        options[:tabs].present?
+      end
+      # -----------------------------------
+
       # An array of fields like
       # [name, type]
       def fields
@@ -128,6 +157,10 @@ module RedBase
 
       def fields_hash
         Hash[fields]
+      end
+
+      def grid_fields
+        fields
       end
 
       # Returns fields which is needed to be in bulk edit

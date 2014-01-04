@@ -1,8 +1,24 @@
+<% unless options[:no_filter] %>
+<div class="filter_box">
+  <form id="bulk_form">
+    <fieldset class="row clearmargin">
+      <legend translate>Filter</legend>
+      <div class="row">
+        <div class="small-6 columns search-bar">
+          <input type="search" class="append " ng-model="searchterm" placeholder="{{ 'Search' | translate}} ..."/>
+          <span class="append radius"><i class="fa fa-search"></i></span>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+</div>
+<% end %>
 <% unless options[:no_bulk] %>
 <div ng-if="bulk_edit" class="fade_anim">
   <form id="bulk_form">
     <fieldset class="row clearmargin">
-      <legend>Bulk Edit</legend>
+      <legend translate>Bulk Edit</legend>
       <div class="row">
         <div class="small-6 columns">
           <label for="field_name" translate>Field Name:</label>
@@ -52,7 +68,7 @@
     </div>
 </div>
 <% end %>
-<list-view buttons="buttons" objects="<%= resource.pluralize.underscore %>" title-attribute="'<%= options[:title_field] %>'" details-template="details_template" item-per-page="10" on_delete="on_delete">
+<list-view buttons="buttons" objects="<%= resource.pluralize.underscore %>" title-attribute="'<%= options[:title_field] %>'" details-template="details_template" item-per-page="10" on_delete="on_delete" column_defs="columns">
   <div class="small-6 column text-left clearpadding">
     <h3><i class="fa fa-group"></i> <span translate><%= resource.underscore.pluralize.humanize %></span></h3>
   </div>
