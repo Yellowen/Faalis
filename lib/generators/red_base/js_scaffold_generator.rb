@@ -36,6 +36,7 @@ module RedBase
       class_option :required, :type => :string, :default => "", :desc => "Non optional fields, comma separated"
       class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
       class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
+      class_option :no_filter, :type => :boolean, :default => false, :desc => "Don't view a filter box"
 
       desc "Create a new resource for client side application"
       def create_module

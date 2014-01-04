@@ -216,3 +216,11 @@ fieldset {
     }
   }
 }
+
+
+.filter_box {
+  fieldset {
+    background: $peter_river;
+    border-color: darken($peter_river, 5%);
+  }
+}
