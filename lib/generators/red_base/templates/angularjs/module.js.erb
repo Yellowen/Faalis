@@ -220,6 +220,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 <%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
+    $scope.select2options = {};
     $scope.editing = false;<% if any_tabs? %>
     $scope.current_tab = 1;
     $scope.activate_tab = function(tab, $event){

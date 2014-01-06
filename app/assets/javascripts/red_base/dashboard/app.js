@@ -22,7 +22,7 @@
 //= require_self
 //= require ./locale/translations
 
-var dependencies = ["gettext", "Modules", "Navigation", "ngAnimate", "ngRoute",
+var dependencies = ["gettext", "Modules", "ui.select2", "Navigation", "ngAnimate", "ngRoute",
                     "restangular", "ngQuickDate", "Errors"].concat(dashboard_dependencies);
 
 console.log("Dashboard dependencies:");

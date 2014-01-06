@@ -22,5 +22,5 @@
  *= require red_base/dashboard/ng-quick-date
  *= require red_base/dashboard/ng-quick-date-default-theme
  *= require red_base/dashboard/ng-grid
-
+ *= require red_base/dashboard/select2
 */
