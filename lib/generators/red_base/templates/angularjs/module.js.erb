@@ -44,8 +44,8 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 // <%= resource %> index controller -------------------------------------------------------
 // This controller is responsible for list page (index)
-<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error",
-                                      function($scope, gettext, API, catch_error){
+<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location",
+                                      function($scope, gettext, API, catch_error, $location){
 
     <% unless options[:no_bulk] %>// Cache object for each field name possible values
     $scope.cache = {};
@@ -116,14 +116,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
                     error_message(gettext("You should only select one item to copy."));
                 }
                 else {
-                    //$scope.$apply("bulk_edit = ! bulk_edit");
-                    var new_object = angular.copy(selected);
-                    new_object.id = -1 * new_object.id;
-                    new_object.is_copy = true;
-                    $scope.$apply(function(scope){
-                        selected.is_selected = false;
-                        scope.<%= resource.pluralize.underscore %>.push(new_object);
-                    });
+                    $location.path("/<%= resource.pluralize.underscore %>/-" + selected.id + "/edit");
                 }
             }
         }
