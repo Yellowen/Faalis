@@ -1,18 +1,5 @@
 <% unless options[:no_filter] %>
-<div class="filter_box">
-  <form id="bulk_form">
-    <fieldset class="row clearmargin">
-      <legend translate>Filter</legend>
-      <div class="row">
-        <div class="small-6 columns search-bar">
-          <input type="search" class="append " ng-model="searchterm" placeholder="{{ 'Search' | translate}} ..."/>
-          <span class="append radius"><i class="fa fa-search"></i></span>
-        </div>
-      </div>
-
-    </fieldset>
-  </form>
-</div>
+<filter config="filter_config" result="<%= resource.pluralize.underscore %>"></filter>
 <% end %>
 <% unless options[:no_bulk] %>
 <div ng-if="bulk_edit" class="fade_anim">

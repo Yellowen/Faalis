@@ -75,14 +75,17 @@ ListView.directive('listView', ["$filter", "gettext", function($filter, gettext)
             // TODO: Double check this or condition
             return result  || [];
         };
-        console.log(scope.column_defs);
         scope.grid_options = {
             data: 'objects',
             headerRowHeight: 30,
             rowHeight: 30,
+            enablePaging: true,
+            afterSelectionChange: function(rowitem, event){
+                console.dir(rowitem);
+                console.dir(event);
+            },
             columnDefs: scope.column_defs
         };
-
         var delete_method = scope.on_delete || function(x){
             console.log( "undefined on delete method" );
         };

@@ -20,7 +20,7 @@
 
 <% end %>
 // <%= resource.pluralize %> Module
-var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Anim"<% if options[:deps] %><% options[:deps].split(",").each do |dependency| %>, "<%= dependency.camelize %>"<% end %><% end %>]);
+var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Filter", "Anim"<% if options[:deps] %><% options[:deps].split(",").each do |dependency| %>, "<%= dependency.camelize %>"<% end %><% end %>]);
 
 // <%= resource.pluralize %> configuration section ---------------------------
 <%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){
@@ -49,6 +49,10 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     <% unless options[:no_bulk] %>// Cache object for each field name possible values
     $scope.cache = {};
+    <% unless options[:no_filter] %>$scope.filter_config = {
+        list: API.all("<%= resource.pluralize.underscore %>")
+    };
+    $scope.<%= resource.pluralize.underscore %> = [];<% end %>
 
     // Change event handler for field_name combobox in bulk edit
     $scope.field_name_change = function(x){
@@ -178,14 +182,14 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             });
 
     };
-
+    <% unless options[:no_filter] %>/*<% end %>
     API.all("<%= resource.pluralize.underscore %>").getList()
         .then(function(data){
             $scope.<%= resource.pluralize.underscore %> = data;
         }, function(data){
             catch_error(data);
         });
-
+     <% unless options[:no_filter] %>*/<% end %>
 }]);
 
 <%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
