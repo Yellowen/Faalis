@@ -100,8 +100,34 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             classes: "btn tiny yellow",
             action: function(){
                 $scope.$apply("bulk_edit = ! bulk_edit");
+            },
+
+        },<% end %>
+        {
+            title: gettext("Duplicate"),
+            icon: "fa fa-files-o",
+            classes: "btn tiny red",
+            action: function(){
+                var selected = _.find($scope.<%= resource.pluralize.underscore %>, function(x){
+                    return x.is_selected === true;
+                });
+
+                if (selected === undefined ) {
+                    error_message(gettext("You should only select one item to copy."));
+                }
+                else {
+                    //$scope.$apply("bulk_edit = ! bulk_edit");
+                    var new_object = angular.copy(selected);
+                    new_object.id = -1 * new_object.id;
+                    new_object.is_copy = true;
+                    $scope.$apply(function(scope){
+                        selected.is_selected = false;
+                        scope.<%= resource.pluralize.underscore %>.push(new_object);
+                    });
+                }
             }
-        }<% end %>
+        }
+
     ];<% unless options[:no_bulk] %>
 
     /*
@@ -200,6 +226,8 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         $scope.current_tab = tab;
     };<% end %>
     $scope.obj_id = null;
+    var is_copy = false;
+
     <% fields.each do |name, type| %><% if ["belongs_to", "has_many"].include? type %><%= type.get_list %>.then(function(data){
         $scope.all_<%= type.resource_name %> = data;
     }, function(data){
@@ -211,6 +239,11 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
+        if ($scope.obj_id < 0) {
+            is_copy = true;
+            $scope.obj_id = $scope.obj_id * -1;
+        }
+
         var obj = API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
                 .then(function(data) {
                 <% fields.each do |field_name, field_type| %>
@@ -242,7 +275,8 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             <% if ["belongs_to"].include? field_type %><%= field_name %>_id: parseInt($scope.<%= field_name %>),<% else %><%= field_name %>: $scope.<%= field_name %>,<% end %><% end %>
             __res__: 0
         }};
-        if ($scope.obj_id) {
+        if (($scope.obj_id) && (is_copy === false)) {
+
             API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
                 .then(function(){
                     success_message(gettext("<%= resource %> updated successfully."));
