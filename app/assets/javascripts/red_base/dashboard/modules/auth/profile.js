@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var Profile = angular.module("Navigation");
+var Profile = angular.module("Profile", []);
 
 Profile.config(["$routeProvider", function($routeProvider){
 
