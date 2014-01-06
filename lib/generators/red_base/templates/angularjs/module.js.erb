@@ -93,7 +93,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             classes: "btn tiny green",
             route: "#<%= resource_url %>/new"
 
-        },<% unless options[:no_bulk] %>,
+        },<% unless options[:no_bulk] %>
         {
             title: gettext("Bulk Edit"),
             icon: "fa fa-edit",
