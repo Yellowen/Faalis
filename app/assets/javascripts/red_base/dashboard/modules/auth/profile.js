@@ -22,13 +22,9 @@ var Profile = angular.module("Profile", []);
 Profile.config(["$routeProvider", function($routeProvider){
 
     $routeProvider.
-        when("/auth/profile",{
-            templateUrl: template("auth/profile/index"),
-            controller: "ProfileController"
-        }).
-        when("/auth/profle/edit",{
+        when("/auth/profile/edit",{
             templateUrl: template("auth/profile/edit"),
-            controller: "EditProfileController"
+            controller: "ProfileController"
         });
 }]);
 
