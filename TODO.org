@@ -13,7 +13,11 @@
 ** TODO js_scaffold should add models to red_base.rb in initilizers
 ** DONE Add support for 'datetime', 'boolean', 'combobox' for js_scaffold
 ** TODO Create documentations about form validation
+<<<<<<< HEAD
 * Features
 ** TODO Edit Profile
 ** TODO User messages
 ** TODO
+=======
+** TODO add mailboxer
+>>>>>>> ecb8c11787b5120cb09d46523617a733cd1d246d
