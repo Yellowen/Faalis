@@ -54,7 +54,7 @@ header {
         height: $header-height;
         margin: 0 5px;
 
-        &:hover {
+        &:not(.staticitem):hover {
           border-bottom: 5px solid $alizarin;
         }
         span {
