@@ -38,7 +38,7 @@ Profile.controller("ProfileController", ["$scope", "Restangular","gettext", "cat
                                          function($scope, API, gettext, catch_error){
                                              API.one("profile").get().then(
                                                  function(data){
-                                                     $scope.data = data;
+                                                     $scope.profle = data;
                                                  });
 
                                          }]);
