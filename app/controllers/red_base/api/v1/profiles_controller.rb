@@ -1,7 +1,16 @@
 require_dependency "red_base/application_controller"
 
 module RedBase
-  class API::V1::ProfilesController < APIController
+  class RegistrationsController < ::Devise::RegistrationsController
+    #layout :defined_layout
+    def edit
+      super
+      render :template => "registrations/edit2"
+    end
+
+  end
+
+=begin
     def show
         @user = current_user
         respond_with(@user)
@@ -23,5 +32,6 @@ module RedBase
         end
       end
     end
-  end
+end
+=end
 end

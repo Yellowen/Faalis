@@ -14,6 +14,7 @@
 ** DONE Add support for 'datetime', 'boolean', 'combobox' for js_scaffold
 ** TODO Create documentations about form validation
 <<<<<<< HEAD
+** TODO encode passwords !
 * Features
 ** TODO Edit Profile
 ** TODO User messages

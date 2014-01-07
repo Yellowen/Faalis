@@ -15,20 +15,31 @@ module RedBase
 
     def update
       if user_signed_in?
+        @user = current_user
         user_fields = {
           :first_name => params[:first_name],
           :last_name => params[:last_name],
           :email => params[:email],
         }
-        @user = current_user
-        if @user.update_without_password(user_fields)
-          respond_with(@user)
-        else
-          respond_to do |format|
-            format.json { render :json => {:fields => @user.errors}, :status => :unprocessable_entity }
+        if params.include? :password
+          user_fields[:password] = params[:password]
+          user_fields[:password_confirmation] = params[:password_confirmation]
+          if @user.update(user_fields)
+            respond_with(@user)
+          else
+            respond_to do |format|
+              format.json { render :json => {:fields => @user.errors}, :status => :unprocessable_entity }
+            end
+          else
+              if @user.update_without_password(user_fields)
+                respond_with(@user)
+              else
+                respond_to do |format|
+                  format.json { render :json => {:fields => @user.errors}, :status => :unprocessable_entity }
+                end
+              end
+            end
+          end
+
         end
       end
-    end
-
-  end
-end

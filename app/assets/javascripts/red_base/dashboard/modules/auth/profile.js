@@ -42,7 +42,9 @@ Profile.controller("ProfileController",  ["$scope","Restangular","$location" ,"$
         var user = {
             first_name: $scope.first_name,
             last_name: $scope.last_name,
-            email: $scope.email
+            email: $scope.email,
+            password: $scope.password,
+            password_confirmation: $scope.password_confirmation
         };
         API.one("profile").patch(user).then(function(){
             success_message(gettext("Profile updated successfully."));
