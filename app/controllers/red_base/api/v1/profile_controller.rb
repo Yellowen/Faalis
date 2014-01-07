@@ -21,7 +21,7 @@ module RedBase
           :email => params[:email],
         }
         @user = current_user
-        if @user.update(user_fields)
+        if @user.update_without_password(user_fields)
           respond_with(@user)
         else
           respond_to do |format|
