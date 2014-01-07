@@ -27,6 +27,7 @@ RedBase::Engine.routes.draw do
       get "permissions", :to => "permissions#index"
       resources :groups, :except => [:new]
       resources :users, :except => [:new]
+      resource :profile, :except => [:new, :destroy]
       get "logs" => "logs#index"
     end
   end

@@ -52,7 +52,12 @@ Nav.controller("NavigationController", ["$location", "gettext", "$interval",  fu
                 {
                     title: gettext("Change Password"),
                     icon: "fa fa-exchange",
-                    url: "#"
+                    url: "/users/password/edit"
+                },
+                {
+                    title: gettext("Profile"),
+                    icon: "fa fa-pencil",
+                    url: "#/auth/profile/edit"
                 }
             ]
         }

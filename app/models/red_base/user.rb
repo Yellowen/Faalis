@@ -19,6 +19,10 @@
 
 module RedBase
   class User < ActiveRecord::Base
+    validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
+    validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
+    validates :email, presence: true, length: {minimum: 6}
+    #validates :password,presence: true, length: { in: 6..20 }
     # Include default devise modules. Others available are:
     # :token_authenticatable, :confirmable,
     # :lockable, :timeoutable and :omniauthable
