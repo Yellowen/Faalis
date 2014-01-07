@@ -241,7 +241,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         var obj = API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
                 .then(function(data) {
                 <% fields.each do |field_name, field_type| %>
-                    $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many", "in"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% else %>data.<%= field_name %><% end %>;<% end %>
+                    $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many", "in"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% elsif field_type == "belongs_to" %>data.<%= field_name %>.id<% else %>data.<%= field_name %><% end %>;<% end %>
                 }, function(data){
                     catch_error(data);
                 });
