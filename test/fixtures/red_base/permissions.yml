@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  model: MyString
-  permission_type: MyString
-
-two:
-  model: MyString
-  permission_type: MyString
