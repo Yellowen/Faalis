@@ -26,11 +26,11 @@ module Faalis
       hook_for :install_generator
 
       def copy_migrations
-        rake("red_base:install:migrations")
+        rake("faalis:install:migrations")
       end
 
       def copy_install
-        invoke "red_base:install"
+        invoke "faalis:install"
       end
 
     end

@@ -56,5 +56,5 @@ module Faalis
   end
 end
 
-require "red_base/dashboard/module"
-require "red_base/dashboard/controller"
+require "faalis/dashboard/module"
+require "faalis/dashboard/controller"

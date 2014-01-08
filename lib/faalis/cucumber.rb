@@ -18,8 +18,8 @@
 # -----------------------------------------------------------------------------
 
 # Some useful steps for cucumber scenarios
-require 'red_base/cucumber/auth'
-require 'red_base/cucumber/urls'
-require 'red_base/cucumber/interaction'
-require 'red_base/cucumber/exceptions'
-require 'red_base/cucumber/query'
+require 'faalis/cucumber/auth'
+require 'faalis/cucumber/urls'
+require 'faalis/cucumber/interaction'
+require 'faalis/cucumber/exceptions'
+require 'faalis/cucumber/query'

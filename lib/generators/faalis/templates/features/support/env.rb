@@ -9,7 +9,7 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 require "json_spec/cucumber"
-require "red_base/cucumber"
+require "faalis/cucumber"
 
 
 def last_json

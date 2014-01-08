@@ -9,12 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
 
- *= require red_base/variables
- *= require red_base/base
- *= require red_base/devise
- *= require red_base/home
+ *= require faalis/variables
+ *= require faalis/base
+ *= require faalis/devise
+ *= require faalis/home
  *= require font-awesome
- *= require red_base/ltr/buttons
- *= require red_base/ltr/foundation_and_overrides
+ *= require faalis/ltr/buttons
+ *= require faalis/ltr/foundation_and_overrides
  *= require_self
 */

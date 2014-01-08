@@ -1,6 +1,6 @@
 class CreateFaalisPermissions < ActiveRecord::Migration
   def change
-    create_table :red_base_permissions do |t|
+    create_table :faalis_permissions do |t|
       t.string :model
       t.string :permission_type
 

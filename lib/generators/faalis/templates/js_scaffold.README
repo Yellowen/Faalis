@@ -14,7 +14,7 @@ Steps to installation:
 
       2. The Angularjs module of your resource should be added as an dependency
          to another Angularjs module. Add it by hand or if you want to view module
-         in dashboard's main page add your resource to `config/initializers/red_base.rb`
+         in dashboard's main page add your resource to `config/initializers/faalis.rb`
          like this:
 
                 config.dashboard_modules = {

@@ -2,7 +2,7 @@ Description:
     Explain the generator
 
 Example:
-    rails generate install_red_base Thing
+    rails generate install_faalis Thing
 
     This will create:
         what/will/it/create

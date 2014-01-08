@@ -20,9 +20,9 @@
 module Faalis
   module API
 
-    #autoload UsersAPI, "red_base/api/users_api"
-    #autoload GroupsAPI, "red_base/api/groups_api"
-    #autoload PermissionsAPI, "red_base/api/permissions_api"
+    #autoload UsersAPI, "faalis/api/users_api"
+    #autoload GroupsAPI, "faalis/api/groups_api"
+    #autoload PermissionsAPI, "faalis/api/permissions_api"
 
     class Base < Grape::API
 

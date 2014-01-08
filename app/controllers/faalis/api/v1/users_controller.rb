@@ -1,4 +1,4 @@
-require_dependency "red_base/application_controller"
+require_dependency "faalis/application_controller"
 
 module Faalis
   class API::V1::UsersController < APIController

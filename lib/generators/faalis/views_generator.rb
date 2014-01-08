@@ -25,14 +25,14 @@ module Faalis
       desc "Copy all templates and assets to main application"
 
       def copy_views_file
-        directory "views/red_base", "app/views/red_base"
-        directory "views/layouts/red_base", "app/views/layouts/red_base"
+        directory "views/faalis", "app/views/faalis"
+        directory "views/layouts/faalis", "app/views/layouts/faalis"
       end
 
       def copy_assets_file
-        directory "assets/javascripts/red_base", "app/assets/javascripts/red_base"
-        directory "assets/stylesheets/red_base", "app/assets/stylesheets/red_base"
-        directory "assets/images/red_base", "app/assets/images/red_base"
+        directory "assets/javascripts/faalis", "app/assets/javascripts/faalis"
+        directory "assets/stylesheets/faalis", "app/assets/stylesheets/faalis"
+        directory "assets/images/faalis", "app/assets/images/faalis"
 
       end
 

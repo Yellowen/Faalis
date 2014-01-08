@@ -22,10 +22,10 @@ class Faalis::ApplicationController < ActionController::Base
 
 
   def set_locale
-    FastGettext.add_text_domain 'red_base', :path => "#{Faalis::Engine.root}/config/locales", :type => :po
+    FastGettext.add_text_domain 'faalis', :path => "#{Faalis::Engine.root}/config/locales", :type => :po
     # All languages you want to allow
     FastGettext.default_available_locales = Faalis::Engine.locales
-    FastGettext.default_text_domain = 'red_base'
+    FastGettext.default_text_domain = 'faalis'
 
     lang = request.env['lang'] || params[:locale] || session[:locale] || I18n.default_locale
     FastGettext.set_locale(lang.to_sym)

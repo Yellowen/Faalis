@@ -27,7 +27,7 @@ module Faalis
 
       def copy_init_files
         template "devise.rb", "config/initializers/devise.rb"
-        template "red_base.rb", "config/initializers/red_base.rb"
+        template "faalis.rb", "config/initializers/faalis.rb"
         template "fast_gettext.rb", "config/initializers/fast_gettext.rb"
         template "formtastic.rb", "config/initializers/formstatic.rb"
         template "seeds.rb", "db/seeds.rb"

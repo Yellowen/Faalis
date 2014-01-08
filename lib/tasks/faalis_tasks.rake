@@ -1,4 +1,4 @@
-namespace :red_base do
+namespace :faalis do
 
   namespace :js do
 

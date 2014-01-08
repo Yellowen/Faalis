@@ -83,7 +83,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/red_base/dashboard/module.rb</dd>
+    <dd class="r2 last">lib/faalis/dashboard/module.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -216,7 +216,7 @@
 40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/dashboard/module.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/faalis/dashboard/module.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lparen'>(</span><span class='id identifier rubyid_name_'>name_</span><span class='rparen'>)</span>
   <span class='cvar'>@@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name_'>name_</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -246,7 +246,7 @@
 36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/dashboard/module.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/faalis/dashboard/module.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_priority'>priority</span><span class='lparen'>(</span><span class='id identifier rubyid_priority_'>priority_</span><span class='rparen'>)</span>
   <span class='cvar'>@@priority</span> <span class='op'>=</span> <span class='id identifier rubyid_priority_'>priority_</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -289,7 +289,7 @@
 32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_base/dashboard/module.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/faalis/dashboard/module.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_me_on'>show_me_on</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_priority'>priority</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'>Faalis</span><span class='op'>::</span><span class='const'>Dashboard</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_register_module'>register_module</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>

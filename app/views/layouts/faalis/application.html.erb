@@ -3,7 +3,7 @@
   <head>
     <title><%= Faalis::Engine.site_title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag   "red_base/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
+  <%= stylesheet_link_tag   "faalis/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
     <%= csrf_meta_tags %>
   </head>
@@ -17,7 +17,7 @@
               <!-- Title Area -->
               <li class="name">
                 <h1>
-                  <a href="<%= red_base.root_path %>">
+                  <a href="<%= faalis.root_path %>">
                     <%= Faalis::Engine.site_title %>
                   </a>
                 </h1>
@@ -44,12 +44,12 @@
 
                     <ul class="dropdown">
                       <% if user_signed_in? %>
-                        <li><a href="<%= red_base.dashboard_path %>"><%= _("Dashboard") %></a></li>
+                        <li><a href="<%= faalis.dashboard_path %>"><%= _("Dashboard") %></a></li>
                         <li><a href="">Change Password</a></li>
-                        <li><a href="<%= red_base.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
+                        <li><a href="<%= faalis.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
                         <%else%>
-                        <li><%= link_to _("Register"), red_base.new_user_registration_path %></li>
-                        <li><%= link_to _("Sign in"), red_base.user_session_path %></li>
+                        <li><%= link_to _("Register"), faalis.new_user_registration_path %></li>
+                        <li><%= link_to _("Sign in"), faalis.user_session_path %></li>
                         <%end%>
                     </ul>
                 </li>
@@ -85,6 +85,6 @@
         </div>
       </div>
     </footer>
-    <%= javascript_include_tag "red_base/application" %>
+    <%= javascript_include_tag "faalis/application" %>
   </body>
 </html>

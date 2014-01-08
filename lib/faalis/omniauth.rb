@@ -19,6 +19,6 @@
 
 module Faalis
   module Omniauth
-    autoload :Callbacks, "red_base/omniauth/callbacks"
+    autoload :Callbacks, "faalis/omniauth/callbacks"
   end
 end

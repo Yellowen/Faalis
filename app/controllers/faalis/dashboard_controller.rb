@@ -1,11 +1,11 @@
-require_dependency "red_base/application_controller"
+require_dependency "faalis/application_controller"
 
 module Faalis
   class DashboardController < ApplicationController
 
     include Faalis::Dashboard::Controller
 
-    layout "red_base/dashboard"
+    layout "faalis/dashboard"
     before_filter :authenticate_user!, :only => [:modules, :index]
 
     respond_to :json, :html

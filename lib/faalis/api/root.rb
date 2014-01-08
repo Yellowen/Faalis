@@ -1,6 +1,6 @@
-require_dependency "red_base/api/users_api"
-require_dependency "red_base/api/groups_api"
-require_dependency "red_base/api/permissions_api"
+require_dependency "faalis/api/users_api"
+require_dependency "faalis/api/groups_api"
+require_dependency "faalis/api/permissions_api"
 
 module Faalis
   module API

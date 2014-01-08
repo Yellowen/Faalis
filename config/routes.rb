@@ -5,7 +5,7 @@ Faalis::Engine.routes.draw do
   devise_for :users, {
     :class_name => "Faalis::User",
     :controllers => {
-      :omniauth_callbacks => "red_base/omniauth/callbacks",
+      :omniauth_callbacks => "faalis/omniauth/callbacks",
     },
     :module => :devise
   }

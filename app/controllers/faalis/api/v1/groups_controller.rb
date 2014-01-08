@@ -1,4 +1,4 @@
-require_dependency "red_base/api_controller"
+require_dependency "faalis/api_controller"
 
 module Faalis
   class API::V1::GroupsController < APIController

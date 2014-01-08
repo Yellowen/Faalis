@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-//= require red_base/dashboard/functions
+//= require faalis/dashboard/functions
 
 // Get all the modules syncly
 $.ajax({method: 'GET', type: 'json', async: false,

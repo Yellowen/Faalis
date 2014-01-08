@@ -30,7 +30,7 @@ module Faalis
   class Engine < ::Rails::Engine
 
     isolate_namespace Faalis
-    engine_name "red_base"
+    engine_name "faalis"
 
     ActiveSupport::Inflector.inflections(:en) do |inflect|
       inflect.acronym 'API'
@@ -78,11 +78,11 @@ module Faalis
 
     # TODO: Check for possible error in this configurations
     @@locale_path = "#{root}/config/locales"
-    FastGettext.add_text_domain 'red_base', :path => @@locale_path, :type => :po
+    FastGettext.add_text_domain 'faalis', :path => @@locale_path, :type => :po
     # All languages you want to allow
     FastGettext.default_available_locales = @@locales
 
-    FastGettext.default_text_domain = 'red_base'
+    FastGettext.default_text_domain = 'faalis'
     FastGettext.locale = :fa
 
     # Site Title
@@ -91,11 +91,11 @@ module Faalis
 
     # Override devise layout
     config.to_prepare do
-      Devise::SessionsController.layout "red_base/application"
-      Devise::RegistrationsController.layout  "red_base/application"
-      Devise::ConfirmationsController.layout "red_base/application"
-      Devise::UnlocksController.layout "red_base/application"
-      Devise::PasswordsController.layout "red_base/application"
+      Devise::SessionsController.layout "faalis/application"
+      Devise::RegistrationsController.layout  "faalis/application"
+      Devise::ConfirmationsController.layout "faalis/application"
+      Devise::UnlocksController.layout "faalis/application"
+      Devise::PasswordsController.layout "faalis/application"
     end
     #Devise.omniauth_path_prefix = ["/en", "/fa"]
 

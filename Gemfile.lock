@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    red_base (0.7.0)
+    faalis (0.7.0)
       cancan
       compass-rails
       devise (>= 3.0.0)
@@ -196,7 +196,7 @@ DEPENDENCIES
   gettext
   github-markup
   rdoc
-  red_base!
+  faalis!
   redcarpet
   rspec-rails (~> 3.0.0.beta)
   ruby_parser

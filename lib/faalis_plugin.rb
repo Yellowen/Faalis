@@ -1,5 +1,5 @@
 gem_group :development do
-  gem "red_base", :path => File.expand_path('../../Red_Base', __FILE__)
+  gem "faalis", :path => File.expand_path('../../Red_Base', __FILE__)
   gem "pry"
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem "capybara"

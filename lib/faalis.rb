@@ -22,9 +22,9 @@ require "devise"
 module Faalis
 end
 
-require "red_base/engine"
-require "red_base/dashboard"
-require "red_base/omniauth"
-require "red_base/active_record"
-require "red_base/i18n"
-require "red_base/plugins"
+require "faalis/engine"
+require "faalis/dashboard"
+require "faalis/omniauth"
+require "faalis/active_record"
+require "faalis/i18n"
+require "faalis/plugins"

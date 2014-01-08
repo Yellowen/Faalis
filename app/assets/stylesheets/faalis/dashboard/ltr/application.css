@@ -8,19 +8,19 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require red_base/dashboard/ltr/foundation_and_overrides
+ *= require faalis/dashboard/ltr/foundation_and_overrides
  *= require ./direction
- *= require red_base/variables
+ *= require faalis/variables
  *= require font-awesome
- *= require red_base/base
+ *= require faalis/base
  *= require ./base
  *= require ./buttons
  *= require_self
- *= require red_base/dashboard/dashboard
- *= require red_base/dashboard/sidebar
- *= require red_base/dashboard/list_view
- *= require red_base/dashboard/ng-quick-date
- *= require red_base/dashboard/ng-quick-date-default-theme
- *= require red_base/dashboard/ng-grid
- *= require red_base/dashboard/select2
+ *= require faalis/dashboard/dashboard
+ *= require faalis/dashboard/sidebar
+ *= require faalis/dashboard/list_view
+ *= require faalis/dashboard/ng-quick-date
+ *= require faalis/dashboard/ng-quick-date-default-theme
+ *= require faalis/dashboard/ng-grid
+ *= require faalis/dashboard/select2
 */

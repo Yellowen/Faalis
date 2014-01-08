@@ -96,7 +96,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/generators/red_base/install_generator.rb</dd>
+    <dd class="r2 last">lib/generators/faalis/install_generator.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -194,11 +194,11 @@
 34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/generators/red_base/install_generator.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/generators/faalis/install_generator.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_copy_init_files'>copy_init_files</span>
   <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>devise.rb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config/initializers/devise.rb</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red_base.rb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config/initializers/red_base.rb</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>faalis.rb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config/initializers/faalis.rb</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>fast_gettext.rb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config/initializers/fast_gettext.rb</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>formtastic.rb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config/initializers/formstatic.rb</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_template'>template</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>seeds.rb</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>db/seeds.rb</span><span class='tstring_end'>&quot;</span></span>
@@ -228,7 +228,7 @@
 38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/generators/red_base/install_generator.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/generators/faalis/install_generator.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_readme'>show_readme</span>
   <span class='id identifier rubyid_readme'>readme</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>README</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_behavior'>behavior</span> <span class='op'>==</span> <span class='symbol'>:invoke</span>
