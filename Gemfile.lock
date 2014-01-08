@@ -192,11 +192,11 @@ PLATFORMS
 DEPENDENCIES
   capybara
   execjs
+  faalis!
   factory_girl_rails
   gettext
   github-markup
   rdoc
-  faalis!
   redcarpet
   rspec-rails (~> 3.0.0.beta)
   ruby_parser
