@@ -17,7 +17,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-module RedBase
+module Faalis
   module Generators
     class JsScaffoldGenerator < Rails::Generators::Base
 
@@ -109,7 +109,7 @@ module RedBase
       end
 
       def angularjs_app_path
-        path = RedBase::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
+        path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
         "app/assets/javascripts/#{path}/"
       end
 

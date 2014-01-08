@@ -17,7 +17,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-module RedBase
+module Faalis
   class Dashboard
     module Module
 
@@ -25,7 +25,7 @@ module RedBase
       @@name = "default_name"
       # Register the module on given section with given priority
       def self.show_me_on(section, priority = nil)
-        RedBase::Dashboard.instance.register_module(section, self)
+        Faalis::Dashboard.instance.register_module(section, self)
         if not priority.nil?
           @@priority = priority
         end

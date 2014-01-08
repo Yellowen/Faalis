@@ -1,5 +1,5 @@
-RedBase::Engine.setup do |config|
-  # Logger settings for RedBase.
+Faalis::Engine.setup do |config|
+  # Logger settings for Faalis.
   # Default value is the rails logger
   # config.logger = Logger.new(STDOUT)
 

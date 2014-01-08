@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= RedBase::Engine.site_title %></title>
+    <title><%= Faalis::Engine.site_title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag   "red_base/" + RedBase::I18n.direction(I18n.locale) + "/application", media: "all" %>
+  <%= stylesheet_link_tag   "red_base/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
     <%= csrf_meta_tags %>
   </head>
@@ -18,7 +18,7 @@
               <li class="name">
                 <h1>
                   <a href="<%= red_base.root_path %>">
-                    <%= RedBase::Engine.site_title %>
+                    <%= Faalis::Engine.site_title %>
                   </a>
                 </h1>
               </li>

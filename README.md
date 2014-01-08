@@ -1,6 +1,6 @@
-# RedBase  [![Gem Version](https://badge.fury.io/rb/red_base.png)](http://badge.fury.io/rb/red_base)
+# Faalis  [![Gem Version](https://badge.fury.io/rb/red_base.png)](http://badge.fury.io/rb/red_base)
 
-RedBase is a ruby on rails engine which provides a basic features of a web application. It provide a very
+Faalis is a ruby on rails engine which provides a basic features of a web application. It provide a very
 robust dashboard subsystem with some fantastic generators which provide rapid productivity.
 
 ## Dependencies
@@ -38,7 +38,7 @@ For example (Only if you want to change default layout):
 
 
 3. Perfrom `rails generate red_base:install_all` to copy necessary files.
-4. Perform `rake db:migrate` and enjoy RedBase
+4. Perform `rake db:migrate` and enjoy Faalis
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Yellowen/red_base/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

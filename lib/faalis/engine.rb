@@ -26,10 +26,10 @@ require "warden"
 require "cancan"
 
 
-module RedBase
+module Faalis
   class Engine < ::Rails::Engine
 
-    isolate_namespace RedBase
+    isolate_namespace Faalis
     engine_name "red_base"
 
     ActiveSupport::Inflector.inflections(:en) do |inflect|
@@ -51,8 +51,8 @@ module RedBase
     mattr_accessor :models_with_permission
 
     # TODO: create a basic setup for this option
-    @@models_with_permission = ["RedBase::User",
-                                "RedBase::Group",
+    @@models_with_permission = ["Faalis::User",
+                                "Faalis::Group",
                                ]
 
     def self.models_with_permission=(value)

@@ -1,4 +1,4 @@
-class CreateRedBaseGroups < ActiveRecord::Migration
+class CreateFaalisGroups < ActiveRecord::Migration
   def change
     create_table :red_base_groups do |t|
       t.string :name

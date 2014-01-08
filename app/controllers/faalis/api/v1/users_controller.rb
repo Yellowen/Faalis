@@ -1,6 +1,6 @@
 require_dependency "red_base/application_controller"
 
-module RedBase
+module Faalis
   class API::V1::UsersController < APIController
 
     def index
@@ -49,7 +49,7 @@ module RedBase
     end
 
     def create
-      authorize! :create, RedBase::User
+      authorize! :create, Faalis::User
 
       @user = User.new({
                          first_name: params[:first_name],

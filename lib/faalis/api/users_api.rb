@@ -1,4 +1,4 @@
-module RedBase
+module Faalis
   module API
     class UsersAPI < Grape::API
 
@@ -9,7 +9,7 @@ module RedBase
         get do
           authenticated_user
           # TODO: Check for admin user only
-          RedBase::User.all
+          Faalis::User.all
         end
 
       end

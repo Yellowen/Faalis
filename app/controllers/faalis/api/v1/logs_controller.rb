@@ -1,6 +1,6 @@
 require_dependency "red_base/api_controller"
 
-module RedBase
+module Faalis
   class API::V1::LogsController < APIController
 
     # GET /api/v1/logs

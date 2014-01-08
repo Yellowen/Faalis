@@ -19,7 +19,7 @@
 
 require "devise"
 
-module RedBase
+module Faalis
 end
 
 require "red_base/engine"

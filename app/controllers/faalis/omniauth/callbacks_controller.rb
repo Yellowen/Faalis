@@ -17,7 +17,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-module RedBase
+module Faalis
   module Omniauth
     class CallbacksController < Devise::OmniauthCallbacksController
 
@@ -36,7 +36,7 @@ module RedBase
         end
       end
 
-      include RedBase::Omniauth::Callbacks
+      include Faalis::Omniauth::Callbacks
 
     end
   end

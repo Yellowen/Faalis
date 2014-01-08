@@ -1,8 +1,8 @@
 require_dependency "red_base/application_controller"
 
-module RedBase
+module Faalis
   class HomeController < ApplicationController
-    include RedBase::Dashboard::Module
+    include Faalis::Dashboard::Module
 
     name = "home"
 #    priority 100

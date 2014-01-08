@@ -1,4 +1,4 @@
-class DeviseCreateRedBaseUsers < ActiveRecord::Migration
+class DeviseCreateFaalisUsers < ActiveRecord::Migration
   def change
     create_table(:red_base_users) do |t|
       ## Database authenticatable

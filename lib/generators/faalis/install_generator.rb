@@ -17,7 +17,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-module RedBase
+module Faalis
   module Generators
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)

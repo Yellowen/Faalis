@@ -1,4 +1,4 @@
-class API::V1::<%= resource.pluralize %>Controller < RedBase::APIController
+class API::V1::<%= resource.pluralize %>Controller < Faalis::APIController
   before_filter :build_resource, :only => :create
   load_and_authorize_resource :except => [:destory]
 

@@ -1,6 +1,6 @@
 require_dependency "red_base/application_controller"
 
-module RedBase
+module Faalis
   class API::V1::ProfilesController < APIController
 
     def show

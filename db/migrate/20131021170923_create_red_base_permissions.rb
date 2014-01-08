@@ -1,4 +1,4 @@
-class CreateRedBasePermissions < ActiveRecord::Migration
+class CreateFaalisPermissions < ActiveRecord::Migration
   def change
     create_table :red_base_permissions do |t|
       t.string :model

@@ -4,12 +4,12 @@ namespace :red_base do
 
     desc "Collect all the strings which marked for translation from javascript files"
     task :collect => :environment do
-      `grunt --gruntfile #{RedBase::Engine.root}/lib/tasks/grunt/Gruntfile.js --base #{RedBase::Engine.root}/ nggettext_extract`
+      `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --base #{Faalis::Engine.root}/ nggettext_extract`
     end
 
     desc "Compile all the strings which marked for translation in javascript files"
     task :compile => :environment do
-      `grunt --gruntfile #{RedBase::Engine.root}/lib/tasks/grunt/Gruntfile.js nggettext_compile`
+      `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js nggettext_compile`
     end
 
   end

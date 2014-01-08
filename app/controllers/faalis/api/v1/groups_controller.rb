@@ -1,6 +1,6 @@
 require_dependency "red_base/api_controller"
 
-module RedBase
+module Faalis
   class API::V1::GroupsController < APIController
     # TODO: Use strong params
     # TODO: implement authorization
@@ -13,7 +13,7 @@ module RedBase
     end
 
     def create
-      authorize! :create, RedBase::Group
+      authorize! :create, Faalis::Group
 
       permissions = [];
 

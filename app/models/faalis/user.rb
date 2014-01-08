@@ -17,7 +17,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-module RedBase
+module Faalis
   class User < ActiveRecord::Base
     validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
     validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true

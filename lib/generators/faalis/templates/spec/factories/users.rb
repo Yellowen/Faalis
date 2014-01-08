@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :redbase_user, :class => RedBase::User do
+  factory :redbase_user, :class => Faalis::User do
     email "admin@example.com"
     first_name "admin"
     last_name "admin"

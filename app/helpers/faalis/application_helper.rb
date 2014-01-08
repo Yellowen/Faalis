@@ -1,4 +1,4 @@
-module RedBase
+module Faalis
   module ApplicationHelper
   end
 end

@@ -1,9 +1,9 @@
-RedBase::Engine.routes.draw do
+Faalis::Engine.routes.draw do
   get "templates/*path" => "dashboard#jstemplate"
 
   # Authentications
   devise_for :users, {
-    :class_name => "RedBase::User",
+    :class_name => "Faalis::User",
     :controllers => {
       :omniauth_callbacks => "red_base/omniauth/callbacks",
     },
@@ -11,7 +11,7 @@ RedBase::Engine.routes.draw do
   }
 
   scope "(:locale)", :locale => Regexp.new(::I18n.available_locales.join("|")) do
-    scope RedBase::Engine.dashboard_namespace.to_sym do
+    scope Faalis::Engine.dashboard_namespace.to_sym do
       get "" => "dashboard#index", :as => "dashboard"
       get "modules" => "dashboard#modules"
     end

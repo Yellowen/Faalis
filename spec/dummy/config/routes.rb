@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount RedBase::Engine => "/red_base"
+  mount Faalis::Engine => "/red_base"
 end

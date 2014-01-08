@@ -18,7 +18,7 @@
 # -----------------------------------------------------------------------------
 
 
-module RedBase
+module Faalis
   class Plugins
 
     @@plugins = {}

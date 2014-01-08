@@ -16,15 +16,15 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-class RedBase::ApplicationController < ActionController::Base
+class Faalis::ApplicationController < ActionController::Base
   include FastGettext::Translation
   before_filter :set_locale
 
 
   def set_locale
-    FastGettext.add_text_domain 'red_base', :path => "#{RedBase::Engine.root}/config/locales", :type => :po
+    FastGettext.add_text_domain 'red_base', :path => "#{Faalis::Engine.root}/config/locales", :type => :po
     # All languages you want to allow
-    FastGettext.default_available_locales = RedBase::Engine.locales
+    FastGettext.default_available_locales = Faalis::Engine.locales
     FastGettext.default_text_domain = 'red_base'
 
     lang = request.env['lang'] || params[:locale] || session[:locale] || I18n.default_locale

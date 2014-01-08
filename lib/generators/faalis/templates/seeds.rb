@@ -1,1 +1,1 @@
-RedBase::Engine.load_seed
+Faalis::Engine.load_seed

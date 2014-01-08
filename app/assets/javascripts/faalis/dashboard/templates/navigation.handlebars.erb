@@ -1,5 +1,5 @@
 <% environment.context_class.instance_eval { include ActionView::Helpers::UrlHelper } %>
-<% url = RedBase::Engine.routes.url_helpers %>
+<% url = Faalis::Engine.routes.url_helpers %>
 
 <div class="">
   <div class="">
@@ -9,7 +9,7 @@
         <li><a href="#"><i class="fa-cog fa icon-medium fa-2x"></i></a></li>
         <!-- Title Area -->
         <li class="name brand">
-          <h1><%= RedBase::Engine.site_title %></h1>
+          <h1><%= Faalis::Engine.site_title %></h1>
 
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -22,7 +22,7 @@
           <li class="has-dropdown"><a href="#"> {{_ 'Languages'}}</a>
          <ul class="dropdown">
          <% ::I18n.available_locales.each do |locale| %>
-         <li><a href="<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
+         <li><a href="<%= "/#{locale.to_s}/#{Faalis::Engine.dashboard_namespace.to_s}/" %>"><%= locale %></a></li>
         <% end %>
           </ul>
           </li>

@@ -1,4 +1,4 @@
-module RedBase
+module Faalis
   module API
     class PermissionsAPI < Grape::API
 
@@ -10,7 +10,7 @@ module RedBase
           # TODO: Check for admin user only
           permissions = []
 
-          RedBase::Engine.models_with_permission.each do |model|
+          Faalis::Engine.models_with_permission.each do |model|
             model = Object.const_get(model)
             permissions.concat(model::Permissions.permission_strings(model))
           end

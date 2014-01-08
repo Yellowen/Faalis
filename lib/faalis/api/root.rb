@@ -2,7 +2,7 @@ require_dependency "red_base/api/users_api"
 require_dependency "red_base/api/groups_api"
 require_dependency "red_base/api/permissions_api"
 
-module RedBase
+module Faalis
   module API
     class Root < Grape::API
 

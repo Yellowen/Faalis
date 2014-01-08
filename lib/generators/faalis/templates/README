@@ -9,7 +9,7 @@ Steps to finish up installation:
 
      In production, :host should be set to the actual host of your application.
 
-  2. You can override your root controller through RedBase::HomeController class.
+  2. You can override your root controller through Faalis::HomeController class.
 
   3. Ensure you have flash messages in app/views/layouts/application.html.erb.
      Only if you want to change the layout

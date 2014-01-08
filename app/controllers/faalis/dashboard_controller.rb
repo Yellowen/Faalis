@@ -1,9 +1,9 @@
 require_dependency "red_base/application_controller"
 
-module RedBase
+module Faalis
   class DashboardController < ApplicationController
 
-    include RedBase::Dashboard::Controller
+    include Faalis::Dashboard::Controller
 
     layout "red_base/dashboard"
     before_filter :authenticate_user!, :only => [:modules, :index]
@@ -25,7 +25,7 @@ module RedBase
     def modules
       dashboard_modules = []
 
-      RedBase::Engine.dashboard_modules.each do |module_name, attrs|
+      Faalis::Engine.dashboard_modules.each do |module_name, attrs|
         if not attrs.include? :title
           attrs[:title] = _(module_name.to_s)
         end

@@ -1,4 +1,4 @@
-module RedBase
+module Faalis
   module API
     class GroupsAPI < Grape::API
 
@@ -8,7 +8,7 @@ module RedBase
         get do
           authenticated_user
           # TODO: Check for admin user only
-          RedBase::Group.includes(:permissions)
+          Faalis::Group.includes(:permissions)
         end
 
         delete do

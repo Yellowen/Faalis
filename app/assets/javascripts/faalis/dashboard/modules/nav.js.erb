@@ -33,7 +33,7 @@ Nav.controller("NavigationController", ["$location", "gettext", "$interval",  fu
             items: [
                     <% ::I18n.available_locales.each do |locale| %>
                     {
-                        url: '<%= "/#{locale.to_s}/#{RedBase::Engine.dashboard_namespace.to_s}/" %>',
+                        url: '<%= "/#{locale.to_s}/#{Faalis::Engine.dashboard_namespace.to_s}/" %>',
                         title: "<%=locale %>"
                     },
                     <% end %>

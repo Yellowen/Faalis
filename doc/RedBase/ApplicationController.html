@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: RedBase::ApplicationController
+  Class: Faalis::ApplicationController
   
     &mdash; Documentation by YARD 0.8.7.3
   
@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../_index.html">Index (A)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../RedBase.html" title="RedBase (module)">RedBase</a></span></span>
+    <span class='title'><span class='object_link'><a href="../Faalis.html" title="Faalis (module)">Faalis</a></span></span>
      &raquo; 
     <span class="title">ApplicationController</span>
   
@@ -63,7 +63,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Class: RedBase::ApplicationController
+    <div id="content"><h1>Class: Faalis::ApplicationController
   
   
   
@@ -80,7 +80,7 @@
           
             <li class="next">ActionController::Base</li>
           
-            <li class="next">RedBase::ApplicationController</li>
+            <li class="next">Faalis::ApplicationController</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -135,7 +135,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="APIController.html" title="RedBase::APIController (class)">APIController</a></span>, <span class='object_link'><a href="DashboardController.html" title="RedBase::DashboardController (class)">DashboardController</a></span>, <span class='object_link'><a href="HomeController.html" title="RedBase::HomeController (class)">HomeController</a></span></p>
+  <p class="children"><span class='object_link'><a href="APIController.html" title="Faalis::APIController (class)">APIController</a></span>, <span class='object_link'><a href="DashboardController.html" title="Faalis::DashboardController (class)">DashboardController</a></span>, <span class='object_link'><a href="HomeController.html" title="Faalis::HomeController (class)">HomeController</a></span></p>
 </div>
 
 
@@ -215,9 +215,9 @@
       <pre class="code"><span class="info file"># File 'app/controllers/red_base/application_controller.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_locale'>set_locale</span>
-  <span class='const'>FastGettext</span><span class='period'>.</span><span class='id identifier rubyid_add_text_domain'>add_text_domain</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>red_base</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:path</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>RedBase</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/config/locales</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='symbol'>:po</span>
+  <span class='const'>FastGettext</span><span class='period'>.</span><span class='id identifier rubyid_add_text_domain'>add_text_domain</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>red_base</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:path</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Faalis</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='embexpr_end'>}</span><span class='tstring_content'>/config/locales</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='symbol'>:po</span>
   <span class='comment'># All languages you want to allow
-</span>  <span class='const'>FastGettext</span><span class='period'>.</span><span class='id identifier rubyid_default_available_locales'>default_available_locales</span> <span class='op'>=</span> <span class='const'>RedBase</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_locales'>locales</span>
+</span>  <span class='const'>FastGettext</span><span class='period'>.</span><span class='id identifier rubyid_default_available_locales'>default_available_locales</span> <span class='op'>=</span> <span class='const'>Faalis</span><span class='op'>::</span><span class='const'>Engine</span><span class='period'>.</span><span class='id identifier rubyid_locales'>locales</span>
   <span class='const'>FastGettext</span><span class='period'>.</span><span class='id identifier rubyid_default_text_domain'>default_text_domain</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>red_base</span><span class='tstring_end'>&#39;</span></span>
 
   <span class='id identifier rubyid_lang'>lang</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lang</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:locale</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:locale</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id identifier rubyid_default_locale'>default_locale</span>

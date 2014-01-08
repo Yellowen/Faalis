@@ -8,7 +8,7 @@ require 'rdoc/task'
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'docs'
-  rdoc.title    = 'RedBase'
+  rdoc.title    = 'Faalis'
   rdoc.options << '--line-numbers'
   rdoc.options << '--markup=markdown'
 

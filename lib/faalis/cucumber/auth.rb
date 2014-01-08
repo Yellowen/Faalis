@@ -26,11 +26,11 @@ end
 
 
 Given(/^I am authenticated$/) do
-  group = RedBase::Group.new(:name => "admin")
+  group = Faalis::Group.new(:name => "admin")
   group.save!
   email = 'admin@example.com'
   password = '123123123'
-  RedBase::User.new(:email => email, :password => password, :password_confirmation => password,
+  Faalis::User.new(:email => email, :password => password, :password_confirmation => password,
            :group => group).save!
 
   visit '/users/sign_in'
