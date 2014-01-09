@@ -25,6 +25,10 @@ module Faalis
       desc "Copy all the necessary files to use Red Base"
       class_option :orm
 
+      def install_mailboxer
+        invoke "mailboxer:install"
+      end
+
       def copy_init_files
         template "devise.rb", "config/initializers/devise.rb"
         template "faalis.rb", "config/initializers/faalis.rb"

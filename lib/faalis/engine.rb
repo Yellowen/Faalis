@@ -24,6 +24,7 @@ require "font-awesome-rails"
 require "devise"
 require "warden"
 require "cancan"
+require "mailboxer"
 
 
 module Faalis

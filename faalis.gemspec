@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
 
   # Authorization
   s.add_dependency "cancan"
+  s.add_dependency "mailboxer"
 
   # API
   s.add_dependency "jbuilder"
