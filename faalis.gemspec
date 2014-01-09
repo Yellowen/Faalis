@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/Yellowen/Red_Base"
   s.summary     = "Faalis is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
   s.description = "Faalis is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
-  s.licenses = ["GPLv2"]
+  s.licenses = ["GPL-2"]
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile",
                 "README.md"]
 
