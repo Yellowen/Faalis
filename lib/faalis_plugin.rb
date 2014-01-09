@@ -45,7 +45,7 @@ inside "app/assets/javascripts/" do
   run "touch #{app_name.underscore.downcase}/application.js"
 end
 append_file "app/assets/javascripts/#{app_name.underscore.downcase}/application.js" do <<-'FILE'
-//= require_tree 'modules'
+//= require_tree ./modules
 FILE
 end
 
@@ -72,11 +72,12 @@ insert_into_file "lib/#{app_name}/engine.rb", :after => "  class Engine < ::Rail
     end
 
     ::Faalis::Plugins.register "#{app_name}", self
+    ::Faalis::Engine.dashboard_js_manifest = "#{app_name}/application.js"
 }
 end
 
 gsub_file "#{app_name}.gemspec", /MIT-LICENSE/, "LICENSE"
-run "rm MIT-LICENSE"
+remove_file "MIT-LICENSE"
 insert_into_file "#{app_name}.gemspec", :after => "Gem::Specification.new do |s|\n" do
   "\n  s.licenses = ['GPL-2']\n"
 end
@@ -84,7 +85,7 @@ end
 git :init
 
 create_file "LICENSE" do
-  %Q{
+<<-'CODE'
 GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
 
@@ -424,7 +425,7 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
-}
+CODE
 end
 create_file ".gitignore" do
   %Q{
@@ -470,5 +471,6 @@ node_modules/
 doc/
 }
 end
-git :add => "."
-git :commit => %Q{-a -m "Initial commit"}
+
+git add: "."
+git commit: %Q{-a -m "Initial commit"}

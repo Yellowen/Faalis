@@ -75,7 +75,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     $scope.fields = [<% bulk_edit_fields.each do |name| %>
         {
             name: "<%= name %><% if ["belongs_to", "has_many"].include? fields_hash[name] %>_id<% end %>",
-            title: gettext("<%= name.capitalize %>"),
+            title: gettext("<%= name.capitalize.humanize %>"),
             type: "<%= fields_hash[name] %>"<% if ["belongs_to", "has_many"].include? fields_hash[name] %>,
             to: API.all("<%= fields_hash[name].to %>").getList<% end %>
         },<% end %>
