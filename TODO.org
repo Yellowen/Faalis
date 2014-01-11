@@ -1,4 +1,5 @@
 * Bugs
+** Wrong back url after signing in by expired button in dashboard
 * Tasks
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** DONE Add font awesome support
