@@ -35,6 +35,8 @@ module Faalis
       class_option :title_field, :type => :string, :default => "name", :desc => "Field name to use as title of each object"
       class_option :required, :type => :string, :default => "", :desc => "Non optional fields, comma separated"
       class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
+      class_option :path, :type => :string, :default => "", :desc => "Path to js_scaffold target inside 'app/assets/javascripts/'"
+      class_option :raw_path, :type => :string, :default => "", :desc => "Path to js_scaffold target"
       class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
       class_option :no_filter, :type => :boolean, :default => false, :desc => "Don't view a filter box"
 
@@ -109,8 +111,14 @@ module Faalis
       end
 
       def angularjs_app_path
-        path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
-        "app/assets/javascripts/#{path}/"
+        if options[:raw_path]
+          options[:raw_path]
+        elsif options[:path]
+          "app/assets/javascripts/#{options[:path]}/"
+        else
+          path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
+          "app/assets/javascripts/#{path}/"
+        end
       end
 
       # Tabs ------------------------------------
