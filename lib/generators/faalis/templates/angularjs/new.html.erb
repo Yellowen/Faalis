@@ -50,10 +50,9 @@
 
 
 
-<% else %><% tab_count = 1 %><% tabs.each do |name, field_names| %>
-<form novalidate name="form">
+<% else %><form novalidate name="form"><% tab_count = 1 %><% tabs.each do |name, field_names| %>
  <div class="newform">
-  <fieldset class="form" ng-if="current_tab == <%= tab_count %>">
+  <fieldset class="form" ng-show="current_tab == <%= tab_count %>">
   <legend ng-if="!editing"><span translate>New <%= name %></span></legend>
   <legend ng-if="editing"><span translate>Edit <%= name %></span></legend><% first = true %>
   <% fields.each do |field_name, field_type| %><% if tabs[name].include? field_name or tabs[name].include? "__all__" %>
@@ -90,7 +89,8 @@
   <% first = !first %>
   <% end %>
   <% end %>
-  </fieldset><% tab_count += 1 %>
+  </fieldset>
+</div><% tab_count += 1 %>
 <% end %>
 </form>
 <% end %>

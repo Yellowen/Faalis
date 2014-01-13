@@ -111,9 +111,9 @@ module Faalis
       end
 
       def angularjs_app_path
-        if options[:raw_path]
+        if options[:raw_path] != ""
           options[:raw_path]
-        elsif options[:path]
+        elsif options[:path] != ""
           "app/assets/javascripts/#{options[:path]}/"
         else
           path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
