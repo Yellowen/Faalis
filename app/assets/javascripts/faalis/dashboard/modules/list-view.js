@@ -61,9 +61,21 @@ ListView.directive('listView', ["$filter", "gettext", function($filter, gettext)
         scope.list_view = true;
         scope.grid_view = false;
 
+        scope.title = function(object, t) {
+            if (typeof(scope.title_attr) == "function") {
+                return scope.title_attr(object);
+            }
+            return object[scope.title_attr];
+        };
+
         var filtered_objects = function(){
             var filterby = {};
-            filterby[scope.title_attr] = scope.searchterm;
+            if (typeof(scope.title_attr) == "function") {
+                filterby = scope.title_attr;
+            }
+            else {
+                filterby[scope.title_attr] = scope.searchterm;
+            }
             var result =  $filter('filter')(scope.objects, filterby, function(expected, actual){
                 var re = new RegExp(".*" + actual + ".*", "ig");
                 scope.go_to_first_page();
@@ -75,6 +87,7 @@ ListView.directive('listView', ["$filter", "gettext", function($filter, gettext)
             // TODO: Double check this or condition
             return result  || [];
         };
+
         scope.grid_options = {
             data: 'objects',
             headerRowHeight: 30,
