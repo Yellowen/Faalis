@@ -1,28 +1,15 @@
 <div class="details">
 <p >
-  <b translate>First Name :</b>{{this.object.first_name}}
+  <b translate>Subject :</b>{{this.object.message.subject}}
 </p>
 
 <p>
-  <b translate>Last Name :</b>{{this.object.last_name}}
-</p>
-
-<p>
-  <b translate>E-mail :</b>{{this.object.email}}
-</p>
-<p>
-  <b translate>Group :</b>{{this.object.group.name}}
+  <b translate>Body :</b>{{this.object.message.body}}
 </p>
 
 <ul class="button-group float-right">
     <a href="#/auth/users/{{this.object.id}}/edit" class="small">
-    <span class="fa fa-edit"></span> <span translated>Edit</span>
-    </a>
-    <a href="" class="small">
-      <span class="fa fa-eye"></span><span translated>Show</span>
-    </a>
-    <a href="" class="small">
-      <span class="fa fa-check-circle-o"></span><span translated>Active</span>
+    <span class="fa fa-edit"></span> <span translated>Reply</span>
     </a>
 </ul>
 </div>
