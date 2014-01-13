@@ -29,8 +29,15 @@ Faalis::Engine.routes.draw do
       resources :users, :except => [:new]
       resource :profile, :except => [:new, :destroy]
       get "logs" => "logs#index"
+
+      resources :conversations, only: [:index, :show, :new, :create] do
+        member do
+          post :reply
+          post :trash
+          post :untrash
+        end
+
+      end
     end
   end
-
-
 end
