@@ -76,7 +76,7 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
         };
 
         if ($scope.obj_id){
-            API.one("conversations",$scope.obj_id).patch(conversations).then(function(){
+            API.one("conversations",$scope.obj_id).post(conversations).then(function(){
                 success_message(gettext("Message sent successfully."));
                 $location.path("/conversations");
                 });
@@ -91,6 +91,44 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
     $scope.cancel = function(){
         $(".form input").val("");
         $location.path("conversations");
+    };
+
+
+    $scope.on_trash = function(conversations){
+        var query = [];
+        conversations.forEach(function(conversation){
+            query.push(conversation.id);
+        });
+
+        API.all("conversations").customDELETE(query.join(","))
+            .then(function(data) {
+
+                $scope.conversations = _.filter($scope.Conversations, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
+
+    };
+
+
+    $scope.on_untrash = function(conversations){
+        var query = [];
+        conversations.forEach(function(conversation){
+            query.push(conversation.id);
+        });
+
+        API.all("conversations").customDELETE(query.join(","))
+            .then(function(data) {
+
+                $scope.conversations = _.filter($scope.Conversations, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
+
     };
 
 }]);
