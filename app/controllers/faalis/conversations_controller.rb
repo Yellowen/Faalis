@@ -30,12 +30,13 @@ module Faalis
       redirect_to :conversations
     end
 
-    private
 
-    def mailbox
+    def index
+    #def mailbox
       @mailbox ||= current_user.mailbox
     end
 
+    private
     def conversation
       @conversation ||= mailbox.conversations.find(params[:id])
     end

@@ -21,8 +21,8 @@ var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 Conversation.config(["$routeProvider", function($routeProvider){
     $routeProvider.
-        when("/conversations/index",{
-            templateUrl: template("conversations"),
+        when("/conversations/",{
+            templateUrl: template("conversations/index"),
             controller: "ConversationControllerIndex"
         }).
         when("/conversations/:id/show",{

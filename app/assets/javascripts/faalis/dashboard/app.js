@@ -23,7 +23,7 @@
 //= require ./locale/translations
 
 var dependencies = ["gettext", "Modules", "Navigation","ui.select2",  "ngAnimate", "ngRoute",
-                    "restangular", "ngQuickDate", "Errors", "Profile"].concat(dashboard_dependencies);
+                    "restangular", "ngQuickDate", "Errors", "Profile", "Conversation"].concat(dashboard_dependencies);
 
 console.log("Dashboard dependencies:");
 console.log(dependencies);
