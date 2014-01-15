@@ -1,9 +1,9 @@
 require_dependency "faalis/application_controller"
 
 module Faalis
-  class ConversationsController < ApplicationController
-    before_filter :authenticate_user!
-    helper_method :mailbox, :conversation
+  class API::V1::ConversationsController < APIController
+    #before_filter :authenticate_user!
+    #helper_method :mailbox, :conversation
 
     def create
       recipient_emails = conversation_params(:recipients).split(',')
@@ -30,10 +30,21 @@ module Faalis
       redirect_to :conversations
     end
 
-
     def index
-    #def mailbox
-      @mailbox ||= current_user.mailbox
+      if params[:box] == "inbox"
+        box = "inbox"
+      elsif params[:sentbox] == "sentbox"
+        box = "sentbox"
+      elsif params[:trash] == "trash"
+        box = "trash"
+      else
+        respond_to do |f|
+          f.any { head :not_found }
+        end
+        return
+      end
+      @mailbox ||= current_user.mailbox.send(box.to_sym)
+      respond_with @mailbox
     end
 
     private

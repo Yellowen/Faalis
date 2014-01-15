@@ -21,10 +21,6 @@ var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 Conversation.config(["$routeProvider", function($routeProvider){
     $routeProvider.
-        when("/conversations/",{
-            templateUrl: template("conversations/index"),
-            controller: "ConversationControllerIndex"
-        }).
         when("/conversations/:id/show",{
             templateUrl: template("conversations/show"),
             controller: "ConversationControllerShow"
@@ -36,12 +32,30 @@ Conversation.config(["$routeProvider", function($routeProvider){
         when("/conversations/:id/reply",{
             templateUrl: template("conversations/new"),
             controller: "ConversationControllerNew"
+        }).
+        when("/conversations/:type",{
+            templateUrl: template("conversations/index"),
+            controller: "ConversationControllerIndex"
         });
 }]);
 
-Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", "gettext", "catch_error", function($scope, API, gettext, catch_error){
+Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", "gettext", "catch_error", "$routeParams","$location", function($scope, API, gettext, catch_error, $routeParams, $location){
     $scope.details_template = template("conversations/details");
-    API.all("conversations").getList().then(function(data){
+    var type;
+    switch ($routeParams.type){
+    case "inbox":
+        type = "inbox";
+        break;
+    case "sentbox":
+        type = "sentbox";
+        break;
+    case "trash":
+        type = "trash";
+        break;
+    default:
+        $location.path("/");
+    }
+    API.all("conversations").all(type).getList().then(function(data){
         $scope.conversations = data;
 
     });
