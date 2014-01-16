@@ -53,7 +53,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         type = "trash";
         break;
     default:
-        $location.path("/");
+        $location.path("conversations/inbox");
     }
     API.all("conversations").all(type).getList().then(function(data){
         $scope.conversations = data;
@@ -65,7 +65,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
             title: gettext("New"),
             icon: "fa fa-plus",
             classes: "btn tiny green",
-            route: "#/conversations/new"
+            route: "#conversations/new"
         },
         {
             title: gettext("Sent box"),
@@ -82,7 +82,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     ];
 }]);
 
-Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "gettext", "catch_error", "$routeParams", function($scope, API, gettext, catch_error, $routeParams){
+Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "gettext", "catch_error", "$routeParams", "$location", function($scope, API, gettext, catch_error, $routeParams, $location){
     $scope.obj_id = null;
     if("id" in $routeParams){
         $scope.obj_id = $routeParams.id;
@@ -95,28 +95,27 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
     }
 
     $scope.save = function() {
-        var conversation = {
+        var conversation = {conversation: {
             recipients: $scope.recipients,
             subject: $scope.subject,
             body: $scope.body
-        };
-
+        }};
         if ($scope.obj_id){
-            API.one("conversations",$scope.obj_id).post(conversations).then(function(){
+            API.one("conversations",$scope.obj_id).post(conversation).then(function(){
                 success_message(gettext("Message sent successfully."));
-                $location.path("/conversations");
+                $location.path("conversations/inbox");
                 });
         }else{
-            API.all("conversations").post(conversations).then(function(){
+            API.all("conversations").post(conversation).then(function(){
                 success_message(gettext("Message sent Successfully"));
-                $location.path("/conversations");
+                $location.path("conversations/inbox");
             }).catch(catch_error);
         }
     };
 
     $scope.cancel = function(){
         $(".form input").val("");
-        $location.path("conversations");
+        $location.path("conversations/index");
     };
 
 
@@ -154,7 +153,6 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
                 success_message(data.msg);
             })
             .catch(catch_error);
-
     };
 
 }]);

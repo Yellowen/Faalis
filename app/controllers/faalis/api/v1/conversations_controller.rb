@@ -2,22 +2,22 @@ require_dependency "faalis/application_controller"
 
 module Faalis
   class API::V1::ConversationsController < APIController
-    #before_filter :authenticate_user!
-    #helper_method :mailbox, :conversation
+    before_filter :authenticate_user!
+    helper_method :mailbox, :conversation
 
     def create
       recipient_emails = conversation_params(:recipients).split(',')
       recipients = User.where(email: recipient_emails).all
 
-      conversation = current_user.
+      @conversation = current_user.
         send_message(recipients, *conversation_params(:body, :subject)).conversation
 
-      redirect_to conversation
+      respond_with(@conversation)
     end
 
     def reply
       current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
-      redirect_to conversation
+      respond_to conversation
     end
 
     def trash
@@ -43,7 +43,6 @@ module Faalis
         end
         return
       end
-      puts "########################################"
       # puts current_user.mailbox.sent.to_json
        @mailbox ||= current_user.mailbox.send(box.to_sym)
       respond_with @mailbox
@@ -55,6 +54,7 @@ module Faalis
     end
 
     def conversation_params(*keys)
+      #binding.pry1
       fetch_params(:conversation, *keys)
     end
 
