@@ -33,9 +33,9 @@ module Faalis
     def index
       if params[:box] == "inbox"
         box = "inbox"
-      elsif params[:sentbox] == "sentbox"
+      elsif params[:box] == "sentbox"
         box = "sentbox"
-      elsif params[:trash] == "trash"
+      elsif params[:box] == "trash"
         box = "trash"
       else
         respond_to do |f|
@@ -43,7 +43,9 @@ module Faalis
         end
         return
       end
-      @mailbox ||= current_user.mailbox.send(box.to_sym)
+      puts "########################################"
+      # puts current_user.mailbox.sent.to_json
+       @mailbox ||= current_user.mailbox.send(box.to_sym)
       respond_with @mailbox
     end
 

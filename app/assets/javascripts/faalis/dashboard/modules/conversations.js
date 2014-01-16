@@ -65,7 +65,19 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
             title: gettext("New"),
             icon: "fa fa-plus",
             classes: "btn tiny green",
-            route: "#/auth/users/new"
+            route: "#/conversations/new"
+        },
+        {
+            title: gettext("Sent box"),
+            icon: "fa fa-plus",
+            classes: "btn tiny green",
+            route: "#/conversations/sentbox"
+        },
+        {
+            title: gettext("Trash box"),
+            icon: "fa fa-plus",
+            classes: "btn tiny green",
+            route: "#/conversations/trash"
         }
     ];
 }]);

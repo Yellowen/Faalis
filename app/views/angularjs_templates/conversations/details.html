@@ -1,15 +1,12 @@
 <div class="details">
-<p >
-  <b translate>From :</b>{{this.object.from}}
-</p>
-
-<p>
-  <b translate>Body :</b>{{this.object.body}}
-</p>
-
+  <p>
+  <b translate>Sent at : </b>{{this.object.created_at}} &nbsp;&nbsp;&nbsp; <b translate>Last Update : </b>{{this.object.last_updated_at}}
+  </p>
 <ul class="button-group float-right">
     <a href="#/auth/users/{{this.object.id}}/edit" class="small">
+    <span class="fa fa-edit"></span> <span translated>Read</span>
     <span class="fa fa-edit"></span> <span translated>Reply</span>
+    <span class="fa fa-edit"></span> <span translated>Delete</span>
     </a>
 </ul>
 </div>
