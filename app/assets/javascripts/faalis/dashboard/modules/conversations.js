@@ -82,7 +82,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     ];
 }]);
 
-Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "gettext", "catch_error", function($scope, API, gettext, catch_error){
+Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "gettext", "catch_error", "$routeParams", function($scope, API, gettext, catch_error, $routeParams){
     $scope.obj_id = null;
     if("id" in $routeParams){
         $scope.obj_id = $routeParams.id;
@@ -126,7 +126,7 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
             query.push(conversation.id);
         });
 
-        API.all("conversations").customDELETE(query.join(","))
+        API.all("conversations",query.join(",")).post()
             .then(function(data) {
 
                 $scope.conversations = _.filter($scope.Conversations, function(x){
@@ -145,7 +145,7 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
             query.push(conversation.id);
         });
 
-        API.all("conversations").customDELETE(query.join(","))
+        API.all("conversations",query.join(",")).post()
             .then(function(data) {
 
                 $scope.conversations = _.filter($scope.Conversations, function(x){

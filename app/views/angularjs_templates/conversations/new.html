@@ -6,24 +6,24 @@
 
     <div class="row">
       <div class="small-4 columns">
-        <label for="recipients" translate> :</label>
+        <label for="recipients" translate> Recipient:</label>
         <input  id="id_recipients" type="text" name="recipients"  required ng-model="recipients">
         <small id="id_recipients_msg"></small>
       </div>
+      </div>
+    <div class="row">
 
       <div class="small-4 columns float-left small-offset-2">
         <label for="subject" translate>subject :</label>
         <input  id="id_subject" type="text" name="subject"  required ng-model="subject">
         <small id="id_subject_msg"></small>
-
       </div>
     </div>
     <div class="row">
-      <div class="small-8 columns float-left small-offset-2">
-        <label for="body" translate>Body :</label>
+      <div class="small-8 columns float-left ">
+        <label for="body" translate>Message :</label>
         <textarea id="id_body" name="body" required ng-model="body"></textarea>
         <small id="id_body_msg"></small>
-
       </div>
     </div>
 
