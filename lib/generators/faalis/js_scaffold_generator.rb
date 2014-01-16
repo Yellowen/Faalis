@@ -29,6 +29,7 @@ module Faalis
       argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
       class_option :without_specs, :type => :boolean, :default => false, :desc => "Do not install specs"
       class_option :only_specs, :type => :boolean, :default => false, :desc => "Generate only spec files"
+      class_option :only_controller, :type => :boolean, :default => false, :desc => "Generate only controller"
       class_option :bulk_fields, :type => :string, :default => "", :desc => "Fields to use in in bulk edit, comma separated"
       class_option :no_bulk, :type => :boolean, :default => false, :desc => "No bulk edit needed"
       class_option :menu, :type => :string, :default => "", :desc => "Provide menu items which should be in sidebar. format: menu1:url,menu2:url"
@@ -42,17 +43,23 @@ module Faalis
 
       desc "Create a new resource for client side application"
       def create_module
-        unless options[:only_specs]
-          template "angularjs/module.js.erb", "#{angularjs_app_path}modules/#{resource_path}.js"
+        unless options[:only_controller]
+          unless options[:only_specs]
+            template "angularjs/module.js.erb", "#{angularjs_app_path}modules/#{resource_path}.js"
+          end
         end
       end
 
       def create_template
-        unless options[:only_specs]
-          template "angularjs/index.html.erb", "app/views/angularjs_templates/#{resource.underscore}/index.html"
-          template "angularjs/new.html.erb", "app/views/angularjs_templates/#{resource.underscore}/new.html"
-          template "angularjs/details.html.erb", "app/views/angularjs_templates/#{resource.underscore}/details.html"
+        unless options[:only_controller]
+          unless options[:only_specs]
+            template "angularjs/index.html.erb", "app/views/angularjs_templates/#{resource.underscore}/index.html"
+            template "angularjs/new.html.erb", "app/views/angularjs_templates/#{resource.underscore}/new.html"
+            template "angularjs/details.html.erb", "app/views/angularjs_templates/#{resource.underscore}/details.html"
+          end
+        end
 
+        unless options[:only_specs]
           template "views/index.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/index.json.jbuilder"
           template "views/show.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/show.json.jbuilder"
           template "views/create.json.jbuilder.erb", "app/views/api/v1/#{resource.pluralize.underscore}/create.json.jbuilder"
