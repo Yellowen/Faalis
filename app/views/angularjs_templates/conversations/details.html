@@ -1,14 +1,18 @@
 <div class="details">
   <p>
-  <b translate>Sent at : </b>{{this.object.created_at}} &nbsp;&nbsp;&nbsp; <b translate>Last Update : </b>{{this.object.updateded_at}}
+    <b translate>Sent at : </b>{{this.object.created_at}} &nbsp;&nbsp;&nbsp; <b translate>Last Update : </b>{{this.object.updateded_at}}
   </p>
 
-<ul class="button-group float-right">
-    <span class="fa fa-eye"></span> <span translated>Read </span>
-    <span class="fa fa-edit"></span> <span translated>Reply</span>
+  <ul class="button-group float-right">
+    <a class="small" href="/conversations/read/{{this.object.id}}">
+      <span class="fa fa-eye"></span> <span translated>Read </span>
+    </a>
     <a class="small" ng-click="this.on_trash(this.object)">
-    <span class="fa fa-edit"></span> <span translated>Edit</span>
+      <span class="fa fa-edit"></span> <span translated>Reply</span>
     </a>
+    <a class="small" ng-click="this.on_trash(this.object)">
+      <span class="fa fa-edit"></span> <span translated>Trash</span>
     </a>
+</a>
 </ul>
 </div>

@@ -40,28 +40,10 @@ Conversation.config(["$routeProvider", function($routeProvider){
 }]);
 
 Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", "gettext", "catch_error", "$routeParams","$location", function($scope, API, gettext, catch_error, $routeParams, $location){
-    $scope.details_template = template("conversations/details");
     $scope.details_templates = template("conversations/details");
+    if ($routeParams.id){
 
-    $scope.on_trash = function(conversations){
-        return conversations;
-        var query = [];
-        conversations.forEach(function(conversation){
-            query.push(conversation.id);
-        });
-
-        API.all("conversations",query.join(",")).post()
-            .then(function(data) {
-
-                $scope.conversations = _.filter($scope.Conversations, function(x){
-                    return !(query.indexOf(x.id) != -1);
-                });
-                success_message(data.msg);
-            })
-            .catch(catch_error);
-
-    };
-
+    }else{
     var type;
     switch ($routeParams.type){
     case "inbox":
@@ -80,7 +62,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         $scope.conversations = data;
 
     });
-
+}
     $scope.buttons = [
         {
             title: gettext("New"),
@@ -102,6 +84,25 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         }
     ];
 
+    $scope.on_trash = function(conversations){
+        return conversations;
+        var query = [];
+        conversations.forEach(function(conversation){
+            query.push(conversation.id);
+        });
+
+        API.all("conversations",query.join(",")).post()
+            .then(function(data) {
+
+                $scope.conversations = _.filter($scope.Conversations, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
+
+    };
+
     $scope.on_untrash = function(conversations){
         var query = [];
         conversations.forEach(function(conversation){
@@ -121,6 +122,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
 
 
 }]);
+
 
 Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "gettext", "catch_error", "$routeParams", "$location", function($scope, API, gettext, catch_error, $routeParams, $location){
     $scope.obj_id = null;
