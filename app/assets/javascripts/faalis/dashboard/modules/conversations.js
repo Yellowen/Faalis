@@ -21,9 +21,9 @@ var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 Conversation.config(["$routeProvider", function($routeProvider){
     $routeProvider.
-        when("/conversations/:id/show",{
+        when("/conversations/show/:id",{
             templateUrl: template("conversations/show"),
-            controller: "ConversationControllerShow"
+            controller: "ConversationControllerIndex"
         }).
         when("/conversations/new",{
             templateUrl: template("conversations/new"),
@@ -42,7 +42,9 @@ Conversation.config(["$routeProvider", function($routeProvider){
 Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", "gettext", "catch_error", "$routeParams","$location", function($scope, API, gettext, catch_error, $routeParams, $location){
     $scope.details_templates = template("conversations/details");
     if ($routeParams.id){
-
+        API.all("conversations").get($routeParams.id).then(function(data){
+            $scope.Conversations = data;
+        });
     }else{
     var type;
     switch ($routeParams.type){
