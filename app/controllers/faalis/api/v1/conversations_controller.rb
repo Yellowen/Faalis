@@ -48,11 +48,23 @@ module Faalis
       respond_with @mailbox
     end
 
-    private
-    def conversation
-      @conversation ||= mailbox.conversations.find(params[:id])
-    end
 
+    def show
+    #def conversation
+      conversations ||= current_user.mailbox.conversations.find(params[:id]).receipts
+
+      @conversation = []
+      conversations.each do |conversation|
+        tmp = {:message => conversation.message,
+          :is_read => conversation.is_read,
+          :trashed => conversation.trashed,
+          :deleted => conversation.deleted,
+        }
+        @conversation << tmp
+      end
+
+    end
+    private
     def conversation_params(*keys)
       #binding.pry1
       fetch_params(:conversation, *keys)

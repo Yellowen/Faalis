@@ -1,21 +1,21 @@
 /* -----------------------------------------------------------------------------
-   Red Base - Basic website skel engine
-   Copyright (C) 2012-2013 Yellowen
+ Red Base - Basic website skel engine
+ Copyright (C) 2012-2013 Yellowen
 
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License along
-   with this program; if not, write to the Free Software Foundation, Inc.,
-   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-   ----------------------------------------------------------------------------- */
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ ----------------------------------------------------------------------------- */
 var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 
@@ -43,28 +43,28 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     $scope.details_templates = template("conversations/details");
     if ($routeParams.id){
         API.all("conversations").get($routeParams.id).then(function(data){
-            $scope.Conversations = data;
+            $scope.conversations = data;
         });
     }else{
-    var type;
-    switch ($routeParams.type){
-    case "inbox":
-        type = "inbox";
-        break;
-    case "sentbox":
-        type = "sentbox";
-        break;
-    case "trash":
-        type = "trash";
-        break;
-    default:
-        $location.path("conversations/inbox");
-    }
-    API.all("conversations").all(type).getList().then(function(data){
-        $scope.conversations = data;
+        var type;
+        switch ($routeParams.type){
+        case "inbox":
+            type = "inbox";
+            break;
+        case "sentbox":
+            type = "sentbox";
+            break;
+        case "trash":
+            type = "trash";
+            break;
+        default:
+            $location.path("conversations/inbox/box");
+        }
+        API.all("conversations").all(type).all("box").getList().then(function(data){
+            $scope.conversations = data;
 
-    });
-}
+        });
+    }
     $scope.buttons = [
         {
             title: gettext("New"),
@@ -85,6 +85,12 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
             route: "#/conversations/trash"
         }
     ];
+
+    $scope.message_title = function(conversation){
+        console.log(conversation);
+        console.log('fix me : check why multiple run');
+        return conversation.message.subject;
+    };
 
     $scope.on_trash = function(conversations){
         return conversations;
@@ -131,11 +137,11 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
     if("id" in $routeParams){
         $scope.obj_id = $routeParams.id;
         var obj = API.one("conversations", $scope.obj_id).get()
-            .then(function(data){
-                $scope.recipients = data.recipients;
-                $scope.subject = data.subject;
-                $scope.body = data.body;
-            });
+                .then(function(data){
+                    $scope.recipients = data.recipients;
+                    $scope.subject = data.subject;
+                    $scope.body = data.body;
+                });
     }
 
     $scope.save = function() {
