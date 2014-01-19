@@ -265,6 +265,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     };
 
     $scope.save = function(save_another){
+        $("small.error").html("");
+        $("small.error").removeClass("error");
+
         var <%= resource.underscore %> = {<%= resource.underscore %>: {<% fields.each do |field_name, field_type| %>
             <% if ["belongs_to"].include? field_type %><%= field_name %>_id: parseInt($scope.<%= field_name %>),<% else %><%= field_name %>: $scope.<%= field_name %>,<% end %><% end %>
             __res__: 0

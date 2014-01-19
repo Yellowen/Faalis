@@ -262,3 +262,8 @@ input {
 .inline {
   display: inline;
 }
+
+small.error {
+   margin-top: 1em !important;
+   border-radius: 3px;
+}

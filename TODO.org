@@ -16,6 +16,7 @@
 ** TODO Create documentations about form validation
 <<<<<<< HEAD
 ** TODO encode passwords !
+** TODO check if rails assets pipeline can understand the code duplication and use one instance of any "import" in resulted asset
 * Features
 ** TODO Edit Profile
 ** TODO User messages
