@@ -40,12 +40,14 @@ Conversation.config(["$routeProvider", function($routeProvider){
 }]);
 
 Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", "gettext", "catch_error", "$routeParams","$location", function($scope, API, gettext, catch_error, $routeParams, $location){
-    $scope.details_templates = template("conversations/details");
     if ($routeParams.id){
+        $scope.details_template = template("conversations/show_details");
+        console.log($scope.details_templates);
         API.all("conversations").get($routeParams.id).then(function(data){
             $scope.conversations = data;
         });
     }else{
+            $scope.details_template = template("conversations/details");
         var type;
         switch ($routeParams.type){
         case "inbox":
