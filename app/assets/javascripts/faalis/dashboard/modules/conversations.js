@@ -21,7 +21,7 @@ var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 Conversation.config(["$routeProvider", function($routeProvider){
     $routeProvider.
-        when("/conversations/show/:id",{
+        when("/conversations/:id/show",{
             templateUrl: template("conversations/show"),
             controller: "ConversationControllerIndex"
         }).
@@ -138,11 +138,13 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
     $scope.obj_id = null;
     if("id" in $routeParams){
         $scope.obj_id = $routeParams.id;
-        var obj = API.one("conversations", $scope.obj_id).get()
+        var obj = API.all("conversations").get($routeParams.id)
                 .then(function(data){
-                    $scope.recipients = data.recipients;
-                    $scope.subject = data.subject;
-                    $scope.body = data.body;
+                    console.table(data[0]);
+
+                    $scope.recipients = data[0].recipients;
+                    $scope.subject = "Re:" + data[0].subject;
+                    $scope.body = data[0].body;
                 });
     }
 

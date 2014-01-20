@@ -53,14 +53,18 @@ module Faalis
     #def conversation
       conversations ||= current_user.mailbox.conversations.find(params[:id]).receipts
 
-      @conversation = []
+      @conversation = {}
       conversations.each do |conversation|
-        tmp = {:message => conversation.message,
+        tmp = {
+          :message => conversation.message,
           :is_read => conversation.is_read,
           :trashed => conversation.trashed,
           :deleted => conversation.deleted,
         }
-        @conversation << tmp
+        unless @conversation.include? conversation.id
+          @conversation[conversation.id] = tmp
+        end
+
       end
 
     end

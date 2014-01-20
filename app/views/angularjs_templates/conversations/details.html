@@ -4,10 +4,10 @@
   </p>
 
   <ul class="button-group float-right">
-    <a class="small" href="#/conversations/show/{{this.object.id}}">
+    <a class="small" href="#/conversations/{{this.object.id}}/show">
       <span class="fa fa-eye"></span> <span translated>Read </span>
     </a>
-    <a class="small" ng-click="this.on_trash(this.object)">
+    <a class="small" ng-click="#/conversations/{{this.object.id}}/reply">
       <span class="fa fa-edit"></span> <span translated>Reply</span>
     </a>
     <a class="small" ng-click="this.on_trash(this.object)">
