@@ -40,6 +40,8 @@ module Faalis
       class_option :raw_path, :type => :string, :default => "", :desc => "Path to js_scaffold target"
       class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
       class_option :no_filter, :type => :boolean, :default => false, :desc => "Don't view a filter box"
+      class_option :no_new_template, :type => :boolean, :default => false, :desc => "Don't copy the new.html template"
+
 
       desc "Create a new resource for client side application"
       def create_module
@@ -54,7 +56,9 @@ module Faalis
         unless options[:only_controller]
           unless options[:only_specs]
             template "angularjs/index.html.erb", "app/views/angularjs_templates/#{resource.underscore}/index.html"
-            template "angularjs/new.html.erb", "app/views/angularjs_templates/#{resource.underscore}/new.html"
+            unless options[:no_new_template]
+              template "angularjs/new.html.erb", "app/views/angularjs_templates/#{resource.underscore}/new.html"
+            end
             template "angularjs/details.html.erb", "app/views/angularjs_templates/#{resource.underscore}/details.html"
           end
         end

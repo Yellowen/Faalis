@@ -17,30 +17,14 @@
       <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
         <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= field_name.to_s.humanize.capitalize %></span> :</label>
         <% case field_type
-           when "belongs_to" %>
-          <select ui-select2="select2options" id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
-          </select>
-          <% when "has_many" %>
-          <select ui-select2="select2options" ng-model="<%= field_name %>" id="id_<%= field_name %>" name="<%= field_name %>" multiple <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
-          </select>
-          <% when "in" %>
-          <select id="id_<%= field_name %>" ui-select2="select2options" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in <%= field_name %>_choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="<%= field_name %> === item.name">{{ item.title }}</option>
-          </select>
-          <% when "text" %>
-          <textarea id="id_<%= field_name %>" class="rounded" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>></textarea>
-          <% when "boolean" %>
-          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="checkbox" name="<%= field_name %>" class="rounded <%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
-          <% when "datetime" %>
-          <datepicker  id="id_<%= field_name %>" ng-model="<%= field_name %>" class="datetime_field" name="<%= field_name %>" placeholder="{{ 'Click to pick a date' | translate }}" <% if required_fields.include? field_name %>required<% end %> />
-          <% when "string", nil %>
-          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" type="text" class="rounded <%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+           when "belongs_to", "has_many", "in" %>
+           <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
+           </relation-field>
+          <% when nil %>
+          <string-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required<% end %>></string-field>
         <% else %>
-          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="<%= field_type %>" name="<%= field_name %>" class="rounded <%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+          <<%= field_type%>-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required="true"<% end %>></<%= field_type%>-field>
   <% end %>
-          <small id="id_<%= field_name %>_msg"></small>
     </div>
   <% if not first %></div><% end %>
   <% first = !first %>
@@ -60,30 +44,15 @@
       <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
         <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= field_name.to_s.humanize.capitalize %></span> :</label>
         <% case field_type
-           when "belongs_to" %>
-          <select ui-select2="select2options" id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
-          </select>
-          <% when "has_many" %>
-          <select ui-select2="select2options" ng-model="<%= field_name %>" id="id_<%= field_name %>" name="<%= field_name %>" multiple <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
-          </select>
-          <% when "in" %>
-          <select ui-select2="select2options" id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in <%= field_name %>_choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="<%= field_name %> === item.name">{{ item.title }}</option>
-          </select>
-          <% when "text" %>
-          <textarea id="id_<%= field_name %>" ng-model="<%= field_name %>" class="rounded" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>></textarea>
-          <% when "boolean" %>
-          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="checkbox" name="<%= field_name %>" class="rounded <%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
-          <% when "datetime" %>
-          <datepicker  id="id_<%= field_name %>" ng-model="<%= field_name %>" class="datetime_field" name="<%= field_name %>" placeholder="{{ 'Click to pick a date' | translate }}" <% if required_fields.include? field_name %>required<% end %> />
-          <% when "string", nil %>
-          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" type="text" class="rounded <%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+           when "belongs_to", "has_many", "in" %>
+           <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
+           </relation-field>
+          <% when nil %>
+          <string-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required<% end %>></string-field>
         <% else %>
-          <input  id="id_<%= field_name %>" ng-model="<%= field_name %>" type="<%= field_type %>" name="<%= field_name %>" class="rounded <%= field_type %>_field" <% if required_fields.include? field_name %>required<% end %> />
+          <<%= field_type%>-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required="true"<% end %>></<%= field_type%>-field>
   <% end %>
-          <small id="id_<%= field_name %>_msg"></small>
+
     </div>
   <% if not first %></div><% end %>
   <% first = !first %>
