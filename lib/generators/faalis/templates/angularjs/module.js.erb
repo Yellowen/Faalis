@@ -225,7 +225,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     <% fields.each do |name, type| %><% if ["belongs_to", "in", "has_many"].include? type %>
     $scope.<%= name %>_data = {
         type: '<%= type %>',<% if type == "in" %>
-        choices: _.sortBy([<% type.to.split(",").each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>],<% else %>
+        choices: _.sortBy([<% type.to.split(",").each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>]),<% else %>
         to: '<%= type.to %>',<% end %>
         name: '<%= name %>'
     };<% end %><% end %>
