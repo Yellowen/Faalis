@@ -140,11 +140,14 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
         $scope.obj_id = $routeParams.id;
         var obj = API.all("conversations").get($routeParams.id)
                 .then(function(data){
-                    console.table(data[0]);
-
-                    $scope.recipients = data[0].recipients;
-                    $scope.subject = "Re:" + data[0].subject;
-                    $scope.body = data[0].body;
+                    var recipients= [];
+                    data.recipients.forEach(function(entry){
+                        if( $.inArray(entry.email,recipients) == -1 )
+                            recipients.push(entry.email);
+                    });
+                    $scope.recipients = recipients;
+                    $scope.subject = "Re: " + data.subject;
+                    $scope.body = "\n\n_____________\n"+data.body;
                 });
     }
 
@@ -154,8 +157,9 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
             subject: $scope.subject,
             body: $scope.body
         }};
+        console.log(conversation);
         if ($scope.obj_id){
-            API.one("conversations",$scope.obj_id).post(conversation).then(function(){
+            API.all("conversations").one($scope.obj_id).one("reply").customPOST(conversation,"",{}).then(function(){
                 success_message(gettext("Message sent successfully."));
                 $location.path("conversations/inbox");
             });

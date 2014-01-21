@@ -51,26 +51,27 @@ module Faalis
 
     def show
     #def conversation
-      conversations ||= current_user.mailbox.conversations.find(params[:id]).receipts
-
-      @conversation = {}
-      conversations.each do |conversation|
-        tmp = {
-          :message => conversation.message,
-          :is_read => conversation.is_read,
-          :trashed => conversation.trashed,
-          :deleted => conversation.deleted,
-        }
-        unless @conversation.include? conversation.id
-          @conversation[conversation.id] = tmp
-        end
-
-      end
+      @conversations ||= current_user.mailbox.conversations.find(params[:id])
+      #binding.pry
+#      @conversation = {}
+#      conversations.each do |conversation|
+#        tmp = {
+#          :receipts => conversation.receipts,
+#          :body => conversation.messages.body,
+#          :is_read => conversation.is_read,
+#          :trashed => conversation.trashed,
+#          :deleted => conversation.deleted,
+#          :recipients => conversation.recipients
+#        }
+        #unless @conversation.include? conversation.id
+        #  @conversation[conversation.id] = tmp
+        #end
+      #end
 
     end
     private
     def conversation_params(*keys)
-      #binding.pry1
+      #binding.pry
       fetch_params(:conversation, *keys)
     end
 
