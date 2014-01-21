@@ -1,0 +1,28 @@
+<div>
+  <select ui-select2="select2Options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" ng-required="required" ng-if="field.type === 'belongs_to'">
+    <option ng-repeat="item in all_options" value="{{ item.id }}" title="{{ item[titleField] || item }}" ng-selected="item.id === model.id">{{ item[titleField] || item }}</option>
+  </select>
+
+  <select ui-select2="select2Options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" ng-required="required" multiple ng-if="field.type === 'has_many'">
+    <option ng-repeat="item in all_options" value="{{ item.id }}" title="{{ item[titleField] || item }}" ng-selected="have(item.id)">{{ item[titleField] || item }}</option>
+  </select>
+
+  <select ui-select2="select2Options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" ng-required="required" ng-if="field.type === 'in'">
+    <option ng-repeat="item in field.choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="model === item.name">{{ item.title }}</option>
+  </select>
+
+  <!-- Add and Refresh buttons -->
+  <div class="float-right relation_links" ng-if="(field.type === 'belongs_to') or (field.type === 'has_many')">
+    <span>
+      <a ng-href="#{{ field.to }}/new" target="_blank">
+        <i class="fa fa-plus"></i>
+      </a>
+    </span>
+    <span ng-click="update_collection()">
+      <i class="fa fa-refresh"></i>
+    </span>
+  </div>
+
+  <small id="{{ msg_element_id }}"></small>
+  <!-- --------------------------------- -->
+</div>
