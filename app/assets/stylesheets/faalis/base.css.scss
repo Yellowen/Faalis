@@ -267,3 +267,26 @@ small.error {
    margin-top: 1em !important;
    border-radius: 3px;
 }
+
+.relation_links {
+   span {
+      font-size: 0.8em;
+      padding: 2px 5px;
+      color: $darkgray;
+      cursor: pointer;
+      opacity: 0.3;
+      @include transition(opacity 300ms linear 0ms);
+      &:hover {
+         opacity: 1;
+         @include transition(opacity 300ms linear 0ms);
+      }
+      a {
+         opacity: 0.4;
+         @include transition(opacity 300ms linear 0ms);
+         &:hover {
+            opacity: 1;
+            @include transition(opacity 300ms linear 0ms);
+         }
+      }
+   }
+}

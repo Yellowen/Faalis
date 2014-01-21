@@ -248,7 +248,13 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     }
 
-
+    $scope.update_collection = function(scope_var, url) {
+        API.all(url).getList().then(function(data){
+            $scope[scope_var] = data;
+        }, function(data){
+            catch_error(data);
+        });
+    };
     $scope.have = function(field, obj_id) {
         var tmp = _.where($scope[field], {id: obj_id});
         if (tmp.length > 0) {
