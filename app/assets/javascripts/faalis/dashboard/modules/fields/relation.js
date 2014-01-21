@@ -17,12 +17,12 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ----------------------------------------------------------------------------- */
 
-var ListView = angular.module("RelationField", ["ui.select2"]);
+var Relation = angular.module("RelationField", ["ui.select2"]);
 
 /*
  * <relation-field></relation-field> directive defination
  */
-ListView.directive('relationField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
+Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();

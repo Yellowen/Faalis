@@ -17,26 +17,9 @@
       <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
         <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= field_name.to_s.humanize.capitalize %></span> :</label>
         <% case field_type
-           when "belongs_to" %>
-          <select ui-select2="select2options" id="id_<%= field_name %>" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="item.id === <%= field_name %>.id">{{ item.name || item }}</option>
-          </select>
-          <!-- Add and Refresh buttons -->
-          <div class="float-right relation_links"><span><a href="#<%= field_type.to %>/new" target="_blank"><i class="fa fa-plus"></i></a></span><span ng-click="update_collection('all_<%= field_type.resource_name%>', '<%= field_type.to %>')"><i class="fa fa-refresh"></i></span></div>
-          <!-- --------------------------------- -->
-
-          <% when "has_many" %>
-          <select ui-select2="select2options" ng-model="<%= field_name %>" id="id_<%= field_name %>" name="<%= field_name %>" multiple <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in all_<%= field_type.resource_name %>" value="{{ item.id }}" title="{{ item.name || item }}" ng-selected="have('<%= field_name %>', item.id)">{{ item.name || item }}</option>
-          </select>
-          <!-- Add and Refresh buttons -->
-          <div class="float-right relation_links"><span><a href="#<%= field_type.to %>/new" target="_blank"><i class="fa fa-plus"></i></a></span><span ng-click="update_collection('all_<%= field_type.resource_name%>', '<%= field_type.to %>')"><i class="fa fa-refresh"></i></span></div>
-          <!-- --------------------------------- -->
-
-          <% when "in" %>
-          <select id="id_<%= field_name %>" ui-select2="select2options" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>>
-            <option ng-repeat="item in <%= field_name %>_choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="<%= field_name %> === item.name">{{ item.title }}</option>
-          </select>
+           when "belongs_to", "has_many", "in" %>
+           <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
+           </relation-field>
           <% when "text" %>
           <textarea id="id_<%= field_name %>" class="rounded" ng-model="<%= field_name %>" name="<%= field_name %>" <% if required_fields.include? field_name %>required<% end %>></textarea>
           <% when "boolean" %>
