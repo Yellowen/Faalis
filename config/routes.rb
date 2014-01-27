@@ -25,6 +25,7 @@ Faalis::Engine.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       get "permissions", :to => "permissions#index"
+      get "permissions/user", :to => "permissions#user_permissions"
       resources :groups, :except => [:new]
       resources :users, :except => [:new]
       resource :profile, :except => [:new, :destroy]

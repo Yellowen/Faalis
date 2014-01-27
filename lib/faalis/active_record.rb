@@ -28,7 +28,9 @@ module ActiveRecord
         end
         strings
       end
-
+      def self.possible_permissions
+        @@permissions.keys
+      end
       # Define permissions using this method
       def self.permissions(*args)
 
