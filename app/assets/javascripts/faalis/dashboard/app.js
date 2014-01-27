@@ -23,22 +23,18 @@
 //= require ./locale/translations
 
 var dependencies = ["gettext", "Modules", "Navigation","ui.select2",  "ngAnimate", "ngRoute",
-                    "restangular", "ngQuickDate", "Errors", "Profile", "Conversation"].concat(dashboard_dependencies);
+                    "restangular", "ngQuickDate", "Errors", "Profile", "Permissions", "Conversation"].concat(dashboard_dependencies);
 
 console.log("Dashboard dependencies:");
 console.log(dependencies);
 
 var Dashboard = angular.module('Dashboard', dependencies);
 
-Dashboard.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.
-        when("/", {
-            templateUrl: template("index")
-        });
+Dashboard.config(["$routeProvider", "RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function($routeProvider, RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
 
-}]);
-
-Dashboard.config(["RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function(RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
+    $routeProvider.when("/", {
+        templateUrl: template("index")
+    });
 
     ngQuickDateDefaultsProvider.set({
         closeButtonHtml: "<i class='fa fa-times'></i>",
@@ -73,3 +69,22 @@ Dashboard.config(["RestangularProvider", "$httpProvider", "ngQuickDateDefaultsPr
         }
     });
 }]);
+
+Dashboard.run(["UserPermissions", "$rootScope", function(User, $rootScope){
+    $rootScope.user = User;
+}]);
+
+angular.element(document).ready(function(){
+    $.ajax({method: 'GET', type: 'json',
+            url: API_PREFIX + "permissions/user"})
+           .success(function(data, status, headers, config){
+               PERMISSIONS = data.permissions;
+               angular.bootstrap(document, ["Dashboard"]);
+           })
+           .fail(function(data){
+               alert('Can not connect to remote, please try again');
+           }).always(function(){
+               $("#mainloader").hide();
+               $("#content").show();
+           });
+});

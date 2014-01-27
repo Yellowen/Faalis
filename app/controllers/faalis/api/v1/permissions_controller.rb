@@ -6,7 +6,9 @@ module Faalis
     class DummyPerm
       attr_accessor :model, :permission_type
     end
-    # GET /api/v1/permissions
+
+    # @api GET permissions
+    # @return All permissions
     def index
       @permissions = []
 
@@ -17,10 +19,13 @@ module Faalis
       respond_with(@permissions)
     end
 
+    # @api GET permissions/user
+    # @return current user permissions
     def user_permissions
       @permissions = {}
       perms = []
       if current_user.group_id == 1
+        # Generate all possible permissions for admin group
         Faalis::Engine.models_with_permission.each do |model|
           Object.const_get(model)::Permissions.possible_permissions.each do |p|
             perm = DummyPerm.new
@@ -32,11 +37,13 @@ module Faalis
       else
         perms = current_user.group.permissions
       end
+
+      # Generate a suitable Hash for permissions
       perms.each do |perm|
         if @permissions.include? perm.model
-          @permissions[perm.model] << perm.permission_type
+          @permissions[perm.model] << perm.permission_type.to_s
         else
-          @permissions[perm.model] = [perm.permission_type]
+          @permissions[perm.model] = [perm.permission_type.to_s]
         end
       end
       respond_with(@permissions)
