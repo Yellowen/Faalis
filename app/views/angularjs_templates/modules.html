@@ -2,7 +2,7 @@
 
   <li ng-click="controller.on_click('/')"><p><i class="fa fa-dashboard"></i> <span translate>Dashboard</span></p></li>
 
-  <li data-ng-repeat="module in controller.modules" if-user="user.can('read', 'sFaalis::User')">
+  <li data-ng-repeat="module in controller.modules" if-user="user.can('read', module.model)">
     <p ng-click="controller.view_menu(module)"><i class="{{ module.icon }}"></i> <span translate>{{ module.title }}</span></p>
     <ul class="submenu slide"  ng-if="module.show_menu">
         <li ng-repeat="menu_item in module.menu_items" ng-click="controller.on_click(menu_item.url)"><span>{{ menu_item.title }}</span></li>
@@ -12,6 +12,6 @@
 </ul>
 
 <div class="brand">
-  <h1 translate>Site_Title</h1>
+  <h1 translate><%= Faalis::Engine.site_title %></h1>
   <span translate>Some_Slug</span>
 </div>

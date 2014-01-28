@@ -1,5 +1,6 @@
 require_dependency "faalis/application_controller"
 
+
 module Faalis
   class DashboardController < ApplicationController
 
@@ -24,7 +25,6 @@ module Faalis
 
     def modules
       dashboard_modules = []
-
       Faalis::Engine.dashboard_modules.each do |module_name, attrs|
         if not attrs.include? :title
           attrs[:title] = _(module_name.to_s)
@@ -34,9 +34,22 @@ module Faalis
           attrs[:resource] = module_name.to_s
         end
 
-        #if not attrs.include? :model
-        #  attrs[:model] = attrs[:resource].camelize.constantize
-        #end
+        # If class did not given by user in settings
+        # Faalis tries to guess the class name
+        if not attrs.include? :model
+          begin
+            klass = attrs[:resource].camelize.constantize
+
+            if klass.respond_to? :possible_permissions
+              attrs[:model] = attrs[:resource].camelize
+            else
+              attrs[:model] = ""
+            end
+
+          rescue NameError
+            attrs[:model] = ""
+          end
+        end
 
         dashboard_modules << attrs
       end
