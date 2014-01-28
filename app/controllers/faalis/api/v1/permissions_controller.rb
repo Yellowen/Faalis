@@ -14,7 +14,7 @@ module Faalis
 
       Faalis::Engine.models_with_permission.each do |model|
         model = Object.const_get(model)
-        @permissions.concat(model::Permissions.permission_strings(model))
+        @permissions.concat(model.permission_strings(model))
       end
       respond_with(@permissions)
     end
@@ -27,7 +27,7 @@ module Faalis
       if current_user.group_id == 1
         # Generate all possible permissions for admin group
         Faalis::Engine.models_with_permission.each do |model|
-          Object.const_get(model)::Permissions.possible_permissions.each do |p|
+          Object.const_get(model).possible_permissions.each do |p|
             perm = DummyPerm.new
             perm.model = model
             perm.permission_type = p

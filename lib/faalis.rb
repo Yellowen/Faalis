@@ -23,6 +23,7 @@ module Faalis
 end
 
 require "faalis/engine"
+require "faalis/permissions"
 require "faalis/dashboard"
 require "faalis/omniauth"
 require "faalis/active_record"

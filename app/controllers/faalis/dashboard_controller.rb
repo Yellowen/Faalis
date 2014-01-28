@@ -34,6 +34,10 @@ module Faalis
           attrs[:resource] = module_name.to_s
         end
 
+        #if not attrs.include? :model
+        #  attrs[:model] = attrs[:resource].camelize.constantize
+        #end
+
         dashboard_modules << attrs
       end
       dashboard_modules = {:modules => dashboard_modules}
