@@ -44,7 +44,8 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         $scope.details_template = template("conversations/show_details");
         console.log($scope.details_templates);
         API.all("conversations").get($routeParams.id).then(function(data){
-            $scope.conversations = data;
+            console.log(data);
+            $scope.conversations = data.messages;
         });
     }else{
             $scope.details_template = template("conversations/details");
@@ -89,9 +90,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     ];
 
     $scope.message_title = function(conversation){
-        console.log(conversation);
-        console.log('fix me : check why multiple run');
-        return conversation.message.subject;
+        return conversation.subject;
     };
 
     $scope.on_trash = function(conversations){
