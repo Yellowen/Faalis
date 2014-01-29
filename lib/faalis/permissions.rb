@@ -2,7 +2,9 @@ module Faalis
   module Permissions
     extend ActiveSupport::Concern
 
+
     module ClassMethods
+
       # Default permission hash
       @@permissions = {
         :read => nil,
@@ -16,10 +18,16 @@ module Faalis
       # @return an array of strings representation of permissions
       def permission_strings(model)
         strings = []
+        model_name = model.to_s
+        humanize_name = ActiveModel::Name.new(model).human
+        if model.respond_to? :model_name
+          model_name = model.model_name
+          humanize_name = model_name.human
+        end
         @@permissions.each do |key, value|
           strings << {
-            :name => "#{key}|#{model.model_name}",
-            :string => _("can %s %s") % [_(key.to_s), model.model_name.human]
+            :name => "#{key}|#{model_name}",
+            :string => _("can %s %s") % [_(key.to_s), humanize_name]
           }
         end
         strings
@@ -61,5 +69,4 @@ module Faalis
 
     end
   end
-
 end
