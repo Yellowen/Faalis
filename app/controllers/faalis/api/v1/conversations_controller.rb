@@ -21,6 +21,7 @@ module Faalis
     end
 
     def trash
+
       conversation.move_to_trash(current_user)
       redirect_to :conversations
     end
