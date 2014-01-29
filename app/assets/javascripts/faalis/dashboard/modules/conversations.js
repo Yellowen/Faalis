@@ -94,13 +94,9 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     };
 
     $scope.on_trash = function(conversations){
-        return conversations;
-        var query = [];
-        conversations.forEach(function(conversation){
-            query.push(conversation.id);
-        });
 
-        API.all("conversations",query.join(",")).post()
+
+        API.all("conversations",conversations.id).post()
             .then(function(data) {
 
                 $scope.conversations = _.filter($scope.Conversations, function(x){

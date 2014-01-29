@@ -52,6 +52,7 @@ module Faalis
     def show
     #def conversation
       @conversations ||= current_user.mailbox.conversations.find(params[:id])
+      @current_user = current_user
       #binding.pry
 #      @conversation = {}
 #      conversations.each do |conversation|
