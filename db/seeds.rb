@@ -1,5 +1,7 @@
 # Database initial data
 
+ModelDiscovery::Engine.load_seed
+
 Faalis::Group.create({:name => "Admin"})
 Faalis::Group.create({:name => "Guest", :id => 2})
 
