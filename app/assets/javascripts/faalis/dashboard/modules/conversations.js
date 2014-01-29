@@ -151,12 +151,11 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
     }
 
     $scope.save = function() {
-        var conversation = {conversation: {
+        var conversation = {message:{
             recipients: $scope.recipients,
             subject: $scope.subject,
             body: $scope.body
         }};
-        console.log(conversation);
         if ($scope.obj_id){
             API.all("conversations").one($scope.obj_id).one("reply").customPOST(conversation,"",{}).then(function(){
                 success_message(gettext("Message sent successfully."));

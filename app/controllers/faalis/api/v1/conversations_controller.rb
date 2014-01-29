@@ -16,8 +16,8 @@ module Faalis
     end
 
     def reply
-      current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
-      respond_to conversation
+      @conversation = current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
+      respond_with(@conversation)
     end
 
     def trash
@@ -70,6 +70,16 @@ module Faalis
 
     end
     private
+
+    def mailbox
+      @mailbox ||= current_user.mailbox
+    end
+
+
+    def conversation
+    @conversation ||= mailbox.conversations.find(params[:id])
+    end
+
     def conversation_params(*keys)
       #binding.pry
       fetch_params(:conversation, *keys)
@@ -80,6 +90,12 @@ module Faalis
     end
 
     def fetch_params(key, *subkeys)
+      puts "####################################"
+      puts params
+      puts key
+      puts "####################################"
+      puts params[key]
+      puts "####################################"
       params[key].instance_eval do
         case subkeys.size
         when 0 then self
