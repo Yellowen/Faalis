@@ -21,4 +21,3 @@ group :development, :test do
   gem 'redcarpet'
   gem 'github-markup'
 end
-#gem "model_discovery", :path => "/home/lxsameer/src/Yellowen/model_discovery"

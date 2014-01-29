@@ -1,28 +1,22 @@
 PATH
   remote: .
   specs:
-    faalis (0.7.0)
+    faalis (0.11.0)
       cancan
       compass-rails
       devise (>= 3.0.0)
       fast_gettext
       font-awesome-rails
-      formtastic
       gettext_i18n_rails
       jbuilder
       jquery-rails
       mailboxer
+      model_discovery (~> 0.2.0)
       modernizr-rails
       omniauth
       rails (>= 4.0.0)
       sass-rails (>= 4.0.0)
       zurb-foundation (~> 4.0.0)
-
-PATH
-  remote: /home/lxsameer/src/Yellowen/model_discovery
-  specs:
-    model_discovery (0.2.0)
-      rails (~> 4.0.2)
 
 GEM
   remote: http://rubygems.org/
@@ -92,8 +86,6 @@ GEM
       railties (>= 3.2, < 5.0)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
-    formtastic (2.2.1)
-      actionpack (>= 3.0)
     fssm (0.2.10)
     gettext (3.0.3)
       locale (>= 2.0.5)
@@ -122,6 +114,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
+    model_discovery (0.2.0)
+      rails (~> 4.0.2)
     modernizr-rails (2.7.1)
     multi_json (1.8.4)
     nokogiri (1.6.1)
@@ -215,7 +209,6 @@ DEPENDENCIES
   factory_girl_rails
   gettext
   github-markup
-  model_discovery!
   rdoc
   redcarpet
   rspec-rails (~> 3.0.0.beta)
