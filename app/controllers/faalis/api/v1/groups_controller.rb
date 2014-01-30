@@ -8,7 +8,7 @@ module Faalis
     # GET /api/v1/groups
     def index
       @groups = Group.includes(:permissions).all
-      authorize! :read, @groups
+      authorize! :read, Faalis::Group
       respond_with(@groups)
     end
 

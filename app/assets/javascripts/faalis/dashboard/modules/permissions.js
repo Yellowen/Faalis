@@ -54,9 +54,6 @@ Perm.factory('UserPermissions', ["$rootScope", function ($rootScope) {
 Perm.directive('ifUser', ["UserPermissions", function(User) {
 
     function link(scope, element, attrs) {
-        console.log(element);
-        console.log(scope.value);
-        console.dir(scope);
         if (scope.value === true) {
             element.show();
         }
