@@ -91,6 +91,10 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             title: gettext("New"),
             icon: "fa fa-plus",
             classes: "btn tiny green",
+            permission: {
+              name: "create",
+              model: "<%= resource.classify %>"
+            },
             route: "#<%= resource_url %>/new"
 
         },<% unless options[:no_bulk] %>
@@ -98,6 +102,10 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             title: gettext("Bulk Edit"),
             icon: "fa fa-edit",
             classes: "btn tiny yellow",
+            permission: {
+              name: "update",
+              model: "<%= resource.classify %>"
+            },
             action: function(){
                 $scope.$apply("bulk_edit = ! bulk_edit");
             },
@@ -107,6 +115,10 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             title: gettext("Duplicate"),
             icon: "fa fa-files-o",
             classes: "btn tiny red",
+            permission: {
+              name: "create",
+              model: "<%= resource.classify %>"
+            },
             action: function(){
                 var selected = _.find($scope.<%= resource.pluralize.underscore %>, function(x){
                     return x.is_selected === true;
@@ -307,7 +319,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 }]);
 <% unless options[:menu].empty? %>
 <%= resource.pluralize %>.controller("<%= resource %>MenuController", ["gettext", function(gettext){
-    this.menu_items = [<% options[:menu].split(",").each do |menu| %><% title, url = menu.split(":") %>
-        {title: gettext("<%= title %>"), url: "<%= url %>"},<% end %>
+    this.menu_items = [<% options[:menu].split(",").each do |menu| %><% title, url, model = parse_menu(menu) %>
+        {title: gettext("<%= title %>"), url: "<%= url %>"<% if model %>, permission: {action: "read", model: "<%= model %>"}<% end %>},<% end %>
         ];
 }]);<% end %>

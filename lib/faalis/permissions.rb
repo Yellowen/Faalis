@@ -10,7 +10,7 @@ module Faalis
         :read => nil,
         :update => nil,
         :create => nil,
-        :destory => nil,
+        :destroy => nil,
       }
 
       @@only_owner = false

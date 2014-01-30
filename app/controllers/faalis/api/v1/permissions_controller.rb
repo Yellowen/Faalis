@@ -62,6 +62,7 @@ module Faalis
       perms.each do |perm|
         if @permissions.include? perm.model
           @permissions[perm.model] << perm.permission_type.to_s
+          @permissions[perm.model] = @permissions[perm.model].uniq
         else
           @permissions[perm.model] = [perm.permission_type.to_s]
         end

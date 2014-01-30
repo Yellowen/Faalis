@@ -7,7 +7,7 @@
   <ul>
     <li class="table-header">
       <div class="small-6 columns text-left buttons-header">
-        <span data-ng-repeat="button in buttons" class="{{ button.classes }}"><a  object-action object="button"><i class="{{ button.icon }}"></i> {{ button.title | translate }}</a></span>
+        <span data-ng-repeat="button in buttons" class="{{ button.classes }}" if-user="has_permission(button)"><a  object-action object="button"><i class="{{ button.icon }}"></i> {{ button.title | translate }}</a></span>
       </div>
 
       <div class="small-2 columns text-right list-type">
@@ -71,7 +71,7 @@
       <span class="btn yellow tiny" ng-click="toggle_select()" translate>Toggle Select</span>
       <span class="btn blue tiny" ng-if="! is_all_selected" ng-click="select_all()" >Select All</span>
       <span class="btn blue tiny" ng-if="is_all_selected" ng-click="select_all()">Deselect All</span>
-      <span class="btn red tiny" ng-click="delete_items()" translate>Delete</span>
+      <span ng-if="can('destroy', permission_model);"><span class="btn red tiny" ng-click="delete_items()" translate>Delete</span></span>
     </div>
 
   </li>

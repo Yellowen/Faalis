@@ -20,4 +20,5 @@ group :development, :test do
   gem "yard"
   gem 'redcarpet'
   gem 'github-markup'
+  gem "guard-livereload", require: false
 end

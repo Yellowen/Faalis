@@ -237,6 +237,16 @@ module Faalis
         result
       end
 
+      def parse_menu(menu)
+        title, url = menu.split(":")
+        model = nil
+        if title.split(">").length > 1
+          title, model = title.split(">")
+        end
+        return title, url, model
+      end
+
+
       def random_json_data
         data = {}
         fields.each do |field, type|
