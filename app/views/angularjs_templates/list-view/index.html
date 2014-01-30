@@ -28,7 +28,8 @@
       <i ng-click="toggle_details(object)"  class="{{ handle_icon }} {{ handle_icon_expand(object) }} handle fa "></i>
 
       <div class="title" ng-click="select_item(object)">
-        {{ title(object, title_attr) }}
+        <!-- <span ng-bind-html="title(object, title_attr)"></span> -->
+        {{title(object, title_attr)}}
       </div>
 
       <div ng-show="should_view(object)" class="details">

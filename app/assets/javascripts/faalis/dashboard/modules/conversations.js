@@ -44,7 +44,8 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         $scope.details_template = template("conversations/show_details");
         console.log($scope.details_templates);
         API.all("conversations").get($routeParams.id).then(function(data){
-            $scope.conversations = data;
+            console.log(data);
+            $scope.conversations = data.messages;
         });
     }else{
             $scope.details_template = template("conversations/details");
@@ -89,18 +90,14 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     ];
 
     $scope.message_title = function(conversation){
-        console.log(conversation);
-        console.log('fix me : check why multiple run');
-        return conversation.message.subject;
+        return conversation.subject;
     };
 
     $scope.on_trash = function(conversations){
-        return conversations;
         var query = [];
         conversations.forEach(function(conversation){
             query.push(conversation.id);
         });
-
         API.all("conversations",query.join(",")).post()
             .then(function(data) {
 
@@ -152,12 +149,11 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
     }
 
     $scope.save = function() {
-        var conversation = {conversation: {
+        var conversation = {message:{
             recipients: $scope.recipients,
             subject: $scope.subject,
             body: $scope.body
         }};
-        console.log(conversation);
         if ($scope.obj_id){
             API.all("conversations").one($scope.obj_id).one("reply").customPOST(conversation,"",{}).then(function(){
                 success_message(gettext("Message sent successfully."));
