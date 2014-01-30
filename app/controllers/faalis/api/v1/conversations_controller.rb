@@ -21,9 +21,12 @@ module Faalis
     end
 
     def trash
-
-      conversation.move_to_trash(current_user)
-      redirect_to :conversations
+      ids = params[:id].split(",")
+      ids.each do |id|
+        conversation = current_user.mailbox.conversations.find(params[:id])
+        conversation.move_to_trash(current_user)
+      end
+      redirect_with :conversation
     end
 
     def untrash
