@@ -18,6 +18,12 @@ PATH
       sass-rails (>= 4.0.0)
       zurb-foundation (~> 4.0.0)
 
+PATH
+  remote: /home/lxsameer/src/Yellowen/model_discovery
+  specs:
+    model_discovery (0.2.0)
+      rails (~> 4.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -140,8 +146,6 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    model_discovery (0.2.0)
-      rails (~> 4.0.2)
     modernizr-rails (2.7.1)
     multi_json (1.8.4)
     nokogiri (1.6.1)
@@ -245,6 +249,7 @@ DEPENDENCIES
   gettext
   github-markup
   guard-livereload
+  model_discovery!
   rdoc
   redcarpet
   rspec-rails (~> 3.0.0.beta)
