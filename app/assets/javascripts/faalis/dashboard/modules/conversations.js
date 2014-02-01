@@ -94,6 +94,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     };
 
     $scope.on_trash = function(conversations){
+        console.log('HEREERE');
         var query = [];
         conversations.forEach(function(conversation){
             query.push(conversation.id);
