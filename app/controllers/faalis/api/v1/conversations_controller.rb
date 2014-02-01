@@ -46,7 +46,7 @@ module Faalis
         respond_to do |f|
           f.any { head :not_found }
         end
-        return
+        returng
       end
       # puts current_user.mailbox.sent.to_json
        @mailbox ||= current_user.mailbox.send(box.to_sym)
@@ -94,13 +94,6 @@ module Faalis
     end
 
     def fetch_params(key, *subkeys)
-      puts "####################################"
-      puts params
-      puts key
-      puts "####################################"
-      puts params[key]
-      puts "####################################"
-      params[key].instance_eval do
         case subkeys.size
         when 0 then self
         when 1 then self[subkeys.first]
