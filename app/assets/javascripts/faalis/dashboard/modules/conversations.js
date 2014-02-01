@@ -41,6 +41,7 @@ Conversation.config(["$routeProvider", function($routeProvider){
 
 Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", "gettext", "catch_error", "$routeParams","$location", function($scope, API, gettext, catch_error, $routeParams, $location){
     if ($routeParams.id){
+        $scope.id = $routeParams.id;
         $scope.details_template = template("conversations/show_details");
         API.all("conversations").get($routeParams.id).then(function(data){
             $scope.conversations = data.messages;

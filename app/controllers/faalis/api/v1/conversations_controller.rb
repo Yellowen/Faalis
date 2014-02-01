@@ -6,11 +6,12 @@ module Faalis
     helper_method :mailbox, :conversation
 
     def create
-      recipient_emails = conversation_params(:recipients).split(',')
+      #binding.pry
+      recipient_emails = message_params(:recipients).split(',')
       recipients = User.where(email: recipient_emails).all
 
       @conversation = current_user.
-        send_message(recipients, *conversation_params(:body, :subject)).conversation
+        send_message(recipients, *message_params(:body, :subject)).conversation
 
       respond_with(@conversation)
     end
@@ -21,7 +22,6 @@ module Faalis
     end
 
     def trash
-      binding.pry
       ids = params[:id].split(",")
       ids.each do |id|
         conversation = current_user.mailbox.conversations.find(params[:id])
