@@ -34,7 +34,7 @@ Faalis::Engine.routes.draw do
       resources :conversations, only: [:index, :show, :create] do
         collection do
           get ":box/box" => "conversations#index"
-          post "trash/*id" => "conversations#trash"
+          post "trash" => "conversations#trash"
         end
         member do
           post :reply

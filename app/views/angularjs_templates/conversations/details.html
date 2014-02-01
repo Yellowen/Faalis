@@ -9,8 +9,9 @@
     </a>
     <a class="small" href="#/conversations/{{this.object.id}}/reply">
       <span class="fa fa-edit"></span> <span translated>Reply</span>
-    </a>
-    <a class="small" ng-click="this.object.on_trash(this.object)">
+    </a>-- {{ this.$parent.$parent.$parent.$parent.$id }} --
+    <div ng-click="this.$parent.$parent.$parent.$parent.this.on_trash(this.object)">asdasdasdasd</div>
+    <a class="small">
       <span class="fa fa-edit"></span> <span translated>Trash</span>
     </a>
 </a>

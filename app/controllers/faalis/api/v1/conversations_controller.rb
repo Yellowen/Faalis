@@ -21,12 +21,13 @@ module Faalis
     end
 
     def trash
+      binding.pry
       ids = params[:id].split(",")
       ids.each do |id|
         conversation = current_user.mailbox.conversations.find(params[:id])
         conversation.move_to_trash(current_user)
       end
-      redirect_with :conversation
+      redirect_to :conversation
     end
 
     def untrash
@@ -57,7 +58,6 @@ module Faalis
     #def conversation
       @conversations ||= current_user.mailbox.conversations.find(params[:id])
       @current_user = current_user
-      #binding.pry
 #      @conversation = {}
 #      conversations.each do |conversation|
 #        tmp = {
@@ -86,7 +86,6 @@ module Faalis
     end
 
     def conversation_params(*keys)
-      #binding.pry
       fetch_params(:conversation, *keys)
     end
 
