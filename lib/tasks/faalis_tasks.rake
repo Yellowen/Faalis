@@ -12,6 +12,16 @@ namespace :faalis do
       `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js nggettext_compile`
     end
 
+
+    task :remove_copyright_header do
+      Dir.glob("{app,lib}/**/*.js").each do |file|
+        puts ">> #{file}"
+        c = File.open(file, "r").read
+        c.gsub!(/\/\*.*Red Base.*\*\//mi, "")
+        File.open(file, "w").write c
+      end
+    end
+
   end
 end
 
@@ -19,14 +29,5 @@ end
 namespace :gettext do
   def files_to_translate
     Dir.glob("{app,lib,config,locale}/**/*.{rb ,erb,haml,slim,rhtml,js.erb,handlebars.erb }")
-  end
-end
-
-task :copyright do
-  Dir.glob("{app,lib}/**/*.js").each do |file|
-    puts ">> #{file}"
-    c = File.open(file, "r").read
-    c.gsub!(/\/\*.*Red Base.*\*\//mi, "")
-    File.open(file, "w").write c
   end
 end
