@@ -57,6 +57,12 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
             route: "#conversations/new"
         },
         {
+            title: gettext("Inbox"),
+            icon: "fa fa-plus",
+            classes: "btn tiny green",
+            route: "#/conversations/inbox"
+        },
+        {
             title: gettext("Sent box"),
             icon: "fa fa-plus",
             classes: "btn tiny green",

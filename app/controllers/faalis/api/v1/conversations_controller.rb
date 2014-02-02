@@ -32,7 +32,7 @@ module Faalis
 
     def untrash
       ids = params[:id].split(",")
-       ids.each do |id|
+      ids.each do |id|
         conversation = current_user.mailbox.conversations.find(params[:id])
         conversation.untrash(current_user)
       end
@@ -108,10 +108,13 @@ module Faalis
     end
 
     def fetch_params(key, *subkeys)
-      case subkeys.size
-      when 0 then self
-      when 1 then self[subkeys.first]
-      else subkeys.map{|k| self[k] }
+      params[key].instance_eval do
+        case subkeys.size
+        when 0 then self
+        when 1 then
+          self[subkeys.first]
+        else subkeys.map{|k| self[k] }
+        end
       end
     end
   end

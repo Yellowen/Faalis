@@ -325,7 +325,10 @@ ListView.directive('listView', ["$filter", "gettext", "UserPermissions", functio
             permission_model: "=model",
 
             // On delete method
-            on_delete: "=onDelete"
+            on_delete: "=onDelete",
+
+            // Custom delete title method
+            delete_title: "=deleteTitle"
         },
         link: link
     };
