@@ -1,1 +1,1 @@
---no-private --exclude templates --protected app/**/*.rb lib/**/*.rb - README.md LICENSE --markup-provider=redcarpet --markup=markdown
+--no-private --exclude templates --protected app/**/*.rb lib/**/*.rb - README.md LICENSE --markup-provider=redcarpet --markup=markdown --output-dir docs/ruby

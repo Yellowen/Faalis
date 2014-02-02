@@ -21,3 +21,12 @@ namespace :gettext do
     Dir.glob("{app,lib,config,locale}/**/*.{rb ,erb,haml,slim,rhtml,js.erb,handlebars.erb }")
   end
 end
+
+task :copyright do
+  Dir.glob("{app,lib}/**/*.js").each do |file|
+    puts ">> #{file}"
+    c = File.open(file, "r").read
+    c.gsub!(/\/\*.*Red Base.*\*\//mi, "")
+    File.open(file, "w").write c
+  end
+end
