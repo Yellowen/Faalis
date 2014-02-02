@@ -1,6 +1,3 @@
-
- ----------------------------------------------------------------------------- */
-
 var ListView = angular.module("ListView", ['ngGrid', 'Permissions']);
 
 /*

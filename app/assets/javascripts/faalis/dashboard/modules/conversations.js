@@ -1,5 +1,3 @@
-
- ----------------------------------------------------------------------------- */
 var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 

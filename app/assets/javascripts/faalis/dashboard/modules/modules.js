@@ -1,6 +1,3 @@
-
- ----------------------------------------------------------------------------- */
-
 var Modules = angular.module("Modules", ["ngRoute", "ngAnimate"]);
 
 Modules.controller("ModulesController", ["$location", "$scope", "$controller", "UserPermissions", function($location, $scope, $controller, User){

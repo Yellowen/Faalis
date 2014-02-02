@@ -1,10 +1,14 @@
+// Error Handling Service
+// ----------------------
 
- ----------------------------------------------------------------------------- */
+// This module is responsible for handling errors and show suitable messages to user.
+// It's neccessary to use this service in your code. Make sure to specify this module
+// as your module dependency
 var Errors = angular.module("Errors", []);
 
+// Error service defination
 Errors.factory('catch_error', ["gettext", function(gettext) {
     return function(error) {
-
         if ("data" in error) {
             if ((typeof(error.data) == "object") && ("fields" in error.data)) {
                 _.each(error.data.fields, function(value, key) {
@@ -26,6 +30,5 @@ Errors.factory('catch_error', ["gettext", function(gettext) {
         }
         console.log(error);
         error_message(gettext("Unkown error: please try again or contact to administrator."));
-
     };
 }]);
