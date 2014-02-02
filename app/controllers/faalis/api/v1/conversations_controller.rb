@@ -49,28 +49,28 @@ module Faalis
         returng
       end
       # puts current_user.mailbox.sent.to_json
-       @mailbox ||= current_user.mailbox.send(box.to_sym)
+      @mailbox ||= current_user.mailbox.send(box.to_sym)
       respond_with @mailbox
     end
 
 
     def show
-    #def conversation
+      #def conversation
       @conversations ||= current_user.mailbox.conversations.find(params[:id])
       @current_user = current_user
-#      @conversation = {}
-#      conversations.each do |conversation|
-#        tmp = {
-#          :receipts => conversation.receipts,
-#          :body => conversation.messages.body,
-#          :is_read => conversation.is_read,
-#          :trashed => conversation.trashed,
-#          :deleted => conversation.deleted,
-#          :recipients => conversation.recipients
-#        }
-        #unless @conversation.include? conversation.id
-        #  @conversation[conversation.id] = tmp
-        #end
+      #      @conversation = {}
+      #      conversations.each do |conversation|
+      #        tmp = {
+      #          :receipts => conversation.receipts,
+      #          :body => conversation.messages.body,
+      #          :is_read => conversation.is_read,
+      #          :trashed => conversation.trashed,
+      #          :deleted => conversation.deleted,
+      #          :recipients => conversation.recipients
+      #        }
+      #unless @conversation.include? conversation.id
+      #  @conversation[conversation.id] = tmp
+      #end
       #end
 
     end
@@ -82,7 +82,7 @@ module Faalis
 
 
     def conversation
-    @conversation ||= mailbox.conversations.find(params[:id])
+      @conversation ||= mailbox.conversations.find(params[:id])
     end
 
     def conversation_params(*keys)
@@ -94,11 +94,10 @@ module Faalis
     end
 
     def fetch_params(key, *subkeys)
-        case subkeys.size
-        when 0 then self
-        when 1 then self[subkeys.first]
-        else subkeys.map{|k| self[k] }
-        end
+      case subkeys.size
+      when 0 then self
+      when 1 then self[subkeys.first]
+      else subkeys.map{|k| self[k] }
       end
     end
   end
