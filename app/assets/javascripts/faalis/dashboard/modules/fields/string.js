@@ -1,4 +1,6 @@
 
+<<<<<<< HEAD
+=======
 
 
 var String_ = angular.module("StringField", []);
@@ -6,6 +8,7 @@ var String_ = angular.module("StringField", []);
 /*
  * <string-field></string-field> directive defination
  */
+>>>>>>> 660a14d5a0f6d73a18cf15200f1fe0e55cd33521
 String_.directive('stringField', ["$filter", "gettext", function($filter, gettext) {
 
     function link(scope, element, attrs){

@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 660a14d5a0f6d73a18cf15200f1fe0e55cd33521
 var Logs = angular.module("Logs", []);
 
 Logs.config(["$routeProvider", function($routeProvider){

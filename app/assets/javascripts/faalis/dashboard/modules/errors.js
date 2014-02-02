@@ -1,6 +1,5 @@
 // Error Handling Service
 // ----------------------
-
 // This module is responsible for handling errors and show suitable messages to user.
 // It's neccessary to use this service in your code. Make sure to specify this module
 // as your module dependency

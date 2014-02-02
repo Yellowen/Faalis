@@ -33,6 +33,7 @@ ListView.directive("objectAction", function(){
 /*
  * <list-view></list-view> directive defination
  */
+
 ListView.directive('listView', ["$filter", "gettext", "UserPermissions", function($filter, gettext, User) {
 
     function link(scope, element, attrs){

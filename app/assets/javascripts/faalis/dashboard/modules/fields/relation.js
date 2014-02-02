@@ -1,4 +1,6 @@
 
+<<<<<<< HEAD
+=======
 
 
 var Relation = angular.module("RelationField", ["ui.select2"]);
@@ -6,6 +8,7 @@ var Relation = angular.module("RelationField", ["ui.select2"]);
 /*
  * <relation-field></relation-field> directive defination
  */
+>>>>>>> 660a14d5a0f6d73a18cf15200f1fe0e55cd33521
 Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
 
     function link(scope, element, attrs){
