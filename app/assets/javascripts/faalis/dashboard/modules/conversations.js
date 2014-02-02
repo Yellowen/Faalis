@@ -100,9 +100,8 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         conversations.forEach(function(conversation){
             query.push(conversation.id);
         });
-
-        API.all("conversations",query.join(",")).post()
-            .then(function(data) {
+        API.all("conversations").all("untrash").post({id: query.join(",")})
+            .then(function(data){
 
                 $scope.conversations = _.filter($scope.Conversations, function(x){
                     return !(query.indexOf(x.id) != -1);
@@ -113,8 +112,25 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     };
 
 
-}]);
 
+    $scope.on_delete = function(conversations){
+        var query = [];
+        conversations.forEach(function(conversation){
+            query.push(conversation.id);
+        });
+        API.all("conversations").customDELETE({id: query.join(",")})
+            .then(function(data) {
+
+                $scope.conversations = _.filter($scope.Conversations, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            })
+            .catch(catch_error);
+
+    };
+
+}]);
 
 Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "gettext", "catch_error", "$routeParams", "$location", function($scope, API, gettext, catch_error, $routeParams, $location){
     $scope.obj_id = null;

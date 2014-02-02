@@ -31,15 +31,14 @@ Faalis::Engine.routes.draw do
       resource :profile, :except => [:new, :destroy]
       get "logs" => "logs#index"
 
-      resources :conversations, only: [:index, :show, :create] do
+      resources :conversations, only: [:index, :show, :create, :destroy] do
         collection do
           get ":box/box" => "conversations#index"
           post "trash" => "conversations#trash"
+          post "untrash" => "conversations#untrash"
         end
         member do
           post :reply
-          #post :trash
-          post :untrash
         end
 
       end

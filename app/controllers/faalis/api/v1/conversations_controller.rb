@@ -31,8 +31,12 @@ module Faalis
     end
 
     def untrash
-      conversation.untrash(current_user)
-      redirect_to :conversations
+      ids = params[:id].split(",")
+      ids.each do |id|
+        conversation = current_user.mailbox.conversations.find(params[:id])
+        conversation.untrash(current_user)
+      end
+      redirect_to :conversation
     end
 
     def index
