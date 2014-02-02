@@ -36,7 +36,6 @@ InputGrid.directive('inputGrid', ["$filter", "gettext", function($filter, gettex
 
             // css classes to pass to input field
             cssClasses: '=cssClass',
-
             // Does this field is required
             required: "=",
             // Actual Angularjs ng-model

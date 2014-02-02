@@ -1,8 +1,3 @@
-
-<<<<<<< HEAD
-=======
-
-
 var Perm = angular.module("Permissions", []);
 
 Perm.factory('UserPermissions', ["$rootScope", function ($rootScope) {
@@ -30,7 +25,6 @@ Perm.factory('UserPermissions', ["$rootScope", function ($rootScope) {
         /*
          * Check if user has specific permission on an object
          */
->>>>>>> 660a14d5a0f6d73a18cf15200f1fe0e55cd33521
         can_not: function(action, model) {
             return ! this.can(action,model);
         }

@@ -7,6 +7,7 @@ var Errors = angular.module("Errors", []);
 
 // Error service defination
 Errors.factory('catch_error', ["gettext", function(gettext) {
+
     return function(error) {
         if ("data" in error) {
             if ((typeof(error.data) == "object") && ("fields" in error.data)) {

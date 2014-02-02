@@ -1,9 +1,3 @@
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 660a14d5a0f6d73a18cf15200f1fe0e55cd33521
-
 //= require ./functions
 //= require_tree ./modules
 //= require_self
