@@ -1,6 +1,10 @@
-
-
-
+/**
+* This Module is responsible for creating <input-grid> directive.
+*
+* @module fields
+* @submodule InputGrid
+* @constructor
+*/
 var InputGrid = angular.module("InputGrid", []);
 
 /*
