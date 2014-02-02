@@ -32,11 +32,21 @@ module Faalis
 
     def untrash
       ids = params[:id].split(",")
-      ids.each do |id|
+       ids.each do |id|
         conversation = current_user.mailbox.conversations.find(params[:id])
         conversation.untrash(current_user)
       end
       redirect_to :conversation
+    end
+
+    def destroy
+      ids = params[:id].split(",")
+      ids.each do |id|
+        conversation = current_user.mailbox.conversations.find(params[:id])
+        current_user.mark_as_deleted conversation
+        #conversation.mark_as_deleted(current_user)
+      end
+      respond_with(@conversation)
     end
 
     def index
