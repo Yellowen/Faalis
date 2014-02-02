@@ -76,6 +76,10 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         }
     ];
 
+    $scope.box_type = function(){
+        return type;
+    };
+
     $scope.message_title = function(conversation){
         return conversation.subject;
     };
@@ -119,7 +123,10 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
         conversations.forEach(function(conversation){
             query.push(conversation.id);
         });
-        API.all("conversations").customDELETE({id: query.join(",")})
+        console.log("_________");
+        console.log(query);
+
+        API.all("conversations").customDELETE(query.join(","))
             .then(function(data) {
 
                 $scope.conversations = _.filter($scope.Conversations, function(x){

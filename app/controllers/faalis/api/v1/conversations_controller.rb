@@ -36,7 +36,7 @@ module Faalis
         conversation = current_user.mailbox.conversations.find(params[:id])
         conversation.untrash(current_user)
       end
-      redirect_to :conversation
+
     end
 
     def destroy
@@ -46,7 +46,7 @@ module Faalis
         current_user.mark_as_deleted conversation
         #conversation.mark_as_deleted(current_user)
       end
-      respond_with(@conversation)
+      respond_with
     end
 
     def index

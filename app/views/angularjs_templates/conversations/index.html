@@ -1,4 +1,11 @@
-<list-view buttons="buttons" objects="conversations" title-attribute="'subject'" details-template="details_template" item-per-page="10" on_delete="on_trash" use-permissions="false" delete-title="'Trash'">
+<list-view ng-if='box_type()=="trash"' buttons="buttons" objects="conversations" title-attribute="'subject'" details-template="details_template" item-per-page="10" on_delete="on_delete" use-permissions="false" delete-title="'Delete'">
+
+  <div class="small-6 column text-left clearpadding">
+    <h3><i class="fa fa-group"></i> <span translate>Conversations</span></h3>
+  </div>
+</list-view>
+
+<list-view ng-if='box_type()!="trash"' buttons="buttons" objects="conversations" title-attribute="'subject'" details-template="details_template" item-per-page="10" on_delete="on_trash" use-permissions="false" delete-title="'Trash'">
 
   <div class="small-6 column text-left clearpadding">
     <h3><i class="fa fa-group"></i> <span translate>Conversations</span></h3>
