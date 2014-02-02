@@ -1,4 +1,44 @@
 
+<<<<<<< HEAD
+=======
+ ----------------------------------------------------------------------------- */
+
+var ListView = angular.module("ListView", ['ngGrid', 'Permissions']);
+
+/*
+ * <element object-action></element> directive defination
+ */
+ListView.directive("objectAction", function(){
+
+    function link(scope, element, attrs){
+
+        var object = scope.object;
+        var action = scope.action;
+
+        if ("route" in object){
+            element.attr("href", object.route);
+        }
+        else if ("action" in object) {
+            element.on("click", object.action);
+        }
+    }
+
+    // Actual object
+    return {
+        restrict: "A",
+        scope: {
+            object: "="
+        },
+        link: link
+    };
+
+});
+
+
+/*
+ * <list-view></list-view> directive defination
+ */
+>>>>>>> 660a14d5a0f6d73a18cf15200f1fe0e55cd33521
 ListView.directive('listView', ["$filter", "gettext", "UserPermissions", function($filter, gettext, User) {
 
     function link(scope, element, attrs){
