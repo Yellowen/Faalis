@@ -3,15 +3,12 @@
     <b translate>Sent at : </b>{{this.object.created_at}} &nbsp;&nbsp;&nbsp; <b translate>Last Update : </b>{{this.object.updateded_at}}
     {{this.object.updated_at}}
   </p>
-  <p>
+  <h4>
     {{this.object.body}}
-  </p>
+  </h4>
   <ul class="button-group float-right">
     <a class="small" href="#/conversations/{{this.$parent.$parent.$parent.$parent.id}}/reply">
       <span class="fa fa-edit"></span> <span translated>Reply</span>
-    </a>
-    <a class="small" ng-click="this.on_trash(this.object)">
-      <span class="fa fa-edit"></span> <span translated>Trash</span>
     </a>
 </a>
 </ul>

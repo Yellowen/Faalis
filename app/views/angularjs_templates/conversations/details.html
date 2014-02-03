@@ -10,6 +10,10 @@
     <a class="small" href="#/conversations/{{this.object.id}}/reply">
       <span class="fa fa-edit"></span> <span translated>Reply</span>
     </a>
+    <a ng-if='this.$parent.$parent.$parent.$parent.box_type()=="trash"'
+ class="small" ng-click="this.$parent.$parent.$parent.$parent.on_untrash(this)">
+      <span class="fa fa-edit"></span> <span translated>Untrash</span>
+    </a>
 </a>
 </ul>
 </div>

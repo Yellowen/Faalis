@@ -17,7 +17,7 @@ Conversation.config(["$routeProvider", function($routeProvider){
         }).
         when("/conversations/:type",{
             templateUrl: template("conversations/index"),
-            controller: "ConversationControllerIndex"
+            controller: "ConversationCذontrollerIndex"
         });
 }]);
 
@@ -101,6 +101,7 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
     };
 
     $scope.on_untrash = function(conversations){
+        console.log("hereeer");
         var query = [];
         conversations.forEach(function(conversation){
             query.push(conversation.id);
@@ -116,16 +117,11 @@ Conversation.controller("ConversationControllerIndex",["$scope", "Restangular", 
             .catch(catch_error);
     };
 
-
-
     $scope.on_delete = function(conversations){
         var query = [];
         conversations.forEach(function(conversation){
             query.push(conversation.id);
         });
-        console.log("_________");
-        console.log(query);
-
         API.all("conversations").customDELETE(query.join(","))
             .then(function(data) {
 

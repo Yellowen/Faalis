@@ -27,7 +27,6 @@ module Faalis
         conversation = current_user.mailbox.conversations.find(params[:id])
         conversation.move_to_trash(current_user)
       end
-      redirect_to :conversation
     end
 
     def untrash
