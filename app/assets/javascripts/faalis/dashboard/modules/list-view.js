@@ -42,8 +42,12 @@ ListView.directive('listView', ["$filter", "gettext", "UserPermissions", functio
         var _current_page = 1;
         scope.list_view = true;
         scope.grid_view = false;
+        var use_permissions;
         if (scope.use_permissions === undefined) {
-            scope.use_permissions = true;
+            use_permissions = true;
+        }
+        else {
+            use_permissions = false;
         }
 
 
@@ -271,7 +275,7 @@ ListView.directive('listView', ["$filter", "gettext", "UserPermissions", functio
         };
 
         scope.has_permission = function(button) {
-            if (scope.use_permission === true) {
+            if (use_permissions === true) {
                 if( "permission" in button ){
                     if ((!("name" in button.permission)) || (!("model" in button.permission))) {
                         console.log("Button permission should be an object and has 'name' and 'model' keys");
@@ -283,7 +287,7 @@ ListView.directive('listView', ["$filter", "gettext", "UserPermissions", functio
             return true;
         };
         scope.can = function(perm, model) {
-            if (scope.use_permissions === true) {
+            if (use_permissions === true) {
                 return User.can(perm, model);
             }
             return true;
