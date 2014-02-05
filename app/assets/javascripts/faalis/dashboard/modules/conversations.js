@@ -17,7 +17,7 @@ Conversation.config(["$routeProvider", function($routeProvider){
         }).
         when("/conversations/:type",{
             templateUrl: template("conversations/index"),
-            controller: "ConversationCذontrollerIndex"
+            controller: "ConversationControllerIndex"
         });
 }]);
 
