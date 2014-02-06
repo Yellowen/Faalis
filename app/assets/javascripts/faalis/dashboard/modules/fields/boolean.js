@@ -17,7 +17,8 @@ Boolean_.directive('booleanField', ["$filter", "gettext", function($filter, gett
         restrict: "E",
         scope: {
             cssClasses: '=cssClass',
-
+            // string to shown as label for control
+            label: "=",
             // fieldname
             field: "=fieldName",
             // Does this field is required

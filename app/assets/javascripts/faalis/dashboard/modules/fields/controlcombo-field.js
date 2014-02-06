@@ -20,10 +20,9 @@ ControlCombo.directive('controlCombo', ["$filter", "gettext", "catch_error",  fu
         var ltr = is_ltr();
         scope.element_id = "id_" + scope.field;
         scope.msg_element_id = "id_" + scope.field + "_msg";
-        console.log(scope.config);
-        console.log(">>>>>>>>>");
+
+        // Get the objects list from remote API
         scope.config.objects.getList().then(function(data){
-            console.log("here");
             scope.objects_rows = data;
         }, function(data){
             catch_error(data);
@@ -44,7 +43,13 @@ ControlCombo.directive('controlCombo', ["$filter", "gettext", "catch_error",  fu
 
         // scope data
         scope: {
-            // Configuration object
+            // Configuration object. this object should be like:
+            // ```javascript
+            // {
+            //        objects: API.all("<resource>"),
+            //        row_template: template("<template-address>"),
+            // }
+            // row_template should contains the template for one row of controls
             config: '=',
             // Scope variable which will be the angular model
             model: "=",

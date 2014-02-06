@@ -32,6 +32,16 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
 
             scope.update_collection();
         }
+
+        // Populate model with new data
+        function update_model_data(){
+            var new_val = $("#" + scope.element_id).val();
+            scope.model = new_val;
+        }
+        scope.on_change = function(){
+            update_model_data();
+        };
+        update_model_data();
     }
     // Actual object of <relation-field> directive
     return {
