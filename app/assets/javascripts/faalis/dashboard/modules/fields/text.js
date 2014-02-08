@@ -10,6 +10,15 @@ Text_.directive('textField', ["$filter", "gettext", function($filter, gettext) {
         var ltr = is_ltr();
         scope.element_id = "id_" + scope.field;
         scope.msg_element_id = "id_" + scope.field + "_msg";
+
+        if (scope.on_change !== undefined) {
+            // Watch event changes
+            scope.$watch("model", function(newv, oldv, $scope) {
+                // TODO: maybe we should pass locals to $eval
+                scope.$parent.$eval(scope.on_change);
+            }, true);
+        }
+
     }
     // Actual object of <string-field> directive
     return {

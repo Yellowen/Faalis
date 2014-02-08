@@ -11,6 +11,15 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope.element_id = "id_" + scope.field.name;
         scope.msg_element_id = "id_" + scope.field.name + "_msg";
 
+
+        if (scope.on_change !== undefined) {
+            // Watch event changes
+            scope.$watch("model", function(newv, oldv, $scope) {
+                // TODO: maybe we should pass locals to $eval
+                scope.$parent.$eval(scope.on_change);
+            }, true);
+        }
+
         if( scope.field.type != "in" ){
             scope.have = function(obj_id) {
                 var tmp = _.where(scope.model, { id: obj_id });
@@ -52,6 +61,8 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope: {
             // select2 options
             select2Options: '=',
+            // A call back to pass to field ng-change directive
+            on_change: "@onChange",
 
             // Does this field is required
             required: "=",
