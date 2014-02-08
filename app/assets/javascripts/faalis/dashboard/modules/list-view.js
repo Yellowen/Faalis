@@ -43,6 +43,7 @@ ListView.directive('listView', ["$filter", "gettext", "UserPermissions", functio
         scope.list_view = true;
         scope.grid_view = false;
         var use_permissions;
+
         if (scope.use_permissions === undefined) {
             use_permissions = true;
         }
@@ -129,6 +130,7 @@ ListView.directive('listView', ["$filter", "gettext", "UserPermissions", functio
         };
 
         scope.delete_items = function(){
+
             var len = scope.selected_count();
             var objects_to_delete = [];
 

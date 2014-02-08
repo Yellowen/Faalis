@@ -9,6 +9,15 @@ String_.directive('stringField', ["$filter", "gettext", function($filter, gettex
         var ltr = is_ltr();
         scope.element_id = "id_" + scope.field;
         scope.msg_element_id = "id_" + scope.field + "_msg";
+
+        if (scope.on_change !== undefined) {
+            // Watch event changes
+            scope.$watch("model", function(newv, oldv, $scope) {
+                // TODO: maybe we should pass locals to $eval
+                scope.$parent.$eval(scope.on_change);
+            }, true);
+        }
+
     }
     // Actual object of <string-field> directive
     return {
@@ -17,7 +26,8 @@ String_.directive('stringField', ["$filter", "gettext", function($filter, gettex
         restrict: "E",
         scope: {
             cssClasses: '=cssClass',
-
+            // A call back to pass to field ng-change directive
+            on_change: "@onChange",
             // fieldname
             field: "=fieldName",
             // Does this field is required

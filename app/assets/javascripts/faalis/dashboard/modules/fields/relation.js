@@ -37,8 +37,12 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         function update_model_data(){
             var new_val = $("#" + scope.element_id).val();
             scope.model = new_val;
+            if (scope.on_change !== undefined) {
+                scope.$parent.$eval(scope.on_change);
+            }
+
         }
-        scope.on_change = function(){
+        scope.on_select_change = function(){
             update_model_data();
         };
         update_model_data();
@@ -52,6 +56,8 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope: {
             // select2 options
             select2Options: '=',
+            // A call back to pass to field ng-change directive
+            on_change: "@onChange",
 
             // Does this field is required
             required: "=",
