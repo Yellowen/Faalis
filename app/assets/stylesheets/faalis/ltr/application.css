@@ -14,7 +14,7 @@
  *= require faalis/devise
  *= require faalis/home
  *= require font-awesome
- *= require faalis/ltr/buttons
  *= require faalis/ltr/foundation_and_overrides
+ *= require faalis/ltr/buttons
  *= require_self
 */
