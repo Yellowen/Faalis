@@ -1,0 +1,36 @@
+<timepicker id="{{ element_id }}" ng-model="model" ng-required="required" name="{{ field }}">
+  <div class="section hours">
+    <div class="increase" ng-click="increaseHours()">
+      <i class="icon fa fa-caret-up"></i>
+    </div>
+    <div class="display">
+      {{displayHours()}}
+    </div>
+    <div class="decrease" ng-click="decreaseHours()">
+      <i class="icon fa fa-caret-down"></i>
+    </div>
+  </div>
+  <div class="section minutes">
+    <div class="increase" ng-click="increaseMinutes()">
+      <i class="icon fa fa-caret-up"></i>
+    </div>
+    <div class="display">
+      {{displayMinutes()}}
+    </div>
+    <div class="decrease" ng-click="decreaseMinutes()">
+      <i class="icon fa fa-caret-down">
+      </i>
+    </div>
+  </div>
+  <div class="section hours">
+    <div class="increase" ng-click="switchPeriod()">
+      <i class="icon fa fa-caret-up">
+      </i>
+    </div>
+    <div ng-if="hours >= 12" class="display" translate> PM </div>
+    <div ng-if="hours < 12" class="display" translate> AM </div>
+    <div class="decrease" ng-click="switchPeriod()">
+      <i class="icon fa fa-caret-down"></i>
+    </div>
+  </div>
+</timepicker>
