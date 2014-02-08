@@ -1,0 +1,58 @@
+body{
+background-color: #F0F0F0;
+	font-family: "Lato", sans-serif;
+	font-weight: 300;
+	color: #363636;
+}
+
+.timeSelectorDirective {
+    background: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.timeSelectorDirective .increase, .timeSelectorDirective .decrease{
+    text-align: center;
+    vertical-align: middle;
+    color: rgb(112, 112, 112);
+    text-shadow: 0px 1px #FFF;
+    cursor: pointer;
+    -webkit-transition: 500ms ease-out all;
+    -moz-transition: 500ms ease-out all;
+    -ms-transition: 500ms ease-out all;
+    -o-transition: 500ms ease-out all;
+    transition: 500ms ease-out all;
+    font-size: 100%;
+    border: 1px solid #CCC;
+    padding: 3px;
+    margin: 3px;
+    border: 1px solid #EDE;
+}
+
+.timeSelectorDirective .increase:hover, .timeSelectorDirective .decrease:hover{
+    color: rgba(112, 112, 112, 0.5);
+    border-color: #CCC;
+    background-color: #FFF;
+}
+
+.timeSelectorDirective .increase:active, .timeSelectorDirective .decrease:active{
+    color: rgb(112, 112, 112);
+    box-shadow: inset 1px 1px 1px #DDD;
+}
+
+.timeSelectorDirective .section{
+    display: inline-block;
+}
+
+.timeSelectorDirective .display{
+    background-color: rgb(247, 247, 247);
+    color: #555555;
+    padding: 5px;
+    margin: 0px 3px;
+    min-width: 30px;
+    text-align: center;
+    border: 1px solid #DDD;
+    box-shadow: 1px 1px 1px #FFFFFF;
+}
