@@ -70,9 +70,9 @@
     </div>
     <div class="small-6 columns text-right">
       <span class="btn yellow tiny" ng-click="toggle_select()" translate>Toggle Select</span>
-      <span class="btn blue tiny" ng-if="! is_all_selected" ng-click="select_all()" >Select All</span>
-      <span class="btn blue tiny" ng-if="is_all_selected" ng-click="select_all()">Deselect All</span>
-      <span ng-if="can('destroy', permission_model);"><span class="btn red tiny" ng-click="delete_items()">{{delete_title || "Delete"}}</span></span>
+      <span class="btn blue tiny"  ng-click="select_all()" ><span ng-if="! is_all_selected">Select All</span><span ng-if="is_all_selected">Deselect All</span></span>
+      <span ng-if="can('destroy', permission_model)"  ng-click="delete_items()"><span class="btn red tiny">{{delete_title || "Delete"}}</span></span>
+
     </div>
 
   </li>
