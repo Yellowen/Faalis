@@ -1,1 +1,1 @@
-angular.module("Fields", ["RelationField", "StringField", "IntegerField", "TextField", "BooleanField", "DatetimeField"]);
+angular.module("Fields", ["RelationField", "StringField", "IntegerField", "TextField", "BooleanField", "DatetimeField", "TimeField"]);
