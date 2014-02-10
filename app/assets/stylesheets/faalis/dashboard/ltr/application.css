@@ -23,4 +23,6 @@
  *= require faalis/dashboard/ng-quick-date-default-theme
  *= require faalis/dashboard/ng-grid
  *= require faalis/dashboard/select2
+ *= require_tree ../share/
+
 */
