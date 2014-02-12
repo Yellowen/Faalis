@@ -6,7 +6,15 @@ var Time_ = angular.module("TimeField",[]);
 Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
 
     function link(scope, element, attrs){
-        var ltr = is_ltr();
+
+        if (scope.model === undefined) {
+            scope.model = new Time();
+        }
+        else {
+            if (! scope.model instanceof Time) {
+                scope.model = new Time(scope.model);
+            }
+        }
 
         if (scope.on_change !== undefined) {
             // Watch event changes
@@ -16,18 +24,17 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
             }, true);
         }
 
-    //Create vars
-    scope.period = "AM";
-
     /* Increases hours by one */
     scope.increaseHours = function () {
 
         //Check whether hours have reached max
         if (scope.hours < 23) {
             scope.hours = ++scope.hours;
+            scope.model.set_hour = scope.hours;
         }
         else {
             scope.hours = 0;
+            scope.model.set_hour = 0;
         }
     };
 
@@ -36,18 +43,21 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
 
         //Check whether hours have reached min
         scope.hours = scope.hours <= 0 ? 23 : --scope.hours;
+        scope.model.set_hour = scope.hours;
     };
 
     /* Increases minutes by one */
     scope.increaseMinutes = function () {
-
         //Check whether to reset
-        if (scope.minutes >= 59) {
+        if (scope.minutes < 59) {
+            scope.minutes++;
+        }else if(scope.minutes == 59) {
+            scope.increaseHours();
+            scope.minutes = 0;
+        }else {
             scope.minutes = 0;
         }
-        else {
-            scope.minutes++;
-        }
+        scope.model.set_minute = scope.minutes;
     };
 
     /* Decreases minutes by one */
@@ -56,9 +66,10 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
         //Check whether to reset
         if (scope.minutes <= 0) {
             scope.minutes = 59;
-        }
-        else {
-            scope.minutes = --scope.minutes;
+        }else if (scope.minutes === 0){
+            scope.hours--;
+        }else {
+            scope.minutes--;
         }
     };
 
@@ -70,16 +81,10 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
         var hoursToDisplay = scope.hours;
 
         //Check whether to reset etc
-        if (scope.hours > 12) {
-            hoursToDisplay = scope.hours - 12;
+        if (scope.hours > 23) {
+            hoursToDisplay = scope.hours - 23;
         }
 
-        //Check for 12 AM etc
-        if (hoursToDisplay === 0) {
-
-            //Set to am and display 12
-            hoursToDisplay = 12;
-        }
         else {
 
             //Check whether to prepend 0
@@ -96,10 +101,6 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
         return scope.minutes <= 9 ? "0" + scope.minutes : scope.minutes;
     };
 
-    /* Switches the current period by ammending hours */
-    scope.switchPeriod = function () {
-        scope.hours = scope.hours >= 12 ? scope.hours - 12 : scope.hours + 12;
-    };
 }
     // Actual object of <string-field> directive
     return {
@@ -114,9 +115,7 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
             // fieldname
             field: "=fieldName",
             // Actual Angularjs ng-model
-            model: '=',
-            hours: "=",
-            minutes: "="
+            model: '='
         },
         link: link
     };
