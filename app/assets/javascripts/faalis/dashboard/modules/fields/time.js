@@ -26,7 +26,7 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
 
     /* Increases hours by one */
     scope.increaseHours = function () {
-        console.log('dsa');
+
         //Check whether hours have reached max
         if (scope.hours < 23) {
             scope.hours = ++scope.hours;
