@@ -26,7 +26,7 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
 
     /* Increases hours by one */
     scope.increaseHours = function () {
-
+        console.log('dsa');
         //Check whether hours have reached max
         if (scope.hours < 23) {
             scope.hours = ++scope.hours;
@@ -73,6 +73,26 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
         }
     };
 
+        /* Update model when interface values changed */
+        scope.update = function (value) {
+            if (value == 'hour'){
+                if (scope.hours <= 23) {
+                    scope.model.set_hour = scope.hours;
+                }
+                else {
+                    scope.hours = 0;
+                    scope.model.set_hour = 0;
+                }
+            }
+            else{
+                //Check whether to reset
+                if(scope.minutes <= 59) {
+                    scope.model.set_minute = scope.minutes;
+                }else {
+                    scope.minutes = 0;
+                }
+            }
+        };
 
     /* Displays hours - what the user sees */
     scope.displayHours = function () {
