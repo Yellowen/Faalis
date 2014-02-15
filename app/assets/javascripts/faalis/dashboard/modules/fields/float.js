@@ -1,16 +1,16 @@
-// Integer control
+// Float control
 // -----------------
-// This module is responsible for `<integer-field></integer-field>` directive which will create
-// an input for getting integer value from user. This directive can populate with data from
+// This module is responsible for `<float-field></float-field>` directive which will create
+// an input for getting float value from user. This directive can populate with data from
 // a remote **API** .
 
-// **IntegerField** module defination. To use this directive you should specify this module as
+// **FloatField** module defination. To use this directive you should specify this module as
 // dependency.
 
-var Integer_ = angular.module("IntegerField", []);
+var Float_ = angular.module("FloatField", []);
 
 // Directive defination
-Integer_.directive('integerField', ["$filter", "gettext", function($filter, gettext) {
+Float_.directive('floatField', ["$filter", "gettext", function($filter, gettext) {
 
     // Link function
     function link(scope, element, attrs){
@@ -28,9 +28,9 @@ Integer_.directive('integerField', ["$filter", "gettext", function($filter, gett
         }
 
     }
-    // Actual object of <integer-field> directive
+    // Actual object of <float-field> directive
     return {
-        templateUrl: template("fields/integer/integer"),
+        templateUrl: template("fields/float/float"),
         replace: true,
         restrict: "E",
         transclude: true,
