@@ -29,6 +29,11 @@ Modules.controller("ModulesController", ["$location", "$scope", "$controller", "
         $location.path(url);
     };
     this.view_menu = function(module) {
+        _.each(this.modules, function(x){
+            if (x !== module) {
+                x.show_menu = false;
+            }
+        });
         module.show_menu = !module.show_menu;
     };
 }]);
