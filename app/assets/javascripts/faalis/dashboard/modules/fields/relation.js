@@ -25,6 +25,9 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             scope.update_collection = function(){
                 API.all(scope.field.to).getList().then(function(data){
                     scope.all_options = data;
+                    if (scope.collection !== undefined) {
+                        scope.collection = data;
+                    }
                 }, function(data){
                     catch_error(data);
                 });
@@ -58,6 +61,11 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             select2Options: '=',
             // A call back to pass to field ng-change directive
             on_change: "@onChange",
+
+            // Collection of all relation objects, This variable will
+            // fill automatically so you don't have to provide an initial
+            // value.
+            collection: "=",
 
             // Does this field is required
             required: "=",
