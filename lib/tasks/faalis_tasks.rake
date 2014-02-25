@@ -17,7 +17,7 @@ namespace :faalis do
       Dir.glob("{app,lib}/**/*.js").each do |file|
         puts ">> #{file}"
         c = File.open(file, "r").read
-        c.gsub!(/\/\*.*Red Base.*\USA\.$/mi, "")
+        c.gsub!(/\/\*.*Faalis.*\USA\.$/mi, "")
         c.gsub!(/^[\-]+ \*\/$/i, "")
         File.open(file, "w").write c
       end

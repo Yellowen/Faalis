@@ -111,7 +111,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-msgid "Red Base"
+msgid "Faalis"
 msgstr ""
 
 msgid "Register"

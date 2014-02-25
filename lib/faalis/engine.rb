@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-#    Red Base - Basic website skel engine
+#    Faalis - Basic website skel engine
 #    Copyright (C) 2012-2013 Yellowen
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -88,7 +88,7 @@ module Faalis
 
     # Site Title
     mattr_accessor :site_title
-    @@site_title = _("Red Base")
+    @@site_title = _("Faalis")
 
     # Override devise layout
     config.to_prepare do
