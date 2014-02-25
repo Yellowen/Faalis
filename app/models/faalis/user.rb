@@ -52,8 +52,11 @@ module Faalis
 
     def password_required?
       # TODO: nil? is not suitable for here we should use empty? or blink?
-
-      (provider.nil? || password.nil?) && super
+      if Devise.omniauth_configs.any?
+        return (provider.nil? || password.nil?) && super
+      else
+         password.nil? && super
+      end
     end
 
     def self.find_from_oauth(auth, signed_in_resource=nil)
