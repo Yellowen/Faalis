@@ -45,8 +45,9 @@ module Faalis
     if Devise.omniauth_configs.any?
       @@devise_options << :omniauthable
       @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
-      belongs_to :group
     end
+
+    belongs_to :group
 
     devise *@@devise_options
 
