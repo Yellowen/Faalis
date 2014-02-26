@@ -1,19 +1,25 @@
 <div>
 
-  <select ui-select2="select2Options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" ng-required="required" ng-if="field.type === 'belongs_to'" ng-change="on_select_change()">
+  <select ui-select2="options" id="{{ element_id }}" ng-model="model" data-placeholder="asda asdasdasd" name="{{ field.name }}" ng-required="required" ng-if="field.type === 'belongs_to'" ng-change="on_select_change()">
     <option ng-repeat="item in all_options" value="{{ item.id }}" title="{{ item[titleField] || item }}" ng-selected="item.id === model.id">{{ item[titleField] || item }}</option>
   </select>
 
-  <select ui-select2="select2Options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" ng-required="required" multiple ng-if="field.type === 'has_many'" ng-change="on_select_change()">
+  <select ui-select2="options" id="{{ element_id }}" ng-model="model" data-placeholder="dfsd{{ placeholder }}" name="{{ field.name }}" ng-required="required" multiple ng-if="field.type === 'has_many'" ng-change="on_select_change()">
     <option ng-repeat="item in all_options" value="{{ item.id }}" title="{{ item[titleField] || item }}" ng-selected="have(item.id)">{{ item[titleField] || item }}</option>
   </select>
 
-  <select ui-select2="select2Options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" ng-required="required" ng-if="field.type === 'in'" ng-change="on_select_change()">
+  <select ui-select2="options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" data-placeholder="sdf {{ placeholder }}" ng-required="required" ng-if="field.type === 'in'" ng-change="on_select_change()">
     <option ng-repeat="item in field.choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="model === item.name">{{ item.title }}</option>
   </select>
 
   <!-- Add and Refresh buttons -->
+  <div class="float-left">
+    <span class="helptext" ng-if="options.help_text && show_help_text">{{ options.help_text }}</span>
+  </div>
   <div class="float-right relation_links" ng-if="(field.type === 'belongs_to') || (field.type === 'has_many')">
+    <span ng-click="help_btn_clicked()" ng-if="show_help_btn">
+        <i class="fa fa-question"></i>
+    </span>
     <span>
       <a ng-href="#{{ field.to }}/new" target="_blank">
         <i class="fa fa-plus"></i>
