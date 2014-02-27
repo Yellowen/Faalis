@@ -84,6 +84,7 @@ module Faalis
           template "features/api.step.rb", "features/step_definitions/#{resource.underscore}.rb"
         end
       end
+
       def show_readme
         readme "js_scaffold.README" if behavior == :invoke
       end
