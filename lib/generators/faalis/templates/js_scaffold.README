@@ -23,3 +23,9 @@ Steps to installation:
                        :sidemenu => true,
                     },
                 }
+
+      3. Make sure that you have `api_controller.rb` in your `app/controllers` with this content:
+
+
+              class APIController < Faalis::APIController
+              end

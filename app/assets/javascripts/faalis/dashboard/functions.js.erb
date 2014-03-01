@@ -1,3 +1,9 @@
+function debug(msg) {
+    if (window.debug) {
+        console.log(msg);
+    }
+}
+
 function to_boolean(value) {
     if (value) {
         return true;

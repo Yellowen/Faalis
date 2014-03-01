@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-#    Red Base - Basic website skel engine
+#    Faalis - Basic website skel engine
 #    Copyright (C) 2012-2013 Yellowen
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -45,8 +45,9 @@ module Faalis
     if Devise.omniauth_configs.any?
       @@devise_options << :omniauthable
       @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
-      belongs_to :group
     end
+
+    belongs_to :group
 
     devise *@@devise_options
 

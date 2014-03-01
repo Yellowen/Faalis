@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-#    Red Base - Basic website skel engine
+#    Faalis - Basic website skel engine
 #    Copyright (C) 2012-2013 Yellowen
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -84,6 +84,7 @@ module Faalis
           template "features/api.step.rb", "features/step_definitions/#{resource.underscore}.rb"
         end
       end
+
       def show_readme
         readme "js_scaffold.README" if behavior == :invoke
       end

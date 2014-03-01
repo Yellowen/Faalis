@@ -1,6 +1,8 @@
 * Bugs
 ** Wrong back url after signing in by expired button in dashboard
 ** Untrash does not work in conversation trashed messages
+** TODO ui-select2 placeholder did not works
+
 * Tasks
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** DONE Add font awesome support

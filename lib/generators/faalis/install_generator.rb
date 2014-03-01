@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-#    Red Base - Basic website skel engine
+#    Faalis - Basic website skel engine
 #    Copyright (C) 2012-2013 Yellowen
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -22,7 +22,7 @@ module Faalis
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
 
-      desc "Copy all the necessary files to use Red Base"
+      desc "Copy all the necessary files to use Faalis"
       class_option :orm
 
       def install_mailboxer
@@ -37,8 +37,19 @@ module Faalis
         template "seeds.rb", "db/seeds.rb"
       end
 
+      def copy_js_manifest
+        template "application.js", "#{angularjs_app_path}application.js"
+      end
+
       def show_readme
         readme "README" if behavior == :invoke
+      end
+
+      private
+
+      def angularjs_app_path
+        path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
+        "app/assets/javascripts/#{path}/"
       end
 
     end

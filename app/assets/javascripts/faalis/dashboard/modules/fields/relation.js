@@ -10,6 +10,15 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         var ltr = is_ltr();
         scope.element_id = "id_" + scope.field.name;
         scope.msg_element_id = "id_" + scope.field.name + "_msg";
+        scope.show_help_btn = false;
+        scope.show_help_text = true;
+        // Decide to see help text or help button
+        if ("help_text" in scope.options) {
+            if ("show_help_btn" in scope.options && scope.options.show_help_btn === true) {
+                scope.show_help_btn = true;
+                scope.show_help_text = false;
+            }
+        }
 
         if( scope.field.type != "in" ){
             scope.have = function(obj_id) {
@@ -48,6 +57,15 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope.on_select_change = function(){
             update_model_data();
         };
+
+        scope.help_btn_clicked = function() {
+            if ("show_help_callback" in scope.options) {
+                scope.options.show_help_btn();
+            }
+            else {
+                scope.show_help_text = !scope.show_help_text;
+            }
+        };
         update_model_data();
     }
     // Actual object of <relation-field> directive
@@ -57,10 +75,16 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         restrict: "E",
         transclude: true,
         scope: {
-            // select2 options
-            select2Options: '=',
+            // select2 options. Also you can control the buttons and help
+            // message of field here. for example you can use `help_text` to
+            // show an small help under the control and you can set `show_help_btn`
+            // to true to show an help button.
+            options: '=',
             // A call back to pass to field ng-change directive
             on_change: "@onChange",
+
+            // Place holder
+            placeholder: "@placeholder",
 
             // Collection of all relation objects, This variable will
             // fill automatically so you don't have to provide an initial
