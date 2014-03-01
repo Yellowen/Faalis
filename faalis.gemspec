@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Faalis::VERSION
   s.authors     = ["Sameer Rahmani", "Behnam Ahmad Khan Beigi"]
   s.email       = ["lxsameer@gnu.org", "yottanami@gnu.org"]
-  s.homepage    = "https://github.com/Yellowen/Red_Base"
+  s.homepage    = "https://github.com/Yellowen/Faalis"
   s.summary     = "Faalis is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
   s.description = "Faalis is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications."
   s.licenses = ["GPL-2"]

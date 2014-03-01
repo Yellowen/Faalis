@@ -13,6 +13,10 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope.show_help_btn = false;
         scope.show_help_text = true;
         // Decide to see help text or help button
+        if (scope.options === undefined) {
+            scope.options = {};
+        }
+
         if ("help_text" in scope.options) {
             if ("show_help_btn" in scope.options && scope.options.show_help_btn === true) {
                 scope.show_help_btn = true;
@@ -79,7 +83,7 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             // message of field here. for example you can use `help_text` to
             // show an small help under the control and you can set `show_help_btn`
             // to true to show an help button.
-            options: '=',
+            options: '&',
             // A call back to pass to field ng-change directive
             on_change: "@onChange",
 

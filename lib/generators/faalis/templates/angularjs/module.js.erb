@@ -27,15 +27,15 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     // Add any route you need here
     $routeProvider.
-        when("/<%= resource_url %>", {
+        when("<% if options[:parent] %>/<%= options[:parent] %>/:<%= options[:parent] %>_id<% end %>/<%= resource_url %>", {
             templateUrl: template("<%= resource_path %>/index"),
             controller: "<%= resource %>Controller"
         }).
-        when("/<%= resource_url %>/new",{
+        when("<% if options[:parent] %>/<%= options[:parent] %>/:<%= options[:parent] %>_id<% end %>/<%= resource_url %>/new",{
             templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         }).
-        when("/<%= resource_url %>/:id/edit",{
+        when("<% if options[:parent] %>/<%= options[:parent] %>/:<%= options[:parent] %>_id<% end %>/<%= resource_url %>/:id/edit",{
             templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         });
@@ -44,9 +44,12 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 // <%= resource %> index controller -------------------------------------------------------
 // This controller is responsible for list page (index)
-<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location",
-                                      function($scope, gettext, API, catch_error, $location){
+<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams",
+                                      function($scope, gettext, API, catch_error, $location, $routeParams){
 
+    <% if options[:parent] %>
+    var <%= options[:parent] %>_id = $routeParams.<%= options[:parent] %>_id;
+    <% end %>
     <% unless options[:no_filter] %>$scope.filter_config = {
         list: API.all("<%= resource.pluralize.underscore %>")
     };
@@ -95,9 +98,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
               name: "create",
               model: "<%= resource.classify %>"
             },
-            route: "#<%= resource_url %>/new"
+            route: "#<% if options[:parent] %>/<%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>/new"
 
-        },<% unless options[:no_bulk] %>
+         },<% unless options[:no_bulk] %>
         {
             title: gettext("Bulk Edit"),
             icon: "fa fa-edit",
@@ -225,6 +228,10 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 <%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
+    <% if options[:parent] %>
+    var <%= options[:parent] %>_id = $routeParams.<%= options[:parent] %>_id;
+    <% end %>
+
     $scope.select2options = {};
     $scope.editing = false;<% if any_tabs? %>
     $scope.current_tab = 1;
@@ -274,7 +281,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     $scope.cancel = function(){
         $(".form input").val("");
-        $location.path("<%= resource_url %>");
+        $location.path("#<% if options[:parent] %>/<%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>");
     };
 
     $scope.save = function(save_another){
