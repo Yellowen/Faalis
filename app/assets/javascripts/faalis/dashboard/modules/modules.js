@@ -27,11 +27,11 @@ Modules.controller("ModulesController", ["$location", "$scope", "$controller", "
                     }
                     // Check if user can pass the permission
                     if (User.can(menu.permission.action, menu.permission.model)) {
-                        debug("You have " + menu.permission.action + " permission on " + menu.permission.model);
+                        console.debug("You have " + menu.permission.action + " permission on " + menu.permission.model);
                         module.menu_items.push(menu);
                     }
                     else {
-                        debug("User don't have " + menu.permission.action + " permission on " + menu.permission.model);
+                        console.debug("User don't have " + menu.permission.action + " permission on " + menu.permission.model);
                     }
                 }
                 else {
