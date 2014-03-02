@@ -29,6 +29,10 @@ module Faalis
         invoke "mailboxer:install"
       end
 
+      def install_model_discovery
+        rake "model_discovery_engine:install:migrations"
+      end
+
       def copy_init_files
         template "devise.rb", "config/initializers/devise.rb"
         template "faalis.rb", "config/initializers/faalis.rb"

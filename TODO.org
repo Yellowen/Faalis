@@ -17,13 +17,9 @@
 ** TODO js_scaffold should add models to faalis.rb in initilizers
 ** DONE Add support for 'datetime', 'boolean', 'combobox' for js_scaffold
 ** TODO Create documentations about form validation
-<<<<<<< HEAD
 ** TODO encode passwords !
 ** TODO check if rails assets pipeline can understand the code duplication and use one instance of any "import" in resulted asset
 * Features
 ** DONE Edit Profile
 ** DONE User messages
-** TODO
-=======
 ** TODO add mailboxer
->>>>>>> ecb8c11787b5120cb09d46523617a733cd1d246d

@@ -19,29 +19,65 @@
 
 module Faalis
   module Generators
+    # `js_scaffold` main class
     class JsScaffoldGenerator < Rails::Generators::Base
 
       include ActionView::Helpers::TextHelper
 
+      # templates path
       source_root File.expand_path('../templates', __FILE__)
 
+      # Name of the resource to create.
       argument :resource_name, :type => :string, :required => true
+
+      # An array of resource fields. fields should be separated by space
+      # each filed should be in this format `field_name:field_type[:extra_info]
       argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
+
+      # Do not install specs
       class_option :without_specs, :type => :boolean, :default => false, :desc => "Do not install specs"
+
+      # Generate only spec files
       class_option :only_specs, :type => :boolean, :default => false, :desc => "Generate only spec files"
+
+      # Generate only controller
       class_option :only_controller, :type => :boolean, :default => false, :desc => "Generate only controller"
+
+      # Fields to use in in bulk edit, comma separated
       class_option :bulk_fields, :type => :string, :default => "", :desc => "Fields to use in in bulk edit, comma separated"
+
+      # No bulk edit needed
       class_option :no_bulk, :type => :boolean, :default => false, :desc => "No bulk edit needed"
+
+      # Provide menu items which should be in sidebar. format: menu1:url,menu2:url
       class_option :menu, :type => :string, :default => "", :desc => "Provide menu items which should be in sidebar. format: menu1:url,menu2:url"
+
+      # Field name to use as title of each object
       class_option :title_field, :type => :string, :default => "name", :desc => "Field name to use as title of each object"
+
+      # Non optional fields, comma separated
       class_option :required, :type => :string, :default => "", :desc => "Non optional fields, comma separated"
+
+      # Dependencies of Angularjs module, comma separated
       class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
+
+      # Path to js_scaffold target inside 'app/assets/javascripts/'
       class_option :path, :type => :string, :default => "", :desc => "Path to js_scaffold target inside 'app/assets/javascripts/'"
+
+      # Path to js_scaffold target
       class_option :raw_path, :type => :string, :default => "", :desc => "Path to js_scaffold target"
+
+      # Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds.
       class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
+
+      # Don't show a filter box
       class_option :no_filter, :type => :boolean, :default => false, :desc => "Don't view a filter box"
+
+      # Don't copy the new.html template
       class_option :no_new_template, :type => :boolean, :default => false, :desc => "Don't copy the new.html template"
 
+      # Specify the parent resource if there was any
+      class_option :parent, :type => :string, :default => "", :desc => "Specify the parent resource if there was any"
 
       desc "Create a new resource for client side application"
       def create_module
@@ -187,15 +223,16 @@ module Faalis
       def bulk_edit_fields
         unless options[:bulk_fields].empty?
           bfields = options[:bulk_fields].split(",")
-          fields = fields_hash
+          fields_ = fields_hash
           bfields.each do |f|
-            unless fields.include? f
+            unless fields_.include? f
               raise ::Exception.new "'#{f}' is not in scaffold fields."
             end
           end
           return bfields
         else
-          return fields.keys
+
+          return self.send(:fields).collect {|f| f[0]}
         end
       end
 
