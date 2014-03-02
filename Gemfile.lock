@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    faalis (0.15.0)
+    faalis (0.15.1)
       cancan
       compass-rails
       devise (>= 3.0.0)
@@ -11,7 +11,7 @@ PATH
       jbuilder
       jquery-rails
       mailboxer
-      model_discovery (~> 0.2.1)
+      model_discovery (~> 0.2.2)
       modernizr-rails
       omniauth
       rails (>= 4.0.0)

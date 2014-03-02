@@ -17,8 +17,3 @@ window.templates_path = "/templates/";
 // Any element of this queue will be appear as error after load event
 window.ErrorQueue = [];
 window.DashboardURL = "<%= url.dashboard_path %>";
-<% if Rails.env == "development" %>
-window.debug = true;
-<% else %>
-window.debug = false;
-<% end %>

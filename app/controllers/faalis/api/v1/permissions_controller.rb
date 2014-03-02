@@ -1,7 +1,7 @@
 require_dependency "faalis/application_controller"
 
 module Faalis
-  class API::V1::PermissionsController < APIController
+  class API::V1::PermissionsController < ::APIController
 
     class DummyPerm
       attr_accessor :model, :permission_type

@@ -1,7 +1,7 @@
 require_dependency "faalis/application_controller"
 
 module Faalis
-  class API::V1::ProfilesController < APIController
+  class API::V1::ProfilesController < ::APIController
 
     def show
       @user = current_user
