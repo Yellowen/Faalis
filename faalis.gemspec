@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'gettext_i18n_rails'
 
   # model_discovery
-  s.add_dependency "model_discovery", "~> 0.2.1"
+  s.add_dependency "model_discovery", "~> 0.2.2"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "ruby_parser"
