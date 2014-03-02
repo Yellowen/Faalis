@@ -39,6 +39,7 @@ module Faalis
         template "fast_gettext.rb", "config/initializers/fast_gettext.rb"
         template "formtastic.rb", "config/initializers/formstatic.rb"
         template "seeds.rb", "db/seeds.rb"
+        template "api_controller.rb", "app/controllers/api_controller.rb"
       end
 
       def copy_js_manifest
