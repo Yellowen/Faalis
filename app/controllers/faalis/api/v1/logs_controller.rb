@@ -1,7 +1,7 @@
 require_dependency "faalis/api_controller"
 
 module Faalis
-  class API::V1::LogsController < APIController
+  class API::V1::LogsController < ::APIController
 
     # GET /api/v1/logs
     def index

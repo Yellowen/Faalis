@@ -1,7 +1,7 @@
 require_dependency "faalis/application_controller"
 
 module Faalis
-  class API::V1::ConversationsController < APIController
+  class API::V1::ConversationsController < ::APIController
     before_filter :authenticate_user!
     helper_method :mailbox, :conversation
 

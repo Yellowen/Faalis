@@ -1,13 +1,13 @@
 require_dependency "faalis/api_controller"
 
 module Faalis
-  class API::V1::GroupsController < APIController
+  class API::V1::GroupsController < ::APIController
     # TODO: Use strong params
     # TODO: implement authorization
 
     # GET /api/v1/groups
     def index
-      @groups = Group.includes(:permissions).all
+      @groups = Group.includes(:permissions).to_a
       authorize! :read, Faalis::Group
       respond_with(@groups)
     end

@@ -1,7 +1,7 @@
 require_dependency "faalis/application_controller"
 
 module Faalis
-  class API::V1::UsersController < APIController
+  class API::V1::UsersController < ::APIController
 
     def index
       @users = User.joins(:group).all

@@ -128,6 +128,14 @@ module Faalis
       # PRIVATES --------------------------------------------
       private
 
+      # check for parent
+      def parent?
+        if options[:parent] != ""
+          return true
+        end
+        false
+      end
+
       # Path to the resource
       def resource_path
         path_parts = resource_name.split("/")
