@@ -1,6 +1,8 @@
 function debug(msg) {
-    if (window.debug) {
-        console.log(msg);
+    if ("debug" in window) {
+        if (window.debug === true) {
+            console.log(msg);
+        }
     }
 }
 
