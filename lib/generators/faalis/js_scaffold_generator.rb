@@ -128,6 +128,7 @@ module Faalis
       # PRIVATES --------------------------------------------
       private
 
+      # Resource parent related ----------------------
       # check for parent
       def parent?
         if options[:parent] != ""
@@ -135,6 +136,17 @@ module Faalis
         end
         false
       end
+
+      # Remove the starting slash from the given parent path
+      def trim_parent_path
+        if parent?
+          options[:parent].gsub(/^\//, "")
+        else
+          ""
+        end
+      end
+
+      # -------------------------
 
       # Path to the resource
       def resource_path
