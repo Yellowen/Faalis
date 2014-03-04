@@ -19,6 +19,7 @@
 ** TODO Create documentations about form validation
 ** TODO encode passwords !
 ** TODO check if rails assets pipeline can understand the code duplication and use one instance of any "import" in resulted asset
+** TODO remove the js_scaffold completely
 * Features
 ** DONE Edit Profile
 ** DONE User messages
