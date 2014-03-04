@@ -296,12 +296,16 @@ module Faalis
       end
 
       def parse_menu(menu)
-        title, url = menu.split(":")
+        regex = /([^:{}]+){1}\:([^:\{\}]+)(?:{(.*)})?/i
         model = nil
-        if title.split(">").length > 1
-          title, model = title.split(">")
+        if menu =~ regex
+          title = $1
+          url = $2
+          model = $3
+          return title, url, model
+        else
+          Raise Exception.new "Menu items format should be like 'name:url{model}'. Model part is optional"
         end
-        return title, url, model
       end
 
 
