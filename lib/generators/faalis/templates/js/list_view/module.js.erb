@@ -27,15 +27,15 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     // Add any route you need here
     $routeProvider.
-        when("<% if parent? %>/<%= options[:parent] %>/:<%= options[:parent] %>_id<% end %>/<%= resource_url %>", {
+        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>", {
             templateUrl: template("<%= resource_path %>/index"),
             controller: "<%= resource %>Controller"
         }).
-        when("<% if parent? %>/<%= options[:parent] %>/:<%= options[:parent] %>_id<% end %>/<%= resource_url %>/new",{
+        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>/new",{
             templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         }).
-        when("<% if parent? %>/<%= options[:parent] %>/:<%= options[:parent] %>_id<% end %>/<%= resource_url %>/:id/edit",{
+        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>/:id/edit",{
             templateUrl: template("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         });
@@ -47,7 +47,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 <%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams",
                                       function($scope, gettext, API, catch_error, $location, $routeParams){
 
-    <% if parent? %>
+    <% parents.each do |parent| %>
     var <%= options[:parent] %>_id = $routeParams.<%= options[:parent] %>_id;
     <% end %>
     <% unless options[:no_filter] %>$scope.filter_config = {
@@ -98,7 +98,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
               name: "create",
               model: "<%= resource.classify %>"
             },
-            route: "#<% if parent? %>/<%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>/new"
+            route: "#<% parents.each do |p| %>/<%= p %>/" + <%= p %>_id + "<% end %>/<%= resource_url %>/new"
 
          },<% unless options[:no_bulk] %>
         {
@@ -131,7 +131,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
                     error_message(gettext("You should only select one item to copy."));
                 }
                 else {
-                    $location.path("/<%= resource.pluralize.underscore %>/-" + selected.id + "/edit");
+                    $location.path("<% if parent? %><%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource.pluralize.underscore %>/-" + selected.id + "/edit");
                 }
             }
         }
@@ -204,7 +204,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             query.push(item.id);
         });
 
-        API.all("<%= resource.pluralize.underscore %>").customDELETE(query.join(","))
+        API.<% parents.each do |p| %>all("<%=p %>").<% end %>all("<%= resource.pluralize.underscore %>").customDELETE(query.join(","))
             .then(function(data) {
 
                 $scope.<%= resource.pluralize.underscore %> = _.filter($scope.<%= resource.pluralize.underscore %>, function(x){
@@ -217,7 +217,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     };
     <% unless options[:no_filter] %>/*<% end %>
-    <% if parent? %>API.one("<%= trim_parent_path %>", <%= options[:parent] %>_id).all("<%= resource.pluralize.underscore %>").getList()<% else %>
+    <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", <%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>").getList()<% else %>
     API.all("<%= resource.pluralize.underscore %>").getList()<% end %>
         .then(function(data){
             $scope.<%= resource.pluralize.underscore %> = data;
@@ -229,8 +229,8 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 <%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
 
-    <% if parent? %>
-    var <%= options[:parent] %>_id = $routeParams.<%= options[:parent] %>_id;
+    <% parents.each do |parent| %>
+    var <%= parent %>_id = $routeParams.<%= parent %>_id;
     <% end %>
 
     $scope.select2options = {};
@@ -260,7 +260,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             $scope.obj_id = $scope.obj_id * -1;
         }
 
-        var obj = API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
+        var obj = API.<% parents.each do |parent| %>one("<%= parent %>", <%= parent %>_id).<% end %>one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
                 .then(function(data) {
                 <% fields.each do |field_name, field_type| %>
                     $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many", "in"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% elsif field_type == "belongs_to" %>data.<%= field_name %>.id<% else %>data.<%= field_name %><% end %>;<% end %>
@@ -282,7 +282,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     $scope.cancel = function(){
         $(".form input").val("");
-        $location.path("#<% if parent? %>/<%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>");
+        $location.path("<% if parent? %><%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>");
     };
 
     $scope.save = function(save_another){
@@ -295,14 +295,14 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         }};
         if (($scope.obj_id) && (is_copy === false)) {
 
-            API.one("<%= resource.pluralize.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
+            API.<% parents.each do |parent| %>one("<%= parent %>", <%= parent %>_id).<% end %>one("<%= resource.pluralize.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
                 .then(function(){
                     success_message(gettext("<%= resource %> updated successfully."));
                     if (save_another) {
                         $(".form input").val("");
                     }
                     else {
-                        $location.path("<%= resource_url %>");
+                        $location.path("<% if parent? %><%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>");
                     }
                 }, function(data){
                     catch_error(data);
@@ -310,13 +310,13 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
         }
         else {
-            API.all("<%= resource.pluralize.underscore %>").customPOST(<%= resource.underscore %>, "").then(function(){
+            API.<% parents.each do |parent| %>one("<%= parent %>", <%= parent %>_id).<% end %>all("<%= resource.pluralize.underscore %>").customPOST(<%= resource.underscore %>, "").then(function(){
                 success_message(gettext("<%= resource %> created successfully."));
                 if (save_another) {
                     $(".form input").val("");
                 }
                 else {
-                    $location.path("<%= resource_url %>");
+                    $location.path("<% if parent? %><%= options[:parent] %>/" + <%= options[:parent] %>_id + "<% end %>/<%= resource_url %>");
                 }
             }, function(data){
                 catch_error(data);
