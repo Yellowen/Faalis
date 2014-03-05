@@ -51,6 +51,14 @@ module Faalis
 
     devise *@@devise_options
 
+    def name
+      "#{first_name} #{last_name}"
+    end
+
+    def full_name
+      name
+    end
+
     def password_required?
       # TODO: nil? is not suitable for here we should use empty? or blink?
       if Devise.omniauth_configs.any?
