@@ -1,7 +1,12 @@
 class API::V1::<%= resource.pluralize %>Controller < APIController
   before_filter :build_resource, :only => :create
+  <% all_parents = parents %><% prev = all_parents.shift %>
+  load_and_authorize_resource :<%= prev.singularize %>, :except => [:destory]
+  <% all_parents.each do |p| %>load_and_authorize_resource :<%= p.singularize %>, :through => :<%= prev.singularize %>, :except => [:destory]<% prev = p %>
+  <% end %><% if parent? %>load_and_authorize_resource :through => :<%= prev.singularize %>, :except => [:destory]
+  <% else %>
   load_and_authorize_resource :except => [:destory]
-
+  <% end %>
   # GET /api/v1/<%= resource.pluralize.underscore %>
   def index
     respond_with(@<%= resource.pluralize.underscore %>)
@@ -47,6 +52,7 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
 
   def build_resource
     @<%= resource.underscore %> = ::<%= resource %>.new(resource_params)
+    @<%= resource.underscore %>.<%= parents.last.singularize %> = <%= parents.last.singularize.camelize %>.find(params[:<%= parents.last.singularize %>_id])
   end
 
   def resource_params
