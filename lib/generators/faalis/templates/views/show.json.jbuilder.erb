@@ -1,7 +1,5 @@
 json.extract! @<%= resource.underscore %>, :id<%= fields_as_params %><% fields.each do |name, type| %>
 <% case type
-when "belongs_to" %>json.<%= name %> do
-  json.id @<%= resource.underscore %>.<%= name %>.id
-  json.name @<%= resource.underscore %>.<%= name %>.name
-end
+when "belongs_to" %>
+json.partial! 'relations/belongs_to', object: @<%= resource.underscore %>.<%= name %>, :name => :<%= resource.underscore %>, :fields => [:id, :name]
 <% when "has_many" %>json.<%= name %> @<%= resource.underscore %>.<%= name %>, :id, :name<% end %><% end %>
