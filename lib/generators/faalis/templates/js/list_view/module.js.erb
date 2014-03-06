@@ -51,7 +51,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     $scope.<%= options[:parent] %>_id = $routeParams.<%= options[:parent] %>_id;
     <% end %>
     <% unless options[:no_filter] %>$scope.filter_config = {
-        list: API.all("<%= resource.pluralize.underscore %>")
+        list: <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>")<% else %>API.all("<%= resource.pluralize.underscore %>")<% end %>
     };
     $scope.<%= resource.pluralize.underscore %> = [];<% end %>
     <% unless options[:no_bulk] %>// Cache object for each field name possible values
@@ -96,7 +96,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             classes: "btn tiny green",
             permission: {
               name: "create",
-              model: "<%= resource.classify %>"
+              model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
             },
             route: "#<% parents.each do |p| %>/<%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource_url %>/new"
 
@@ -107,7 +107,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             classes: "btn tiny yellow",
             permission: {
               name: "update",
-              model: "<%= resource.classify %>"
+              model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
             },
             action: function(){
                 $scope.$apply("bulk_edit = ! bulk_edit");
@@ -120,7 +120,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             classes: "btn tiny red",
             permission: {
               name: "create",
-              model: "<%= resource.classify %>"
+              model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
             },
             action: function(){
                 var selected = _.find($scope.<%= resource.pluralize.underscore %>, function(x){

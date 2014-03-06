@@ -3,9 +3,9 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   <% if parent? %><% all_parents = parents %><% prev = all_parents.shift %>
   load_and_authorize_resource :<%= prev.singularize %>, :except => [:destory]
   <% all_parents.each do |p| %>load_and_authorize_resource :<%= p.singularize %>, :through => :<%= prev.singularize %>, :except => [:destory]<% prev = p %>
-  <% end %>load_and_authorize_resource :through => :<%= prev.singularize %>, :except => [:destory]
+  <% end %>load_and_authorize_resource :through => :<%= prev.singularize %>, :except => [:destory]<% if model_specified? %>, :class => "<%= model %>"<% end %>
   <% else %>
-  load_and_authorize_resource :except => [:destory]
+  load_and_authorize_resource :except => [:destory]<% if model_specified? %>, :class => "<%= model %>"<% end %>
   <% end %>
   # GET /api/v1/<%= resource.pluralize.underscore %>
   def index
@@ -51,7 +51,7 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   end
 
   def build_resource
-    @<%= resource.underscore %> = ::<%= resource %>.new(resource_params)
+    @<%= resource.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.new(resource_params)
     <% if parent? %>@<%= resource.underscore %>.<%= parents.last.singularize %> = <%= parents.last.singularize.camelize %>.find(params[:<%= parents.last.singularize %>_id])<% end %>
   end
 

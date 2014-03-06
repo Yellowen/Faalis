@@ -15,6 +15,7 @@ module Faalis
       include Faalis::Generators::Concerns::Parent
       include Faalis::Generators::Concerns::Angular
       include Faalis::Generators::Concerns::Tabs
+      include Faalis::Generators::Concerns::Model
 
 
       # Do not install specs
