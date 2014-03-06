@@ -19,15 +19,20 @@ module Faalis
         end
 
         # Remove the starting slash from the given parent path
-        def trim_parent_path
-          if parent?
-            options[:parent].gsub(/^\//, "")
-          else
-            ""
-          end
+        def trim_parent_path(path)
+          path.gsub(/^\//, "")
         end
 
-        # -------------------------
+        def parents
+          if parent?
+            _parents = options[:parent].split(",")
+            _parents.collect do |p|
+              trim_parent_path(p)
+            end
+          else
+            []
+          end
+        end
 
       end
     end
