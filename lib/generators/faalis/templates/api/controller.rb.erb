@@ -52,7 +52,7 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
 
   def build_resource
     @<%= resource.underscore %> = ::<%= resource %>.new(resource_params)
-    @<%= resource.underscore %>.<%= parents.last.singularize %> = <%= parents.last.singularize.camelize %>.find(params[:<%= parents.last.singularize %>_id])
+    <% if parent? %>@<%= resource.underscore %>.<%= parents.last.singularize %> = <%= parents.last.singularize.camelize %>.find(params[:<%= parents.last.singularize %>_id])<% end %>
   end
 
   def resource_params

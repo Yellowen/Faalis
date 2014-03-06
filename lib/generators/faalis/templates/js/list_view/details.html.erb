@@ -13,7 +13,7 @@
       <% end %></p>
     <% end %>
   <ul class="button-group float-right">
-    <a ng-href="#<% parents.each do |p| %>/<%= p %>/{{ parent.parent.parent.parent.<%= p %>_id }}<% end %>/<%= resource_url %>/{{ object.id }}/edit" class="small">
+    <a ng-href="#<% parents.each do |p| %>/<%= p %>/{{ this.$parent.$parent.$parent.$parent.<%= p %>_id }}<% end %>/<%= resource_url %>/{{ object.id }}/edit" class="small">
       <span class="fa fa-edit"></span> <span translated>Edit</span>
     </a>
   </ul>
