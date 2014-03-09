@@ -42,4 +42,3 @@ For example (Only if you want to change default layout):
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Yellowen/faalis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
