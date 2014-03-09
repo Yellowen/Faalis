@@ -3,10 +3,15 @@ module Faalis
     class Relation < String
       attr_accessor :to
 
-      def initialize(value, to_)
+      def initialize(value, to, :options => "")
         super(value)
-        patternt = /([^:\{\}]+)(?:\{(.+)\})/
-        self.to = to_
+        pattern = /(?<key>[^,:]+):(?<value>[^,:]+)/i
+        unless options.empty?
+          matched = pattern.match(options)
+          if matched
+          end
+        end
+        self.to = to
       end
 
       def resource_name

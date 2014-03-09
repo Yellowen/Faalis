@@ -17,11 +17,23 @@ module Faalis
         # An array of fields like
         # [name, type]
         def fields
+          pattern = /(?<name>[^:\{\}]+):(?<type>[^:\{\}]+)(?:\{(?<options>.+)\})*/i
           fields = []
           resource_fields.each do |field|
-            name, type, to = field.split(":")
+            matched = pattern.match field
+            name = type = to = options = ""
+
+            if matched
+              name = matched["name"]
+              type = matched["type"]
+              to = matched["to"]
+              options = matched["options"]
+            else
+              raise Exception.new "Fields should be in  FIELD_NAME:FIELD_TYPE[:RELATION[{OPTIONS}]]"
+            end
+
             if ["belongs_to", "has_many", "in"].include? type
-              type = Relation.new(type, to)
+              type = Relation.new(type, to, options)
             end
 
             fields << [name, type]
@@ -39,8 +51,7 @@ module Faalis
 
         # Return an string to use as a function parameters each
         # field appears as symbol
-        def fields_as_params(relations: false)
-          patternt = /(?<name>[^:\{\}]+):(?<type>[^:\{\}]+)(?:\{(?<options>.+)\})*/
+        def fields_as_params(:relations => false)
           result = ""
           field_num = 0
           fields.each do |name, type|
