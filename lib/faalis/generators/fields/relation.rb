@@ -5,6 +5,7 @@ module Faalis
 
       def initialize(value, to_)
         super(value)
+        patternt = /([^:\{\}]+)(?:\{(.+)\})/
         self.to = to_
       end
 

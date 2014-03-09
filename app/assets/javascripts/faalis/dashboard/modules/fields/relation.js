@@ -36,7 +36,11 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             };
 
             scope.update_collection = function(){
-                API.all(scope.field.to).getList().then(function(data){
+                var list_object = API.all(scope.field.to);
+                if ("list_object" in scope.options) {
+                    list_object = scope.options.list_object;
+                }
+                list_object.getList().then(function(data){
                     scope.all_options = data;
                     if (scope.collection !== undefined) {
                         scope.collection = data;
