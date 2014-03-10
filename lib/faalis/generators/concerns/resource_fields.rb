@@ -51,7 +51,7 @@ module Faalis
 
         # Return an string to use as a function parameters each
         # field appears as symbol
-        def fields_as_params(:relations => false)
+        def fields_as_params(relations: false)
           result = ""
           field_num = 0
           fields.each do |name, type|
