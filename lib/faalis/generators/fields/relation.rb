@@ -3,7 +3,7 @@ module Faalis
     class Relation < String
       attr_accessor :to
 
-      def initialize(value, to, :options => "")
+      def initialize(value, to, options: "")
         super(value)
         pattern = /(?<key>[^,:]+):(?<value>[^,:]+)/i
         unless options.empty?
