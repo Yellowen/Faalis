@@ -9,7 +9,8 @@ module Faalis
         def self.included(base)
           # An array of resource fields. fields should be separated by space
           # each filed should be in this format `field_name:field_type[:extra_info]
-          base.argument :resource_fields, type: :array, default: [], banner: "fields[:types]"
+          # Relation options should be like `{key: value, key2: elem1;elem2, key3: value3}`
+          base.argument :resource_fields, type: :array, default: [], banner: "fields[:types[:to[{relation_options}]"
 
         end
 
@@ -17,17 +18,16 @@ module Faalis
         # An array of fields like
         # [name, type]
         def fields
-          pattern = /(?<name>[^:\{\}]+):(?<type>[^:\{\}]+)(?:\{(?<options>.+)\})*/i
+          pattern = /(?<name>[^:\{\}]+):(?<type>[^:\{\}]+)[:]?(?:(?<to>[^:\{\}]+)(?:\{(?<options>.+)\})*)*/i
           fields = []
           resource_fields.each do |field|
             matched = pattern.match field
             name = type = to = options = ""
-
             if matched
               name = matched["name"]
               type = matched["type"]
               to = matched["to"]
-              options = matched["options"]
+              options = matched["options"] || ""
             else
               raise Exception.new "Fields should be in  FIELD_NAME:FIELD_TYPE[:RELATION[{OPTIONS}]]"
             end
@@ -51,7 +51,7 @@ module Faalis
 
         # Return an string to use as a function parameters each
         # field appears as symbol
-        def fields_as_params(relations: false)
+        def fields_as_params(relations = false)
           result = ""
           field_num = 0
           fields.each do |name, type|
