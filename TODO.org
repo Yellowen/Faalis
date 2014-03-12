@@ -3,6 +3,7 @@
 ** Untrash does not work in conversation trashed messages
 ** TODO ui-select2 placeholder did not works
 ** TODO belongs_to fails when api url is not the same as js resource url
+** TODO hasmany and belongs_to relations in angular generator should get model name too
 * Tasks
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** DONE Add font awesome support
@@ -24,3 +25,4 @@
 ** DONE Edit Profile
 ** DONE User messages
 ** TODO add mailboxer
+
