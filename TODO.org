@@ -6,10 +6,10 @@
 * Tasks
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** DONE Add font awesome support
-** TODO fix password_require? in user model
+** DONE fix password_require? in user model
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code
-** TODO fix the permission check in /dashboard/modules action
+** DONE fix the permission check in /dashboard/modules action
 ** TODO view some loading icon or message before sending and processing modules.json request
 ** TODO Add a initializer script for faalis with all the possible options and comments
 ** TODO add formtastic initializer script to install generator.
@@ -20,6 +20,9 @@
 ** TODO encode passwords !
 ** TODO check if rails assets pipeline can understand the code duplication and use one instance of any "import" in resulted asset
 ** TODO remove the js_scaffold completely
+** TODO override *find_resource* in *APIController*
+   So our api can response to requests with filter data. For example "/api/v1/posts?title_contains=example"
+   https://github.com/ryanb/cancan/blob/440bd887008820efbee8b954790f79b48d8264a6/lib/cancan/controller_resource.rb#L103
 * Features
 ** DONE Edit Profile
 ** DONE User messages

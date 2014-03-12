@@ -31,4 +31,5 @@ class Faalis::ApplicationController < ActionController::Base
     FastGettext.set_locale(lang.to_sym)
     session[:locale] = I18n.locale = lang
   end
+
 end
