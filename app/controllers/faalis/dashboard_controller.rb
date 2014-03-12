@@ -20,6 +20,9 @@ module Faalis
     end
 
     def index
+      if params.include? :signin
+        redirect_to dashboard_path
+      end
       @jstemplates_path = "/templates"
     end
 
