@@ -274,7 +274,7 @@ small.error {
       padding: 2px 5px;
       color: $darkgray;
       cursor: pointer;
-      opacity: 0.3;
+      opacity: 0.4;
       @include transition(opacity 300ms linear 0ms);
       &:hover {
          opacity: 1;
@@ -287,8 +287,29 @@ small.error {
             opacity: 1;
             @include transition(opacity 300ms linear 0ms);
          }
+        .btntitle {
+          padding: 0;
+        }
+
       }
    }
+
+}
+
+.extra_links {
+   .option_item {
+      font-size: 0.7em;
+      color: $darkgray;
+      cursor: pointer;
+      a {
+        padding: 2px 4px;
+        .btntitle {
+          padding: 0;
+        }
+
+      }
+   }
+
 }
 
 .helptext {
