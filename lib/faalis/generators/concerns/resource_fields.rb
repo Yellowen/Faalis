@@ -4,6 +4,32 @@ require "faalis/generators/fields/relation"
 module Faalis
   module Generators
     module Concerns
+      # This **concern** module is one of the most important **concerns** in
+      # dashboard scaffold system. This module adds `fields` key to json file
+      # which use for defining the resource fields. `fields` key is an array
+      # of objects which each object represent a field. Each field have following
+      # attributes:
+      #
+      # **name**: Name of field
+      #
+      # **type**: Type of field. some of the most important types are: `string`,
+      #         `integer`, `flout`, `belongs_to`, `has_many`, `in`, `datetime`.
+      #          For complete list of types take a look at
+      #          `app/assets/javascripts/faalis/dashboard/modules/fields/`
+      #
+      # **to**: This attribute is just for `in`, `has_many` and `belongs_to` field
+      #       types which define the resource that current resource have dependency
+      #       with. Bear in mind that `in` type uses `to` attrbute as an array of
+      #       possible value for field and will render as a combobox.
+      #
+      # **options**: An object of type related objects. For example a list of
+      #            current resource parents just like `parent` key.
+      #
+      # **bulk**: All fields with true as `bulk` value will be used in bulk editor.
+      #
+      # **tab**: ID of a Tab that this field should be appear on.
+      #
+      # **required**: Field will be non optional.
       module ResourceFields
 
         def self.included(base)

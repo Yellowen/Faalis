@@ -1,6 +1,9 @@
 module Faalis
   module Generators
     module Concerns
+
+      # Adds `required` key to `fields`. Fields with this key as true will
+      # be non optional fields
       module RequireFields
 
         def self.included(base)

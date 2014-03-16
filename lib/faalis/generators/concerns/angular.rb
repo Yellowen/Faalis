@@ -1,6 +1,12 @@
 module Faalis
   module Generators
     module Concerns
+
+      # This **Concern** looks for `raw_path` and `path` in scaffold
+      # json file which both of them are optional.
+      # Using `raw_path` you can override the full path of generate file.
+      # and with `path` you can override the directory name inside
+      # `app/assets/javascripts`.
       module Angular
 
         def self.included(base)
@@ -13,7 +19,7 @@ module Faalis
 
         private
 
-
+        # return the relative path to place where scaffold shoud be created.
         def angularjs_app_path
           if not resource_data["raw_path"].blank?
             resource_data["raw_path"]

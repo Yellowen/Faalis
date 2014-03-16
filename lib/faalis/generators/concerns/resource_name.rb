@@ -1,6 +1,7 @@
 module Faalis
   module Generators
     module Concerns
+      # Adds the `name` key to json file which specify the resource name.
       module ResourceName
 
         def self.included(base)
