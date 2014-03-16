@@ -14,14 +14,14 @@ module Faalis
       end
 
       def to
-        result = "'"
+        result = ""
         if options.include? "parents"
           field_parents.each do |parent|
             result = "#{result}/#{parent}/' + $scope.#{parent}_id + '"
           end
           result = "#{result}/"
         end
-        "#{result}#{@to}'"
+        "#{result}#{@to}"
       end
 
       def options
