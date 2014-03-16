@@ -52,7 +52,12 @@ module Faalis
     devise *@@devise_options
 
     def name
-      "#{first_name} #{last_name}"
+      if first_name or last_name
+        "#{first_name} #{last_name}"
+      else
+        email
+      end
+
     end
 
     def full_name
