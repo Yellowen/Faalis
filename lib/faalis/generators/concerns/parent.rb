@@ -5,14 +5,14 @@ module Faalis
 
         def self.included(base)
           # Specify the parent resource if there was any
-          base.class_option :parent, :type => :string, :default => "", :desc => "Specify the parent resource if there was any"
+          #base.class_option :parents, :type => :string, :default => "", :desc => "Specify the parent resource if there was any"
         end
 
         private
 
         # check for parent
         def parent?
-          if options[:parent] != ""
+          unless resource_data["parents"].empty?
             return true
           end
           false
@@ -25,7 +25,7 @@ module Faalis
 
         def parents
           if parent?
-            _parents = options[:parent].split(",")
+            _parents = resource_data["parents"]
             _parents.collect do |p|
               trim_parent_path(p)
             end

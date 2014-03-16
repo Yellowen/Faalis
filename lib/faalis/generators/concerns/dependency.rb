@@ -5,9 +5,12 @@ module Faalis
 
         def self.included(base)
           # Dependencies of Angularjs module, comma separated
-          base.class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
+          #base.class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
         end
 
+        def deps
+          resource_data[:deps]
+        end
       end
     end
   end

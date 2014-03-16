@@ -6,6 +6,7 @@ module Faalis
     class DashboardScaffold < Rails::Generators::Base
 
       include ActionView::Helpers::TextHelper
+      include Faalis::Generators::Concerns::JsonInput
       include Faalis::Generators::Concerns::ResourceName
       include Faalis::Generators::Concerns::ResourceFields
       include Faalis::Generators::Concerns::Menu

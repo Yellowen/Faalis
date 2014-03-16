@@ -41,12 +41,15 @@ String_.directive('stringField', ["$filter", "gettext", function($filter, gettex
         };
 
         scope.have = function(ob, element) {
+          if (ob !== undefined) {
             if (element in ob) {
                 return true;
             }
             else {
                 return false;
             }
+          }
+          return false;
         };
 
     }
@@ -60,7 +63,8 @@ String_.directive('stringField', ["$filter", "gettext", function($filter, gettex
             // message of field here. for example you can use `help_text` to
             // show an small help under the control and you can set `show_help_btn`
             // to true to show an help button.
-            options: '=',
+            // options is optional (notice '=?')
+            options: '=?',
 
             // Css classes to apply on element
             cssClasses: '=cssClass',

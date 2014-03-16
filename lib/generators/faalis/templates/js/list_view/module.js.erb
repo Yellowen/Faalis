@@ -1,26 +1,5 @@
-<% if is_in_engine? %>
-/* -----------------------------------------------------------------------------
-    Faalis - Basic website skel engine
-    Copyright (C) 2012-2013 Yellowen
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
------------------------------------------------------------------------------ */
-
-<% end %>
 // <%= resource.pluralize %> Module
-var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Filter", "Anim", "Fields",<% if options[:deps] %><% options[:deps].gsub(" ", "").split(",").each do |dependency| %> "<%= dependency.camelize %>", <% end %><% end %>]);
+var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Filter", "Anim", "Fields",<% if resource_data[:deps] %><% resource_data[:deps].each do |dependency| %> "<%= dependency.camelize %>", <% end %><% end %>]);
 
 // <%= resource.pluralize %> configuration section ---------------------------
 <%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){
@@ -44,17 +23,16 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
 // <%= resource %> index controller -------------------------------------------------------
 // This controller is responsible for list page (index)
-<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams",
-                                      function($scope, gettext, API, catch_error, $location, $routeParams){
+<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
 
     <% parents.each do |parent| %>
-    $scope.<%= options[:parent] %>_id = $routeParams.<%= options[:parent] %>_id;
+    $scope.<%= parent %>_id = $routeParams.<%= parent %>_id;
     <% end %>
-    <% unless options[:no_filter] %>$scope.filter_config = {
+    <% unless no_filter? %>$scope.filter_config = {
         list: <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>")<% else %>API.all("<%= resource.pluralize.underscore %>")<% end %>
     };
     $scope.<%= resource.pluralize.underscore %> = [];<% end %>
-    <% unless options[:no_bulk] %>// Cache object for each field name possible values
+    <% unless no_bulk? %>// Cache object for each field name possible values
     $scope.cache = {};
 
     // Change event handler for field_name combobox in bulk edit
@@ -100,7 +78,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             },
             route: "#<% parents.each do |p| %>/<%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource_url %>/new"
 
-         },<% unless options[:no_bulk] %>
+         },<% unless no_bulk? %>
         {
             title: gettext("Bulk Edit"),
             icon: "fa fa-edit",
@@ -136,7 +114,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             }
         }
 
-    ];<% unless options[:no_bulk] %>
+    ];<% unless no_bulk? %>
 
     /*
      * On bulk save event
@@ -216,7 +194,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
             });
 
     };
-    <% unless options[:no_filter] %>/*<% end %>
+    <% unless no_filter? %>/*<% end %>
     <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>").getList()<% else %>
     API.all("<%= resource.pluralize.underscore %>").getList()<% end %>
         .then(function(data){
@@ -224,7 +202,7 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
         }, function(data){
             catch_error(data);
         });
-     <% unless options[:no_filter] %>*/<% end %>
+     <% unless no_filter? %>*/<% end %>
 }]);
 
 <%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
@@ -326,9 +304,9 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
 
     };
 }]);
-<% unless options[:menu].empty? %>
+<% if has_menu? %>
 <%= resource.pluralize %>.controller("<%= resource %>MenuController", ["gettext", function(gettext){
-    this.menu_items = [<% options[:menu].split(",").each do |menu| %><% title, url, model = parse_menu(menu) %>
-        {title: gettext("<%= title %>"), url: "<%= url %>"<% if model %>, permission: {action: "read", model: "<%= model %>"}<% end %>},<% end %>
+    this.menu_items = [<% resource_data["menu"].each do |menu| %>
+        {title: gettext("<%= meun["title"] %>"), url: "<%= menu["url"] %>"<% if menu.include? "model" %>, permission: {action: "<%= menu["perm_action"] || 'read' %>", model: "<%= menu["model"] %>"}<% end %>},<% end %>
         ];
 }]);<% end %>
