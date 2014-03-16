@@ -1,15 +1,15 @@
 <div class="details">
-    <% fields.each do |field_name, field_type| %>
+    <% fields.each do |f, field_type| %>
       <p>
       <% case field_type
-           when "belongs_to" %> <b translate><%= field_name.capitalize %> :</b> {{object.<%= field_name %>.name}}
+           when "belongs_to" %> <b translate><%= f.capitalize %> :</b> {{object.<%= f %>.name}}
       <% when "has_many" %><p>
-        <b translate><%= field_name.capitalize %> :</b>
+        <b translate><%= f.capitalize %> :</b>
         <ul>
-          <li ng-repeat="item in object.<%= field_name %>"> {{ item.name }}</li>
+          <li ng-repeat="item in object.<%= f %>"> {{ item.name }}</li>
         </ul>
       </p>
-      <% else %><b translate><%= field_name.capitalize %> :</b> {{object.<%= field_name %>}}
+      <% else %><b translate><%= f.capitalize %> :</b> {{object.<%= f %>}}
       <% end %></p>
     <% end %>
   <ul class="button-group float-right">

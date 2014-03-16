@@ -10,7 +10,7 @@ module Faalis
           # An array of resource fields. fields should be separated by space
           # each filed should be in this format `field_name:field_type[:extra_info]
           # Relation options should be like `{key: value, key2: elem1;elem2, key3: value3}`
-          base.argument :resource_fields, type: :array, default: [], banner: "fields[:types[:to[{relation_options}]"
+          #base.argument :resource_fields, type: :array, default: [], banner: "fields[:types[:to[{relation_options}]"
 
         end
 
@@ -18,19 +18,12 @@ module Faalis
         # An array of fields like
         # [name, type]
         def fields
-          pattern = /(?<name>[^:\{\}]+):(?<type>[^:\{\}]+)[:]?(?:(?<to>[^:\{\}]+)(?:\{(?<options>.+)\})*)*/i
           fields = []
-          resource_fields.each do |field|
-            matched = pattern.match field
-            name = type = to = options = ""
-            if matched
-              name = matched["name"]
-              type = matched["type"]
-              to = matched["to"]
-              options = matched["options"] || ""
-            else
-              raise Exception.new "Fields should be in  FIELD_NAME:FIELD_TYPE[:RELATION[{OPTIONS}]]"
-            end
+          resource_data["fields"].each do |field|
+            name = field["name"]
+            type = field["type"]
+            to = field["to"]
+            options = field["options"] || {}
 
             if ["belongs_to", "has_many", "in"].include? type
               type = Relation.new(type, to, options)
@@ -46,7 +39,7 @@ module Faalis
         end
 
         def grid_fields
-          fields
+          fields_with("view_in_grid", true)
         end
 
         # Return an string to use as a function parameters each
@@ -88,6 +81,24 @@ module Faalis
           result
         end
 
+        def fields_with(attr, value)
+          fields.select do |f|
+            if f.include? attr
+              if f[attr] == value
+                true
+              else
+                false
+              end
+            else
+              false
+            end
+
+          end
+        end
+
+        def no_filter?
+          resource_data.include? "no_filter" &&  resource_data["no_filter"]
+        end
       end
     end
   end
