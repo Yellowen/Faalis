@@ -45,6 +45,7 @@ module Faalis
         # [name, type]
         def fields
           fields = []
+          if have_fields?
           resource_data["fields"].each do |field|
             name = field["name"]
             type = field["type"]
@@ -56,6 +57,7 @@ module Faalis
             end
 
             fields << [name, type]
+            end
           end
           fields
         end
@@ -124,6 +126,15 @@ module Faalis
 
         def no_filter?
           resource_data.include? "no_filter" &&  resource_data["no_filter"]
+        end
+
+        def have_fields?
+          unless resource_data.include? "fields"
+            unless resource_data["fields"].nil?
+              return true
+            end
+          end
+          false
         end
       end
     end
