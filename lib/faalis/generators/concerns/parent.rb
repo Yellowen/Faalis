@@ -38,8 +38,10 @@ module Faalis
 
         # check for parent
         def parent?
-          unless resource_data["parents"].empty?
-            return true
+          unless resource_data. include? "parents"
+            unless resource_data["include"].empty?
+              return true
+            end
           end
           false
         end
