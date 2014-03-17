@@ -32,6 +32,11 @@ class Faalis::APIController < Faalis::ApplicationController
   # Authenticate user before any action take place
   before_filter :authenticate
 
+  # Check for any presence of filtering query, In querystring and load
+  # resource using them
+  before_filter :load_resource_by_query, :only => [:index]
+
+
   protect_from_forgery
 
   # Set csrf cookie after any action
