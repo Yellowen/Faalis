@@ -14,7 +14,7 @@ module Faalis
         private
 
         def required_fields
-          fields_with("required", true)
+          fields_with("required", true).collect {|x| x["name"]}
         end
       end
     end

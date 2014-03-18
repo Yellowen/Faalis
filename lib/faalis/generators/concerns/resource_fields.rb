@@ -46,17 +46,17 @@ module Faalis
         def fields
           fields = []
           if have_fields?
-          resource_data["fields"].each do |field|
-            name = field["name"]
-            type = field["type"]
-            to = field["to"]
-            options = field["options"] || {}
+            resource_data["fields"].each do |field|
+              name = field["name"]
+              type = field["type"]
+              to = field["to"]
+              options = field["options"] || {}
 
-            if ["belongs_to", "has_many", "in"].include? type
-              type = Relation.new(type, to, options)
-            end
+              if ["belongs_to", "has_many", "in"].include? type
+                type = Relation.new(type, to, options)
+              end
 
-            fields << [name, type]
+              fields << [name, type]
             end
           end
           fields
@@ -109,10 +109,20 @@ module Faalis
           result
         end
 
+        def raw_fields_data
+          if have_fields?
+            return resource_data["fields"]
+          end
+          []
+        end
+
         def fields_with(attr, value)
-          fields.select do |f|
+          raw_fields_data.select do |f|
+
             if f.include? attr
+
               if f[attr] == value
+
                 true
               else
                 false
@@ -125,11 +135,11 @@ module Faalis
         end
 
         def no_filter?
-          resource_data.include? "no_filter" &&  resource_data["no_filter"]
+          resource_data.include?("no_filter") &&  resource_data["no_filter"]
         end
 
         def have_fields?
-          unless resource_data.include? "fields"
+          if resource_data.include? "fields"
             unless resource_data["fields"].nil?
               return true
             end
