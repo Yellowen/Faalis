@@ -1,0 +1,99 @@
+<%= resource.pluralize %>.controller("Add<%= resource %>Controller", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", function(API, $scope, $location, $routeParams, gettext, catch_error){
+
+    <% parents.each do |parent| %>
+   $scope.<%= parent %>_id = $routeParams.<%= parent %>_id;
+    <% end %>
+
+    $scope.select2options = {};
+    $scope.editing = false;<% if any_tabs? %>
+    $scope.current_tab = 1;
+    $scope.activate_tab = function(tab, $event){
+        $scope.current_tab = tab;
+    };<% end %>
+    $scope.obj_id = null;
+    var is_copy = false;
+
+    <% fields.each do |name, type, to| %><% if ["belongs_to", "in", "has_many"].include? type %>
+    $scope.<%= name %>_data = {
+        type: '<%= type %>',<% if type == "in" %>
+        choices: _.sortBy([<% to.each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>]),
+  <% else %>
+        to: '<%= type.to %>',<% end %>
+        name: '<%= name %>'
+    };<% end %><% end %>
+    <% fields.each do |name, type, to| %><% if type == "in" %>$scope.<%= name %>_choices = _.sortBy([<% to.each do |choice| %>
+        {name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>
+    ], "title");<% end %><% end %>
+    if( "id" in $routeParams ){
+        $scope.obj_id = $routeParams.id;
+        $scope.editing = true;
+        if ($scope.obj_id < 0) {
+            is_copy = true;
+            $scope.obj_id = $scope.obj_id * -1;
+        }
+
+        var obj = API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id).<% end %>one("<%= resource.pluralize.underscore %>", $scope.obj_id).get()
+                .then(function(data) {
+                <% fields.each do |field_name, field_type| %>
+                    $scope.<%= field_name %> = <% if not ["string", "integer", "belongs_to", "text", "has_many", "in"].include? field_type %><%= "to_#{field_type}(data.#{field_name})" %><% elsif field_type == "belongs_to" %>data.<%= field_name %>.id<% else %>data.<%= field_name %><% end %>;<% end %>
+                }, function(data){
+                    catch_error(data);
+                });
+
+    }
+
+    $scope.have = function(field, obj_id) {
+        var tmp = _.where($scope[field], {id: obj_id});
+        if (tmp.length > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+    $scope.cancel = function(){
+        $(".form input").val("");
+        $location.path("<% parents.each do |p| %><%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource_url %>");
+    };
+
+    $scope.save = function(save_another){
+        $("small.error").html("");
+        $("small.error").removeClass("error");
+
+        var <%= resource.underscore %> = {<%= resource.underscore %>: {<% fields.each do |field_name, field_type| %>
+            <% if ["belongs_to"].include? field_type %><%= field_name %>_id: parseInt($scope.<%= field_name %>),<% else %><%= field_name %>: $scope.<%= field_name %>,<% end %><% end %>
+            __res__: 0
+        }};
+        if (($scope.obj_id) && (is_copy === false)) {
+
+            API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id).<% end %>one("<%= resource.pluralize.underscore %>", $scope.obj_id).patch(<%= resource.underscore %>)
+                .then(function(){
+                    success_message(gettext("<%= resource %> updated successfully."));
+                    if (save_another) {
+                        $(".form input").val("");
+                    }
+                    else {
+                        $location.path("<% parents.each do |p| %><%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource_url %>");
+                    }
+                }, function(data){
+                    catch_error(data);
+                });
+
+        }
+        else {
+            API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id).<% end %>all("<%= resource.pluralize.underscore %>").customPOST(<%= resource.underscore %>, "").then(function(){
+                success_message(gettext("<%= resource %> created successfully."));
+                if (save_another) {
+                    $(".form input").val("");
+                }
+                else {
+                    $location.path("<% parents.each do |p| %><%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource_url %>");
+                }
+            }, function(data){
+                catch_error(data);
+            });
+        }
+
+    };
+}]);

@@ -1,0 +1,17 @@
+// <%= resource.pluralize %> configuration section ---------------------------
+<%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){
+    // Add any route you need here
+    $routeProvider.
+        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>", {
+            templateUrl: template("<%= resource_path %>/index"),
+            controller: "<%= resource %>Controller"
+        }).
+        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>/new",{
+            templateUrl: template("<%= resource_path %>/new"),
+            controller: "Add<%= resource %>Controller"
+        }).
+        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>/:id/edit",{
+            templateUrl: template("<%= resource_path %>/new"),
+            controller: "Add<%= resource %>Controller"
+        });
+}]);

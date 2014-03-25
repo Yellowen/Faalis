@@ -1,0 +1,183 @@
+// <%= resource %> index controller -------------------------------------------------------
+// This controller is responsible for list page (index)
+<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
+
+    <% parents.each do |parent| %>
+    $scope.<%= parent %>_id = $routeParams.<%= parent %>_id;
+    <% end %>
+    <% unless no_filter? %>$scope.filter_config = {
+        list: <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>")<% else %>API.all("<%= resource.pluralize.underscore %>")<% end %>
+    };
+    $scope.<%= resource.pluralize.underscore %> = [];<% end %>
+    <% unless no_bulk? %>// Cache object for each field name possible values
+    $scope.cache = {};
+
+    // Change event handler for field_name combobox in bulk edit
+    $scope.field_name_change = function(x){
+        var current_value = $("#field_name").val();
+        $scope.current_field= _.find($scope.fields, function(x){
+            return x.name == current_value;
+        });
+        if( "to" in $scope.current_field ){
+            if (! ($scope.current_field.name in $scope.cache)) {
+                $scope.current_field.to().then(function(x){
+                    $scope.cache[$scope.current_field.name] = x;
+                });
+            }
+        }
+    };
+
+    $scope.columns = [<% grid_fields.each do |name, type| %>
+        {field:'<%= name %>', displayName: gettext('<%= name.capitalize.humanize %>')},
+    <% end %>];
+    $scope.fields = [<% bulk_edit_fields.each do |name| %>
+        {
+            name: "<%= name %><% if ["belongs_to", "has_many"].include? fields_hash[name] %>_id<% end %>",
+            title: gettext("<%= name.capitalize.humanize %>"),
+            type: "<%= fields_hash[name] %>"<% if ["belongs_to", "has_many"].include? fields_hash[name] %>,
+            to: API.all("<%= fields_hash[name].to %>").getList<% end %>
+        },<% end %>
+    ];<% end %>
+
+    // details_template is the address of template which should load for
+    // each item details section
+    $scope.details_template = template("<%= resource_path %>/details");
+
+    // Buttons for top of the list-view
+    $scope.buttons = [
+        {
+            title: gettext("New"),
+            icon: "fa fa-plus",
+            classes: "btn tiny green",
+            permission: {
+              name: "create",
+              model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
+            },
+            route: "#<% parents.each do |p| %>/<%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource_url %>/new"
+
+         },<% unless no_bulk? %>
+        {
+            title: gettext("Bulk Edit"),
+            icon: "fa fa-edit",
+            classes: "btn tiny yellow",
+            permission: {
+              name: "update",
+              model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
+            },
+            action: function(){
+                $scope.$apply("bulk_edit = ! bulk_edit");
+            },
+
+        },<% end %>
+        {
+            title: gettext("Duplicate"),
+            icon: "fa fa-files-o",
+            classes: "btn tiny red",
+            permission: {
+              name: "create",
+              model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
+            },
+            action: function(){
+                var selected = _.find($scope.<%= resource.pluralize.underscore %>, function(x){
+                    return x.is_selected === true;
+                });
+
+                if (selected === undefined ) {
+                    error_message(gettext("You should only select one item to copy."));
+                }
+                else {
+                    $location.path("<% parents.each do |p| %><%= p %>/" + $scope.<%= p %>_id + "<% end %>/<%= resource.pluralize.underscore %>/-" + selected.id + "/edit");
+                }
+            }
+        }
+
+    ];<% unless no_bulk? %>
+
+    /*
+     * On bulk save event
+     */
+    $scope.bulk_save = function(){
+
+        $scope.view_progressbar = true;
+        var value = $("#field_value").val();
+        var field = $scope.current_field.name;
+        var type = $scope.current_field.type;
+        var field_name = $scope.current_field.title;
+        if ((type == "has_many") || (type == "belongs_to")) {
+            value = parseInt(value, 10);
+        }
+        var requests_count = 0;
+
+        $scope.rfiller = 0;
+        $scope.sfiller = 0;
+        $scope.success = 0;
+        $scope.failed = 0;
+        $scope.total = _.where($scope.<%= resource.pluralize.underscore %>, function(x){return x.is_selected === true;}).length;
+
+        _.each($scope.<%= resource.pluralize.underscore %>, function(x){
+            if( x.is_selected === true ){
+                x[field] = value;
+                requests_count++;
+
+                var rwidth = (requests_count * 100) / $scope.total;
+                if (requests_count == $scope.total) { rwidth = 100; }
+                $scope.rfiller = rwidth + "%";
+
+                API.one("<%= resource.pluralize.underscore %>", x.id).patch(x).then(function(data){
+                    $scope.success++;
+                    var swidth = parseInt(($scope.success * 100) / $scope.total);
+                    if ($scope.sucess == $scope.total) { swidth = 100; }
+                    $scope.sfiller = swidth + "%";
+                    x[field_name.toLowerCase()] = data[field_name.toLowerCase()];
+                }, function(data){
+                    $scope.failed++;
+                    catch_error(data);
+                });
+
+            }
+        });
+
+    };
+
+    /*
+     * On bulk cancel event
+     */
+    $scope.bulk_cancel = function(){
+        $("#field_name").val(0);
+        document.getElementById("bulk_form").reset();
+        $scope.view_progressbar = false;
+        $scope.bulk_edit = false;
+    };
+    <% end %>
+    /*
+     * On delete event handler - `items` is an array of objects to delete
+     */
+    $scope.on_delete = function(items){
+
+        var query = [];
+        items.forEach(function(item){
+            query.push(item.id);
+        });
+
+        API.<% parents.each do |p| %>all("<%=p %>").<% end %>all("<%= resource.pluralize.underscore %>").customDELETE(query.join(","))
+            .then(function(data) {
+
+                $scope.<%= resource.pluralize.underscore %> = _.filter($scope.<%= resource.pluralize.underscore %>, function(x){
+                    return !(query.indexOf(x.id) != -1);
+                });
+                success_message(data.msg);
+            }, function(data){
+                catch_error(data);
+            });
+
+    };
+    <% unless no_filter? %>/*<% end %>
+    <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>").getList()<% else %>
+    API.all("<%= resource.pluralize.underscore %>").getList()<% end %>
+        .then(function(data){
+            $scope.<%= resource.pluralize.underscore %> = data;
+        }, function(data){
+            catch_error(data);
+        });
+     <% unless no_filter? %>*/<% end %>
+}]);

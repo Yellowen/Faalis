@@ -18,6 +18,7 @@ module Faalis
       include Faalis::Generators::Concerns::Tabs
       include Faalis::Generators::Concerns::Model
       include Faalis::Generators::Concerns::AllowQueryOn
+      include Faalis::Generators::Concerns::Render
 
 
       # Do not install specs
