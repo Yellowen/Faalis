@@ -52,11 +52,11 @@ module Faalis
               to = field["to"]
               options = field["options"] || {}
 
-              if ["belongs_to", "has_many", "in"].include? type
+              if ["belongs_to", "has_many"].include? type
                 type = Relation.new(type, to, options)
               end
 
-              fields << [name, type]
+              fields << [name, type, to]
             end
           end
           fields

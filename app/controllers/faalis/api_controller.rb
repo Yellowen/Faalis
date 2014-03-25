@@ -112,8 +112,9 @@ class Faalis::APIController < Faalis::ApplicationController
         else
           logger.warn "`#{field}` in not in allowed list for `#{self.class.to_s}`."
         end
-
       end
+    else
+      self.class.load_resource
     end
   end
 

@@ -220,15 +220,15 @@ var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "
     $scope.obj_id = null;
     var is_copy = false;
 
-    <% fields.each do |name, type| %><% if ["belongs_to", "in", "has_many"].include? type %>
+    <% fields.each do |name, type, to| %><% if ["belongs_to", "in", "has_many"].include? type %>
     $scope.<%= name %>_data = {
         type: '<%= type %>',<% if type == "in" %>
-        choices: _.sortBy([<% type.to.split(",").each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>]),
+        choices: _.sortBy([<% to.each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>]),
   <% else %>
         to: '<%= type.to %>',<% end %>
         name: '<%= name %>'
     };<% end %><% end %>
-    <% fields.each do |name, type| %><% if type == "in" %>$scope.<%= name %>_choices = _.sortBy([<% type.to.split(",").each do |choice| %>
+    <% fields.each do |name, type, to| %><% if type == "in" %>$scope.<%= name %>_choices = _.sortBy([<% to.each do |choice| %>
         {name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>
     ], "title");<% end %><% end %>
     if( "id" in $routeParams ){

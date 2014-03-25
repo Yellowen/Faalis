@@ -26,7 +26,7 @@ module Faalis
 
       def options
         unless @options.empty?
-          Hash[@options.split(',').map {|pair| pair.strip.split(':').map(&:strip) }]
+          @options
         else
           {}
         end
@@ -34,7 +34,7 @@ module Faalis
 
       def field_parents
         if options.include? "parents"
-          options["parents"].split(";")
+          options["parents"]
         else
           []
         end
