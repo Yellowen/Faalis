@@ -72,7 +72,7 @@ class Faalis::APIController < Faalis::ApplicationController
     # If any query string parameter provided and allow fields specified
     if not request.query_parameters.empty? and not allowed_fields.empty?
       #load_resource
-
+      logger.info ("Load resource by query parameters")
       # Iterate over parameters in query string
       request.query_parameters.each do |key, value|
         # each key can be like filename[__querytype]=value
@@ -114,6 +114,7 @@ class Faalis::APIController < Faalis::ApplicationController
         end
       end
     else
+      logger.info("Load resource using `load_resource`")
       self.class.load_resource
     end
   end
@@ -128,7 +129,6 @@ class Faalis::APIController < Faalis::ApplicationController
   def self.allow_query_on(*args)
     @@allowed_fields = args.to_a.collect { |x| x.to_s }
   end
-
 
   protected
 
