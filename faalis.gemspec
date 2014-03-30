@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", ">= 4.0.0"
+  s.add_dependency "rails", "~>4.0.0"
 
   # Authentication
   s.add_dependency "omniauth"
@@ -36,8 +36,8 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "sass-rails", '>= 4.0.0'
   s.add_dependency 'compass-rails'
-  s.add_dependency 'zurb-foundation', '~> 4.0.0'
-  #s.add_dependency 'foundation-rails'
+  #s.add_dependency 'zurb-foundation', '~> 4.0.0'
+  s.add_dependency 'foundation-rails'
   s.add_dependency "font-awesome-rails"
   s.add_dependency 'modernizr-rails'
   s.add_development_dependency "execjs"
