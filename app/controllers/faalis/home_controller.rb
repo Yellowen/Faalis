@@ -5,9 +5,9 @@ module Faalis
     include Faalis::Dashboard::Module
 
     name = "home"
-#    priority 100
+    #priority 100
 
-#    show_me_on :header
+    #show_me_on :header
 
     def index
     end
