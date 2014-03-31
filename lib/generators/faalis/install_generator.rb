@@ -19,44 +19,48 @@
 
 module Faalis
   module Generators
+    # Generator responsible for `install` generator
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
 
-      desc "Copy all the necessary files to use Faalis"
+      desc 'Copy all the necessary files to use Faalis'
       class_option :orm
 
       def install_mailboxer
-        invoke "mailboxer:install"
+        invoke 'mailboxer:install'
       end
 
       def install_model_discovery
-        rake "model_discovery_engine:install:migrations"
+        rake 'model_discovery_engine:install:migrations'
       end
 
       def copy_init_files
-        template "devise.rb", "config/initializers/devise.rb"
-        template "faalis.rb", "config/initializers/faalis.rb"
-        template "fast_gettext.rb", "config/initializers/fast_gettext.rb"
-        template "formtastic.rb", "config/initializers/formstatic.rb"
-        template "seeds.rb", "db/seeds.rb"
-        template "api_controller.rb", "app/controllers/api_controller.rb"
+        template 'devise.rb', 'config/initializers/devise.rb'
+        template 'faalis.rb', 'config/initializers/faalis.rb'
+        template 'fast_gettext.rb', 'config/initializers/fast_gettext.rb'
+        template 'formtastic.rb', 'config/initializers/formstatic.rb'
+        template 'seeds.rb', 'db/seeds.rb'
+        template 'api_controller.rb', 'app/controllers/api_controller.rb'
       end
 
       def copy_js_manifest
-        template "application.js", "#{angularjs_app_path}application.js"
+        template 'application.js', "#{angularjs_app_path}application.js"
+      end
+
+      def copy_scss_manifest
+        directory 'stylesheets', 'app/assets/'
       end
 
       def show_readme
-        readme "README" if behavior == :invoke
+        readme 'README' if behavior == :invoke
       end
 
       private
 
       def angularjs_app_path
-        path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
+        path = Faalis::Engine.dashboard_js_manifest.split('/')[0..-2].join('/')
         "app/assets/javascripts/#{path}/"
       end
-
     end
   end
 end

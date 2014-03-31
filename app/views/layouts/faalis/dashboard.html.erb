@@ -3,7 +3,7 @@
 <head>
   <title><%= Faalis::Engine.site_title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag   "faalis/dashboard/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
+  <%= stylesheet_link_tag   "dashboard/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
   <%= javascript_include_tag :modernizr %>
   <%= csrf_meta_tags %>
 </head>
@@ -16,6 +16,5 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
-
 </body>
 </html>
