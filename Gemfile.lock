@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    faalis (0.23.0)
+    faalis (0.24.0)
       cancan
       compass-rails
       devise (>= 3.0.0)
@@ -15,7 +15,7 @@ PATH
       model_discovery (~> 0.2.3)
       modernizr-rails
       omniauth
-      rails (~> 4.0.0)
+      rails (~> 4.0.4)
       sass-rails (>= 4.0.0)
 
 GEM

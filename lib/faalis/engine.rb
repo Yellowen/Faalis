@@ -53,8 +53,8 @@ module Faalis
     mattr_accessor :models_with_permission
 
     # TODO: create a basic setup for this option
-    @@models_with_permission = ["Faalis::User",
-                                "Faalis::Group",
+    @@models_with_permission = ['Faalis::User',
+                                'Faalis::Group',
                                ]
 
     def self.models_with_permission=(value)
@@ -65,7 +65,6 @@ module Faalis
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
 
-
     # locales
     mattr_accessor :locales
     @@locales = ['en', 'fa']
@@ -74,7 +73,8 @@ module Faalis
       yield self
     end
 
-    I18n.locale = :fa
+    I18n.enforce_available_locales = true
+    I18n.locale = :en
     # Fast Gettext Configuration
     Object.send(:include, FastGettext::Translation)
 
