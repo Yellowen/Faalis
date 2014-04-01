@@ -48,7 +48,7 @@ module Faalis
       end
 
       def copy_scss_manifest
-        directory 'stylesheets', 'app/assets/'
+        directory 'stylesheets', 'app/assets/stylesheets'
       end
 
       def show_readme
