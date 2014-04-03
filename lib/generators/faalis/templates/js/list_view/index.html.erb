@@ -55,7 +55,7 @@
     </div>
 </div>
 <% end %>
-<list-view buttons="buttons" model="'<% if model_specified? %><%= model %><% else %><%= resource %><% end %>'" objects="<%= resource.pluralize.underscore %>" title-attribute="'<%= resource_data["title-field"] %>'" details-template="details_template" item-per-page="10" on_delete="on_delete" column_defs="columns">
+<list-view buttons="buttons" model="'<% if model_specified? %><%= model %><% else %><%= resource %><% end %>'" objects="<%= resource.pluralize.underscore %>" title-attribute="'<%= resource_data["title-field"] || 'name' %>'" details-template="details_template" item-per-page="10" on_delete="on_delete" column_defs="columns">
   <div class="small-6 column text-left clearpadding">
     <h3><i class="fa fa-group"></i> <span translate><%= resource.underscore.pluralize.humanize %></span></h3>
   </div>

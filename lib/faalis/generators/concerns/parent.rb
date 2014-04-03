@@ -29,11 +29,6 @@ module Faalis
       # Please pay attention to singular form of name of parents in json defination
       module Parent
 
-        def self.included(base)
-          # Specify the parent resource if there was any
-          #base.class_option :parents, :type => :string, :default => "", :desc => "Specify the parent resource if there was any"
-        end
-
         private
 
         # check for parent

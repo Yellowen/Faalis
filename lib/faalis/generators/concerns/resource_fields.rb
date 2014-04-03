@@ -32,13 +32,6 @@ module Faalis
       # **required**: Field will be non optional.
       module ResourceFields
 
-        def self.included(base)
-          # An array of resource fields. fields should be separated by space
-          # each filed should be in this format `field_name:field_type[:extra_info]
-          # Relation options should be like `{key: value, key2: elem1;elem2, key3: value3}`
-          #base.argument :resource_fields, type: :array, default: [], banner: "fields[:types[:to[{relation_options}]"
-
-        end
 
         private
         # An array of fields like

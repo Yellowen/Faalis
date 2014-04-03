@@ -22,9 +22,14 @@ module Faalis
           #base.class_option :deps, :type => :string, :default => "", :desc => "Dependencies of Angularjs module, comma separated"
         end
 
+        # Is there any dependency ?
+        def have_dependency?
+          resource_data.include? 'deps'
+        end
+
         # Return a list of dependencies.
         def deps
-          resource_data[:deps]
+          resource_data['deps']
         end
       end
     end

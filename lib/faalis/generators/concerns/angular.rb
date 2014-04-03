@@ -9,14 +9,6 @@ module Faalis
       # `app/assets/javascripts`.
       module Angular
 
-        def self.included(base)
-          # Path to js_scaffold target inside 'app/assets/javascripts/'
-          #base.class_option :path, :type => :string, :default => "", :desc => "Path to js_scaffold target inside 'app/assets/javascripts/'"
-
-          # Path to js_scaffold target
-          #base.class_option :raw_path, :type => :string, :default => "", :desc => "Path to js_scaffold target"
-        end
-
         private
 
         # return the relative path to place where scaffold shoud be created.

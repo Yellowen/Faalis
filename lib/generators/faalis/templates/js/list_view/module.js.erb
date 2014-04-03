@@ -1,5 +1,5 @@
 // <%= resource.pluralize %> Module
-var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Filter", "Anim", "Fields",<% if resource_data[:deps] %><% resource_data[:deps].each do |dependency| %> "<%= dependency.camelize %>", <% end %><% end %>]);
+var <%= resource.pluralize %> = angular.module("<%= resource %>", ["ListView", "Filter", "Anim", "Fields",<% if have_dependency? %><% deps.each do |dependency| %> "<%= dependency.camelize %>", <% end %><% end %>]);
 
 <%= render "js/list_view/partials/config.js" %>
 

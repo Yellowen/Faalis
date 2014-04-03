@@ -8,11 +8,6 @@ module Faalis
       # tab
       module Tabs
 
-        def self.included(base)
-          # Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds.
-          #base.class_option :tabs, :type => :string, :default => "", :desc => "Add tabs to 'new' view of scaffold. format: --tabs tab1:'field1;field2',tab2 Note: __all__ field include all fileds."
-        end
-
         private
 
         # Process the user provided tabs

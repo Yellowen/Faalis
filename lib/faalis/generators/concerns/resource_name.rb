@@ -4,11 +4,6 @@ module Faalis
       # Adds the `name` key to json file which specify the resource name.
       module ResourceName
 
-        def self.included(base)
-          # Name of the resource to create.
-          #base.argument :resource_name, :type => :string, :required => true
-        end
-
         private
 
         # Path to the resource

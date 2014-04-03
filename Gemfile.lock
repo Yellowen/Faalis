@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    faalis (0.24.0)
+    faalis (0.24.2)
       cancan
       compass-rails
       devise (>= 3.0.0)

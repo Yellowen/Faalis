@@ -6,12 +6,6 @@ module Faalis
       # Resource model name is used in some processes like permission system.
       module Model
 
-        def self.included(base)
-          # Fields to use in in bulk edit, comma separated
-          #base.class_option :model, :type => :string, :default => "", :desc => "Model name to use"
-
-        end
-
         private
 
         # Does an alternative `model` is specified ?
