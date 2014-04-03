@@ -46,7 +46,7 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
 
   def destroy
     ids = params[:id].split(",")
-    @<%= resource.pluralize.underscore %> = ::<%= resource %>.where(:id => ids)
+    @<%= resource.pluralize.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.where(:id => ids)
     authorize! :destroy, @<%= resource.pluralize.underscore %>
     @<%= resource.pluralize.underscore %>.destroy_all
   end
