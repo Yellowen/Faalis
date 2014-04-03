@@ -1,4 +1,3 @@
-@import "faalis/variables";
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
@@ -1239,23 +1238,17 @@
 // $range-slider-handle-round: $global-rounded;
 // $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
 // $range-slider-handle-cursor: pointer;
+
 $text-direction: ltr;
-$alert-color: $alizarin;
-$success-color: $emerald;
 $include-html-classes: true;
-$input-font-color: $darkgray;
-$fieldset-border-color: #dedede;
-$fieldset-padding: emCalc(20px) emCalc(30px) emCalc(20px);
-$fieldset-margin: emCalc(18px) 0;
-$legend-bg: none;
+$fieldset-border-color: #eee;
+$fieldset-padding: emCalc(20px) emCalc(30px) emCalc(10px);
 $alert-close-color: #fff;
 $alert-close-position: emCalc(12px);
 $section-function-factor: 5%;
 $section-title-bg: #f5f5f5;
 $section-border-color: #dfdfdf;
-$topbar-bg: $dashboard-nav-background;
-$topbar-input-height: emCalc(60px);
-$topbar-transition-speed: 300ms;
+$topbar-margin-bottom: 0;
 $topbar-breakpoint: emCalc(768px); // Change to 9999px for always mobile layout
 
 @import 'foundation';

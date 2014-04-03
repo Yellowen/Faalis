@@ -1,8 +1,5 @@
 @import "faalis/variables";
-//@import "foundation";
-//@import "foundation/components/global";
-//@import "foundation/components/buttons";
-@import "faalis/dashboard/ltr/foundation_and_overrides";
+@import "faalis/ltr/foundation_and_overrides";
 
 .btn {
    @include button-base;
@@ -36,13 +33,13 @@
 }
 
 .tiny {
-   @include button-size($button-tny, false, false);
+   @include button-size($button-tny, false);
 }
 
 .small {
-   @include button-size($button-sml, false, false);
+   @include button-size($button-sml, false);
 }
 
 .medium {
-   @include button-size($button-med, false, false);
+   @include button-size($button-med, false);
 }

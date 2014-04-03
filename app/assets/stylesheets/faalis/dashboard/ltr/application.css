@@ -13,6 +13,7 @@
  *= require faalis/variables
  *= require font-awesome
  *= require faalis/base
+
  *= require ./base
  *= require ./buttons
  *= require_self

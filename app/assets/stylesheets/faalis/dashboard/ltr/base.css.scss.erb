@@ -6,7 +6,7 @@
   src: url(<%= asset_path("OpenSans-Regular.ttf") %>) format('truetype'); /* Saf3â€”5, Chrome4+, FF3.5, Opera 10+ */
 }
 
-* {
+html {
     font-family: 'Open Sans', serif;
 }
 
@@ -25,4 +25,9 @@ textarea {
 }
 .subnav {
     right: 10px;
+}
+
+ul {
+   /*FIXME: We should not use !important here */
+   margin-left: 0 !important;
 }
