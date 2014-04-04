@@ -85,7 +85,7 @@ module Faalis
     FastGettext.default_available_locales = @@locales
 
     FastGettext.default_text_domain = 'faalis'
-    FastGettext.locale = :fa
+    FastGettext.locale = :en
 
     # Site Title
     mattr_accessor :site_title

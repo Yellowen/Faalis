@@ -18,17 +18,17 @@
 # -----------------------------------------------------------------------------
 
 module Faalis
+
+  # I18n related utility functions
   class I18n
 
-    RTL = [
-           :fa,
-           :ar
-          ]
+    RTL = [:fa, :ar]
+
     def self.direction(locale)
       if RTL.include? locale.to_sym
-        "rtl"
+        'rtl'
       else
-        "ltr"
+        'ltr'
       end
     end
   end
