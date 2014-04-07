@@ -18,7 +18,7 @@ module Faalis
     def destroy
       ids = params[:id].split(",")
       @users = User.where(:id => ids)
-      authorize! :destory, @groups
+      authorize! :destory, @users
       @users.destroy_all
     end
 

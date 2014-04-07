@@ -115,7 +115,7 @@ class Faalis::APIController < Faalis::ApplicationController
       end
     else
       logger.info("Load resource using `load_resource`")
-      self.class.load_resource
+      #self.class.load_resource
     end
   end
 
