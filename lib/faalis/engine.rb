@@ -22,8 +22,8 @@ require "compass-rails"
 #require 'zurb-foundation'
 require 'foundation-rails'
 require "font-awesome-rails"
-require "devise"
-require "warden"
+#require "devise"
+#require "warden"
 require "cancan"
 require "mailboxer"
 require "model_discovery"

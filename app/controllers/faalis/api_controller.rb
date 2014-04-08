@@ -30,7 +30,7 @@ class Faalis::APIController < Faalis::ApplicationController
   respond_to :json
 
   # Authenticate user before any action take place
-  before_filter :authenticate
+  before_filter :authenticate_filter
 
   # Check for any presence of filtering query, In querystring and load
   # resource using them
@@ -63,7 +63,7 @@ class Faalis::APIController < Faalis::ApplicationController
   #
   # If you want to change authentication method ? just override this method
   # in you **APIController**
-  def authenticate
+  def authenticate_filter
     authenticate_user!
   end
 
@@ -71,7 +71,7 @@ class Faalis::APIController < Faalis::ApplicationController
   def load_resource_by_query
     # If any query string parameter provided and allow fields specified
     if not request.query_parameters.empty? and not allowed_fields.empty?
-      #load_resource
+
       logger.info ("Load resource by query parameters")
       # Iterate over parameters in query string
       request.query_parameters.each do |key, value|
