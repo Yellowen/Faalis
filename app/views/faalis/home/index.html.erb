@@ -97,20 +97,23 @@
 
       <div class="large-4 columns hide-for-small">
 
+        <% unless user_signed_in? %>
         <h4>Get In Touch!</h4><hr/>
 
-        <a href="<%= faalis.new_user_registration_path %>" class="btn-big">
-          <div class="panel radius callout" align="center">
-            <strong><%= _("Sign UP") %></strong>
-          </div>
-        </a>
+        <div class="row">
+          <a href="<%= faalis.new_user_registration_path %>" class="success button large large-12 columns">
+            <i class="fa fa-user"></i> <strong><%= _("Sign UP") %></strong>
+          </a>
+        </div>
 
-        <a href="<%= faalis.user_session_path %>" class="btn-big">
-          <div class="panel radius callout" align="center">
-            <strong><%= _("Sign In") %></strong>
-          </div>
-        </a>
-
+        <div class="row">
+          <a href="<%= faalis.user_session_path %>" class="large large-12 columns button">
+            <i class="fa fa-sign-in"></i> <strong><%= _("Sign In") %></strong>
+          </a>
+        </div>
+        <% else %>
+        <p>Checkout dashboard section.</p>
+        <% end %>
       </div>
 
       <!-- End Content -->

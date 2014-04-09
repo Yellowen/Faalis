@@ -1,3 +1,5 @@
+@import "faalis/variables";
+
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
@@ -1250,5 +1252,7 @@ $section-title-bg: #f5f5f5;
 $section-border-color: #dfdfdf;
 $topbar-margin-bottom: 0;
 $topbar-breakpoint: emCalc(768px); // Change to 9999px for always mobile layout
+$topbar-bg: $headerbg;
+$topbar-dropdown-toggle-alpha: 0.4;
 
 @import 'foundation';

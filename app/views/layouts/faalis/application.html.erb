@@ -3,18 +3,16 @@
   <head>
     <title><%= Faalis::Engine.site_title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag  Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
+    <%= stylesheet_link_tag  Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="header">
       <div class="large-12 columns">
-        <div class="">
           <!-- Navigation -->
-          <nav class="top-bar">
+          <nav class="top-bar" data-topbar>
             <ul class="title-area">
-              <!-- Title Area -->
               <li class="name">
                 <h1>
                   <a href="<%= faalis.root_path %>">
@@ -22,12 +20,27 @@
                   </a>
                 </h1>
               </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+              <li class="toggle-topbar menu-icon"><a href="#"><%= _('Menu') %></a></li>
             </ul>
 
             <section class="top-bar-section">
-              <ul class="float-right">
-                <li class="has-dropdown"><a href="#"> <%= _("Languages") %></a>
+              <!-- Right Nav Section -->
+              <ul class="<%= Faalis::I18n.direction(I18n.locale) == "ltr" ? "right" : "left" %>">
+                <% unless user_signed_in? %>
+                <li class="has-form"><%= link_to(faalis.new_user_registration_path, :class => "alert button expand") { content_tag(:i, "", class: "fa fa-user") + " #{_('Register')}" } %></li>
+
+                <li class="has-form"><%= link_to(faalis.user_session_path, :class => "button expand") { content_tag(:i, "", class: "fa fa-sign-in") + " #{_('Sign in')}" } %></li>
+                <% else %>
+                <li class="has-form"><%= link_to(faalis.dashboard_path, :class => "success button expand") { content_tag(:i, "", class: "fa fa-dashboard") + " #{_('Dashboard')}" }%></li>
+                </li>
+                <li class="has-form"><%= link_to(faalis.destroy_user_session_path, :class => "alert button expand", :method => :delete) { content_tag(:i, "", class: "fa fa-sign-out") + " #{_('Sign out')}" } %></li>
+                <% end %>
+              </ul>
+
+              <!-- Left Nav Section -->
+              <ul  class="<%= Faalis::I18n.direction(I18n.locale) == "ltr" ? "left" : "right" %>">
+
+                <li class="has-dropdown"><a href="#"><i class="fa fa-flag"></i> <%= _("Languages") %></a>
                   <ul class="dropdown">
                     <% ::I18n.available_locales.each do |locale| %>
                       <li><a href="<%= "/#{locale.to_s}/" %>"><%= locale %></a></li>
@@ -35,30 +48,11 @@
                   </ul>
                 </li>
 
-                <li class="has-dropdown">
-                  <% if not user_signed_in? %>
-                    <a href="#"><%= _("Membership")%></a>
-                    <%else%>
-                    <a href="#">User<%= current_user.first_name %> <%= current_user.first_name %></a>
-                    <%end%>
-
-                    <ul class="dropdown">
-                      <% if user_signed_in? %>
-                        <li><a href="<%= faalis.dashboard_path %>"><%= _("Dashboard") %></a></li>
-                        <li><a href="">Change Password</a></li>
-                        <li><a href="<%= faalis.destroy_user_session_path %>" data-method="delete">Sign Out</a></li>
-                        <%else%>
-                        <li><%= link_to _("Register"), faalis.new_user_registration_path %></li>
-                        <li><%= link_to _("Sign in"), faalis.user_session_path %></li>
-                        <%end%>
-                    </ul>
-                </li>
               </ul>
             </section>
           </nav>
 
           <!-- End Navigation -->
-        </div>
       </div>
     </div>
 
@@ -67,9 +61,7 @@
     <%= debug I18n.locale %>
     <!-- Footer -->
 
-    <footer class="">
-      <div class="large-12 columns">
-        <hr>
+    <footer>
         <div class="row">
           <div class="large-6 columns">
             <p>&copy; Copyright no one at all. Go to town.</p>
@@ -83,7 +75,6 @@
             </ul>
           </div>
         </div>
-      </div>
     </footer>
     <%= javascript_include_tag "faalis/application" %>
   </body>
