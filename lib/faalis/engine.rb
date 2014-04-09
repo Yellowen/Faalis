@@ -93,11 +93,11 @@ module Faalis
 
     # Override devise layout
     config.to_prepare do
-      Devise::SessionsController.layout "faalis/application"
-      Devise::RegistrationsController.layout  "faalis/application"
-      Devise::ConfirmationsController.layout "faalis/application"
-      Devise::UnlocksController.layout "faalis/application"
-      Devise::PasswordsController.layout "faalis/application"
+      Devise::SessionsController.layout 'faalis/simple'
+      Devise::RegistrationsController.layout  'faalis/simple'
+      Devise::ConfirmationsController.layout 'faalis/application'
+      Devise::UnlocksController.layout 'faalis/application'
+      Devise::PasswordsController.layout 'faalis/application'
     end
     #Devise.omniauth_path_prefix = ["/en", "/fa"]
 

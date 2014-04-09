@@ -1,98 +1,62 @@
-<div class="wrapper_signin">
-  <div class="row">
-    <div class="layout_signin">
-      <div class="row">
-	<div class="large-7 columns">
+<div class="row single-form">
 
-          <h1><%= _("Sign in") %></h1>
+  <div class="small-6 columns">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <fieldset>
+        <legend><%= _("Sign In") %></legend>
+        <%= devise_error_messages! %>
+        <div class="field">
+	  <%= f.email_field :email, :autofocus => true, :class => "input email", :placeholder=>_("E-mail") %>
+          <% if resource.errors[:email] -%>
+	    <dd class="danger abel"><%= resource.errors[:email][0]%></dd>
+          <% end -%>
+
+        </div>
+
+        <div class="field">
+	  <%= f.password_field :password, :class => "input password", :placeholder=>_("Password") %>
+          <% if resource.errors[:password] -%>
+	    <dd class="danger abel"><%= resource.errors[:password][0] %></dd>
+          <% end %>
+        </div>
+        <div class="field">
+	  <% if devise_mapping.rememberable? -%>
+	    <div><%= f.check_box :remember_me, :class=>"checkbox" %> <%= f.label _("Remember me") %></div>
+	  <% end %>
+        </div>
+
+        <div class="right submit">
+	  <%= f.submit _("Sign in"), :class => "button"%><br><br>
+        </div>
+        <%= render "devise/shared/links" %>
+
+      </fieldset>
+
+    <% end %>
+  </div>
 
 
-	  <div class="justify big_box ">
+  <div class="small-6 columns">
+    <div class="row">
+      <fieldset>
 
-              <i class="fa-desktop fa fa-5x"></i>
-            <p>
- <%= _("For sign in enter your information !") %>
-            </p>
-	  </div>
-	  <div class="inline">
-	    <div class="justify large-5 left ">
-              <i class="fa-eye fa fa-5x"></i>
-	      <p>
-                <%= _("you can use members area with registratio") %>
-              </p>
-	    </div>
+        <legend><%= _("Login using") %>:</legend>
 
-	    <div class="justify large-5 right">
-              <i class="fa-bar-chart-o fa fa-5x"></i>
-              <p>
-                <%= _("Its simple to register this site") %>
-              </p>
-	    </div>
-	  </div>
-	</div>
-	<div class="large-4 columns">
-	  <div class="row">
-	    <section id="form_signin">
-	      <div id="formbox_login" class="panel radius form">
-		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="text-left">
+          <a href="/auth/google_oauth2/" class="pull_right">
+            <i class="fa-google-plus-square fa fa-3x"></i>
+          </a>
 
-		  <%= devise_error_messages! %>
-		  <div class="field">
-		    <label><%=_("E-mail") %></label>
-		    <%= f.email_field :email, :autofocus => true, :type => "text", :class => "  input email  ", :placeholder=>_("E-mail") %>
-<% if resource.errors[:email] -%>
-		      <dd class="danger abel"><%= resource.errors[:first_name][0]%></dd>
-<% end -%>
+          <a href="/auth/facebook/" class="pull_right">
+            <i class="fa-facebook-square fa fa-3x"></i>
+          </a>
 
-		  </div>
+          <a href="/auth/twitter/" class="pull_right">
+            <i class="fa-twitter-square fa fa-3x"></i>
+          </a>
+        </div>
+      </fieldset>
 
-		  <div class="field">
-		    <label><%=_("Password") %></label>
-		    <%= f.password_field :password, :class => "input password" %>
-<% if resource.errors[:first_name] -%>
-		      <dd class="danger abel"><%= resource.errors[:first_name][0] %></dd>		    <% end -%>
-
-		  </div>
-		  <div class="field">
-		    <% if devise_mapping.rememberable? -%>
-		      <div><%= f.check_box :remember_me, :class=>"checkbox" %> <%= f.label _("remember me") %></div>
-		    <% end %>
-		  </div>
-		  <div class="submit">
-		    <%= f.submit _("  Sign in  "), :class => "button"%><br><br>
-
-		  <%= render "devise/shared/links" %>
-		  </div>
-
-		<% end %>
-	      </div>
-	    </section>
-	  </div>
-
-	  <br />
-	  <div class="form row panel radius">
-
-	    <h3><%= _("Login using") %>:</h3>
-            <div class="text-left">
-		<a href="/auth/google_oauth2/" class="pull_right">
-                  <i class="fa-google-plus-square fa fa-3x"></i>
-		</a>
-
-	      <a href="/auth/facebook/" class="pull_right">
-                <i class="fa-facebook-square fa fa-3x"></i>
-	      </a>
-
-	      <a href="/auth/twitter/" class="pull_right">
-                <i class="fa-twitter-square fa fa-3x"></i>
-	      </a>
-            </div>
-	  </div>
-
-	</div>
-
-      </div>
     </div>
-
-    <br><br>
   </div>
 </div>

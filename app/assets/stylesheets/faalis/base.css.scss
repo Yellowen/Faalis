@@ -49,7 +49,14 @@ footer {
    min-height:60px;
    position:relative;
    margin: 0 auto;
-   color:$lightgray;
+   color: $lightgray;
+
+   &.plain {
+      background: none;
+      div {
+         padding: 5px;
+      }
+   }
 
    div{
       padding:20px 60px;
@@ -315,4 +322,12 @@ small.error {
 .helptext {
   font-size: 0.6em;
   color: $lightgray;
+}
+
+.single-form {
+   padding-top: 5em;
+   min-height: 35em;
+   fieldset {
+      height: 20em;
+   }
 }

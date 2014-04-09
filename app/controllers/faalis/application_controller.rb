@@ -20,7 +20,6 @@ class Faalis::ApplicationController < ActionController::Base
   include FastGettext::Translation
   before_filter :set_locale
 
-
   def set_locale
     FastGettext.add_text_domain 'faalis', :path => "#{Faalis::Engine.root}/config/locales", :type => :po
     # All languages you want to allow
