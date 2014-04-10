@@ -28,5 +28,16 @@
 * Features
 ** DONE Edit Profile
 ** DONE User messages
-** TODO add mailboxer
-** TODO User should can select items of reuslt for controller api by GET
+** DONE add mailboxer
+** DONE User should can select items of result for controller api by GET
+** TODO Resource Groups
+   Resource group is an entity which collect some initial data for a group
+   of resources. For example a Resource group will contains all the necessary
+   permissions to work with those resource group.
+*** Implementation
+    To implement such functionality we need to add a directory like `app/`
+    and add that to `autoload` pathes so rails can autoload any group by
+    reference. Then we need to autodiscovery hook to find all resource
+    groups in migration time `just like the one in mode_discovery` gem.
+    This way we can list all groups easily in runtime and load what ever
+    we want using Rails autoload.

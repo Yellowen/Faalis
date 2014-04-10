@@ -19,19 +19,19 @@ module Faalis
       include Faalis::Generators::Concerns::Model
       include Faalis::Generators::Concerns::AllowQueryOn
       include Faalis::Generators::Concerns::Render
-
+      include Faalis::Generators::Concerns::Where
 
       # Do not install specs
-      class_option :without_specs, :type => :boolean, :default => false, :desc => "Do not install specs"
+      class_option :without_specs, :type => :boolean, :default => false, :desc => 'Do not install specs'
 
       # Generate only spec files
-      class_option :only_specs, :type => :boolean, :default => false, :desc => "Generate only spec files"
+      class_option :only_specs, :type => :boolean, :default => false, :desc => 'Generate only spec files'
 
       # Generate only controller
-      class_option :only_controller, :type => :boolean, :default => false, :desc => "Generate only controller"
+      class_option :only_controller, :type => :boolean, :default => false, :desc => 'Generate only controller'
 
       # Don't show a filter box
-      class_option :no_filter, :type => :boolean, :default => false, :desc => "Don't view a filter box"
+      class_option :no_filter, :type => :boolean, :default => false, :desc => 'Don\'t view a filter box'
 
 
     end
