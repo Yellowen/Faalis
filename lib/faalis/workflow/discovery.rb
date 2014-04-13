@@ -1,13 +1,19 @@
 module Faalis
   module Workflow
+    # Discover all the workflows in current application in addition to
+    # gem files and add them to database for future reference.
     class Discovery
+      # A class method to use in `seed.rb` to create all workflows in
+      # database
       def self.build_table_list
         # Get all gem by requiring them
-        all_gems = Bundler.require()
+        all_gems = Bundler.require
 
         # Discover all model files in gem files and load them
         all_gems.each do |gem|
-          if gem.groups.include? Rails.env.to_sym or gem.groups.include? :default
+          if gem.groups.include?(Rails.env.to_sym) || \
+            gem.groups.include?(:default)
+
             puts "Gem name: #{gem.name}"
             spec = Gem::Specification.find_by_name gem.name
             discover spec.gem_dir
