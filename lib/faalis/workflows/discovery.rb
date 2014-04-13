@@ -1,5 +1,5 @@
 module Faalis
-  module Workflow
+  module Workflows
     # Discover all the workflows in current application in addition to
     # gem files and add them to database for future reference.
     class Discovery

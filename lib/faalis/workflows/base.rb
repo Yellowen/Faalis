@@ -1,5 +1,5 @@
 module Faalis
-  module Workflow
+  module Workflows
 
     # Base class for all the workflows in a `Faalis application`
     class Base
