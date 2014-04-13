@@ -17,17 +17,19 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
-require "devise"
+require 'devise'
 
+# Faalis Module
 module Faalis
 end
 
-require "faalis/engine"
-require "faalis/permissions"
-require "faalis/dashboard"
-require "faalis/omniauth"
-require "faalis/active_record"
-require "faalis/i18n"
-require "faalis/plugins"
-require "faalis/generators/concerns"
-require "faalis/generators"
+require 'faalis/engine'
+require 'faalis/permissions'
+require 'faalis/dashboard'
+require 'faalis/omniauth'
+require 'faalis/active_record'
+require 'faalis/i18n'
+require 'faalis/plugins'
+require 'faalis/generators/concerns'
+require 'faalis/generators'
+require 'faalis/workflow'
