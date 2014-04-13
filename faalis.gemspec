@@ -36,8 +36,9 @@ Gem::Specification.new do |s|
 
   # Assets
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'sass-rails', '>= 4.0.0'
+  s.add_dependency 'sass-rails', '~> 4.0.0'
   s.add_dependency 'compass-rails'
+  s.add_dependency 'sprockets', '~>2.11.0'
 
   s.add_dependency 'foundation-rails'
   s.add_dependency 'font-awesome-rails'
