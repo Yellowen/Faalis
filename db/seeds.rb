@@ -2,6 +2,8 @@
 
 ModelDiscovery::Engine.load_seed
 
+Faalis::Workflows::Discovery.build_table_list
+
 Faalis::Group.create({:name => 'Admin'})
 
 Faalis::User.create({:email => 'admin@example.com',

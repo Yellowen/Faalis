@@ -24,8 +24,8 @@ module Faalis
         discover Rails.root
 
         # Create a content type entry for all Models
-        Faalis::Workflow::Base.subclasses.each do |workflow|
-          Workflow.find_or_create_by(name: workflow.to_s)
+        Faalis::Workflows::Base.subclasses.each do |workflow|
+          Faalis::Workflow.find_or_create_by(name: workflow.to_s)
         end
       end
 
