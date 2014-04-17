@@ -1,5 +1,4 @@
-require "faalis/generators/fields/relation"
-
+require 'faalis/generators/fields/relation'
 
 module Faalis
   module Generators
@@ -32,27 +31,36 @@ module Faalis
       # **required**: Field will be non optional.
       module ResourceFields
 
-
         private
+
         # An array of fields like
         # [name, type]
         def fields
           fields = []
-          if have_fields?
-            resource_data["fields"].each do |field|
-              name = field["name"]
-              type = field["type"]
-              to = field["to"]
-              options = field["options"] || {}
+          relations = ['belongs_to', 'has_many']
 
-              if ["belongs_to", "has_many"].include? type
-                type = Relation.new(type, to, options)
-              end
+          if fields?
+            resource_data['fields'].each do |field|
+              name = field['name']
+              type = field['type']
+              to = field['to']
+              options = field['options'] || {}
 
+              type = Relation.new(type, to, options) if relations.include? type
               fields << [name, type, to]
             end
           end
           fields
+        end
+
+        # Return the value of `attr_name` of `field_name` in
+        # resource_data["fields"]
+        def attrs(field_name, attr_name)
+          if fields?
+            field = fields_with('name', field_name)[0]
+            return field[attr_name]
+          end
+          nil
         end
 
         def fields_hash
@@ -66,76 +74,59 @@ module Faalis
         # Return an string to use as a function parameters each
         # field appears as symbol
         def fields_as_params(relations = false)
-          result = ""
+          # FIXME: cyclomatic complexity is to high
+          result = ''
           field_num = 0
+
           fields.each do |name, type|
             if relations
-              if ["belongs_to"].include? type
+              if ['belongs_to'].include? type
                 result += " :#{name}_id"
               else
                 result += " :#{name}"
               end
+
               field_num += 1
-              if field_num < fields.length
-                result += ","
-              end
+              result += ',' if field_num < fields.length
 
             else
-              unless ["belongs_to", "has_many"].include? type
+              unless ['belongs_to', 'has_many'].include? type
                 result += " :#{name}"
                 field_num += 1
-                if field_num < fields.length
-                  result += ","
-                end
+                result += ',' if field_num < fields.length
               end
             end
-
           end
 
           if result
             result = ",#{result}"
-            if result[-1] == ","
-              result = result[0..-2]
-            end
+            result = result[0..-2] if result[-1] == ','
           end
 
           result
         end
 
         def raw_fields_data
-          if have_fields?
-            return resource_data["fields"]
-          end
-          []
+          resource_data['fields'] || []
         end
 
         def fields_with(attr, value)
           raw_fields_data.select do |f|
-
             if f.include? attr
-
-              if f[attr] == value
-
-                true
-              else
-                false
-              end
+              f[attr] == value ? true : false
             else
               false
             end
-
           end
         end
 
         def no_filter?
-          resource_data.include?("no_filter") &&  resource_data["no_filter"]
+          resource_data.include?('no_filter') &&  resource_data['no_filter']
         end
 
-        def have_fields?
-          if resource_data.include? "fields"
-            unless resource_data["fields"].nil?
-              return true
-            end
+        def fields?
+          if resource_data.include? 'fields'
+            return true unless resource_data['fields'].nil?
           end
           false
         end
