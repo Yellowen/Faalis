@@ -64,7 +64,17 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
 
             scope.update_collection();
         }
+        else {
 
+            scope.multiple = function(){
+                if ("multiple" in scope.field) {
+                    if (scope.field.multiple !== undefined) {
+                        return scope.field.multiple;
+                    }
+                }
+                return false;
+            };
+        }
         // Populate model with new data
         function update_model_data(){
             var new_val = $("#" + scope.element_id).val();

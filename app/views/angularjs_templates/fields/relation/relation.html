@@ -8,9 +8,15 @@
     <option ng-repeat="item in all_options" value="{{ item.id }}" title="{{ item[titleField] || item }}" ng-selected="have(item.id)">{{ item[titleField] || item }}</option>
   </select>
 
-  <select ui-select2="options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" data-placeholder="{{ placeholder }}" ng-required="required" ng-if="field.type === 'in'" ng-change="on_select_change()">
+  <select ui-select2="options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" data-placeholder="{{ placeholder }}" ng-required="required" ng-if="(field.type === 'in') && (multiple() == false)" ng-change="on_select_change()">
     <option ng-repeat="item in field.choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="model === item.name">{{ item.title }}</option>
   </select>
+  <select ui-select2="options" id="{{ element_id }}" ng-model="model" name="{{ field.name }}" data-placeholder="{{ placeholder }}" ng-required="required" ng-if="(field.type === 'in') && (multiple() == true)" multiple ng-change="on_select_change()">
+    <option ng-repeat="item in field.choices" value="{{ item.name }}" title="{{ item.title }}" ng-selected="model === item.name">{{ item.title }}</option>
+  </select>
+
+
+
 
   <!-- Add and Refresh buttons -->
   <div class="float-left">
