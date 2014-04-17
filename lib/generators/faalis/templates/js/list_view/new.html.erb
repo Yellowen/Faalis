@@ -15,7 +15,7 @@
     <% first = true %><% fields.each do |field_name, field_type| %>
     <% if first %><div class="row"><% end %>
       <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
-        <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= field_name.to_s.humanize.capitalize %></span> :</label><% case field_type
+        <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= attrs(field_name, 'title') || field_name.to_s.humanize.capitalize %></span> :</label><% case field_type
          when "belongs_to", "has_many", "in" %>
         <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
         </relation-field>
@@ -37,7 +37,7 @@
 
       <% if first %><div class="row"><% end %>
         <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
-          <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= field_name.to_s.humanize.capitalize %></span> :</label><% case field_type
+          <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= attrs(field_name, 'title') || field_name.to_s.humanize.capitalize %></span> :</label><% case field_type
            when "belongs_to", "has_many", "in" %>
           <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
           </relation-field>
