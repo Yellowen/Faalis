@@ -34,8 +34,20 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
                     return false;
                 }
             };
+            scope.show_buttons = function() {
+                if ("hide_buttons" in scope.field) {
+                    return !scope.field.hide_buttons;
+                }
+                return true;
+            };
 
             scope.update_collection = function(){
+                if ("parent_id" in scope.field) {
+                    if (scope.field.parent_id === undefined) {
+                        return;
+                    }
+                }
+
                 var list_object = API.all(scope.field.to);
                 if ("list_object" in scope.options) {
                     list_object = scope.options.list_object;
