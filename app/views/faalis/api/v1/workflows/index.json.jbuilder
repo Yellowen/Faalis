@@ -1,1 +1,1 @@
-json.array! @workflows, :id, :name
+json.array! @workflows, :id, :title

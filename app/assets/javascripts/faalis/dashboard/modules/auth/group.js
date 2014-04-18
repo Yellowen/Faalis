@@ -64,6 +64,7 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
     $scope.permissions = [];
     $scope.editing = false;
 
+
     $scope.$on("update_perms", function(event) {
         var sel_perms = [];
         event.targetScope.selected_perms.forEach(function(perm){
@@ -93,8 +94,13 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
                 .catch(catch_error);
     }
 
+    API.all('workflows').getList()
+            .then(function(data){
+                $scope.workflows = data;
+            })
+            .catch(catch_error);
 
-    var permissions = API.all('permissions').getList()
+    API.all('permissions').getList()
             .then(function(data){
                 $scope.permissions = data;
                 $scope.$emit("update_perms");
