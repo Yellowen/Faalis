@@ -4,10 +4,23 @@ module Faalis
     # Base class for all the workflows in a `Faalis application`
     class Base
 
+      attr_reader :id
+
+      def initialize(model_instance)
+        @id = model_instance.id
+      end
+
+      # class method to set the title of current workflow
       def self.title(name)
         #binding.pry
-        self.class.to_s.underscore
+        @@title = name
       end
+
+      # Getter for current workflow title
+      def title
+        @@title || self.class.to_s.underscore
+      end
+
 
       def self.icon(icons)
       end

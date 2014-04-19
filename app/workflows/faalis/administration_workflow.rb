@@ -1,4 +1,4 @@
-module Faalise
+module Faalis
   class AdministrationWorkflow < Faalis::Workflows::Base
 
     title _("Administration Workflow")
