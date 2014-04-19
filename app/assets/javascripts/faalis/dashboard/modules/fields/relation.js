@@ -65,7 +65,7 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             scope.update_collection();
         }
         else {
-
+            // Add support for `multiple` key in fields with `in` type
             scope.multiple = function(){
                 if ("multiple" in scope.field) {
                     if (scope.field.multiple !== undefined) {
