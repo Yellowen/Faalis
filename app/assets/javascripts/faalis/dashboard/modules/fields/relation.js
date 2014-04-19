@@ -8,6 +8,7 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
+
         scope.element_id = "id_" + scope.field.name;
         scope.msg_element_id = "id_" + scope.field.name + "_msg";
         scope.show_help_btn = false;
@@ -41,14 +42,20 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
                 return true;
             };
 
-            scope.update_collection = function(){
+            // Update current field collection list by execute a query on remote end.
+            // if `force` param had non undefined value this method will skip `parent_id`
+            // check
+            scope.update_collection = function(force){
                 if ("parent_id" in scope.field) {
-                    if (scope.field.parent_id === undefined) {
+                    if ((scope.field.parent_id === undefined) && (force === undefined)) {
                         return;
                     }
                 }
-
-                var list_object = API.all(scope.field.to);
+                var to = scope.field.to;
+                if (typeof(scope.field.to) === "function") {
+                    to = scope.field.to();
+                }
+                var list_object = API.all(to);
                 if ("list_object" in scope.options) {
                     list_object = scope.options.list_object;
                 }
@@ -97,6 +104,20 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             }
         };
         update_model_data();
+
+        // User can provide a variable to watch on. In case of
+        // any change below function will run. for example:
+        // suppose your select box should update by using value
+        // of other fields. you can add `update-on-change="OtherVar"
+        // to your relation-field.
+        // Remember that in that case you should specify a function
+        // for `to` field of `field-data` which should return a url
+        // of destination resource.
+        scope.$watch('update_on_change', function(newv) {
+            if (newv !== undefined) {
+                scope.update_collection(true);
+            }
+        });
     }
     // Actual object of <relation-field> directive
     return {
@@ -129,6 +150,10 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
 
             // relation field data
             field: '=fieldData',
+
+            // A variable to watch. in case of change current field
+            // collection will update.
+            update_on_change: '=updateOnChange',
 
             // Actual Angularjs ng-model
             model: '='
