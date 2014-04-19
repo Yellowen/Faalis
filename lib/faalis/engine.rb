@@ -126,5 +126,6 @@ module Faalis
     mattr_accessor :dashboard_js_manifest
     @@dashboard_js_manifest = "controlpanel/application.js"
 
+    config.autoload_paths << "app/workflows"
   end
 end
