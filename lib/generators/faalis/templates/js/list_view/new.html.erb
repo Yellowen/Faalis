@@ -7,10 +7,11 @@
 <% unless any_tabs? %>
 <form novalidate name="form">
  <div class="newform">
-  <fieldset class="form">
+   <% fieldsets.each do |fieldset_name, fields| %>
 
-    <legend ng-if="!editing"><span translate>New <%= resource.underscore.pluralize.humanize %></span></legend>
-    <legend ng-if="editing"><span translate>Edit <%= resource.underscore.pluralize.humanize %></span></legend>
+  <fieldset class="form">
+    <legend ng-if="!editing"><span translate><%= fieldset_name  %></span></legend>
+    <legend ng-if="editing"><span translate>Edit <%= fieldset_name %></span></legend>
 
     <% first = true %><% fields.each do |field_name, field_type| %>
     <% if first %><div class="row"><% end %>
@@ -26,6 +27,7 @@
       </div>
     <% if not first %></div><% end %><% first = !first %><% end %>
   </fieldset>
+   <% end %>
 </form>
 
 <% else %><form novalidate name="form"><% tab_count = 1 %><% tabs.each do |name, field_names| %>

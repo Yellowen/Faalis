@@ -20,6 +20,7 @@ module Faalis
       include Faalis::Generators::Concerns::AllowQueryOn
       include Faalis::Generators::Concerns::Render
       include Faalis::Generators::Concerns::Where
+      include Faalis::Generators::Concerns::Fieldset
 
       # Do not install specs
       class_option :without_specs, :type => :boolean, :default => false, :desc => 'Do not install specs'

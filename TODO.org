@@ -26,6 +26,12 @@
 ** TODO override *find_resource* in *APIController*
    So our api can response to requests with filter data. For example "/api/v1/posts?title_contains=example"
    https://github.com/ryanb/cancan/blob/440bd887008820efbee8b954790f79b48d8264a6/lib/cancan/controller_resource.rb#L103
+** TODO Add json field options to field data strcuture in javascript file when type == "in"
+** TODO Add a feature which each field can be a collection of a resource parent field.
+   for example we can define a field with type of  "collection" and "to" value of "Author.books"
+   and current resource is a child of "Author" resource. So this field will render as a combobox
+   and it will contains all the books of current author.
+** TODO add an ability to categorize fields of an scaffold to fieldsets
 * Features
 ** DONE Edit Profile
 ** DONE User messages

@@ -11,11 +11,8 @@ module Faalis
         end
 
         def no_bulk?
-          if bulk_edit_fields.length > 0
-            true
-          else
-            false
-          end
+          return true unless bulk_edit_fields.empty?
+          false
         end
       end
     end

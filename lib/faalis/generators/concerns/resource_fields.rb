@@ -120,6 +120,12 @@ module Faalis
           end
         end
 
+        def fields_with_attribute(attr)
+          raw_fields_data.select do |f|
+            f.include? attr ? true : false
+          end
+        end
+
         def no_filter?
           resource_data.include?('no_filter') &&  resource_data['no_filter']
         end
