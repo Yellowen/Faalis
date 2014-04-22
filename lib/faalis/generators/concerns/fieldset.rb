@@ -15,19 +15,18 @@ module Faalis
           fields - fields_with_attribute("fieldset")
         end
 
-        end
-        def fieldsets
-          fieldsets = {resource.underscore.pluralize.humanize => fieldset_less_fields}
-          fields = fields_with_attribute("fieldset")
-          fields.each do |f|
-            if fieldsets.include? f["fieldset"]
-              fieldsets[f["fieldset"]] << f
-            else
-              fieldsets[f["fieldset"]] = [f]
-            end
+      end
+      def fieldsets
+        fieldsets = {resource.underscore.pluralize.humanize => fieldset_less_fields}
+        fields = fields_with_attribute("fieldset")
+        fields.each do |f|
+          if fieldsets.include? f["fieldset"]
+            fieldsets[f["fieldset"]] << f
+          else
+            fieldsets[f["fieldset"]] = [f]
           end
-          fieldsets
         end
+        fieldsets
       end
     end
   end
