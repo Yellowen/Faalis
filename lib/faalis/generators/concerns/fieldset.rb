@@ -1,3 +1,5 @@
+require 'set'
+
 module Faalis
   module Generators
     module Concerns
@@ -12,21 +14,34 @@ module Faalis
         end
 
         def fieldset_less_fields
-          fields - fields_with_attribute("fieldset")
+          fields = Set.new(raw_fields_data) - Set.new(fields_with_attribute("fieldset"))
+          puts ">>>>>>>>>>>((((((((((((( #{fields.to_a}"
+          fields.to_a
         end
 
-      end
-      def fieldsets
-        fieldsets = {resource.underscore.pluralize.humanize => fieldset_less_fields}
-        fields = fields_with_attribute("fieldset")
-        fields.each do |f|
-          if fieldsets.include? f["fieldset"]
-            fieldsets[f["fieldset"]] << f
-          else
-            fieldsets[f["fieldset"]] = [f]
+        # TODO: fix this method to allow usage on tabbed views too
+        # Return fields categorized by fieldsets. Only for
+        # views without tabs
+        def fieldsets
+          fieldsets = {resource.underscore.pluralize.humanize => fieldset_less_fields}
+          fields = fields_with_attribute('fieldset')
+          fields.each do |f|
+            if fieldsets.include? f['fieldset']
+              fieldsets[f['fieldset']] << f
+            else
+              fieldsets[f['fieldset']] = [f]
+            end
           end
+
+          # Convert hashes to proper field structure to use in templates
+          fieldsets.each do |fieldset_name, fieldset_fields|
+            if fieldset_fields[0].is_a? Hash
+              fieldsets[fieldset_name] = fields(fieldset_fields)
+            end
+          end
+
+          fieldsets
         end
-        fieldsets
       end
     end
   end

@@ -35,12 +35,12 @@ module Faalis
 
         # An array of fields like
         # [name, type]
-        def fields
+        def fields(fields_source = resource_data['fields'])
           fields = []
           relations = ['belongs_to', 'has_many']
 
           if fields?
-            resource_data['fields'].each do |field|
+            fields_source.each do |field|
               name = field['name']
               type = field['type']
               to = field['to']
@@ -121,9 +121,10 @@ module Faalis
         end
 
         def fields_with_attribute(attr)
-          raw_fields_data.select do |f|
-            f.include? attr ? true : false
+          field_list = raw_fields_data.select do |f|
+            f.include?(attr) ? true : false
           end
+          field_list
         end
 
         def no_filter?
