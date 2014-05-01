@@ -15,7 +15,6 @@ module Faalis
 
         def fieldset_less_fields
           fields = Set.new(raw_fields_data) - Set.new(fields_with_attribute("fieldset"))
-          puts ">>>>>>>>>>>((((((((((((( #{fields.to_a}"
           fields.to_a
         end
 
