@@ -36,7 +36,8 @@ module Faalis
                         :trackable,
                         :lockable,
                         :timeoutable,
-                        :validatable]
+                        :validatable,
+                        :omniauthable]
 
     if Rails.env.production?
       @@devise_options << :confirmable

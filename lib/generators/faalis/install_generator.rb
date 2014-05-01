@@ -45,10 +45,16 @@ module Faalis
 
       def copy_js_manifest
         template 'application.js', "#{angularjs_app_path}application.js"
+        empty_directory "#{angularjs_app_path}modules"
       end
 
       def copy_scss_manifest
         directory 'stylesheets', 'app/assets/stylesheets'
+      end
+
+      def install_routes
+        route 'mount Faalis::Engine => "/"'
+        route 'Faalis::Routes.define_api_routes'
       end
 
       def show_readme
