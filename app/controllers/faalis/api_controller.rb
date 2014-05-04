@@ -16,8 +16,7 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-require_dependency "faalis/api_controller"
-
+require_dependency 'faalis/api_controller'
 
 # This class is the base class of all API controllers in any **Faalis**
 # host applications. Each host Rails application should have an `APIController`
@@ -47,7 +46,7 @@ class Faalis::APIController < Faalis::ApplicationController
   rescue_from CanCan::AccessDenied do |exception|
 
     render :status => 403, :json => {
-      :error => _("You don't have access to this page"),
+      :error => _('You don\'t have access to this page'),
       :orig_msg => exception.message,
       :action => exception.action,
     }
@@ -72,7 +71,7 @@ class Faalis::APIController < Faalis::ApplicationController
     # If any query string parameter provided and allow fields specified
     if not request.query_parameters.empty? and not allowed_fields.empty?
 
-      logger.info ("Load resource by query parameters")
+      logger.info ('Load resource by query parameters')
       # Iterate over parameters in query string
       request.query_parameters.each do |key, value|
         # each key can be like filename[__querytype]=value
@@ -80,13 +79,13 @@ class Faalis::APIController < Faalis::ApplicationController
         # to use in model. For example these is a query type scope called
         # `gt` which mean the mentioned field should be greater than the
         # value
-        field, query_type = key.split("__")
+        field, query_type = key.split('__')
 
         if allowed_fields.include? field
           # If field name is in the allowed list
           # If no query type specified we will use assignment scope.
           if query_type.nil?
-            query_type = "assignment"
+            query_type = 'assignment'
           end
 
           # If model have an scope with the "#{query_type}_query" name.
@@ -114,7 +113,7 @@ class Faalis::APIController < Faalis::ApplicationController
         end
       end
     else
-      logger.info("Load resource using `load_resource`")
+      logger.info('Load resource using `load_resource`')
       #self.class.load_resource
     end
   end

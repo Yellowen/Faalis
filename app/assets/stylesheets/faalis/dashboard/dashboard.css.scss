@@ -16,78 +16,78 @@ body {
 }
 
 header {
-  background: white;
-  border-bottom: 1px solid $orange;
-  position: fixed;
-  z-index: 1000;
-  height: $header-height;
-  width: 100%;
-  ul {
-    list-style: none;
+   background: white;
+   border-bottom: 1px solid $orange;
+   position: fixed;
+   z-index: 1000;
+   height: $header-height;
+   width: 100%;
+   ul {
+      list-style: none;
 
-    li {
-      display: inline;
-      h1 {
-        font-size: 1.5em;
-        display: inline-block;
-        font-weight: 300;
-        color: $darkgray;
-      }
-      .search {
-        display: inline-block;
-        padding: 0 10px;
-        input {
-          display: inline-block;
-          border-radius: 4px;
-          border-color: $lightergray;
-          box-shadow: none;
-          padding: 0 0.5em;
-        }
-      }
-    }
-  }
-
-  nav {
-    ul {
       li {
-        display: inline-block;
-        padding: (($header-height / 4) - 3px) 20px 0 ;
-        height: $header-height;
-        margin: 0 5px;
-
-        &:not(.staticitem):hover {
-          border-bottom: 5px solid $alizarin;
-        }
-        span {
-          vertical-align: middle;
-          color: $darkgray;
-          cursor:pointer;
-          font-size: 1.2em;
-        }
-
+         display: inline;
+         h1 {
+            font-size: 1.5em;
+            display: inline-block;
+            font-weight: 300;
+            color: $darkgray;
+         }
+         .search {
+            display: inline-block;
+            padding: 0 10px;
+            input {
+               display: inline-block;
+               border-radius: 4px;
+               border-color: $lightergray;
+               box-shadow: none;
+               padding: 0 0.5em;
+            }
+         }
       }
-    }
-  }
+   }
 
-  .subnav {
-    background: $alizarin;
-    position: fixed;
-    top: $header-height;
-    padding: 10px 20px;
-    border-radius: 0 0 5px 5px;
-    min-width: 100px;
-    color: white;
-    ul li {
-      padding: 4px 10px;
-      a {
-        color: lighten($lightergray, 5%);
-        text-shadow: 0 1px 1px $darkgray;
-        &:hover {
-          color: white;
-        }
+   nav {
+      ul {
+         li {
+            display: inline-block;
+            padding: (($header-height / 4) - 3px) 20px 0 ;
+            height: $header-height;
+            margin: 0 5px;
+
+            &:not(.staticitem):hover {
+               border-bottom: 5px solid $alizarin;
+            }
+            span {
+               vertical-align: middle;
+               color: $darkgray;
+               cursor:pointer;
+               font-size: 1.2em;
+            }
+
+         }
       }
-    }
-  }
+   }
+
+   .subnav {
+      background: $alizarin;
+      position: fixed;
+      top: $header-height;
+      padding: 10px 20px;
+      border-radius: 0 0 5px 5px;
+      min-width: 100px;
+      color: white;
+      ul li {
+         padding: 4px 10px;
+         a {
+            color: lighten($lightergray, 5%);
+            text-shadow: 0 1px 1px $darkgray;
+            &:hover {
+               color: white;
+            }
+         }
+      }
+   }
 }
 
 
@@ -126,103 +126,103 @@ ul{
       }
 
    }
-  &.whitewidget {
-    background: white;
-  }
+   &.whitewidget {
+      background: white;
+   }
 }
 
 fieldset {
-  label {
-    padding: 0px 0px 5px 0px;
-  }
-  .permissions {
-    margin: 0 10px;
+   label {
+      padding: 0px 0px 5px 0px;
+   }
+   .permissions {
+      margin: 0 10px;
 
-    .field {
-      height: 16em;
-      border: 1px solid $lightergray;
-      color: $darkgray;
+      .field {
+         height: 16em;
+         border: 1px solid $lightergray;
+         color: $darkgray;
 
-      padding: 5px 10px;
-      overflow-y: auto;
-      ul {
-        list-style: none;
-        li {
-          cursor: pointer;
-          i.green-text {
-            color: $emerald;
-          }
-        }
+         padding: 5px 10px;
+         overflow-y: auto;
+         ul {
+            list-style: none;
+            li {
+               cursor: pointer;
+               i.green-text {
+                  color: $emerald;
+               }
+            }
+         }
       }
-    }
-  }
+   }
 }
 
 .dashboard-body {
-  padding-top: $header-height + 20px;
+   padding-top: $header-height + 20px;
 }
 
 .buttons-header {
-  span {
-    margin: 5px 5px 5px;
-  }
+   span {
+      margin: 5px 5px 5px;
+   }
 }
 
 .input-error {
-  border-color: $alizarin !important;
+   border-color: $alizarin !important;
 }
 
 // Tabs --------------------------------------------------------
 @mixin active-tab ($color){
-  border-bottom: $tab-bottom-border solid $color;
+   border-bottom: $tab-bottom-border solid $color;
 }
 
 .tabs {
-  width: 100%;
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid $lightergray;
-  border-bottom: $tab-bottom-border solid $lightgray;
-  padding: 0 10px;
-  font-size: 14px;
-  height: $tabs-height;
-  color: $lightergray;
-  ul {
-    list-style: none;
+   width: 100%;
+   background: #fff;
+   border-radius: 4px;
+   border: 1px solid $lightergray;
+   border-bottom: $tab-bottom-border solid $lightgray;
+   padding: 0 10px;
+   font-size: 14px;
+   height: $tabs-height;
+   color: $lightergray;
+   ul {
+      list-style: none;
 
-    li {
-      color: $darkgray;
-      display: inline-block;
-      position: relative;
-      padding: 10px 20px;
-      cursor: pointer;
-      height: $tabs-height - 1px;
+      li {
+         color: $darkgray;
+         display: inline-block;
+         position: relative;
+         padding: 10px 20px;
+         cursor: pointer;
+         height: $tabs-height - 1px;
 
-      &.active {
-        &.tab1{
-          @include active-tab($emerald);
-        }
-        &.tab2{
-          @include active-tab($alizarin);
-        }
-        &.tab3{
-          @include active-tab($peter_river);
-        }
-        &.tab4{
-          @include active-tab($orange);
-        }
+         &.active {
+            &.tab1{
+               @include active-tab($emerald);
+            }
+            &.tab2{
+               @include active-tab($alizarin);
+            }
+            &.tab3{
+               @include active-tab($peter_river);
+            }
+            &.tab4{
+               @include active-tab($orange);
+            }
 
+         }
       }
-    }
-  }
+   }
 }
 
 
 .filter_box {
-  fieldset {
-    background: $peter_river;
-    border-color: darken($peter_river, 5%);
-  }
+   fieldset {
+      background: $peter_river;
+      border-color: darken($peter_river, 5%);
+   }
 }
 
 .nonestyle {
