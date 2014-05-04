@@ -34,7 +34,6 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 .*\#*#
 \#*#
-docs/*
+docs/ruby
+docs/js
 node_modules/
-
-doc/
