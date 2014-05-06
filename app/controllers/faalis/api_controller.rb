@@ -66,7 +66,6 @@ module Faalis
     # Load resource by using parameters specified in querystring.
     def load_resource_by_query
       # If any query string parameter provided and allow fields specified
-      puts ">>>>>>>>>>>>>>>>>>>>>>>>>>> #{allowed_fields}"
       if !request.query_parameters.empty? && !allowed_fields.empty?
 
         logger.info ('Load resource by query parameters')
@@ -119,7 +118,7 @@ module Faalis
     # This attribute holds the allowed fileds which we will allow for
     # making query
     def allowed_fields
-      return allowed_query_on if defined? :allowed_query_on
+      return allowed_query_on if self.respond_to?(:allowed_query_on, true)
       @allowed_fields || []
     end
 
