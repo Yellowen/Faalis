@@ -228,3 +228,15 @@ fieldset {
 .nonestyle {
    list-style: none;
 }
+
+.fancy_table {
+   border: 1px solid $lightergray;
+   padding: 0px 0px !important;
+   thead {
+      tr {
+         th {
+            padding: 0;
+         }
+      }
+   }
+}
