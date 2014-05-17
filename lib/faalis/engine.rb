@@ -23,8 +23,10 @@ require 'font-awesome-rails'
 require 'cancan'
 require 'mailboxer'
 require 'model_discovery'
+require 'angularjs-rails'
 
 module Faalis
+  # `Engine` class of **Faalis**.
   class Engine < ::Rails::Engine
 
     isolate_namespace Faalis

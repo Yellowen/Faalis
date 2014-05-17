@@ -22,3 +22,5 @@ group :development, :test do
   gem 'github-markup'
   gem "guard-livereload", require: false
 end
+
+gem 'angularjs-rails', '~>1.2.16'

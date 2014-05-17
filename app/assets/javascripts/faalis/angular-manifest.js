@@ -2,8 +2,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require faalis/dashboard/lib/angular
-//= require faalis/dashboard/lib/angular-route
-//= require faalis/dashboard/lib/angular-animate
+//= require angular
+//= require angular-animate
+//= require angular-resource
+//= require angular-route
+//= require angular-sanitize
 //= require faalis/dashboard/lib/angular-gettext
 //= require faalis/dashboard/lib/lodash.underscore
