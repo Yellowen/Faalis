@@ -18,15 +18,11 @@
 # -----------------------------------------------------------------------------
 require 'fast_gettext'
 require 'modernizr-rails'
-#require "compass-rails"
-#require 'zurb-foundation'
 require 'foundation-rails'
-require "font-awesome-rails"
-#require "devise"
-#require "warden"
-require "cancan"
-require "mailboxer"
-require "model_discovery"
+require 'font-awesome-rails'
+require 'cancan'
+require 'mailboxer'
+require 'model_discovery'
 
 module Faalis
   class Engine < ::Rails::Engine
