@@ -8,4 +8,4 @@
 //= require angular-route
 //= require angular-sanitize
 //= require faalis/dashboard/lib/angular-gettext
-//= require faalis/dashboard/lib/lodash.underscore
+//= require lodash

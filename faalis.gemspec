@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'modernizr-rails'
   s.add_dependency 'angularjs-rails', '~>1.2.16'
+  s.add_dependency 'lodash-rails', '~>2.4'
   s.add_development_dependency 'execjs'
 
   # i18n

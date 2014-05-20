@@ -24,6 +24,7 @@ require 'cancan'
 require 'mailboxer'
 require 'model_discovery'
 require 'angularjs-rails'
+require 'lodash-rails'
 
 module Faalis
   # `Engine` class of **Faalis**.
