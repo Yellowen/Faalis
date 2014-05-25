@@ -14,7 +14,8 @@ module Faalis
         # @return a Hash of tabs like
         def tabs
           if resource_data.include? "tabs"
-            tabs = resource_data"tabs"
+
+            tabs = resource_data["tabs"]
             result = {}
             tabs.each do |tab|
               name = tab["name"]
