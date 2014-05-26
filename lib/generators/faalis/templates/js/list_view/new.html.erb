@@ -35,7 +35,7 @@
     <fieldset class="form" ng-show="current_tab == <%= tab_count %>">
       <legend ng-if="!editing"><span translate>New <%= name %></span></legend>
       <legend ng-if="editing"><span translate>Edit <%= name %></span></legend><% first = true %>
-      <% fields.each do |field_name, field_type| %><% if tabs[name].include? field_name or tabs[name].include? "__all__" %>
+      <% fields.each do |field_name, field_type| %><% if tab_has_field?(name, field_name) or tabs[name].include? "__all__" %>
 
       <% if first %><div class="row"><% end %>
         <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">

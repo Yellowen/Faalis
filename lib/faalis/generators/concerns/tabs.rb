@@ -1,3 +1,5 @@
+require 'set'
+
 module Faalis
   module Generators
     module Concerns
@@ -9,18 +11,30 @@ module Faalis
       module Tabs
 
         private
-
         # Process the user provided tabs
         # @return a Hash of tabs like
         def tabs
-          if resource_data.include? "tabs"
+          tabbed_fields = Set.new
 
-            tabs = resource_data["tabs"]
+          if resource_data.include? 'tabs'
+
+            tabs = resource_data['tabs']
             result = {}
             tabs.each do |tab|
-              name = tab["name"]
-              fields_list = fields_with("tab", tab["id"])
+              name = tab['name']
+              fields_list = fields_with('tab', tab['id'])
+              fields_list.each do |f|
+                tabbed_fields << f
+              end
               result[name] = fields_list
+            end
+            all_fields = Set.new resource_data['fields']
+
+            result.each do |k, v|
+              if v.empty?
+                diff = (all_fields ^ tabbed_fields).to_a
+                result[k] = diff
+              end
             end
             return result
           else
@@ -28,8 +42,15 @@ module Faalis
           end
         end
 
+        def tab_has_field?(tab_name, field_name)
+          it_does = tabs[tab_name].select do |f|
+            f['name'] == field_name
+          end
+          !it_does.empty?
+        end
+
         def any_tabs?
-          resource_data.include? "tabs"
+          resource_data.include? 'tabs'
         end
 
       end
