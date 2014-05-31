@@ -68,6 +68,18 @@ module Faalis
     mattr_accessor :locales
     @@locales = ['en', 'fa']
 
+    # ==> ORM configuration
+    # Load and configure the ORM. Supports :active_record (default) and
+    # :mongoid (bson_ext recommended) by default. Other ORMs may be
+    # available as additional gems.
+    # ORM name to use. either 'active_record' or 'mongoid'
+    mattr_accessor :orm
+
+    def orm=(orm_name)
+      @@orm = orm_name
+      require "devise/orm/#{orm_name}"
+    end
+
     def self.setup
       yield self
     end
@@ -118,7 +130,7 @@ module Faalis
 
 
     def self.dashboard_modules=(value)
-        @@dashboard_modules.merge!(value)
+      @@dashboard_modules.merge!(value)
     end
 
     # Dashboard default javascript manifest
