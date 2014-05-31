@@ -18,7 +18,16 @@
 # -----------------------------------------------------------------------------
 
 module Faalis
-  class User < ActiveRecord::Base
+  class User < ActiveRecord::Base; end if Faalis::ORM.active_record?
+  class User; end if Faalis::ORM.mongoid?
+
+  User.class_eval do
+
+    if Faalis::ORM.mongoid?
+      include Mongoid::Document
+
+      field :email, :type String
+    end
     #acts as messageable for mailboxer
     acts_as_messageable
 
