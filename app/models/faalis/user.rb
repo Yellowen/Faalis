@@ -32,13 +32,14 @@ module Faalis
 
     # TODO: Check this gem for mongoid support
     #acts as messageable for mailboxer
-    acts_as_messageable
+    #acts_as_messageable
 
     validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
     validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
     validates :email, presence: true, length: {minimum: 6}
 
     belongs_to :group
+    devise *@@devise_options
 
   end
 end

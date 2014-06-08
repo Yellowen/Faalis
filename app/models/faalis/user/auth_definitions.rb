@@ -25,8 +25,6 @@ module Faalis
         @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
       end
 
-      devise *@@devise_options
-
       def name
         if first_name or last_name
           "#{first_name} #{last_name}"
