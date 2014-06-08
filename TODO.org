@@ -31,6 +31,7 @@
    and it will contains all the books of current author.
 ** TODO add an ability to categorize fields of an scaffold to fieldsets
 ** TODO add a feature to dashboard generatores which allow some fields value to depend on other field values
+** TODO use groupify gem instead of current group functionality
 * Features
 ** DONE Edit Profile
 ** DONE User messages

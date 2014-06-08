@@ -55,6 +55,9 @@ Gem::Specification.new do |s|
   # model_discovery
   s.add_dependency 'model_discovery', '~> 0.2.3'
 
+  # To support multiple ORM at once
+  s.add_dependency 'orm_adapter'
+
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'ruby_parser'
   s.add_development_dependency 'rdoc'

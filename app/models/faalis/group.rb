@@ -18,7 +18,18 @@
 # -----------------------------------------------------------------------------
 
 module Faalis
-  class Group < ActiveRecord::Base
+  # **Group** model for **Faalis** platform
+  class Group < Faalis::ORM.proper_base_class
+
+    # Define **User** fields if current ORM was mongoid
+    if Faalis::ORM.mongoid?
+      include Mongoid::Document
+      include Mongoid::Timestamps
+
+      field :name, :type => String
+    end
+
+
     validates :name, :presence => true
 
     has_and_belongs_to_many :permissions
