@@ -27,7 +27,7 @@ module Faalis
     if Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
-      include Faalis::User::Mongoid
+      include Faalis::User::MongoidFields
     end
 
     # TODO: Check this gem for mongoid support

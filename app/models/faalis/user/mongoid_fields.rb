@@ -1,5 +1,5 @@
 module Faalis
-  module User::Mongoid
+  module User::MongoidFields
     extend ActiveSupport::Concern
 
     included do

@@ -1,7 +1,9 @@
 module Faalis
+  # Pemission modules of Faalis which each resource model should
+  # include this concern. By default **Faalis** include this concern
+  # in active record base and mongoid document classes.
   module Permissions
     extend ActiveSupport::Concern
-
 
     module ClassMethods
 
