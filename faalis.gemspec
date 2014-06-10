@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
 
   # Authorization
   s.add_dependency 'cancan'
-  s.add_dependency 'mailboxer'
+  #s.add_dependency 'mailboxer'
 
   # API
   s.add_dependency 'jbuilder'
@@ -58,7 +58,7 @@ Gem::Specification.new do |s|
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'
 
-  s.add_development_dependency 'sqlite3'
+  #s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'ruby_parser'
   s.add_development_dependency 'rdoc'
   s.add_development_dependency 'rspec-rails', '~> 3.0.0.beta'
