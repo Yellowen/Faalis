@@ -19,16 +19,35 @@
 
 module Faalis
   module Generators
-    # Generator responsible for `model` generator
-    class ModelGenerator < Rails::Generators::Base
+    # Generator responsible for `scaffold` generator
+    class ScaffoldGenerator < Rails::Generators::Base
       include Faalis::Generators::Concerns::RequireFields
       include Faalis::Generators::Concerns::Parent
       include Faalis::Generators::Concerns::JsonInput
       include Faalis::Generators::Concerns::ResourceName
       include Faalis::Generators::Concerns::ResourceFields
 
-      desc 'Create models from dashboard'
+      desc 'Create full faalis full scaffold'
+      class_option :no_model
+      class_option :no_route
+      class_option :no_controller
 
+      def create_scaffold
+        if options.empty?
+          puts "nothing defined"
+        end
+        create_model
+      end
+
+      private
+      def create_model
+        puts "name "+ resource_data["name"]
+        fields_list = ""
+        fields.each do |name, type, _to|
+          fields_list = fields_list + " #{name}:#{type} "
+        end
+        puts fields_list
+      end
 
     end
   end
