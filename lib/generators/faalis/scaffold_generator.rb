@@ -34,21 +34,34 @@ module Faalis
 
       def create_scaffold
         if options.empty?
-          puts "nothing defined"
         end
         create_model
       end
 
       private
       def create_model
-        puts "name "+ resource_data["name"]
-        fields_list = ""
-        fields.each do |name, type, _to|
-          fields_list = fields_list + " #{name}:#{type} "
-        end
-        puts fields_list
-      end
+        result = []
+        all_fields = []
+        fields.each do |name, type, to|
 
+          case type
+          when "belongs_to"
+            type_ = "integer"
+            name_ = "#{to.singularize}_id"
+            result << [name_, type_]
+            puts "Dont forget to create relations of #{name} and #{to} models"
+          when "text", "integer", "string"
+            result << [name, type]
+          end
+
+          all_fields = result.collect do |x|
+            x.join(":")
+          end
+
+        end
+        all_fields = all_fields.join(" ")
+        invoke("active_record:model", [resource_data["name"], "list_order:string", "name:string"], {migration: true, timestamps: true})
+      end
     end
   end
 end
