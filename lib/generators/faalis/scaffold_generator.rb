@@ -62,6 +62,11 @@ module Faalis
         all_fields = all_fields.join(" ")
         invoke("active_record:model", [resource_data["name"], "list_order:string", "name:string"], {migration: true, timestamps: true})
       end
+
+      def create_list_view
+        #faalis:js:list_view
+
+      end
     end
   end
 end
