@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'gettext_i18n_rails'
 
   # model_discovery
-  s.add_dependency 'model_discovery', '~> 0.2.3'
+  s.add_dependency 'model_discovery', '~> 0.3.0'
 
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'

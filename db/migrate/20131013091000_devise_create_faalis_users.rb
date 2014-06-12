@@ -38,6 +38,9 @@ class DeviseCreateFaalisUsers < ActiveRecord::Migration
         t.datetime :confirmed_at
         t.datetime :confirmation_sent_at
         t.string   :unconfirmed_email # Only if using reconfirmable
+
+        # Token authenticatable
+        t.string :authentication_token
       end
 
       ## Lockable
@@ -45,8 +48,6 @@ class DeviseCreateFaalisUsers < ActiveRecord::Migration
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
-      ## Token authenticatable
-      # t.string :authentication_token
 
 
       t.timestamps

@@ -27,6 +27,8 @@ module Faalis
       include Mongoid::Timestamps
 
       field :name, :type => String
+
+      embedded_in :user, :class_name => 'Faalis::User'
     end
 
 

@@ -23,21 +23,53 @@ module Faalis
       field :current_sign_in_ip, :type => String
       field :last_sign_in_ip,    :type => String
 
+
       ## Confirmable
       # field :confirmation_token,   :type => String
       # field :confirmed_at,         :type => Time
       # field :confirmation_sent_at, :type => Time
       # field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
-      ## Lockable
-      # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-      # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
-      # field :locked_at,       :type => Time
+      # Lockable
+      field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
+      field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
+      field :locked_at,       :type => Time
 
-      ## Token authenticatable
-      # field :authentication_token, :type => String
+      # Token authenticatable
+      field :authentication_token, :type => String
+
       # run 'rake db:mongoid:create_indexes' to create indexes
-      index({ email: 1 }, { unique: true, background: true })
+      if not Devise.omniauth_providers.empty?
+        # Service
+        field :provider, :type => String, :default => ''
+        field :uid, :type => String
+      end
+
+      if Rails.env.production?
+        # Confirmable
+        field :confirmation_token,   :type => String
+        field :confirmed_at,         :type => Time
+        field :confirmation_sent_at, :type => Time
+
+        # Only if using reconfirmable
+        field :unconfirmed_email,    :type => String
+      end
+
+      embeds_many :group, :class_name => 'Faalis::Group'
+
+      index({:email =>  1 },
+            {:unique => true, :background => true })
+      index({:reset_password_token => 1},
+            {:unique => true, :background => true })
+      index({:unlock_token => 1},
+            {:unique => true, :background => true })
+      index({:authentication_token => 1},
+            {:unique => true, :background => true })
+
+      if Rails.env.production?
+        index({:confirmation_token => 1},
+              {:unique => true, :background => true })
+      end
 
     end
   end
