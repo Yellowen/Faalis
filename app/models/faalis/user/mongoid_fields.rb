@@ -56,7 +56,7 @@ module Faalis
         field :unconfirmed_email,    type: String
       end
 
-      embeds_many :group, class_name: 'Faalis::Group'
+      embeds_many :groups, class_name: 'Faalis::Group'
 
       index({ email:  1 },
             { unique: true, background: true })
