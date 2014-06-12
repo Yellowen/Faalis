@@ -25,11 +25,11 @@ elsif Faalis::ORM.mongoid?
   admin = Faalis::User.create(email: 'admin@example.com',
                               password: '123123123',
                               password_confirmation: '123123123')
-  puts ">>>>>>>>>>>>> #{admin.group}"
-  admin.groups = [Group.new(name: 'Admin')]
+
+  admin.groups = [Faalis::Group.new(name: 'Admin')]
 
   guest = Faalis::User.create(email: 'user@example.com',
                                 password: '123123123',
                                 password_confirmation: '123123123')
-  guest.groups = [Group.new(name: 'Guest')]
+  guest.groups = [Faalis::Group.new(name: 'Guest')]
 end

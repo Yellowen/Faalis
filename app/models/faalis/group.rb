@@ -30,9 +30,11 @@ module Faalis
       embedded_in :user, class_name: 'Faalis::User'
     end
 
+    has_many :users if Faalis::ORM.active_record?
+
     validates :name, presence: true
 
     has_and_belongs_to_many :permissions
-    has_many :users
+
   end
 end
