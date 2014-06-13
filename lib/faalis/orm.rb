@@ -4,11 +4,16 @@ module Faalis
   class ORM
 
     def self.active_record?
-      Faalis::Engine.orm.to_s == 'active_record'
+      current == 'active_record'
     end
 
     def self.mongoid?
-      Faalis::Engine.orm.to_s == 'mongoid'
+      current == 'mongoid'
+    end
+
+    # current orm
+    def self.current
+      Faalis::Engine.orm.to_s
     end
 
     # This class method returns the base class of current ORM
