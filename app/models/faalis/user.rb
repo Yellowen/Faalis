@@ -21,24 +21,29 @@ module Faalis
   # **User** model for **Faalis** platform
   class User < Faalis::ORM.proper_base_class
 
+    # AuthDefinitions contains all the **Devise** related configurations.
     include Faalis::User::AuthDefinitions
 
-    # Define **User** fields if current ORM was mongoid
+    # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
       include Faalis::User::MongoidFields
+      # FIXME: Port mailboxer to work with mongoid
     end
 
-    # TODO: Check this gem for mongoid support
-    #acts as messageable for mailboxer
-    #acts_as_messageable
+    # Define **User** fields if current ORM was ActiveRecord-------------------
+    if Faalis::ORM.active_record?
+      belongs_to :group
+      # acts as messageable for mailboxer
+      acts_as_messageable
+    end
 
+    # Validations
     validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
     validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
     validates :email, presence: true, length: {minimum: 6}
 
-    belongs_to :group
     devise *@@devise_options
 
   end
