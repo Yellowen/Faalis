@@ -29,6 +29,7 @@ module Faalis
       include Mongoid::Document
       include Mongoid::Timestamps
       include Faalis::User::MongoidFields
+      include Faalis::Permissions
       # FIXME: Port mailboxer to work with mongoid
     end
 

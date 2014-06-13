@@ -1,4 +1,5 @@
-if Faalis::ORM.active_record?
+case Faalis::ORM.current
+when 'active_record'
   # Add inline permissions to any active record models. So we can use them
   # to authorize user access.
   module ActiveRecord
@@ -6,10 +7,14 @@ if Faalis::ORM.active_record?
       include Faalis::Permissions
     end
   end
-elsif Faalis::ORM.mongoid?
+end
+#when 'mongoid'
   # Add inline permissions to any mongoid document. So we can use them
   # to authorize user access.
-  module Mongoid::Document
-    include Faalis::Permissions
-  end
-end
+  # FIXME: Check why `Faalis::Permissions` does not add to Document class
+#module Mongoid
+    #module Document
+      #include Faalis::Permissions
+    #end
+  #end
+#end

@@ -24,9 +24,11 @@ module Faalis
     if Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
+      include Faalis::Permissions
 
       field :name, type: String
       embedded_in :user
+      embeds_many :permissions
     end
 
     # Group Definition for **ActiveRecord**

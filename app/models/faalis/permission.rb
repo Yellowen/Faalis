@@ -5,13 +5,13 @@ module Faalis
       include Mongoid::Document
       include Mongoid::Timestamps
 
-      field :model, :type => String
-      field :permission_type, :type => String
+      field :model, type: String
+      field :permission_type, type: String
 
-
+      embedded_in :groups
     end
 
-    has_and_belongs_to_many :groups # if Faalis::ORM.active_record?
+    has_and_belongs_to_many :groups if Faalis::ORM.active_record?
 
     def string_repr
       _("can %s %s") % [_(self.permission_type.to_s), self.model.underscore.humanize]
