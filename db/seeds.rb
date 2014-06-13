@@ -35,4 +35,4 @@ when 'mongoid'
 end
 
 
-#Faalis::Discovery::Permissions.create_all_permissions
+Faalis::Discovery::Permissions.create_all_permissions
