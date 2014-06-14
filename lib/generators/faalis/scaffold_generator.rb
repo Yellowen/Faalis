@@ -31,6 +31,7 @@ module Faalis
       class_option :no_model
       class_option :no_route
       class_option :no_controller
+      class_option :no_migration
 
       def create_scaffold
         if options.empty?
@@ -50,16 +51,17 @@ module Faalis
 
       private
       def create_controller
-        invoke "controller :#{resource_data["name"]}"
+        #invoke "controller :#{resource_data["name"]}"
       end
 
       def create_route
-          route "resources :#{resource_data["name"]}"
+        #route "resources :#{resource_data["name"]}"
       end
 
       def create_model
         result = []
         all_fields = []
+        relations = "\n"
         fields.each do |name, type, to|
 
           case type
@@ -67,7 +69,7 @@ module Faalis
             type_ = "integer"
             name_ = "#{to.singularize}_id"
             result << [name_, type_]
-            relations << [to]
+            relations << "belongs_to :#{to}\n"
           when "text", "integer", "string"
             result << [name, type]
           end
@@ -78,13 +80,19 @@ module Faalis
 
         end
         all_fields = all_fields.join(" ")
-        invoke("active_record:model", [resource_data["name"], "list_order:string", "name:string"], {migration: true, timestamps: true})
-        inject_into_file "models/#{resource_data["name"]}.rb" do
-          relations.each do |x|
-                      puts "belongs_to :#{to}"
+        invoke("active_record:model", [resource_data["name"], "list_order:string", "name:string"], {
+                 migration: true, migration: !options[:no_migration], timestamps: true
+               })
+        if File.exist?("app/models/#{resource_data["name"]}.rb")
+          inject_into_file "app/models/#{resource_data["name"]}.rb", after: "Base" do
+            relations
           end
+        else
+          puts "Could not find file app/models/#{resource_data["name"]}"
         end
       end
+
+
 
       def create_list_view
         #faalis:js:list_view
