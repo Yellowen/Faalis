@@ -44,18 +44,22 @@ module Faalis
           create_route
         end
         unless options[:no_controller]
-          create_controller
+          #create_controller
         end
-
+        create_list_view
       end
 
       private
-      def create_controller
-        #invoke "controller :#{resource_data["name"]}"
-      end
 
+      # Create a dedicated controller, It does not have any relation to Faalis
+      # API controller that creates by Faalis:js:js_view generator
+      # TODO: fix the `controller` generator name
+      def create_controller
+        #invoke "controller #{resource_data["name"]}"
+      end
+      # Create route of the scaffold in config/routes.rb
       def create_route
-        #route "resources :#{resource_data["name"]}"
+        route "resources :#{resource_data["name"].pluralize}"
       end
 
       def create_model
@@ -92,10 +96,8 @@ module Faalis
         end
       end
 
-
-
       def create_list_view
-        #faalis:js:list_view
+        invoke "faalis:js:list_view", [jsonfile]
 
       end
     end
