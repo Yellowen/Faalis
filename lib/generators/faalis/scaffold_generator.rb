@@ -35,10 +35,28 @@ module Faalis
       def create_scaffold
         if options.empty?
         end
-        create_model
+
+        unless options[:no_model]
+          create_model
+        end
+        unless options[:no_route]
+          create_route
+        end
+        unless options[:no_controller]
+          create_controller
+        end
+
       end
 
       private
+      def create_controller
+        invoke "controller :#{resource_data["name"]}"
+      end
+
+      def create_route
+          route "resources :#{resource_data["name"]}"
+      end
+
       def create_model
         result = []
         all_fields = []
@@ -49,7 +67,7 @@ module Faalis
             type_ = "integer"
             name_ = "#{to.singularize}_id"
             result << [name_, type_]
-            puts "Dont forget to create relations of #{name} and #{to} models"
+            relations << [to]
           when "text", "integer", "string"
             result << [name, type]
           end
@@ -61,6 +79,11 @@ module Faalis
         end
         all_fields = all_fields.join(" ")
         invoke("active_record:model", [resource_data["name"], "list_order:string", "name:string"], {migration: true, timestamps: true})
+        inject_into_file "models/#{resource_data["name"]}.rb" do
+          relations.each do |x|
+                      puts "belongs_to :#{to}"
+          end
+        end
       end
 
       def create_list_view
