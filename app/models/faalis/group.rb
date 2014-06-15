@@ -27,15 +27,10 @@ module Faalis
       include Faalis::Permissions
 
       field :name, type: String
-      embedded_in :user
-      embeds_many :permissions
     end
 
-    # Group Definition for **ActiveRecord**
-    if Faalis::ORM.active_record?
-      has_and_belongs_to_many :users
-      has_and_belongs_to_many :permissions
-    end
+    has_and_belongs_to_many :users, class_name: 'Faalis::User'
+    has_and_belongs_to_many :permissions, class_name: 'Faalis::Permission'
 
     # Validations
     validates :name, presence: true
