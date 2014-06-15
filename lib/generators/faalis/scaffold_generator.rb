@@ -73,7 +73,7 @@ module Faalis
             type_ = "integer"
             name_ = "#{to.singularize}_id"
             result << [name_, type_]
-            relations << "belongs_to :#{to}\n"
+            relations << "belongs_to :#{to.singularize}\n"
           when "text", "integer", "string"
             result << [name, type]
           end
@@ -83,9 +83,9 @@ module Faalis
           end
 
         end
-        all_fields = all_fields.join(" ")
-        invoke("active_record:model", [resource_data["name"], "list_order:string", "name:string"], {
-                 migration: true, migration: !options[:no_migration], timestamps: true
+        #all_fields = all_fields.join(" ")
+        invoke("active_record:model", [resource_data["name"], *all_fields], {
+                 migration: !options[:no_migration], timestamps: true
                })
         if File.exist?("app/models/#{resource_data["name"]}.rb")
           inject_into_file "app/models/#{resource_data["name"]}.rb", after: "Base" do
