@@ -3,10 +3,13 @@
 ModelDiscovery::Engine.load_seed
 
 #Faalis::Workflows::Discovery.build_table_list
+Faalis::Discovery::Permissions.create_all_permissions
 
 case Faalis::ORM.current
 when 'active_record'
   admin_group = Faalis::Group.create(name: 'Admin')
+
+  admin_group.permissions = Faalis::Permission.all
 
   admin =Faalis::User.create(email: 'admin@example.com',
                              password: '123123123',
@@ -27,7 +30,13 @@ when 'mongoid'
                               password_confirmation: '123123123')
 
   admin_group = Faalis::Group.create(name: 'Admin')
-  admin.groups = [admin_group]
+
+  Faalis::Permission.each do |perm|
+    admin_group.permissions << perm
+  end
+  admin_group.save!
+
+  admin.groups << admin_group
 
   guest = Faalis::User.create(email: 'user@example.com',
                               password: '123123123',
@@ -38,6 +47,3 @@ end
 
 admin.save
 guest.save
-
-
-Faalis::Discovery::Permissions.create_all_permissions

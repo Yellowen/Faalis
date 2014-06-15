@@ -19,15 +19,12 @@ module Faalis
     def user_permissions
       @permissions = {}
       perms = []
-      current_user.groups.each do |group|
-        group.permissions.each do |perm|
-          tmp = DummyPerm.new
-          tmp.model = perm.model
-          tmp.permission_type = perm.permission_type
-          perms << tmp
-        end
+      current_user.permissions do |perm|
+        tmp = DummyPerm.new
+        tmp.model = perm.model
+        tmp.permission_type = perm.permission_type
+        perms << tmp
       end
-
       perms.uniq!
 
       # Generate a suitable Hash for permissions
