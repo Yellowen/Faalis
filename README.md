@@ -20,25 +20,36 @@ end
 
 ## Installation
 
-1. Add this to your `config/environments/development.rb`
+1. First add `faalis` to your `Gemfile` like
+
+```ruby
+# Make sure to add this source to you Gemfile
+source 'http://rails-assets.org'
+
+gem "faalis"
+```
+**Note**: Make sure to add `source 'http://rails-assets.org'` to your `Gemfile`.
+
+2. Iinstall your project dependencies using `bundle`
+
+```ruby
+bundle install
+```
+
+3. Add this to your `config/environments/development.rb`
 
 ```ruby
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 ```
 
-In production, :host should be set to the actual host of your application.
+In production, `:host` should be set to the actual host of your application.
 
-2. Ensure you have flash messages in app/views/layouts/application.html.erb.
+4. Ensure you have flash messages in `app/views/layouts/application.html.erb`.
 For example (Only if you want to change default layout):
 
 ```rhtml
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 ```
-
-
-3. Perfrom `rails generate faalis:install_all` to copy necessary files.
-4. Perform `rake db:migrate` and enjoy Faalis
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Yellowen/faalis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+5. Perfrom `rails generate faalis:install_all` to copy necessary files.
+6. Perform `rake db:migrate` and enjoy Faalis

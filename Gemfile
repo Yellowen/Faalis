@@ -1,5 +1,4 @@
-source "http://rubygems.org"
-
+source 'http://rubygems.org'
 
 # Declare your gem's dependencies in faalis.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -22,5 +21,3 @@ group :development, :test do
   gem 'github-markup'
   gem "guard-livereload", require: false
 end
-
-gem 'angularjs-rails', '~>1.2.16'
