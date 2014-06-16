@@ -1,21 +1,24 @@
 module Faalis
+  # Pemission modules of Faalis which each resource model should
+  # include this concern. By default **Faalis** include this concern
+  # in active record base and mongoid document classes.
   module Permissions
     extend ActiveSupport::Concern
 
-
+    # Class methods which will add to model by including
+    # `Faalis::Permissions`
     module ClassMethods
-
       # Default permission hash
       @@permissions = {
-        :read => nil,
-        :update => nil,
-        :create => nil,
-        :destroy => nil,
+        read: nil,
+        update: nil,
+        create: nil,
+        destroy: nil,
       }
 
       @@only_owner = false
 
-      # @return an array of strings representation of permissions
+      # Return an array of strings representation of permissions
       def permission_strings(model)
         strings = []
         model_name = model.to_s
@@ -26,8 +29,8 @@ module Faalis
         end
         @@permissions.each do |key, value|
           strings << {
-            :name => "#{key}|#{model_name}",
-            :string => _("can %s %s") % [_(key.to_s), humanize_name]
+            name: "#{key}|#{model_name}",
+            string: _("can %s %s") % [_(key.to_s), humanize_name]
           }
         end
         strings

@@ -31,12 +31,17 @@ class Ability
 
     # IMPORTANT: Remove this snippet with more suitable one
     # TODO: Remove this snippet with more suitable one
-    user.group.permissions.each do |permission|
-      can permission.permission_type.to_sym, permission.model.constantize
+    user.groups.eaach do |group|
+      group.permissions.each do |permission|
+        can permission.permission_type.to_sym, permission.model.constantize
+      end
     end
 
-    if user and user.group_id == 1
-      can :manage, :all
+    if user
+      if Faalis::Group.where('name' => 'Admin',
+                             'users.email' => user.email).presence?
+        can :manage, :all
+      end
     end
   end
 end

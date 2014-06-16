@@ -24,13 +24,14 @@ module Faalis
 end
 
 require 'faalis/engine'
+require 'faalis/orm'
 require 'faalis/permissions'
 require 'faalis/dashboard'
 require 'faalis/omniauth'
-require 'faalis/active_record'
 require 'faalis/i18n'
 require 'faalis/plugins'
 require 'faalis/generators/concerns'
 require 'faalis/generators'
 require 'faalis/workflows'
 require 'faalis/route'
+require 'faalis/discovery'

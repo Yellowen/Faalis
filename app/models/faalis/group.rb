@@ -18,10 +18,22 @@
 # -----------------------------------------------------------------------------
 
 module Faalis
-  class Group < ActiveRecord::Base
-    validates :name, :presence => true
+  # **Group** model for **Faalis** platform
+  class Group < Faalis::ORM.proper_base_class
+    # Define **Group** fields if current ORM was **Mongoid**
+    if Faalis::ORM.mongoid?
+      include Mongoid::Document
+      include Mongoid::Timestamps
+      include Faalis::Permissions
 
-    has_and_belongs_to_many :permissions
-    has_many :users
+      field :name, type: String
+    end
+
+    has_and_belongs_to_many :users, class_name: 'Faalis::User'
+    has_and_belongs_to_many :permissions, class_name: 'Faalis::Permission'
+
+    # Validations
+    validates :name, presence: true
+
   end
 end
