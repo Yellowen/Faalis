@@ -7,5 +7,6 @@
 //= require angular-resource
 //= require angular-route
 //= require angular-sanitize
-//= require faalis/dashboard/lib/angular-gettext
+//= require angular-gettext/angular-gettext
+//= require ng-grid/ng-grid
 //= require lodash

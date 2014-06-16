@@ -47,6 +47,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'lodash-rails', '~>2.4'
   s.add_development_dependency 'execjs'
 
+  # Fake gems provided by rails-assets
+  # to use these gems user should add
+  # `source 'http://rails-assets.org' to the
+  # gemfile
+  s.add_dependency 'rails-assets-angular-gettext'
+  s.add_dependency 'rails-assets-ng-grid'
+
   # i18n
   s.add_dependency 'fast_gettext'
   s.add_development_dependency 'gettext'
