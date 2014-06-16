@@ -28,24 +28,21 @@ module Faalis
       include Faalis::Generators::Concerns::ResourceFields
 
       desc 'Create full faalis full scaffold'
+      # FIXME: These options should have :type and :desc or even default
+      #        value
       class_option :no_model
       class_option :no_route
       class_option :no_controller
       class_option :no_migration
 
+      # FIXME: Add method documents HERE
       def create_scaffold
         if options.empty?
+          # TODO: ....
         end
-
-        unless options[:no_model]
-          create_model
-        end
-        unless options[:no_route]
-          create_route
-        end
-        unless options[:no_controller]
-          #create_controller
-        end
+        create_model unless options[:no_model].nil?
+        create_route unless options[:no_route]
+        create_controller unless options[:no_controller]
         create_list_view
       end
 
@@ -67,31 +64,30 @@ module Faalis
       def create_model
         result = []
         all_fields = []
-        relations = "\n"
+        relations = '\n'
         fields.each do |name, type, to|
-
           case type
-          when "belongs_to"
-            type_ = "integer"
+          when 'belongs_to'
+            type_ = 'integer'
             name_ = "#{to.singularize}_id"
             result << [name_, type_]
             relations << "belongs_to :#{to.singularize}\n"
-          when "text", "integer", "string"
+          when 'text', 'integer', 'string'
             result << [name, type]
-          when "in"
-            result << [name, "string"]
+          when 'in'
+            result << [name, 'string']
           end
 
           all_fields = result.collect do |x|
-            x.join(":")
+            x.join(':')
           end
 
         end
-        invoke("active_record:model", [resource_data["name"], *all_fields], {
+        invoke('active_record:model', [resource_data['name'], *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
         if File.exist?("app/models/#{resource_data["name"]}.rb")
-          inject_into_file "app/models/#{resource_data["name"]}.rb", after: "Base" do
+          inject_into_file "app/models/#{resource_data["name"]}.rb", after: 'Base' do
             relations
           end
         else
@@ -101,7 +97,7 @@ module Faalis
 
       #Invoke Faalis list view generator
       def create_list_view
-        invoke "faalis:js:list_view", [jsonfile]
+        invoke 'faalis:js:list_view', [jsonfile]
 
       end
     end
