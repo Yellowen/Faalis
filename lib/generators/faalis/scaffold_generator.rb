@@ -19,7 +19,7 @@
 
 module Faalis
   module Generators
-    # Generator responsible for `scaffold` generator
+    # Generator Full Faalis scaffold with dashboard
     class ScaffoldGenerator < Rails::Generators::Base
       include Faalis::Generators::Concerns::RequireFields
       include Faalis::Generators::Concerns::Parent
@@ -62,6 +62,8 @@ module Faalis
         route "resources :#{resource_data["name"].pluralize}"
       end
 
+      #Create model of the scaffold with belongs_to support
+      #It does not support has_many relation yet
       def create_model
         result = []
         all_fields = []
@@ -76,6 +78,8 @@ module Faalis
             relations << "belongs_to :#{to.singularize}\n"
           when "text", "integer", "string"
             result << [name, type]
+          when "in"
+            result << [name, "string"]
           end
 
           all_fields = result.collect do |x|
@@ -83,7 +87,6 @@ module Faalis
           end
 
         end
-        #all_fields = all_fields.join(" ")
         invoke("active_record:model", [resource_data["name"], *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
@@ -96,6 +99,7 @@ module Faalis
         end
       end
 
+      #Invoke Faalis list view generator
       def create_list_view
         invoke "faalis:js:list_view", [jsonfile]
 
