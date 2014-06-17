@@ -12,3 +12,5 @@
 //= require restangular/restangular
 //= require ng-grid/ng-grid
 //= require ngQuickDate/ng-quick-date
+//= require select2/select2
+//= require angular-ui-select2/select2
