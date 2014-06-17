@@ -19,9 +19,9 @@
  *= require faalis/dashboard/dashboard
  *= require faalis/dashboard/sidebar
  *= require faalis/dashboard/list_view
- *= require faalis/dashboard/ng-quick-date
- *= require faalis/dashboard/ng-quick-date-default-theme
- *= require faalis/dashboard/ng-grid
- *= require faalis/dashboard/select2
+ *= require ngQuickDate/ng-quick-date
+ *= require ngQuickDate/ng-quick-date-default-theme
+ *= require ng-grid/ng-grid
+ *= require select2/select2
  *= require_tree ../share/
 */

@@ -31,7 +31,7 @@ class Ability
 
     # IMPORTANT: Remove this snippet with more suitable one
     # TODO: Remove this snippet with more suitable one
-    user.groups.eaach do |group|
+    user.groups.each do |group|
       group.permissions.each do |permission|
         can permission.permission_type.to_sym, permission.model.constantize
       end
@@ -39,7 +39,7 @@ class Ability
 
     if user
       if Faalis::Group.where('name' => 'Admin',
-                             'users.email' => user.email).presence?
+                             'users.email' => user.email).exists?
         can :manage, :all
       end
     end
