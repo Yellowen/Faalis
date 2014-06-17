@@ -54,6 +54,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angular-gettext'
   s.add_dependency 'rails-assets-ng-grid', '~>2.0.11'
   s.add_dependency 'rails-assets-restangular', '~>1.4.0'
+  s.add_dependency 'rails-assets-ngQuickDate', '~>1.3.0'
 
   # i18n
   s.add_dependency 'fast_gettext'

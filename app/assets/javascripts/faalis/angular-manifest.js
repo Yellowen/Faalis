@@ -8,7 +8,7 @@
 //= require angular-route
 //= require angular-sanitize
 //= require angular-gettext/angular-gettext
-//= require ng-grid/ng-grid
-//= require ng-grid/ng-grid
-//= require restangular/restangular
 //= require lodash
+//= require restangular/restangular
+//= require ng-grid/ng-grid
+//= require ngQuickDate/ng-quick-date
