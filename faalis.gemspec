@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
   # `source 'http://rails-assets.org' to the
   # gemfile
   s.add_dependency 'rails-assets-angular-gettext'
-  s.add_dependency 'rails-assets-ng-grid'
+  s.add_dependency 'rails-assets-ng-grid', '~>2.0.11'
 
   # i18n
   s.add_dependency 'fast_gettext'
