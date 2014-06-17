@@ -9,4 +9,6 @@
 //= require angular-sanitize
 //= require angular-gettext/angular-gettext
 //= require ng-grid/ng-grid
+//= require ng-grid/ng-grid
+//= require restangular/restangular
 //= require lodash
