@@ -11,7 +11,7 @@ module Faalis
         # method in models (If `Faalis::Permissions` included in
         # model it has the permission_strings). And concat the
         # permissions to `@permissions` instance method.
-        ::ApplicationModels.each do |m|
+        ::ApplicationModels.to_adapter.find_all.each do |m|
           model = m.model.constantize
           if model.respond_to? :permission_strings
             block.call(model)
