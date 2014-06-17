@@ -42,7 +42,7 @@ module Faalis
         permission_objects do |object|
           object.possible_permissions.each do |perm|
             puts "Create Perm: #{object} - #{perm}"
-            Faalis::Permission.create(model: object,
+            Faalis::Permission.create(model: object.to_s,
                                       permission_type: perm)
           end
         end
