@@ -72,7 +72,7 @@ module Faalis
             name_ = "#{to.singularize}_id"
             result << [name_, type_]
             relations << "belongs_to :#{to.singularize}\n"
-          when 'text', 'integer', 'string'
+          when 'text', 'integer', 'string', 'boolean'
             result << [name, type]
           when 'in'
             result << [name, 'string']
