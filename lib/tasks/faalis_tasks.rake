@@ -2,17 +2,23 @@ namespace :faalis do
 
   namespace :js do
 
-    desc "Collect all the strings which marked for translation from javascript files"
-    task :collect => :environment do
-      `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --base #{Faalis::Engine.root}/ nggettext_extract`
+    namespace :i18n do
+      desc "Collect all the strings which marked for translation from javascript files"
+      task :collect => :environment do
+        puts `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --base #{Faalis::Engine.root}/ --base #{Rails.root}/ nggettext_extract -d -v`
+      end
+
+      desc "Compile all the strings which marked for translation in javascript files"
+      task :compile => :environment do
+        `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js nggettext_compile`
+      end
+
+      desc "Compile all the strings which marked for translation in javascript files"
+      task :help => :environment do
+        `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --help`
+      end
+
     end
-
-    desc "Compile all the strings which marked for translation in javascript files"
-    task :compile => :environment do
-      `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js nggettext_compile`
-    end
-
-
     task :remove_copyright_header do
       Dir.glob("{app,lib}/**/*.js").each do |file|
         puts ">> #{file}"

@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '~>4.0.4'
+  s.add_dependency 'rails', '~>4.1.0'
 
   # Authentication
   s.add_dependency 'omniauth'
