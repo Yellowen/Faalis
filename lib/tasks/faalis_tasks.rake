@@ -5,17 +5,20 @@ namespace :faalis do
     namespace :i18n do
       desc "Collect all the strings which marked for translation from javascript files"
       task :collect => :environment do
-        puts `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --base #{Faalis::Engine.root}/ --base #{Rails.root}/ nggettext_extract -d -v`
+        base = "--base #{Faalis::Engine.root}/ --base #{Rails.root}/"
+        puts "grunt --gruntfile #{Rails.root}/lib/tasks/grunt/Gruntfile.js #{base} nggettext_extract -d -v"
+        puts `grunt --gruntfile #{Rails.root}/lib/tasks/grunt/Gruntfile.js #{base} nggettext_extract -d -v`
       end
 
       desc "Compile all the strings which marked for translation in javascript files"
       task :compile => :environment do
-        `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js nggettext_compile`
+        base = "--base #{Faalis::Engine.root}/ --base #{Rails.root}/"
+        puts `grunt --gruntfile #{Rails.root}/lib/tasks/grunt/Gruntfile.js #{base} nggettext_compile -d -v`
       end
 
       desc "Compile all the strings which marked for translation in javascript files"
       task :help => :environment do
-        `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --help`
+        puts `grunt --gruntfile #{Faalis::Engine.root}/lib/tasks/grunt/Gruntfile.js --help`
       end
 
     end
