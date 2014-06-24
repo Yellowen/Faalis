@@ -38,12 +38,12 @@ when 'mongoid'
 
   admin.groups << admin_group
 
-  guest = Faalis::User.create(email: 'user@example.com',
+  user = Faalis::User.create(email: 'user@example.com',
                               password: '123123123',
                               password_confirmation: '123123123')
   guest_group = Faalis::Group.new(name: 'Guest')
-  guest.groups = [guest_group]
+  user.groups = [guest_group]
 end
 
 admin.save
-guest.save
+user.save
