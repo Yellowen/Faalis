@@ -19,25 +19,27 @@
 
 module Faalis
   module Generators
-    # Generator responsible for `install_i18n` generator
-    class InstallI18nGenerator < Rails::Generators::Base
-      source_root File.expand_path('../templates/i18n', __FILE__)
+    module Js
+      # Generator responsible for `install_i18n` generator
+      class InstallI18nGenerator < Rails::Generators::Base
+        source_root File.expand_path('../../templates/', __FILE__)
 
-      desc 'Copy all the necessary files to use Faalis client side i18n'
+        desc 'Copy all the necessary files to use Faalis client side i18n'
 
-      def copy_init_files
-        template 'Gruntfile.js', 'lib/tasks/grunt/Gruntfile.js'
-      end
+        def copy_init_files
+          template 'i18n/Gruntfile.js.erb', 'lib/tasks/grunt/Gruntfile.js'
+        end
 
-      def show_readme
-        readme 'README' if behavior == :invoke
-      end
+        def show_readme
+          readme 'i18n/README' if behavior == :invoke
+        end
 
-      private
+        private
 
-      def angularjs_app_path
-        path = Faalis::Engine.dashboard_js_manifest.split('/')[0..-2].join('/')
-        "app/assets/javascripts/#{path}/"
+        def angularjs_app_path
+          path = Faalis::Engine.dashboard_js_manifest.split('/')[0..-2].join('/')
+          "app/assets/javascripts/#{path}/"
+        end
       end
     end
   end
