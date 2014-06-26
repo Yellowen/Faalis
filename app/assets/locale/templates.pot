@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: app/views/angularjs_templates/auth/groups/details.html
+msgid "Group Name :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/details.html
+msgid "Permissions :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/index.html
+#: app/views/angularjs_templates/auth/index.html
+#: app/assets/javascripts/faalis/dashboard/modules/auth/auth.js
+msgid "Groups"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "New Group"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Edit Group"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Name :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Workflows"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Choose any workflow which you want to allow user to have access to."
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Advance Permissions"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Permissions"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+#: app/views/angularjs_templates/auth/profile/edit.html
+#: app/views/angularjs_templates/auth/users/new.html
+msgid "Save"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/groups/new.html
+msgid "Cansel"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/index.html
+#: app/views/angularjs_templates/auth/users/index.html
+#: app/assets/javascripts/faalis/dashboard/modules/auth/auth.js
+msgid "Users"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+msgid "Edit Profile"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+#: app/views/angularjs_templates/auth/users/details.html
+#: app/views/angularjs_templates/auth/users/new.html
+msgid "First Name :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+#: app/views/angularjs_templates/auth/users/details.html
+#: app/views/angularjs_templates/auth/users/new.html
+msgid "Last Name :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+#: app/views/angularjs_templates/auth/users/new.html
+msgid "Password :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+msgid "Confirm Password :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+#: app/views/angularjs_templates/auth/users/details.html
+#: app/views/angularjs_templates/auth/users/new.html
+msgid "E-mail :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/profile/edit.html
+#: app/views/angularjs_templates/auth/users/new.html
+#: app/views/angularjs_templates/conversations/new.html
+msgid "Cancel"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/users/details.html
+#: app/views/angularjs_templates/auth/users/new.html
+msgid "Group :"
+msgstr ""
+
+#: app/views/angularjs_templates/auth/users/new.html
+#: app/views/angularjs_templates/conversations/new.html
+msgid "New User"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/details.html
+#: app/views/angularjs_templates/conversations/show_details.html
+msgid "Sent at :"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/details.html
+#: app/views/angularjs_templates/conversations/show_details.html
+msgid "Last Update :"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/index.html
+#: app/views/angularjs_templates/conversations/show.html
+msgid "Conversations"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/new.html
+msgid "Recipient(s):"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/new.html
+msgid "subject :"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/new.html
+msgid "Message :"
+msgstr ""
+
+#: app/views/angularjs_templates/conversations/new.html
+msgid "Send"
+msgstr ""
+
+#: app/views/angularjs_templates/fields/control-combo/control-list.html
+msgid "Facility Name"
+msgstr ""
+
+#: app/views/angularjs_templates/fields/control-combo/control-list.html
+msgid "Number"
+msgstr ""
+
+#: app/views/angularjs_templates/fields/control-combo/control-list.html
+msgid "Price?"
+msgstr ""
+
+#: app/views/angularjs_templates/fields/control-combo/control-list.html
+msgid "Note"
+msgstr ""
+
+#: app/views/angularjs_templates/fields/datetime/datetime.html
+msgid "Click to pick a date"
+msgstr ""
+
+#: app/views/angularjs_templates/fields/string/string.html
+msgid "{{ item.title }}"
+msgstr ""
+
+#: app/views/angularjs_templates/filter/index.html
+msgid "Filter"
+msgstr ""
+
+#: app/views/angularjs_templates/filter/index.html
+#: app/views/angularjs_templates/list-view/index.html
+msgid "Search"
+msgstr ""
+
+#: app/views/angularjs_templates/list-view/index.html
+msgid "There is no data!"
+msgstr ""
+
+#: app/views/angularjs_templates/list-view/index.html
+msgid "Toggle Select"
+msgstr ""
+
+#: app/views/angularjs_templates/list-view/index.html
+msgid "Current Page"
+msgstr ""
+
+#: app/views/angularjs_templates/list-view/index.html
+msgid "Total Pages"
+msgstr ""
+
+#: app/views/angularjs_templates/list-view/index.html
+msgid "Item(s)"
+msgstr ""
+
+#: app/views/angularjs_templates/list-view/index.html
+msgid "Selected"
+msgstr ""
+
+#: app/views/angularjs_templates/logs/index.html
+msgid "Logs"
+msgstr ""
+
+#: app/views/angularjs_templates/modules.html
+msgid "Dashboard"
+msgstr ""
+
+#: app/views/angularjs_templates/modules.html
+msgid "{{ module.title }}"
+msgstr ""
+
+#: app/views/angularjs_templates/modules.html
+msgid "<%= faalis::engine.site_title=\"\" %=\"\"></%=>"
+msgstr ""
+
+#: app/views/angularjs_templates/modules.html
+msgid "Some_Slug"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/group.js
+msgid "new"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/group.js
+msgid "Group updated successfully."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/group.js
+msgid "Group created successfully."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/profile.js
+msgid "Profile updated successfully."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/user.js
+#: app/assets/javascripts/faalis/dashboard/modules/conversations.js
+msgid "New"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/user.js
+msgid "User updated successfully."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/auth/user.js
+msgid "User created Successfully"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/conversations.js
+msgid "Inbox"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/conversations.js
+msgid "Sent box"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/conversations.js
+msgid "Trash box"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/conversations.js
+msgid "Message sent successfully."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/conversations.js
+msgid "Message sent Successfully"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/errors.js
+msgid "Validation error. Fixup errors first."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/errors.js
+msgid "Unkown error: please try again or contact to administrator."
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/list-view.js
+msgid "Are sure you want to delete"
+msgstr ""
+
+#: app/assets/javascripts/faalis/dashboard/modules/list-view.js
+msgid "item(s)?"
+msgstr ""

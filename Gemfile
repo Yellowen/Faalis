@@ -16,8 +16,9 @@ gemspec
 group :development, :test do
   #gem 'rspec-rails', '~> 3.0.0.beta'
   #gem "capybara"
-  gem "yard"
+  gem 'yard'
   gem 'redcarpet'
   gem 'github-markup'
-  gem "guard-livereload", require: false
+  gem 'guard-livereload', require: false
+  gem 'sqlite3'
 end

@@ -5,7 +5,7 @@ module Faalis
     # easier. But you can drive your own generator normally of caurse
     class DashboardScaffold < Rails::Generators::Base
 
-      include ActionView::Helpers::TextHelper
+      include ::ActionView::Helpers::TextHelper
       include Faalis::Generators::Concerns::JsonInput
       include Faalis::Generators::Concerns::ResourceName
       include Faalis::Generators::Concerns::ResourceFields
@@ -23,16 +23,16 @@ module Faalis
       include Faalis::Generators::Concerns::Fieldset
 
       # Do not install specs
-      class_option :without_specs, :type => :boolean, :default => false, :desc => 'Do not install specs'
+      class_option :without_specs, type: :boolean, default: false, desc: 'Do not install specs'
 
       # Generate only spec files
-      class_option :only_specs, :type => :boolean, :default => false, :desc => 'Generate only spec files'
+      class_option :only_specs, type: :boolean, default: false, desc: 'Generate only spec files'
 
       # Generate only controller
-      class_option :only_controller, :type => :boolean, :default => false, :desc => 'Generate only controller'
+      class_option :only_controller, type: :boolean, default: false, desc: 'Generate only controller'
 
       # Don't show a filter box
-      class_option :no_filter, :type => :boolean, :default => false, :desc => 'Don\'t view a filter box'
+      class_option :no_filter, type: :boolean, default: false, desc: 'Don\'t view a filter box'
 
 
     end
