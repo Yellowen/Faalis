@@ -1,67 +1,72 @@
 module Faalis
   module User::AuthDefinitions
-    extend ActiveSupport::Concern
 
-    included do
+    def self.included(base)
 
-      # Include default devise modules. Others available are:
-      # :token_authenticatable, :confirmable,
-      # :lockable, :timeoutable and :omniauthable
-      @@devise_options = [:database_authenticatable,
-                          :registerable,
-                          :recoverable,
-                          :rememberable,
-                          :trackable,
-                          :lockable,
-                          :timeoutable,
-                          :validatable]
+      base.class_eval do
+        # Include default devise modules. Others available are:
+        # :token_authenticatable, :confirmable,
+        # :lockable, :timeoutable and :omniauthable
+        @@devise_options = [:database_authenticatable,
+                            :registerable,
+                            :recoverable,
+                            :rememberable,
+                            :trackable,
+                            :lockable,
+                            :timeoutable,
+                            :validatable]
 
-      if Rails.env.production?
-        @@devise_options << :confirmable
-      end
-
-      if Devise.omniauth_configs.any?
-        @@devise_options << :omniauthable
-        @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
-      end
-
-      def name
-        if first_name or last_name
-          "#{first_name} #{last_name}"
-        else
-          email
+        if Rails.env.production?
+          @@devise_options << :confirmable
         end
 
-      end
-
-      def full_name
-        name
-      end
-
-
-      # Confirmation not required when using omniauth
-      def confirmation_required?
-        super && identities.empty?
-      end
-
-      def update_with_password(params, *options)
-        if encrypted_password.blank?
-          update_attributes(params, *options)
-        else
-          super
-        end
-      end
-
-      def password_required?
-        # TODO: nil? is not suitable for here we should use empty? or blink?
         if Devise.omniauth_configs.any?
-          return (provider.nil? || password.nil?) && super
-        else
-          password.nil? && super
+          @@devise_options << :omniauthable
+          @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
         end
       end
+      base.extend ClassMethods
+    end
 
-      def self.find_from_oauth(auth, signed_in_resource = nil)
+    def name
+      if first_name or last_name
+        "#{first_name} #{last_name}"
+      else
+        email
+      end
+
+    end
+
+    def full_name
+      name
+    end
+
+
+    # Confirmation not required when using omniauth
+    def confirmation_required?
+      super && identities.empty?
+    end
+
+    def update_with_password(params, *options)
+      if encrypted_password.blank?
+        update_attributes(params, *options)
+      else
+        super
+      end
+    end
+
+    def password_required?
+      # TODO: nil? is not suitable for here we should use empty? or blink?
+      if Devise.omniauth_configs.any?
+        return (provider.nil? || password.nil?) && super
+      else
+        password.nil? && super
+      end
+    end
+
+
+    module ClassMethods
+      def find_from_oauth(auth, signed_in_resource = nil)
         user = User.where(:provider => auth.provider, :uid => auth.uid).first
 
         first_name = auth.info.first_name
@@ -83,6 +88,8 @@ module Faalis
         end
         user
       end
+
     end
+
   end
 end
