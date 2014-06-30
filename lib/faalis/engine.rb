@@ -21,7 +21,6 @@ require 'modernizr-rails'
 require 'foundation-rails'
 require 'font-awesome-rails'
 require 'cancan'
-#require 'mailboxer'
 require 'model_discovery'
 require 'angularjs-rails'
 require 'lodash-rails'
@@ -78,6 +77,7 @@ module Faalis
     def self.orm=(orm_name)
       @@orm = orm_name
       require "devise/orm/#{orm_name}"
+      #require 'mailboxer'
     end
 
     def self.setup
