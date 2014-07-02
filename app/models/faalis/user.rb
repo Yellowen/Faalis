@@ -26,13 +26,13 @@ module Faalis
     # Permission related methods for user
     include Faalis::User::Permission
 
+    include Faalis::Concerns::
+
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
       include Faalis::User::MongoidFields
-      include Faalis::Permissions
-
       # FIXME: Port mailboxer to work with mongoid
     end
 
