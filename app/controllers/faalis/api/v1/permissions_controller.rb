@@ -10,7 +10,7 @@ module Faalis
     # @api GET permissions
     # @return All permissions
     def index
-      @permissions = Faalis::Discovery::Permission.all_permissions
+      @permissions = Faalis::Discovery::Permissions.all_permissions
       respond_with(@permissions)
     end
 

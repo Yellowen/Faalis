@@ -94,12 +94,6 @@ Group.controller("AddGroupController", ["Restangular", "$scope", "$location", "$
                 .catch(catch_error);
     }
 
-    API.all('workflows').getList()
-            .then(function(data){
-                $scope.workflows = data;
-            })
-            .catch(catch_error);
-
     API.all('permissions').getList()
             .then(function(data){
                 $scope.permissions = data;

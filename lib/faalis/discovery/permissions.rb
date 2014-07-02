@@ -12,7 +12,6 @@ module Faalis
         # model it has the permission_strings). And concat the
         # permissions to `@permissions` instance method.
         ::ApplicationModels.to_adapter.find_all.each do |m|
-          puts "Model: ", m.model
           model = m.model.constantize
           if model.respond_to? :permission_strings
             block.call(model)
@@ -42,7 +41,6 @@ module Faalis
 
         permission_objects do |object|
           object.possible_permissions.each do |perm|
-            puts "Create Perm: #{object} - #{perm}"
             Faalis::Permission.create(model: object.to_s,
                                       permission_type: perm)
           end
