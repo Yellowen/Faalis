@@ -11,9 +11,9 @@ when 'active_record'
 
   admin_group.permissions = Faalis::Permission.all
 
-  admin =Faalis::User.create(email: 'admin@example.com',
-                             password: '123123123',
-                             password_confirmation: '123123123')
+  admin = Faalis::User.create(email: 'admin@example.com',
+                              password: '123123123',
+                              password_confirmation: '123123123')
   admin.groups << admin_group
 
   guest_group = Faalis::Group.create(name: 'Guest', id: 2)
