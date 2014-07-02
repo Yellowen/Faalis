@@ -36,12 +36,5 @@ class Ability
         can permission.permission_type.to_sym, permission.model.constantize
       end
     end
-
-    if user
-      if Faalis::Group.where('name' => 'Admin',
-                             'users.email' => user.email).exists?
-        can :manage, :all
-      end
-    end
   end
 end
