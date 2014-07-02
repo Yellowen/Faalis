@@ -26,7 +26,8 @@ module Faalis
     # Permission related methods for user
     include Faalis::User::Permission
 
-    include Faalis::Concerns::
+    # Make this model authorizable
+    include Faalis::Concerns::Authorizable
 
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?

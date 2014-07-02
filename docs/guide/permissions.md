@@ -14,11 +14,11 @@ for it. For example:
 
 ```ruby
 class Person < ActiveRecord::Base
-  include Faalis::Permissions
+  include Faalis::Concerns::Authorizable
   # rest of your model
 end
 ```
-**Note**: It previous versions of **Faalis** `<= 0.26.3`, `Faalis::Permissions`
+**Note**: It previous versions of **Faalis** `<= 0.26.3`, `Faalis::Concerns::Authorizable`
 automatically included in any `ActiveRecord::Base`. But since it wasn't a good
 idea we fixed it.
 
@@ -27,10 +27,10 @@ Now take a look at a **Mongoid** example:
 ```ruby
 class Person
   include Mongoid::Document
-  include Faalis::Permissions
+  include Faalis::Concerns::Authorizable
 end
 ```
-As you can see we just added `Faalis::Permissions` to a simple class.
+As you can see we just added `Faalis::Concerns::Authorizable` to a simple class.
 
 ## User & Group
 `Faalis::User` is the user model which has a many to many relation with

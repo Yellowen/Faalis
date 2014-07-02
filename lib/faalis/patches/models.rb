@@ -4,7 +4,7 @@ when 'active_record'
   # to authorize user access.
   module ActiveRecord
     class Base
-      include Faalis::Permissions
+      include Faalis::Concerns::Authorizable
     end
   end
 end

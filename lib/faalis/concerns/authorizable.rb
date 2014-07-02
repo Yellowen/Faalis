@@ -6,7 +6,7 @@ module Faalis
       extend ActiveSupport::Concern
 
       # Class methods which will add to model by including
-      # `Faalis::Permissions`
+      # `Faalis::Concerns::Authorizable`
       module ClassMethods
         # Default permission hash
         @@permissions = {

@@ -1,7 +1,8 @@
 class Faalis::Permissions::Auth
-  include Faalis::Permissions
+  # Make this model authorizable
+  include Faalis::Concerns::Authorizable
 
   def self.humanize_class_name
-    "Auth Module"
+    'Auth Module'
   end
 end
