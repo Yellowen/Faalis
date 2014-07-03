@@ -40,7 +40,7 @@ module Faalis
         if options.empty?
           # TODO: ....
         end
-        create_model unless options[:no_model].nil?
+        create_model unless options[:no_model]
         create_route unless options[:no_route]
         create_controller unless options[:no_controller]
         create_list_view
@@ -64,18 +64,25 @@ module Faalis
       def create_model
         result = []
         all_fields = []
-        relations = '\n'
+        relations = "\n"
         fields.each do |name, type, to|
           case type
           when 'belongs_to'
             type_ = 'integer'
-            name_ = "#{to.singularize}_id"
+            if to.singularize != name
+              relations << "belongs_to :#{name.singularize}, :class_name => \"#{to.singularize.capitalize}\"\n"
+            else
+              relations << "belongs_to :#{to.singularize}\n"
+            end
+            name_ = "#{name.singularize}_id"
             result << [name_, type_]
-            relations << "belongs_to :#{to.singularize}\n"
+
           when 'text', 'integer', 'string', 'boolean'
             result << [name, type]
           when 'in'
             result << [name, 'string']
+          when 'has_many'
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to}, You should create it manually in model files"
           end
 
           all_fields = result.collect do |x|
