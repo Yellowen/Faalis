@@ -26,9 +26,9 @@ module Faalis
       desc 'Copy all the necessary files to use Faalis'
       class_option :orm
 
-      def install_mailboxer
-        invoke 'mailboxer:install'
-      end
+      #def install_mailboxer
+      #  invoke 'mailboxer:install'
+      #end
 
       def install_model_discovery
         rake 'model_discovery_engine:install:migrations'
