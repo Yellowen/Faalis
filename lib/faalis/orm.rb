@@ -20,7 +20,8 @@ module Faalis
     def self.proper_base_class
       return ActiveRecord::Base if active_record?
       return Object if mongoid?
-      fail "You don't specified 'orm' in 'faalis.rb' initializer"
+      Faalis::Engine.orm = 'active_record'
+      ActiveRecord::Base
     end
   end
 end
