@@ -82,6 +82,7 @@ module Faalis
           when 'in'
             result << [name, 'string']
           when 'has_many'
+            relations << "has_and_belongs_to_many :#{to}\n"
             say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to}, You should create it manually in model files"
           end
 
