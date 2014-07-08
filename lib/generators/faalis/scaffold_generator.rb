@@ -91,6 +91,9 @@ module Faalis
           end
 
         end
+        if parent?
+          all_fields << ["#{resource_data["parents"]}_id", "integer"]
+        end
         invoke('active_record:model', [resource_data['name'], *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
