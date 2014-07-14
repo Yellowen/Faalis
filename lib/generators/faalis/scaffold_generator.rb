@@ -77,7 +77,7 @@ module Faalis
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
 
-          when 'text', 'integer', 'string', 'boolean'
+          when 'text', 'integer', 'string', 'boolean', 'datetime'
             result << [name, type]
           when 'in'
             result << [name, 'string']
