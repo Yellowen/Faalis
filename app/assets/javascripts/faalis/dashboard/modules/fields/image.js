@@ -22,7 +22,7 @@ Image_.directive('imageField',["gettext", function(gettext){
         }
     }
     return {
-        templateUrl: template("fields/datetime/image"),
+        templateUrl: template("fields/image/image"),
         replace: true,
         restrict: "E",
         transclude: true,
