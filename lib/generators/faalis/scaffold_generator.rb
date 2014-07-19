@@ -76,9 +76,12 @@ module Faalis
             end
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
-
           when 'text', 'integer', 'string', 'boolean', 'datetime'
             result << [name, type]
+          when 'image'
+            generate "paperclicp #{resource_data['name']} #{name}"
+            relations << "has_attached_file :#{name}\n"
+
           when 'in'
             result << [name, 'string']
           when 'has_many'
