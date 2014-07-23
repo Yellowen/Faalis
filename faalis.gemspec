@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-ngQuickDate', '~>1.3.0'
   s.add_dependency 'rails-assets-select2', '~>3.5.0'
   s.add_dependency 'rails-assets-angular-ui-select2', '~>0.0.5'
-  s.add_dependency 'rails-assets-ng-flow'
+  s.add_dependency 'rails-assets-ng-flow', '~>2.4.2'
   # i18n
   s.add_dependency 'fast_gettext'
   s.add_development_dependency 'gettext'
