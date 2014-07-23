@@ -1,4 +1,4 @@
-var Image_ = angular.modulde("DatetimeField", ['flow']);
+var Image_ = angular.module("DatetimeField", ['flow']);
 
 /*
  * <image-field></image-field>
