@@ -35,6 +35,24 @@ module Faalis
       class_option :no_filter, type: :boolean, default: false, desc: 'Don\'t view a filter box'
 
 
+      private
+
+      # Overrided `source_paths` method. With this approach extensions
+      # can override generators templates. Cool ha ?
+      def source_paths
+        @source_paths = self.class.source_paths_for_search
+
+        paths = []
+        Faalis::Extension.extensions.each do |name, klass|
+          if klass.respond_to? :generator_templates_path.to_sym
+            paths << klass.generator_templates_path
+          end
+        end
+        paths += @source_paths
+        @source_paths = paths
+      end
+
+
     end
   end
 end

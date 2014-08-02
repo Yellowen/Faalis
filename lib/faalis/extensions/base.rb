@@ -4,13 +4,21 @@ module Faalis
     # to a rails engine.
     module Base
 
-      def self.register_extension(name, klass)
-        Faalis::Extension.extensions[name] = klass
+      def included(base)
+        extend ClassMethods
       end
 
-      def self.override_generator_templates(template_path)
-        send(:define_singleton_method, 'generator_templates_path') do
-          template_path
+      class ClassMethods
+        def register_extension(name, klass)
+          Faalis::Extension.extensions[name] = klass
+        end
+
+        # This method tells faalis that this extension will override
+        # the generators templates of faalis from `template_path` location
+        def override_generator_templates(template_path)
+          send(:define_singleton_method, 'generator_templates_path') do
+            template_path
+          end
         end
       end
     end
