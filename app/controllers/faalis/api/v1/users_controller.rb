@@ -4,8 +4,8 @@ module Faalis
   class API::V1::UsersController < ::APIController
 
     def index
-      @users = User.joins(:group).all
-      authorize! :read, @users
+      @users = User.joins(:groups).all
+      #authorize! :read, @users
       respond_with(@users)
     end
 
@@ -35,8 +35,8 @@ module Faalis
         user_fields[:password] =  params[:password]
       end
 
-      if params.include? :group and params[:group]
-        user_fields[:group] =  Group.find(params[:group]) || nil
+      if params.include? :groups and params[:groups]
+        user_fields[:groups] =  Group.find(params[:groups]) || nil
       end
 
       if @user.update(user_fields)
@@ -58,9 +58,9 @@ module Faalis
                          password: params[:password],
                        })
 
-      if params.include? :group
-        group = Group.find(params[:group]) || nil
-        @user.group = group
+      if params.include? :groups
+        group = Group.find(params[:groups]) || nil
+        @user.groups = group
       end
 
       if @user.save
