@@ -25,6 +25,7 @@ end
 
 require 'faalis/engine'
 require 'faalis/orm'
+require 'faalis/extensions'
 require 'faalis/concerns'
 require 'faalis/dashboard'
 require 'faalis/omniauth'

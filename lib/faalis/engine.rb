@@ -30,7 +30,7 @@ module Faalis
   class Engine < ::Rails::Engine
 
     isolate_namespace Faalis
-    engine_name "faalis"
+    engine_name 'faalis'
 
     ActiveSupport::Inflector.inflections(:en) do |inflect|
       inflect.acronym 'API'

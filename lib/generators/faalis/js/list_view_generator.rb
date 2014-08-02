@@ -24,7 +24,19 @@ module Faalis
       class ListViewGenerator < Faalis::Generators::DashboardScaffold
 
         # templates path
+
         source_root File.expand_path('../../templates', __FILE__)
+
+        def self.source_paths
+          paths = []
+          Faalis::Extension.extensions.each do |name, klass|
+            if klass.respond_to? :generator_templates_path.to_sym
+              paths << klass.generator_templates_path
+            end
+          end
+          paths += super
+          paths
+        end
 
         # Field name to use as title of each object
         class_option :title_field, :type => :string, :default => "name", :desc => "Field name to use as title of each object"
