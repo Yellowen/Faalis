@@ -25,12 +25,11 @@ end
 
 require 'faalis/engine'
 require 'faalis/orm'
-require 'faalis/extensions'
 require 'faalis/concerns'
 require 'faalis/dashboard'
+require 'faalis/extensions'
 require 'faalis/omniauth'
 require 'faalis/i18n'
-require 'faalis/plugins'
 require 'faalis/generators/concerns'
 require 'faalis/generators'
 require 'faalis/route'
