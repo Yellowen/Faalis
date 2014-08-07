@@ -15,6 +15,3 @@
 //= require foundation
 //= require_self
 //= require_directory .
-$(function(){
-    $(document).foundation();
-});

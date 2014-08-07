@@ -64,7 +64,6 @@ module Faalis
       end
     end
 
-
     module ClassMethods
       def find_from_oauth(auth, signed_in_resource = nil)
         user = User.where(:provider => auth.provider, :uid => auth.uid).first

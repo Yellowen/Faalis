@@ -1,7 +1,6 @@
 //= require faalis/dashboard/variables
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //= require angular
 //= require angular-animate
 //= require angular-resource
