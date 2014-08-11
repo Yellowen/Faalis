@@ -10,6 +10,7 @@ module Faalis
     #show_me_on :header
 
     def index
+      @products = Product.all
     end
 
     def content_for_header

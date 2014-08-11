@@ -81,7 +81,7 @@ module Faalis
           when 'image'
             generate "paperclicp #{resource_data['name']} #{name}"
             relations << "has_attached_file :#{name}\n"
-
+            relations << "validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg image/png),:less_than => 1.megabytes"
           when 'in'
             result << [name, 'string']
           when 'has_many'
