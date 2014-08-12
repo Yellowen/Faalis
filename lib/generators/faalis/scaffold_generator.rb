@@ -66,6 +66,7 @@ module Faalis
         all_fields = []
         relations = "\n"
         fields.each do |name, type, to|
+
           case type
           when 'belongs_to'
             type_ = 'integer'
@@ -76,8 +77,10 @@ module Faalis
             end
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
+
           when 'text', 'integer', 'string', 'boolean', 'datetime'
             result << [name, type]
+
           when 'image'
             generate "paperclicp #{resource_data['name']} #{name}"
             relations << "has_attached_file :#{name}\n"
