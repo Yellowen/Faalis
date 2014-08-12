@@ -84,12 +84,16 @@ module Faalis
             relations << "validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg image/png),:less_than => 1.megabytes]\n"
           when 'tag'
             rake "rake acts_as_taggable_on_engine:install:migrations"
+            relations << "acts_as_taggable_on :#{name}\n"
+            result << [name, 'string']
 
           when 'in'
             result << [name, 'string']
+
           when 'has_many'
             relations << "has_and_belongs_to_many :#{to}\n"
             say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to}, You should create it manually in model files"
+
           end
 
           all_fields = result.collect do |x|
@@ -97,9 +101,11 @@ module Faalis
           end
 
         end
+
         if parent?
           all_fields << ["#{resource_data["parents"]}_id", "integer"]
         end
+
         invoke('active_record:model', [resource_data['name'], *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
