@@ -35,7 +35,20 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
                 scope.$parent.$eval(scope.on_change);
             }
 
-        }
+        };
+
+
+
+
+
+
+
+        scope.tag_options = {
+            'multiple': true,
+            'simple_tags': true,
+            'tags': ['tag1', 'tag2', 'tag3', 'tag4']
+        };
+
         scope.on_select_change = function(){
             update_model_data();
         };
@@ -68,7 +81,7 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
             // message of field here. for example you can use `help_text` to
             // show an small help under the control and you can set `show_help_btn`
             // to true to show an help button.
-            options: '&',
+
             // A call back to pass to field ng-change directive
             on_change: "@onChange",
 
