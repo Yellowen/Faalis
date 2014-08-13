@@ -1,0 +1,28 @@
+<div>
+  <select ui-select2="options" id="{{ element_id }}" ng-model="model" data-placeholder="{{ placeholder }}" name="{{ field.name }}" ng-required="required" multiple  ng-change="on_select_change()">
+    <option ng-repeat="item in all_options" value="{{ item.id }}" title="{{ item[titleField] || item }}" ng-selected="have(item.id)">{{ item[titleField] || item }}</option>
+  </select>
+
+
+  <!-- Add and Refresh buttons -->
+  <div class="float-left">
+    <span class="helptext" ng-if="options.help_text && show_help_text">{{ options.help_text }}</span>
+  </div>
+  <div class="float-right relation_links" ng-if="((field.type === 'belongs_to') || (field.type === 'has_many')) && show_buttons() ">
+
+    <span ng-click="help_btn_clicked()" ng-if="show_help_btnn">
+        <i class="fa fa-question"></i>
+    </span>
+    <span>
+      <a ng-href="#{{ field.to }}/new" target="_blank">
+        <i class="fa fa-plus"></i>
+      </a>
+    </span>
+    <span ng-click="update_collection()">
+      <i class="fa fa-refresh"></i>
+    </span>
+  </div>
+
+  <small id="{{ msg_element_id }}"></small>
+  <!-- --------------------------------- -->
+</div>

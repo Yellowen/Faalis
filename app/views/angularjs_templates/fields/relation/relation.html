@@ -24,7 +24,9 @@
   </div>
   <div class="float-right relation_links" ng-if="((field.type === 'belongs_to') || (field.type === 'has_many')) && show_buttons() ">
 
-    <span ng-click="help_btn_clicked()" ng-if="show_help_btn">
+
+  <!-- Add and Refresh buttons -->
+    <span ng-click="help_btn_clicked()" ng-if="show_help_btnn">
         <i class="fa fa-question"></i>
     </span>
     <span>

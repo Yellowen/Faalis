@@ -49,11 +49,11 @@ module Faalis
       private
 
       # Create a dedicated controller, It does not have any relation to Faalis
-      # API controller that creates by Faalis:js:js_view generator
       # TODO: fix the `controller` generator name
       def create_controller
         #invoke "controller #{resource_data["name"]}"
       end
+
       # Create route of the scaffold in config/routes.rb
       def create_route
         route "resources :#{resource_data["name"].pluralize}"
