@@ -1,14 +1,11 @@
 var Relation = angular.module("TagField", ["ui.select2"]);
 
-/*
- * <tag-field></tag-field> directive defination
- */
-
+// <tag-field></tag-field> directive defination
 Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
-
+        scope.ddd ='asdasdasd';
         scope.element_id = "id_" + scope.fieldName;
         scope.msg_element_id = "id_" + scope.fieldName + "_msg";
         scope.show_help_btn = false;
@@ -37,18 +34,6 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
 
         };
 
-
-
-
-
-
-
-        scope.tag_options = {
-            'multiple': true,
-            'simple_tags': true,
-            'tags': ['tag1', 'tag2', 'tag3', 'tag4']
-        };
-
         scope.on_select_change = function(){
             update_model_data();
         };
@@ -62,7 +47,6 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
             }
         };
         update_model_data();
-
 
         scope.$watch('update_on_change', function(newv) {
             if (newv !== undefined) {
