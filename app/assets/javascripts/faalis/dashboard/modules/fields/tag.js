@@ -12,8 +12,7 @@ Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", f
         scope.show_help_text = true;
         // Decide to see help text or help button
         if (scope.options === undefined) {
-            scope.options = {
-            };
+            scope.options = {};
         }
 
         if ("help_text" in scope.options) {
@@ -23,20 +22,6 @@ Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", f
             }
         }
 
-
-        // Populate model with new data
-        function update_model_data(){
-            var new_val = $("#" + scope.element_id).val();
-            scope.model = new_val;
-            if (scope.on_change !== undefined) {
-                scope.$parent.$eval(scope.on_change);
-            }
-        };
-
-        scope.on_select_change = function(){
-            update_model_data();
-        };
-
         scope.help_btn_clicked = function() {
             if ("show_help_callback" in scope.options) {
                 scope.options.show_help_btn();
@@ -45,13 +30,6 @@ Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", f
                 scope.show_help_text = !scope.show_help_text;
             }
         };
-        update_model_data();
-
-        scope.$watch('update_on_change', function(newv) {
-            if (newv !== undefined) {
-                scope.update_collection(true);
-            }
-        });
     }
     // Actual object of <tag-field> directive
     return {
@@ -85,7 +63,7 @@ Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", f
 
             // tag field data
             fieldName: '=',
-
+            options: '=',
             // A variable to watch. in case of change current field
             // collection will update.
             update_on_change: '=updateOnChange',
