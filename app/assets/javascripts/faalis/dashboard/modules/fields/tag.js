@@ -1,11 +1,11 @@
-var Relation = angular.module("TagField", ["ui.select2"]);
+var Tag = angular.module("TagField", ["ui.select2"]);
 
 // <tag-field></tag-field> directive defination
-Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
+Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
-        scope.ddd ='asdasdasd';
+
         scope.element_id = "id_" + scope.fieldName;
         scope.msg_element_id = "id_" + scope.fieldName + "_msg";
         scope.show_help_btn = false;
@@ -31,7 +31,6 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
             if (scope.on_change !== undefined) {
                 scope.$parent.$eval(scope.on_change);
             }
-
         };
 
         scope.on_select_change = function(){
@@ -64,6 +63,7 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
             // select2 options. Also you can control the buttons and help
             // message of field here. for example you can use `help_text` to
             // show an small help under the control and you can set `show_help_btn`
+            //options: '&',
             // to true to show an help button.
 
             // A call back to pass to field ng-change directive
@@ -72,7 +72,7 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
             // Place holder
             placeholder: "@placeholder",
 
-            // Collection of all relation objects, This variable will
+            // Collection of all tag objects, This variable will
             // fill automatically so you don't have to provide an initial
             // value.
             collection: "=",
@@ -83,7 +83,7 @@ Relation.directive('tagField', ["$filter", "gettext", "Restangular", "catch_erro
             // Field to use as title of options
             titleField: '=',
 
-            // relation field data
+            // tag field data
             fieldName: '=',
 
             // A variable to watch. in case of change current field
