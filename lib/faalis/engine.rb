@@ -64,6 +64,7 @@ module Faalis
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
 
+    # TODO: Use application level locales default
     # locales
     mattr_accessor :locales
     @@locales = ['en', 'fa']
@@ -85,6 +86,7 @@ module Faalis
       yield self
     end
 
+    # I18n Configuration
     I18n.enforce_available_locales = true
     I18n.locale = :en
     # Fast Gettext Configuration
@@ -113,7 +115,7 @@ module Faalis
     end
     #Devise.omniauth_path_prefix = ["/en", "/fa"]
 
-
+    # TODO: Write a complete doc about dashboard_modules
     # Dashboard configurations
     mattr_accessor :dashboard_modules
 
@@ -138,6 +140,5 @@ module Faalis
     mattr_accessor :dashboard_js_manifest
     @@dashboard_js_manifest = "controlpanel/application.js"
 
-    config.autoload_paths << "app/workflows"
   end
 end
