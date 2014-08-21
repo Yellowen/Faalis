@@ -36,6 +36,7 @@
 ** DONE Change Faalis::Permissions concern name to avoid name confiusion.
 
 ** DONE Remove Mailboxer from defult initializers
+** TODO update copyright to 2014
 * Features
 ** DONE Edit Profile
 ** DONE User messages

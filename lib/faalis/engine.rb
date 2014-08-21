@@ -32,6 +32,7 @@ module Faalis
     isolate_namespace Faalis
     engine_name 'faalis'
 
+    # Map `api` to `API` in Rails autoload
     ActiveSupport::Inflector.inflections(:en) do |inflect|
       inflect.acronym 'API'
     end
