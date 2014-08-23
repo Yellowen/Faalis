@@ -19,6 +19,9 @@
 
 module Faalis
   module Omniauth
+    # TODO: Autoload ? really ?
+    #       Change it ASAP. Remember that callback should
+    #       not included if host project does not have omniauth enabled
     autoload :Callbacks, "faalis/omniauth/callbacks"
   end
 end
