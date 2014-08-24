@@ -11,6 +11,8 @@ module Faalis
 
       class ClassMethods
         def register_extension(name, klass)
+          # TODO: Replace this mechanism with more elegant one
+          #       For example use [] method or someting
           Faalis::Extension.extensions[name] = klass
         end
 
