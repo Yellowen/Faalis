@@ -1,7 +1,7 @@
 module Faalis
   module Concerns
     # Authorizable modules of Faalis which each resource model should
-    # includes this concern. Without this concern, models can be authorized
+    # includes this concern. Without this concern, models can not be authorized
     module Authorizable
       extend ActiveSupport::Concern
 

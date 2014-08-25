@@ -6,9 +6,9 @@ module Faalis
     module Assignment
 
       def self.included(base)
-        base.scope :assignment_query, -> (field, value) do
+        base.scope :assignment_query, ->(field, value) do
           base.where(field => value)
-       end
+        end
       end
 
     end
