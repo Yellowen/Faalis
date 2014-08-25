@@ -34,6 +34,7 @@ module Faalis
       class_option :no_route
       class_option :no_controller
       class_option :no_migration
+      class_option :no_asset
 
       # FIXME: Add method documents HERE
       def create_scaffold
@@ -48,10 +49,16 @@ module Faalis
 
       private
 
-      # Create a dedicated controller, It does not have any relation to Faalis
-      # TODO: fix the `controller` generator name
+      # Create a dedicated controller,
+      # It does not have any relation to Faalis
+      # TODO: Check for better way
       def create_controller
-        #invoke "controller #{resource_data["name"]}"
+        #invoke "scaffold_controller", resource_data["name"]
+        if options[:no_asset]
+          `rails g scaffold_controller #{resource_data["name"]} --skip`
+        else
+          `rails g scaffold_controller #{resource_data["name"]}`
+        end
       end
 
       # Create route of the scaffold in config/routes.rb
@@ -71,7 +78,8 @@ module Faalis
           when 'belongs_to'
             type_ = 'integer'
             if to.singularize != name
-              relations << "belongs_to :#{name.singularize}, :class_name => \"#{to.singularize.capitalize}\"\n"
+              relations << "belongs_to :#{name.singularize},
+              :class_name => \"#{to.singularize.capitalize}\"\n"
             else
               relations << "belongs_to :#{to.singularize}\n"
             end

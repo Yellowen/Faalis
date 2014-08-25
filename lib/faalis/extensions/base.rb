@@ -2,6 +2,7 @@ module Faalis
   module Extension
     # This module provide basic functionallity of a Faalis extension
     # to a rails engine.
+    # It should be included in engine of all the Faalis extionsions
     module Base
 
       def included(base)
