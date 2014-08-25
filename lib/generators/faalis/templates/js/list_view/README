@@ -8,7 +8,7 @@ Steps to installation:
 
            namespace :api, :defaults => {:format => :json} do
              namespace :v1 do
-               resources :cars
+               resources :cars, :except => [:new]
              end
            end
 
