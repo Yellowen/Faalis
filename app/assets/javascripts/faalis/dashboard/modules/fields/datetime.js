@@ -23,7 +23,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext", function($filter, ge
         }
 
     }
-    // Actual object of <string-field> directive
+    // Actual object of <datetime-field> directive
     return {
         templateUrl: template("fields/datetime/datetime"),
         replace: true,
