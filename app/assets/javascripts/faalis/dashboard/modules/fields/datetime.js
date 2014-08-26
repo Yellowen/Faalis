@@ -11,9 +11,11 @@ Datetime_.directive('datetimeField', ["$filter", "gettext", function($filter, ge
         scope.element_id = "id_" + scope.field;
         scope.msg_element_id = "id_" + scope.field + "_msg";
 
-        if (scope.timepicker === undefined) {
+        if ((scope.timepicker === undefined) || (scope.timepicker == null)) {
             scope.timepicker = true;
         }
+        console.log(scope);
+        console.log(scope.timepicker);
         if (scope.on_change !== undefined) {
             // Watch event changes
             scope.$watch("model", function(newv, oldv, $scope) {
@@ -31,7 +33,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext", function($filter, ge
         transclude: true,
         scope: {
             // disable timepicker
-            timepicker: "&",
+            timepicker: "=?",
 
             cssClasses: '=cssClass',
             // A call back to pass to field ng-change directive
