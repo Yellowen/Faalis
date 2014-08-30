@@ -56,7 +56,7 @@
 		    <% end -%>
 		  </div>
 
-		  <% if resource.password_required? %>
+		  <% if resource.send('password_required?'.to_sym) %>
 		    <div class="field">
 		      <label><%=_("Password") %></label>
 		      <%= f.password_field :password, :class => "password input" %>
