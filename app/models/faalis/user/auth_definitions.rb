@@ -7,7 +7,7 @@ module Faalis
         # Include default devise modules. Others available are:
         # :token_authenticatable, :confirmable,
         # :lockable, :timeoutable and :omniauthable
-        @@devise_options = ::Faalis::Engnine.devise_options
+        @@devise_options = ::Faalis::Engine.devise_options
 
         if Devise.omniauth_configs.any?
           @@devise_options << :omniauthable
