@@ -140,5 +140,19 @@ module Faalis
     mattr_accessor :dashboard_js_manifest
     @@dashboard_js_manifest = "controlpanel/application.js"
 
+    # Devise options
+    # Include default devise modules. Others available are:
+    # :token_authenticatable, :confirmable,
+    # :lockable, :timeoutable and :omniauthable
+    mattr_accessor :devise_options
+    @@devise_options = [:database_authenticatable,
+                        :registerable,
+                        :recoverable,
+                        :rememberable,
+                        :trackable,
+                        :lockable,
+                        :timeoutable,
+                        :validatable]
+
   end
 end

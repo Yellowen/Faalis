@@ -7,18 +7,7 @@ module Faalis
         # Include default devise modules. Others available are:
         # :token_authenticatable, :confirmable,
         # :lockable, :timeoutable and :omniauthable
-        @@devise_options = [:database_authenticatable,
-                            :registerable,
-                            :recoverable,
-                            :rememberable,
-                            :trackable,
-                            :lockable,
-                            :timeoutable,
-                            :validatable]
-
-        if Rails.env.production?
-          @@devise_options << :confirmable
-        end
+        @@devise_options = Faalis::Engnine.devise_options
 
         if Devise.omniauth_configs.any?
           @@devise_options << :omniauthable
