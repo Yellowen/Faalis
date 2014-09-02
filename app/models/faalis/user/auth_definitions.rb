@@ -10,8 +10,7 @@ module Faalis
         @@devise_options = ::Faalis::Engine.devise_options
 
         if Devise.omniauth_configs.any?
-          @@devise_options << :omniauthable
-          @@devise_options << {:omniauth_providers => Devise.omniauth_configs.keys}
+          devise :omniauthable, :omniauth_providers => Devise.omniauth_configs.keys
         end
       end
       base.extend ClassMethods
