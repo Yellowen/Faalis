@@ -3,7 +3,7 @@ module.exports = function (grunt) {
         nggettext_extract: {
             pot: {
                 files: {
-                    'app/assets/javascripts/locale/templates.pot': ['app/views/angularjs_templates/**/*.html',
+                    'app/assets/locales/templates.pot': ['app/views/angularjs_templates/**/*.html',
                                                         'app/views/angularjs_templates/**/*.html.erb',
                                                         'app/assets/javascripts/**/*.js',
                                                         'app/assets/javascripts/**/*.js',
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                     module: "Dashboard"
                 },
                 files: {
-                    'app/assets/javascripts/locale/translations.fa.js': ['app/assets/locale/*.fa.pot']
+                    'app/assets/javascripts/locales/translations.fa.js': ['app/assets/locales/*.fa.pot']
                 }
             }
         }

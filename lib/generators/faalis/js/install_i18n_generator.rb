@@ -28,7 +28,7 @@ module Faalis
 
         def copy_init_files
           template 'i18n/Gruntfile.js.erb', 'lib/tasks/grunt/Gruntfile.js'
-          copy_file 'i18n/fa.js', 'app/assets/javascripts/locale/'
+          copy_file 'i18n/fa.js', 'app/assets/javascripts/locales/fa.js'
         end
 
         def show_readme
