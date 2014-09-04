@@ -10,10 +10,6 @@
 <body data-current-user="<%= current_user.to_json %>">
 
   <%= yield %>
-
-  <%= debug Rails.application.config.assets.to_json.gsub(",", ",\n").gsub('"', "'") %>
-
-
   <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>
