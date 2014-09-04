@@ -28,6 +28,7 @@ module Faalis
       # Generate only spec files
       class_option :only_specs, type: :boolean, default: false, desc: 'Generate only spec files'
 
+      # TODO: Move it to listview generator
       # Generate only controller
       class_option :only_controller, type: :boolean, default: false, desc: 'Generate only controller'
 
