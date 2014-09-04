@@ -5,7 +5,7 @@
 
 <div class="row single-form">
 
-  <div class="small-6 columns">
+  <div class="large-offset-3 small-6 columns">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <fieldset>
         <legend><%= _("Sign In") %></legend>
@@ -34,17 +34,7 @@
 	  <%= f.submit _("Sign in"), :class => "button"%><br><br>
         </div>
         <%= render "devise/shared/links" %>
-
-      </fieldset>
-
-    <% end %>
-  </div>
-
-
-  <div class="small-6 columns">
-    <div class="row">
-      <fieldset>
-
+        <br>
         <legend><%= _("Login using") %>:</legend>
 
         <div class="text-left">
@@ -62,6 +52,8 @@
         </div>
       </fieldset>
 
-    </div>
+    <% end %>
   </div>
+
+
 </div>
