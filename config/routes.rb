@@ -3,8 +3,9 @@ Faalis::Engine.routes.draw do
 
   # Authentications
   devise_config = {
-    :class_name => 'Faalis::User',
-    :module => :devise
+    class_name: 'Faalis::User',
+    :module =>  :devise,
+    skip: :omniauth_callbacks
   }
 
   # Add omniauth callback if there was any provider
@@ -14,7 +15,6 @@ Faalis::Engine.routes.draw do
     }
   end
 
-  devise_for :users, devise_config
 
 
   scope '(:locale)', :locale => Regexp.new(::I18n.available_locales.join('|')) do
@@ -23,10 +23,23 @@ Faalis::Engine.routes.draw do
       get 'modules' => 'dashboard#modules'
     end
 
+    devise_for :users, devise_config
+
 
     # Root URL
     root :to => 'home#index'
   end
 
+  match('/users/auth/:provider',
+        constraints: { provider: /#{Devise.omniauth_configs.keys.join("|")}/ },
+        to: "devise/omniauth_callbacks#passthru",
+        as: :user_omniauth_authorize,
+        via: [:get, :post])
+
+  match('/users/auth/:action/callback',
+        constraints: { action: /#{Devise.omniauth_configs.keys.join("|")}/ },
+        to: 'devise/omniauth_callbacks',
+        as: :user_omniauth_callback,
+        via: [:get, :post])
 
 end
