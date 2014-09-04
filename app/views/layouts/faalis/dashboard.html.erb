@@ -11,11 +11,15 @@
 
   <%= yield %>
 
+  <%= debug Rails.application.config.assets.to_json.gsub(",", ",\n").gsub('"', "'") %>
+
+
   <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
   <%= javascript_include_tag "locales/#{::I18n.locale}" %>
+
 </body>
 </html>

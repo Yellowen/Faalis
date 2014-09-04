@@ -19,7 +19,7 @@
 require 'fast_gettext'
 require 'modernizr-rails'
 require 'foundation-rails'
-require 'font-awesome-sass'
+require 'font-awesome-rails'
 require 'cancan'
 require 'model_discovery'
 require 'angularjs-rails'
