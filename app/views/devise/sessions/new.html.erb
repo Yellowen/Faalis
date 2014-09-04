@@ -33,9 +33,7 @@
         <div class="right submit">
 	  <%= f.submit _("Sign in"), :class => "button"%><br><br>
         </div>
-        <%= render "devise/shared/links" %>
-        <br>
-        <legend><%= _("Login using") %>:</legend>
+
 
         <div class="text-left">
           <a href="/auth/google_oauth2/" class="pull_right">
@@ -50,9 +48,15 @@
             <i class="fa-twitter-square fa fa-3x"></i>
           </a>
         </div>
+        <br>
+        <br>
+        <div class="text-center">
+        <%= render "devise/shared/links" %>
+        </div>
       </fieldset>
 
     <% end %>
+
   </div>
 
 
