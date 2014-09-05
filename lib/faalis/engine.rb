@@ -154,5 +154,7 @@ module Faalis
                         :timeoutable,
                         :validatable]
 
+    middleware.use Faalis::Middlewares::Locale
+
   end
 end

@@ -21,14 +21,6 @@ module Faalis
   # **User** model for **Faalis** platform
   class User < Faalis::ORM.proper_base_class
 
-    # AuthDefinitions contains all the **Devise** related configurations.
-    include Faalis::User::AuthDefinitions
-    # Permission related methods for user
-    include Faalis::User::Permission
-
-    # Make this model authorizable
-    include Faalis::Concerns::Authorizable
-
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?
       include Mongoid::Document
@@ -36,6 +28,14 @@ module Faalis
       include Faalis::User::MongoidFields
       # FIXME: Port mailboxer to work with mongoid
     end
+
+    # AuthDefinitions contains all the **Devise** related configurations.
+    include Faalis::User::AuthDefinitions
+    # Permission related methods for user
+    include Faalis::User::Permission
+
+    # Make this model authorizable
+    include Faalis::Concerns::Authorizable
 
     # Define **User** fields if current ORM was ActiveRecord-------------------
     if Faalis::ORM.active_record?

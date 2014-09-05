@@ -6,7 +6,7 @@ module Faalis
 
     include Faalis::Dashboard::Controller
 
-    layout "faalis/dashboard"
+    layout 'faalis/dashboard'
     before_filter :authenticate_user!, :only => [:modules, :index]
 
     respond_to :json, :html
@@ -23,7 +23,7 @@ module Faalis
       if params.include? :signin
         redirect_to dashboard_path
       end
-      @jstemplates_path = "/templates"
+      @jstemplates_path = '/templates'
     end
 
     def modules
