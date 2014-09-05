@@ -4,33 +4,31 @@
     <title><%= Faalis::Engine.site_title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag  Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
+    <%= stylesheet_link_tag  "dashboard/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
     <%= csrf_meta_tags %>
   </head>
   <body>
 
-        <%= yield %>
+    <%= yield %>
 
-        <!-- Footer -->
-
-        <hr/>
-        <footer class="plain">
-          <div class="row">
-            <div class="large-6 columns">
-              <p>&copy; Copyright no one at all. Go to town.</p>
-            </div>
-            <div class="large-6 columns">
-              <ul class="inline-list right">
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 4</a></li>
-              </ul>
-            </div>
-          </div>
-        </footer>
+    <!-- Footer -->
+    <hr/>
+    <footer class="plain">
+      <div class="row">
+        <div class="large-6 columns">
+          <p>&copy; Copyright no one at all. Go to town.</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </footer>
 
     <%= javascript_include_tag "faalis/application" %>
     <%= javascript_include_tag "locale/#{::I18n.locale}" %>

@@ -24,6 +24,7 @@ module Faalis
           resource_data["name"].pluralize.underscore
         end
 
+        # Camelized resource name. you can think of it as model name
         def resource
           path_parts = resource_data["name"].split("/")
           if path_parts.length > 1

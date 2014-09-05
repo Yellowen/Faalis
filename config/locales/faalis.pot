@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: faalis 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-09 17:12+0330\n"
-"PO-Revision-Date: 2013-11-09 17:12+0330\n"
+"POT-Creation-Date: 2014-09-05 15:41+0430\n"
+"PO-Revision-Date: 2014-09-05 15:41+0430\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,19 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-msgid "  Sign in  "
-msgstr ""
-
-msgid "Activate"
-msgstr ""
-
-msgid "Active"
-msgstr ""
-
 msgid "Authentication"
-msgstr ""
-
-msgid "Can not connect to remote, please try again"
 msgstr ""
 
 msgid "Change your password"
@@ -39,22 +27,13 @@ msgstr ""
 msgid "Confim Password"
 msgstr ""
 
-msgid "Current Page"
-msgstr ""
-
-msgid "Dashboard"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
 msgid "E-mail"
 msgstr ""
 
-msgid "Edit"
+msgid "Email"
 msgstr ""
 
-msgid "Email"
+msgid "Faalis"
 msgstr ""
 
 msgid "For changing your password fill and submit the form."
@@ -63,19 +42,7 @@ msgstr ""
 msgid "For registration you can fill the form ."
 msgstr ""
 
-msgid "For sign in enter your information !"
-msgstr ""
-
 msgid "Forgot your password?"
-msgstr ""
-
-msgid "Given page does not exists"
-msgstr ""
-
-msgid "Groups"
-msgstr ""
-
-msgid "ID"
 msgstr ""
 
 msgid "If you are a registered member you can go to signin page"
@@ -87,34 +54,16 @@ msgstr ""
 msgid "Item(s)"
 msgstr ""
 
-msgid "Its simple to register this site"
-msgstr ""
-
 msgid "Languages"
 msgstr ""
 
-msgid "Login using"
-msgstr ""
-
-msgid "Membership"
-msgstr ""
-
-msgid "Name"
-msgstr ""
-
-msgid "New"
-msgstr ""
-
-msgid "New User"
+msgid "Menu"
 msgstr ""
 
 msgid "Password"
 msgstr ""
 
-msgid "Faalis"
-msgstr ""
-
-msgid "Register"
+msgid "Remember me"
 msgstr ""
 
 msgid "Resend condirmation"
@@ -123,22 +72,7 @@ msgstr ""
 msgid "Resend confirmation instructions"
 msgstr ""
 
-msgid "Search"
-msgstr ""
-
-msgid "Select All"
-msgstr ""
-
-msgid "Selected"
-msgstr ""
-
-msgid "Selected record(s) removed successfully."
-msgstr ""
-
 msgid "Send me reset password instructions"
-msgstr ""
-
-msgid "Show"
 msgstr ""
 
 msgid "Sign In"
@@ -153,29 +87,17 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-msgid "Some slug"
-msgstr ""
-
-msgid "There is not record"
-msgstr ""
-
-msgid "Toggle Select"
-msgstr ""
-
-msgid "Total Pages"
-msgstr ""
-
-msgid "Users"
-msgstr ""
-
 msgid "You can access the member information by registration on this site."
 msgstr ""
 
-msgid "remember me"
+msgid "You don't have access to this page"
+msgstr ""
+
+msgid "You need to login to use dashboard."
+msgstr ""
+
+msgid "can %s %s"
 msgstr ""
 
 msgid "some text."
-msgstr ""
-
-msgid "you can use members area with registratio"
 msgstr ""
