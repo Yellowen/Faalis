@@ -52,3 +52,4 @@
     groups in migration time `just like the one in mode_discovery` gem.
     This way we can list all groups easily in runtime and load what ever
     we want using Rails autoload.
+** TODO Use websocket-rails gem to provide websocket API/framework
