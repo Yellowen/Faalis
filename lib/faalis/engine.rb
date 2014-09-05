@@ -24,7 +24,7 @@ require 'cancan'
 require 'model_discovery'
 require 'angularjs-rails'
 require 'lodash-rails'
-
+require 'gettext_i18n_rails'
 module Faalis
   # `Engine` class of **Faalis**.
   class Engine < ::Rails::Engine

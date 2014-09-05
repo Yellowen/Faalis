@@ -1,3 +1,4 @@
+require 'gettext_i18n_rails/tasks'
 begin
   require 'bundler/setup'
 rescue LoadError
