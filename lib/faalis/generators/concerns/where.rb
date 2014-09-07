@@ -4,7 +4,7 @@ module Faalis
 
       # This module is dedicated to filter resource object based
       # on a condition or query. For example if you want to filter
-      # resource objects to those which belongs to current logged
+      # a resource objects to those which belongs to current logged
       # in user you can do like:
       #
       # ```javascript
@@ -38,8 +38,6 @@ module Faalis
           end
           {}
         end
-
-
       end
     end
   end

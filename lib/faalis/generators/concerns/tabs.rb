@@ -22,10 +22,10 @@ module Faalis
             result = {}
             tabs.each do |tab|
               name = tab['name']
+
               fields_list = fields_with('tab', tab['id'])
-              fields_list.each do |f|
-                tabbed_fields << f
-              end
+              fields_list.each { |f| tabbed_fields << f }
+
               result[name] = fields_list
             end
             all_fields = Set.new resource_data['fields']
@@ -43,16 +43,13 @@ module Faalis
         end
 
         def tab_has_field?(tab_name, field_name)
-          it_does = tabs[tab_name].select do |f|
-            f['name'] == field_name
-          end
+          it_does = tabs[tab_name].select { |f| f['name'] == field_name }
           !it_does.empty?
         end
 
         def any_tabs?
           resource_data.include? 'tabs'
         end
-
       end
     end
   end

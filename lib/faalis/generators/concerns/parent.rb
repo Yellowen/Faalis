@@ -33,23 +33,21 @@ module Faalis
 
         # check for parent
         def parent?
-          if resource_data.include? "parents"
-            unless resource_data["parents"].nil?
-              return true
-            end
+          if resource_data.include? 'parents'
+            return true unless resource_data['parents'].nil?
           end
           false
         end
 
         # Remove the starting slash from the given parent path
         def trim_parent_path(path)
-          path.gsub(/^\//, "")
+          path.gsub(/^\//, '')
         end
 
         # Return an array of resource parents
         def parents
           if parent?
-            _parents = resource_data["parents"]
+            _parents = resource_data['parents']
             _parents.collect do |p|
               trim_parent_path(p)
             end

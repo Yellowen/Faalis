@@ -21,7 +21,6 @@ module Faalis
 
   # I18n related utility functions
   class I18n
-
     RTL = [:fa, :ar]
 
     def self.direction(locale)
@@ -29,6 +28,12 @@ module Faalis
         'rtl'
       else
         'ltr'
+      end
+    end
+
+    module Locale
+      def self.default_url_options
+        { :locale => I18n.locale }
       end
     end
   end

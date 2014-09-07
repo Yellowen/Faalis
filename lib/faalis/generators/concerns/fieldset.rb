@@ -10,11 +10,11 @@ module Faalis
 
         # Returns fields which is needed to be in bulk edit
         def fieldset?
-          !fields_with_attribute("fieldset").empty?
+          !fields_with_attribute('fieldset').empty?
         end
 
         def fieldset_less_fields
-          fields = Set.new(raw_fields_data) - Set.new(fields_with_attribute("fieldset"))
+          fields = Set.new(raw_fields_data) - Set.new(fields_with_attribute('fieldset'))
           fields.to_a
         end
 

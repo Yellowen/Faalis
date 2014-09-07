@@ -7,16 +7,15 @@ module Faalis
 
         private
 
-
         def allowed_fields
           if allowed_fields_provided?
-            unless resource_data["allow_query_on"].is_a? Array
-              raise Exception.new "value of `allow_query_on` key should be an Array. "
+            unless resource_data['allow_query_on'].is_a? Array
+              fail Exception.new 'value of `allow_query_on` key should be an Array. '
             end
-            fields = resource_data["allow_query_on"].collect do |f|
-              ":#{f}"
-            end
-            fields.join(" ,")
+            # :#{something} is a trick to convert the field name to sym on
+            # controller
+            fields = resource_data['allow_query_on'].collect { |f| ":#{f}" }
+            fields.join(' ,')
           else
             []
           end
@@ -24,14 +23,11 @@ module Faalis
 
         # Check for any allowed fields in json
         def allowed_fields_provided?
-          if resource_data.include? "allow_query_on"
-            unless resource_data["allow_query_on"].nil?
-              return true
-            end
+          if resource_data.include? 'allow_query_on'
+            return true unless resource_data['allow_query_on'].nil?
           end
           false
         end
-
       end
     end
   end

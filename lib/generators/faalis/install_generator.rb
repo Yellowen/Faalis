@@ -61,6 +61,10 @@ module Faalis
         route 'Faalis::Routes.define_api_routes'
       end
 
+      def patch_application_controller
+        inject_into_class "app/controllers/application_controller.rb", ApplicationController, "  extend Faalis::I18n::Locale\n"
+      end
+
       def show_readme
         readme 'README' if behavior == :invoke
       end

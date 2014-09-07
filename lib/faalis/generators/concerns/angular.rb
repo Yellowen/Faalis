@@ -13,16 +13,15 @@ module Faalis
 
         # return the relative path to place where scaffold shoud be created.
         def angularjs_app_path
-          if not resource_data["raw_path"].blank?
-            resource_data["raw_path"]
-          elsif not resource_data["path"].blank?
+          if  !resource_data['raw_path'].blank?
+            resource_data['raw_path']
+          elsif !resource_data['path'].blank?
             "app/assets/javascripts/#{resource_data['path']}/"
           else
-            path = Faalis::Engine.dashboard_js_manifest.split("/")[0..-2].join("/")
+            path = Faalis::Engine.dashboard_js_manifest.split('/')[0..-2].join('/')
             "app/assets/javascripts/#{path}/"
           end
         end
-
       end
     end
   end
