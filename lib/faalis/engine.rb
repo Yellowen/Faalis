@@ -25,6 +25,11 @@ require 'model_discovery'
 require 'angularjs-rails'
 require 'lodash-rails'
 
+# required gettext related gem only in developement
+if Rails.env.development?
+  require 'gettext_i18n_rails'
+end
+
 module Faalis
   # `Engine` class of **Faalis**.
   class Engine < ::Rails::Engine
