@@ -113,9 +113,9 @@ module Faalis
           x.join(':')
         end
 
-        # Load all globalized field
+        # Load all globalize field and create a string to adding in model
         globalize_fields.each do |globalize_field|
-          globalized <<  globalize_field["name"]
+          globalizes <<  globalize_field["name"]
         end
 
         if parent?
