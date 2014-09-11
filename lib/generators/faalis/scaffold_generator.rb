@@ -42,6 +42,7 @@ module Faalis
         if options.empty?
           # TODO: ....
         end
+        # TODO: Show error if in class_option migration is selected by model not
         create_model unless options[:no_model]
         create_route unless options[:no_route]
         create_controller unless options[:no_controller]
@@ -72,7 +73,7 @@ module Faalis
         result = []
         all_fields = []
         relations = "\n"
-        globalizes = "\n translates "
+        globalizes = "\ntranslates "
         fields.each do |name, type, to|
           case type
           when 'belongs_to'
@@ -115,11 +116,11 @@ module Faalis
 
         # Load all globalize field and create a string to adding in model
         globalize_fields.each do |globalize_field|
-          globalizes <<  globalize_field["name"]
+          globalizes <<  ":#{globalize_field["name"]} "
         end
 
         if parent?
-          all_fields << ["#{resource_data["parents"]}_id", "integer"]
+         all_fields << ["#{resource_data["parents"]}_id", "integer"]
         end
 
         invoke('active_record:model', [resource_data['name'], *all_fields], {
@@ -132,6 +133,8 @@ module Faalis
         else
           puts "Could not find file app/models/#{resource_data["name"]}"
         end
+
+
 
       end
 
