@@ -46,8 +46,8 @@ module Faalis
 
         permission_objects do |object|
           object.possible_permissions.each do |perm|
-            Faalis::Permission.create(model: object.to_s,
-                                      permission_type: perm)
+            Faalis::Permission.where(model: object.to_s,
+                                     permission_type: perm).first_or_create
           end
         end
       end
