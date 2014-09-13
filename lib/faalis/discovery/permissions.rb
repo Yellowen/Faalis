@@ -12,6 +12,9 @@ module Faalis
         # model it has the permission_strings). And concat the
         # permissions to `@permissions` instance method.
         ::ApplicationModels.to_adapter.find_all.each do |m|
+          # `m` is a string contains name of a model and
+          # we use contstantize to get the model class with
+          # such name
           model = m.model.constantize
           if model.respond_to? :permission_strings
             block.call(model)
@@ -37,6 +40,8 @@ module Faalis
         permissions.uniq
       end
 
+      # Creating all possible permissions in database using
+      # `Faalis::Permission` model
       def self.create_all_permissions
 
         permission_objects do |object|
