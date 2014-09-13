@@ -9,7 +9,8 @@ module Faalis
         private
 
         def required_fields
-          fields_with("required", true).collect {|x| x["name"]}
+          # Returnes an array contains name of all fields with require = true
+          fields_with('required', true).collect {|x| x['name']}
         end
       end
     end

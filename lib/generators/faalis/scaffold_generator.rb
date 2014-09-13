@@ -26,21 +26,23 @@ module Faalis
       include Faalis::Generators::Concerns::JsonInput
       include Faalis::Generators::Concerns::ResourceName
       include Faalis::Generators::Concerns::ResourceFields
+      include Faalis::Generators::Concerns::Globalize
 
       desc 'Create full faalis full scaffold'
-      # FIXME: These options should have :type and :desc or even default
+      # FIXME: These options should have :desc or even default
       #        value
-      class_option :no_model
-      class_option :no_route
-      class_option :no_controller
-      class_option :no_migration
-      class_option :no_asset
+      class_option :no_model, :type => :boolean
+      class_option :no_route, :type => :boolean
+      class_option :no_controller, :type => :boolean
+      class_option :no_migration, :type => :boolean
+      class_option :no_asset, :type => :boolean
 
-      # FIXME: Add method documents HERE
+      # This method will create full scaffold based on user options
       def create_scaffold
         if options.empty?
           # TODO: ....
         end
+        # TODO: Show error if in class_option migration is selected by model not
         create_model unless options[:no_model]
         create_route unless options[:no_route]
         create_controller unless options[:no_controller]
@@ -53,7 +55,6 @@ module Faalis
       # It does not have any relation to Faalis
       # TODO: Check for better way
       def create_controller
-        #invoke "scaffold_controller", resource_data["name"]
         if options[:no_asset]
           `rails g scaffold_controller #{resource_data["name"]} --skip`
         else
@@ -72,16 +73,16 @@ module Faalis
         result = []
         all_fields = []
         relations = "\n"
+        globalizes = "\ntranslates "
         fields.each do |name, type, to|
-
           case type
           when 'belongs_to'
             type_ = 'integer'
             if to.singularize != name
-              relations << "belongs_to :#{name.singularize},
+              relations << "    belongs_to :#{name.singularize},
               :class_name => \"#{to.singularize.capitalize}\"\n"
             else
-              relations << "belongs_to :#{to.singularize}\n"
+              relations << "    belongs_to :#{to.singularize}\n"
             end
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
@@ -91,48 +92,69 @@ module Faalis
 
           when 'image'
             generate "paperclicp #{resource_data['name']} #{name}"
-            relations << "has_attached_file :#{name}\n"
-            relations << "validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg image/png),:less_than => 1.megabytes]\n"
+            relations << "    has_attached_file :#{name}\n"
+            relations << "    validates_attachment_content_type :#{name},
+     content_type: %w(image/jpeg image/jpg image/png),
+     less_than:  1.megabytes]\n"
+            `rails generate paperclip #{resource_data['name']} #{name}`
           when 'tag'
             rake "rake acts_as_taggable_on_engine:install:migrations"
-            relations << "acts_as_taggable_on :#{name}\n"
+            relations << "    acts_as_taggable_on :#{name}\n"
             result << [name, 'string']
 
           when 'in'
             result << [name, 'string']
 
           when 'has_many'
-            relations << "has_and_belongs_to_many :#{to}\n"
-            say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to}, You should create it manually in model files"
+            relations << "    has_and_belongs_to_many :#{to}\n"
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to},
+ You should create it manually in model files"
 
           end
-
-          all_fields = result.collect do |x|
-            x.join(':')
-          end
-
         end
+
+        all_fields = result.collect do |x|
+          x.join(':')
+        end
+
+        # Load all globalize field and create a string to adding in model
+        globalize_fields.each do |globalize_field|
+          globalizes <<  ":#{globalize_field["name"].underscore} "
+        end
+
+        # create stand alone migration for globalize fields of this model
+        `rails g migration add_globalize_to_#{resource_data["name"].underscore} `
 
         if parent?
-          all_fields << ["#{resource_data["parents"]}_id", "integer"]
+         all_fields << ["#{resource_data["parents"]}_id", "integer"]
         end
 
-        invoke('active_record:model', [resource_data['name'], *all_fields], {
+        invoke('active_record:model', [resource_data['name'].underscore, *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
         if File.exist?("app/models/#{resource_data["name"]}.rb")
-          inject_into_file "app/models/#{resource_data["name"]}.rb", after: 'Base' do
-            relations
+          inject_into_file "app/models/#{resource_data["name"].underscore}.rb", after: 'Base' do
+
+            globalize_fields.empty? ? relations + globalizes : relation
           end
         else
-          puts "Could not find file app/models/#{resource_data["name"]}"
+          puts "Could not find file app/models/#{resource_data["name"].underscore}"
         end
+
+
+
       end
 
       #Invoke Faalis list view generator
       def create_list_view
         invoke 'faalis:js:list_view', [jsonfile]
 
+      end
+
+      def add_globalize
+        globalize_fields.each do |globalize_field|
+          relations << ":#{globalize_field["name"]} "
+        end
       end
     end
   end
