@@ -79,10 +79,10 @@ module Faalis
           when 'belongs_to'
             type_ = 'integer'
             if to.singularize != name
-              relations << "belongs_to :#{name.singularize},
+              relations << "    belongs_to :#{name.singularize},
               :class_name => \"#{to.singularize.capitalize}\"\n"
             else
-              relations << "belongs_to :#{to.singularize}\n"
+              relations << "    belongs_to :#{to.singularize}\n"
             end
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
@@ -92,20 +92,23 @@ module Faalis
 
           when 'image'
             generate "paperclicp #{resource_data['name']} #{name}"
-            relations << "has_attached_file :#{name}\n"
-            relations << "validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg image/png),:less_than => 1.megabytes]\n"
-
+            relations << "    has_attached_file :#{name}\n"
+            relations << "    validates_attachment_content_type :#{name},
+     content_type: %w(image/jpeg image/jpg image/png),
+     less_than:  1.megabytes]\n"
+            `rails generate paperclip #{resource_data['name']} #{name}`
           when 'tag'
             rake "rake acts_as_taggable_on_engine:install:migrations"
-            relations << "acts_as_taggable_on :#{name}\n"
+            relations << "    acts_as_taggable_on :#{name}\n"
             result << [name, 'string']
 
           when 'in'
             result << [name, 'string']
 
           when 'has_many'
-            relations << "has_and_belongs_to_many :#{to}\n"
-            say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to}, You should create it manually in model files"
+            relations << "    has_and_belongs_to_many :#{to}\n"
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to},
+ You should create it manually in model files"
 
           end
         end
@@ -131,7 +134,8 @@ module Faalis
                })
         if File.exist?("app/models/#{resource_data["name"]}.rb")
           inject_into_file "app/models/#{resource_data["name"].underscore}.rb", after: 'Base' do
-            relations + globalizes
+
+            globalize_fields.empty? ? relations + globalizes : relation
           end
         else
           puts "Could not find file app/models/#{resource_data["name"].underscore}"
