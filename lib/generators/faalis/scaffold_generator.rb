@@ -116,22 +116,22 @@ module Faalis
 
         # Load all globalize field and create a string to adding in model
         globalize_fields.each do |globalize_field|
-          globalizes <<  ":#{globalize_field["name"]} "
+          globalizes <<  ":#{globalize_field["name"].underscore} "
         end
 
         if parent?
          all_fields << ["#{resource_data["parents"]}_id", "integer"]
         end
 
-        invoke('active_record:model', [resource_data['name'], *all_fields], {
+        invoke('active_record:model', [resource_data['name'].underscore, *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
         if File.exist?("app/models/#{resource_data["name"]}.rb")
-          inject_into_file "app/models/#{resource_data["name"]}.rb", after: 'Base' do
+          inject_into_file "app/models/#{resource_data["name"].underescore}.rb", after: 'Base' do
             relations + globalizes
           end
         else
-          puts "Could not find file app/models/#{resource_data["name"]}"
+          puts "Could not find file app/models/#{resource_data["name"].underescore}"
         end
 
 
