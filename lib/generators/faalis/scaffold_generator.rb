@@ -119,6 +119,9 @@ module Faalis
           globalizes <<  ":#{globalize_field["name"].underscore} "
         end
 
+        # create stand alone migration for globalize fields of this model
+        `rails g migration add_globalize_to_#{resource_data["name"].underscore} `
+
         if parent?
          all_fields << ["#{resource_data["parents"]}_id", "integer"]
         end
@@ -127,11 +130,11 @@ module Faalis
                  migration: !options[:no_migration], timestamps: true
                })
         if File.exist?("app/models/#{resource_data["name"]}.rb")
-          inject_into_file "app/models/#{resource_data["name"].underescore}.rb", after: 'Base' do
+          inject_into_file "app/models/#{resource_data["name"].underscore}.rb", after: 'Base' do
             relations + globalizes
           end
         else
-          puts "Could not find file app/models/#{resource_data["name"].underescore}"
+          puts "Could not find file app/models/#{resource_data["name"].underscore}"
         end
 
 
