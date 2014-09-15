@@ -1,8 +1,10 @@
 module Faalis
   module Discovery
+    # This class is responsible to discoering all Permissions
+    # classes and provide a list of available permissions
     class Permissions
 
-      # Run the given block fir each object with permissions
+      # Run the given block for each object with permissions
       def self.permission_objects(&block)
         objects = []
 
