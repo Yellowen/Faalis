@@ -22,4 +22,5 @@ group :development, :test do
   gem 'guard-livereload', require: false
   gem 'sqlite3'
   gem 'awesome_print'
+  gem 'pry'
 end
