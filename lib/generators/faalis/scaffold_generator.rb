@@ -73,7 +73,7 @@ module Faalis
         result = []
         all_fields = []
         relations = "\n"
-        globalizes = "\ntranslates "
+
         fields.each do |name, type, to|
           case type
           when 'belongs_to'
@@ -119,16 +119,13 @@ module Faalis
         end
 
         # Load all globalize field and create a string to adding in model
-        globalize_fields.each do |globalize_field|
-          globalizes <<  ":#{globalize_field["name"].underscore} "
-        end
+        globalizes = "\n    translates "+
+          globalize_fields.map { |field | ":#{field['name'].underscore}" }.join(", ")
 
-        # create stand alone migration for globalize fields of this model
-        #`rails g migration add_globalize_to_#{resource_data["name"].underscore} `
         create_globalize_migration
 
         if parent?
-         all_fields << ["#{resource_data["parents"]}_id", "integer"]
+          all_fields << ["#{resource_data["parents"]}_id", "integer"]
         end
 
 
@@ -138,7 +135,7 @@ module Faalis
         if File.exist?("app/models/#{resource_data["name"]}.rb")
           inject_into_file "app/models/#{resource_data["name"].underscore}.rb", after: 'Base' do
 
-            globalize_fields.empty? ? relations + globalizes : relations
+            globalize_fields.empty? ? relations : relations + globalizes
           end
         else
           puts "Could not find file app/models/#{resource_data["name"].underscore}"
@@ -158,13 +155,17 @@ module Faalis
         `rails g migration add_globalize_to_#{resource_data["name"].underscore} `
         Dir["#{Rails.root}/db/migrate/**/*globalize*.rb"].each {|file| require file }
         klass = "add_globalize_to_#{resource_data['name']}".underscore.camelize
-        binding.pry
+
         migration_class = "::#{klass}".constantize
-        migration_path = migration_class.new
-        puts "%"*60
-        puts migration_path
-        puts "%"*60
-        #AddGlobalizeToFlight
+        migration_path = migration_class.instance_method(:change).source_location
+
+        fields = globalize_fields.map { |field | ":#{field['name']} => :#{field['type']}" }.join(", ")
+
+        inject_into_file migration_path[0], after: 'change' do
+          "\n    #{resource_data['name'].capitalize}"+
+            '.create_translation_table! '+
+            fields
+        end
       end
     end
   end
