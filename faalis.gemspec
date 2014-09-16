@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
 
   # TODO: It should be dependency of
   # dashboard or main template
-  s.add_dependency 'foundation-rails'
+  s.add_dependency 'foundation-rails', '~>5.2.0'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'modernizr-rails'
   s.add_dependency 'angularjs-rails', '~>1.2.16'
