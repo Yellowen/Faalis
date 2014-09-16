@@ -70,7 +70,6 @@ module Faalis
         index({ confirmation_token: 1 },
               { unique: true, background: true })
       end
-
     end
   end
 end

@@ -46,9 +46,9 @@ module Faalis
     has_and_belongs_to_many :groups, class_name: 'Faalis::Group'
 
     # Validations
-    validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
-    validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
-    validates :email, presence: true, length: {minimum: 6}
+    validates :password, presence: true, length: { minimum: 5, maximum: 120 }, on: :create
+    validates :password, length: { minimum: 5, maximum: 120 }, on: :update, allow_blank: true
+    validates :email, presence: true, length: { minimum: 6 }
 
     devise *@@devise_options
 
