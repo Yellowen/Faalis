@@ -5,7 +5,6 @@ $.ajax({method: 'GET', type: 'json', async: false,
         url: DashboardURL + '.json'})
     .success(function(data, status, headers, config){
         DModules = data.modules;
-
         DModules.forEach(function(module){
             dashboard_dependencies.push(camelCase(module.resource));
         });
