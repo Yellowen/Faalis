@@ -1,9 +1,12 @@
 <div class="details">
-    <% fields.each do |f, field_type| %>
+  <% if child? %>
+    <div class="small-8 column">
+  <% end %>
+  <% fields.each do |f, field_type| %>
       <p>
-      <% case field_type
+        <% case field_type
            when "belongs_to" %> <b translate><%= f.capitalize %> :</b> {{object.<%= f %>.name}}
-      <% when "has_many" %><p>
+        <% when "has_many" %><p>
         <b translate><%= f.capitalize %> :</b>
         <ul>
           <li ng-repeat="item in object.<%= f %>"> {{ item.name }}</li>
@@ -12,6 +15,7 @@
       <% else %><b translate><%= f.capitalize %> :</b> {{object.<%= f %>}}
       <% end %></p>
     <% end %>
+
   <ul class="button-group float-right">
     <a ng-href="#<% parents.each do |p| %>/<%= p %>/{{ this.$parent.$parent.$parent.$parent.<%= p %>_id }}<% end %>/<%= resource_url %>/{{ object.id }}/edit" class="small">
       <span class="fa fa-edit"></span> <span translated>Edit</span>
