@@ -1,3 +1,8 @@
+function add_dependency(module) {
+    window.dashboard_dependencies = window.dashboard_dependencies || [];
+    window.dashboard_dependencies.push(module);
+}
+
 function debug(msg) {
     if ("debug" in window) {
         if (window.debug === true) {
