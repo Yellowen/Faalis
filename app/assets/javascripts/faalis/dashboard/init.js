@@ -1,5 +1,6 @@
 //= require faalis/dashboard/objects
 // Get all the modules syncly
+console.log(DashboardURL);
 $.ajax({method: 'GET', type: 'json', async: false,
         url: DashboardURL + '.json'})
     .success(function(data, status, headers, config){

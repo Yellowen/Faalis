@@ -1,5 +1,6 @@
 <div class="details">
   <% if child? %>
+      <div class="row">
     <div class="small-8 column">
   <% end %>
   <% fields.each do |f, field_type| %>
@@ -16,6 +17,23 @@
       <% end %></p>
     <% end %>
 
+    <% if child? %>
+          </div>
+
+    <div class="small-4 column">
+      <ul>
+      <% childs.each do |child| %>
+
+        <li>
+          <a ng-href="#/<%= resource_data['name'].plural %>/{{ object.id }}/<%= child %>" class="small">
+            <span translated><%= child.capitalize %></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+      <% end %>
+      <% end %>
   <ul class="button-group float-right">
     <a ng-href="#<% parents.each do |p| %>/<%= p %>/{{ this.$parent.$parent.$parent.$parent.<%= p %>_id }}<% end %>/<%= resource_url %>/{{ object.id }}/edit" class="small">
       <span class="fa fa-edit"></span> <span translated>Edit</span>

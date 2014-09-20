@@ -18,14 +18,12 @@ module Faalis
         # Return an array of resource childs
         def childs
           if child?
-            _childs = resource_data['childs']
-            _childs.collect do |p|
-              trim_child_path(p)
-            end
+            resource_data['childs']
           else
             []
           end
         end
+
 
       end
     end

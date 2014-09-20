@@ -108,7 +108,7 @@ module Faalis
 
           when 'has_many'
             relations << "    has_and_belongs_to_many :#{to}\n"
-            say_status 'warn', "There is a many to many relation between #{resource_data['name']} to #{to},
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
  You should create it manually in model files"
 
           end

@@ -14,6 +14,7 @@ module Faalis
       include Faalis::Generators::Concerns::Bulk
       include Faalis::Generators::Concerns::RequireFields
       include Faalis::Generators::Concerns::Parent
+      include Faalis::Generators::Concerns::Child
       include Faalis::Generators::Concerns::Angular
       include Faalis::Generators::Concerns::Tabs
       include Faalis::Generators::Concerns::Model
