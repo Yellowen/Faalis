@@ -135,13 +135,17 @@ module Faalis
         globalizes = "\n  translates "+
           globalize_fields.map { |field | ":#{field['name'].underscore}" }.join(", ")
 
-        create_globalize_migration
 
 
         invoke('active_record:model', [resource_data['name'].underscore, *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
+        if globalize_fields.any?
+          create_globalize_migration
+        end
+
         if File.exist?("app/models/#{resource_data["name"]}.rb")
+
           inject_into_file "app/models/#{resource_data["name"].underscore}.rb", after: 'Base' do
 
             globalize_fields.empty? ? relations : relations + globalizes
