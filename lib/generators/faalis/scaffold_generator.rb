@@ -89,7 +89,7 @@ module Faalis
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
 
-          when 'text', 'integer', 'string', 'boolean', 'datetime'
+          when 'text', 'integer', 'string', 'boolean', 'datetime', 'float'
             result << [name, type]
 
           when 'image'
@@ -118,8 +118,8 @@ module Faalis
 
         if parent?
           parents.each do |parent|
-            all_fields << ["#{parent}_id", "integer"]
-            relations << "  belongs_to :#{parent}\n"
+            result << ["#{parent.singularize}_id", "integer"]
+            relations << "  belongs_to :#{parent.singularize}\n"
           end
         end
 
