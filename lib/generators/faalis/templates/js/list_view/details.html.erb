@@ -25,7 +25,7 @@
       <% childs.each do |child| %>
 
         <li>
-          <a ng-href="#/<%= resource_data['name'].plural %>/{{ object.id }}/<%= child %>" class="small">
+          <a ng-href="#/<%= resource_data['name'].pluralize %>/{{ object.id }}/<%= child %>" class="small">
             <span translated><%= child.capitalize %></span>
           </a>
         </li>

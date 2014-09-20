@@ -23,10 +23,12 @@ module Faalis
     class ScaffoldGenerator < Rails::Generators::Base
       include Faalis::Generators::Concerns::RequireFields
       include Faalis::Generators::Concerns::Parent
+      include Faalis::Generators::Concerns::Child
       include Faalis::Generators::Concerns::JsonInput
       include Faalis::Generators::Concerns::ResourceName
       include Faalis::Generators::Concerns::ResourceFields
       include Faalis::Generators::Concerns::Globalize
+
 
       desc 'Create full faalis full scaffold'
       # FIXME: These options should have :desc or even default
@@ -79,10 +81,10 @@ module Faalis
           when 'belongs_to'
             type_ = 'integer'
             if to.singularize != name
-              relations << "    belongs_to :#{name.singularize},
+              relations << "  belongs_to :#{name.singularize},
               :class_name => \"#{to.singularize.capitalize}\"\n"
             else
-              relations << "    belongs_to :#{to.singularize}\n"
+              relations << "  belongs_to :#{to.singularize}\n"
             end
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
@@ -92,26 +94,37 @@ module Faalis
 
           when 'image'
             generate "paperclicp #{resource_data['name']} #{name}"
-            relations << "    has_attached_file :#{name}\n"
-            relations << "    validates_attachment_content_type :#{name},
+            relations << "  has_attached_file :#{name}\n"
+            relations << "  validates_attachment_content_type :#{name},
      content_type: %w(image/jpeg image/jpg image/png),
      less_than:  1.megabytes]\n"
             # TODO: Run this generator just once for all images
             `rails generate paperclip #{resource_data['name']} #{name}`
           when 'tag'
             rake "rake acts_as_taggable_on_engine:install:migrations"
-            relations << "    acts_as_taggable_on :#{name}\n"
+            relations << "  acts_as_taggable_on :#{name}\n"
             result << [name, 'string']
 
           when 'in'
             result << [name, 'string']
 
           when 'has_many'
-            relations << "    has_and_belongs_to_many :#{to}\n"
+            relations << "  has_and_belongs_to_many :#{to}\n"
             say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
  You should create it manually in model files"
 
           end
+        end
+
+        if parent?
+          parents.each do |parent|
+            all_fields << ["#{parent}_id", "integer"]
+            relations << "  belongs_to :#{parent}\n"
+          end
+        end
+
+        childs.each do |child|
+          relations << "  has_many :#{child.pluralize}\n"
         end
 
         all_fields = result.collect do |x|
@@ -119,14 +132,10 @@ module Faalis
         end
 
         # Load all globalize field and create a string to adding in model
-        globalizes = "\n    translates "+
+        globalizes = "\n  translates "+
           globalize_fields.map { |field | ":#{field['name'].underscore}" }.join(", ")
 
         create_globalize_migration
-
-        if parent?
-          all_fields << ["#{resource_data["parents"]}_id", "integer"]
-        end
 
 
         invoke('active_record:model', [resource_data['name'].underscore, *all_fields], {
@@ -162,7 +171,7 @@ module Faalis
         fields = globalize_fields.map { |field | ":#{field['name']} => :#{field['type']}" }.join(", ")
 
         inject_into_file migration_path[0], after: 'change' do
-          "\n    #{resource_data['name'].capitalize}"+
+          "\n    #{resource_data['name'].camelize}"+
             '.create_translation_table! '+
             fields
         end
