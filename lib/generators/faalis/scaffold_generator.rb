@@ -89,7 +89,7 @@ module Faalis
             name_ = "#{name.singularize}_id"
             result << [name_, type_]
 
-          when 'text', 'integer', 'string', 'boolean', 'datetime', 'float'
+          when 'text', 'integer', 'string', 'boolean', 'datetime', 'date', 'float'
             result << [name, type]
 
           when 'image'
