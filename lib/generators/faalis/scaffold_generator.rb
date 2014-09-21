@@ -123,6 +123,7 @@ module Faalis
           end
         end
 
+
         childs.each do |child|
           relations << "  has_many :#{child.pluralize}\n"
         end
