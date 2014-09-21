@@ -1,4 +1,5 @@
 # Faalis  [![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Faalis is a ruby on rails engine which provides a basic features of a web application. It provide a very
 robust dashboard subsystem with some fantastic generators which provide rapid productivity.
