@@ -27,8 +27,8 @@ class Faalis::ApplicationController < ActionController::Base
       FastGettext.default_text_domain = 'faalis'
 
       lang = request.env['lang'] || params[:locale] || session[:locale] || I18n.default_locale
-      FastGettext.set_locale(lang.to_sym)
-      session[:locale] = I18n.locale = lang
+      FastGettext.set_locale(lang.to_s)
+      session[:locale] = I18n.locale = lang.to_s
  end
 
 end
