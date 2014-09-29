@@ -5,14 +5,6 @@
 robust dashboard subsystem with some fantastic generators and client side framework based on **AngularJS**
 to improve productivity as much as possible.
 
-## Dependencies
-
-* Add this to your Gemfile:
-
-```ruby
-
-```
-
 ## Installation
 
 1. First add `rails-assets` source to your `Gemfile`:
@@ -64,6 +56,12 @@ For example (Only if you want to change default layout):
 ```
 6. Perfrom `rails generate faalis:install_all` to copy necessary files.
 7. Perform `rake db:migrate` and enjoy Faalis
+8. Add this to your `config/routes.rb` :
+
+```ruby
+mount Faalis::Engine => "/"
+Faalis::Routes.define_api_routes
+```
 
 ## Documents
 There is couple of guides along side with **Ruby** and **JavaScript** API documents
