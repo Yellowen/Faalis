@@ -2,15 +2,14 @@ In this article we will show you how to start you development using  [Faalis](ht
 
 ## Installation
 
-1. First add `rails-assets` source to your `Gemfile`:
+* First add `rails-assets` source to your `Gemfile`:
 
 ```ruby
 source 'http://rails-assets.org'
 ```
+> **NOTE**: Remember to add this source not to replace the default one.
 
-**NOTE**: Remember to add this source not to replace the default one.
-
-2. Add `faalis` gem and it's dependencies to your `Gemfile` like:
+* Add `faalis` gem and it's dependencies to your `Gemfile` like:
 
 ```ruby
 group :development, :test do
@@ -28,30 +27,30 @@ gem "dashstrap"
 gem "faalis"
 ```
 
-3. Iinstall your project dependencies using `bundle`
+* Iinstall your project dependencies using `bundle`
 
 ```ruby
 bundle install
 ```
 
-4. Add this to your `config/environments/development.rb`
+* Add this to your `config/environments/development.rb`
 
 ```ruby
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 ```
+> In production, `:host` should be set to the actual host of your application.
 
-In production, `:host` should be set to the actual host of your application.
-
-5. Ensure you have flash messages in `app/views/layouts/application.html.erb`.
+* Ensure you have flash messages in `app/views/layouts/application.html.erb`.
 For example (Only if you want to change default layout):
 
 ```rhtml
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 ```
-6. Perfrom `rails generate faalis:install_all` to copy necessary files.
-7. Perform `rake db:migrate` and enjoy Faalis
-8. Add this to your `config/routes.rb` :
+
+* Perfrom `rails generate faalis:install_all` to copy necessary files.
+* Perform `rake db:migrate` and enjoy Faalis
+* Add this to your `config/routes.rb` :
 
 ```ruby
 mount Faalis::Engine => "/"
