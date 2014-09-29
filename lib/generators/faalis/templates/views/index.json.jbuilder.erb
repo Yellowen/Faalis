@@ -1,5 +1,6 @@
 json.array! @<%= resource.pluralize.underscore %> do |<%= resource.underscore %>|
-  json.extract! <%= resource.underscore %>, :id<%= fields_as_params %><% fields.each do |name, type| %><% case type
+  json.id <%= resource.underscore %>.id.to_s
+  json.extract! <%= resource.underscore %><%= fields_as_params %><% fields.each do |name, type| %><% case type
   when "belongs_to" %>
   json.<%= name %> do
     if <%= resource.underscore %>.<%= name %>
@@ -7,5 +8,6 @@ json.array! @<%= resource.pluralize.underscore %> do |<%= resource.underscore %>
       json.name <%= resource.underscore %>.<%= name %>.name
     end
   end
-<% when "has_many" %>  json.<%= name %> <%= resource.underscore %>.<%= name %>, :id, :name<% end %><% end %>
+<% when "has_many" %>
+ json.<%= name %> <%= resource.underscore %>.<%= name %>, :id, :name<% end %><% end %>
 end

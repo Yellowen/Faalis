@@ -1,4 +1,5 @@
-json.extract! @<%= resource.underscore %>, :id<%= fields_as_params %><% fields.each do |name, type| %>
+json.id @<%= resource.underscore %>.id.to_s
+json.extract! @<%= resource.underscore %><%= fields_as_params %><% fields.each do |name, type| %>
 <% case type
 when "belongs_to" %>
 json.partial! 'faalis/relations/belongs_to', object: @<%= resource.underscore %>.<%= name %>, :name => :<%= name %>, :fields => [:id, :name]
