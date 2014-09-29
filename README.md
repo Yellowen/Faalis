@@ -1,12 +1,29 @@
-# Faalis  [![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+# Faalis  [![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Faalis is a ruby on rails engine which provides a basic features of a web application. It provide a very
-robust dashboard subsystem with some fantastic generators which provide rapid productivity.
+
+**Faalis** is a **RubyOnRails** Platform for rapid web application development. It provides a very
+robust dashboard subsystem with some fantastic generators and client side framework based on **AngularJS**
+to improve productivity as much as possible.
 
 ## Dependencies
 
 * Add this to your Gemfile:
+
+```ruby
+
+```
+
+## Installation
+
+1. First add `rails-assets` source to your `Gemfile`:
+
+```ruby
+source 'http://rails-assets.org'
+```
+
+**NOTE**: Remember to add this source not to replace the default one.
+
+2. Add `faalis` gem and it's dependencies to your `Gemfile` like:
 
 ```ruby
 group :development, :test do
@@ -17,27 +34,20 @@ group :development, :test do
   gem "email_spec"
   gem "cucumber-rails", :require => false
 end
-```
 
-## Installation
-
-1. First add `faalis` to your `Gemfile` like
-
-```ruby
-# Make sure to add this source to you Gemfile
-source 'http://rails-assets.org'
+# Current Dashstrap theme for Faalis
+gem "dashstrap"
 
 gem "faalis"
 ```
-**Note**: Make sure to add `source 'http://rails-assets.org'` to your `Gemfile`.
 
-2. Iinstall your project dependencies using `bundle`
+3. Iinstall your project dependencies using `bundle`
 
 ```ruby
 bundle install
 ```
 
-3. Add this to your `config/environments/development.rb`
+4. Add this to your `config/environments/development.rb`
 
 ```ruby
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
@@ -45,15 +55,22 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
 In production, `:host` should be set to the actual host of your application.
 
-4. Ensure you have flash messages in `app/views/layouts/application.html.erb`.
+5. Ensure you have flash messages in `app/views/layouts/application.html.erb`.
 For example (Only if you want to change default layout):
 
 ```rhtml
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 ```
-5. Perfrom `rails generate faalis:install_all` to copy necessary files.
-6. Perform `rake db:migrate` and enjoy Faalis
+6. Perfrom `rails generate faalis:install_all` to copy necessary files.
+7. Perform `rake db:migrate` and enjoy Faalis
+
+## Documents
+There is couple of guides along side with **Ruby** and **JavaScript** API documents
+inside the source tree. We use `yardoc` so you can build them easily or look at automated [rubydoc](http://rubydoc.info/gems/faalis)
+docs.
+
+Also take a look at [Wiki of Faalis](https://github.com/Yellowen/Faalis/wiki).
 
 ## Contributing
 
@@ -63,6 +80,9 @@ For example (Only if you want to change default layout):
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+Also you can join us in our `Gitter` group:
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 ## Credit
 ![Yellowen](http://www.yellowen.com/images/logo.png)
 
@@ -71,4 +91,4 @@ For example (Only if you want to change default layout):
 
 # License
 
-**Faalis** is Copyright © 2014 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+**Faalis** is Copyright © 2013-2014 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
