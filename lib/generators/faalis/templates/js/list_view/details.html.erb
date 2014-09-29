@@ -25,14 +25,15 @@
       <% childs.each do |child| %>
 
         <li>
-          <a ng-href="#/<%= resource_data['name'].pluralize %>/{{ object.id }}/<%= child %>" class="small">
-            <span translated><%= child.capitalize %></span>
+          <a ng-href="#/<%= resource_data['name'].pluralize %>/{{ object.id }}/<%= child.pluralize %>" class="small">
+            <span translated><%= child.split('_').tap{|a| a[0].upcase }.join(' ') %></span>
           </a>
         </li>
+      <% end %>
       </ul>
     </div>
   </div>
-      <% end %>
+
       <% end %>
   <ul class="button-group float-right">
     <a ng-href="#<% parents.each do |p| %>/<%= p %>/{{ this.$parent.$parent.$parent.$parent.<%= p %>_id }}<% end %>/<%= resource_url %>/{{ object.id }}/edit" class="small">
