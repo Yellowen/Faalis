@@ -20,7 +20,6 @@ module Faalis
           locale = ::I18n.default_locale
         end
 
-
         req.params['locale'] ||= locale
         ::I18n.locale = locale
         @app.call env
