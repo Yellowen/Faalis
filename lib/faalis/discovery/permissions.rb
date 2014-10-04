@@ -17,6 +17,7 @@ module Faalis
           # `m` is a string contains name of a model and
           # we use contstantize to get the model class with
           # such name
+          puts ">>>>>>> ", m.model
           model = m.model.constantize
           if model.respond_to? :permission_strings
             block.call(model)
