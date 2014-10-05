@@ -49,10 +49,12 @@ For example (Only if you want to change default layout):
 ```
 
 * Perfrom `rails generate faalis:install_all` to copy necessary files.
-* Perform `rake db:migrate` and enjoy Faalis
 * Add this to your `config/routes.rb` :
 
 ```ruby
 mount Faalis::Engine => "/"
 Faalis::Routes.define_api_routes
 ```
+* Perform `rake db:migrate` and enjoy Faalis
+
+> **NOTE**: You change the orm you like to use in `config/initializers/faalis.rb`
