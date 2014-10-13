@@ -36,6 +36,7 @@
 
 ** DONE Remove Mailboxer from defult initializers
 ** TODO update copyright to 2014
+** TODO patch *Rails* scaffold generator to generate the dashboard generator too
 * Features
 ** DONE Edit Profile
 ** DONE User messages
