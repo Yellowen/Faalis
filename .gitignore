@@ -38,3 +38,4 @@ docs/ruby
 docs/js
 node_modules/
 Gemfile.lock
+spec/dummy/db/

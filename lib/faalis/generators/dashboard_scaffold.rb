@@ -1,3 +1,5 @@
+require 'rails/generators'
+
 module Faalis
   module Generators
     # `DashboardScaffold` is the base class for all the dashboard
