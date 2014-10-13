@@ -25,10 +25,10 @@ require 'model_discovery'
 require 'angularjs-rails'
 require 'lodash-rails'
 
+require_relative './middlewares/locale'
+
 # required gettext related gem only in developement
-if Rails.env.development?
-  require 'gettext_i18n_rails'
-end
+require 'gettext_i18n_rails' if Rails.env.development?
 
 module Faalis
   # `Engine` class of **Faalis**.
@@ -99,7 +99,7 @@ module Faalis
 
     # TODO: Check for possible error in this configurations
     @@locale_path = "#{root}/config/locales"
-    FastGettext.add_text_domain 'faalis', :path => @@locale_path, :type => :po
+    FastGettext.add_text_domain 'faalis', path: @@locale_path, type: :po
     # All languages you want to allow
     FastGettext.default_available_locales = @@locales
 
@@ -108,7 +108,7 @@ module Faalis
 
     # Site Title
     mattr_accessor :site_title
-    @@site_title = _("Faalis")
+    @@site_title = _('Faalis')
 
     # Override devise layout
     config.to_prepare do
@@ -130,12 +130,7 @@ module Faalis
     #       resource: provide resource name explicitly
     #       title: resource title (will show in dashboard)
     #       icon: icon class checkout font-awesome
-    @@dashboard_modules = {
-      :auth => {
-        :title => _("Authentication"),
-      }
-    }
-
+    @@dashboard_modules = { auth: { title: _('Authentication') } }
 
     def self.dashboard_modules=(value)
       @@dashboard_modules.merge!(value)
@@ -143,7 +138,7 @@ module Faalis
 
     # Dashboard default javascript manifest
     mattr_accessor :dashboard_js_manifest
-    @@dashboard_js_manifest = "controlpanel/application.js"
+    @@dashboard_js_manifest = 'controlpanel/application.js'
 
     # Devise options
     # Include default devise modules. Others available are:

@@ -23,7 +23,6 @@ require 'devise'
 module Faalis
 end
 
-require 'faalis/middlewares'
 require 'faalis/engine'
 require 'faalis/orm'
 require 'faalis/concerns'

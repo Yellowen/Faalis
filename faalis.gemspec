@@ -38,11 +38,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails', '~> 4.0.0'
   s.add_dependency 'compass-rails'
+  s.add_dependency 'foundation-rails', '~>5.2.0'
+
   s.add_dependency 'sprockets', '~>2.11.0'
 
   # TODO: It should be dependency of
   # dashboard or main template
-  s.add_dependency 'foundation-rails', '~>5.2.0'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'modernizr-rails'
   s.add_dependency 'angularjs-rails', '~>1.2.16'
@@ -74,8 +75,9 @@ Gem::Specification.new do |s|
   #s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'ruby_parser'
   s.add_development_dependency 'rdoc'
-  s.add_development_dependency 'rspec-rails', '~> 3.0.0.beta'
+  s.add_development_dependency 'rspec-rails', '~> 3.1.0'
   s.add_development_dependency 'capybara'
+  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'factory_girl_rails'
 
 end
