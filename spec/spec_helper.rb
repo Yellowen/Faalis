@@ -1,10 +1,13 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../dummy/config/environment', __FILE__)
+
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'factory_girl_rails'
+require 'database_cleaner'
 
+FAALIS = File.join(File.dirname(__FILE__), '../')
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -15,7 +18,7 @@ Rails.backtrace_cleaner.remove_silencers!
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[File.join(FAALIS, 'spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -58,4 +61,9 @@ RSpec.configure do |config|
       DatabaseCleaner.clean
     end
   end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 end
