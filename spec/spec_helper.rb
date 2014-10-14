@@ -6,6 +6,7 @@ require 'rspec/rails'
 #require 'rspec/autorun'
 require 'factory_girl_rails'
 require 'database_cleaner'
+require 'capybara/rspec'
 
 FAALIS = File.join(File.dirname(__FILE__), '../')
 

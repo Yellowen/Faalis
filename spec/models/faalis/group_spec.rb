@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Faalis
-  RSpec.describe Group, :type => :model do
+  RSpec.describe Faalis::Group, :type => :model do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 end
