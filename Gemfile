@@ -22,4 +22,5 @@ group :development, :test do
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
+  gem 'faker'
 end
