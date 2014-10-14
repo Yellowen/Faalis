@@ -3,7 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../dummy/config/environment', __FILE__)
 
 require 'rspec/rails'
-require 'rspec/autorun'
+#require 'rspec/autorun'
 require 'factory_girl_rails'
 require 'database_cleaner'
 
@@ -56,7 +56,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     begin
       DatabaseCleaner.start
-      FactoryGirl.lint
+      #FactoryGirl.lint
     ensure
       DatabaseCleaner.clean
     end

@@ -1,6 +1,6 @@
-require "rails_helper"
+require "spec_helper"
 
-module Faalis
+module Faalis::API::V1
   RSpec.describe GroupsController, :type => :routing do
     describe "routing" do
 

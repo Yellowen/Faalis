@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe "Permissions", :type => :request do
   describe "GET /faalis_permissions" do
