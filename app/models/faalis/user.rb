@@ -21,6 +21,8 @@ module Faalis
   # **User** model for **Faalis** platform
   class User < Faalis::ORM.proper_base_class
 
+    before_save :join_guests, if: :groups_empty?
+
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?
       include Mongoid::Document
@@ -48,9 +50,15 @@ module Faalis
     # Validations
     validates :password, presence: true, length: { minimum: 5, maximum: 120 }, on: :create
     validates :password, length: { minimum: 5, maximum: 120 }, on: :update, allow_blank: true
-    validates :email, presence: true, length: { minimum: 6 }
+    validates(:email,
+              format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
+                        on: :create })
 
     devise *@@devise_options
+
+    def join_guests
+      self.groups << Group.find_by(name: 'Guest')
+    end
 
   end
 end

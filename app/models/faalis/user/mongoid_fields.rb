@@ -43,7 +43,7 @@ module Faalis
       if not Devise.omniauth_providers.empty?
         # Service
         field :provider, type: String, default: ''
-        field :uid, type: String
+        field :uid,      type: String
       end
 
       if Rails.env.production?

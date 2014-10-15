@@ -30,6 +30,7 @@ module Faalis
       include Mongoid::Timestamps
 
       field :name, type: String
+      field :role, type: String
     end
 
     has_and_belongs_to_many :users, class_name: 'Faalis::User'
