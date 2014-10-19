@@ -28,8 +28,33 @@ describe Faalis::User, :type => :model do
   end
 
   it 'should have a functional many to many to group' do
-    user = build(:faalis_user, groups: [admin_group])
+    user = create(:faalis_user, groups: [admin_group], password: fake_password)
     expect(user.groups.size).to eq(1)
     expect(user.groups.first).to be_a_kind_of(Faalis::Group)
+  end
+
+  it 'can be in serveral groups' do
+    user1 = create(:faalis_user,
+                   groups: [admin_group, guest_group],
+                   password: fake_password)
+
+    user2 = create(:faalis_user,
+                   password: fake_password)
+
+    user2.groups << admin_group
+
+    expect(user1.groups.size).to eq(2)
+    expect(user2.groups.size).to eq(2)
+
+  end
+
+  it 'should not join to `guest` group when using build' do
+    user = build(:faalis_user,
+                 password: fake_password)
+    expect(user.groups.size).to eq(0)
+
+    user.save
+
+    expect(user.groups.size).to eq(1)
   end
 end
