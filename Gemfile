@@ -23,4 +23,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'pry'
   gem 'faker'
+  gem 'rake'
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
