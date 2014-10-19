@@ -1,3 +1,4 @@
+require 'faalis'
 namespace :js do
   namespace :i18n do
 
