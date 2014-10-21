@@ -36,3 +36,5 @@
 ** TODO Use websocket-rails gem to provide websocket API/framework
 ** TODO Add support for postgreSQL Hstore in dashboard generator
         There must be a 'hstore' type in generator
+** TODO Use *DoorKeeper* gem to provide an OAuth2 provider for API
+** TODO Use *ElasticSearch* and retire to create an search API
