@@ -30,7 +30,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext", function($filter, ge
         templateUrl: template("fields/datetime/datetime"),
         replace: true,
         restrict: "E",
-        transclude: true,
+        //transclude: true,
         scope: {
             // disable timepicker
             timepicker: "=?",
