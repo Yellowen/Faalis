@@ -55,11 +55,7 @@ module Faalis
     devise *@@devise_options
 
     def join_guests
-      puts "<<<<<<<<<<<<<<<<<<<<<<<<"
-      if groups.empty?
-        groups << Group.find_by(role: 'Guest')
-      end
+      groups << Group.find_by(role: 'guest') if groups.empty?
     end
-
   end
 end
