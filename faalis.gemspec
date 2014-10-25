@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '~>3.4.0'
 
   # Authorization
-  s.add_dependency 'cancan'
+  s.add_dependency 'cancancan'
   #s.add_dependency 'mailboxer'
 
   # API
