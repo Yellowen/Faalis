@@ -8,6 +8,7 @@ Faalis::Discovery::Permissions.create_all_permissions
 case Faalis::ORM.current
 when 'active_record'
   admin_group = Faalis::Group.create(name: 'Admin', role: 'admin')
+  guest_group = Faalis::Group.create(name: 'Guest', id: 2, role: 'guest')
 
   admin_group.permissions = Faalis::Permission.all
 
@@ -16,7 +17,6 @@ when 'active_record'
                               password_confirmation: '123123123')
   admin.groups << admin_group
 
-  guest_group = Faalis::Group.create(name: 'Guest', id: 2, role: 'guest')
 
 
   user = Faalis::User.create(email: 'user@example.com',
