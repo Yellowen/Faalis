@@ -97,7 +97,7 @@ module Faalis
             relations << "  has_attached_file :#{name}\n"
             relations << "  validates_attachment_content_type :#{name},
      content_type: %w(image/jpeg image/jpg image/png),
-     less_than:  1.megabytes]\n"
+     less_than:  1.megabytes\n"
             # TODO: Run this generator just once for all images
             `rails generate paperclip #{resource_data['name']} #{name}`
           when 'tag'

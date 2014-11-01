@@ -109,6 +109,9 @@ module Faalis
     mattr_accessor :site_title
     @@site_title = _('Faalis')
 
+    mattr_accessor :slug
+
+
     # Override devise layout
     config.to_prepare do
       Devise::SessionsController.layout 'faalis/simple'
