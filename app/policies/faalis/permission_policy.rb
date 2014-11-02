@@ -1,5 +1,5 @@
 module Faalis
-  class PermissionPolicy < ApplicationPolicy
+  class PermissionPolicy < Faalis::ApplicationPolicy
     class Scope < Scope
       def resolve
         scope

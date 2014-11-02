@@ -1,5 +1,5 @@
 module Faalis
-  class GroupPolicy < ApplicationPolicy
+  class GroupPolicy < Faalis::ApplicationPolicy
     class Scope < Scope
       def resolve
         scope

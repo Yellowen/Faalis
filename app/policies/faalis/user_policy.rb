@@ -1,5 +1,5 @@
 module Faalis
-  class UserPolicy < ApplicationPolicy
+  class UserPolicy < Faalis::ApplicationPolicy
     class Scope < Scope
       def resolve
         scope
