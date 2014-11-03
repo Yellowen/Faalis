@@ -1,3 +1,5 @@
+# Main class for all the **Faalis** Policy classes.
+# It's totally a minimume Policy.
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -7,14 +9,17 @@ class ApplicationPolicy
   end
 
   def index?
+    return true if user.admin?
     false
   end
 
   def show?
+    return true if user.admin?
     scope.where(:id => record.id).exists?
   end
 
   def create?
+    return true if user.admin?
     false
   end
 
@@ -23,6 +28,7 @@ class ApplicationPolicy
   end
 
   def update?
+    return true if user.admin?
     false
   end
 
@@ -31,6 +37,7 @@ class ApplicationPolicy
   end
 
   def destroy?
+    return true if user.admin?
     false
   end
 
@@ -51,4 +58,3 @@ class ApplicationPolicy
     end
   end
 end
-
