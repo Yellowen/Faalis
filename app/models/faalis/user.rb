@@ -54,6 +54,7 @@ module Faalis
 
     devise *@@devise_options
 
+    # It's totally obviuse. Join the guest group if no group provided
     def join_guests
       groups << Group.find_by(role: 'guest') if groups.empty?
     end

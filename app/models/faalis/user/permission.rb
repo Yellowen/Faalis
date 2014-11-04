@@ -3,6 +3,8 @@ module Faalis
   # to use within `Faalis::User`
   module User::Permission
 
+
+
     # Return all the user permissions
     def permissions
       perms = []

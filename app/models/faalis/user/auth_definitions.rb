@@ -43,6 +43,7 @@ module Faalis
       end
     end
 
+    # Omniauth users does not need password
     def password_required?
       # TODO: nil? is not suitable for here we should use empty? or blink?
       if Devise.omniauth_configs.any?
