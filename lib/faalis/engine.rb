@@ -31,7 +31,9 @@ require 'gettext_i18n_rails' if Rails.env.development?
 module Faalis
   # `Engine` class of **Faalis**.
   class Engine < ::Rails::Engine
-
+    # TODO: Break this class to modules
+    # TODO: Add a facility to allow developers to select
+    #       features of faalis
     isolate_namespace Faalis
     engine_name 'faalis'
 

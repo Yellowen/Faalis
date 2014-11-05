@@ -1,3 +1,4 @@
+# TODO: This module should be removed
 module Faalis
   module Concerns
     # Authorizable modules of Faalis which each resource model should
