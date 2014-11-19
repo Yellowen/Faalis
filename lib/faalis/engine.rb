@@ -18,7 +18,6 @@
 # -----------------------------------------------------------------------------
 require 'fast_gettext'
 require 'modernizr-rails'
-require 'cancan'
 require 'model_discovery'
 require 'angularjs-rails'
 require 'lodash-rails'
