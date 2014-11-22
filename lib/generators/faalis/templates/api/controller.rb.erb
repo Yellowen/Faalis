@@ -2,7 +2,6 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   <% if allowed_fields_provided? %>allow_query_on <%= allowed_fields %><% end %>
   before_filter :build_resource, :only => :create
   <% if parent? %><% all_parents = parents %><% prev = all_parents.shift %>
-  load_and_authorize_resource :<%= prev.singularize %>, :except => [:destroy]
   <% all_parents.each do |p| %>load_and_authorize_resource :<%= p.singularize %>, :through => :<%= prev.singularize %>, :except => [:destory]<% prev = p %>
   <% end %>load_and_authorize_resource :through => :<%= prev.singularize %>, :except => [:destory]<% if model_specified? %>, :class => "<%= model %>"<% end %>
   <% else %>

@@ -24,6 +24,9 @@ module Faalis
   # which inherit from this class.
   class APIController < Faalis::ApplicationController
 
+
+    include Pundit
+
     # Only support `json` format
     respond_to :json
 
@@ -41,13 +44,13 @@ module Faalis
 
     # Rescue from any access denied exception raised from cancan and
     # returns a useful error message in json
-    rescue_from CanCan::AccessDenied do |exception|
-      render :status => 403, :json => {
-        :error => _('You don\'t have access to this page'),
-        :orig_msg => exception.message,
-        :action => exception.action
-      }
-    end
+ #   rescue_from CanCan::AccessDenied do |exception|
+ #     render :status => 403, :json => {
+ #       :error => _('You don\'t have access to this page'),
+ #       :orig_msg => exception.message,
+ #       :action => exception.action
+ #     }
+ #   end
 
     def set_csrf_cookie_for_ng
       cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
@@ -60,7 +63,7 @@ module Faalis
     # If you want to change authentication method ? just override this method
     # in you **APIController**
     def authenticate_filter
-      authenticate_user!
+      #authenticate_user_!
     end
 
     # Load resource by using parameters specified in querystring.
