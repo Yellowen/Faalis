@@ -13,10 +13,12 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope.msg_element_id = "id_" + scope.field.name + "_msg";
         scope.show_help_btn = false;
         scope.show_help_text = true;
+
         // Decide to see help text or help button
         if (scope.options === undefined) {
             scope.options = {};
         }
+        scope.field_options = scope.options();
 
         if ("help_text" in scope.options) {
             if ("show_help_btn" in scope.options && scope.options.show_help_btn === true) {
@@ -51,18 +53,18 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
                         return;
                     }
                 }
+
                 var to = scope.field.to;
                 if (typeof(scope.field.to) === "function") {
                     to = scope.field.to();
                 }
                 var list_object = API.all(to);
-                if ("list_object" in scope.options) {
-                    list_object = scope.options.list_object;
-                }
+
                 list_object.getList().then(function(data){
                     scope.all_options = data;
                     if (scope.collection !== undefined) {
                         scope.collection = data;
+
                     }
                 }, function(data){
                     catch_error(data);
@@ -94,6 +96,7 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
         scope.on_select_change = function(){
             update_model_data();
         };
+
 
         scope.help_btn_clicked = function() {
             if ("show_help_callback" in scope.options) {
