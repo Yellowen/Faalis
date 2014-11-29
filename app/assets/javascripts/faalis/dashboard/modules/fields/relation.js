@@ -91,8 +91,8 @@ Relation.directive('relationField', ["$filter", "gettext", "Restangular", "catch
             if (scope.on_change !== undefined) {
                 scope.$parent.$eval(scope.on_change);
             }
-
         }
+
         scope.on_select_change = function(){
             update_model_data();
         };
