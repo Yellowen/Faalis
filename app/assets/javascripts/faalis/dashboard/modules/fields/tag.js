@@ -1,16 +1,18 @@
 var Tag = angular.module("TagField", ["ui.select2"]);
 
 // <tag-field></tag-field> directive defination
+
 Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", function($filter, gettext, API, catch_error) {
 
     function link(scope, element, attrs){
-        var ltr = is_ltr();
 
+        var ltr = is_ltr();
         scope.element_id = "id_" + scope.fieldName;
         scope.msg_element_id = "id_" + scope.fieldName + "_msg";
         scope.show_help_btn = false;
         scope.show_help_text = true;
         // Decide to see help text or help button
+
         if (scope.options === undefined) {
             scope.options = {};
         }
@@ -34,9 +36,9 @@ Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", f
     // Actual object of <tag-field> directive
     return {
         templateUrl: template("fields/tag/tag"),
-        replace: true,
+        replace: false,
         restrict: "E",
-        transclude: true,
+        transclude: false,
         scope: {
             // select2 options. Also you can control the buttons and help
             // message of field here. for example you can use `help_text` to
@@ -50,16 +52,8 @@ Tag.directive('tagField', ["$filter", "gettext", "Restangular", "catch_error", f
             // Place holder
             placeholder: "@placeholder",
 
-            // Collection of all tag objects, This variable will
-            // fill automatically so you don't have to provide an initial
-            // value.
-            collection: "=",
-
             // Does this field is required
             required: "=",
-
-            // Field to use as title of options
-            titleField: '=',
 
             // tag field data
             fieldName: '=',
