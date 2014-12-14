@@ -3,18 +3,18 @@ require_dependency "faalis/api_controller"
 module Faalis
   class API::V1::GroupsController < ::APIController
     # TODO: Use strong params
-    # TODO: implement authorization
+    after_action :verify_authorized, :except => :index
 
     # GET /api/v1/groups
     def index
-      @groups = Group.includes(:permissions).to_a
-      authorize! :read, Faalis::Group
+      @groups = Group.includes(:permissions)
+      authorize @groups
       respond_with(@groups)
     end
 
     def create
-      authorize! :create, Faalis::Group
 
+      authorize Group, :create?
       permissions = [];
 
       (params[:permissions] || []).each do |perm_string|
@@ -31,21 +31,21 @@ module Faalis
         respond_with(@group)
       else
         respond_to do |format|
-          format.json { render :json => {:fields => @group.errors}, :status => :unprocessable_entity }
+          format.json { render json: { fields: @group.errors },
+            status: :unprocessable_entity }
         end
       end
     end
 
     def show
       @group = Group.find(params[:id])
-      authorize! :read, @group
+      authorize @group
       respond_with(@group)
     end
 
     def update
-
       @group = Group.find(params[:id])
-      authorize! :update, @group
+      authorize @group
 
       permissions = [];
       (params[:permissions] || []).each do |perm_string|
@@ -59,7 +59,8 @@ module Faalis
         respond_with(@group)
       else
         respond_to do |format|
-          format.json { render :json => {:fields => @group.errors}, :status => :unprocessable_entity }
+          format.json { render json: { fields: @group.errors },
+            status: :unprocessable_entity }
         end
       end
     end
@@ -67,7 +68,7 @@ module Faalis
     def destroy
       ids = params[:id].split(",")
       @groups = Group.where(:id => ids)
-      authorize! :destory, @groups
+      authorize @groups
       @groups.destroy_all
     end
   end

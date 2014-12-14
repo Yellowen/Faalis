@@ -29,6 +29,10 @@ module Faalis
       name
     end
 
+    def admin?
+      # TODO: Find a better way to 'admin?'
+      self.groups.where(role: 'admin').exists?
+    end
 
     # Confirmation not required when using omniauth
     def confirmation_required?

@@ -1,6 +1,6 @@
 # Main class for all the **Faalis** Policy classes.
 # It's totally a minimume Policy.
-class ApplicationPolicy
+class Faalis::ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
