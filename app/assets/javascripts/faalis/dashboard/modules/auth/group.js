@@ -3,28 +3,28 @@ var Group = angular.module("Group", ["ListView", "Errors"]);
 Group.config(["$routeProvider", function($routeProvider){
     $routeProvider.
         when("/auth/groups",{
-            templateUrl: template("auth/groups/index"),
+            templateUrl: template_url("auth/groups/index"),
             controller: "GroupsController"
         }).
         when("/auth/groups/new",{
-            templateUrl: template("auth/groups/new"),
+            templateUrl: template_url("auth/groups/new"),
             controller: "AddGroupController"
         }).
         when("/auth/groups/:id/edit",{
-            templateUrl: template("auth/groups/new"),
+            templateUrl: template_url("auth/groups/new"),
             controller: "AddGroupController"
         });
 
 }]);
 
 Group.controller("GroupsController", ["$scope", "gettext", "Restangular", "catch_error", function($scope, gettext, API, catch_error){
-    $scope.details_template = template("auth/groups/details");
+    $scope.details_template = template_url("auth/groups/details");
 
     $scope.buttons = [
         {
             title: gettext("new"),
             icon: "fa fa-plus",
-            classes: "btn tiny green",
+            classes: "btn btn-success btn-sm",
             route: "#/auth/groups/new"
 
         }
