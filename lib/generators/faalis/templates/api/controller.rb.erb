@@ -10,6 +10,7 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   end
 
   def create
+    authorize @<%= resource.underscore %>, :create?
     <% fields.each do |name, type| %><% if type == "has_many" %>
     <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
     @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %><% end %>
@@ -23,10 +24,12 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   end
 
   def show
+    authorize @<%= resource.underscore %>
     respond_with(@<%= resource.underscore %>)
   end
 
   def update
+    authorize @<%= resource.underscore %>, :update?
     <% fields.each do |name, type| %><% if type == "has_many" %>
     <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
     @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %><% end %>
@@ -41,9 +44,7 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   end
 
   def destroy
-    ids = params[:id].split(",")
-    @<%= resource.pluralize.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.where(:id => ids)
-    authorize! :destroy, @<%= resource.pluralize.underscore %>
+    authorize @<%= resource.pluralize.underscore %>, :destroy?
     @<%= resource.pluralize.underscore %>.destroy_all
   end
 
@@ -54,7 +55,12 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
 
   def load_resource
     if params[:id]
-      @<%= resource.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.find(params[:id])
+        if params[:id].include ","
+            ids = params[:id].split(",")
+            @<%= resource.underscore.pularize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.where(:id => ids)
+        else
+            @<%= resource.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.find(params[:id])
+        end
     else
       @<%= resource.underscore.pularize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.all
     end
