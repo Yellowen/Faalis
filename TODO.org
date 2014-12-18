@@ -33,6 +33,7 @@
     groups in migration time `just like the one in mode_discovery` gem.
     This way we can list all groups easily in runtime and load what ever
     we want using Rails autoload.
+** TODO User should be able to edit/delete only her [groups] contents except she be an Admin
 ** TODO Use websocket-rails gem to provide websocket API/framework
 ** TODO Add support for postgreSQL Hstore in dashboard generator
         There must be a 'hstore' type in generator

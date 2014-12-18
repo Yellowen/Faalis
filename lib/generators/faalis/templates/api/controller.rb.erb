@@ -57,12 +57,12 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
     if params[:id]
         if params[:id].include ","
             ids = params[:id].split(",")
-            @<%= resource.underscore.pularize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.where(:id => ids)
+            @<%= resource.underscore.pluralize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.where(:id => ids)
         else
             @<%= resource.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.find(params[:id])
         end
     else
-      @<%= resource.underscore.pularize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.all
+      @<%= resource.underscore.pluralize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.all
     end
   end
 
