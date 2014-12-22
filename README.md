@@ -34,7 +34,7 @@ gem "dashstrap"
 gem "faalis"
 ```
 
-* Iinstall your project dependencies using `bundle`
+* Install your project dependencies using `bundle`
 
 ```ruby
 bundle install
@@ -48,14 +48,14 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 > In production, `:host` should be set to the actual host of your application.
 
 * Ensure you have flash messages in `app/views/layouts/application.html.erb`.
-For example (Only if you want to change default layout):
+For example (only if you want to change default layout):
 
 ```rhtml
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 ```
 
-* Perfrom `rails generate faalis:install_all` to copy necessary files.
+* Perform `rails generate faalis:install_all` to copy necessary files.
 * Add this to your `config/routes.rb` :
 
 ```ruby
@@ -65,10 +65,10 @@ Faalis::Routes.define_api_routes
 
 * Perform `rake db:migrate` and enjoy Faalis
 
-> **NOTE**: You change the orm you like to use in `config/initializers/faalis.rb`
+> **NOTE**: You can specify the ORM you'd like to use in `config/initializers/faalis.rb`
 
 ## Documents
-There is couple of guides along side with **Ruby** and **JavaScript** API documents
+There are a couple of guides along with **Ruby** and **JavaScript** API documents
 inside the source tree. We use `yardoc` so you can build them easily or look at automated [rubydoc](http://rubydoc.info/gems/faalis)
 docs.
 
