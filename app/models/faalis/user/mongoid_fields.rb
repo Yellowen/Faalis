@@ -67,10 +67,10 @@ module Faalis
             { unique: true, background: true })
 
       # To fix the issue with new mongo
-      def self.serialize_from_session(key, salt)
-        record = to_adapter.get(key[0]["$oid"])
-        record if record && record.authenticatable_salt == salt
-      end
+      #def self.serialize_from_session(key, salt)
+      #  record = to_adapter.get(key[0]["$oid"])
+      #  record if record && record.authenticatable_salt == salt
+      #end
 
       if Rails.env.production?
         index({ confirmation_token: 1 },

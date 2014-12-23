@@ -21,8 +21,6 @@ module Faalis
   # **User** model for **Faalis** platform
   class User < Faalis::ORM.proper_base_class
 
-    before_save :join_guests
-
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?
       include Mongoid::Document
@@ -30,6 +28,8 @@ module Faalis
       include Faalis::User::MongoidFields
       # FIXME: Port mailboxer to work with mongoid
     end
+
+    before_save :join_guests
 
     # AuthDefinitions contains all the **Devise** related configurations.
     include Faalis::User::AuthDefinitions
