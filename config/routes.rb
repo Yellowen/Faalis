@@ -17,17 +17,13 @@ Faalis::Engine.routes.draw do
 
 
 
-  scope '(:locale)', :locale => Regexp.new(::I18n.available_locales.join('|')) do
+  scope '(:locale)', locale: Regexp.new(::I18n.available_locales.join('|')) do
     scope Faalis::Engine.dashboard_namespace.to_sym do
       get '' => 'dashboard#index', :as => 'dashboard'
       get 'modules' => 'dashboard#modules'
     end
 
     devise_for :users, devise_config
-
-
-    # Root URL
-    root :to => 'home#index'
   end
 
   match('/users/auth/:provider',
