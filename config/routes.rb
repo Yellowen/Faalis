@@ -15,8 +15,6 @@ Faalis::Engine.routes.draw do
     }
   end
 
-
-
   scope '(:locale)', locale: Regexp.new(::I18n.available_locales.join('|')) do
     scope Faalis::Engine.dashboard_namespace.to_sym do
       get '' => 'dashboard#index', :as => 'dashboard'
