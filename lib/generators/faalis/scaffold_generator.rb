@@ -75,7 +75,6 @@ module Faalis
         result = []
         all_fields = []
         relations = "\n"
-
         fields.each do |name, type, to|
           case type
           when 'belongs_to'
