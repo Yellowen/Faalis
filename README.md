@@ -1,6 +1,6 @@
 # Faalis
-[![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Code Climate](https://codeclimate.com/github/Yellowen/Faalis/badges/gpa.svg)](https://codeclimate.com/github/Yellowen/Faalis) [![Test Coverage](https://codeclimate.com/github/Yellowen/Faalis/badges/coverage.svg)](https://codeclimate.com/github/Yellowen/Faalis)
-[![Inline docs](http://inch-ci.org/github/Yellowen/Faalis.svg?branch=master)](http://inch-ci.org/github/Yellowen/Faalis)
+[![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Code Climate](https://codeclimate.com/github/Yellowen/Faalis/badges/gpa.svg)](https://codeclimate.com/github/Yellowen/Faalis) 
+[![Downloads](https://img.shields.io/gem/dt/faalis.svg)](http://rubygems/gems/faalis)
 
 **Faalis** is a **RubyOnRails** Platform for rapid web application development. It provides a very
 robust dashboard subsystem with some fantastic generators and client side framework based on **AngularJS**
