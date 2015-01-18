@@ -29,7 +29,7 @@ module Faalis
       # FIXME: Port mailboxer to work with mongoid
     end
 
-    before_save :join_guests
+    before_create :join_guests
 
     # AuthDefinitions contains all the **Devise** related configurations.
     include Faalis::User::AuthDefinitions
@@ -56,7 +56,7 @@ module Faalis
 
     # It's totally obviuse. Join the guest group if no group provided
     def join_guests
-      groups << Group.find_by(role: 'guest') if groups.empty?
+      self.groups << ::Faalis::Group.find_by(role: 'guest') if groups.empty?
     end
   end
 end
