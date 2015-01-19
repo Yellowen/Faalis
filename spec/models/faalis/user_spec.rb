@@ -3,13 +3,12 @@ require 'spec_helper'
 describe Faalis::User do
 
   let(:fake_password) { Faker::Internet.password(8) }
-  let!(:admin_group) { create(:faalis_group, name: 'Admin', role: 'admin') }
-  let!(:guest_group) { create(:faalis_group) }
 
   context 'Validation' do
     it 'is not valid without a password' do
       expect(build(:faalis_user)).not_to be_valid
     end
+
 
     it 'is not valid without of a valid email' do
       user1 = build(:faalis_user, password: fake_password, email: '')
@@ -24,6 +23,7 @@ describe Faalis::User do
 
     it 'has a "roles" method which returns an array of its roles.' do
       user = create(:faalis_user, password: fake_password)
+
       expect(user.roles).to be_a_kind_of(Array)
       expect(user.roles).to include('guest')
     end
@@ -31,6 +31,8 @@ describe Faalis::User do
     it 'is in "Guest" group if no group provided' do
       user = create(:faalis_user, password: fake_password)
       expect(user.groups.first).to be_a_kind_of(Faalis::Group)
+
+
     end
 
     it 'have a functional many to many to group' do
@@ -62,7 +64,6 @@ describe Faalis::User do
       expect(user.groups.size).to eq(0)
 
       user.save
-
       expect(user.groups.size).to eq(1)
     end
   end
