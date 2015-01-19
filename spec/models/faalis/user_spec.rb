@@ -77,14 +77,5 @@ describe Faalis::User, :type => :model do
              groups: [admin_group],
              password: fake_password)
     end
-
-    context 'Admin user' do
-      let!(:ability){ Ability.new(admin) }
-
-      it 'can manage all' do
-        expect(admin).to can?(:mange, :all)
-      end
-
-    end
   end
 end
