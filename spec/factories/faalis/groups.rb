@@ -1,5 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
+def group(role)
+  # get existing group or create new one
+  Faalis::Group.where(role: role).first || Factory("#{role}_group")
+end
+
 FactoryGirl.define do
   factory :guest_group, :class => 'Faalis::Group' do |f|
     name 'Guest'
