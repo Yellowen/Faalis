@@ -2,7 +2,13 @@ require 'spec_helper'
 
 describe Faalis::User do
 
+
   let(:fake_password) { Faker::Internet.password(8) }
+
+  before :all do
+    group(:admin)
+    group(:guest)
+  end
 
   context 'Validation' do
     it 'is not valid without a password' do

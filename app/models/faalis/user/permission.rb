@@ -3,9 +3,14 @@ module Faalis
   # to use within `Faalis::User`
   module User::Permission
 
+    extend ActiveSupport::Concern
 
+    # Return an array of user roles.
+    def roles
+      self.eager_load(:groups).select('groups.role').to_a
+    end
 
-    # Return all the user permissions
+      # Return all the user permissions
     def permissions
       perms = []
 
