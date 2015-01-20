@@ -2,7 +2,7 @@
 
 def group(role)
   # get existing group or create new one
-  Faalis::Group.where(role: role).first || Factory("#{role}_group")
+  Faalis::Group.where(role: role).first || FactoryGirl.create("#{role}_group")
 end
 
 FactoryGirl.define do

@@ -30,13 +30,12 @@ describe Faalis::User do
 
     it 'is in "Guest" group if no group provided' do
       user = create(:user, password: fake_password)
-      expect(user.groups.first).to be_a_kind_of(Faalis::Group)
-
-
+      expect(user.groups.size).to eq(1)
+      #expect(user.groups.first).to be_a_kind_of(Faalis::Group)
     end
 
     it 'have a functional many to many to group' do
-      user = create(:user, groups: [admin_group],
+      user = create(:user, groups: [group(:admin)],
                     password: fake_password)
 
       expect(user.groups.size).to eq(1)
@@ -51,7 +50,7 @@ describe Faalis::User do
       user2 = create(:user,
                      password: fake_password)
 
-      user2.groups << admin_group
+      user2.groups << group(:admin)
 
       expect(user1.groups.size).to eq(2)
       expect(user2.groups.size).to eq(2)
