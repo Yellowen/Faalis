@@ -57,7 +57,11 @@ module Faalis
     # It's totally obviuse. Join the guest group if no group provided
     def join_guests
       #::Faalis::Group.find_by(role: 'guest')
-      self.groups << ::Faalis::Group.find_by(role: 'guest') if groups.empty?
+      if groups.empty?
+        guest_group = ::Faalis::Group.find_or_create_by(name: 'Guest',
+                                                        role: 'guest')
+        self.groups << guest_group
+      end
     end
   end
 end

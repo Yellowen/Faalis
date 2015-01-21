@@ -11,5 +11,9 @@ FactoryGirl.define do
     factory :admin do
       groups { [create(:admin_group)] }
     end
+
+    factory :guest do
+      groups { [create(:guest_group)] }
+    end
   end
 end
