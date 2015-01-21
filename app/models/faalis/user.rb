@@ -31,16 +31,16 @@ module Faalis
     if Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
-      include Faalis::User::MongoidFields
+      include Faalis::Concerns::User::MongoidFields
     end
 
     # Callbacks ---------------------------------------------------------------
     before_create :join_guests
 
     # AuthDefinitions contains all the **Devise** related configurations.
-    include Faalis::User::AuthDefinitions
+    include Faalis::Concerns::User::AuthDefinitions
     # Permission related methods for user
-    include Faalis::User::Permission
+    include Faalis::Concerns::User::Permission
 
     # Make this model authorizable
     include Faalis::Concerns::Authorizable

@@ -1,5 +1,5 @@
 module Faalis
-  module User::AuthDefinitions
+  module Concerns::User::AuthDefinitions
 
     def self.included(base)
 

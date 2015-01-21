@@ -1,7 +1,7 @@
 module Faalis
   # This concern contains all the permission related methods
   # to use within `Faalis::User`
-  module User::Permission
+  module Concerns::User::Permission
 
     extend ActiveSupport::Concern
 
@@ -13,6 +13,11 @@ module Faalis
 
     def role? role
       roles.include? role.to_s
+    end
+
+    # A shortcut for `role? :admin`
+    def admin?
+      role? :admin
     end
 
     # Return all the user permissions
