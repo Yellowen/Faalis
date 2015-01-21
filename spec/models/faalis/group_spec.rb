@@ -15,7 +15,7 @@ describe Faalis::Group do
 
   context 'Validation' do
     it 'would not be valid if group already exists' do
-      create(:admin_group)
+      group(:admin)
       group = build(:admin_group)
 
       expect(group).not_to be_valid
