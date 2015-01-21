@@ -30,5 +30,6 @@ module Faalis
 
     # Validations
     validates :name, presence: true
+    validates :role, presence: true, uniqueness: true
   end
 end

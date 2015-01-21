@@ -6,5 +6,7 @@ class CreateFaalisGroups < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :faalis_groups, :role, unique: true
   end
 end

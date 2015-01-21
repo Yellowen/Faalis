@@ -6,5 +6,7 @@ class CreateFaalisPermissions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :faalis_permissions, :model
   end
 end
