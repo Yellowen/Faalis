@@ -5,21 +5,6 @@ module Faalis
 
     extend ActiveSupport::Concern
 
-
-    # Return an array of user roles.
-    def roles
-      self.groups.to_a.map(&:role)
-    end
-
-    def role? role
-      roles.include? role.to_s
-    end
-
-    # A shortcut for `role? :admin`
-    def admin?
-      role? :admin
-    end
-
     # Return all the user permissions
     def permissions
       perms = []

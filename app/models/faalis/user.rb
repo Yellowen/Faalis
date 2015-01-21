@@ -41,6 +41,8 @@ module Faalis
     include Faalis::Concerns::User::AuthDefinitions
     # Permission related methods for user
     include Faalis::Concerns::User::Permission
+    # Roles related methods for user
+    include Faalis::Concerns::User::UserRoles
 
     # Make this model authorizable
     include Faalis::Concerns::Authorizable
