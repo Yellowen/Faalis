@@ -1,5 +1,6 @@
 # Faalis
-[![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Code Climate](https://codeclimate.com/github/Yellowen/Faalis/badges/gpa.svg)](https://codeclimate.com/github/Yellowen/Faalis) 
+[![Gem Version](https://badge.fury.io/rb/faalis.png)](http://badge.fury.io/rb/faalis)
+[![Build Status](https://travis-ci.org/Yellowen/Faalis.svg?branch=master)](https://travis-ci.org/Yellowen/Faalis)
 [![Downloads](https://img.shields.io/gem/dt/faalis.svg)](http://rubygems/gems/faalis)
 
 **Faalis** is a **RubyOnRails** Platform for rapid web application development. It provides a very
@@ -82,8 +83,7 @@ Also take a look at [Wiki of Faalis](https://github.com/Yellowen/Faalis/wiki).
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-Also you can join us in our `Gitter` group:
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Yellowen/Faalis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Also you can join us in our `IRC` channel: **#Faalis** on freenode. ( It will redirect you to #5hit :P )
 
 ## Credit
 ![Yellowen](http://www.yellowen.com/images/logo.png)
