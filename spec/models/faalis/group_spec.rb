@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: faalis_groups
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  role       :string
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Faalis::Group do

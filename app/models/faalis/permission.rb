@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: faalis_permissions
+#
+#  id              :integer          not null, primary key
+#  model           :string
+#  permission_type :string
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 module Faalis
   class Permission < Faalis::ORM.proper_base_class
 

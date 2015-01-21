@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: faalis_groups
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  role       :string
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 module Faalis
   # **Group** model for **Faalis** platform
   class Group < Faalis::ORM.proper_base_class
