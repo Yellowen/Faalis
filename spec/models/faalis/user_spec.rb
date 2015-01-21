@@ -27,14 +27,14 @@ describe Faalis::User do
 
   describe 'Groups & Roles' do
 
-    it 'has a "roles" method which returns an array of its roles.' do
+    it 'have a "roles" method which returns an array of its roles.' do
       user = create(:user, password: fake_password)
 
       expect(user.roles).to be_a_kind_of(Array)
       expect(user.roles).to include('guest')
     end
 
-    it 'is in "Guest" group if no group provided' do
+    it 'are in "Guest" group if no group provided' do
       user = create(:user, password: fake_password)
       expect(user.groups.size).to eq(1)
       #expect(user.groups.first).to be_a_kind_of(Faalis::Group)
