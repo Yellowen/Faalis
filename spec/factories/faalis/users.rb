@@ -9,11 +9,11 @@ FactoryGirl.define do
     end
 
     factory :admin do
-      groups { [create(:admin_group)] }
+      groups { [group(:admin)] }
     end
 
     factory :guest do
-      groups { [create(:guest_group)] }
+      groups { [group(:guest)] }
     end
   end
 end

@@ -27,4 +27,14 @@ describe Faalis::ApplicationPolicy do
     end
   end
 
+  context 'for admin users' do
+    let(:user) { create(:admin, password: '123123123') }
+
+    [:index, :show, :update, :create, :destroy].each do |action|
+      it "denies access to #{action} on the protected entity" do
+        expect(subject.send("#{action}?")).to be(true)
+      end
+    end
+  end
+
 end
