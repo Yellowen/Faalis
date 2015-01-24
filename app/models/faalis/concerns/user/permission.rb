@@ -1,16 +1,11 @@
 module Faalis
   # This concern contains all the permission related methods
   # to use within `Faalis::User`
-  module User::Permission
+  module Concerns::User::Permission
 
     extend ActiveSupport::Concern
 
-    # Return an array of user roles.
-    def roles
-      self.eager_load(:groups).select('groups.role').to_a
-    end
-
-      # Return all the user permissions
+    # Return all the user permissions
     def permissions
       perms = []
 

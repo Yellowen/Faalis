@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: faalis_users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0")
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  first_name             :string
+#  last_name              :string
+#  group_id               :integer          default("2")
+#  failed_attempts        :integer          default("0")
+#  unlock_token           :string
+#  locked_at              :datetime
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 require 'spec_helper'
 
 describe Faalis::User do
@@ -27,14 +52,14 @@ describe Faalis::User do
 
   describe 'Groups & Roles' do
 
-    it 'has a "roles" method which returns an array of its roles.' do
+    it 'have a "roles" method which returns an array of its roles.' do
       user = create(:user, password: fake_password)
 
       expect(user.roles).to be_a_kind_of(Array)
       expect(user.roles).to include('guest')
     end
 
-    it 'is in "Guest" group if no group provided' do
+    it 'are in "Guest" group if no group provided' do
       user = create(:user, password: fake_password)
       expect(user.groups.size).to eq(1)
       #expect(user.groups.first).to be_a_kind_of(Faalis::Group)

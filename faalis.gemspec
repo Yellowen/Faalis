@@ -81,4 +81,5 @@ Gem::Specification.new do |s|
   # We need to use next version of did you mean gem
   # for JRuby support. current version: 0.9.5
   #s.add_development_dependency 'did_you_mean'
+  s.add_development_dependency 'annotate'
 end

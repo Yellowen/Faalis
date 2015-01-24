@@ -53,13 +53,13 @@ class DeviseCreateFaalisUsers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :faalis_users, :email,                :unique => true
-    add_index :faalis_users, :reset_password_token, :unique => true
+    add_index :faalis_users, :email,                unique: true
+    add_index :faalis_users, :reset_password_token, unique: true
 
     if Rails.env.production?
-      add_index :faalis_users, :confirmation_token,   :unique => true
+      add_index :faalis_users, :confirmation_token, unique: true
     end
-    add_index :faalis_users, :unlock_token,         :unique => true
+    add_index :faalis_users, :unlock_token,         unique: true
     # add_index :faalis_users, :authentication_token, :unique => true
   end
 end

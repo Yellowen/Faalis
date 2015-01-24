@@ -1,7 +1,15 @@
+# == Schema Information
+#
+# Table name: faalis_permissions
+#
+#  id              :integer          not null, primary key
+#  model           :string
+#  permission_type :string
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 require 'spec_helper'
 
-module Faalis
-  RSpec.describe Permission, :type => :model do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+describe Faalis::Permission do
 end

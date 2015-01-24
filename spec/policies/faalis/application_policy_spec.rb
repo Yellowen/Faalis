@@ -10,14 +10,11 @@ describe Faalis::ApplicationPolicy do
   context 'for visitors' do
     let(:user) { nil }
 
-    it { should_not permit(:show) }
-
-    it 'denies access to the protected entity if user not logged in (by default)' do
-      a = Faalis::ApplicationPolicy.new(user, entity)
-      expect(a.index?).to be_false
-      expect(subject).not_to permit(:create)
-      expect(subject).not_to permit(:update)
-      expect(subject).not_to permit(:destroy)
+    [:index, :show, :update, :create, :destroy].each do |action|
+      it "denies access to #{action} on the protected entity" do
+        expect(subject.send("#{action}?")).not_to be(true)
+      end
     end
+
   end
 end

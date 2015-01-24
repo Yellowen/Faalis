@@ -1,21 +1,27 @@
-# -----------------------------------------------------------------------------
-#    Faalis - Basic website skel engine
-#    Copyright (C) 2012-2013 Yellowen
+# == Schema Information
 #
-#    This program is free software; you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation; either version 2 of the License, or
-#    (at your option) any later version.
+# Table name: faalis_users
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0")
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  first_name             :string
+#  last_name              :string
+#  group_id               :integer          default("2")
+#  failed_attempts        :integer          default("0")
+#  unlock_token           :string
+#  locked_at              :datetime
+#  created_at             :datetime
+#  updated_at             :datetime
 #
-#    You should have received a copy of the GNU General Public License along
-#    with this program; if not, write to the Free Software Foundation, Inc.,
-#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-# -----------------------------------------------------------------------------
 
 module Faalis
   # **User** model for **Faalis** platform
@@ -25,16 +31,18 @@ module Faalis
     if Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
-      include Faalis::User::MongoidFields
+      include Faalis::Concerns::User::MongoidFields
     end
 
     # Callbacks ---------------------------------------------------------------
     before_create :join_guests
 
     # AuthDefinitions contains all the **Devise** related configurations.
-    include Faalis::User::AuthDefinitions
+    include Faalis::Concerns::User::AuthDefinitions
     # Permission related methods for user
-    include Faalis::User::Permission
+    include Faalis::Concerns::User::Permission
+    # Roles related methods for user
+    include Faalis::Concerns::User::UserRoles
 
     # Make this model authorizable
     include Faalis::Concerns::Authorizable

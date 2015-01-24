@@ -1,6 +1,6 @@
 module Faalis
   # This module contains all the **Mongoid** related definitions
-  module User::MongoidFields
+  module Concerns::User::MongoidFields
     extend ActiveSupport::Concern
 
     included do
