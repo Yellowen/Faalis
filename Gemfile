@@ -26,6 +26,7 @@ group :development, :test do
   gem 'rake'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
 end
 

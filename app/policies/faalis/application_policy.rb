@@ -9,6 +9,7 @@ class Faalis::ApplicationPolicy
   end
 
   def index?
+    puts "<<<#$$$$$$$$$$$$$$$$}"
     return true if user.admin?
     false
   end

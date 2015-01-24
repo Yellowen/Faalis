@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'factory_girl_rails'
 require 'database_cleaner'
 require 'capybara/rspec'
+require 'pundit/rspec'
 
 FAALIS = File.join(File.dirname(__FILE__), '../')
 
