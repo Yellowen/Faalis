@@ -17,7 +17,7 @@ class Faalis::ApplicationPolicy
   def show?
     return false if @user.nil?
     return true if @user.admin?
-    scope.where(:id => record.id).exists?
+    false
   end
 
   def create?

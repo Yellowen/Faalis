@@ -15,6 +15,16 @@ describe Faalis::ApplicationPolicy do
         expect(subject.send("#{action}?")).not_to be(true)
       end
     end
-
   end
+
+  context 'for guest users' do
+    let(:user) { create(:user, password: '123123123') }
+
+    [:index, :show, :update, :create, :destroy].each do |action|
+      it "denies access to #{action} on the protected entity" do
+        expect(subject.send("#{action}?")).not_to be(true)
+      end
+    end
+  end
+
 end
