@@ -11,9 +11,14 @@ module Faalis
       perm == 1
     end
 
-    # Return all the user permissions
-    def permissions
+    def can_not? action, obj
+      !have_permission? action, obj
+    end
 
+    alias_method :can?, :have_permission?
+
+    def permissions
+      groups.eager_load(:permissions)
     end
   end
 end
