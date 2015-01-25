@@ -1,4 +1,4 @@
-class Faalis::Permission::Auth
+class Faalis::Permissions::Auth
   # Make this model authorizable
   include Faalis::Concerns::Authorizable
 
