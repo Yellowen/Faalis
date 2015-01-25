@@ -27,13 +27,9 @@ module Faalis
     def modules
       dashboard_modules = []
       Faalis::Engine.dashboard_modules.each do |module_name, attrs|
-        if not attrs.include? :title
-          attrs[:title] = _(module_name.to_s)
-        end
 
-        if not attrs.include? :resource
-          attrs[:resource] = module_name.to_s
-        end
+        attrs[:title] = _(module_name.to_s) if not attrs.include? :title
+        attrs[:resource] = module_name.to_s if not attrs.include? :resource
 
         # If class did not given by user in settings
         # Faalis tries to guess the class name
