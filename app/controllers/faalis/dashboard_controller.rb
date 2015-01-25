@@ -1,4 +1,4 @@
-require_dependency "faalis/application_controller"
+require_dependency 'faalis/application_controller'
 
 
 module Faalis
@@ -13,16 +13,14 @@ module Faalis
 
     def jstemplate
       if user_signed_in?
-        render :template => "angularjs_templates/#{params[:path]}", :layout => nil
+        render template: "angular/#{params[:path]}", layout: nil
       else
         render :login_required_page
       end
     end
 
     def index
-      if params.include? :signin
-        redirect_to dashboard_path
-      end
+      redirect_to dashboard_path if params.include? :signin
       @jstemplates_path = '/templates'
     end
 
