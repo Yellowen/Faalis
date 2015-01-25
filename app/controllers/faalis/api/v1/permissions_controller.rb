@@ -19,7 +19,8 @@ module Faalis
     def user_permissions
       @permissions = {}
       perms = []
-      current_user.permissions do |perm|
+
+      current_user.permissions.each do |perm|
         tmp = DummyPerm.new
         tmp.model = perm.model
         tmp.permission_type = perm.permission_type
