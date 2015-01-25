@@ -12,6 +12,10 @@ FactoryGirl.define do
       groups { [group(:admin)] }
     end
 
+    factory :manager do
+      groups { [group(:manager)] }
+    end
+
     factory :guest do
       groups { [group(:guest)] }
     end

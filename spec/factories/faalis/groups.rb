@@ -15,4 +15,17 @@ FactoryGirl.define do
     name 'Admin'
     role 'admin'
   end
+
+  # This is a random group
+  factory :manager_group, :class => 'Faalis::Group' do
+    name 'Manager'
+    role 'manager'
+
+    permissions do
+      [:index, :show, :update, :create, :destroy].map do |x|
+        define_permission(x, :group)
+      end
+    end
+  end
+
 end

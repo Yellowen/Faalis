@@ -4,9 +4,9 @@ Faalis::Engine.setup do |config|
   # config.logger = Logger.new(STDOUT)
 
   # Add your models which want to manage their permissions
-  config.models_with_permission = ["Permissions::Settings",
-                                   "Permissions::Theme",
-                                   "Faalis::Permissions::Auth"]
+  #config.models_with_permission = ["Permissions::Settings",
+  #                                 "Permissions::Theme",
+  #                                 "Faalis::Permissions::Auth"]
 
   # Url prefix for dashboard section. default is '/dashboard'
   # config.dashboard_namespace = :dashboard

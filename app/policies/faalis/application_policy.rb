@@ -8,43 +8,18 @@ class Faalis::ApplicationPolicy
     @record = record
   end
 
-  def index?
+  def authorize?(action)
     return false if @user.nil?
     return true if @user.admin?
-    false
+
+    @user.have_permission? action, @record.class.to_s
   end
 
-  def show?
-    return false if @user.nil?
-    return true if @user.admin?
-    false
+  def method_missing(m, *args, &block_given)
+    return authorize? m.to_s[0..-2] if m.to_s =~ /.*\?$/
+    super
   end
 
-  def create?
-    return false if @user.nil?
-    return true if @user.admin?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    return false if @user.nil?
-    return true if @user.admin?
-    false
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    return false if @user.nil?
-    return true if @user.admin?
-    false
-  end
 
   def scope
     Pundit.policy_scope!(@user, record.class)

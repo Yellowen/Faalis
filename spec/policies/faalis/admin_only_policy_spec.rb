@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Faalis::ApplicationPolicy do
-  subject { Faalis::ApplicationPolicy.new(user, entity) }
+describe Faalis::AdminOnlyPolicy do
+  subject { Faalis::AdminOnlyPolicy.new(user, entity) }
 
   # We use Group as an entity because we don't have
   # too much models
@@ -29,16 +29,6 @@ describe Faalis::ApplicationPolicy do
 
   context 'for admin users' do
     let(:user) { create(:admin, password: '123123123') }
-
-    [:index, :show, :update, :create, :destroy].each do |action|
-      it "denies access to #{action} on the protected entity" do
-        expect(subject.send("#{action}?")).to be(true)
-      end
-    end
-  end
-
-  context 'for users who have the right' do
-    let(:user) { create(:manager, password: '123123123') }
 
     [:index, :show, :update, :create, :destroy].each do |action|
       it "denies access to #{action} on the protected entity" do
