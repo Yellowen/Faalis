@@ -93,4 +93,4 @@ Also you can join us in our `IRC` channel: **#Faalis** on freenode. ( It will re
 
 # License
 
-**Faalis** is Copyright © 2013-2014 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+**Faalis** is Copyright © 2013-2015 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
