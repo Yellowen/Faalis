@@ -18,7 +18,7 @@ module Faalis
     alias_method :can?, :have_permission?
 
     def permissions
-      groups.eager_load(:permissions).map(&:permissions).flatten.uniq
+      groups.includes(:permissions).map(&:permissions).flatten.uniq
     end
   end
 end
