@@ -31,5 +31,9 @@ module Faalis
     # Validations
     validates :name, presence: true
     validates :role, presence: true, uniqueness: true
+
+    def self.policy_class
+      GroupPolicy
+    end
   end
 end

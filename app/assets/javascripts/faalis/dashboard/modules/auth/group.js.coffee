@@ -1,38 +1,40 @@
 # Group module
-Group = angular.module "Group", ["ListView", "Errors", "ui.router"]
+Group = angular.module "Group", ["ListView", "Errors", "ui.router", "Auth"]
 
 Group.config ["$stateProvider", ($stateProvider) ->
 
   $stateProvider.
-        state("auth.groups",{
-          url: "/groups",
+        state("groups",{
+          url: "/auth/groups",
           templateUrl: template_url("auth/groups/index"),
           controller: "GroupsController"
         }).
-        state("auth.groups.new",{
+        state("groups.new",{
           url: "/new",
           templateUrl: template_url("auth/groups/new"),
           controller: "AddGroupController"
         }).
-        state("auth.groups.edit",{
+        state("groups.edit",{
           url: "/:id/edit",
           templateUrl: template_url("auth/groups/new"),
           controller: "AddGroupController"
         })
 ]
 
-Group.controller "GroupsController", ["$scope", "gettext", "Restangular", "catch_error", "$rootScope", ($scope, _, API, catch_error, $rootScope) ->
+Group.controller "GroupsController", ["$scope", "gettext", "Restangular", "catch_error", "$rootScope", "$state", ($scope, _, API, catch_error, $rootScope, $state) ->
 
+  # Container header informations
   $rootScope.section_name = _("Groups")
   $rootScope.section_slug = _("list")
 
+  # List view template
   $scope.details_template = template_url("auth/groups/details")
 
   $scope.buttons = [{
     title: _("New"),
     icon: "fa fa-plus",
     classes: "btn btn-success btn-sm",
-    route: "#/auth/groups/new"
+    route: $state.href('groups.new')
 
   }]
 
@@ -54,7 +56,7 @@ Group.controller "GroupsController", ["$scope", "gettext", "Restangular", "catch
 
 
 
-    API.all("groups").getList()
+  API.all("groups").getList()
         .then (data) ->
             $scope.groups = data
         .catch(catch_error);

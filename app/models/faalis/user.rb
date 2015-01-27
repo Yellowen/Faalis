@@ -71,5 +71,10 @@ module Faalis
         self.groups << guest_group
       end
     end
+
+    def self.policy_class
+      Faalis::UserPolicy
+    end
+
   end
 end
