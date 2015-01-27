@@ -1,11 +1,13 @@
-var Auth = angular.module("Auth", ["User","Group"]);
+var Auth = angular.module("Auth", ["User","Group", "ui.router"]);
 
-Auth.config(["$routeProvider", function($routeProvider){
+/*Auth.config(["$stateProvider", function($stateProvider){
     $routeProvider.
-        when("/auth", {
+        state("auth", {
+            url: "/auth",
             templateUrl: template("auth/index")
         });
 }]);
+*/
 
 Auth.controller("AuthMenuController", ["$scope", "gettext", function($scope, gettext){
     this.menu_items = [

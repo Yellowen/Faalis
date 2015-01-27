@@ -1,9 +1,10 @@
-var Profile = angular.module("Profile", []);
+var Profile = angular.module("Profile", ["ui.router"]);
 
-Profile.config(["$routeProvider", function($routeProvider){
+Profile.config(["$stateProvider", function($stateProvider){
 
-    $routeProvider.
-        when("/auth/profile/edit",{
+    $stateProvider.
+        state("profile",{
+            url: "/auth/profile/edit",
             templateUrl: template("auth/profile/edit"),
             controller: "ProfileController"
         });
@@ -11,7 +12,7 @@ Profile.config(["$routeProvider", function($routeProvider){
 
 
 
-Profile.controller("ProfileController",  ["$scope","Restangular","$location" ,"$routeParams", "gettext", "catch_error", function($scope, API, $location , $routeParams, gettext, catch_error){
+Profile.controller("ProfileController",  ["$scope","Restangular","$location" ,"$stateParams", "gettext", "catch_error", function($scope, API, $location , $stateParams, gettext, catch_error){
     var obj = API.one("profile").get()
             .then(function(data){
                 $scope.first_name = data.first_name;

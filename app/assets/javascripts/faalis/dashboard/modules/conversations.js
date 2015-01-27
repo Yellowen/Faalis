@@ -1,4 +1,4 @@
-var Conversation = angular.module("Conversation",["ListView", "Errors"]);
+/*var Conversation = angular.module("Conversation",["ListView", "Errors"]);
 
 
 Conversation.config(["$routeProvider", function($routeProvider){
@@ -179,3 +179,4 @@ Conversation.controller("ConversationControllerNew", ["$scope", "Restangular", "
 
 
 }]);
+*/

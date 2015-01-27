@@ -4,7 +4,7 @@
 //= require ./locale/translations
 
 var dependencies = ["gettext", "Modules", "ui.select2",
-                    "ngAnimate", "ngRoute", "restangular", "ngQuickDate",
+                    "ngAnimate", "ui.router", "restangular", "ngQuickDate",
                     "Errors", "Profile", "Permissions"].concat(dashboard_dependencies);
 
 console.log("Dashboard dependencies:");
@@ -12,9 +12,10 @@ console.log(dependencies);
 
 var Dashboard = angular.module("Dashboard", dependencies);
 
-Dashboard.config(["$routeProvider", "RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function($routeProvider, RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
+Dashboard.config(["$stateProvider", "RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function($stateProvider, RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
 
-    $routeProvider.when("/", {
+    $stateProvider.state("root", {
+        url: "/",
         templateUrl: template("index")
     });
 

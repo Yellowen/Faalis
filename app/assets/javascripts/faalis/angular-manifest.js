@@ -7,6 +7,7 @@
 //= require angular-route
 //= require angular-sanitize
 //= require angular-gettext/angular-gettext
+//= require angular-ui-router/angular-ui-router
 //= require lodash
 //= require restangular/restangular
 //= require ng-grid/ng-grid

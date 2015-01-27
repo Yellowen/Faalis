@@ -1,9 +1,10 @@
-var Logs = angular.module("Logs", []);
+var Logs = angular.module("Logs", ["ui.router"]);
 
-Logs.config(["$routeProvider", function($routeProvider){
+Logs.config(["$stateProvider", function($stateProvider){
 
-    $routeProvider.
-        when("/logs/", {
+    $stateProvider.
+        state("logs", {
+            url: "/logs/",
             templateUrl: template("logs/index"),
             controller: "LogsController"
         });

@@ -1,17 +1,19 @@
-var User = angular.module("User", ["ListView", "Errors"]);
+var User = angular.module("User", ["ListView", "Errors", "ui.router"]);
 
-User.config(["$routeProvider", function($routeProvider){
+User.config(["$stateProvider", function($stateProvider){
 
-    $routeProvider.
-        when("/auth/users", {
+    $stateProvider.
+        state("users", {
+            url: "/auth/users",
             templateUrl: template("auth/users/index"),
             controller: "UsersController"
         }).
-        when("/auth/users/new",{
+        state("users.new",{
+            url: "/auth/users/new",
             templateUrl: template("auth/users/new"),
             controller: "AddUsersController"
         }).
-        when("/auth/users/:id/edit",{
+        state("/auth/users/:id/edit",{
             templateUrl: template("auth/users/new"),
             controller: "AddUsersController"
         });
@@ -31,7 +33,7 @@ User.controller("UsersController", ["$scope", "Restangular","gettext", "catch_er
             title: gettext("New"),
             icon: "fa fa-plus",
             classes: "btn tiny green",
-            route: "#/auth/users/new"
+            state: "#/auth/users/new"
         }
     ];
 
@@ -58,7 +60,7 @@ User.controller("UsersController", ["$scope", "Restangular","gettext", "catch_er
 }]);
 
 
-User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$routeParams", "gettext", "catch_error", function($scope, API, $location , $routeParams, gettext, catch_error){
+User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$stateParams", "gettext", "catch_error", function($scope, API, $location , $stateParams, gettext, catch_error){
 
     API.all("groups").getList().then(
         function(data){
@@ -66,8 +68,8 @@ User.controller("AddUsersController", ["$scope","Restangular","$location" ,"$rou
         });
 
     $scope.obj_id = null;
-    if("id" in $routeParams){
-        $scope.obj_id = $routeParams.id;
+    if("id" in $stateParams){
+        $scope.obj_id = $stateParams.id;
         var obj = API.one("users", $scope.obj_id).get()
                 .then(function(data){
                     $scope.first_name = data.first_name;

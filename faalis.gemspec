@@ -37,7 +37,8 @@ Gem::Specification.new do |s|
   # Assets
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails', '~> 5.0'
-
+  s.add_dependency 'coffee-rails'
+  s.add_dependency 'slim-rails'
   s.add_dependency 'sprockets', '~>2.11.0'
 
   # TODO: It should be dependency of
@@ -60,6 +61,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-select2', '~>3.5.0'
   s.add_dependency 'rails-assets-angular-ui-select2', '~>0.0.5'
   s.add_dependency 'rails-assets-ng-flow', '~>2.4.2'
+  s.add_dependency 'rails-assets-angular-ui-router'
+  s.add_dependency 'rails-assets-angular-loading-bar'
   # i18n
   #s.add_dependency 'gettext'
   s.add_development_dependency 'gettext'
