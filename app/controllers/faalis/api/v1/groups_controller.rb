@@ -46,7 +46,7 @@ class Faalis::API::V1::GroupsController < ::APIController
 
     permissions = [];
     (params[:permissions] || []).each do |perm_string|
-      perm, model = perm_string.split "|"
+      perm, model = perm_string.split '|'
       permission = Faalis::Permission.find_or_create_by_model_and_permission_type(model, perm)
       permissions << permission
     end

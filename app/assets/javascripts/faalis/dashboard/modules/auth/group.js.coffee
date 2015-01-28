@@ -68,5 +68,5 @@ Group.controller "AddGroupController", ["Restangular", "$scope", "$location", "$
     $scope.selected_perms = []
     $scope.permissions = []
     $scope.editing = false
-
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..')
 ]
