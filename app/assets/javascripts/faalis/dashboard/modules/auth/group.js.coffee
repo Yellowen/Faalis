@@ -63,10 +63,16 @@ Group.controller "GroupsController", ["$scope", "gettext", "Restangular", "catch
 
 ]
 
-Group.controller "AddGroupController", ["Restangular", "$scope", "$location", "$routeParams", "gettext", "catch_error", (API, $scope, $location, $routeParams, gettext, catch_error) ->
+Group.controller "AddGroupController", ["Restangular", "$scope", "$state", "$stateParams", "gettext", "catch_error", "$rootScope", (API, $scope, $state, $stateParams, _, catch_error, $rootScope) ->
 
-    $scope.selected_perms = []
-    $scope.permissions = []
-    $scope.editing = false
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..')
+  $rootScope.section_slug = _("Add new one")
+
+  $scope.selected_perms = []
+  $scope.permissions = []
+  $scope.editing = false
+
+  $scope.cancel = ->
+    $(".form input").val()
+    $state.go("groups");
+
 ]
