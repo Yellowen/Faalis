@@ -1,1 +1,1 @@
-json.array! @permissions, :name, :string
+json.permissions @permissions
