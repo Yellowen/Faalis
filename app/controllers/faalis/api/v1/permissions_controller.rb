@@ -29,7 +29,15 @@ module Faalis
     # @return current user permissions
     def user_permissions
 
-      @permissions = current_user.permissions
+      @permissions = {}
+      current_user.permissions.each do |perm|
+        if @permissions.include? perm.model
+          @permissions[perm.model] << perm.action
+        else
+          @permissions[perm.model] = [perm.action]
+        end
+      end
+
       respond_with(@permissions)
       return
 
