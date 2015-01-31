@@ -39,3 +39,4 @@
         There must be a 'hstore' type in generator
 ** TODO Use *DoorKeeper* gem to provide an OAuth2 provider for API
 ** TODO Use *ElasticSearch* and retire to create an search API
+** TODO Add *Class Name* support for json scaffold files
