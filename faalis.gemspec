@@ -45,7 +45,9 @@ Gem::Specification.new do |s|
   # dashboard or main template
   s.add_dependency 'modernizr-rails'
   s.add_dependency 'angularjs-rails', '~>1.2.16'
+  # We have to give up lodash for sugar
   s.add_dependency 'lodash-rails', '~>2.4'
+  s.add_dependency 'rails-assets-sugar'
 
   s.add_development_dependency 'execjs'
   s.add_development_dependency 'fast_gettext'

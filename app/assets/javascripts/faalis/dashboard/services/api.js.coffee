@@ -1,8 +1,8 @@
 API = angular.module "API"
 
 API.provider "API", ->
-  this.resource = undefined;
-  this.api_path = '/api/v1/'
+  @resource = undefined;
+  @api_path = '/api/v1/'
 
   this.$get = ["$http", "$q", ($http, $q) ->
 
@@ -10,9 +10,15 @@ API.provider "API", ->
       return
 
     all = (resource, id) ->
+      $http.get('')
       return
 
     return {
-      get: (id) ->
+      get: (resource, id) ->
+        resource = _get_resource(resource, id)
+        return get(resource.name, resource.id)
+
+      all: (resource) ->
+        return all(resource)
     }
   ]
