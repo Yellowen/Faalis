@@ -22,8 +22,9 @@ module Faalis
     end
 
     has_and_belongs_to_many :groups, class_name: 'Faalis::Group'
+    alias_attribute :action, :permission_type
 
-    alias_method :action, :permission_type
+    #alias_method :action, :permission_type
 
     def to_s
       _("can %s %s") % [_(self.permission_type.to_s), self.model.underscore.humanize]
