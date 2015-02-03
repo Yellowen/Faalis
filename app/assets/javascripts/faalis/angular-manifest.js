@@ -9,7 +9,7 @@
 //= require angular-gettext/angular-gettext
 //= require angular-ui-router/angular-ui-router
 //= require lodash
-//= require sugar/sugar.min
+//= require sugar/sugar-full.development
 //= require restangular/restangular
 //= require ng-grid/ng-grid
 //= require ngQuickDate/ng-quick-date
