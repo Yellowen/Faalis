@@ -3,8 +3,8 @@ module.exports = function (grunt) {
         nggettext_extract: {
             pot: {
                 files: {
-                    'app/assets/locales/templates.pot': ['app/views/angularjs_templates/**/*.html',
-                                                        'app/views/angularjs_templates/**/*.html.erb',
+                    'app/assets/locales/templates.pot': ['app/views/angular/**/*.html',
+                                                        'app/views/angular/**/*.html.erb',
                                                         'app/assets/javascripts/**/*.js',
                                                         'app/assets/javascripts/**/*.js',
                                                         'app/assets/javascripts/**/*.coffee',

@@ -38,6 +38,7 @@ module Faalis
       class_option :no_controller, :type => :boolean
       class_option :no_migration, :type => :boolean
       class_option :no_asset, :type => :boolean
+      class_option :no_filter, :type => :boolean
 
       # This method will create full scaffold based on user options
       def create_scaffold
@@ -160,8 +161,7 @@ module Faalis
 
       #Invoke Faalis list view generator
       def create_list_view
-        invoke 'faalis:js:list_view', [jsonfile]
-
+          invoke 'faalis:js:list_view', [jsonfile]
       end
 
       def create_globalize_migration

@@ -1,6 +1,7 @@
 * Bugs
 ** TODO ui-select2 placeholder did not works
 ** TODO hasmany and belongs_to relations in angular generator should get model name too
+** TODO no_filter does not work from scaffold generator
 * Tasks
 ** Generators
 *** `in` field does not support integer
@@ -20,6 +21,7 @@
 to
 //= require dashstrap/ltr/application
 
+*** Policy files does not generated
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code
