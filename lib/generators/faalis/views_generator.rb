@@ -27,7 +27,7 @@ module Faalis
       def copy_views_file
         directory "views/faalis", "app/views/faalis"
         directory "views/layouts/faalis", "app/views/layouts/faalis"
-        directory "views/angularjs_templates", "app/views/layouts/faalis"
+        directory "views/angular", "app/views/layouts/faalis"
 
       end
 

@@ -44,11 +44,11 @@ module Faalis
         def create_template
           unless options[:only_controller]
             unless options[:only_specs]
-              template "js/list_view/index.html.erb", "app/views/angularjs_templates/#{resource.underscore}/index.html"
+              template "js/list_view/index.html.erb", "app/views/angular/#{resource.underscore}/index.html"
               unless options[:no_new_template]
-                template "js/list_view/new.html.erb", "app/views/angularjs_templates/#{resource.underscore}/new.html"
+                template "js/list_view/new.html.erb", "app/views/angular/#{resource.underscore}/new.html"
               end
-              template "js/list_view/details.html.erb", "app/views/angularjs_templates/#{resource.underscore}/details.html"
+              template "js/list_view/details.html.erb", "app/views/angular/#{resource.underscore}/details.html"
             end
           end
 
