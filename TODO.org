@@ -39,6 +39,7 @@ to
 ** TODO add a feature to dashboard generatores which allow some fields value to depend on other field values
 ** TODO update copyright to 2014
 ** TODO patch *Rails* scaffold generator to generate the dashboard generator to
+*** Authorizable does not add automatically in models
 * Features
 ** TODO Resource Groups
    Resource group is an entity which collect some initial data for a group
