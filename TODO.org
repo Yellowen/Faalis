@@ -2,6 +2,24 @@
 ** TODO ui-select2 placeholder did not works
 ** TODO hasmany and belongs_to relations in angular generator should get model name too
 * Tasks
+** Generators
+*** `in` field does not support integer
+***   default orm does not defined
+      config.orm = "active_record"
+*** api routes does  not generated
+*** generated message about `application api` is not necessary
+*** generated routes have not locale scope
+*** fonts should add to precompile list
+  Rails.application.config.assets.precompile += %w( fontawesome-webfont.eot )
+  Rails.application.config.assets.precompile += %w( fontawesome-webfont.woff )
+  Rails.application.config.assets.precompile += %w( fontawesome-webfont.ttf )
+  Rails.application.config.assets.precompile += %w( fontawesome-webfont.svg )
+
+*** in stylesheets/dashboard/ltr it should change:
+*= require faalis/dashboard/ltr/application
+to
+//= require dashstrap/ltr/application
+
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code
@@ -20,7 +38,7 @@
 ** TODO add an ability to categorize fields of an scaffold to fieldsets
 ** TODO add a feature to dashboard generatores which allow some fields value to depend on other field values
 ** TODO update copyright to 2014
-** TODO patch *Rails* scaffold generator to generate the dashboard generator too
+** TODO patch *Rails* scaffold generator to generate the dashboard generator to
 * Features
 ** TODO Resource Groups
    Resource group is an entity which collect some initial data for a group
