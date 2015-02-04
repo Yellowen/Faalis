@@ -1,4 +1,5 @@
-class Resource
+
+class @Resource
   parse_path: (path) ->
     parents = []
     params = [];
@@ -7,7 +8,7 @@ class Resource
       if part.startsWith(':')
         params.push(part.split(":").last)
       else
-        parents.push(part.singularize())
+        parents.push(part.singularize()) unless part.isBlank()
 
     resource = parents.pop()
 
@@ -17,11 +18,19 @@ class Resource
       resource: resource
     }
 
-  constructor: (path) ->
-    @path = path
-    details = parse_path(path)
-    @parents = details.parents
-    @resource_name = details.resoure
+  constructor: (name, parents = []) ->
+
+    @parents = {}
+    console.log(parents)
+    for parent in parents
+      @parents[parent] = 0
+
+    @name = name
 
   to_path: ->
-    return
+    console.log("HERE")
+    console.log(@parents)
+    for parent in @parents
+
+      console.log(parent)
+    return @path
