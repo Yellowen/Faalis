@@ -1,4 +1,3 @@
-
 class @Resource
   parse_path: (path) ->
     parents = []
@@ -26,6 +25,9 @@ class @Resource
       @parents[parent] = 0
 
     @name = name
+
+  plural_name:
+    return @name.pluralize()
 
   to_path: ->
     console.log("HERE")
