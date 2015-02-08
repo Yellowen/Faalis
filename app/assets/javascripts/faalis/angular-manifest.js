@@ -18,4 +18,4 @@
 //= require flow
 //= require ng-flow
 //= require faalis/dashboard/functions
-//= require_tree ./dashboard/lib
+// require_tree ./dashboard/libd

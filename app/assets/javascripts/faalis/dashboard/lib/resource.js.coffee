@@ -26,8 +26,8 @@ class @Resource
 
     @name = name
 
-  plural_name:
-    return @name.pluralize()
+  #plural_name:
+  #  return @name.pluralize()
 
   to_path: ->
     console.log("HERE")
