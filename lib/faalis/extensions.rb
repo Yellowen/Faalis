@@ -15,4 +15,4 @@ module Faalis
   end
 end
 
-require 'faalis/extensions/base'
+require 'faalis/extension/base'
