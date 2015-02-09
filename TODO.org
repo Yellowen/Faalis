@@ -24,6 +24,7 @@ to
 *** Policy files does not generated
 *** railties_order should add to application.rb
 *** Generated list views have does not have title
+*** List view does not update after edit/delete/...
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code
