@@ -33,13 +33,10 @@ module Faalis
         # reading file.
         def resource_data
           if @data
-            puts "HERERERERERER"
             @data
           else
-            puts "<<<<<<<<<<<<<<<<<<<<<<<<<<< #{extname}"
             @data = JSON.parse(input_file_data) if extname == '.json'
             @data = YAML.load_file(input_file_data) if extname == '.yml'
-            puts "<<<<$$$$$$$$$$$$$$$$$$$$$$$$ #{@data}"
             @data
           end
         end
