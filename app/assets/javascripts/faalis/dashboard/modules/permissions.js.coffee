@@ -8,14 +8,9 @@ Perm.factory 'UserPermissions', ["$rootScope", ($rootScope) ->
 
     # Check if user has specific permission on an object
     can: (action, model) ->
-      console.log(PERMISSIONS)
-      console.log("Action: " + action + " Model: " + model)
       if PERMISSIONS[model] != undefined
         if _.indexOf(PERMISSIONS[model], action) != -1
-          console.log("User can " + action + " " + model)
           return true
-
-      console.log("User can't " + action + " " + model);
       return false
 
     # Check if user has specific permission on an object
