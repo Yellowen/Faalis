@@ -57,8 +57,10 @@ module Faalis
       end
 
       def install_routes
-        route 'mount Faalis::Engine => "/"'
-        route 'Faalis::Routes.define_api_routes'
+        route 'end'
+        route '  # Define your API routes here . . .'
+        route 'Faalis::Routes.define_api_routes do'
+        route "mount Faalis::Engine => '/'"
       end
 
       def patch_application_controller
