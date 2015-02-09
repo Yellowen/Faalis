@@ -36,10 +36,10 @@ Gem::Specification.new do |s|
 
   # Assets
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'sass-rails', '~> 5.0'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'slim-rails'
-  s.add_dependency 'sprockets', '~>2.11.0'
+  s.add_dependency 'sprockets'
 
   # TODO: It should be dependency of
   # dashboard or main template
