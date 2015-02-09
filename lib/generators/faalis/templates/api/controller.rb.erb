@@ -1,19 +1,20 @@
 class API::V1::<%= resource.pluralize %>Controller < APIController
-  <% if allowed_fields_provided? %>allow_query_on <%= allowed_fields %><% end %>
-  before_filter :build_resource, :only => :create
-  before_filter :load_resource, :except => :create
+<% if allowed_fields_provided? %>allow_query_on <%= allowed_fields %><% end %>
+after_action :verify_authorized, :except => :index
 
-  # GET /api/v1/<%= resource.pluralize.underscore %>
+# GET /api/v1/<%= resource.pluralize.underscore %>
   def index
+    @<%= resource.pluralize.underscore %> = <%= resource.camelize %>.all
     authorize @<%= resource.pluralize.underscore %>
     respond_with(@<%= resource.pluralize.underscore %>)
   end
 
   def create
-    authorize @<%= resource.underscore %>, :create?
-    <% fields.each do |name, type| %><% if type == "has_many" %>
+    authorize <%= resource.camelize %>, :create?
+<% fields.each do |name, type| %><% if type == "has_many" %>
     <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
-    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %><% end %>
+    @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %>
+    @<%= resource.underscore %> = <%= resource.camelize %>.new(resource_params)<% end %>
     if @<%= resource.underscore %>.save
       respond_with(@<%= resource.underscore %>)
     else
@@ -24,13 +25,15 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
   end
 
   def show
+    @<%= resource.underscore %> = <%= resource.camelize %>.find(params[:id])
     authorize @<%= resource.underscore %>
     respond_with(@<%= resource.underscore %>)
   end
 
   def update
+    @<%= resource.underscore %> = <%= resource.camelize %>.find(params[:id])
     authorize @<%= resource.underscore %>, :update?
-    <% fields.each do |name, type| %><% if type == "has_many" %>
+  <% fields.each do |name, type| %><% if type == "has_many" %>
     <%= name.underscore %> = <%= name.singularize.camelize %>.where({:id => params[:<%= resource.underscore %>][:<%= name %>]})
     @<%= resource.underscore %>.<%= name.underscore %> = <%= name.underscore %><% end %><% end %>
 
@@ -38,36 +41,20 @@ class API::V1::<%= resource.pluralize %>Controller < APIController
       respond_with(@<%= resource.underscore %>)
     else
       respond_to do |format|
-        format.json { render :json => {:fields => @<%= resource.underscore %>.errors}, :status => :unprocessable_entity }
+         format.json { render :json => {:fields => @<%= resource.underscore %>.errors}, :status => :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    authorize @<%= resource.pluralize.underscore %>, :destroy?
+    ids = params[:id].split(",")
+    @<%= resource.pluralize.underscore %> = <%= resource.camelize%>.where(:id => ids)
+
+    authorize @<%= resource.pluralize.underscore %>
     @<%= resource.pluralize.underscore %>.destroy_all
-  end
-
-  def build_resource
-    @<%= resource.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.new(resource_params)
-    <% if parent? %>@<%= resource.underscore %>.<%= parents.last.singularize %> = <%= parents.last.singularize.camelize %>.find(params[:<%= parents.last.singularize %>_id])<% end %>
-  end
-
-  def load_resource
-    if params[:id]
-        if params[:id].include ","
-            ids = params[:id].split(",")
-            @<%= resource.underscore.pluralize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.where(:id => ids)
-        else
-            @<%= resource.underscore %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.find(params[:id])
-        end
-    else
-      @<%= resource.underscore.pluralize %> = <% if model_specified? %><%= model %><% else %>::<%= resource %><% end %>.all
-    end
   end
 
   def resource_params
     params.require(:<%= resource.underscore %>).permit(:id<%= fields_as_params(:relations => true) %>)
   end
-
 end
