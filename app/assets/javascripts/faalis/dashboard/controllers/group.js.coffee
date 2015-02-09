@@ -21,7 +21,9 @@ Group.config ["$stateProvider", ($stateProvider) ->
         })
 ]
 
-Group.controller "GroupsController", ["$scope", "gettext", "Restangular", "catch_error", "$rootScope", "$state", ($scope, _, API, catch_error, $rootScope, $state) ->
+Group.controller "GroupsController", Faalis.Factory(Faalis.GenericIndexController, new Resource('group'))
+
+Group.controller "GroupsController1", ["$scope", "gettext", "Restangular", "catch_error", "$rootScope", "$state", ($scope, _, API, catch_error, $rootScope, $state) ->
 
   # Container header informations
   $rootScope.section_name = _("Groups")

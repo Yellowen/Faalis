@@ -36,3 +36,6 @@ class @Resource
 
       console.log(parent)
     return @path
+
+  plural_name: ->
+    @name.pluralize()

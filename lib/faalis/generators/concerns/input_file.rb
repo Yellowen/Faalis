@@ -17,16 +17,18 @@ module Faalis
 
         private
 
+        # Return absolute path to input file
+        def file_path
+          File.expand_path(input_file)
+        end
         # Get the extension name of input file
         def extname
-          path = File.expand_path(input_file)
-          File.extname(path)
+          File.extname(file_path)
         end
 
         # Read the json or yaml file and returns its raw data
         def input_file_data
-          path = File.expand_path(input_file)
-          File.read(path)
+          File.read(file_path)
         end
 
         # Return the hash related to json or yaml structure from cache or by
@@ -36,7 +38,7 @@ module Faalis
             @data
           else
             @data = JSON.parse(input_file_data) if extname == '.json'
-            @data = YAML.load_file(input_file_data) if extname == '.yml'
+            @data = YAML.load_file(file_path) if extname == '.yml'
             @data
           end
         end
