@@ -24,7 +24,7 @@ module Faalis
       include Faalis::Generators::Concerns::RequireFields
       include Faalis::Generators::Concerns::Parent
       include Faalis::Generators::Concerns::Child
-      include Faalis::Generators::Concerns::JsonInput
+      include Faalis::Generators::Concerns::InputFile
       include Faalis::Generators::Concerns::ResourceName
       include Faalis::Generators::Concerns::ResourceFields
       include Faalis::Generators::Concerns::Globalize
@@ -160,7 +160,7 @@ module Faalis
 
       #Invoke Faalis list view generator
       def create_list_view
-          invoke 'faalis:js:list_view', [jsonfile]
+          invoke 'faalis:js:list_view', [input_file]
       end
 
       def create_globalize_migration
