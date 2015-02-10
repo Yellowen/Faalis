@@ -131,6 +131,10 @@ module Faalis
           resource_data.include?('no_filter') &&  resource_data['no_filter']
         end
 
+        def no_duplicate?
+          resource_data.include?('no_duplicate') &&  resource_data['no_duplicate']
+        end
+
         def fields?
           if resource_data.include? 'fields'
             return true unless resource_data['fields'].nil?

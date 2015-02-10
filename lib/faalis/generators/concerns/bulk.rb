@@ -11,8 +11,7 @@ module Faalis
         end
 
         def no_bulk?
-          return true unless bulk_edit_fields.empty?
-          false
+          resource_data.include?('no_bulk') &&  resource_data['no_bulk']
         end
       end
     end
