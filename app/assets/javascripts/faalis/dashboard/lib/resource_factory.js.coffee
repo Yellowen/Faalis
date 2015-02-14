@@ -1,9 +1,19 @@
 class @ResourceFactory
 
   constructor: (name, parents = []) ->
-
     @parents = []
     @name = name
+    @_parents_values_is_set = false
+
+  set_parents: (parents) ->
+    tmp = []
+
+    for parent in @parents
+      tmp.push(parent)
+      tmp.push(parents[parent])
+
+    @parents = tmp
+    @_parents_values_is_set = true
 
   join_url: (url1, urls...) ->
     '/' + url1.split('/').filter(Boolean).concat(urls).join('/')
@@ -28,20 +38,15 @@ class @ResourceFactory
 
 
   to_path: (params...) ->
-    if params.length - 1 != @parents.length
-      throw "You should specify enough parent values based on resource parents."
+    if @_parents_values_is_set == false
+      throw 'You need to set parents values to continue.'
 
-    _parents = []
+    _parents = @parents[0..]
 
-    if @parent.length > 0
-      i = 0
+    for item in params
+      _parents.push(item)
 
-      for parent in @parents
-        _parents.push(parent.underscore())
-        _parents.psuh(params[i].toString())
-        i++
-    _parents.push(params[-1])
-    '/' + _parents.filter(Boolean).join('/')
+    return '/' + _parents.filter(Boolean).join('/')
 
   plural_name: ->
     @name.pluralize()

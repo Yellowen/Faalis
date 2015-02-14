@@ -12,6 +12,22 @@ API.provider "APIFactory", ['$http', '$log', '$q', 'catch_error',
         @_resource = resource
         @_type = type
 
+      # It's necessary to call this method, and pass an object
+      # containing the require parameters of current resource.
+      # For example we have `/posts/3/comments` as our RESTful
+      # resource. Then we have to call `paretns` method in our
+      # controller like this:
+      #
+      #   Resource.parents = { posts: 3 }
+      #
+      parents: (parents) ->
+        @_resource.set_parents = parents
+
+      resource: ->
+        @_resource
+
+      # Execute a query with given parameters and return a promise
+      # object.
       execute: (method, url, params = {}) ->
         request =
           method: method
@@ -27,41 +43,26 @@ API.provider "APIFactory", ['$http', '$log', '$q', 'catch_error',
             $log.error(data)
             catch_error(data)
 
-      all: (ids...) ->
-        url = @resource.to_path(ids...)
+      all: ->
+        url = @resource.to_path
         @execute('GET', url)
 
-      get: (ids...) ->
-        url = @resource.to_path(ids...)
+      get: (id) ->
+        url = @resource.to_path(id)
         @execute('GET', url)
 
-      create: (data, ids...) ->
-        url = @resource.to_path(ids...)
-        @execute('POST', @path, data)
+      create: (data) ->
+        url = @resource.to_path
+        @execute('POST', url, data)
 
       update: (data) ->
-        @execute('PUT', @path, data)
+        url = @resource.to_path
+        @execute('PUT', url, data)
 
       destroy: (id) ->
-        url = @join_path(@path, id)
+        url = @resource.to_path(id)
         @execute('DELETE', url)
 
     return Resource
 
-  this.$get = ["$http", "$q", ($http, $q) ->
-
-    get = (resource, id) ->
-      return
-
-    all = (resource, id) ->
-      $http.get('')
-      return
-
-    return {
-      get: (resource, id) ->
-        resource = _get_resource(resource, id)
-        return get(resource.name, resource.id)
-
-      all: (resource) ->
-        return all(resource)
-    }
+]

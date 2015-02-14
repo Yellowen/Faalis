@@ -2,10 +2,17 @@ class Faalis.GenericIndexController
 
   @resource = undefined
 
-  constructor: ($scope, _, API, catch_error, $rootScope, $state) ->
+  constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams) ->
+
+    # Set the current parent objects for API usage
+    _parents = {}
+    for parent in Resource.parents
+      _parents[parent] = $stateParams[parent + "_id"]
+
+    API.parents(_parents)
 
     # Container header informations
-    $rootScope.section_name = _(@resource.plural_name())
+    $rootScope.section_name = _(Resource.plural_name())
     $rootScope.section_slug = _("list")
 
     # List view template
@@ -18,10 +25,10 @@ class Faalis.GenericIndexController
       route: $state.href(@resource.plural_name().underscore() + '.new')
     }]
 
-    API.all("groups").getList()
+    API.all()
       .then (data) ->
         $scope.groups = data
-      .catch(catch_error);
+
 
 
     $scope.on_delete = (groups) ->
@@ -41,4 +48,6 @@ class Faalis.GenericIndexController
         .catch(catch_error);
 
 
-Faalis.GenericIndexController.$inject = ["$scope", "gettext", "Restangular", "catch_error", "$rootScope", "$state"]
+Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams"]
+
+angular.module('Faalis.Controllers').controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
