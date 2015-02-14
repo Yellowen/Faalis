@@ -1,6 +1,6 @@
 var Time_ = angular.module("TimeField",[]);
 /*
- * <string-field></string-field> directive defination
+ * <time-field></time-field> directive defination
  */
 
 Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
@@ -122,7 +122,7 @@ Time_.directive('timeField', ["$filter", "gettext", function($filter, gettext){
     };
 
 }
-    // Actual object of <string-field> directive
+    // Actual object of <time-field> directive
     return {
         templateUrl: template("fields/datetime/time"),
         replace: true,
