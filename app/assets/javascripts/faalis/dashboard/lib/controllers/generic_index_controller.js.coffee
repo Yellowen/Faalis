@@ -4,6 +4,7 @@ class Faalis.GenericIndexController
 
   constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams) ->
 
+    $scope[Resource.plural_name()] = [];
     # Set the current parent objects for API usage
     _parents = {}
     for parent in Resource.parents
@@ -22,13 +23,12 @@ class Faalis.GenericIndexController
       title: _("New"),
       icon: "fa fa-plus",
       classes: "btn btn-success btn-sm",
-      route: $state.href(@resource.plural_name().underscore() + '.new')
+      route: $state.href(Resource.plural_name().underscore() + '.new')
     }]
 
     API.all()
       .then (data) ->
-        $scope.groups = data
-
+        $scope[Resource.plural_name()] = data.data
 
 
     $scope.on_delete = (groups) ->
@@ -50,4 +50,4 @@ class Faalis.GenericIndexController
 
 Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams"]
 
-angular.module('Faalis.Controllers').controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
+angular.module('Faalis.Controllers', ["API", "Resource"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)

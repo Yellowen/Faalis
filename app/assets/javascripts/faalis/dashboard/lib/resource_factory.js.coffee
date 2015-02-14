@@ -8,7 +8,7 @@ class @ResourceFactory
   set_parents: (parents) ->
     tmp = []
 
-    for parent in @parents
+    for parent in parents
       tmp.push(parent)
       tmp.push(parents[parent])
 
@@ -46,7 +46,7 @@ class @ResourceFactory
     for item in params
       _parents.push(item)
 
-    return '/' + _parents.filter(Boolean).join('/')
+    return '/' + _parents.filter(Boolean).join('/') + @plural_name()
 
   plural_name: ->
     @name.pluralize()
