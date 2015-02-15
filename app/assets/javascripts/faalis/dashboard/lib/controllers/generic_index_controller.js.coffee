@@ -2,7 +2,7 @@ class Faalis.GenericIndexController
 
   @resource = undefined
 
-  constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams) ->
+  constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams, $User) ->
 
     $scope[Resource.plural_name()] = [];
     # Set the current parent objects for API usage
@@ -19,12 +19,16 @@ class Faalis.GenericIndexController
     # List view template
     $scope.details_template = template_url(Resource.detail_template())
 
-    $scope.buttons = [{
-      title: _("New"),
-      icon: "fa fa-plus",
-      classes: "btn btn-success btn-sm",
-      route: $state.href(Resource.plural_name().underscore() + '.new')
-    }]
+    $scope.buttons = []
+
+    if $User.can 'create', Resource.name
+      $scope.buttons.push({
+        title: _("New"),
+        icon: "fa fa-plus",
+        classes: "btn btn-success btn-sm",
+        route: $state.href(Resource.plural_name().underscore() + '.new')
+      })
+
 
     API.all()
       .then (data) ->
@@ -48,6 +52,6 @@ class Faalis.GenericIndexController
         .catch(catch_error);
 
 
-Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams"]
+Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams", "$User"]
 
-angular.module('Faalis.Controllers', ["API", "Resource"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
+angular.module('Faalis.Controllers', ["API", "Resource", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
