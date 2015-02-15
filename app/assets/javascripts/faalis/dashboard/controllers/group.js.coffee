@@ -1,13 +1,14 @@
 # Group module
-Group = angular.module "Group", ["ListView", "Errors", "ui.router", "Auth"]
+Group = angular.module "Group", ["ListView", "Errors", "ui.router", "Auth", "Faalis.Controllers"]
 
-Group.config ["$stateProvider", ($stateProvider) ->
+Group.config ["$stateProvider", "ResourceProvider", "APIFactoryProvider",
+($stateProvider, ResourceProvider, APIFactoryProvider) ->
 
   $stateProvider.
         state("groups",{
           url: "/auth/groups",
           templateUrl: template_url("auth/groups/index"),
-          controller: "GroupsController"
+          controller: "Faalis.GenericIndexController"
         }).
         state("groups.new",{
           url: "/new",
@@ -19,9 +20,12 @@ Group.config ["$stateProvider", ($stateProvider) ->
           templateUrl: template_url("auth/groups/new"),
           controller: "AddGroupController"
         })
+
+  ResourceProvider.resource = new ResourceFactory('group')
+  APIFactoryProvider.resource = ResourceProvider.resource
 ]
 
-Group.controller "GroupsController", Faalis.Factory(Faalis.GenericIndexController, new Resource('group'))
+#Group.controller "GroupsController", Faalis.Factory(Faalis.GenericIndexController, new Resource('group'))
 
 Group.controller "GroupsController1", ["$scope", "gettext", "Restangular", "catch_error", "$rootScope", "$state", ($scope, _, API, catch_error, $rootScope, $state) ->
 
