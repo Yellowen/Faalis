@@ -1,9 +1,13 @@
 class @ResourceFactory
 
-  constructor: (name, parents = []) ->
+  constructor: (name, parents = [], options = {}) ->
     @parents = []
     @name = name
     @_parents_values_is_set = false
+
+    # Put all the options key resource itself
+    for key in options.keys()
+      this['_' + key] = options[key]
 
   set_parents: (parents) ->
     tmp = []
@@ -50,3 +54,9 @@ class @ResourceFactory
 
   plural_name: ->
     @name.pluralize()
+
+  detail_template: ->
+    if @_detail_template?
+      return @_detail_template
+    else
+      return @plural_name + "/details"

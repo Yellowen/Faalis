@@ -17,7 +17,7 @@ class Faalis.GenericIndexController
     $rootScope.section_slug = _("list")
 
     # List view template
-    $scope.details_template = template_url("auth/groups/details")
+    $scope.details_template = template_url(Resource.detail_template())
 
     $scope.buttons = [{
       title: _("New"),
