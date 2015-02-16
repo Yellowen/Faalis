@@ -1,33 +1,21 @@
-class Faalis.GenericIndexController
+# General controller for a resource index. As you can see it extends the faalis base
+# controller.
+class Faalis.GenericIndexController extends Faalis.BaseController
 
-  @resource = undefined
+  constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams, $user) ->
+    super $scope
 
-  constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams, $User) ->
+    @scope = $scope
+    @_ = _
+    @API = API
+    @Resource = Resource
+    @rootScope = $rootScope
+    @state = $state
+    @stateParams = $stateParams
+    @user = $user
 
-    $scope[Resource.plural_name()] = [];
-    # Set the current parent objects for API usage
-    _parents = {}
-    for parent in Resource.parents
-      _parents[parent] = $stateParams[parent + "_id"]
-
-    API.parents(_parents)
-
-    # Container header informations
-    $rootScope.section_name = _(Resource.plural_name())
-    $rootScope.section_slug = _("list")
-
-    # List view template
-    $scope.details_template = template_url(Resource.detail_template())
-
-    $scope.buttons = []
-
-    if $User.can 'create', Resource.name
-      $scope.buttons.push({
-        title: _("New"),
-        icon: "fa fa-plus",
-        classes: "btn btn-success btn-sm",
-        route: $state.href(Resource.plural_name().underscore() + '.new')
-      })
+    @__init__()
+    @__setup_buttons__()
 
 
     API.all()
@@ -35,7 +23,43 @@ class Faalis.GenericIndexController
         $scope[Resource.plural_name()] = data.data
 
 
-    $scope.on_delete = (groups) ->
+  __init__: ->
+    @scope[@Resource.plural_name()] = [];
+    # Set the current parent objects for API usage
+    _parents = {}
+
+    for parent in @Resource.parents
+      _parents[parent] = @stateParams[parent + "_id"]
+
+    @API.parents(_parents)
+
+    # Container header informations
+    @rootScope.section_name = _(@Resource.plural_name())
+    @rootScope.section_slug = _("list")
+
+    # List view template
+    @scope.details_template = template_url(@Resource.detail_template())
+
+  __buttons__: ->
+    return [
+      {
+        title: _("New"),
+        icon: "fa fa-plus",
+        classes: "btn btn-success btn-sm",
+        route: $state.href(Resource.plural_name().underscore() + '.new')
+      }
+    ]
+
+  __setup_buttons__: ->
+    $scope.buttons = []
+
+    for button in @__buttons__()
+
+    if $User.can 'create', Resource.name
+      $scope.buttons.push()
+
+
+  on_delete: (groups) ->
 
       query = []
 
@@ -52,6 +76,6 @@ class Faalis.GenericIndexController
         .catch(catch_error);
 
 
-Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams", "$User"]
+Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams", "$user"]
 
 angular.module('Faalis.Controllers', ["API", "Resource", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)

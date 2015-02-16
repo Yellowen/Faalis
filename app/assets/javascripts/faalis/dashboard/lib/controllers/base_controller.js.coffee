@@ -1,7 +1,8 @@
 class Faalis.BaseController
-  constructor: ->
+  constructor: (scope_obj)->
 
     Object.keys(this.__proto__, (key) ->
       if (this[key] instanceof Function)
-        # check for the name standards
+        if key.startsWith('_')
+          scope_obj[key] = this[key]
     )
