@@ -15,10 +15,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @scope = $scope
     @_ = _
     @API = API
-    #@__set_attribute__('Resource', Resource)
     @Resource = Resource
-    console.log("222222222222")
-    console.log(Resource.plural_name())
     @rootScope = $rootScope
     @state = $state
     @stateParams = $stateParams
