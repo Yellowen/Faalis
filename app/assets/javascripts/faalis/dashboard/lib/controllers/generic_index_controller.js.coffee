@@ -3,8 +3,15 @@
 class Faalis.GenericIndexController extends Faalis.BaseController
 
   constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams, $user) ->
+    # Call constructor of **Faalis.BaseController** which maps all
+    # the methods (prototype methods) of current object to $scope except of those that
+    # their name starts with a '_' ( underscore ). Those methods are reserved for internal
+    # usage.
     super $scope
 
+    # Isn't it obvious ?
+    # Ok for those who are a little slow. I just mapped angular services
+    # accessible in this method scope to class level scope.
     @scope = $scope
     @_ = _
     @API = API
@@ -16,15 +23,18 @@ class Faalis.GenericIndexController extends Faalis.BaseController
 
     @__init__()
     @__setup_buttons__()
+    @__fetch_resources__()
 
+  # ## Internal methods
 
-    API.all()
-      .then (data) ->
-        $scope[Resource.plural_name()] = data.data
-
-
+  # This method is used for initializing process at the begining of the controller
+  # Users can override this method base on their needs
   __init__: ->
+    # Set the list of objects at the angular scope.
+    # For example if our **Resource** name was 'group'
+    # it will create `$scope.groups`.
     @scope[@Resource.plural_name()] = [];
+
     # Set the current parent objects for API usage
     _parents = {}
 
@@ -40,40 +50,37 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     # List view template
     @scope.details_template = template_url(@Resource.detail_template())
 
+  # List of buttons to use in index view. If you need more
+  # buttons in you own controller, just override this method.
+  # **Note**: Checkout **Faalis.Button** class for more details.
   __buttons__: ->
     return [
-      {
+      new Button({
         title: _("New"),
         icon: "fa fa-plus",
         classes: "btn btn-success btn-sm",
         route: $state.href(Resource.plural_name().underscore() + '.new')
-      }
+        permission: 'create'
+      })
     ]
 
+  # Setup up buttons based on user permissions.
   __setup_buttons__: ->
-    $scope.buttons = []
+    @scope.buttons = []
 
     for button in @__buttons__()
-
-    if $User.can 'create', Resource.name
-      $scope.buttons.push()
-
-
-  on_delete: (groups) ->
-
-      query = []
-
-      _.each groups, (group) ->
-        query.push group.id
+      if @user.can button.permission, @Resource.name
+        @scope.buttons.push(button)
 
 
-      API.all("groups").customDELETE(query.join(","))
-        .then (data) ->
-          $scope.groups = _.filter $scope.groups, (x) ->
-            return !(query.indexOf(x.id) != -1)
-          success_message(data.msg)
+  # Fetch remote resource using API interface
+  __fetch_resources__: ->
+    @API.all()
+      .then (data) ->
+        @scope[@Resource.plural_name()] = data.data
 
-        .catch(catch_error);
+  on_delete: (resources) ->
+
 
 
 Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams", "$user"]
