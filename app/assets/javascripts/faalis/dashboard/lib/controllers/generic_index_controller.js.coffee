@@ -15,7 +15,10 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @scope = $scope
     @_ = _
     @API = API
+    #@__set_attribute__('Resource', Resource)
     @Resource = Resource
+    console.log("222222222222")
+    console.log(Resource.plural_name())
     @rootScope = $rootScope
     @state = $state
     @stateParams = $stateParams
@@ -44,8 +47,8 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @API.parents(_parents)
 
     # Container header informations
-    @rootScope.section_name = _(@Resource.plural_name())
-    @rootScope.section_slug = _("list")
+    @rootScope.section_name = @_(@Resource.plural_name().capitalize())
+    @rootScope.section_slug = @_("list")
 
     # List view template
     @scope.details_template = template_url(@Resource.detail_template())
@@ -55,29 +58,32 @@ class Faalis.GenericIndexController extends Faalis.BaseController
   # **Note**: Checkout **Faalis.Button** class for more details.
   __buttons__: ->
     return [
-      new Button({
-        title: _("New"),
+      new Faalis.Button({
+        title: @_("New " + @Resource.name.capitalize()),
         icon: "fa fa-plus",
         classes: "btn btn-success btn-sm",
-        route: $state.href(Resource.plural_name().underscore() + '.new')
+        #route: @state.href(@Resource.plural_name().underscore() + '.new')
         permission: 'create'
       })
     ]
 
   # Setup up buttons based on user permissions.
   __setup_buttons__: ->
+
     @scope.buttons = []
 
     for button in @__buttons__()
       if @user.can button.permission, @Resource.name
         @scope.buttons.push(button)
 
-
   # Fetch remote resource using API interface
   __fetch_resources__: ->
+    Resource = @Resource
+    scope = @scope
+
     @API.all()
       .then (data) ->
-        @scope[@Resource.plural_name()] = data.data
+        scope[Resource.plural_name()] = data.data
 
   on_delete: (resources) ->
 

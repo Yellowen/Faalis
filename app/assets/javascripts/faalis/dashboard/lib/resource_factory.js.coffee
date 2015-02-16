@@ -60,4 +60,4 @@ class @ResourceFactory
     if @_detail_template?
       return @_detail_template
     else
-      return @plural_name + "/details"
+      return @plural_name() + "/details"
