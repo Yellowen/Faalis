@@ -8,9 +8,10 @@ class Faalis.Button
   # * **on_click**:  If provided it would have higher priority over **route**
   # * **permission**: Required permission for user.
   constructor: (options = {})->
-    @title = options.title
-    @icon: options.icon
-    @classes: options.classes || "btn btn-sm",
-    @route: options.route
-    @on_click: options.on_click
-    @required_permission: options.permission
+    @title    = options.title
+    @icon     = options.icon
+    @classes  =  options.classes || "btn btn-sm"
+    @route    = options.route
+    @on_click = options.on_click
+
+    @required_permission =  options.permission
