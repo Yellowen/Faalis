@@ -6,8 +6,9 @@ class @ResourceFactory
     @_parents_values_is_set = false
 
     # Put all the options key resource itself
-    for key in options.keys()
+    Object.keys(options, (key) ->
       this['_' + key] = options[key]
+    )
 
   set_parents: (parents) ->
     tmp = []

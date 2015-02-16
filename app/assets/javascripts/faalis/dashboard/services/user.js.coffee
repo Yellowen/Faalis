@@ -1,4 +1,4 @@
 User = angular.module("User")
   .service "$User", ->
-    @can: (object, perm)->
+    can: (object, perm)->
       return true
