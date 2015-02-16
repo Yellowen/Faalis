@@ -39,3 +39,4 @@ docs/js
 node_modules/
 Gemfile.lock
 spec/dummy/db/
+docs/annotated_source/
