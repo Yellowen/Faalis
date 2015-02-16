@@ -81,7 +81,7 @@ module Faalis
             type_ = 'integer'
             if to.singularize != name
               relations << "  belongs_to :#{name.singularize},
-              :class_name => \"#{to.singularize.capitalize}\"\n"
+              :class_name => \"#{to.singularize.camelize}\"\n"
             else
               relations << "  belongs_to :#{to.singularize}\n"
             end
