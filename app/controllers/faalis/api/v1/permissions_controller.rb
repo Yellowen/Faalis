@@ -9,8 +9,8 @@ module Faalis
       attr_accessor :model, :permission_type
     end
 
-    # @api GET permissions
-    # @return All permissions
+    # api GET permissions
+    # return All permissions
     def index
       @permissions = {}
 
@@ -25,8 +25,8 @@ module Faalis
       respond_with(@permissions)
     end
 
-    # @api GET permissions/user
-    # @return current user permissions
+    # api GET permissions/user
+    # return current user permissions
     def user_permissions
 
       @permissions = {}

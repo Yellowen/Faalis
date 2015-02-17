@@ -12,7 +12,7 @@ module Faalis
 
         private
         # Process the user provided tabs
-        # @return a Hash of tabs like
+        # return a Hash of tabs like
         def tabs
           tabbed_fields = Set.new
 
