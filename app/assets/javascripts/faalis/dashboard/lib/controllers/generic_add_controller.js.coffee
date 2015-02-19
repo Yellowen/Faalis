@@ -26,3 +26,8 @@ class Faalis.GenericAddController extends Faalis.BaseController
   # ## Internal methods
   __init__: ->
     @Resource.initialize
+
+
+
+Faalis.GenericAddController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams", "$user"]
+angular.module('Faalis.Controllers', ["API", "Resource", "User"]).controller("Faalis.GenericAddController", Faalis.GenericIndexController)
