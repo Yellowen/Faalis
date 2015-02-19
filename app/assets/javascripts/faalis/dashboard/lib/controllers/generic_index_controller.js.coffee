@@ -59,7 +59,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
         title: @_("New " + @Resource.name.capitalize()),
         icon: "fa fa-plus",
         classes: "btn btn-success btn-sm",
-        #route: @state.href(@Resource.plural_name().underscore() + '.new')
+        route: @state.href(@Resource.plural_name().underscore() + '.new')
         permission: 'create'
       })
     ]
