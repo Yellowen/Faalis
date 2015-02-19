@@ -1,6 +1,6 @@
 # This class is one of the most important classes in **Faalis** client side application,
 # and is responsible for representing a remote resource.
-class @ResourceFactory
+class Faalis.ResourceFactory
 
   # Arguments list:
   # * **name**:        Name of the actual resource. lowcased and underscored
@@ -35,6 +35,10 @@ class @ResourceFactory
 
     # This flag will specify the existance of parents
     @_parents_values_is_set = true
+
+  # Initialize the resource object. for example fetch parent objects
+  # or relations and such stuff
+  initialize: ->
 
   # Join the given urls and return a uri
   join_url: (url1, urls...) ->
