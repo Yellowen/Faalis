@@ -1,5 +1,7 @@
 class Faalis.GroupFactory extends Faalis.ResourceFactory
-  @fields = [
+  name: 'group'
+
+  fields: [
     new Faalis.StringField('title'),
-    new Faalis.HasMany('permissions', Faalis.PermissionsFactory)
+    new Faalis.HasManyField('permissions', Faalis.PermissionsFactory)
   ]

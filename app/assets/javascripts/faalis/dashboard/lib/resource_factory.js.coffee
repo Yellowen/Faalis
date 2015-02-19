@@ -10,9 +10,8 @@ class Faalis.ResourceFactory
   #                    Resource object by transforming key to _<key>. For example
   #                    `{ name: "James" } would create an attribute called "_name"
   #                    to `Resource` object with value of "James".
-  constructor: (name, parents = [], options = {}) ->
-    @parents = []
-    @name = name
+  constructor: (options = {}) ->
+    @parents ||= []
     @_parents_values_is_set = false
 
     # Put all the options key resource itself

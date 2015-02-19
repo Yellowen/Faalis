@@ -21,6 +21,6 @@ Group.config ["$stateProvider", "ResourceProvider", "APIFactoryProvider",
           controller: "AddGroupController"
         })
 
-  ResourceProvider.resource = new ResourceFactory('group')
+  ResourceProvider.resource = new Faalis.GroupFactory()
   APIFactoryProvider.resource = ResourceProvider.resource
 ]
