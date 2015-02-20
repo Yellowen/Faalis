@@ -28,6 +28,7 @@ to
 *** TODO Menu items does not inject in JS automatically
 
 *** TODO date fields does work
+*** TODO has_many field does not support different name from model
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code
