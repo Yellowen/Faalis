@@ -21,8 +21,8 @@ Group.config ["$stateProvider", "ResourcesProvider", "APIFactoryProvider", "Grou
           controller: "AddGroupController"
         })
 
-  ResourcesProvider.resources = { 'group': new GroupFactoryProvider.resource() }
-  APIFactoryProvider.resource = ResourcesProvider.resources['group']
+  ResourcesProvider.resources = [new GroupFactoryProvider.resource()]
+  APIFactoryProvider.resource = ResourcesProvider.resources[0]
 ]
 
 

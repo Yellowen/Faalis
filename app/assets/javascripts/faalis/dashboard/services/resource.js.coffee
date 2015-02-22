@@ -2,18 +2,24 @@ Resource = angular.module "Resources", []
 
 Resource.provider "Resources", [->
 
-  # resources should be an object like this:
-  # { <resource_name>: <actual_resource_object> }
+  # resources should be an array of resource factories
   @resources = undefined
 
   @main_resource = undefined
+
   this.$get = [->
-    @main_resource ||= @resources.keys()[0]
+    main_resource = @main_resources || @resources[0]
+    resources = @resources
 
-    @resource.main_resource = ->
-      return @resource[@main_resource]
+    obj = { _resources: @resources }
 
-    return @resources
+    obj.main_resource = ->
+      return main_resource
+
+    obj.all = ->
+      return resources
+
+    return obj
   ]
   return
 ]
