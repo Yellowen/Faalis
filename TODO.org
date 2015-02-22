@@ -2,12 +2,18 @@
 ** TODO ui-select2 placeholder did not works
 ** TODO hasmany and belongs_to relations in angular generator should get model name too
 ** TODO no_filter does not work from scaffold generator
+** TODO the generated `app/assets/javascript/fa.js` should contains
+//= require faalis/locale/translations.fa
+but it contains
+//= require faalis/locales/translations.fa
+** TODO needs to add `locales/fa.js` in assets precompile list because of client side translation
 * Tasks
 ** Generators
+*** Nested JS modules does not load automaticaly and should inject in parent module
 *** `in` field does not support integer
-***   default orm does not defined
+*** default orm does not defined
       config.orm = "active_record"
-*** api routes does  not generated
+*** api routes does not generated
 *** generated message about `application api` is not necessary
 *** generated routes have not locale scope
 *** fonts should add to precompile list
@@ -23,12 +29,12 @@ to
 
 *** Policy files does not generated
 *** railties_order should add to application.rb
-*** Generated list views have does not have title
+*** DONE Generated list views have does not have title
 *** TODO List view does not update after edit/delete/...
 *** TODO Menu items does not inject in JS automatically
-
 *** TODO date fields does work
 *** TODO has_many field does not support different name from model
+*** TODO Set a field for generated entities whithout name as name
 ** TODO Fix the authentication assets issue (authentication should included only in devise controllers)
 ** TODO fix layout titles to be like "site_title | page_title"
 ** TODO fix the "Fix me"s in javascript code

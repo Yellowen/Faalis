@@ -33,6 +33,7 @@ module Faalis
 
     module Locale
       def self.default_url_options
+        binding.pry
         { :locale => I18n.locale }
       end
     end
