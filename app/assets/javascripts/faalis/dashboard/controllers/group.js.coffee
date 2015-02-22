@@ -12,8 +12,8 @@ Group.config ["$stateProvider", "ResourceProvider", "APIFactoryProvider",
         }).
         state("groups.new",{
           url: "/new",
-          templateUrl: template_url("faalis/views/generic_add_view"),
-          controller: "Faalis.GenericAddController"
+          templateUrl: template_url("auth/groups/new"),
+          controller: "NewGroupController"
         }).
         state("groups.edit",{
           url: "/:id/edit",
@@ -23,4 +23,9 @@ Group.config ["$stateProvider", "ResourceProvider", "APIFactoryProvider",
 
   ResourceProvider.resource = new Faalis.GroupFactory()
   APIFactoryProvider.resource = ResourceProvider.resource
+]
+
+
+Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "API", ($state, $rootScope, $scope, API) ->
+
 ]
