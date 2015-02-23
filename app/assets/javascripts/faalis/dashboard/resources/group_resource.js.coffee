@@ -1,17 +1,7 @@
-angular.module('GroupResource', []).provider 'GroupFactory', [->
+class Faalis.GroupResource extends Faalis.Resource
+  name: 'group'
 
-  class Faalis.GroupFactory extends Faalis.ResourceFactory
-    name: 'group'
-
-    fields: [
-      new Faalis.StringField('title'),
-      new Faalis.HasManyField('permissions', Faalis.PermissionsFactory)
-    ]
-
-  @resource = Faalis.GroupFactory
-
-  this.$get = [->
-    return @resource
+  fields: [
+    new Faalis.StringField('title'),
+    new Faalis.HasManyField('permissions', Faalis.PermissionResource)
   ]
-  return
-]

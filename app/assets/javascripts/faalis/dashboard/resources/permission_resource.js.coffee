@@ -1,4 +1,4 @@
-class Faalis.PermissionFactory extends Faalis.ResourceFactory
+class Faalis.PermissionResource extends Faalis.Resource
   name: 'permission'
 
   fields: [
