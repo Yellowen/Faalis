@@ -39,6 +39,7 @@ class Faalis.Resource
   # or relations and such stuff
   initialize: ->
 
+
   # Join the given urls and return a uri
   join_url: (url1, urls...) ->
     '/' + url1.split('/').filter(Boolean).concat(urls).join('/')
@@ -88,3 +89,30 @@ class Faalis.Resource
 
     else
       return @plural_name() + "/details"
+
+
+  # API Interface ----------------------------------------------------------
+  # We can use these methods to interact with resource API interface
+  # but the most important thing is to **initialize** the resource
+  # before using these. **ResourceFactory** service will do it
+  # before handing service to the controller or host code.
+
+  # Get a resource instance with given ID
+  find: (id) ->
+    @API.get(id)
+
+  # Get all the resources via API.
+  all: ->
+    @API.all
+
+  # Create a new resource using given **data**
+  create: (data) ->
+    @API.create(data)
+
+  # Update the resource with given ID using **data** which is provided
+  update: (id, data) ->
+    @API.update(id, data)
+
+  # Destroy the resource with given id
+  destroy: (id) ->
+    @API.destroy(id)

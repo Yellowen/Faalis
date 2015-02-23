@@ -46,22 +46,39 @@ class Faalis.APIFactory
       @catch_error(data)
     )
 
-    all: ->
-      url = @_resource.to_path()
-      @execute('GET', url)
+  # Raw queries -----------------------
+  get: (url, params) ->
+    @execute('GET', url, params)
 
-    get: (id) ->
-      url = @resource.to_path(id)
-      @execute('GET', url)
+  post: (url, data) ->
+    @execute('POST', url, data)
 
-    create: (data) ->
-      url = @resource.to_path
-      @execute('POST', url, data)
+  put: (url, params) ->
+    @execute('PUT', url, params)
 
-    update: (data) ->
-      url = @resource.to_path
-      @execute('PUT', url, data)
+  patch: (url, params) ->
+    @execute('PATCH', url, params)
 
-    destroy: (id) ->
-      url = @resource.to_path(id)
-      @execute('DELETE', url)
+  delete: (url, params) ->
+    @execute('DELETE', url, params)
+
+  # Semantic queries -----------------
+  all: ->
+    url = @_resource.to_path()
+    @execute('GET', url)
+
+  find: (id) ->
+    url = @resource.to_path(id)
+    @execute('GET', url)
+
+  create: (data) ->
+    url = @resource.to_path
+    @execute('POST', url, data)
+
+  update: (id, data) ->
+    url = @resource.to_path(id)
+    @execute('PUT', url, data)
+
+  destroy: (id) ->
+    url = @resource.to_path(id)
+    @execute('DELETE', url)
