@@ -2,7 +2,7 @@
 # controller.
 class Faalis.GenericIndexController extends Faalis.BaseController
 
-  constructor: ($scope, _, API, Resource, $rootScope, $state, $stateParams, $user) ->
+  constructor: ($scope, _, API, Resources, $rootScope, $state, $stateParams, $user) ->
     # Call constructor of **Faalis.BaseController** which maps all
     # the methods (prototype methods) of current object to $scope except of those that
     # their name starts with a '_' ( underscore ). Those methods are reserved for internal
@@ -15,7 +15,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @scope = $scope
     @_ = _
     @API = API
-    @Resource = Resource
+    @Resource = Resources.main_resource()
     @rootScope = $rootScope
     @state = $state
     @stateParams = $stateParams
@@ -86,6 +86,6 @@ class Faalis.GenericIndexController extends Faalis.BaseController
 
 
 
-Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resource", "$rootScope", "$state", "$stateParams", "$user"]
+Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resources", "$rootScope", "$state", "$stateParams", "$user"]
 
-angular.module('Faalis.Controllers', ["API", "Resource", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
+angular.module('Faalis.Controllers', ["API", "Resources", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
