@@ -3,9 +3,7 @@
 //= require_self
 //= require ./locale/translations
 
-var dependencies = ["gettext", "Modules", "ui.select2",
-                    "ngAnimate", "ui.router", "restangular", "ngQuickDate",
-                    "Errors", "Profile", "Permissions"].concat(dashboard_dependencies);
+var dependencies = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies);
 
 console.log("Dashboard dependencies:");
 console.log(dependencies);

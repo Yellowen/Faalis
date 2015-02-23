@@ -5,7 +5,7 @@ class Faalis.APIFactory
     @_type = type
 
 
-  initialize: ['$http', '$log', '$q', 'catch_error', ($http, $log, catch_error) ->
+  initialize: ['$http', '$log', 'catch_error', ($http, $log, catch_error) ->
     @http = $http
     @log = $log
     @catch_error = catch_error

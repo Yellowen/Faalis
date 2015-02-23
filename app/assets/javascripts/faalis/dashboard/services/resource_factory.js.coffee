@@ -1,4 +1,4 @@
-Resource = angular.module "ResourceFactory", []
+Resource = angular.module "Faalis.ResourceFactory", []
 
 Resource.provider "Resources", [->
 
@@ -18,7 +18,10 @@ Resource.provider "Resources", [->
 
     # Public injector to inject required services into
     # resources `initialize` method.
-    $injector = angular.injector(['ng'])
+
+    #deps = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies)
+    #$injector = angular.injector(deps)
+    $injector = angular.injector(['ng', 'Errors', 'gettext'])
 
     obj = {}
 
@@ -30,6 +33,7 @@ Resource.provider "Resources", [->
         throw "Resource '" + resource.name + "' does not have 'initialize' method."
 
       $injector.invoke(resource.initialize)
+
       obj[resource.name.underscore()] = resource
 
     obj.main_resource = ->

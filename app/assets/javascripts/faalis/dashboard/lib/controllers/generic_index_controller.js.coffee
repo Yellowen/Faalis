@@ -86,6 +86,6 @@ class Faalis.GenericIndexController extends Faalis.BaseController
 
 
 
-Faalis.GenericIndexController.$inject = ["$scope", "gettext", "APIFactory", "Resources", "$rootScope", "$state", "$stateParams", "$user"]
+Faalis.GenericIndexController.$inject = ["$scope", "gettext", "Resources", "$rootScope", "$state", "$stateParams", "$user"]
 
-angular.module('Faalis.Controllers', ["API", "Resources", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
+angular.module('Faalis.Controllers', ["Faalis.ResourceFactory", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)

@@ -3,8 +3,6 @@
 class Faalis.Resource
 
   # Arguments list:
-  # * **name**:        Name of the actual resource. lowcased and underscored
-  # * **parents**:     A sorted array of current resource parents.
   # * **options**:     Extra properties and attributes to add to the resource.
   #                    All the key/value in this object will attached to the
   #                    Resource object by transforming key to _<key>. For example
@@ -18,6 +16,10 @@ class Faalis.Resource
     Object.keys(options, (key) ->
       this['_' + key] = options[key]
     )
+
+    type = this._api_type || 'json'
+    api_prefix = this._api_prefix || '/api/v1/'
+    @API = new Faalis.APIFactory(this, type, api_prefix)
 
   # Set the specific parents of current resource. This method should be called
   # in controllers and before any use of `Resource` object. and the **parents**
@@ -37,8 +39,20 @@ class Faalis.Resource
 
   # Initialize the resource object. for example fetch parent objects
   # or relations and such stuff
-  initialize: ->
+  initialize: ['$http', '$log', 'catch_error', ($http, $log, catch_error) ->
+    deps = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies)
+    $injector = angular.injector(['ng', 'Errors', 'gettext'])
 
+    $injector.invoke(@API.initialize)
+
+    for field in @fields
+      unless field.initialize?
+        throw "'" + field + "' does not have 'initialize' method."
+
+      console.log(field.initialize)
+      # inject services for field classes.
+      $injector.invoke(field.initialize)
+  ]
 
   # Join the given urls and return a uri
   join_url: (url1, urls...) ->
@@ -103,7 +117,7 @@ class Faalis.Resource
 
   # Get all the resources via API.
   all: ->
-    @API.all
+    @API.all()
 
   # Create a new resource using given **data**
   create: (data) ->
