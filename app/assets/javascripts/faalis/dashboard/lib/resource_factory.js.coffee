@@ -1,6 +1,6 @@
 # This class is one of the most important classes in **Faalis** client side application,
 # and is responsible for representing a remote resource.
-class Faalis.ResourceFactory
+class Faalis.Resource
 
   # Arguments list:
   # * **name**:        Name of the actual resource. lowcased and underscored
