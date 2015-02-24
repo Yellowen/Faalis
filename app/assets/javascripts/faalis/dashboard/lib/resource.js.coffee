@@ -48,14 +48,14 @@ class Faalis.Resource
     deps = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies)
     $injector = angular.injector(['ng', 'Errors', 'gettext'])
 
-    $injector.invoke(@API.__init__, @API)
+    Faalis.$injector.invoke(@API.__init__, @API)
 
     for field in @fields
       unless field.__init__?
         throw "'" + field + "' does not have '__init__' method."
 
       # inject services for field classes.
-      $injector.invoke(field.__init__, field)
+      Faalis.$injector.invoke(field.__init__, field)
 
 
   # Initialize the resource object. for example fetch parent objects

@@ -32,7 +32,7 @@ Resource.provider "Resources", [->
       unless resource.__init__?
         throw "Resource '" + resource.name + "' does not have '__init__' method."
 
-      $injector.invoke(resource.__init__, resource)
+      Faalis.$injector.invoke(resource.__init__, resource)
 
       obj[resource.name.underscore()] = resource
 

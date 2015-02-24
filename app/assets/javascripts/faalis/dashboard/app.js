@@ -5,6 +5,10 @@
 
 var dependencies = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies);
 
+//Faalis.$injector = angular.injector(dependencies.concat(['ng', 'gettext']));
+
+Faalis.$injector = angular.injector(['ng', 'Errors', 'gettext']);
+
 console.log("Dashboard dependencies:");
 console.log(dependencies);
 
