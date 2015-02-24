@@ -38,7 +38,7 @@ end
 
 generate 'faalis::install_all'
 
-initializers 'assets.rb' do
+initializer 'assets.rb' do
   %Q(
     Rails.application.config.assets.precompile += ['fontawesome-webfont.eot',
                                                    'fontawesome-webfont.woff',
