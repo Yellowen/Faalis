@@ -72,7 +72,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
 
     @Resource.all()
       .then (data) ->
-        scope[Resource.plural_name()] = data.data
+        scope[Resource.plural_name()] = data
         scope.$apply()
 
   on_delete: (resources) ->

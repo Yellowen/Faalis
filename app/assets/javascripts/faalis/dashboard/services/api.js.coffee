@@ -28,12 +28,12 @@ class Faalis.APIFactory
     request.data = params if params != {} and method != 'GET'
     request.params = params if params != {} and method == 'GET'
 
-    @http(request).success((data) ->
-      return data.data
-    ).error((data) ->
-      @log.error(data)
-      @catch_error(data)
-    )
+    return @http(request)
+      .then (data) ->
+        return data.data
+      , (data) ->
+        @log.error(data)
+        @catch_error(data)
 
   # Raw queries -----------------------
   get: (url, params) ->

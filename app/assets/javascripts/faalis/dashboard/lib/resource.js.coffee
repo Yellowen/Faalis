@@ -44,6 +44,7 @@ class Faalis.Resource
   # Init the resource object to be used in **run** stage. this
   # method will call by **ResourceFactory** service.
   __init__: ($http, $log, catch_error) ->
+
     deps = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies)
     $injector = angular.injector(['ng', 'Errors', 'gettext'])
 
@@ -127,22 +128,20 @@ class Faalis.Resource
 
   # Get a resource instance with given ID
   find: (id) ->
-    @API.get(id).then (data) ->
-      return data.data
+    return @API.get(id)
 
   # Get all the resources via API.
   all: ->
     return @API.all()
+
   # Create a new resource using given **data**
   create: (data) ->
-    @API.create(data)
+    return @API.create(data)
 
   # Update the resource with given ID using **data** which is provided
   update: (id, data) ->
-    @API.update(id, data).then (data) ->
-      return data.data
+    return @API.update(id, data)
 
   # Destroy the resource with given id
   destroy: (id) ->
-    @API.destroy(id).then (data) ->
-      return data.data
+    return @API.destroy(id)
