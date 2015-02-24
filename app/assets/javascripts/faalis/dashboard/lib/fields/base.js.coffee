@@ -2,5 +2,5 @@
 class Faalis.BaseField
   constructor: (@name) ->
 
-  initialize: [ ->
+  __init__: [ ->
   ]

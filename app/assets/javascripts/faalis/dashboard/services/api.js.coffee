@@ -5,22 +5,11 @@ class Faalis.APIFactory
     @_type = type
 
 
-  initialize: ['$http', '$log', 'catch_error', ($http, $log, catch_error) ->
+  __init__: ['$http', '$log', 'catch_error', ($http, $log, catch_error) ->
     @http = $http
     @log = $log
     @catch_error = catch_error
   ]
-
-  # It's necessary to call this method, and pass an object
-  # containing the require parameters of current resource.
-  # For example we have `/posts/3/comments` as our RESTful
-  # resource. Then we have to call `paretns` method in our
-  # controller like this:
-  #
-  #   Resource.parents = { posts: 3 }
-  #
-  parents: (parents) ->
-    @_resource.set_parents(parents)
 
   resource: ->
     @_resource
@@ -40,7 +29,7 @@ class Faalis.APIFactory
     request.params = params if params != {} and method == 'GET'
 
     @http(request).success((data) ->
-      return data
+      return data.data
     ).error((data) ->
       @log.error(data)
       @catch_error(data)
