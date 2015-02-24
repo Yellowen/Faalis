@@ -27,6 +27,16 @@ Group.config ["$stateProvider", "ResourcesProvider",
 ]
 
 
-Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "API", ($state, $rootScope, $scope, API) ->
+Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "Resources", "$stateParams", "gettext",
+($state, $rootScope, $scope, Resources, $stateParams, _) ->
+
+
+  $scope.resource = Resources.main_resource()
+  $scope.group = {}
+
+  $rootScope.section_name = _("Groups")
+  $rootScope.section_slug = _("Add")
+
+  resource.initialize($stateParams)
 
 ]
