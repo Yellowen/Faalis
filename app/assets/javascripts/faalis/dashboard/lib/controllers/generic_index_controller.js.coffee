@@ -2,7 +2,7 @@
 # controller.
 class Faalis.GenericIndexController extends Faalis.BaseController
 
-  constructor: ($scope, _, API, Resources, $rootScope, $state, $stateParams, $user) ->
+  constructor: ($scope, _, Resources, $rootScope, $state, $stateParams, $user) ->
     # Call constructor of **Faalis.BaseController** which maps all
     # the methods (prototype methods) of current object to $scope except of those that
     # their name starts with a '_' ( underscore ). Those methods are reserved for internal
@@ -14,7 +14,6 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     # accessible in this method scope to class level scope.
     @scope = $scope
     @_ = _
-    @API = API
     @Resource = Resources.main_resource()
     @rootScope = $rootScope
     @state = $state
@@ -24,7 +23,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @__init__()
     @__setup_buttons__()
     @__fetch_resources__()
-
+    return
   # ## Internal methods
 
   # This method is used for initializing process at the begining of the controller
@@ -33,15 +32,8 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     # Set the list of objects at the angular scope.
     # For example if our **Resource** name was 'group'
     # it will create `$scope.groups`.
-    @scope[@Resource.plural_name()] = [];
-
-    # Set the current parent objects for API usage
-    _parents = {}
-
-    for parent in @Resource.parents
-      _parents[parent] = @stateParams[parent + "_id"]
-
-    @API.parents(_parents)
+    @scope[@Resource.plural_name()] = new Array()
+    @Resource.initialize(@stateParams)
 
     # Container header informations
     @rootScope.section_name = @_(@Resource.plural_name().capitalize())
@@ -78,9 +70,10 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     Resource = @Resource
     scope = @scope
 
-    @API.all()
+    @Resource.all()
       .then (data) ->
-        scope[Resource.plural_name()] = data.data
+        scope[Resource.plural_name()] = data
+        scope.$apply()
 
   on_delete: (resources) ->
 
@@ -88,4 +81,5 @@ class Faalis.GenericIndexController extends Faalis.BaseController
 
 Faalis.GenericIndexController.$inject = ["$scope", "gettext", "Resources", "$rootScope", "$state", "$stateParams", "$user"]
 
-angular.module('Faalis.Controllers', ["Faalis.ResourceFactory", "User"]).controller("Faalis.GenericIndexController", Faalis.GenericIndexController)
+angular.module('Faalis.Controllers', ["Faalis.ResourceFactory", "User"])
+  .controller("Faalis.GenericIndexController", Faalis.GenericIndexController)

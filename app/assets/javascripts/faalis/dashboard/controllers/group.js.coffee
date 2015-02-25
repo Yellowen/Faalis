@@ -1,6 +1,6 @@
 # Group module
 Group = angular.module "Group", ["ListView", "Errors", "ui.router",
-  "Auth", "Faalis.Controllers", "Faalis.ResourceFactory"]
+  "Auth", "Faalis.Controllers"]
 
 Group.config ["$stateProvider", "ResourcesProvider",
 ($stateProvider, ResourcesProvider) ->
@@ -22,10 +22,21 @@ Group.config ["$stateProvider", "ResourcesProvider",
           controller: "AddGroupController"
         })
 
-  ResourcesProvider.resources = [new Faalis.GroupResource()]
+  group = new Faalis.GroupResource()
+  ResourcesProvider.resources = [group]
 ]
 
 
-Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "API", ($state, $rootScope, $scope, API) ->
+Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "Resources", "$stateParams", "gettext",
+($state, $rootScope, $scope, Resources, $stateParams, _) ->
+
+
+  $scope.resource = Resources.main_resource()
+  $scope.group = {}
+
+  $rootScope.section_name = _("Groups")
+  $rootScope.section_slug = _("Add")
+
+  resource.initialize($stateParams)
 
 ]

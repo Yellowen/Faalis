@@ -29,10 +29,10 @@ Resource.provider "Resources", [->
       unless resource.name?
         throw "Resource '" + resource + "' does not have a 'name'"
 
-      unless resource.initialize?
-        throw "Resource '" + resource.name + "' does not have 'initialize' method."
+      unless resource.__init__?
+        throw "Resource '" + resource.name + "' does not have '__init__' method."
 
-      $injector.invoke(resource.initialize)
+      Faalis.$injector.invoke(resource.__init__, resource)
 
       obj[resource.name.underscore()] = resource
 

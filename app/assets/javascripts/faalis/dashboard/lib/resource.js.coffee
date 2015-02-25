@@ -9,6 +9,7 @@ class Faalis.Resource
   #                    `{ name: "James" } would create an attribute called "_name"
   #                    to `Resource` object with value of "James".
   constructor: (options = {}) ->
+
     @parents ||= []
     @_parents_values_is_set = false
 
@@ -17,9 +18,12 @@ class Faalis.Resource
       this['_' + key] = options[key]
     )
 
+
     type = this._api_type || 'json'
     api_prefix = this._api_prefix || '/api/v1/'
     @API = new Faalis.APIFactory(this, type, api_prefix)
+
+    @initialize.$inject = ['$http', '$log', 'catch_error']
 
   # Set the specific parents of current resource. This method should be called
   # in controllers and before any use of `Resource` object. and the **parents**
@@ -37,22 +41,33 @@ class Faalis.Resource
     # This flag will specify the existance of parents
     @_parents_values_is_set = true
 
-  # Initialize the resource object. for example fetch parent objects
-  # or relations and such stuff
-  initialize: ['$http', '$log', 'catch_error', ($http, $log, catch_error) ->
+  # Init the resource object to be used in **run** stage. this
+  # method will call by **ResourceFactory** service.
+  __init__: ($http, $log, catch_error) ->
+
     deps = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies)
     $injector = angular.injector(['ng', 'Errors', 'gettext'])
 
-    $injector.invoke(@API.initialize)
+    Faalis.$injector.invoke(@API.__init__, @API)
 
     for field in @fields
-      unless field.initialize?
-        throw "'" + field + "' does not have 'initialize' method."
+      unless field.__init__?
+        throw "'" + field + "' does not have '__init__' method."
 
-      console.log(field.initialize)
       # inject services for field classes.
-      $injector.invoke(field.initialize)
-  ]
+      Faalis.$injector.invoke(field.__init__, field)
+
+
+  # Initialize the resource object. for example fetch parent objects
+  # or relations and such stuff.
+  initialize: (params) ->
+    _parents = {}
+
+    for parent in @parents
+      _parents[parent] = params[parent + "_id"]
+
+    # Set the current parent objects for API usage
+    @set_parents(_parents)
 
   # Join the given urls and return a uri
   join_url: (url1, urls...) ->
@@ -113,20 +128,20 @@ class Faalis.Resource
 
   # Get a resource instance with given ID
   find: (id) ->
-    @API.get(id)
+    return @API.get(id)
 
   # Get all the resources via API.
   all: ->
-    @API.all()
+    return @API.all()
 
   # Create a new resource using given **data**
   create: (data) ->
-    @API.create(data)
+    return @API.create(data)
 
   # Update the resource with given ID using **data** which is provided
   update: (id, data) ->
-    @API.update(id, data)
+    return @API.update(id, data)
 
   # Destroy the resource with given id
   destroy: (id) ->
-    @API.destroy(id)
+    return @API.destroy(id)

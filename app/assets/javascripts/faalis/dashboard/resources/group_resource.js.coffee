@@ -1,4 +1,5 @@
 class Faalis.GroupResource extends Faalis.Resource
+
   name: 'group'
 
   fields: [
