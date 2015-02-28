@@ -29,7 +29,7 @@ class Faalis.Resource
   # in controllers and before any use of `Resource` object. and the **parents**
   # argument should be a object of parent resource name as keys and their id
   # as value. For example: {'posts': 4 } for 'Comment' Resource.
-  set_parents: (parents) ->
+  __set_parents__: (parents) ->
     tmp = []
 
     for parent in parents
@@ -70,12 +70,12 @@ class Faalis.Resource
     @set_parents(_parents)
 
   # Join the given urls and return a uri
-  join_url: (url1, urls...) ->
+  __join_url__: (url1, urls...) ->
     '/' + url1.split('/').filter(Boolean).concat(urls).join('/')
 
   # Parse the given uri and return an object containing the
   # details
-  parse_path: (path) ->
+  __parse_path__: (path) ->
     parents = []
     params = [];
 
@@ -94,7 +94,7 @@ class Faalis.Resource
     }
 
   # Return the url of current `Resource`
-  to_path: (params...) ->
+  __to_path: (params...) ->
     if @_parents_values_is_set == false
       throw 'You need to set parents values to continue.'
 
@@ -105,12 +105,12 @@ class Faalis.Resource
 
     return '/' + _parents.filter(Boolean).join('/') + @plural_name()
 
-  plural_name: ->
+  __plural_name__: ->
     @name.pluralize()
 
   # Return the path of template that should be used as the
   # details template in the final view.
-  detail_template: ->
+  __detail_template__: ->
     # `@_details_template` can be assigned via `ResourceFactory` contructor of
     # by assigning a value to it after initialization of object.
     if @_detail_template?
