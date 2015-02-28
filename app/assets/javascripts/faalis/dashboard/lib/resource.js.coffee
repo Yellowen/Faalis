@@ -67,7 +67,7 @@ class Faalis.Resource
       _parents[parent] = params[parent + "_id"]
 
     # Set the current parent objects for API usage
-    @set_parents(_parents)
+    @__set_parents__(_parents)
 
   # Join the given urls and return a uri
   __join_url__: (url1, urls...) ->

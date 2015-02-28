@@ -40,7 +40,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @rootScope.section_slug = @_("list")
 
     # List view template
-    @scope.details_template = template_url(@Resource.detail_template())
+    @scope.details_template = template_url(@Resource.__detail_template__())
 
   # List of buttons to use in index view. If you need more
   # buttons in you own controller, just override this method.
