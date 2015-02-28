@@ -94,7 +94,7 @@ class Faalis.Resource
     }
 
   # Return the url of current `Resource`
-  __to_path: (params...) ->
+  to_path: (params...) ->
     if @_parents_values_is_set == false
       throw 'You need to set parents values to continue.'
 
@@ -105,7 +105,7 @@ class Faalis.Resource
 
     return '/' + _parents.filter(Boolean).join('/') + @plural_name()
 
-  __plural_name__: ->
+  plural_name: ->
     @name.pluralize()
 
   # Return the path of template that should be used as the
