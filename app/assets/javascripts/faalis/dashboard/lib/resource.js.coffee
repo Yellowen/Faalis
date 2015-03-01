@@ -50,12 +50,12 @@ class Faalis.Resource
 
     Faalis.$injector.invoke(@API.__init__, @API)
 
-    for field in @fields
-      unless field.__init__?
-        throw "'" + field + "' does not have '__init__' method."
+    for attr in @__attributes__
+      unless attr.__init__?
+        throw "'" + attr + "' does not have '__init__' method."
 
       # inject services for field classes.
-      Faalis.$injector.invoke(field.__init__, field)
+      Faalis.$injector.invoke(attr.__init__, attr)
 
 
   # Initialize the resource object. for example fetch parent objects
@@ -106,7 +106,7 @@ class Faalis.Resource
     return '/' + _parents.filter(Boolean).join('/') + @plural_name()
 
   plural_name: ->
-    @name.pluralize()
+    @__name__.pluralize()
 
   # Return the path of template that should be used as the
   # details template in the final view.

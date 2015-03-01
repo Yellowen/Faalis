@@ -48,7 +48,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
   __buttons__: ->
     return [
       new Faalis.Button({
-        title: @_("New " + @Resource.name.capitalize()),
+        title: @_("New " + @Resource.__name__.capitalize()),
         icon: "fa fa-plus",
         classes: "btn btn-success btn-sm",
         route: @state.href(@Resource.plural_name().underscore() + '.new')
@@ -62,7 +62,7 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @scope.buttons = []
 
     for button in @__buttons__()
-      if @user.can button.permission, @Resource.name
+      if @user.can button.permission, @Resource.__name__
         @scope.buttons.push(button)
 
   # Fetch remote resource using API interface

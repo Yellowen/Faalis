@@ -26,7 +26,7 @@ Resource.provider "Resources", [->
     obj = {}
 
     for resource in resources
-      unless resource.name?
+      unless resource.__name__?
         throw "Resource '" + resource + "' does not have a 'name'"
 
       unless resource.__init__?
@@ -34,7 +34,7 @@ Resource.provider "Resources", [->
 
       Faalis.$injector.invoke(resource.__init__, resource)
 
-      obj[resource.name.underscore()] = resource
+      obj[resource.__name__.underscore()] = resource
 
     obj.main_resource = ->
       return main_resource

@@ -1,8 +1,8 @@
 class Faalis.GroupResource extends Faalis.Resource
 
-  name: 'group'
+  __name__: 'group'
 
-  fields: [
+  __attributes__: [
     new Faalis.StringField('title'),
     new Faalis.HasManyField('permissions', Faalis.PermissionResource)
   ]

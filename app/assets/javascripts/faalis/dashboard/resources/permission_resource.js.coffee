@@ -1,6 +1,6 @@
 class Faalis.PermissionResource extends Faalis.Resource
-  name: 'permission'
+  __name__: 'permission'
 
-  fields: [
+  __attributes__: [
     new Faalis.StringField('title'),
   ]
