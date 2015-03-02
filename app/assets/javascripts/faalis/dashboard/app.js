@@ -14,12 +14,23 @@ console.log(dependencies);
 
 var Dashboard = angular.module("Dashboard", dependencies);
 
-Dashboard.config(["$stateProvider", "RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function($stateProvider, RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
+Dashboard.config(["$stateProvider","$urlRouterProvider", "RestangularProvider", "$httpProvider", "ngQuickDateDefaultsProvider", function($stateProvider, $urlRouterProvider , RestangularProvider, $httpProvider, ngQuickDateDefaultsProvider) {
 
     $stateProvider.state("root", {
+        url: "",
+        templateUrl: template_url("index")
+    }).state("home", {
         url: "/",
-        templateUrl: template("index")
+        templateUrl: template_url("index")
+    }).state("not_find", {
+        url: "/403",
+        templateUrl: template_url("404")
+    }).state("permission_denied", {
+        url: "/404",
+        templateUrl: template_url("403")
     });
+
+    $urlRouterProvider.otherwise('/404');
 
     ngQuickDateDefaultsProvider.set({
         closeButtonHtml: "<i class='fa fa-times'></i>",
