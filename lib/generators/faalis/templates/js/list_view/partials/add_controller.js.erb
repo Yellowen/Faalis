@@ -16,14 +16,14 @@
     <% fields.each do |name, type, to| %><% if ["belongs_to", "in", "has_many"].include? type %>
     $scope.<%= name %>_data = {
         type: '<%= type %>',<% if type == "in" %>
-        choices: _.sortBy([<% to.each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>]),
+        choices: [<% to.each do |choice| %>{name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>].sortBy(),
   <% else %>
         to: '<%= type.to %>',<% end %>
         name: '<%= name %>'
     };<% end %><% end %>
-    <% fields.each do |name, type, to| %><% if type == "in" %>$scope.<%= name %>_choices = _.sortBy([<% to.each do |choice| %>
+    <% fields.each do |name, type, to| %><% if type == "in" %>$scope.<%= name %>_choices = [<% to.each do |choice| %>
         {name: "<%= choice.underscore %>", title: "<%= choice.humanize %>"},<% end %>
-    ], "title");<% end %><% end %>
+    ].sortBy(), "title");<% end %><% end %>
     if( "id" in $routeParams ){
         $scope.obj_id = $routeParams.id;
         $scope.editing = true;
