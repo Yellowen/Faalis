@@ -30,17 +30,18 @@ module Faalis
     # Only support `json` format
     respond_to :json
 
+    protect_from_forgery
+    skip_before_action :verify_authenticity_token, if: :api_request?
+
     # Authenticate user before any action take place
-    before_filter :authenticate_filter
+    before_action :authenticate_filter
 
     # Check for any presence of filtering query, In querystring and load
     # resource using them
-    before_filter :load_resource_by_query, :only => [:index]
-
-    protect_from_forgery
+    before_action :load_resource_by_query, :only => [:index]
 
     # Set csrf cookie after any action
-    after_filter :set_csrf_cookie_for_ng
+    after_action :set_csrf_cookie_for_ng
 
     # Rescue from any access denied exception raised from cancan and
     # returns a useful error message in json
@@ -63,7 +64,7 @@ module Faalis
     # If you want to change authentication method ? just override this method
     # in you **APIController**
     def authenticate_filter
-      #authenticate_user_!
+      authenticate_user!
     end
 
     # Load resource by using parameters specified in querystring.
@@ -146,5 +147,8 @@ module Faalis
       super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
     end
 
+    def api_request?
+      request.format.json?
+    end
   end
 end
