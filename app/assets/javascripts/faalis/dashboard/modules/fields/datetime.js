@@ -1,29 +1,38 @@
-var Datetime_ = angular.module("DatetimeField", ['ngQuickDate']);
+var Datetime_ = angular.module("DatetimeField", []);
 
 /*
  * <string-field></string-field> directive defination
  */
 
-Datetime_.directive('datetimeField', ["$filter", "gettext", function($filter, gettext) {
+Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, gettext) {
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
+        var locale = (ltr) ? 'en' : 'fa';
         scope.element_id = "id_" + scope.field;
-        scope.msg_element_id = "id_" + scope.field + "_msg";
+        console.log("-_____________________-");
+        console.log( element.children("#"+scope.element_id));
+        console.log("-_____________________-");
+        element.children("#"+scope.element_id).datetimepicker({
+            icons:{
+                time: 'fa fa-clock',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-screenshot',
+                clear: 'fa fa-trash'
 
-        if ((scope.timepicker === undefined) || (scope.timepicker == null)) {
-            scope.timepicker = true;
-        }
-        console.log(scope);
-        console.log(scope.timepicker);
-        if (scope.on_change !== undefined) {
-            // Watch event changes
-            scope.$watch("model", function(newv, oldv, $scope) {
-                // TODO: maybe we should pass locals to $eval
-                scope.$parent.$eval(scope.on_change);
-            }, true);
-        }
+            },
+            widgetPositioning: {
+                horizontal: 'left',
+                vertical: 'bottom'
+            },
+            sideBySide: true,
+            locale: locale
 
+        });
     }
     // Actual object of <datetime-field> directive
     return {
