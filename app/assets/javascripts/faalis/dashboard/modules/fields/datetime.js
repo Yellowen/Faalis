@@ -10,12 +10,9 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
         var ltr = is_ltr();
         var locale = (ltr) ? 'en' : 'fa';
         scope.element_id = "id_" + scope.field;
-        console.log("-_____________________-");
-        console.log( element.children("#"+scope.element_id));
-        console.log("-_____________________-");
-        element.children("#"+scope.element_id).datetimepicker({
+        element.find('div.date').datetimepicker({
             icons:{
-                time: 'fa fa-clock',
+                time: 'fa fa-clock-o',
                 date: 'fa fa-calendar',
                 up: 'fa fa-chevron-up',
                 down: 'fa fa-chevron-down',
@@ -23,7 +20,6 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
                 next: 'fa fa-chevron-right',
                 today: 'fa fa-screenshot',
                 clear: 'fa fa-trash'
-
             },
             widgetPositioning: {
                 horizontal: 'left',

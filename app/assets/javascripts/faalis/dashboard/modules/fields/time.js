@@ -1,7 +1,7 @@
 var Time_ = angular.module("TimeField", []);
 
 /*
- * <string-field></string-field> directive defination
+ * <time-field></time-field> directive defination
  */
 
 Time_.directive('timeField', ["$filter", "gettext",  function($filter, gettext) {
@@ -10,10 +10,9 @@ Time_.directive('timeField', ["$filter", "gettext",  function($filter, gettext) 
         var ltr = is_ltr();
         var locale = (ltr) ? 'en' : 'fa';
         scope.element_id = "id_" + scope.field;
-        console.log(scope.element_id);
-        $('#' + scope.element_id).datetimepicker({
+        element.find('div.date').datetimepicker({
             icons:{
-                time: 'fa fa-clock',
+                time: 'fa fa-clock-o',
                 date: 'fa fa-calendar',
                 up: 'fa fa-chevron-up',
                 down: 'fa fa-chevron-down',
@@ -26,6 +25,12 @@ Time_.directive('timeField', ["$filter", "gettext",  function($filter, gettext) 
             format: 'LT',
             locale: locale
 
+        });
+            scope.$watch('model', function(newv, oldv, $scope) {
+                console.log(scope.model);
+            });
+        scope.$watch( scope.model , function() {
+            console.log(scope.model);
         });
     }
     // Actual object of <time-field> directive

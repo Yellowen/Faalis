@@ -10,9 +10,9 @@ Date_.directive('dateField', ["$filter", "gettext",  function($filter, gettext) 
         var ltr = is_ltr();
         var locale = (ltr) ? 'en' : 'fa';
         scope.element_id = "id_" + scope.field;
-        $('#' + scope.element_id).datepicker({
+        element.find('div.date').datetimepicker({
             icons:{
-                time: 'fa fa-clock',
+                time: 'fa fa-clock-o',
                 date: 'fa fa-calendar',
                 up: 'fa fa-chevron-up',
                 down: 'fa fa-chevron-down',
@@ -20,7 +20,6 @@ Date_.directive('dateField', ["$filter", "gettext",  function($filter, gettext) 
                 next: 'fa fa-chevron-right',
                 today: 'fa fa-screenshot',
                 clear: 'fa fa-trash'
-
             },
             format: 'dd-MM-yy',
             locale: locale
