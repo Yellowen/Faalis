@@ -18,7 +18,7 @@ Image_.directive('imageField',["gettext", "$parse", function(gettext, $parse){
                   var image = e.target.result;
                   console.log("IMAGE DATA: %s", image);
                   ngctrl.$setViewValue({filename: file.name,
-                                        image_data: image,
+                                        data: image,
                                         content_type: file.type});
                   ngctrl.$render();
 
