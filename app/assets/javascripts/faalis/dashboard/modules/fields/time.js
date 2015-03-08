@@ -26,10 +26,7 @@ Time_.directive('timeField', ["$filter", "gettext",  function($filter, gettext) 
             locale: locale
 
         });
-            scope.$watch('model', function(newv, oldv, $scope) {
-                console.log(scope.model);
-            });
-        scope.$watch( scope.model , function() {
+        scope.$watch('model', function(newv, oldv, $scope) {
             console.log(scope.model);
         });
     }

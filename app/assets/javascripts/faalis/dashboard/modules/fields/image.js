@@ -10,17 +10,21 @@ Image_.directive('imageField',["gettext",function(gettext){
         scope.msg_element_id = "id_" + scope.field + "_msg";
 
         function updateModel(event){
+            console.log("<<<");
           if(event.target && event.target.files){
             var file = event.target.files[0];
             var reader = new FileReader();
             reader.onload = function(e){
                 scope.image = e.target.result;
+                console.log("<<<<<<<<<<<<<<<<");
+                console.log(scope.image);
             };
             reader.readAsDataURL(file);
           }
         }
 
-        element.on('change',updateModel)
+        console.log(',,,,,,,,');
+        $('#' + scope.element_id).bind('change',updateModel);
 
     }
     return {

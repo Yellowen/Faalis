@@ -10,6 +10,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
         var ltr = is_ltr();
         var locale = (ltr) ? 'en' : 'fa';
         scope.element_id = "id_" + scope.field;
+        //TODO: change the find selector to use ID
         element.find('div.date').datetimepicker({
             icons:{
                 time: 'fa fa-clock-o',
@@ -28,6 +29,11 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
             sideBySide: true,
             locale: locale
 
+        });
+
+        scope.$watch('fake_model', function(x, y) {
+            console.log('---------------');
+            console.log("%s -- %s", x , y);
         });
     }
     // Actual object of <datetime-field> directive
