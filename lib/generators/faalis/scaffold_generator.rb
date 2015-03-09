@@ -111,6 +111,10 @@ module Faalis
             relations << "  has_and_belongs_to_many :#{to.pluralize}\n"
             say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
  You should create it manually in model files"
+          when 'has_many'
+            relations << "  has_many :#{to.pluralize}\n"
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
+ You should create it manually in model files"
           end
         end
 
