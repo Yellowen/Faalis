@@ -9,7 +9,7 @@ Perm.factory 'UserPermissions', ["$rootScope", ($rootScope) ->
     # Check if user has specific permission on an object
     can: (action, model) ->
       if PERMISSIONS[model] != undefined
-        if _.indexOf(PERMISSIONS[model], action) != -1
+        if PERMISSIONS[model].find(action) != undefined
           return true
       return false
 
