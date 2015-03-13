@@ -31,7 +31,7 @@ Image_.directive('imageField',["gettext", "$parse", function(gettext, $parse){
         console.groupEnd();
     }
     return {
-        templateUrl: template("fields/image/image"),
+        templateUrl: template_url("fields/image/image"),
         //getting deprecated
         //replace: true,
         restrict: "E",
