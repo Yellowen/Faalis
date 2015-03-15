@@ -1,12 +1,12 @@
-var Image_ = angular.module("ImageField",[]);
+var File_ = angular.module("FileField",[]);
 
 /*
- * <image-field></image-field>
+ * <file-field></file-field>
 */
 
-Image_.directive('imageField',["gettext", "$parse", function(gettext, $parse){
+File_.directive('fileField',["gettext", "$parse", function(gettext, $parse){
     function link(scope, element, attrs, ngctrl){
-        console.group("ImageField");
+        console.group("FileField");
         scope.element_id = "id_" + scope.field;
         scope.msg_element_id = "id_" + scope.field + "_msg";
 
@@ -15,10 +15,10 @@ Image_.directive('imageField',["gettext", "$parse", function(gettext, $parse){
               var file = event.target.files[0];
               var reader = new FileReader();
               reader.onload = function(e){
-                  var image = e.target.result;
-                  console.log("IMAGE DATA: %s", image);
+                  var data_ = e.target.result;
+                  console.log("FILE DATA: %s", data_);
                   ngctrl.$setViewValue({filename: file.name,
-                                        data: image,
+                                        data: data_,
                                         content_type: file.type});
                   ngctrl.$render();
 
@@ -31,7 +31,7 @@ Image_.directive('imageField',["gettext", "$parse", function(gettext, $parse){
         console.groupEnd();
     }
     return {
-        templateUrl: template_url("fields/image/image"),
+        templateUrl: template_url("fields/file/file_upload"),
         //getting deprecated
         //replace: true,
         restrict: "E",
