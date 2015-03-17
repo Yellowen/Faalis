@@ -39,4 +39,5 @@ Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "Resou
 
   resource.initialize($stateParams)
 
+  $scope.relations = resource.get_all_relations()
 ]
