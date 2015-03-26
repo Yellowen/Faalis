@@ -2,6 +2,12 @@
 # and is responsible for representing a remote resource.
 class Faalis.Resource
 
+  # This array hold all the fields which represent a relationship
+  # for current resource.
+  #
+  # for example `belongs_to` or `has_many` relationship
+  __relations__: []
+
   # Arguments list:
   # * **options**:     Extra properties and attributes to add to the resource.
   #                    All the key/value in this object will attached to the
@@ -23,7 +29,7 @@ class Faalis.Resource
     api_prefix = this._api_prefix || '/api/v1/'
     @API = new Faalis.APIFactory(this, type, api_prefix)
 
-    @initialize.$inject = ['$http', '$log', 'catch_error']
+    @__init__.$inject = ['$http', '$log', 'catch_error']
 
   # Set the specific parents of current resource. This method should be called
   # in controllers and before any use of `Resource` object. and the **parents**
@@ -46,13 +52,15 @@ class Faalis.Resource
   __init__: ($http, $log, catch_error) ->
 
     deps = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependencies)
-    $injector = angular.injector(['ng', 'Errors', 'gettext'])
 
     Faalis.$injector.invoke(@API.__init__, @API)
 
     for attr in @__attributes__
       unless attr.__init__?
         throw "'" + attr + "' does not have '__init__' method."
+
+      if attr.relation
+        @__relations__.push(attr)
 
       # inject services for field classes.
       Faalis.$injector.invoke(attr.__init__, attr)
@@ -145,3 +153,18 @@ class Faalis.Resource
   # Destroy the resource with given id
   destroy: (id) ->
     return @API.destroy(id)
+
+  # Get All possible objects for current resource relations
+  get_all_relations: ->
+    # --- This method should run after injection ---
+    result_obj = {}
+
+    for relation in @__relations__
+      # relation would be a Field (or its children) Instance and
+      # relation.resource would be a Resource instance.
+      relation.fetch_all_objects().then( (result) ->
+        # Put the result promise in the result object
+        result_obj[relation.name] = result
+      )
+
+    return result_obj
