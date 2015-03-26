@@ -114,8 +114,20 @@ module Faalis
         end
       end
 
+      def create_images
+        fields.each do |name, type|
+          if type == 'image'
+            generate "paperclicp #{resource_data['name']} #{name}"
+          end
+        end
+      end
 
       def create_tags
+        fields.each do |name, type|
+          if type == 'image'
+            rake "rake acts_as_taggable_on_engine:install:migrations"
+          end
+        end
       end
 
       # Create string of all relations that needs in models
@@ -133,15 +145,16 @@ module Faalis
             end
 
           when 'image'
-            #generate "paperclicp #{resource_data['name']} #{name}"
-            relations << "  has_attached_file :#{name}\n"
-            relations << "  validates_attachment_content_type :#{name},
+            relations << "
+     attr_accessor :image_data\n
+     before_create :randomize_file_name\n
+     has_attached_file :#{name}\n
      content_type: %w(image/jpeg image/jpg image/png),
-     less_than:  1.megabytes\n"
-            # TODO: Run this generator just once for all images
-            #`rails generate paperclip #{resource_data['name']} #{name}`
+     validates_attachment_content_type :#{name},
+     less_than:  1.megabytes\n
+"
+            # TODO: randomize_file_name method should be added
           when 'tag'
-            #rake "rake acts_as_taggable_on_engine:install:migrations"
             relations << "  acts_as_taggable_on :#{name}\n"
 
           when 'has_and_belongs_to_many'
