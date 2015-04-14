@@ -99,6 +99,7 @@ module Faalis
      less_than:  1.megabytes\n"
             # TODO: Run this generator just once for all images
             `rails generate paperclip #{resource_data['name']} #{name}`
+
           when 'tag'
             rake "rake acts_as_taggable_on_engine:install:migrations"
             relations << "  acts_as_taggable_on :#{name}\n"
@@ -109,6 +110,11 @@ module Faalis
 
           when 'has_and_belongs_to_many'
             relations << "  has_and_belongs_to_many :#{to.pluralize}\n"
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
+ You should create it manually in model files"
+
+          when 'has_many'
+            relations << "  has_many :#{to.pluralize}\n"
             say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
  You should create it manually in model files"
           end

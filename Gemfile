@@ -28,6 +28,9 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
+
+  gem 'coffee-rails-source-maps'
+  gem 'sass-rails-source-maps'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil

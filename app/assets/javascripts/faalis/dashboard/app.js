@@ -9,8 +9,9 @@ var dependencies = window.STATIC_REQUIREMENTS.concat(window.dashboard_dependenci
 
 Faalis.$injector = angular.injector(['ng', 'Errors', 'gettext']);
 
-console.log("Dashboard dependencies:");
+console.groupCollapsed("Dashboard dependencies");
 console.log(dependencies);
+console.groupEnd();
 
 var Dashboard = angular.module("Dashboard", dependencies);
 
@@ -75,6 +76,11 @@ angular.element(document).ready(function(){
             url: API_PREFIX + "permissions/user"})
            .success(function(data, status, headers, config){
                PERMISSIONS = data.permissions;
+
+               console.groupCollapsed('User Permissions');
+               console.log(data.permissions);
+               console.groupEnd();
+
                angular.bootstrap(document, ["Dashboard"]);
            })
            .fail(function(data){
