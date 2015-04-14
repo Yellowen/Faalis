@@ -44,7 +44,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
         transclude: true,
         scope: {
             // disable timepicker
-            timepicker: "=?",
+            time: "=?",
 
             cssClasses: '=cssClass',
             // A call back to pass to field ng-change directive
