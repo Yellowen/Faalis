@@ -23,12 +23,12 @@ Dashboard.config(["$stateProvider","$urlRouterProvider", "RestangularProvider", 
     }).state("home", {
         url: "/",
         templateUrl: template_url("index")
-    }).state("not_find", {
-        url: "/403",
-        templateUrl: template_url("403")
-    }).state("permission_denied", {
+    }).state("not_found", {
         url: "/404",
         templateUrl: template_url("404")
+    }).state("permission_denied", {
+        url: "/403",
+        templateUrl: template_url("403")
     });
 
     $urlRouterProvider.otherwise('/404');
