@@ -57,11 +57,10 @@ For example (only if you want to change default layout):
 ```
 
 * Perform `rails generate faalis:install_all` to copy necessary files.
-* Add this to your `config/routes.rb` :
+* Add this to your `config/application.rb` :
 
 ```ruby
-mount Faalis::Engine => "/"
-Faalis::Routes.define_api_routes
+config.railties_order = [:main_app, Dashstrap::TemplateEngine, Faalis::Engine, :all]
 ```
 
 * Perform `rake db:migrate` and enjoy Faalis
