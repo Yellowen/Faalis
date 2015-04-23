@@ -63,7 +63,7 @@ For example (only if you want to change default layout):
 config.railties_order = [:main_app, Dashstrap::TemplateEngine, Faalis::Engine, :all]
 ```
 
-* Perform `rake db:migrate` and enjoy Faalis
+* Perform `rake db:migrate db:seed` and enjoy Faalis
 
 > **NOTE**: You can specify the ORM you'd like to use in `config/initializers/faalis.rb`
 
