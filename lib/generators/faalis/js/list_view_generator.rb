@@ -48,6 +48,10 @@ module Faalis
           end
         end
 
+        def create_policy
+          template "policy/policy.rb.erb", "app/policies/#{resource.underscore}_policy.rb"
+        end
+
         def create_specs
           unless options[:without_specs]
             template "features/api.feature", "features/#{resource.underscore}.api.feature"
