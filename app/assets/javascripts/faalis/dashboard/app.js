@@ -76,9 +76,8 @@ angular.element(document).ready(function(){
             url: API_PREFIX + "permissions/user"})
            .success(function(data, status, headers, config){
                PERMISSIONS = data.permissions;
-
                console.groupCollapsed('User Permissions');
-               console.log(data.permissions);
+               console.log(data);
                console.groupEnd();
 
                angular.bootstrap(document, ["Dashboard"]);

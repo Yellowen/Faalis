@@ -3,6 +3,7 @@ require_dependency "faalis/application_controller"
 module Faalis
   class API::V1::PermissionsController < ::APIController
 
+    skip_after_action :verify_authorized
     respond_to :json
 
     class DummyPerm
@@ -14,7 +15,7 @@ module Faalis
     def index
       @permissions = {}
 
-      Faalis::Permission.each do |perm|
+      Faalis::Permission.all.each do |perm|
         if @permissions.include? perm.model
           @permissions[perm.model] << perm.action
         else

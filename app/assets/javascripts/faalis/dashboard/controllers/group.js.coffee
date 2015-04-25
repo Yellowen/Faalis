@@ -27,17 +27,19 @@ Group.config ["$stateProvider", "ResourcesProvider",
 ]
 
 
-Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "Resources", "$stateParams", "gettext",
-($state, $rootScope, $scope, Resources, $stateParams, _) ->
+Group.controller "NewGroupController", ["$state", "$rootScope", "$scope", "Restangular", "$stateParams", "gettext", "catch_error",
+($state, $rootScope, $scope, Resources, $stateParams, _, catch_error) ->
 
 
-  $scope.resource = Resources.main_resource()
   $scope.group = {}
 
   $rootScope.section_name = _("Groups")
   $rootScope.section_slug = _("Add")
 
-  resource.initialize($stateParams)
+  Resources.all('permissions').getList().then (data)->
+    console.log(data);
+    $scope.permissions = data[0].permissions
+  , (data)->
+    catch_error(data)
 
-  $scope.relations = resource.get_all_relations()
 ]

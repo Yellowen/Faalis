@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Sameer Rahmani', 'Behnam Ahmad Khan Beigi']
   s.email       = ['lxsameer@gnu.org', 'yottanami@gnu.org']
   s.homepage    = 'https://github.com/Yellowen/Faalis'
-  s.summary     = 'Faalis is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications.'
-  s.description = 'Faalis is a ruby on rails engine which provides a very basic web application to use with other ruby on rails applications.'
+  s.summary     = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application'
+  s.description = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application. Features like Dashboard, complex code generation and other awesome features. For more information checkout the docs.'
   s.required_ruby_version = '~> 2.0'
 
   s.licenses = ['GPL-2']
@@ -21,11 +21,11 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '~>4.2.0'
+  s.add_dependency 'rails', '~> 4.2', '>= 4.2.0'
 
   # Authentication
   s.add_dependency 'omniauth'
-  s.add_dependency 'devise', '~>3.4.0'
+  s.add_dependency 'devise', '~> 3.4', '>= 3.4.0'
 
   # Authorization
   s.add_dependency 'pundit'

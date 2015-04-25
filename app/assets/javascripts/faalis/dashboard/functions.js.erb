@@ -111,6 +111,10 @@ function catch_error1(error){
     }
 };
 
+String.prototype.readable = function() {
+  return this.replace(/::/g, ' ').humanize();
+};
+
 $(function(){
     $("#flash").on("click", hide_flash);
     show_error_queue();
