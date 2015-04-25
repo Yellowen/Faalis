@@ -13,7 +13,11 @@ module Faalis
 
     def jstemplate
       if user_signed_in?
-        logger.info "#{'JS_TEMPLATE'.yellow}: angular/#{params[:path]}"
+
+        js_template = 'JS_TEMPLATE'
+        js_template.yellow if String.respond_to? :colorize
+
+        logger.info "#{js_template}: angular/#{params[:path]}"
         render template: "angular/#{params[:path]}", layout: nil
       else
         render :login_required_page
