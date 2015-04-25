@@ -21,6 +21,7 @@ require 'devise'
 
 # Faalis Module
 module Faalis
+  autoload :Configuration, 'faalis/configuration'
 end
 
 require 'faalis/engine'
