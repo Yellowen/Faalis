@@ -1,1 +1,1 @@
-json.permissions @permissions
+json.array! [{ permissions:  @permissions }]

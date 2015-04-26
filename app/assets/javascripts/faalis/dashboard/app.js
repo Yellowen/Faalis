@@ -23,12 +23,12 @@ Dashboard.config(["$stateProvider","$urlRouterProvider", "RestangularProvider", 
     }).state("home", {
         url: "/",
         templateUrl: template_url("index")
-    }).state("not_find", {
-        url: "/403",
-        templateUrl: template_url("403")
-    }).state("permission_denied", {
+    }).state("not_found", {
         url: "/404",
         templateUrl: template_url("404")
+    }).state("permission_denied", {
+        url: "/403",
+        templateUrl: template_url("403")
     });
 
     $urlRouterProvider.otherwise('/404');
@@ -76,9 +76,8 @@ angular.element(document).ready(function(){
             url: API_PREFIX + "permissions/user"})
            .success(function(data, status, headers, config){
                PERMISSIONS = data.permissions;
-
                console.groupCollapsed('User Permissions');
-               console.log(data.permissions);
+               console.log(data);
                console.groupEnd();
 
                angular.bootstrap(document, ["Dashboard"]);

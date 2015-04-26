@@ -15,7 +15,7 @@
 //= require ngQuickDate/ng-quick-date
 //= require select2/select2
 //= require angular-ui-select2/select2
-//= require flow
+//= require flow.js/flow
 //= require ng-flow
 //= require faalis/dashboard/functions
 //= require_tree ./dashboard/lib

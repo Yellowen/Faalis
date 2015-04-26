@@ -32,8 +32,6 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
         });
 
         scope.$watch('fake_model', function(x, y) {
-            console.log('---------------');
-            console.log("%s -- %s", x , y);
         });
     }
     // Actual object of <datetime-field> directive
@@ -44,7 +42,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
         transclude: true,
         scope: {
             // disable timepicker
-            timepicker: "=?",
+            time: "=?",
 
             cssClasses: '=cssClass',
             // A call back to pass to field ng-change directive

@@ -41,6 +41,7 @@ module Faalis
         template 'formtastic.rb', 'config/initializers/formstatic.rb'
         template 'seeds.rb', 'db/seeds.rb'
         template 'api_controller.rb', 'app/controllers/api_controller.rb'
+        template 'policy/application_policy.rb', 'app/policies/application_policy.rb'
       end
 
       def copy_js_manifest
