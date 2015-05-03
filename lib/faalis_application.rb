@@ -5,7 +5,7 @@ app_name = ask("What's your app name: ").downcase.underscore
 add_source 'https://rails-assets.org'
 
 gem_group :development do
-  gem 'pry'
+  gem 'pry-rails'
   gem 'annotate'
   gem 'hirb'
   gem 'quiet_assets'  # unclutters the server log from assets
@@ -13,12 +13,17 @@ gem_group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'pry-byebug'
-  gem 'puma'
+  #gem 'puma'
 end
 
 gem 'slim-rails'
-gem 'dashstrap'
-gem 'faalis'
+gem 'dashstrap', github: 'Yellowen/dashstrap'
+gem 'faalis', github: 'Yellowen/Faalis'
+
+inside app_name do
+  run 'bundle install'
+  run 'rake faalis:install:migrations'
+end
 
 application do
   'config.railties_order = [:main_app, Dashstrap::TemplateEngine, Faalis::Engine, :all]'
@@ -47,7 +52,6 @@ initializer 'assets.rb' do
 
   )
 end
-
 
 git :init
 create_file "LICENSE" do
