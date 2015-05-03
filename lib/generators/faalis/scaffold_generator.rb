@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 #    Faalis - Basic website skel engine
-#    Copyright (C) 2012-2014 Yellowen
+#    Copyright (C) 2012-2015 Yellowen
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -54,13 +54,11 @@ module Faalis
       private
 
       # Create a dedicated controller,
-      # It does not have any relation to Faalis
-      # TODO: Check for better way
       def create_controller
         if options[:no_asset]
-          `rails g scaffold_controller #{resource_data["name"]} --skip`
+          `rails g scaffold_controller #{resource_data["name"]} #{all_fields}--assets=false`
         else
-          `rails g scaffold_controller #{resource_data["name"]}`
+          `rails g scaffold_controller #{resource_data["name"]} #{all_fields}`
         end
       end
 
@@ -69,80 +67,15 @@ module Faalis
         route "resources :#{resource_data["name"].pluralize}"
       end
 
-      #Create model of the scaffold with belongs_to support
-      #It does not support has_many relation yet
+      # Create model of the scaffold with belongs_to support
+      # It does not support has_many relation yet
       def create_model
-        result = []
-        all_fields = []
-        relations = "\n"
-        fields.each do |name, type, to|
-          case type
-          when 'belongs_to'
-            type_ = 'integer'
-            if to.singularize != name
-              relations << "  belongs_to :#{name.singularize},
-              :class_name => \"#{to.singularize.camelize}\"\n"
-            else
-              relations << "  belongs_to :#{to.singularize}\n"
-            end
-            name_ = "#{name.singularize}_id"
-            result << [name_, type_]
-
-          when 'text', 'integer', 'string', 'boolean', 'datetime', 'time', 'date', 'float'
-            result << [name, type]
-
-          when 'image'
-            generate "paperclicp #{resource_data['name']} #{name}"
-            relations << "  has_attached_file :#{name}\n"
-            relations << "  validates_attachment_content_type :#{name},
-     content_type: %w(image/jpeg image/jpg image/png),
-     less_than:  1.megabytes\n"
-            # TODO: Run this generator just once for all images
-            `rails generate paperclip #{resource_data['name']} #{name}`
-
-          when 'tag'
-            rake "rake acts_as_taggable_on_engine:install:migrations"
-            relations << "  acts_as_taggable_on :#{name}\n"
-            result << [name, 'string']
-
-          when 'in'
-            result << [name, 'string']
-
-          when 'has_and_belongs_to_many'
-            relations << "  has_and_belongs_to_many :#{to.pluralize}\n"
-            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
- You should create it manually in model files"
-
-          when 'has_many'
-            relations << "  has_many :#{to.pluralize}\n"
-            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
- You should create it manually in model files"
-          end
-        end
-
-        if parent?
-          parents.each do |parent|
-            result << ["#{parent.singularize}_id", "integer"]
-            relations << "  belongs_to :#{parent.singularize}\n"
-          end
-        end
-
-
-        childs.each do |child|
-          relations << "  has_many :#{child.pluralize}\n"
-        end
-
-        all_fields = result.collect do |x|
-          x.join(':')
-        end
 
         # Load all globalize field and create a string to adding in model
         globalizes = "\n  translates "+
           globalize_fields.map { |field | ":#{field['name'].underscore}" }.join(", ")
 
-
-
-        invoke('active_record:model', [resource_data['name'].underscore, *all_fields], {
+        invoke('active_record:model', [resource_data['name'].singularize.underscore, *all_fields], {
                  migration: !options[:no_migration], timestamps: true
                })
         if globalize_fields.any?
@@ -150,16 +83,12 @@ module Faalis
         end
 
         if File.exist?("app/models/#{resource_data["name"]}.rb")
-
           inject_into_file "app/models/#{resource_data["name"].underscore}.rb", after: 'Base' do
-
             globalize_fields.empty? ? relations : relations + globalizes
           end
         else
-          puts "Could not find file app/models/#{resource_data["name"].underscore}"
+          say_status "error", "Could not find file app/models/#{resource_data["name"].underscore}"
         end
-
-
 
       end
 
@@ -183,6 +112,104 @@ module Faalis
             '.create_translation_table! '+
             fields
         end
+      end
+
+      def create_images
+        fields.each do |name, type|
+          if type == 'image'
+            generate "paperclicp #{resource_data['name']} #{name}"
+          end
+        end
+      end
+
+      def create_tags
+        fields.each do |name, type|
+          if type == 'image'
+            rake "rake acts_as_taggable_on_engine:install:migrations"
+          end
+        end
+      end
+
+      # Create string of all relations that needs in models
+      def relations
+        relations = "\n"
+
+        fields.each do |name, type, to|
+          case type
+          when 'belongs_to'
+            if to.singularize != name
+              relations << "  belongs_to :#{name.singularize},
+              :class_name => \"#{to.singularize.camelize}\"\n"
+            else
+              relations << "  belongs_to :#{to.singularize}\n"
+            end
+
+          when 'image'
+            relations << "
+     attr_accessor :image_data\n
+     before_create :randomize_file_name\n
+     has_attached_file :#{name}\n
+     content_type: %w(image/jpeg image/jpg image/png),
+     validates_attachment_content_type :#{name},
+     less_than:  1.megabytes\n
+"
+            # TODO: randomize_file_name method should be added
+          when 'tag'
+            relations << "  acts_as_taggable_on :#{name}\n"
+
+          when 'has_and_belongs_to_many'
+            relations << "  has_and_belongs_to_many :#{to.pluralize}\n"
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
+ You should create it manually in model files"
+
+          when 'has_many'
+            relations << "  has_many :#{to.pluralize}\n"
+            say_status 'warn', "There is a many to many relation between #{resource_data['name']} and #{to},
+ You should create it manually in model files"
+          end
+        end
+
+        if parent?
+          parents.each do |parent|
+            relations << "  belongs_to :#{parent.singularize}\n"
+          end
+        end
+
+        childs.each do |child|
+          relations << "  has_many :#{child.pluralize}\n"
+        end
+        return relations
+      end
+
+      # It will extract name and types of all fields
+      # And will return it as supported format for scaffold_controller
+      def all_fields
+        result = []
+        fields.each do |name, type, to|
+          case type
+          when 'belongs_to'
+            name_ = "#{name.singularize}_id"
+            result << [name_, 'integer']
+
+          when 'text', 'integer', 'string', 'boolean', 'datetime', 'time', 'date', 'float'
+            result << [name, type]
+
+          when 'tag', 'in'
+            result << [name, 'string']
+          end
+        end
+
+        if parent?
+          parents.each do |parent|
+            result << ["#{parent.singularize}_id", "integer"]
+          end
+        end
+
+        all_fields = []
+        all_fields = result.collect do |x|
+          x.join(':')
+        end
+        return all_fields.join " "
       end
     end
   end
