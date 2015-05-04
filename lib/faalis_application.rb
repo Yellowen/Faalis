@@ -41,7 +41,7 @@ rakefile 'db.rake' do
   )
 end
 
-generate 'faalis::install_all'
+generate 'faalis:install_all'
 
 initializer 'assets.rb' do
   %Q(
