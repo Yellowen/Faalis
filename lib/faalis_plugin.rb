@@ -42,6 +42,7 @@ insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency 
 end
 
 inside "app/assets/javascripts/" do
+  run "mkdir #{app_name.underscore.downcase}"
   run "touch #{app_name.underscore.downcase}/application.js"
 end
 append_file "app/assets/javascripts/#{app_name.underscore.downcase}/application.js" do <<-'FILE'
