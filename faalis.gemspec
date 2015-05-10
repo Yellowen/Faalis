@@ -66,6 +66,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-ng-flow', '~>2.4.2'
   s.add_dependency 'rails-assets-angular-ui-router'
   s.add_dependency 'rails-assets-angular-loading-bar'
+
   # i18n
   #s.add_dependency 'gettext'
   s.add_development_dependency 'gettext'
