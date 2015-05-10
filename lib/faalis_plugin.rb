@@ -22,17 +22,17 @@ end
 gsub_file "#{app_name}.gemspec", /test\/\*\*\/\*/, "spec/**/*"
 
 insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency "sqlite3"' do
-  "\n  s.add_dependency 'globalize', '>= 4.0.0.alpha.2'\n"
+  "\n  s.add_dependency 'globalize'"
 end
 
 insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency "sqlite3"' do
-  "\n  s.add_dependency 'jbuilder', '~> 1.2'\n"
+  "\n  s.add_dependency 'jbuilder'"
 end
 insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency "sqlite3"' do
-  "\n  s.add_dependency 'sass-rails', '~> 4.0.0'\n"
+  "\n  s.add_dependency 'sass-rails'"
 end
 insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency "sqlite3"' do
-  "\n  s.add_dependency 'uglifier', '>= 1.3.0'\n"
+  "\n  s.add_dependency 'uglifier'"
 end
 insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency "sqlite3"' do
   "\n  s.add_dependency 'jquery-rails'\n"
@@ -42,6 +42,7 @@ insert_into_file "#{app_name}.gemspec", :after => 's.add_development_dependency 
 end
 
 inside "app/assets/javascripts/" do
+  run "mkdir #{app_name.underscore.downcase}"
   run "touch #{app_name.underscore.downcase}/application.js"
 end
 append_file "app/assets/javascripts/#{app_name.underscore.downcase}/application.js" do <<-'FILE'
