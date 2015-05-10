@@ -16,6 +16,7 @@
 //= require select2/select2
 //= require angular-ui-select2/select2
 //= require flow.js/flow
+//= require angular-loading-bar/loading-bar
 //= require ng-flow
 //= require faalis/dashboard/functions
 //= require_tree ./dashboard/lib
