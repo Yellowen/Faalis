@@ -74,9 +74,6 @@ module Faalis
         # Load all globalize field and create a string to adding in model
         globalizes = "\n  translates "+
           globalize_fields.map { |field | ":#{field['name'].underscore}" }.join(", ")
-        puts "$"*40
-        puts all_fields
-        puts "$"*40
         invoke('active_record:model', [resource_data['name'].singularize.underscore, all_fields.split(' ')], {
                  migration: !options[:no_migragtion], timestamps: true
                })
