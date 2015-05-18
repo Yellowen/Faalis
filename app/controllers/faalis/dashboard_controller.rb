@@ -18,6 +18,7 @@ module Faalis
         js_template.yellow if String.respond_to? :colorize
 
         logger.info "#{js_template}: angular/#{params[:path]}"
+        puts ">>" * 100, "angular/#{params[:path]}"
         render template: "angular/#{params[:path]}", layout: nil
       else
         render :login_required_page

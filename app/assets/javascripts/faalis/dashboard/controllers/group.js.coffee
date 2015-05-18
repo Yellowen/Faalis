@@ -13,10 +13,10 @@ Group.config ["$stateProvider", "ResourcesProvider",
         }).
         state("groups.new",{
           url: "/new",
-          templateUrl: template_url("auth/groups/new"),
+          templateUrl :template_url("auth/groups/new"),
           controller: "NewGroupController"
         }).
-        state("groups.edit",{
+        state("groups-edit",{
           url: "/:id/edit",
           templateUrl: template_url("auth/groups/new"),
           controller: "AddGroupController"
