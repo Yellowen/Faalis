@@ -48,7 +48,7 @@
         {
             title: gettext("New"),
             icon: "fa fa-plus",
-            classes: "btn tiny green",
+            classes: "btn btn-success",
             permission: {
               name: "create",
               model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
@@ -59,7 +59,7 @@
         {
             title: gettext("Bulk Edit"),
             icon: "fa fa-edit",
-            classes: "btn tiny yellow",
+            classes: "btn btn-warning",
             permission: {
               name: "update",
               model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
@@ -72,7 +72,7 @@
         {
             title: gettext("Duplicate"),
             icon: "fa fa-files-o",
-            classes: "btn tiny red",
+            classes: "btn btn-danger",
             permission: {
               name: "create",
               model: "<% if model_specified? %><%= model %><% else %><%= resource.classify %><% end %>"
