@@ -33,6 +33,11 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
 
         scope.$watch('fake_model', function(x, y) {
         });
+
+        scope.$watch('model', function(x, y){
+            console.log('xxxxxxxxxxxxxx');
+            console.log(x);
+        });
     }
     // Actual object of <datetime-field> directive
     return {
