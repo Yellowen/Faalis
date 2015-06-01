@@ -34,7 +34,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
 
         element.find('div.date input').bind('blur keyup change', function(){
           scope.model = element.find('div.date input').val();
-
+            console.log( element.find('div.date input').val());
         });
     }
     // Actual object of <datetime-field> directive
