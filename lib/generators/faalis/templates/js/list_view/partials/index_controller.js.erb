@@ -1,9 +1,9 @@
 // <%= resource %> index controller -------------------------------------------------------
 // This controller is responsible for list page (index)
-<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$routeParams", function($scope, gettext, API, catch_error, $location, $routeParams){
+<%= resource.pluralize %>.controller("<%= resource %>Controller", ["$scope", "gettext", "Restangular", "catch_error", "$location", "$stateParams", function($scope, gettext, API, catch_error, $location, $stateParams){
 
     <% parents.each do |parent| %>
-    $scope.<%= parent %>_id = $routeParams.<%= parent %>_id;
+    $scope.<%= parent %>_id = $stateParams.<%= parent %>_id;
     <% end %>
     <% unless no_filter? %>$scope.filter_config = {
         list: <% if parent? %>API.<% parents.each do |parent| %>one("<%= parent %>", $scope.<%= parent %>_id)<% end %>.all("<%= resource.pluralize.underscore %>")<% else %>API.all("<%= resource.pluralize.underscore %>")<% end %>
