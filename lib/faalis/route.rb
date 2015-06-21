@@ -29,6 +29,10 @@ module Faalis
       end
 
       scope 'module'.to_sym => 'faalis' do
+        in_dashboard do
+          get '/auth/groups/new', to: 'permissions#new'
+        end
+
         # TODO: Add a dynamic solution for formats
         namespace :api, defaults: { format: :json } do
           namespace version do

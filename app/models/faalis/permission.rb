@@ -34,5 +34,8 @@ module Faalis
       "#{self.permission_type.to_s}|#{self.model}"
     end
 
+    def model_name
+      model.underscore.humanize
+    end
   end
 end
