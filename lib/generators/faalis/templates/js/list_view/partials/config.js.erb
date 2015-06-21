@@ -1,17 +1,20 @@
 // <%= resource.pluralize %> configuration section ---------------------------
-<%= resource.pluralize %>.config(["$routeProvider", function($routeProvider){
+<%= resource.pluralize %>.config(["$stateProvider", function($stateProvider){
     // Add any route you need here
-    $routeProvider.
-        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>", {
-            templateUrl: template("<%= resource_path %>/index"),
+    $stateProvider.
+        state("<% parents.each do |parent| %><%= parent %>-<% end %><%= resource_url %>", {
+            url: "/<%= resource_url %>",
+            templateUrl: template_url("<%= resource_path %>/index"),
             controller: "<%= resource %>Controller"
         }).
-        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>/new",{
-            templateUrl: template("<%= resource_path %>/new"),
+        state("<% parents.each do |parent| %><%= parent %>-<% end %><%= resource_url %>/new",{
+            url: "/<%= resource_url %>/new",
+            templateUrl: template_url("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         }).
-        when("<% parents.each do |parent| %>/<%= parent %>/:<%= parent %>_id<% end %>/<%= resource_url %>/:id/edit",{
-            templateUrl: template("<%= resource_path %>/new"),
+        state("<% parents.each do |parent| %><%= parent %>-<% end %><%= resource_url %>-edit",{
+            url: "/<%= resource_url %>/:id/edit",
+            templateUrl: template_url("<%= resource_path %>/new"),
             controller: "Add<%= resource %>Controller"
         });
 }]);

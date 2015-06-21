@@ -15,15 +15,15 @@
 
     <% first = true %><% fields.each do |field_name, field_type| %>
     <% if first %><div class="row"><% end %>
-      <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
+      <div class="col-sm-4 form-group <% if not first %>pull-left col-sm-offset-2<% end %>">
         <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= attrs(field_name, 'title') || field_name.to_s.humanize.capitalize %></span> :</label><% case field_type
          when "belongs_to", "has_many", "in" %>
         <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
         </relation-field>
         <% when nil %>
-        <string-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required<% end %>></string-field>
+        <string-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'form-controll rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required<% end %>></string-field>
         <% else %>
-        <<%= field_type%>-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required="true"<% end %>></<%= field_type%>-field><% end %>
+        <<%= field_type%>-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'form-controll rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required="true"<% end %>></<%= field_type%>-field><% end %>
       </div>
     <% if not first %></div><% end %><% first = !first %><% end %>
   </fieldset>
@@ -38,15 +38,15 @@
       <% fields.each do |field_name, field_type| %><% if tab_has_field?(name, field_name) or tabs[name].include? "__all__" %>
 
       <% if first %><div class="row"><% end %>
-        <div class="small-4 columns <% if not first %>float-left small-offset-2<% end %>">
+        <div class="col-sm-4 form-group <% if not first %>pull-left col-sm-offset-2<% end %>">
           <label><% if required_fields.include? field_name %><i class="inline fa fa-asterisk"></i> <% end %><span translate><%= attrs(field_name, 'title') || field_name.to_s.humanize.capitalize %></span> :</label><% case field_type
            when "belongs_to", "has_many", "in" %>
           <relation-field select2-options="select2options" <% if required_fields.include? field_name %>required="true"<% end %> title-field="'name'" model="<%= field_name %>" field-data="<%= field_name %>_data">
           </relation-field>
           <% when nil %>
-          <string-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required<% end %>></string-field>
+          <string-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'form-controll rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required<% end %>></string-field>
           <% else %>
-          <<%= field_type%>-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required="true"<% end %>></<%= field_type%>-field><% end %>
+          <<%= field_type%>-field model="<%= field_name %>" field-name="'<%= field_name %>'" css-class="'form-controll rounded <%= field_type %>_field'" <% if required_fields.include? field_name %>required="true"<% end %>></<%= field_type%>-field><% end %>
         </div>
       <% if not first %></div><% end %><% first = !first %><% end %><% end %>
     </fieldset>
@@ -55,10 +55,10 @@
 <% end %>
 
   <div class="row">
-      <div class="small-6 columns">
-        <button class="btn small green" ng-click="save(false)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save</span></button>
-        <button class="btn small blue" ng-click="save(true)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
-        <button class="btn small red" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
+      <div class="col-sm-6 form-group">
+        <button class="btn btn-success" ng-click="save(false)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save</span></button>
+        <button class="btn btn-warning" ng-click="save(true)" ng-disabled="form.$invalid || !form.$dirty"><i class="fa fa-check"></i> <span translate>Save & Add Another</span></button>
+        <button class="btn btn-danger" ng-click="cancel()"><i class="fa fa-times"></i> <span translate>Cancel</span></button>
       </div>
   </div>
 </div>

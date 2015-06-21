@@ -8,6 +8,7 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
 
     function link(scope, element, attrs){
         var ltr = is_ltr();
+        var ltr = true;
         var locale = (ltr) ? 'en' : 'fa';
         scope.element_id = "id_" + scope.field;
         //TODO: change the find selector to use ID
@@ -31,7 +32,9 @@ Datetime_.directive('datetimeField', ["$filter", "gettext",  function($filter, g
 
         });
 
-        scope.$watch('fake_model', function(x, y) {
+        element.find('div.date input').bind('blur keyup change', function(){
+          scope.model = element.find('div.date input').val();
+            console.log( element.find('div.date input').val());
         });
     }
     // Actual object of <datetime-field> directive
