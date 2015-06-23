@@ -17,6 +17,9 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 class Faalis::ApplicationController < ActionController::Base
+
+  include Pundit
+
   include FastGettext::Translation
 
   before_filter :set_locale

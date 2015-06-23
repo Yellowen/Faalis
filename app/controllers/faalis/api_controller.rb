@@ -24,9 +24,6 @@ module Faalis
   # which inherit from this class.
   class APIController < Faalis::ApplicationController
 
-
-    include Pundit
-
     # Only support `json` format
     respond_to :json
 

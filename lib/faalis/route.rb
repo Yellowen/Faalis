@@ -29,8 +29,11 @@ module Faalis
       end
 
       scope 'module'.to_sym => 'faalis' do
+        #dashboard = Faalis::Engine.dashboard_namespace
+        #get "#{dashboard}/auth/groups/new", to: "#{dashboard}/groups#new"
         in_dashboard do
-          get '/auth/groups/new', to: 'permissions#new'
+          get 'auth/groups/new', to: 'groups#new'
+          post 'auth/groups', to: 'groups#create'
         end
 
         # TODO: Add a dynamic solution for formats

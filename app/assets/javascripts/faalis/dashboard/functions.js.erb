@@ -1,3 +1,31 @@
+
+//TODO: Use a js template engine in here
+function form_error(data) {
+  var msg = data.title + "<br/><ul>";
+  delete data.title;
+
+  //TODO: Replace this with *sugar*
+  _.each(_.keys(data), function(x){
+    msg += "<li>" + data[x] + "</li>";
+    $('input[name="' + x + '"], [data-name="' + x + '"]').addClass('has-error');
+  });
+
+  msg += "</ul>";
+
+  error_message(msg);
+}
+
+function redirect_to(target) {
+  var dashboard_namespace = "<%= Faalis::Engine.dashboard_namespace.to_s %>";
+  var uri = target.replace("/"+ dashboard_namespace + "/",
+                           "/" + dashboard_namespace + "#/");
+
+  console.log("Redirecting to: %s", uri);
+  window.location.href = uri;
+}
+
+// OLD FUCNTIONS ---------------------
+
 function add_dependency(module) {
 
     window.dashboard_dependencies = window.dashboard_dependencies || [];
