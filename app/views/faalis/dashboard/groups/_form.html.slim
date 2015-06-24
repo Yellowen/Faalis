@@ -1,0 +1,72 @@
+div
+  = form_tag(form_target, remote: true, method: method) do
+    .row
+      .col-sm-12.col-lg-9
+        .box.box-primary
+          .box-header
+            .box-title
+              - if @group.new_record?
+                = _('New Group')
+              - else
+                = _('Edit Group')
+
+          .box-body
+            .row
+              .col-sm-12.col-lg-6
+                .form-group data-name="role"
+                  label for="group_name"
+                    = ('Group name')
+
+                  input#group_name.form-control[placeholder==(_('Enter the name of group you want to create')) name="group[name]" type="text" required value=(@group.name)]
+
+
+
+      .col-sm-12.col-lg-3
+        .box
+          .box-header
+            .box-title
+              = _('Groups to use as template')
+    .row
+      .col-sm-12.col-lg-6
+        .box.box-warning
+          .box-header
+            .box-title
+              = _("Permissions")
+
+          .box-body
+            .row
+              .col-xs-12
+                table.table.table-striped
+                  tbody
+                    tr
+                      th.col-md-4
+                        = _('Entity Name')
+                      th.col-md-8
+                        = _('Permission')
+
+                    - @permissions.each do |perm, actions|
+                      tr
+                        td.col-md-4
+                          = perm.gsub('::',' ').humanize
+                        td.col-md-8
+                            - actions.each do |action|
+                              span.col-sm-3
+                                - if @group.include_permission? action[1]
+                                  input[type="checkbox" checked name=("group[permissions][#{action[1]}]") label=(_(action[0].humanize()))]
+                                    = action[0].humanize()
+                                - else
+                                  input[type="checkbox" name=("group[permissions][#{action[1]}]") label=(_(action[0].humanize()))]
+                                    = action[0].humanize()
+
+    .row
+      .col-sm-2
+        button.btn.btn-primary.btn-block type="submit"
+          i.fa.fa-check
+          |
+          = _('Save')
+
+      .col-sm-2
+
+        button.btn.btn-danger.btn-block onclick=("redirect_to('#{form_target}')")
+          i.fa.fa-times
+          = _('Cancel')

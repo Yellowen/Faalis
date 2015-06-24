@@ -35,5 +35,19 @@ module Faalis
     def self.policy_class
       GroupPolicy
     end
+
+    def include_permission?(perm)
+      if perm.is_a? Fixnum
+        permission_ids.include? perm
+      else
+        permission_ids.include? perm.id
+      end
+    end
+
+    private
+
+    def permission_ids
+      @permission_ids ||= permissions.map(&:id)
+    end
   end
 end

@@ -32,8 +32,11 @@ module Faalis
         #dashboard = Faalis::Engine.dashboard_namespace
         #get "#{dashboard}/auth/groups/new", to: "#{dashboard}/groups#new"
         in_dashboard do
-          get 'auth/groups/new', to: 'groups#new'
+          get  'auth/groups/new', to: 'groups#new'
+          get  'auth/groups/:id', to: 'groups#edit', as: 'auth_groups_edit'
           post 'auth/groups', to: 'groups#create'
+          put  'auth/groups/:id', to: 'groups#update', as: 'auth_groups_update'
+
         end
 
         # TODO: Add a dynamic solution for formats

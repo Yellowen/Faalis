@@ -1,0 +1,2 @@
+- form_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_groups_update_path".to_sym, @group.id)
+= render partial: 'form', locals: { form_target: form_target, method: :put }
