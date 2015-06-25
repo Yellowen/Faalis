@@ -103,15 +103,22 @@ class Faalis.Resource
 
   # Return the url of current `Resource`
   to_path: (params...) ->
+    _parents = @parents[0..]
+    return '/' + _parents.filter(Boolean).join('/') + @plural_name()
+
     if @_parents_values_is_set == false
       throw 'You need to set parents values to continue.'
 
-    _parents = @parents[0..]
+    if @parents.length > 0
+      _parents = @parents[0..]
 
-    for item in params
-      _parents.push(item)
+      if params.length > 1
+        for item in params
+          console.log(item)
+          _parents.push(item)
 
-    return '/' + _parents.filter(Boolean).join('/') + @plural_name()
+        console.log(_parents)
+        return '/' + _parents.filter(Boolean).join('/') + @plural_name()
 
   plural_name: ->
     @__name__.pluralize()

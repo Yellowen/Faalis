@@ -32,8 +32,9 @@ class Faalis.APIFactory
       .then (data) ->
         return data.data
       , (data) ->
-        @log.error(data)
-        @catch_error(data)
+        #@log.error(data)
+        console.log('Operation Failed.')
+        #@catch_error(data)
 
   # Raw queries -----------------------
   get: (url, params) ->
@@ -57,17 +58,18 @@ class Faalis.APIFactory
     @execute('GET', url)
 
   find: (id) ->
-    url = @resource.to_path(id)
+    url = @_resource.to_path(id)
     @execute('GET', url)
 
   create: (data) ->
-    url = @resource.to_path
+    url = @_resource.to_path
     @execute('POST', url, data)
 
   update: (id, data) ->
-    url = @resource.to_path(id)
+    url = @_resource.to_path(id)
     @execute('PUT', url, data)
 
   destroy: (id) ->
-    url = @resource.to_path(id)
+    url = @_resource.to_path(id)
+    url = url + '/' + id;
     @execute('DELETE', url)

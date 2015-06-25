@@ -20,6 +20,8 @@ class Faalis.GenericIndexController extends Faalis.BaseController
     @stateParams = $stateParams
     @user = $user
 
+    $scope.__resource__ = @Resource
+
     @__init__()
     @__setup_buttons__()
     @__fetch_resources__()
@@ -75,7 +77,14 @@ class Faalis.GenericIndexController extends Faalis.BaseController
         scope[Resource.plural_name()] = data
         scope.$apply()
 
-  on_delete: (resources) ->
+  on_delete: (objects, resource, scope) ->
+    console.log(resource)
+    _.each(objects, (x) ->
+      console.log(x)
+      resource.destroy(x.id).then(
+      )
+      $('#tr-' + x.id).remove()
+    )
 
 
 
