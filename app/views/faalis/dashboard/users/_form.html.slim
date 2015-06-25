@@ -1,0 +1,75 @@
+= form_tag(form_target, remote: true, method: method) do
+  .row
+    .col-sm-12.col-lg-9
+      .box.box-primary
+        .box-header
+          .box-title
+            - if @user.new_record?
+              = _('New User')
+            - else
+              = _('Edit User')
+
+        .box-body
+          .row
+            .col-sm-12.col-lg-6
+              .form-group data-name="first_name"
+                label for="first_name"
+                  = _('First name')
+                input#group_name.form-control[placeholder==(_('Enter the first name of user')) name="user[first_name]" type="text" required value=(@user.first_name)]
+
+            .col-sm-12.col-lg-6
+              .form-group data-name="last_name"
+                label for="last_name"
+                  = _('Last name')
+                input#group_name.form-control[placeholder==(_('Enter the last name of user')) name="user[last_name]" type="text" required value=(@user.last_name)]
+
+          .row
+            .col-sm-12.col-lg-6
+              .form-group data-name="email"
+                label for="email"
+                  = _('Email')
+                input#group_name.form-control[placeholder==(_('Enter the name of group you want to create')) name="user[email]" type="text" required value=(@user.email)]
+
+          .row
+            .col-sm-12.col-lg-6
+              .form-group data-name="password"
+                label for="password"
+                  = _('Password')
+                input#group_name.form-control[name="user[password]" type="text"]
+
+            .col-sm-12.col-lg-6
+              .form-group data-name="password_confirmation"
+                label for="password_confirmation"
+                  = _('Password confirmation')
+                input#group_name.form-control[name="user[password_confirmation]" type="text"]
+
+          .row
+            .col-sm-12
+              h3
+                = _('Groups of user')
+          .row
+            .col-sm-12.col-lg-6
+              .form-group data-name="groups"
+                label
+                  = _('Goups')
+                select.multiple.select.form-control multiple="multiple" placeholder=(_("Start typing the group name"))
+                  - @groups.each do |group|
+                    option value=(group.id)
+                      = group.name
+
+        .box-footer
+          .row
+            .col-sm-2
+              button.btn.btn-success.btn-block type="submit"
+                i.fa.fa-check
+                |
+                = _('Save')
+
+            .col-sm-2.pull-right
+
+              div.btn.btn-danger.btn-block onclick=("redirect_to('#{index}')")
+                i.fa.fa-times
+                = _('Cancel')
+
+script
+   | $(".multiple.select").select2();

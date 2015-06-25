@@ -1,0 +1,4 @@
+* Thing to be done before release
+** Remove faalisify_url usages
+** Remove inline javascripts in user new/edit templates for select2 initialization
+   Replace it with turbolinks events

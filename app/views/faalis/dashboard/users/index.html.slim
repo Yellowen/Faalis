@@ -1,0 +1,41 @@
+.row
+  .col-xs-12
+    .box.box-default
+      .box-header.with-border
+        h3.box-title
+          = _('Users')
+        .box-tools
+          - new_user = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_new_path".to_sym)
+          a.btn.btn-success.pull-right.btn-sm href=(faalisify_url(new_user))
+            i.fa.fa-plus
+            = _('Add user')
+
+      .box-body.no-padding
+        table.table.table-striped
+          tbody
+            tr
+              th
+                |#
+              th
+                = _("Email")
+              th
+                = _('Created at')
+              th
+                = _('Actions')
+
+            - @users.each do |user|
+              - edit_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_edit_path".to_sym, user.id)
+              - destroy_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_destroy_path".to_sym, user.id)
+              tr
+                td
+                  = user.id
+                td
+                  a href=(faalisify_url(edit_target))
+                    = user.email
+                td
+                  = user.created_at
+
+                td
+                  a.red.link href=(destroy_target) data-remote="true" data-method="delete"
+                    i.fa.fa-remove
+      .box-footer

@@ -1,0 +1,2 @@
+- form_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_path".to_sym)
+= render partial: 'form', locals: { method: :post, form_target: form_target, index: form_target}
