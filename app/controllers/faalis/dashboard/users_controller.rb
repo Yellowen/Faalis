@@ -12,6 +12,10 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
     @groups = Faalis::Group.all
   end
 
+  def show
+    @user = Faalis::User.find(params[:id])
+    authorize @user
+  end
 
   def edit
     @user = Faalis::User.find(params[:id])

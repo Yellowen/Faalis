@@ -39,7 +39,8 @@ module Faalis
 
           get  'auth/users',     to: 'users#index'
           get  'auth/users/new', to: 'users#new'
-          get  'auth/users/:id', to: 'users#edit', as: 'auth_users_edit'
+          get  'auth/users/:id', to: 'users#show', as: 'auth_users_show'
+          get  'auth/users/:id/edit', to: 'users#edit', as: 'auth_users_edit'
           post 'auth/users',     to: 'users#create'
           put  'auth/users/:id', to: 'users#update', as: 'auth_users_update'
           delete  'auth/users/:id', to: 'users#destroy', as: 'auth_users_destroy'

@@ -54,8 +54,13 @@
                   = _('Goups')
                 select.multiple.select.form-control multiple="multiple" placeholder=(_("Start typing the group name"))
                   - @groups.each do |group|
-                    option value=(group.id)
-                      = group.name
+                    - if @user.member_of? group
+                      option[value=(group.id) selected]
+                        = group.name
+                    - else
+                      option value=(group.id)
+                        = group.name
+
 
         .box-footer
           .row

@@ -26,16 +26,19 @@
             - @users.each do |user|
               - edit_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_edit_path".to_sym, user.id)
               - destroy_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_destroy_path".to_sym, user.id)
+              - show_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_show_path".to_sym, user.id)
               tr
                 td
                   = user.id
                 td
-                  a href=(faalisify_url(edit_target))
+                  a href=(faalisify_url(show_target))
                     = user.email
                 td
                   = user.created_at
 
                 td
-                  a.red.link href=(destroy_target) data-remote="true" data-method="delete"
+                  a.red.link.pull-right href=(destroy_target) data-remote="true" data-method="delete"
                     i.fa.fa-remove
+                  a.warning.link.pull-right href=(faalisify_url(edit_target))
+                    i.fa.fa-edit
       .box-footer
