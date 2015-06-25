@@ -25,9 +25,18 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
 
   def create
     authorize Faalis::User
+    group_ids = user_params[:groups]
+
+    @user = Faalis::User.build(user_params)
+    @user.groups Faalis::Group.where()
+
   end
 
   def update
+    @user = Faalis::User.find(params)
+    authorize @user
+
+
   end
 
   def destroy
@@ -36,6 +45,10 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
   private
 
   def user_params
-    params.require(:user).permit!
+    params.require(:user).permit(:first_name,
+                                 :last_name,
+                                 :email,
+                                 :password,
+                                 groups: [])
   end
 end
