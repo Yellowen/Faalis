@@ -1,14 +1,22 @@
 angular.module('Fake', [])
   .config(['$stateProvider',  function($stateProvider){
     $stateProvider
-      .state('fake-permissions-new', {
+      .state('fake-group-new', {
         url: '/auth/groups/new',
         templateUrl: '/dashboard/auth/groups/new'
       })
-      .state('fake-permissions-edit', {
+      .state('fake-group-edit', {
         url: '/auth/groups/:id',
         templateUrl: function($stateParams){
           return '/dashboard/auth/groups/' + $stateParams.id + '?' + big_random();
         }
+      })
+      .state('fake-user-index', {
+        url: '/auth/users',
+        templateUrl: '/dashboard/auth/users'
+      })
+      .state('fake-user-new', {
+        url: '/auth/users/new',
+        templateUrl: '/dashboard/auth/users/new'
       });
   }]);

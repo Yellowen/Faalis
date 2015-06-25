@@ -34,8 +34,13 @@ module Faalis
         in_dashboard do
           get  'auth/groups/new', to: 'groups#new'
           get  'auth/groups/:id', to: 'groups#edit', as: 'auth_groups_edit'
-          post 'auth/groups', to: 'groups#create'
+          post 'auth/groups',     to: 'groups#create'
           put  'auth/groups/:id', to: 'groups#update', as: 'auth_groups_update'
+
+          get  'auth/users/new', to: 'users#new'
+          get  'auth/users/:id', to: 'users#edit', as: 'auth_users_edit'
+          post 'auth/users',     to: 'users#create'
+          put  'auth/users/:id', to: 'users#update', as: 'auth_users_update'
 
         end
 
