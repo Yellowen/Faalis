@@ -18,7 +18,8 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
   end
 
   def edit
-    @user = Faalis::User.find(params[:id])
+    @user   = Faalis::User.find(params[:id])
+    @groups = Faalis::Group.all
     authorize @user
   end
 

@@ -22,7 +22,7 @@ angular.module('Fake', [])
         }
       })
       .state('fake-user-edit', {
-        url: '/auth/users/:id',
+        url: '/auth/users/:id/edit',
         templateUrl: function($stateParams){
           return '/dashboard/auth/users/' + $stateParams.id + '/edit?' + big_random();
         }
