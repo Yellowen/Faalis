@@ -10,8 +10,6 @@ class Faalis.HasManyField extends Faalis.BaseField
     console.log(resource)
 
   __init__: ->
-    console.log("<<<<<<<<<<<<<<<<")
-    console.log(this)
     #console.log(@resource)
     return
     @resource = new @resource()

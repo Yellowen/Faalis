@@ -101,6 +101,12 @@ class Faalis.Resource
       resource: resource
     }
 
+  edit_link: (object) ->
+    if @root_path
+      return @root_path + '/' + object.id;
+    else
+      return @to_path() + '/' + object.id;
+
   # Return the url of current `Resource`
   to_path: (params...) ->
     _parents = @parents[0..]
