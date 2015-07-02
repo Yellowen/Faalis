@@ -43,6 +43,10 @@ module Faalis
           get  'auth/users/:id/edit', to: 'users#edit', as: 'auth_users_edit'
           post 'auth/users',     to: 'users#create'
           put  'auth/users/:id', to: 'users#update', as: 'auth_users_update'
+          get('auth/users/:id/password', to: 'users#edit_password',
+              as: 'auth_users_edit_password')
+
+          patch 'auth/users/:id/password', to: 'users#update_password'
           delete  'auth/users/:id', to: 'users#destroy', as: 'auth_users_destroy'
 
         end

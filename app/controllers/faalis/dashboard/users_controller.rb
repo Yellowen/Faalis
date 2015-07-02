@@ -62,6 +62,13 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
     end
   end
 
+  def edit_password
+    @user = Faalis::User.find(params[:id])
+  end
+
+  def update_password
+  end
+
   def destroy
   end
 

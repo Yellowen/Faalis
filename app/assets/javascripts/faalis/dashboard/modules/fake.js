@@ -27,6 +27,13 @@ angular.module('Fake', [])
           return '/dashboard/auth/users/' + $stateParams.id + '/edit?' + big_random();
         }
       })
+      .state('fake-user-edit-password', {
+        url: '/auth/users/:id/password',
+        templateUrl: function($stateParams){
+          return '/dashboard/auth/users/' + $stateParams.id + '/password?' + big_random();
+        }
+      })
+
       .state('fake-user-new', {
         url: '/auth/users/new',
         templateUrl: '/dashboard/auth/users/new'
