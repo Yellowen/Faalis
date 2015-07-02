@@ -23,9 +23,6 @@ class DeviseCreateFaalisUsers < ActiveRecord::Migration
       t.string   :first_name
       t.string   :last_name
 
-      # Group
-      t.integer :group_id, :default => 2
-
       if not Devise.omniauth_providers.empty?
         # Service
         t.string   :provider, :default => ""

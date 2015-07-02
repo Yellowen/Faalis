@@ -27,16 +27,36 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
     authorize Faalis::User
     group_ids = user_params[:groups]
 
-    @user = Faalis::User.build(user_params)
-    @user.groups Faalis::Group.where()
+    @user = Faalis::User.new(user_params)
+    @user.groups = Faalis::Group.where(id: group_ids)
 
+    respond_to do |f|
+      if @user.save
+        f.js
+        f.html
+      else
+        f.js { render :errors }
+        f.html
+      end
+    end
   end
 
   def update
+    group_ids = user_params[:groups]
+
     @user = Faalis::User.find(params)
     authorize @user
 
-
+    @user.groups = Faalis::Group.where(id:group_ids)
+    respond_to do |f|
+      if @user.save
+        f.js
+        f.html
+      else
+        f.js { render :errors }
+        f.html
+      end
+    end
   end
 
   def destroy
