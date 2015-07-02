@@ -31,7 +31,7 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
     @user.groups = Faalis::Group.where(id: group_ids)
 
     respond_to do |f|
-      if @user.save
+      if @save.save
         f.js
         f.html
       else
@@ -42,14 +42,17 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
   end
 
   def update
-    group_ids = user_params[:groups]
+    parameters = user_params
+    group_ids  = parameters.delete(:groups).map(&:to_i)
 
-    @user = Faalis::User.find(params)
+    @user = Faalis::User.find(params[:id])
     authorize @user
 
-    @user.groups = Faalis::Group.where(id:group_ids)
+    @user.groups = Faalis::Group.where(id: group_ids)
+    @user.save
+
     respond_to do |f|
-      if @user.save
+      if @user.update_without_password(parameters)
         f.js
         f.html
       else
@@ -68,7 +71,6 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
     params.require(:user).permit(:first_name,
                                  :last_name,
                                  :email,
-                                 :password,
                                  groups: [])
   end
 end
