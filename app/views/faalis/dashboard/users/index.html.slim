@@ -17,9 +17,15 @@
               th
                 |#
               th
+                = _("First Name")
+              th
+                =_("Last Name")
+              th
                 = _("Email")
               th
                 = _('Created at')
+              th
+                =_('Last sing in at')
               th
                 = _('Actions')
 
@@ -28,14 +34,30 @@
               - destroy_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_destroy_path".to_sym, user.id)
               - show_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_show_path".to_sym, user.id)
               tr
+                
                 td
                   = user.id
+                td
+                  - if user.first_name.nil?
+                    |-
+                  - else
+                     = user.first_name
+                td
+                  - if user.last_name.nil? 
+                    | -
+                  - else
+                    = user.last_name
                 td
                   a href=(faalisify_url(show_target))
                     = user.email
                 td
                   = user.created_at
 
+                td
+                  - if user.last_sign_in_at.nil?
+                    | -
+                  - else
+                    = user.last_sign_in_at
                 td
                   a.red.link.pull-right href=(destroy_target) data-remote="true" data-method="delete"
                     i.fa.fa-remove
