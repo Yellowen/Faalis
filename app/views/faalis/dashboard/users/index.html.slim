@@ -60,11 +60,12 @@
                     | -
                   - else
                     = user.last_sign_in_at
-                td
-                  a.red.link.pull-right href=(destroy_target) data-remote="true" data-method="delete"
-                    i.fa.fa-remove
-                  a.warning.link.pull-right href=(faalisify_url(edit_target))
+                td.btn-user
+
+                  a.warning.link.pull-left href=(faalisify_url(edit_target))
                     i.fa.fa-edit
-                  a.pass-change.link.pull-right href=(faalisify_url(password_target))
+                  a.pass-change.link.pull-left href=(faalisify_url(password_target))
                     i.fa.fa-key
+                  a.link.pull-left href=(destroy_target) data-remote="true" data-method="delete"
+                    i.fa.fa-remove
       .box-footer
