@@ -52,18 +52,16 @@
                     = user.email
                 td
                   = user.created_at
-
                 td
                   - if user.last_sign_in_at.nil?
                     | -
                   - else
                     = user.last_sign_in_at
                 td.btn-user
-                  
                   a.warning.link.pull-left href=(faalisify_url(edit_target))
                     i.fa.fa-edit
                   a.pass-change.link.pull-left href=()
-                    i.fa.fa-key  
+                    i.fa.fa-key.change-pass  
                   a.link.pull-left href=(destroy_target) data-remote="true" data-method="delete"
-                    i.fa.fa-remove  
+                    i.fa.fa-remove.btn-remove  
       .box-footer
