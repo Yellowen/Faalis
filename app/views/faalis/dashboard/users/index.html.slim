@@ -33,8 +33,10 @@
               - edit_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_edit_path".to_sym, user.id)
               - destroy_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_destroy_path".to_sym, user.id)
               - show_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_show_path".to_sym, user.id)
+              - password_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_edit_password_path".to_sym, user.id)
+
               tr
-                
+
                 td
                   = user.id
                 td
@@ -43,7 +45,7 @@
                   - else
                      = user.first_name
                 td
-                  - if user.last_name.nil? 
+                  - if user.last_name.nil?
                     | -
                   - else
                     = user.last_name
@@ -63,6 +65,6 @@
                     i.fa.fa-remove
                   a.warning.link.pull-right href=(faalisify_url(edit_target))
                     i.fa.fa-edit
-                  a.pass-change.link.pull-right href=()
-                    i.fa.fa-key  
+                  a.pass-change.link.pull-right href=(faalisify_url(password_target))
+                    i.fa.fa-key
       .box-footer

@@ -64,15 +64,32 @@ class Faalis::Dashboard::UsersController < ::ApplicationController
 
   def edit_password
     @user = Faalis::User.find(params[:id])
+    authorize @user, :update?
   end
 
   def update_password
+    @user = Faalis::User.find(params[:id])
+    authorize @user, :update?
+
+    respond_to do |f|
+      if @user.update(password_params)
+        f.js
+        f.html
+      else
+        f.js { render :errors }
+        f.html
+      end
+    end
   end
 
   def destroy
   end
 
   private
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 
   def user_params
     params.require(:user).permit(:first_name,
