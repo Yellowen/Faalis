@@ -16,3 +16,5 @@ $.ajax({method: 'GET', type: 'json', async: false,
         $("#mainloader").hide();
         $("#content").show();
     });
+
+//window.dashboard_dependencies.push("Profile");
