@@ -31,6 +31,9 @@ group :development, :test do
 
   gem 'coffee-rails-source-maps'
   gem 'sass-rails-source-maps'
+  gem "gettext", :group => :development
+  gem "ruby_parser", :group => :development
+  gem 'gettext_i18n_rails'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
