@@ -19,6 +19,10 @@
 ** TODO patch *Rails* scaffold generator to generate the dashboard generator to
 *** Authorizable does not add automatically in models
 ** TODO application.js should remove from precompile manifest
+** TODO Profile
+*** TODO check does profile module works (in auth directory)
+*** TODO There is no dashboard directory should I add them to angular directory?
+*** TODO move routes
 * Features
 ** TODO Resource Groups
    Resource group is an entity which collect some initial data for a group

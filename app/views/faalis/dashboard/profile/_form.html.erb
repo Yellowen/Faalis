@@ -1,0 +1,33 @@
+<%= form_tag dashboard_profile_editpassword_path, remote: true do %>
+  <div class="form box box-info">
+    <div class="box-body">
+      <div class="row">
+        <div class="col-sm-4 form-group data-name="current_password"">
+          <label><span translate><%= label_tag :current_password %></span> :</label>
+          <input type="password" name="user[current_password]" class="form-control input-lg rounded string_field">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4 form-group" data-name="password">
+          <label><span translate><%= label_tag :password %></span> :</label>
+          <input type="password" name="user[password]" class="form-control input-lg rounded string_field">
+        </div>
+        <div class="col-sm-4 form-group col-sm-offset-2" data-name="password_confirmation">
+          <lable><span translate><%= label_tag :password_confirmation %></span></lable>
+          <input type="password" name="user[password_confirmation]" class="form-control input-lg rounded string_field">
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 columns">
+          <button type="submit" class="btn btn-lg btn-success" ><i class="fa fa-check"></i> <span translate>Submit</span></button>
+          <button class="btn btn-lg btn-danger" ><i class="fa fa-times"></i> <span translate>Cancel</span></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>
