@@ -1,6 +1,6 @@
 = form_tag(form_target, remote: true, method: method) do
   .row
-    .col-sm-12
+    .col-sm-12.col-lg-12
       .box.box-primary
         .box-header
           .box-title
@@ -31,6 +31,19 @@
                 input#group_name.form-control[placeholder==(_('Enter the name of group you want to create')) name="user[email]" type="text" required value=(@user.email)]
 
           .row
+            .col-sm-12.col-lg-6
+              .form-group data-name="password"
+                label for="password"
+                  = _('Password')
+                input#group_name.form-control[name="user[password]" type="password"]
+
+            .col-sm-12.col-lg-6
+              .form-group data-name="password_confirmation"
+                label for="password_confirmation"
+                  = _('Password confirmation')
+                input#group_name.form-control[name="user[password_confirmation]" type="password"]
+
+          .row
             .col-sm-12
               h3
                 = _('Groups of user')
@@ -39,7 +52,15 @@
               .form-group data-name="groups"
                 label
                   = _('Goups')
-                = select_tag('user[groups]', options_from_collection_for_select(@groups, 'id', 'name', @user.groups.map(&:id)), { class: 'multiple select form-control', multiple: true, prompt: _('Select groups for user') })
+                select.multiple.select.form-control name="user[groups]" multiple="multiple" placeholder=(_("Start typing the group name"))
+                  - @groups.each do |group|
+                    - if @user.member_of? group
+                      option[value=(group.id) selected]
+                        = group.name
+                    - else
+                      option value=(group.id)
+                        = group.name
+
 
         .box-footer
           .row
