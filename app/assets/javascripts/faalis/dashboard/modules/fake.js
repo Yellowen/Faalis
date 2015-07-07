@@ -32,9 +32,12 @@ angular.module('Fake', [])
         templateUrl: function($stateParams){
           return '/dashboard/auth/users/' + $stateParams.id + '/password?' + big_random();
         }
-      })
-
-      .state('fake-user-new', {
+      }).
+      state('fake-edit-password', {
+          url: '/profile/editpassword',
+          templateUrl: '/dashboard/profile/editpassword'
+      }).
+      state('fake-user-new', {
         url: '/auth/users/new',
         templateUrl: '/dashboard/auth/users/new'
       });

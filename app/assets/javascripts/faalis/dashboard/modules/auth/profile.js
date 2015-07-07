@@ -5,12 +5,8 @@ Profile.config(["$stateProvider", function($stateProvider){
     $stateProvider.
         state("profile",{
             url: "/auth/profile/edit",
-            templateUrl: template("auth/profile/edit").
+            templateUrl: template("auth/profile/edit"),
             controller: "ProfileController"
-            state('edit-password', {
-                url: '/profile/editpassword',
-                templateUrl: '/dashboard/profile/editpassword'
-            });
         });
 }]);
 
