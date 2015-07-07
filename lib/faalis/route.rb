@@ -49,6 +49,8 @@ module Faalis
           patch 'auth/users/:id/password', to: 'users#update_password'
           delete  'auth/users/:id', to: 'users#destroy', as: 'auth_users_destroy'
 
+          get 'profile/editpassword', to: "profile#edit_password"
+          post 'profile/editpassword', to: "profile#update_password"
         end
 
         # TODO: Add a dynamic solution for formats
