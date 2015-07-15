@@ -4,4 +4,3 @@
 //= require sugar/sugar-full.development
 //= require select2
 //= require faalis/dashboard/functions
-//= require_tree ./dashboard/lib

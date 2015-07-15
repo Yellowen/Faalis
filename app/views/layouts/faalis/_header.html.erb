@@ -1,5 +1,4 @@
 <header>
-<div ng-controller="NavigationController as controller">
   <div class="row">
     <ul class="small-6 columns">
       <li><h1 translate>Dashboard</h1></li>
@@ -12,11 +11,11 @@
     </ul>
     <nav class="small-6 columns text-right">
       <ul>
-      <li class="staticitem">
-        <div class="hide loading">
-          <i class="fa fa-spin fa-refresh"></i>
-        </div>
-      </li>
+        <li class="staticitem">
+          <div class="hide loading">
+            <i class="fa fa-spin fa-refresh"></i>
+          </div>
+        </li>
 
         <li ng-repeat="menu_item in controller.menu_items" title="{{ menu_item.title }}" ng-class="{selected: menu_item.is_active}" ng-click="controller.on_click(menu_item)" class="float-right"><span><i class="{{ menu_item.icon }}"></i></span></li>
       </ul>
@@ -35,5 +34,5 @@
       </li>
     </ul>
   </div>
-</div>
+
 </header>
