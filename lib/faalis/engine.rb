@@ -19,8 +19,6 @@
 require 'fast_gettext'
 require 'modernizr-rails'
 require 'model_discovery'
-require 'angularjs-rails'
-require 'lodash-rails'
 require 'pundit'
 
 require_relative './middlewares/locale'

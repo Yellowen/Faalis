@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   # TODO: It should be dependency of
   # dashboard or main template
   s.add_dependency 'modernizr-rails'
-  s.add_dependency 'angularjs-rails', '~>1.2.16'
+
   # We have to give up lodash for sugar
   s.add_dependency 'lodash-rails', '~>2.4'
   s.add_dependency 'rails-assets-sugar', '1.4.1'
@@ -56,16 +56,7 @@ Gem::Specification.new do |s|
   # to use these gems user should add
   # `source 'http://rails-assets.org' to the
   # gemfile
-  s.add_dependency 'rails-assets-angular-gettext'
-  s.add_dependency 'rails-assets-ng-grid', '~>2.0.11'
-  s.add_dependency 'rails-assets-restangular', '~>1.4.0'
-  s.add_dependency 'rails-assets-ngQuickDate', '~>1.3.0'
-  s.add_dependency 'rails-assets-select2', '~>3.5.0'
-  s.add_dependency 'rails-assets-angular-ui-select2', '~>0.0.5'
-  s.add_dependency 'rails-assets-flow.js', '~>2.9'
-  s.add_dependency 'rails-assets-ng-flow', '~>2.4.2'
-  s.add_dependency 'rails-assets-angular-ui-router'
-  s.add_dependency 'rails-assets-angular-loading-bar'
+  s.add_dependency 'select2-rails'
 
   # i18n
   #s.add_dependency 'gettext'

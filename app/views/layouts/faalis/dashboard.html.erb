@@ -9,13 +9,50 @@
 </head>
 <body data-current-user="<%= current_user.to_json %>">
 
-  <%= yield %>
+<div id="content" class="">
+  <header>
+    <% render 'nav' %>
+  </header>
+
+  <section class="dashboard-body">
+    <div class="row">
+
+      <aside class="modulebar small-2 columns">
+        <%= render 'modules' %>
+      </aside>
+
+      <section class="small-10 columns dashboard-content">
+
+        <div class="row content">
+          <div id="flash" class="row success">
+            <div class="small-12 columns">
+            </div>
+          </div>
+        </div>
+
+        <div class="row search-bar">
+
+        </div>
+
+
+        <div class="row content">
+          <%= yield %>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+</div>
+
+
+
+
   <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
   <div id="auth" style="display: none;">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
   <%= javascript_include_tag "locales/#{::I18n.locale}" %>
-
 </body>
 </html>
