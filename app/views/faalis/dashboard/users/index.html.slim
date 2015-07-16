@@ -5,8 +5,8 @@
         h3.box-title
           = _('Users')
         .box-tools
-          - new_user = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_new_path".to_sym)
-          a.btn.btn-success.pull-right.btn-sm href=(faalisify_url(new_user))
+          - new_user = dashboard_auth_users_new_path
+          a.btn.btn-success.pull-right.btn-sm href=(new_user)
             i.fa.fa-plus
             = _('Add user')
 
@@ -30,11 +30,11 @@
                 = _('Actions')
 
             - @users.each do |user|
-              - edit_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_edit_path".to_sym, user.id)
-              - destroy_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_destroy_path".to_sym, user.id)
-              - show_target = Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_show_path".to_sym, user.id)
+              - edit_target = dashboard_auth_users_edit_path(id: user.id)
+              - destroy_target = dashboard_auth_users_destroy_path(id: user.id)
+              - show_target = dashboard_auth_users_show_path(id: user.id)
               tr
-                
+
                 td
                   = user.id
                 td
@@ -43,7 +43,7 @@
                   - else
                      = user.first_name
                 td
-                  - if user.last_name.nil? 
+                  - if user.last_name.nil?
                     | -
                   - else
                     = user.last_name
@@ -58,10 +58,10 @@
                   - else
                     = user.last_sign_in_at
                 td.btn-user
-                  a.warning.link.pull-left href=(faalisify_url(edit_target))
+                  a.warning.link.pull-left href=(edit_target)
                     i.fa.fa-edit
                   a.pass-change.link.pull-left href=()
-                    i.fa.fa-key.change-pass  
+                    i.fa.fa-key.change-pass
                   a.link.pull-left href=(destroy_target) data-remote="true" data-method="delete"
-                    i.fa.fa-remove.btn-remove  
+                    i.fa.fa-remove.btn-remove
       .box-footer

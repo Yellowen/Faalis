@@ -72,7 +72,7 @@
 
             .col-sm-2.pull-right
 
-              div.btn.btn-danger.btn-block onclick=("redirect_to('#{index}')")
+              a.btn.btn-danger.btn-block href=(index) data-remote="true"
                 i.fa.fa-times
                 = _('Cancel')
 

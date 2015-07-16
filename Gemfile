@@ -22,6 +22,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
+  gem 'pry-doc'
   gem 'faker'
   gem 'rake'
   gem 'spring'
