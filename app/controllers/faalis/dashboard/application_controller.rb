@@ -8,6 +8,8 @@ module Faalis
       before_action :setup_sidebar
       before_action :setup_header
 
+      rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
       private
 
         def setup_sidebar
@@ -28,6 +30,11 @@ module Faalis
         def setup_header
           @dashboard_section_title = _(controller_name).humanize
           @dashboard_section_slug  = _(action_name).humanize
+        end
+
+        def user_not_authorized
+          flash[:alert] = _('You are not authorized to perform this action.')
+          redirect_to new_user_session_path
         end
     end
   end
