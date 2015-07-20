@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'sprockets'
+  s.add_dependency 'turbolinks', '~>3'
 
   # TODO: It should be dependency of
   # dashboard or main template
