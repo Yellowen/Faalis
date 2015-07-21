@@ -31,7 +31,7 @@ module Faalis::Dashboard
       @user.groups = Faalis::Group.where(id: group_ids)
 
       respond_to do |f|
-        if @save.save
+        if @user.save
           f.js
           f.html
         else
@@ -95,6 +95,8 @@ module Faalis::Dashboard
       params.require(:user).permit(:first_name,
                                    :last_name,
                                    :email,
+                                   :password,
+                                   :password_confirmation,
                                    groups: [])
     end
   end

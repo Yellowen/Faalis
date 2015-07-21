@@ -1,20 +1,4 @@
 
-//TODO: Use a js template engine in here
-function form_error(data) {
-  var msg = data.title + "<br/><ul>";
-  delete data.title;
-
-  //TODO: Replace this with *sugar*
-  _.each(_.keys(data), function(x){
-    msg += "<li>" + data[x] + "</li>";
-    $('input[name="' + x + '"], [data-name="' + x + '"]').addClass('has-error');
-  });
-
-  msg += "</ul>";
-
-  error_message(msg);
-}
-
 function redirect_to(target) {
   var dashboard_namespace = "<%= Faalis::Engine.dashboard_namespace.to_s %>";
   var uri = target.replace("/"+ dashboard_namespace + "/",
@@ -28,14 +12,6 @@ function big_random() {
   return Math.random(0,10)*100000000000000000;
 }
 
-// OLD FUCNTIONS ---------------------
-
-function add_dependency(module) {
-
-    window.dashboard_dependencies = window.dashboard_dependencies || [];
-    window.dashboard_dependencies.push(module);
-
-}
 
 function debug(msg) {
     if ("debug" in window) {
@@ -45,83 +21,9 @@ function debug(msg) {
     }
 }
 
-function to_tag (value){
-    return value;
-}
-
-function to_image(value) {
-    return value;
-   //return { value, }
-}
-
-function to_datetime(value) {
-    return value;
-}
-
-function to_boolean(value) {
-    if (value) {
-        return true;
-    }
-    return false;
-}
-/*
- * This function convert snake_type to CamelCase
- */
-function camelCase(input) {
-    return input.toLowerCase().replace(/(^(.)|_(.))/g, function(match, group1) {
-        return group1.toUpperCase();
-    }).replace("_", "");
-}
-
-/*
- * This function returns the currect path to a template
- */
-function template(path){
-    //console.log(templates_path + path + ".html");
-    return templates_path + path + ".html";
-}
-
-/*
- * This function returns the currect path to a template
- */
-function template_url(path){
-    //console.log(templates_path + path + ".html");
-    return templates_path + path + ".html";
-}
-
-/*
- * Check for page direction
- */
-function is_ltr(){
-    return $("html").attr("dir") == "ltr" ? true : false;
-}
-
-
-/*
- * Return current language of page
- */
-function current_language(){
-    return $("html").attr("lang");
-}
 
 
 
-/*
- * Show subnav
- */
-function show_subnav(){
-    $("#subnav").fadeIn(400);
-}
-
-/*
- * hide subnav
- */
-function hide_subnav(){
-}
-
-function success_message(msg){ show_flash_message(msg, "success"); }
-function warning_message(msg){ show_flash_message(msg, "warning"); }
-function error_message(msg){ show_flash_message(msg, "error"); }
 
 function show_error_queue(){
     if (ErrorQueue.length > 0) {
@@ -141,10 +43,6 @@ function catch_error1(error){
         console.log("Translate catch_error");
         error_message("Unkown error: please try again or contact to administrator.");
     }
-};
-
-String.prototype.readable = function() {
-  return this.replace(/::/g, ' ').humanize();
 };
 
 $(function(){
