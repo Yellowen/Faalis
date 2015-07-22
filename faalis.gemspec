@@ -76,7 +76,7 @@ Gem::Specification.new do |s|
   #s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'ruby_parser'
   s.add_development_dependency 'rdoc'
-  s.add_development_dependency 'rspec-rails', '~> 3.1.0'
+  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'factory_girl_rails'

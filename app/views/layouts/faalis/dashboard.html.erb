@@ -1,57 +1,51 @@
 <!DOCTYPE html>
 <html lang="<%= ::I18n.locale %>" dir="<%= Faalis::I18n.direction(I18n.locale) %>">
   <head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <title><%= Faalis::Engine.site_title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <%= stylesheet_link_tag   "dashboard/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
+    <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
+
     <%= csrf_meta_tags %>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
   </head>
-  <body>
+  <body class="skin-blue">
 
-    <div id="content">
-      <%= render 'header' %>
+    <%= render 'faalis/shared/header' %>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
 
+      <%= render 'faalis/shared/sidebar' %>
 
-      <section class="dashboard-body">
-        <div class="row">
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <aside class="right-side">
+        <%= render 'faalis/shared/content_header' %>
+        <!-- Main content -->
+        <section class="content">
 
-          <aside class="modulebar small-2 columns">
-            <%= render 'modules' %>
-          </aside>
-
-          <section class="small-10 columns dashboard-content">
-
-            <div class="row content">
-              <div id="flash" class="row success">
-                <div class="small-12 columns">
-                </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <br />
+              <div id="flash-alert" class="alert alert-danger alert-dismissable hide">
+                <i id="flash-icon" class="fa"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <span id="flash-msg"></span>
               </div>
             </div>
+          </div>
 
-            <div class="row search-bar">
-
-            </div>
-
-
-            <div class="row content">
-              <%= yield %>
-            </div>
-
-          </section>
-
-        </div>
-      </section>
+          <%= yield %>
+        </section><!-- /.content -->
+      </aside><!-- /.right-side -->
     </div>
 
-
-
-
-    <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
-    <div id="auth" style="display: none;">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
     <%= javascript_include_tag "locales/#{::I18n.locale}" %>
   </body>
 </html>

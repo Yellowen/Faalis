@@ -1,0 +1,14 @@
+// Content Header (Page header) -->
+section.content-header
+  h1
+    span
+      = @dashboard_section_title || _('Dashboard')
+    small
+      = @dashboard_section_slug || Faalis::Engine.try(:slug)  || 'SLUG'
+
+  ol.breadcrumb
+    li
+      a href="#"
+        i.fa.fa-dashboard
+          | Home
+    li.active
