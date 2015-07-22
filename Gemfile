@@ -30,10 +30,8 @@ group :development, :test do
   gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
 
-  gem 'coffee-rails-source-maps'
-  gem 'sass-rails-source-maps'
-  gem "gettext", :group => :development
-  gem "ruby_parser", :group => :development
+  gem 'gettext', :group => :development
+  gem 'ruby_parser', :group => :development
   gem 'gettext_i18n_rails'
 end
 

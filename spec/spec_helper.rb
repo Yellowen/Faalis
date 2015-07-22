@@ -10,6 +10,7 @@ require 'factory_girl_rails'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'pundit/rspec'
+require 'sass-rails'
 
 FAALIS = File.join(File.dirname(__FILE__), '../')
 

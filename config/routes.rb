@@ -50,16 +50,16 @@ Faalis::Engine.routes.draw do
   #devise_for :users, devise_config
   #end
 
-  match('/users/auth/:provider',
-        constraints: { provider: /#{Devise.omniauth_configs.keys.join("|")}/ },
-        to: "devise/omniauth_callbacks#passthru",
-        as: :user_omniauth_authorize,
-        via: [:get, :post])
+  # match('/users/auth/:provider',
+  #       constraints: { provider: /#{Devise.omniauth_configs.keys.join("|")}/ },
+  #       controller: "devise/omniauth_callbacks#passthru",
+  #       as: :user_omniauth_authorize,
+  #       via: [:get, :post])
 
-  match('/users/auth/:action/callback',
-        constraints: { action: /#{Devise.omniauth_configs.keys.join("|")}/ },
-        to: 'devise/omniauth_callbacks',
-        as: :user_omniauth_callback,
-        via: [:get, :post])
+  # match('/users/auth/:action/callback',
+  #       constraints: { action: /#{Devise.omniauth_configs.keys.join("|")}/ },
+  #       controller: 'devise/omniauth_callbacks',
+  #       as: :user_omniauth_callback,
+  #       via: [:get, :post])
 
 end
