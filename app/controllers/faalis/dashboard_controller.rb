@@ -9,5 +9,8 @@ module Faalis
     def index
       redirect_to dashboard_path if params.include? :signin
     end
+
+    def not_found
+    end
   end
 end

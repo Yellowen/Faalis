@@ -34,7 +34,8 @@ Faalis::Engine.routes.draw do
       patch 'auth/users/:id/password', to: 'users#update_password'
       delete  'auth/users/:id', to: 'users#destroy', as: 'auth_users_destroy'
 
-      get '', to: 'dashboard#index', :as => 'dashboard'
+      get '', to: 'dashboard#index', as: 'dashboard'
+      get '/404', to: 'dashboard#not_found', as: 'not_found'
     end
 
     devise_for :users, devise_config

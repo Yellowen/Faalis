@@ -9,6 +9,7 @@ module Faalis
       before_action :setup_header
 
       rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+      rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_404
 
       private
 
@@ -35,6 +36,13 @@ module Faalis
         def user_not_authorized
           flash[:alert] = _('You are not authorized to perform this action.')
           redirect_to new_user_session_path
+        end
+
+        def redirect_to_404(e)
+          respond_to do |f|
+            f.html { redirect_to dashboard_not_found_url }
+            f.js { render 'faalis/dashboard/not_found' }
+          end
         end
     end
   end
