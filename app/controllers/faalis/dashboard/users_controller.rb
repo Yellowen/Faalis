@@ -83,6 +83,10 @@ module Faalis::Dashboard
     end
 
     def destroy
+      @user = Faalis::User.find(params[:id])
+      authorize @user
+
+      @user.destroy
     end
 
     private

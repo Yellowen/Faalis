@@ -33,7 +33,7 @@
               - edit_target = dashboard_auth_users_edit_path(id: user.id)
               - destroy_target = dashboard_auth_users_destroy_path(id: user.id)
               - show_target = dashboard_auth_users_show_path(id: user.id)
-              tr
+              tr id=("user_#{user.id}")
 
                 td
                   = user.id
