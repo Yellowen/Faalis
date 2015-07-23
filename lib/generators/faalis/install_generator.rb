@@ -59,6 +59,14 @@ module Faalis
 
       def install_routes
         route 'end'
+        route '  # Your dashboard routes goes here.'
+        route 'in_dashboard do'
+        route ''
+        route 'end'
+        route '  # Your API routes goes here.'
+        route 'api_routes do'
+        route ''
+        route 'end'
         route '  # Define your API routes here . . .'
         route 'Faalis::Routes.define_api_routes do'
         route "mount Faalis::Engine => '/'"
