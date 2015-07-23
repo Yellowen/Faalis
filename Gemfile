@@ -30,9 +30,6 @@ group :development, :test do
   gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
   gem 'slim-rails'
-  gem 'gettext', :group => :development
-  gem 'ruby_parser', :group => :development
-  gem 'gettext_i18n_rails'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil

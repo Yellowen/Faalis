@@ -61,9 +61,25 @@ Gem::Specification.new do |s|
   s.add_dependency 'select2-rails'
 
   # i18n
-  #s.add_dependency 'gettext'
   s.add_development_dependency 'gettext'
-  s.add_dependency 'gettext_i18n_rails'
+  s.add_development_dependency 'ruby_parser'
+  s.add_development_dependency'gettext_i18n_rails'
+
+  s.add_dependency 'less-rails'
+  s.add_dependency 'railties'
+  s.add_dependency 'jquery-rails'
+  s.add_dependency 'font-awesome-rails'
+  s.add_dependency 'slim-rails'
+  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'rails-assets-jquery-knob'
+  s.add_dependency 'rails-assets-bootstrap-daterangepicker'
+  s.add_dependency 'rails-assets-jquery-sparkline'
+  #c.add_dependency 'rails-assets-angular-ui-bootstrap'
+
+  s.add_dependency 'select2-rails'
+
+  s.add_dependency 'momentjs-rails', '>= 2.8.1'
+  s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.7'
 
   s.add_dependency 'colorize'
 
@@ -73,8 +89,6 @@ Gem::Specification.new do |s|
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'
 
-  #s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'ruby_parser'
   s.add_development_dependency 'rdoc'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
