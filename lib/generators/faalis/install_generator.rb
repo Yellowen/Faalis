@@ -46,12 +46,11 @@ module Faalis
 
       def copy_js_manifest
         template 'application.js', "#{angularjs_app_path}application.js"
-        empty_directory "#{angularjs_app_path}modules"
       end
 
-      def grunt_file
-        template 'i18n/Gruntfile.js.erb', 'lib/tasks/grunt/Gruntfile.js'
-      end
+      #def grunt_file
+      #  template 'i18n/Gruntfile.js.erb', 'lib/tasks/grunt/Gruntfile.js'
+      #end
 
       def copy_scss_manifest
         directory 'stylesheets', 'app/assets/stylesheets'
