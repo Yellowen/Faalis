@@ -72,6 +72,10 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+
+    Dir["#{Rails.root}/tmp/paperclip/**/*"].each do |file|
+        File.delete(file)
+    end
   end
 
 end
