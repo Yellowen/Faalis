@@ -21,7 +21,6 @@ group :development, :test do
   gem 'yard'
   gem 'redcarpet'
   gem 'github-markup'
-  gem 'guard-livereload', require: false
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
@@ -36,7 +35,7 @@ group :development, :test do
   gem 'dashstrap', path: dashstrap
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
-
+  gem 'capybara-webkit'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
