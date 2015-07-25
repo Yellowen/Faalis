@@ -1,2 +1,15 @@
-//= require dashstrap/dashboard/rtl/application
-//= require dashstrap/rtl/application
+//= require rtl/bootstrap
+//= require rtl/bootstrap-rtl
+
+// require font-awesome
+//= require rtl/AdminLTE
+// require base
+// require home
+
+//= require Faalis/dashboard/ltr/application
+// require dashstrap/ltr/application
+//= require_self
+
+.fa {
+   padding-left: 0.4em;
+}

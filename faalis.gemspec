@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   # Authentication
   s.add_dependency 'omniauth'
   s.add_dependency 'devise', '~> 3.5', '>= 3.4.0'
-
+  s.add_dependency 'dashstrap'
   # Authorization
   s.add_dependency 'pundit'
   #s.add_dependency 'mailboxer'
