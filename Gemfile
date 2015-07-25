@@ -34,6 +34,9 @@ group :development, :test do
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
   gem 'slim-rails'
   gem 'dashstrap', path: dashstrap
+  gem 'turbolinks', github: 'rails/turbolinks'
+  gem 'jquery-turbolinks'
+
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
