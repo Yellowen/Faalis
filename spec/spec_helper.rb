@@ -77,7 +77,8 @@ RSpec.configure do |config|
     Capybara.app_host          = 'http://localhost:3000'
     Capybara.server_host       = 'localhost'
     Capybara.server_port       = '3000'
-    #Capybara.run_server        = false
+
+    Capybara.run_server        = false
 
     DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
   end

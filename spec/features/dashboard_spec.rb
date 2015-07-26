@@ -26,4 +26,11 @@ feature 'Dashboard section' do
     visit @faalis.dashboard_index_path
     expect(current_path).to eq(@faalis.user_session_path)
   end
+
+  scenario 'does not provide authentication section for guests' do
+    visit @faalis.dashboard_index_path
+    expect(page).not_to have_text('Authentication')
+    expect(page).not_to have_text('Users')
+    expect(page).not_to have_text('Groups')
+  end
 end
