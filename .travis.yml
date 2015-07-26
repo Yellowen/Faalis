@@ -2,3 +2,4 @@ language: ruby
 rvm:
   - 2.2.0
 before_script: bundle exec rake db:migrate
+script: xvfb-run rspec
