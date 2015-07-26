@@ -32,7 +32,7 @@ group :development, :test do
   gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
   gem 'slim-rails'
-  gem 'dashstrap', path: dashstrap
+  gem 'dashstrap'#, path: dashstrap
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
   gem 'capybara-webkit'
