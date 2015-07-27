@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   mount Faalis::Engine => '/'
-  Faalis::Routes.define_api_routes do
-    # Define your API routes here . . .
-  end
+
   api_routes do
     # Your API routes goes here.
   end

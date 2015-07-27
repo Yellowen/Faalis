@@ -61,9 +61,6 @@ module Faalis
         route '  # Your API routes goes here.'
         route 'api_routes do'
         route ''
-        route 'end'
-        route '  # Define your API routes here . . .'
-        route 'Faalis::Routes.define_api_routes do'
         route "mount Faalis::Engine => '/'"
       end
 
