@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Faalis::VERSION
   s.authors     = ['Sameer Rahmani', 'Behnam Ahmad Khan Beigi']
   s.email       = ['lxsameer@gnu.org', 'yottanami@gnu.org']
-  s.homepage    = 'https://github.com/Yellowen/Faalis'
+  s.homepage    = 'http://faalis.io'
   s.summary     = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application'
   s.description = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application. Features like Dashboard, complex code generation and other awesome features. For more information checkout the docs.'
   s.required_ruby_version = '~> 2.0'
