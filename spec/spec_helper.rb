@@ -30,7 +30,7 @@ Dir[File.join(FAALIS, 'spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
-Capybara.javascript_driver = :webkit_debug
+Capybara.javascript_driver = :webkit
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
