@@ -8,9 +8,14 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
 
   destination File.expand_path('../../dummy/tmp', __FILE__)
 
-  def file(path)
-    p = File.expand_path('../../dummy/tmp', __FILE__)
-    "#{p}/#{path}"
+  def file_exists(path)
+    p = destination_root
+    assert_file "#{p}/#{path}"
+  end
+
+  def content_of(path)
+    full_path = "#{destination_root}/#{path}"
+    File.read(full_path)
   end
 
   before :all do
@@ -27,16 +32,21 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
   end
 
   it 'copies the config files' do
-    assert_file file('config/initializers/faalis.rb')
-    assert_file file('config/initializers/devise.rb')
-    assert_file file('config/initializers/fast_gettext.rb')
-    assert_file file('config/initializers/formstatic.rb')
-    assert_file file('db/seeds.rb')
-    assert_file file('app/controllers/api_controller.rb')
-    assert_file file('app/policies/application_policy.rb')
+    file_exists('config/initializers/faalis.rb')
+    file_exists('config/initializers/devise.rb')
+    file_exists('config/initializers/fast_gettext.rb')
+    file_exists('config/initializers/formstatic.rb')
+    file_exists('db/seeds.rb')
+    file_exists('app/controllers/api_controller.rb')
+    file_exists('app/policies/application_policy.rb')
   end
 
   it 'copies the Javascripts manifest for dashboard' do
-    assert_file file('app/assets/javascripts/dashboard/application.js')
+    file_exists('app/assets/javascripts/dashboard/application.js')
+  end
+
+  it 'copies stylesheet filese' do
+    file_exists('app/assets/stylesheets/dashboard/ltr/application.css')
+    file_exists('app/assets/stylesheets/dashboard/rtl/application.css')
   end
 end
