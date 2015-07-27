@@ -8,7 +8,12 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
 
   destination File.expand_path('../../dummy/tmp', __FILE__)
 
-  before do
+  def file(path)
+    p = File.expand_path('../../dummy/tmp', __FILE__)
+    "#{p}/#{path}"
+  end
+
+  before :all do
     prepare_destination
 
     path = File.expand_path('../../dummy/tmp/', __FILE__)
@@ -22,7 +27,16 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
   end
 
   it 'copies the config files' do
-    assert_file "config/initializers/faalis.rb"
+    assert_file file('config/initializers/faalis.rb')
+    assert_file file('config/initializers/devise.rb')
+    assert_file file('config/initializers/fast_gettext.rb')
+    assert_file file('config/initializers/formstatic.rb')
+    assert_file file('db/seeds.rb')
+    assert_file file('app/controllers/api_controller.rb')
+    assert_file file('app/policies/application_policy.rb')
   end
 
+  it 'copies the Javascripts manifest for dashboard' do
+    assert_file file('app/assets/javascripts/dashboard/application.js')
+  end
 end

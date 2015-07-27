@@ -41,7 +41,8 @@ module Faalis
       end
 
       def copy_js_manifest
-        template 'application.js', "#{angularjs_app_path}application.js"
+        empty_directory 'app/assets/javascripts/dashboard'
+        directory 'javascripts', 'app/assets/javascripts/dashboard'
       end
 
       #def grunt_file
