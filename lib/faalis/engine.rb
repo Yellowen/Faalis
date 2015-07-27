@@ -142,7 +142,7 @@ module Faalis
 
     # Dashboard default javascript manifest
     mattr_accessor :dashboard_js_manifest
-    @@dashboard_js_manifest = 'controlpanel/application.js'
+    @@dashboard_js_manifest = 'dashboard/application.js'
 
     # Devise options
     # Include default devise modules. Others available are:
