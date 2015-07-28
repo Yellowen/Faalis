@@ -11,6 +11,7 @@ bootstrap3-wysihtml5
 //= require AdminLTE
 //= require select2
 //= require select2-bootstrap
+//= require jquery-icheck/skins/flat/_all
 //= require faalis/dashboard/share
 //= require_self
 .fa {

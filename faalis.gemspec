@@ -74,6 +74,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-jquery-knob'
   s.add_dependency 'rails-assets-bootstrap-daterangepicker'
   s.add_dependency 'rails-assets-jquery-sparkline'
+  s.add_dependency 'rails-assets-jquery-icheck'
   #c.add_dependency 'rails-assets-angular-ui-bootstrap'
 
   s.add_dependency 'select2-rails'

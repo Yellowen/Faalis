@@ -53,10 +53,10 @@ div
                               span.col-sm-3
                                 - if @group.include_permission? action[1]
                                   input[type="checkbox" checked name=("group[permissions][#{action[1]}]") label=(_(action[0].humanize()))]
-                                    = action[0].humanize()
+                                    = " #{action[0].humanize()}"
                                 - else
                                   input[type="checkbox" name=("group[permissions][#{action[1]}]") label=(_(action[0].humanize()))]
-                                    = action[0].humanize()
+                                    = " #{action[0].humanize()}"
 
     .row
       .col-sm-2
