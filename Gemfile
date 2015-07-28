@@ -18,9 +18,16 @@ dashstrap = [File.expand_path(File.dirname(__FILE__)),
 
 group :development, :test do
   gem 'factory_girl'
+
   gem 'yard'
+  gem 'yard-rspec'
+  gem 'yardstick'
+  gem 'yard-rails'
   gem 'redcarpet'
   gem 'github-markup'
+  gem 'yard-js'
+  gem 'yard-sitemap'
+
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
