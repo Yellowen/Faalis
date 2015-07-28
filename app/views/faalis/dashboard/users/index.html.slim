@@ -5,7 +5,7 @@
         h3.box-title
           = _('Users')
         .box-tools
-          - new_user = dashboard_auth_users_new_path
+          - new_user = new_dashboard_auth_user_path
           a.btn.btn-success.pull-right.btn-sm href=(new_user)
             i.fa.fa-plus
             = _('Add user')
@@ -30,9 +30,9 @@
                 = _('Actions')
 
             - @users.each do |user|
-              - edit_target = dashboard_auth_users_edit_path(id: user.id)
-              - destroy_target = dashboard_auth_users_destroy_path(id: user.id)
-              - show_target = dashboard_auth_users_show_path(id: user.id)
+              - edit_target = edit_dashboard_auth_user_path(id: user.id)
+              - destroy_target = dashboard_auth_users_path
+              - show_target = dashboard_auth_user_path(id: user.id)
               tr id=("user_#{user.id}")
 
                 td

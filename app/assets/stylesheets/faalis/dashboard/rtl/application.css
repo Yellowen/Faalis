@@ -1,13 +1,12 @@
 //= require rtl/bootstrap
 //= require rtl/bootstrap-rtl
 
-// require font-awesome
+//= require font-awesome
 //= require rtl/AdminLTE
-// require base
-// require home
 
-//= require Faalis/dashboard/ltr/application
-// require dashstrap/ltr/application
+//= require select2
+//= require select2-bootstrap
+//= require faalis/dashboard/share
 //= require_self
 
 .fa {

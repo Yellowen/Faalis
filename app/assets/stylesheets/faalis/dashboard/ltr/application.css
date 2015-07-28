@@ -9,7 +9,9 @@ daterangepicker-bs3
 bootstrap3-wysihtml5
 */
 //= require AdminLTE
-//= require dashstrap/dashboard/share
+//= require select2
+//= require select2-bootstrap
+//= require faalis/dashboard/share
 //= require_self
 .fa {
    padding-right: 0.4em;
