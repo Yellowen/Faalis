@@ -8,7 +8,8 @@ datepicker3.css
 daterangepicker-bs3
 bootstrap3-wysihtml5
 */
-//= require AdminLTE
+//= require admin_lte/ltr/AdminLTE
+//= require admin_lte/ltr/skins/_all-skins
 //= require select2
 //= require select2-bootstrap
 //= require jquery-icheck/skins/flat/_all
