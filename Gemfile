@@ -25,7 +25,6 @@ group :development, :test do
   gem 'yard-rails'
   gem 'redcarpet'
   gem 'github-markup'
-  gem 'yard-js'
   gem 'yard-sitemap'
 
   gem 'sqlite3'
