@@ -1,0 +1,50 @@
+aside.control-sidebar.control-sidebar-dark
+  // Create the tabs
+  ul.nav.nav-tabs.nav-justified.control-sidebar-tabs
+    li
+      a[href="#control-sidebar-home-tab" data-toggle="tab"]
+        i.fa.fa-home
+    li
+      a[href="#control-sidebar-settings-tab" data-toggle="tab"]
+        i.fa.fa-gears
+
+  // Tab panes
+  .tab-content
+    // Home tab content
+    #control-sidebar-home-tab.tab-pane
+      h3.control-sidebar-heading
+        | _('Recent Activity')
+
+      ul.control-sidebar-menu
+        li
+          a href="javascript::;"
+            i.menu-icon.fa.fa-birthday-cake.bg-red
+            .menu-info
+              h4.control-sidebar-subheading
+                | Langdon's Birthday
+              p
+                | Will be 23 on April 24th
+
+      h3.control-sidebar-heading
+        | Tasks Progress
+      ul.control-sidebar-menu
+        li
+          a href="javascript::;"
+            h4.control-sidebar-subheading
+              |Custom Template Design
+              span.label.label-danger.pull-right
+                | 70%
+
+            .progress.progress-xxs
+              .progress-bar.progress-bar-danger style="width: 70%"
+
+    // Stats tab content
+    #control-sidebar-stats-tab.tab-pane
+      | Stats Tab Content
+    // Settings tab content
+    #control-sidebar-settings-tab.tab-pane
+      h3.control-sidebar-heading
+        | General Settings
+// Add the sidebar's background. This div must be placed
+// immediately after the control sidebar
+.control-sidebar-bg

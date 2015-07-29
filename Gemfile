@@ -45,4 +45,4 @@ group :development, :test do
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
-gem 'rails-assets-admin-lte'
+gem 'admin_lte', path: '../admin_lte'

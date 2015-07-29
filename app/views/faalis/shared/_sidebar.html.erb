@@ -1,55 +1,61 @@
-<aside class="left-side sidebar-offcanvas">
-
-
-  <!-- Left side column. contains the logo and sidebar -->
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<%= asset_path 'avatar.jpg' %>" class="img-circle" alt="User Image" />
+        <img src="<%= current_user.gravatar %>" class="img-circle" alt="User Image" />
       </div>
       <div class="pull-left info">
-        <p><%= _("Hello ") %>, <%= current_user.name %> </p>
-
-        <a href="#"><i class="fa fa-circle text-success"></i> <span Translate>Online</span></a>
+        <p><%= current_user.full_name %></p>
+        <a href="#"><i class="fa fa-circle text-success"></i>
+          <%= _('Online') %>
+        </a>
       </div>
     </div>
     <!-- search form -->
-    <form class="sidebar-form">
+    <form action="#" method="get" class="sidebar-form">
       <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="<%= _("Search...") %>"/>
+        <input type="text" name="q" class="form-control" placeholder="<%= _('Search...') %>" />
         <span class="input-group-btn">
-          <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
         </span>
       </div>
     </form>
-
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu" >
-      <li class="active">
+    <ul class="sidebar-menu">
+      <li class="header"><%= _('MAIN NAVIGATION') %></li>
+
+      <li class="active treeview">
         <a href="/<%= Faalis::Engine.dashboard_namespace.to_s %>/">
-          <i class="fa fa-dashboard"></i><%= _('Dashboard') %></span>
+          <i class="fa fa-dashboard"></i>
+          <span>
+            <%= _('Dashboard') %>
+          </span>
         </a>
       </li>
+
       <% cache @sidebar do  %>
         <% @sidebar.menu_entries.each do |menu| %>
-          <li class="treeview point">
+          <li class="treeview">
             <a href="#">
-              <i class="<%= menu.icon %>"></i> <span><%= menu.title %></span>
-              <i class="fa fa-angle-left pull-right"></i>
+              <i class="<%= menu.icon %>"></i>
+              <span><%= menu.title %></span>
+              <span class="label label-primary pull-right">4</span>
             </a>
-
             <% unless menu.children.nil? %>
               <ul class="treeview-menu slide">
                 <% menu.children.each do |submenu| %>
-                  <li>
-                    <a href="<%= submenu.url %>">
-                      <i class="<%= submenu.icon %>"></i>
-                      <span><%= submenu.title %></span>
-                    </a>
-                  </li>
+                  <% unless menu.children.nil? %>
+                    <li>
+                      <a href="<%= submenu.url %>">
+                        <i class="<%= submenu.icon %>"></i>
+                        <%= submenu.title %>
+                      </a>
+                    </li>
+                  <% end %>
                 <% end %>
               </ul>
             <% end %>
