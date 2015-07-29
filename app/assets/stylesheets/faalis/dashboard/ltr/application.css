@@ -1,20 +1,17 @@
-//= require bootstrap
-//= require font-awesome
-/*
-ionicons
-morris
-jquery-jvectormap-1.2.2
-datepicker3.css
-daterangepicker-bs3
-bootstrap3-wysihtml5
-*/
-//= require admin_lte/ltr/AdminLTE
-//= require admin_lte/ltr/skins/_all-skins
-//= require select2
-//= require select2-bootstrap
-//= require jquery-icheck/skins/flat/_all
+//= require admin_lte/ltr/admin_lte
 //= require faalis/dashboard/share
 //= require_self
 .fa {
    padding-right: 0.4em;
+}
+
+.user-image {
+  display: inline !important;
+}
+.user-name-span {
+  width: 100%;
+  display: inline !important;
+}
+.dropdown.user.user-menu {
+  width: auto;
 }
