@@ -54,9 +54,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'fast_gettext'
 
   # i18n
-  s.add_development_dependency 'gettext'
-  s.add_development_dependency 'ruby_parser'
-  s.add_development_dependency'gettext_i18n_rails'
+  s.add_dependency 'gettext'
+  s.add_dependency 'ruby_parser'
+  s.add_dependency'gettext_i18n_rails'
   s.add_dependency 'colorize'
 
   # model_discovery

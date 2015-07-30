@@ -1,5 +1,4 @@
 require 'rails-assets-sugar'
 require 'jquery-rails'
-require 'dashstrap'
-require 'rails-assets-jquery-icheck'
+#require 'dashstrap'
 require 'admin_lte'
