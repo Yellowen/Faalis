@@ -42,7 +42,9 @@ module Faalis::Dashboard
     end
 
     def update
+      puts "---", user_params
       parameters = user_params
+      #groups     = parameters.delete(:groups)
       group_ids  = parameters.delete(:groups).map(&:to_i)
 
       @user = Faalis::User.find(params[:id])
@@ -96,12 +98,13 @@ module Faalis::Dashboard
     end
 
     def user_params
+      params[:user][:groups] ||= []
       params.require(:user).permit(:first_name,
                                    :last_name,
                                    :email,
                                    :password,
                                    :password_confirmation,
-                                   groups: [])
+                                   :groups => [])
     end
   end
 end
