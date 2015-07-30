@@ -3,7 +3,6 @@ rvm:
   - 2.2.0
 
 before_install:
-  - sh -c 'if [ -n "$QMAKE" ]; then sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa && sudo apt-get update && sudo apt-get install libqt5webkit5-dev qtdeclarative5-dev; fi'
   - "export DISPLAY=:99.0"
 
 install: bundle
