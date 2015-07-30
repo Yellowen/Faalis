@@ -31,7 +31,6 @@
 
             - @users.each do |user|
               - edit_target = edit_dashboard_auth_user_path(id: user.id)
-              - destroy_target = dashboard_auth_users_path
               - show_target = dashboard_auth_user_path(id: user.id)
               tr id=("user_#{user.id}")
 
@@ -51,7 +50,7 @@
                   a href=(show_target)
                     = user.email
                 td
-                  = user.created_at
+                  = localized_time(user.created_at)
                 td
                   - if user.last_sign_in_at.nil?
                     | -
@@ -62,6 +61,6 @@
                     i.fa.fa-edit
                   a.pass-change.link.pull-left href=()
                     i.fa.fa-key.change-pass
-                  a.link.pull-left href=(destroy_target) data-remote="true" data-method="delete"
+                  a.link.pull-left href=(show_target) data-remote="true" data-method="delete"
                     i.fa.fa-remove.btn-remove
       .box-footer

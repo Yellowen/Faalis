@@ -94,7 +94,8 @@ module Faalis
 
     # I18n Configuration
     I18n.enforce_available_locales = true
-    I18n.locale = :en
+    I18n.locale         = :en
+
     # Fast Gettext Configuration
     Object.send(:include, FastGettext::Translation)
 
