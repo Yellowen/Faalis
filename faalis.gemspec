@@ -51,7 +51,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-sugar', '1.4.1'
 
   s.add_development_dependency 'execjs'
-  s.add_development_dependency 'fast_gettext'
+  s.add_dependency 'fast_gettext'
 
   # i18n
   s.add_development_dependency 'gettext'
