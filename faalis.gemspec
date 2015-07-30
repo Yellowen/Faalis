@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'omniauth'
   s.add_dependency 'devise', '~> 3.5', '>= 3.4.0'
   s.add_dependency 'admin_lte'
+  s.add_dependency 'rails-assets-admin-lte'
   # Authorization
   s.add_dependency 'pundit'
   #s.add_dependency 'mailboxer'

@@ -13,7 +13,7 @@ when 'active_record'
 
   admin = Faalis::User.create(email: 'admin@example.com',
                               password: 'changeme',
-                              password_confirmation: '123123123')
+                              password_confirmation: 'changeme')
   admin.groups << admin_group
 
 
@@ -33,7 +33,7 @@ when 'mongoid'
 
   admin = Faalis::User.new(email: 'admin@example.com',
                            password: 'changeme',
-                           password_confirmation: '123123123')
+                           password_confirmation: 'changeme')
 
 
   admin.groups << admin_group

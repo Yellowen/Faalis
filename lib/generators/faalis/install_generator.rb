@@ -26,6 +26,10 @@ module Faalis
       desc 'Copy all the necessary files to use Faalis'
       class_option :orm
 
+      def copy_migrations
+        rake('faalis:install:migrations') unless options[:mongoid]
+      end
+
       def install_model_discovery
         rake 'model_discovery_engine:install:migrations'
       end
@@ -67,6 +71,14 @@ module Faalis
 
       def patch_application_controller
         inject_into_class "app/controllers/application_controller.rb", ApplicationController, "  extend Faalis::I18n::Locale\n"
+      end
+
+      def add_gems
+        add_source 'http://rails-assets.org'
+
+        inside Rails.root do
+          `bundle install`
+        end
       end
 
       def show_readme
