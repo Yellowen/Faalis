@@ -58,15 +58,21 @@ module Faalis
       end
 
       def install_routes
-        route 'end'
-        route '  # Your dashboard routes goes here.'
-        route 'in_dashboard do'
-        route ''
-        route 'end'
-        route '  # Your API routes goes here.'
-        route 'api_routes do'
-        route ''
-        route "mount Faalis::Engine => '/'"
+        # route 'end'
+        # route '  # Your dashboard routes goes here.'
+        # route 'in_dashboard do'
+        # route ''
+        # route 'end'
+        # route '  # Your API routes goes here.'
+        # route 'api_routes do'
+        # route ''
+        # route "mount Faalis::Engine => '/'"
+      end
+
+      def assets_manifests_initializer
+        initializer 'faalis_assets.rb' do
+          'Rails.application.config.assets.precompile += %w( faalis/simple.js )'
+        end
       end
 
       def patch_application_controller

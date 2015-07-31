@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html class="bg-black" lang="<%= ::I18n.locale %>" dir="<%= Faalis::I18n.direction(I18n.locale) %>">
-    <head>
-      <meta charset="UTF-8">
-      <title><%= Faalis::Engine.site_title %></title>
+<html lang="<%= ::I18n.locale %>" dir="<%= Faalis::I18n.direction(I18n.locale) %>">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= Faalis::Engine.site_title %></title>
 
-      <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-      <%= stylesheet_link_tag   'simple/' + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-      <![endif]-->
-    </head>
-    <body class="bg-black">
-      <%= yield %>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <%= stylesheet_link_tag   'faalis/simple/' + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="/"><%= Faalis::Engine.site_title || 'Faalis' %></a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <%= yield %>
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
 
-      <%= javascript_include_tag "faalis/application" %>
-    </body>
+    <%= javascript_include_tag 'faalis/simple' %>
+  </body>
 </html>
