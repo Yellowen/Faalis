@@ -8,66 +8,36 @@
 [![Lisence](https://img.shields.io/github/license/Yellowen/Faalis.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 **Faalis** is a **RubyOnRails** Platform for rapid web application development. It provides a very
-robust dashboard subsystem with some fantastic generators and client side framework based on **AngularJS**
-to improve productivity as much as possible.
+robust dashboard subsystem with some fantastic generators to improve productivity as much as possible.
 
 
 ## Installation
-
-* First add `rails-assets` source to your `Gemfile`:
-
-```ruby
-source 'http://rails-assets.org'
-```
-> **NOTE**: Remember to add this source not to replace the default one.
-
-* Add `faalis` gem and it's dependencies to your `Gemfile` like:
+Simply add `faalis` to your gem file like this:
 
 ```ruby
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
-  gem "capybara"
-  gem "factory_girl_rails", "~> 4.0", :require => false
-  gem "database_cleaner"
-  gem "email_spec"
-  gem "cucumber-rails", :require => false
-end
-
-# Current Dashstrap theme for Faalis
-gem "dashstrap"
-
 gem "faalis"
 ```
 
-* Install your project dependencies using `bundle`
+Then install your project dependencies using `bundle`
 
-```ruby
+```bash
 bundle install
 ```
 
-* Add this to your `config/environments/development.rb`
+use `faalis:install` generator to install **faalis** into your project.
+
+```bash
+rails g faalis:install
+```
+
+Add this to your `config/environments/development.rb`
 
 ```ruby
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 ```
 > In production, `:host` should be set to the actual host of your application.
 
-* Ensure you have flash messages in `app/views/layouts/application.html.erb`.
-For example (only if you want to change default layout):
-
-```rhtml
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-```
-
-* Perform `rails generate faalis:install_all` to copy necessary files.
-* Add this to your `config/application.rb` :
-
-```ruby
-config.railties_order = [:main_app, Dashstrap::TemplateEngine, Faalis::Engine, :all]
-```
-
-* Perform `rake db:migrate db:seed` and enjoy Faalis
+Perform `rake db:migrate db:seed` and enjoy Faalis
 
 > **NOTE**: You can specify the ORM you'd like to use in `config/initializers/faalis.rb`
 
