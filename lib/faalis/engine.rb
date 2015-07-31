@@ -20,6 +20,7 @@ require 'fast_gettext'
 require 'modernizr-rails'
 require 'model_discovery'
 require 'pundit'
+require 'slim-rails'
 
 require_relative './middlewares/locale'
 

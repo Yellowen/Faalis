@@ -76,8 +76,12 @@ module Faalis
       def add_gems
         add_source 'http://rails-assets.org'
 
+        #gem 'turbolinks', github: 'rails/turbolinks'
+        gem 'jquery-turbolinks'
+
         inside Rails.root do
-          `bundle install`
+          run 'rm Gemfile.lock'
+          run 'bundle install'
         end
       end
 
