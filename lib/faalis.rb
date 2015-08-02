@@ -18,6 +18,7 @@
 # -----------------------------------------------------------------------------
 
 require 'devise'
+require 'turbolinks'
 
 # Faalis Module
 module Faalis

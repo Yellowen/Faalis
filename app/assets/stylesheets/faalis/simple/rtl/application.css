@@ -1,5 +1,2 @@
-//= require simple/rtl/rtl
-//= require bootstrap
-//= require font-awesome
-//= require AdminLTE
-//= require simple/share
+//= require admin_lte/rtl/admin_lte
+//= require faalis/simple/share
