@@ -34,8 +34,13 @@ angular.module('Fake', [])
         }
       }).
       state('fake-edit-password', {
-          url: '/profile/editpassword',
-          templateUrl: '/dashboard/profile/editpassword'
+          url: '/auth/profile/editpassword',
+          templateUrl: '/dashboard/auth/profile/editpassword'
+      }).
+
+      state('fake-edit-profile', {
+          url: '/auth/profile/edit',
+          templateUrl: '/dashboard/profile/edit'
       }).
       state('fake-user-new', {
         url: '/auth/users/new',

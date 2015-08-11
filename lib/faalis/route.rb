@@ -43,30 +43,33 @@ module Faalis
           get  'auth/users/:id/edit', to: 'users#edit', as: 'auth_users_edit'
           post 'auth/users',     to: 'users#create'
           put  'auth/users/:id', to: 'users#update', as: 'auth_users_update'
-          get('auth/users/:id/password', to: 'users#edit_password',
-              as: 'auth_users_edit_password')
+          #get('auth/users/:id/password', to: 'users#edit_password',
+          #as: 'auth_users_edit_password'
 
-          patch 'auth/users/:id/password', to: 'users#update_password'
+          #patch 'auth/users/:id/password', to: 'users#update_password'
           delete  'auth/users/:id', to: 'users#destroy', as: 'auth_users_destroy'
 
-          get 'profile/editpassword', to: "profile#edit_password"
-          post 'profile/editpassword', to: "profile#update_password"
-        end
+          get 'auth/profile/editpassword', to: "profile#edit_password"
+          post 'auth/profile/editpassword', to: "profile#update_password"
 
-        # TODO: Add a dynamic solution for formats
-        namespace :api, defaults: { format: :json } do
-          namespace version do
-            get 'permissions',      to: 'permissions#index'
-            get 'permissions/user', to: 'permissions#user_permissions'
-            resources :groups,      except: [:new]
-            resources :users,       except: [:new]
-            resource :profile,      except: [:new, :destroy]
+          get 'auth/profile/edit', to: "profile#edit"
+          post 'auth/profile/edit', to: "profile#update"
+  end
 
-            get 'logs', to: 'logs#index'
-          end
+  # TODO: Add a dynamic solution for formats
+  namespace :api, defaults: { format: :json } do
+    namespace version do
+      get 'permissions',      to: 'permissions#index'
+      get 'permissions/user', to: 'permissions#user_permissions'
+      resources :groups,      except: [:new]
+      resources :users,       except: [:new]
+      resource :profile,      except: [:new, :destroy]
 
-        end
-      end
+      get 'logs', to: 'logs#index'
+    end
+
+  end
+end
     end
 
   end
