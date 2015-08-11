@@ -31,21 +31,24 @@ module Faalis
       scope 'module'.to_sym => 'faalis' do
         #dashboard = Faalis::Engine.dashboard_namespace
         #get "#{dashboard}/auth/groups/new", to: "#{dashboard}/groups#new"
+          get 'auth/profile/edit', to: "profile#edit"
+          post 'auth/profile/edit', to: "profile#update"
+  end
 
-        # TODO: Add a dynamic solution for formats
-        namespace :api, defaults: { format: :json } do
-          namespace version do
-            get 'permissions',      to: 'permissions#index'
-            get 'permissions/user', to: 'permissions#user_permissions'
-            resources :groups,      except: [:new]
-            resources :users,       except: [:new]
-            resource :profile,      except: [:new, :destroy]
+  # TODO: Add a dynamic solution for formats
+  namespace :api, defaults: { format: :json } do
+    namespace version do
+      get 'permissions',      to: 'permissions#index'
+      get 'permissions/user', to: 'permissions#user_permissions'
+      resources :groups,      except: [:new]
+      resources :users,       except: [:new]
+      resource :profile,      except: [:new, :destroy]
 
-            get 'logs', to: 'logs#index'
-          end
+      get 'logs', to: 'logs#index'
+    end
 
-        end
-      end
+  end
+end
     end
 
   end
