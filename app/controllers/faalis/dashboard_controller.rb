@@ -2,7 +2,7 @@ require_dependency 'faalis/dashboard/application_controller'
 
 
 module Faalis
-  class DashboardController < Faalis::Dashboard::ApplicationController
+  class DashboardController < ::Dashboard::ApplicationController
 
     before_filter :authenticate_user!, :only => [:modules, :index]
 

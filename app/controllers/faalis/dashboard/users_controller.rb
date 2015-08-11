@@ -1,5 +1,5 @@
 module Faalis::Dashboard
-  class UsersController < Faalis::Dashboard::ApplicationController
+  class UsersController < ::Dashboard::ApplicationController
 
     def index
       authorize Faalis::User

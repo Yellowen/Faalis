@@ -1,5 +1,5 @@
 module Faalis::Dashboard
-  class GroupsController < Faalis::Dashboard::ApplicationController
+  class GroupsController < ::Dashboard::ApplicationController
 
     before_action :get_all_permissions, only: [:new, :edit]
 

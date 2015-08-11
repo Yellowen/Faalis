@@ -1,0 +1,37 @@
+.row
+  .col-xs-12
+    .box.box-default
+      .box-header.with-border
+        h3.box-title
+          |
+        .box-tools
+          /- new_user = new_dashboard_auth_user_path
+          a.btn.btn-success.pull-right.btn-sm href=('new_user')
+            i.fa.fa-plus
+            = _("new #{@dashboard_section_title}")
+
+      .box-body.no-padding
+        table.table.table-striped
+          tbody
+            tr
+              - @index_fields.each do |field|
+                th
+                  = _(field.to_s).humanize
+              th
+                = _('Actions')
+
+            - @resources.each do |resource|
+              / edit_target = edit_dashboard_auth_user_path(id: user.id)
+              / show_target = dashboard_auth_user_path(id: user.id)
+              tr id=("#{controller_name}_#{resource.id}")
+                - @index_fields.each do |field|
+                  td
+                    = resource.try(field.to_s).to_s || '-'
+                td.btn-user
+                  a.warning.link.pull-left href=("edit_target")
+                    i.fa.fa-edit
+                  a.pass-change.link.pull-left href=()
+                    i.fa.fa-key.change-pass
+                  a.link.pull-left href=('show_target') data-remote="true" data-method="delete"
+                    i.fa.fa-remove.btn-remove
+      .box-footer
