@@ -1,0 +1,47 @@
+.row
+  .col-xs-12
+    .box.box-default
+      .box-header.with-border
+        h3.box-title
+          = _('Groups')
+        .box-tools
+          - new_group = new_dashboard_auth_group_path
+          a.btn.btn-success.pull-right.btn-sm href=(new_group)
+            i.fa.fa-plus
+            = _('Add group')
+
+      .box-body.no-padding
+        table.table.table-striped
+          tbody
+            tr
+              th
+                |#
+              th
+                = _("Name")
+              th
+                =_("Role")
+              th
+                = _('Created at')
+              th
+                = _('Actions')
+
+            - @groups.each do |group|
+              - edit_target = edit_dashboard_auth_group_path(id: group.id)
+              - destroy_target = dashboard_auth_groups_path
+              - show_target = dashboard_auth_group_path(id: group.id)
+              tr id=("group_#{group.id}")
+
+                td
+                  = group.id
+                td
+                  = group.name
+                td
+                  = group.role
+                td
+                  = group.created_at
+                td.btn-user
+                  a.warning.link.pull-left href=(edit_target)
+                    i.fa.fa-edit
+                  a.link.pull-left href=(destroy_target) data-remote="true" data-method="delete"
+                    i.fa.fa-remove.btn-remove
+      .box-footer

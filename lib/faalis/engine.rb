@@ -19,9 +19,8 @@
 require 'fast_gettext'
 require 'modernizr-rails'
 require 'model_discovery'
-require 'angularjs-rails'
-require 'lodash-rails'
 require 'pundit'
+require 'slim-rails'
 
 require_relative './middlewares/locale'
 
@@ -45,11 +44,11 @@ module Faalis
     end
 
     config.generators do |g|
-      g.test_framework      :rspec,        :fixture => false
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
-      g.integration_tool :rspec
-      g.assets false
-      g.helper false
+      g.test_framework      :rspec, fixture: false
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.integration_tool    :rspec
+      g.assets              false
+      g.helper              false
     end
 
     # Configure logger
@@ -96,7 +95,8 @@ module Faalis
 
     # I18n Configuration
     I18n.enforce_available_locales = true
-    I18n.locale = :en
+    I18n.locale         = :en
+
     # Fast Gettext Configuration
     Object.send(:include, FastGettext::Translation)
 
@@ -144,7 +144,7 @@ module Faalis
 
     # Dashboard default javascript manifest
     mattr_accessor :dashboard_js_manifest
-    @@dashboard_js_manifest = 'controlpanel/application.js'
+    @@dashboard_js_manifest = 'dashboard/application.js'
 
     # Devise options
     # Include default devise modules. Others available are:

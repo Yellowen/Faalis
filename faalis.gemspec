@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Faalis::VERSION
   s.authors     = ['Sameer Rahmani', 'Behnam Ahmad Khan Beigi']
   s.email       = ['lxsameer@gnu.org', 'yottanami@gnu.org']
-  s.homepage    = 'https://github.com/Yellowen/Faalis'
+  s.homepage    = 'http://faalis.io'
   s.summary     = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application'
   s.description = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application. Features like Dashboard, complex code generation and other awesome features. For more information checkout the docs.'
   s.required_ruby_version = '~> 2.0'
@@ -25,8 +25,9 @@ Gem::Specification.new do |s|
 
   # Authentication
   s.add_dependency 'omniauth'
-  s.add_dependency 'devise', '~> 3.4', '>= 3.4.0'
-
+  s.add_dependency 'devise', '~> 3.5', '>= 3.4.0'
+  s.add_dependency 'admin_lte-rails', '~> 2.2.0.7'
+  #s.add_dependency 'rails-assets-admin-lte'
   # Authorization
   s.add_dependency 'pundit'
   #s.add_dependency 'mailboxer'
@@ -35,43 +36,28 @@ Gem::Specification.new do |s|
   s.add_dependency 'jbuilder'
 
   # Assets
-  s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'sprockets'
+  s.add_dependency 'turbolinks'
+  s.add_dependency 'jquery-turbolinks'
 
   # TODO: It should be dependency of
   # dashboard or main template
   s.add_dependency 'modernizr-rails'
-  s.add_dependency 'angularjs-rails', '~>1.2.16'
+
   # We have to give up lodash for sugar
-  s.add_dependency 'lodash-rails', '~>2.4'
+  #s.add_dependency 'lodash-rails', '~>2.4'
   s.add_dependency 'rails-assets-sugar', '1.4.1'
 
   s.add_development_dependency 'execjs'
-  s.add_development_dependency 'fast_gettext'
-
-  # Fake gems provided by rails-assets
-  # to use these gems user should add
-  # `source 'http://rails-assets.org' to the
-  # gemfile
-  s.add_dependency 'rails-assets-angular-gettext'
-  s.add_dependency 'rails-assets-ng-grid', '~>2.0.11'
-  s.add_dependency 'rails-assets-restangular', '~>1.4.0'
-  s.add_dependency 'rails-assets-ngQuickDate', '~>1.3.0'
-  s.add_dependency 'rails-assets-select2', '~>3.5.0'
-  s.add_dependency 'rails-assets-angular-ui-select2', '~>0.0.5'
-  s.add_dependency 'rails-assets-flow.js', '~>2.9'
-  s.add_dependency 'rails-assets-ng-flow', '~>2.4.2'
-  s.add_dependency 'rails-assets-angular-ui-router'
-  s.add_dependency 'rails-assets-angular-loading-bar'
+  s.add_dependency 'fast_gettext'
 
   # i18n
-  #s.add_dependency 'gettext'
-  s.add_development_dependency 'gettext'
-  s.add_dependency 'gettext_i18n_rails'
-
+  s.add_dependency 'gettext'
+  s.add_dependency 'ruby_parser'
+  s.add_dependency'gettext_i18n_rails'
   s.add_dependency 'colorize'
 
   # model_discovery
@@ -80,10 +66,9 @@ Gem::Specification.new do |s|
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'
 
-  #s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'ruby_parser'
   s.add_development_dependency 'rdoc'
-  s.add_development_dependency 'rspec-rails', '~> 3.1.0'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'generator_spec'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'factory_girl_rails'

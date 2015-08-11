@@ -1,4 +1,17 @@
-//= require angular-loading-bar/loading-bar
+//= require admin_lte/rtl/admin_lte
+//= require faalis/dashboard/share
+//= require_self
+.fa {
+   padding-left: 0.4em;
+}
 
-//= require dashstrap/dashboard/rtl/application
-//= require dashstrap/rtl/application
+.user-image {
+  display: inline !important;
+}
+.user-name-span {
+  width: 100%;
+  display: inline !important;
+}
+.dropdown.user.user-menu {
+  width: auto;
+}

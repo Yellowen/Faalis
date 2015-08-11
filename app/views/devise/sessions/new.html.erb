@@ -1,63 +1,38 @@
-<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+<p class="login-box-msg"><%= _('Sign in to start your session') %></p>
+<% flash.each do |name, msg| %>
+  <div class="alert alert-danger" role='alert'><i class="fa fa-warning"></i> <%= msg %></div>
+<%- end -%>
 
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-<div class="row single-form">
+  <div class="form-group has-feedback <% if resource.errors[:email] -%>has-error<% end %>">
+    <%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder=>_("Email") %>
+    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+  </div>
 
-  <div class="large-offset-3 small-6 columns">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <fieldset>
-        <legend><%= _("Sign In") %></legend>
-        <%= devise_error_messages! %>
-        <div class="field">
-	  <%= f.email_field :email, :autofocus => true, :class => "input email", :placeholder=>_("E-mail") %>
-          <% if resource.errors[:email] -%>
-	    <dd class="danger abel"><%= resource.errors[:email][0]%></dd>
-          <% end -%>
-
-        </div>
-
-        <div class="field">
-	  <%= f.password_field :password, :class => "input password", :placeholder=>_("Password") %>
-          <% if resource.errors[:password] -%>
-	    <dd class="danger abel"><%= resource.errors[:password][0] %></dd>
-          <% end %>
-        </div>
-        <div class="field">
-	  <% if devise_mapping.rememberable? -%>
-	    <div><%= f.check_box :remember_me, :class=>"checkbox" %> <%= f.label _("Remember me") %></div>
-	  <% end %>
-        </div>
-
-        <div class="right submit">
-	  <%= f.submit _("Sign in"), :class => "button"%><br><br>
-        </div>
-
-        <br>
-        <div class="text-left left">
-          <a href="/auth/google_oauth2/" class="pull_right">
-            <i class="fa-google-plus-square fa fa-3x"></i>
-          </a>
-
-          <a href="/auth/facebook/" class="pull_right">
-            <i class="fa-facebook-square fa fa-3x"></i>
-          </a>
-
-          <a href="/auth/twitter/" class="pull_right">
-            <i class="fa-twitter-square fa fa-3x"></i>
-          </a>
-        </div>
-        <br>
-        <br>
-        <div class="text-center">
-        <%= render "devise/shared/links" %>
-        </div>
-      </fieldset>
-
-    <% end %>
-
+  <div class="form-group has-feedback <% if resource.errors[:password] -%>has-error<% end %>">
+    <%= f.password_field :password, :class => "form-control", :placeholder=>_("Password") %>
+    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
 
 
-</div>
+  <div class="row">
+    <% if devise_mapping.rememberable? -%>
+    <div class="col-xs-8">
+      <div class="checkbox icheck">
+        <label>
+          <%= f.check_box :remember_me, :class=>"checkbox" %> <%= _('Remember Me') %>
+        </label>
+      </div>
+    </div><!-- /.col -->
+    <% end %>
+    <div class="col-xs-4">
+      <button type="submit" class="btn btn-primary btn-block btn-flat"><%= _('Sign In') %></button>
+    </div><!-- /.col -->
+  </div>
+</form>
+
+<%= render "devise/shared/omni_link" %>
+
+<%= render "devise/shared/links" %>
+<% end %>

@@ -44,6 +44,9 @@ module Faalis
     # Roles related methods for user
     include Faalis::Concerns::User::UserRoles
 
+    # Gravatar
+    include Faalis::Concerns::User::Gravatar
+
     # Make this model authorizable
     include Faalis::Concerns::Authorizable
 

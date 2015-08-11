@@ -1,5 +1,4 @@
 # Database initial data
-
 ModelDiscovery::Engine.load_seed
 
 #Faalis::Workflows::Discovery.build_table_list
@@ -13,8 +12,8 @@ when 'active_record'
   admin_group.permissions = Faalis::Permission.all
 
   admin = Faalis::User.create(email: 'admin@example.com',
-                              password: '123123123',
-                              password_confirmation: '123123123')
+                              password: 'changeme',
+                              password_confirmation: 'changeme')
   admin.groups << admin_group
 
 
@@ -33,8 +32,8 @@ when 'mongoid'
   guest_group = Faalis::Group.create(name: 'Guest', role: 'guest')
 
   admin = Faalis::User.new(email: 'admin@example.com',
-                           password: '123123123',
-                           password_confirmation: '123123123')
+                           password: 'changeme',
+                           password_confirmation: 'changeme')
 
 
   admin.groups << admin_group

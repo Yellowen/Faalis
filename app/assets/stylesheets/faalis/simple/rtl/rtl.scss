@@ -1,0 +1,16 @@
+@font-face {
+   font-family: 'yekan';
+   src: font-url('/fonts/BYekan.eot');
+   src: font-url("/fonts/Yekan.eot#iefix") format('embedded-opentype'),
+      font-url("/fonts/Yekan.woff") format('woff'),
+        font-url("/fonts/Yekan.ttf") format('truetype');
+}
+
+
+div, p, h1,h2,h3,h4,h5,h6,a{
+   font-family: 'yekan', tahoma;
+}
+
+.logo{
+   font-family: 'yekan', tahoma !important;
+}

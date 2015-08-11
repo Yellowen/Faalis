@@ -1,25 +1,6 @@
-//<% environment.context_class.instance_eval { include ActionView::Helpers::UrlHelper } %>
-//<% url = Faalis::Engine.routes.url_helpers %>
-
-// User Permissions
-window.PERMISSIONS = [];
 // Prefix url of API
 window.API_PREFIX = "/api/v1/";
-// Modules is an array of dashboard modules
-window.DModules = [];
-
-// This variable will contains all the modules name which should be loaded
-// as Dashboard application dependency
-window.dashboard_dependencies = window.dashboard_dependencies || [];
-// Template prefix
-window.templates_path = "/templates/";
 
 // Any element of this queue will be appear as error after load event
 window.ErrorQueue = [];
-window.DashboardURL = "<%= url.modules_path %>";
 window.Faalis = {};
-
-window.STATIC_REQUIREMENTS = ["gettext", "Modules", "ui.select2", 'Errors',
-                              "ngAnimate", "ui.router", "restangular", "ngQuickDate",
-                              "Errors",  "Permissions", 'ng',
-                              'angular-loading-bar', 'Fake'];

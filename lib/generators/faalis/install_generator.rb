@@ -26,9 +26,9 @@ module Faalis
       desc 'Copy all the necessary files to use Faalis'
       class_option :orm
 
-      #def install_mailboxer
-      #  invoke 'mailboxer:install'
-      #end
+      def copy_migrations
+        rake('faalis:install:migrations') unless options[:mongoid]
+      end
 
       def install_model_discovery
         rake 'model_discovery_engine:install:migrations'
@@ -45,27 +45,50 @@ module Faalis
       end
 
       def copy_js_manifest
-        template 'application.js', "#{angularjs_app_path}application.js"
-        empty_directory "#{angularjs_app_path}modules"
+        empty_directory 'app/assets/javascripts/dashboard'
+        directory 'javascripts', 'app/assets/javascripts/dashboard'
       end
 
-      def grunt_file
-        template 'i18n/Gruntfile.js.erb', 'lib/tasks/grunt/Gruntfile.js'
-      end
+      #def grunt_file
+      #  template 'i18n/Gruntfile.js.erb', 'lib/tasks/grunt/Gruntfile.js'
+      #end
 
       def copy_scss_manifest
         directory 'stylesheets', 'app/assets/stylesheets'
       end
 
       def install_routes
-        route 'end'
-        route '  # Define your API routes here . . .'
-        route 'Faalis::Routes.define_api_routes do'
-        route "mount Faalis::Engine => '/'"
+        # route 'end'
+        # route '  # Your dashboard routes goes here.'
+        # route 'in_dashboard do'
+        # route ''
+        # route 'end'
+        # route '  # Your API routes goes here.'
+        # route 'api_routes do'
+        # route ''
+        # route "mount Faalis::Engine => '/'"
+      end
+
+      def assets_manifests_initializer
+        initializer 'faalis_assets.rb' do
+          'Rails.application.config.assets.precompile += %w( faalis/simple.js )'
+        end
       end
 
       def patch_application_controller
         inject_into_class "app/controllers/application_controller.rb", ApplicationController, "  extend Faalis::I18n::Locale\n"
+      end
+
+      def add_gems
+        add_source 'http://rails-assets.org'
+
+        #gem 'turbolinks', github: 'rails/turbolinks'
+        gem 'jquery-turbolinks'
+
+        inside Rails.root do
+          run 'rm Gemfile.lock'
+          run 'bundle install'
+        end
       end
 
       def show_readme

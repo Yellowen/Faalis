@@ -8,8 +8,10 @@ require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'
 require 'database_cleaner'
+require 'capybara/rails'
 require 'capybara/rspec'
 require 'pundit/rspec'
+require 'sass-rails'
 
 FAALIS = File.join(File.dirname(__FILE__), '../')
 
@@ -28,7 +30,10 @@ Dir[File.join(FAALIS, 'spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+Capybara.javascript_driver = :webkit
+
 RSpec.configure do |config|
+  config.include Warden::Test::Helpers
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -44,7 +49,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -58,16 +63,27 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.before(:suite) do
+    Warden.test_mode!
+    DatabaseCleaner.clean_with(:truncation)
+
     begin
       DatabaseCleaner.start
-      #FactoryGirl.lint
     ensure
       DatabaseCleaner.clean
     end
   end
 
+  config.before(:each) do |example|
+    Capybara.app_host          = 'http://localhost:3000'
+    Capybara.server_host       = 'localhost'
+    Capybara.server_port       = '3000'
+
+    #Capybara.run_server        = false
+
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
 end

@@ -1,95 +1,36 @@
-<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+<div class="form-box" id="login-box">
+  <div class="header"><%=_("Sign Up") %></div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
-<div class="wrapper_signup">
-  <div class="row">
-    <div class="layout_signup">
-      <div class="row">
-	<div class="large-7 columns">
-          <h1><%=_("Sign Up") %></h1>
+    <div class="body bg-gray">
+      <% unless resource.errors.empty? %>
+        <br />
+        <div class="alert alert-danger" role="alert">
+          <i class="fa fa-warning"></i>
+          <%= devise_error_messages! %>
+        </div>
+      <% end %>
 
-	  <div class="justify row">
-            <i class="fa fa-coffee fa-5x"></i>
-
-            <p>
-	      <%= _("For registration you can fill the form .") %>
-            </p>
-	  </div>
-	  <br />
-
-	  <div class="justify row">
-	    <i class="fa-globe fa fa-5x"></i>
-            <p>
-	      <%= _("You can access the member information by registration on this site.") %>
-            </p>
-	  </div>
-
-	  <br />
-
-	  <div class="justify row">
-            <i class="fa-money fa fa-5x"></i>
-            <p>
-	      <%= _("If you are a registered member you can go to signin page") %>
-            </p>
-	  </div>
-
-	  <br />
-
-	  <div class="justify row">
-	    <i class="fa-group fa fa-5x"></i>
-            <p>
-	      <%= _("some text.") %>
-            </p>
-	  </div>
-<br>
-	</div>
-	<div class="large-4 columns">
-
-	  <div class="row">
-	    <section class="">
-	      <div class="form panel radius">
-		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-
-		  <div class="field">
-		    <label><%=_("Email") %></label>
-		    <%= f.email_field :email, :autofocus => true, :type => "text", :class => "input email", :placeholder=>_("E-mail") %>
-
-		    <% if resource.errors[:email] -%>
-		      <dd class="danger abel"><%= resource.errors[:email][0] %></dd>
-		    <% end -%>
-		  </div>
-
-		  <% if resource.send('password_required?'.to_sym) %>
-		    <div class="field">
-		      <label><%=_("Password") %></label>
-		      <%= f.password_field :password, :class => "password input" %>
-		      <% if resource.errors[:password] -%>
-			<dd class="danger abel"><%= resource.errors[:password][0] %></dd>
-		      <% end -%>
-
-		    </div>
-
-		    <div class="field">
-		      <label><%=_("Confim Password") %></label>
-		      <%= f.password_field :password_confirmation, :class => "password input" %>
-
-		    </div>
-
-		  <% end %>
-		  <br>
-		  <div class="submit"><%= f.submit "Sign up" , :class => "button" %></div>
-		<% end %>
-
-	      </div>
-
-	    </section>
-	  </div>
-
-
-	</div>
-
+      <div class="form-group <% if resource.errors[:email] -%>has-error<% end %>">
+        <%= f.email_field :email, :autofocus => true, :type => "text", :class => "form-control", :placeholder=>_("E-mail") %>
       </div>
+
+      <% if resource.send(:password_required?) %>
+        <div class="form-group <% if resource.errors[:password] -%>has-error<% end %>">
+	  <%= f.password_field :password, :class => "form-control", :placeholder=>_("Password")%>
+	</div>
+        <div class="form-group <% if resource.errors[:password_confirmation] -%>has-error<% end %>">
+	  <%= f.password_field :password_confirmation, :class => "form-control", :placeholder=>_("Confirm Password") %>
+	</div>
+      <% end %>
     </div>
-  </div>
+    <div class="footer">
+
+      <div class="submit"><%= f.submit "Sign up" , :class => "btn bg-olive btn-block" %></div>
+      <br /><br />
+      <%= render "devise/shared/links" %>
+
+    </div>
+  <% end %>
+  <%= render "devise/shared/omni_link" %>
 </div>

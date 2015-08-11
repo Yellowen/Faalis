@@ -1,11 +1,18 @@
-/* require variables
-// require bootstrap
-// require font-awesome
-// require AdminLTE
-// require base
-// require home
+//= require admin_lte/ltr/admin_lte
+//= require faalis/dashboard/share
+//= require_self
 
-//= require angular-loading-bar/loading-bar
-//= require dashstrap/dashboard/ltr/application
-//= require dashstrap/ltr/application
-*/
+.fa {
+   padding-right: 0.4em;
+}
+
+.user-image {
+  display: inline !important;
+}
+.user-name-span {
+  width: 100%;
+  display: inline !important;
+}
+.dropdown.user.user-menu {
+  width: auto;
+}

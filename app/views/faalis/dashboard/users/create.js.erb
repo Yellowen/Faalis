@@ -1,3 +1,3 @@
 success_message('<%= _("User saved successfully.") %>');
-var target = '<%= Rails.application.routes.url_helpers.send("#{Faalis::Engine.dashboard_namespace}_auth_users_path".to_sym) %>';
+var target = '<%= dashboard_auth_users_path %>';
 redirect_to(target);

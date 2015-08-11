@@ -1,6 +1,11 @@
 language: ruby
 rvm:
-  - 2.0.0-p247
-  - 2.1.2
   - 2.2.0
+
+before_install:
+  - "export DISPLAY=:99.0"
+
+install: bundle
+
 before_script: bundle exec rake db:migrate
+script: xvfb-run bundle exec rspec

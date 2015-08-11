@@ -5,6 +5,9 @@ source 'http://rails-assets.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
+dashstrap = [File.expand_path(File.dirname(__FILE__)),
+             '../dashstrap'].join('/')
+
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
@@ -15,25 +18,31 @@ gemspec
 
 group :development, :test do
   gem 'factory_girl'
+
   gem 'yard'
+  gem 'yard-rspec'
+  gem 'yardstick'
+  gem 'yard-rails'
   gem 'redcarpet'
   gem 'github-markup'
-  gem 'guard-livereload', require: false
+  gem 'yard-sitemap'
+
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
+  gem 'pry-doc'
   gem 'faker'
   gem 'rake'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
-
-  gem 'coffee-rails-source-maps'
-  gem 'sass-rails-source-maps'
-  gem "gettext", :group => :development
-  gem "ruby_parser", :group => :development
-  gem 'gettext_i18n_rails'
+  gem 'slim-rails'
+  gem 'dashstrap'#, path: dashstrap
+  gem 'turbolinks', github: 'rails/turbolinks'
+  gem 'jquery-turbolinks'
+  gem 'capybara-webkit'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
+gem 'admin_lte', path: '../admin_lte', group: :development
