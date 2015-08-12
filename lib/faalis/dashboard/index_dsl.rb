@@ -93,6 +93,14 @@ module Faalis::Dashboard
 
     # The actual DSL for index ages
     module ClassMethods
+      # User can provides the fields that he/she wants to be shown
+      # in the index page. By default `to_s` method will call on
+      # the field value.
+      # for example:
+      #
+      # class Dashboard::PostsController < Dashboard::ApplicationController
+      #   index_fields :title, created_at
+      # end
       def index_fields(*fields)
         define_method(:_fields) do
           return fields
@@ -101,6 +109,9 @@ module Faalis::Dashboard
         private :_fields
       end
 
+      # Via this method user can specify the engine or application name
+      # which current resource is defined under. Default value is:
+      # Rails.application
       def route_engine(name, &block)
         define_method(:_route_engine) do
           return block.call if block_given?
@@ -108,6 +119,8 @@ module Faalis::Dashboard
         end
       end
 
+      # Via this method user can specify the name of current resource
+      # scope, Default value is `dashboard`
       def route_scope(name, &block)
         define_method(:_route_scope) do
           return block.call if block_given?
