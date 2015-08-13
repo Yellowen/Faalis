@@ -1,5 +1,6 @@
 require_dependency 'faalis/dashboard/resource_dsl'
 require_dependency 'faalis/dashboard/index_dsl'
+require_dependency 'faalis/dashboard/new_dsl'
 
 module Faalis::Dashboard
   module DSL
@@ -7,6 +8,7 @@ module Faalis::Dashboard
 
     include Faalis::Dashboard::ResourceDSL
     include Faalis::Dashboard::IndexDSL
+    include Faalis::Dashboard::NewDSL
 
     attr_accessor :_override_views
 
