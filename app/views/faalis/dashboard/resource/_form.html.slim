@@ -1,0 +1,31 @@
+= semantic_form_for(@resource, url: @index_route, remote: true) do |f|
+  .row
+    .col-sm-12.col-lg-12
+      .box.box-primary
+        .box-header
+          .box-title
+            / TODO: add a DSL to provide a message for this section
+        .box-body
+          - @_fields.keys.each_with_index do |name, index|
+            - if index % 2 == 0
+             | <div class="row">
+            .col-sm-12.col-lg-6.col-md-6
+              .form-group data-name=(name)
+                = f.send(:input, name, **(@_fields_properties[name.to_sym] || {}))
+            - if index % 2 != 0
+             | </div>
+
+
+        .box-footer
+          .row
+            .col-sm-2
+              button.btn.btn-success.btn-block type="submit"
+                i.fa.fa-check
+                |
+                = _('Save')
+
+            .col-sm-2.pull-right
+
+              a.btn.btn-danger.btn-block href=(index)
+                i.fa.fa-times
+                = _('Cancel')
