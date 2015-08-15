@@ -22,6 +22,7 @@ require 'model_discovery'
 require 'pundit'
 require 'slim-rails'
 require 'formtastic'
+require 'formtastic-bootstrap'
 
 require_relative './middlewares/locale'
 

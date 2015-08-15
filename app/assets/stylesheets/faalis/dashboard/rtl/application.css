@@ -1,4 +1,5 @@
 //= require admin_lte/rtl/admin_lte
+//= require formtastic-bootstrap
 //= require faalis/dashboard/share
 //= require_self
 .fa {

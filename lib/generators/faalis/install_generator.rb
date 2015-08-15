@@ -91,7 +91,10 @@ module Faalis
       end
 
       def install_formtastic
-        generate "formtastic:install"
+        generate 'formtastic:install'
+        inject_into_file 'config/initializers/formtastic.rb' do
+          'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
+        end
       end
 
       def show_readme

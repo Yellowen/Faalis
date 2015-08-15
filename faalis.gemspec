@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
 
   # Forms
   s.add_dependency 'formtastic'
+  s.add_dependency 'formtastic-bootstrap'
 
   # Assets
   s.add_dependency 'sass-rails'

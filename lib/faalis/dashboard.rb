@@ -1,3 +1,4 @@
+require_dependency 'faalis/dashboard/form_fields_properties'
 require_dependency 'faalis/dashboard/resource_dsl'
 require_dependency 'faalis/dashboard/index_dsl'
 require_dependency 'faalis/dashboard/new_dsl'
