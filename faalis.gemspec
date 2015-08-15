@@ -35,6 +35,9 @@ Gem::Specification.new do |s|
   # API
   s.add_dependency 'jbuilder'
 
+  # Forms
+  s.add_dependency 'formtastic'
+
   # Assets
   s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'

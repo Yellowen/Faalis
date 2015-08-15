@@ -21,6 +21,7 @@ require 'modernizr-rails'
 require 'model_discovery'
 require 'pundit'
 require 'slim-rails'
+require 'formtastic'
 
 require_relative './middlewares/locale'
 

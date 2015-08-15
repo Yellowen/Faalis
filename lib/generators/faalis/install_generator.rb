@@ -38,7 +38,6 @@ module Faalis
         template 'devise.rb', 'config/initializers/devise.rb'
         template 'faalis.rb', 'config/initializers/faalis.rb'
         template 'fast_gettext.rb', 'config/initializers/fast_gettext.rb'
-        template 'formtastic.rb', 'config/initializers/formstatic.rb'
         template 'seeds.rb', 'db/seeds.rb'
         template 'api_controller.rb', 'app/controllers/api_controller.rb'
         template 'policy/application_policy.rb', 'app/policies/application_policy.rb'
@@ -58,15 +57,15 @@ module Faalis
       end
 
       def install_routes
-        # route 'end'
-        # route '  # Your dashboard routes goes here.'
-        # route 'in_dashboard do'
-        # route ''
-        # route 'end'
-        # route '  # Your API routes goes here.'
-        # route 'api_routes do'
-        # route ''
-        # route "mount Faalis::Engine => '/'"
+         route 'end'
+         route '  # Your dashboard routes goes here.'
+         route 'in_dashboard do'
+         route ''
+         route 'end'
+         route '  # Your API routes goes here.'
+         route 'api_routes do'
+         route ''
+         route "mount Faalis::Engine => '/'"
       end
 
       def assets_manifests_initializer
@@ -89,6 +88,10 @@ module Faalis
           run 'rm Gemfile.lock'
           run 'bundle install'
         end
+      end
+
+      def install_formtastic
+        generate "formtastic:install"
       end
 
       def show_readme
