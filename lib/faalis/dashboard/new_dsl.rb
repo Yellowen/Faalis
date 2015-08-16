@@ -21,7 +21,10 @@ module Faalis::Dashboard
 
     def create
       authorize model
+      setup_named_routes
+
       @resource = model.new(creation_params)
+      @resource.assign_attributes(**reflections_hash) if reflections_hash
 
       if @resource.save
         successful_response(:create)
@@ -45,10 +48,26 @@ module Faalis::Dashboard
         end
       end
 
+      def reflections_hash
+        reflections = model.reflections
+        result      = {}
+
+        reflections.each do |name, column|
+          value = creation_params[column.foreign_key]
+          result[column.foreign_key.to_sym] = value
+        end
+
+        return result unless result.empty?
+        nil
+      end
+
       def creation_params
         resource = model_name.underscore.to_sym
-        fields = all_valid_columns.map(&:to_sym)
-        params.require(resource).permit(fields)
+
+        # TODO: replace this line with a better solution to not
+        #       allowing the blacklisted fields like id, created_at and ...
+        fields   = model.columns_hash.keys.map(&:to_sym)
+        params.require(resource).permit(*fields)
       end
 
     private
