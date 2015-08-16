@@ -19,6 +19,23 @@ module Faalis::Dashboard
       render 'faalis/dashboard/resource/new'
     end
 
+    def edit
+      # TODO: Handle nested resource in here
+      @resource = model.find(params[:id])
+      authorize @resource
+
+      setup_named_routes
+      collect_model_fields
+
+      @resource_title = _resource_title.singularize
+      @_fields_properties = _form_fields
+      @_fields_properties.fields = all_valid_columns
+
+      return if _override_views.include? :edit
+      render 'faalis/dashboard/resource/edit'
+    end
+
+    # The actual action method for creating new resource.
     def create
       authorize model
       setup_named_routes
