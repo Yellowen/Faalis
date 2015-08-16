@@ -19,10 +19,21 @@ module Faalis::Dashboard
       render 'faalis/dashboard/resource/new'
     end
 
+    def create
+      authorize model
+      @resource = model.new(creation_params)
+
+      if @resource.save
+        successful_response(:create)
+      else
+        errorful_resopnse(:create)
+      end
+    end
+
     protected
 
       def collect_model_fields
-        @_fields = {}
+        @_fields ||= {}
         valid_columns = all_valid_columns
 
         _new_form_fields.each do |name|
@@ -32,6 +43,12 @@ module Faalis::Dashboard
             raise ArgumentError, "can't find '#{name}' field."
           end
         end
+      end
+
+      def creation_params
+        resource = model_name.underscore.to_sym
+        fields = all_valid_columns.map(&:to_sym)
+        params.require(resource).permit(fields)
       end
 
     private
@@ -44,16 +61,18 @@ module Faalis::Dashboard
 
       def all_valid_columns
         return @all_valid_columns unless @all_valid_columns.nil?
-        columns   = model.columns_hash
+        columns   = model.columns_hash.dup
         relations = model.reflections
 
         relations.keys.each do |name|
           col    = relations[name]
           column = columns.delete col.foreign_key
-          columns[name] = column
+          columns[name] = column || 66
         end
 
         columns.delete('id')
+        columns.delete('created_at')
+        columns.delete('updated_at')
 
         @all_valid_columns = columns
       end
@@ -71,7 +90,7 @@ module Faalis::Dashboard
       # class Dashboard::PostsController < Dashboard::ApplicationController
       #   new_form_fields :title, created_at
       # end
-      def new_form_fields(*fields)
+      def new_form_fields(*fields, **options)
         define_method(:_new_form_fields) do
           fields.map(&:to_sym)
         end

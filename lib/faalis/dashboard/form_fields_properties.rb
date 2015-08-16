@@ -14,7 +14,9 @@ module Faalis::Dashboard
 
       all_fields.each do |name, field|
         unless fields.include?(name.to_sym)
-          send("setup_#{field.type}", name)
+          if self.respond_to? "setup_#{field.type}".to_sym
+            send("setup_#{field.type}", name)
+          end
         end
       end
     end

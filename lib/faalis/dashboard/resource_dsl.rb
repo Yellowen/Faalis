@@ -16,8 +16,12 @@ module Faalis::Dashboard
         controller_name.underscore
       end
 
+      def model_name
+        controller_name.classify
+      end
+
       def model
-        controller_name.classify.constantize
+        model_name.constantize
       end
 
     private
@@ -65,6 +69,28 @@ module Faalis::Dashboard
         @new_route   = guess_new_route
         @show_route  = guess_show_route
         @edit_route  = guess_edit_route
+      end
+
+      def successful_response(section)
+        respond_to do |f|
+          if _override_views.include? section.to_sym
+            f.js
+            f.html
+          else
+            f.js { render "faalis/dashboard/resource/#{section}" }
+          end
+        end
+      end
+
+      def errorful_resopnse(section)
+        respond_to do |f|
+          if _override_views.include? section.to_sym
+            f.js { render :errors }
+            f.html { render :errors }
+          else
+            f.js { render 'faalis/shared/errors' }
+          end
+        end
       end
 
     # The actual DSL for resource ages
