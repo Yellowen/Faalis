@@ -93,6 +93,11 @@ module Faalis::Dashboard
         end
       end
 
+      # TODO: Move this method to a suitable place
+      def symbolify_keys(hash)
+        hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      end
+
     # The actual DSL for resource ages
     module ClassMethods
       # Via this method user can specify the engine or application name

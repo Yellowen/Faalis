@@ -35,6 +35,28 @@ module Faalis::Dashboard
       render 'faalis/dashboard/resource/edit'
     end
 
+    def update
+      # TODO: Handle nested resource in here
+      @resource = model.find(params[:id])
+      authorize @resource
+
+      setup_named_routes
+      new_params = creation_params
+      new_params.merge(reflections_hash) if reflections_hash
+
+      # TODO: Move this method to a suitable place instead of controller
+      #       itself
+      new_params = symbolify_keys(new_params)
+
+      @resource.assign_attributes(**new_params)
+
+      if @resource.save
+        successful_response(:update)
+      else
+        errorful_resopnse(:update)
+      end
+    end
+
     # The actual action method for creating new resource.
     def create
       authorize model
@@ -66,6 +88,7 @@ module Faalis::Dashboard
       end
 
       def reflections_hash
+        # TODO: cach the result using and instance_var or something
         reflections = model.reflections
         result      = {}
 

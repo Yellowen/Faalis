@@ -1,2 +1,3 @@
-- form_target = get_url(@index_route)
-= render partial: 'faalis/dashboard/resource/form', locals: { index: form_target }
+- form_target = get_url(@show_route, @resource.id)
+- index       = get_url(@index_route)
+= render partial: 'faalis/dashboard/resource/form', locals: { index: index, form_target: form_target}
