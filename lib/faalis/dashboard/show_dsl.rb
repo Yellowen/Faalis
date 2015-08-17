@@ -9,7 +9,7 @@ module Faalis::Dashboard
       authorize @resource
 
       setup_named_routes
-      collect_model_fields
+      collect_model_fields_for_show
 
       @resource_title     = _resource_title.singularize
 
@@ -19,9 +19,9 @@ module Faalis::Dashboard
 
     protected
 
-      def collect_model_fields
+      def collect_model_fields_for_show
         @_fields ||= {}
-        valid_columns = all_valid_columns
+        valid_columns = all_valid_columns_for_show
 
         _show_fields.each do |name|
           if valid_columns.keys.include? name.to_s
@@ -35,8 +35,8 @@ module Faalis::Dashboard
     private
 
 
-      def all_valid_columns
-        return @all_valid_columns unless @all_valid_columns.nil?
+      def all_valid_columns_for_show
+        return @all_valid_columns_for_show unless @all_valid_columns_for_show.nil?
         columns   = model.columns_hash.dup
         relations = model.reflections
 
@@ -46,11 +46,11 @@ module Faalis::Dashboard
           columns[name] = column
         end
 
-        @all_valid_columns = columns
+        @all_valid_columns_for_show = columns
       end
 
       def _show_fields
-        all_valid_columns.keys.map(&:to_sym)
+        all_valid_columns_for_show.keys.map(&:to_sym)
       end
 
     # The actual DSL for index ages

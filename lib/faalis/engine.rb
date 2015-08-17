@@ -23,6 +23,7 @@ require 'pundit'
 require 'slim-rails'
 require 'formtastic'
 require 'formtastic-bootstrap'
+require 'nprogress-rails'
 
 require_relative './middlewares/locale'
 

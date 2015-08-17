@@ -1,5 +1,7 @@
 //= require admin_lte/ltr/admin_lte
 //= require formtastic-bootstrap
+//= require nprogress
+//= require nprogress-bootstrap
 //= require faalis/dashboard/share
 //= require_self
 

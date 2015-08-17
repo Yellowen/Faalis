@@ -11,10 +11,19 @@ setup_icheck = ->
 setup_datepicker = ->
   $('.datetimepicker').datetimepicker()
 
+
+setup_loadindicator = ->
+  NProgress.configure({
+    showSpinner: false,
+    ease: 'ease',
+    speed: 500
+  })
+
 setup_controls = ->
   setup_select2()
   setup_icheck()
   setup_datepicker()
+  setup_loadindicator()
 
 $(document).on "page:load", ->
   setup_controls()

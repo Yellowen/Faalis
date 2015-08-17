@@ -8,12 +8,12 @@ module Faalis::Dashboard
       authorize model
       setup_named_routes
 
-      collect_model_fields
+      collect_model_fields_for_form
 
       @resource           = model.new
       @resource_title     = _resource_title.singularize
       @_fields_properties = _form_fields
-      @_fields_properties.fields = all_valid_columns
+      @_fields_properties.fields = all_valid_columns_for_form
 
       return if _override_views.include? :new
       render 'faalis/dashboard/resource/new'
@@ -25,11 +25,11 @@ module Faalis::Dashboard
       authorize @resource
 
       setup_named_routes
-      collect_model_fields
+      collect_model_fields_for_form
 
       @resource_title = _resource_title.singularize
       @_fields_properties = _form_fields
-      @_fields_properties.fields = all_valid_columns
+      @_fields_properties.fields = all_valid_columns_for_form
 
       return if _override_views.include? :edit
       render 'faalis/dashboard/resource/edit'
@@ -74,9 +74,9 @@ module Faalis::Dashboard
 
     protected
 
-      def collect_model_fields
+      def collect_model_fields_for_form
         @_fields ||= {}
-        valid_columns = all_valid_columns
+        valid_columns = all_valid_columns_for_form
 
         _new_form_fields.each do |name|
           if valid_columns.keys.include? name.to_s
@@ -114,12 +114,12 @@ module Faalis::Dashboard
 
       def _form_fields
         form = ::Faalis::Dashboard::FormFieldsProperties.new
-        form.fields = all_valid_columns
+        form.fields = all_valid_columns_for_form
         form
       end
 
-      def all_valid_columns
-        return @all_valid_columns unless @all_valid_columns.nil?
+      def all_valid_columns_for_form
+        return @all_valid_columns_for_form unless @all_valid_columns_for_form.nil?
         columns   = model.columns_hash.dup
         relations = model.reflections
 
@@ -133,11 +133,11 @@ module Faalis::Dashboard
         columns.delete('created_at')
         columns.delete('updated_at')
 
-        @all_valid_columns = columns
+        @all_valid_columns_for_form = columns
       end
 
       def _new_form_fields
-        all_valid_columns.keys.map(&:to_sym)
+        all_valid_columns_for_form.keys.map(&:to_sym)
       end
 
     # The actual DSL for index ages
