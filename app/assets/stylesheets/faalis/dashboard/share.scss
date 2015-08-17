@@ -9,3 +9,27 @@
 .select2-container .select2-choices {
   border-radius: 0px;
 }
+
+.resource {
+  &.details {
+    list-style: none;
+
+    li {
+      padding-top: 0.2em;
+
+      .header {
+        padding: .2em 0 0;
+
+      }
+
+      .result {
+        padding: .4em 0.2em;
+        background: #eeeeec;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+
+      }
+    }
+
+  }
+}

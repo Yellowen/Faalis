@@ -26,6 +26,8 @@
                   td
                     = resource.try(field.to_s).to_s || '-'
                 td.btn-user
+                  a.pull-left.link href=(get_url(@show_route, resource.id))
+                    i.fa.fa-eye
                   a.warning.link.pull-left href=(get_url(@edit_route, resource.id))
                     i.fa.fa-edit
                   a.link.pull-left href=(get_url(@show_route, resource.id)) data-remote="true" data-method="delete"

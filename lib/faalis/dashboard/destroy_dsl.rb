@@ -6,7 +6,7 @@ module Faalis::Dashboard
     # The actual action method of a dashboard controller
     def destroy
       @resource = model.find(params[:id])
-      authorize model
+      authorize @resource
       setup_named_routes
       @resource_title = _resource_title.singularize
       @resource.destroy

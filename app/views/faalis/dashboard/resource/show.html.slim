@@ -1,0 +1,23 @@
+.row
+  .col-sm-12.col-lg-12
+    .box.box-primary
+      .box-header
+        .box-title
+          / TODO: add a DSL to provide a message for this section
+      .box-body
+        ul.resource.details.col-sm-12.col-lg-6.col-md-6
+          - @_fields.keys.each_with_index do |name, index|
+            li
+              h5.header
+                = _(name.to_s.titleize) + ':'
+              h4.result
+                = @resource.send(name.to_sym) || "-"
+
+
+      .box-footer
+          .row
+
+            .col-sm-2.pull-right
+              a.btn.btn-warning.btn-block href=(get_url(@index_route))
+                i class=("fa fa-chevron-#{Faalis::I18n.direction(I18n.locale) == 'ltr' ? 'left' : 'right'}")
+                = _('Back')
