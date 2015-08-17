@@ -20,10 +20,10 @@ module Faalis
         def setup_sidebar
 
           user = OpenStruct.new(title: _('Users'),
-                                url: dashboard_auth_users_path)
+                                url: faalis.dashboard_auth_users_path)
 
           group = OpenStruct.new(title: _('Groups'),
-                                 url: dashboard_auth_groups_path)
+                                 url: faalis.dashboard_auth_groups_path)
 
           auth = OpenStruct.new(icon: 'fa fa-group',
                                 title: _('Authentication'),
