@@ -126,7 +126,7 @@ module Faalis::Dashboard
         relations.keys.each do |name|
           col    = relations[name]
           column = columns.delete col.foreign_key
-          columns[name] = column || 66
+          columns[name] = column || col
         end
 
         columns.delete('id')
