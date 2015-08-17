@@ -21,7 +21,7 @@
 
             - @resources.each do |resource|
 
-              tr id=("#{controller_name}_#{resource.id}")
+              tr id=("#{controller_name.singularize.underscore}_#{resource.id}")
                 - @index_fields.each do |field|
                   td
                     = resource.try(field.to_s).to_s || '-'
