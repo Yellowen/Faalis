@@ -97,6 +97,10 @@ module Faalis
         end
       end
 
+      def configure_kaminari
+        generate 'kaminari:config'
+      end
+
       def show_readme
         readme 'README' if behavior == :invoke
       end
