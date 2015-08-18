@@ -18,7 +18,7 @@ module Faalis::Dashboard
 
 
       def fetch_index_objects
-        model.all
+        model.page(params[:page]).per(2)
       end
 
     private

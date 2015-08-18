@@ -1,0 +1,3 @@
+li
+  = link_to_unless current_page.last?, raw("<i class='fa fa-angle-double-#{Faalis::I18n.direction(I18n.locale) == 'ltr' ? 'right' : 'left'}'></i>"),
+    url, remote: remote

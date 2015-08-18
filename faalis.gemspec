@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sprockets'
   s.add_dependency 'turbolinks'
   s.add_dependency 'jquery-turbolinks'
+  s.add_dependency 'kaminari'
 
   # TODO: It should be dependency of
   # dashboard or main template

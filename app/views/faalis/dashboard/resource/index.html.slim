@@ -10,7 +10,7 @@
             = _("new #{@dashboard_section_title}")
 
       .box-body.no-padding
-        table.table.table-striped
+        table.table.table-striped.datatable
           tbody
             tr
               - @index_fields.each do |field|
@@ -33,3 +33,6 @@
                   a.link.pull-left href=(get_url(@show_route, resource.id)) data-remote="true" data-method="delete"
                     i.fa.fa-remove.btn-remove
       .box-footer
+        .row
+          .col-xs-12.col-sm-12
+            = paginate @resources
