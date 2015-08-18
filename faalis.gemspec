@@ -61,6 +61,7 @@ Gem::Specification.new do |s|
   #s.add_dependency 'fast_gettext'
 
   # i18n
+  s.add_dependency 'rails-i18n'
   s.add_dependency 'gettext_i18n_rails'
   s.add_dependency 'colorize'
 

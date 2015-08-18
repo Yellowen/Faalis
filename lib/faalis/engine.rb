@@ -73,11 +73,6 @@ module Faalis
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
 
-    # TODO: Use application level locales default
-    # locales
-    mattr_accessor :locales
-    @@locales = ['en', 'fa']
-
     # ==> ORM configuration
     # Load and configure the ORM. Supports :active_record (default) and
     # :mongoid (bson_ext recommended) by default. Other ORMs may be
@@ -95,21 +90,17 @@ module Faalis
       yield self
     end
 
-    # I18n Configuration
-    I18n.enforce_available_locales = true
-    I18n.locale         = :en
-
     # Fast Gettext Configuration
     Object.send(:include, FastGettext::Translation)
 
     # TODO: Check for possible error in this configurations
-    @@locale_path = "#{root}/config/locales"
+    @@locale_path = File.expand_path("../../../config/locales", __FILE__)
     FastGettext.add_text_domain 'faalis', path: @@locale_path, type: :po
     # All languages you want to allow
-    FastGettext.default_available_locales = @@locales
+    FastGettext.default_available_locales = I18n.available_locales
 
     FastGettext.default_text_domain = 'faalis'
-    FastGettext.locale = :en
+    FastGettext.locale = I18n.default_locale
 
     # Site Title
     mattr_accessor :site_title

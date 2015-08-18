@@ -1,5 +1,5 @@
 = paginator.render do
-  ul.pagination.pagination-sm class=(Faalis::I18n.direction(I18n.locale) == 'ltr' ? 'pull-right' : 'pull-left')
+  ul.pagination.pagination-sm.pull-right
     == first_page_tag unless current_page.first?
     == prev_page_tag unless current_page.first?
 

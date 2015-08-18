@@ -12,7 +12,7 @@
             .col-sm-12.col-lg-6.col-md-6
               .form-group data-name=(name)
                 - hash = @_fields_properties[name.to_sym] || {}
-                = f.send(:input, name, **hash)
+                = f.send(:input, name, hash)
             - if index % 2 != 0
              | </div>
 

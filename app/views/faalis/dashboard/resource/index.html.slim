@@ -7,7 +7,7 @@
         .box-tools
           a.btn.btn-success.pull-right.btn-sm href=(get_url(@new_route))
             i.fa.fa-plus
-            = _("new #{@dashboard_section_title}")
+            = t("new #{@dashboard_section_title}")
 
       .box-body.no-padding
         table.table.table-striped.dataTable
@@ -15,7 +15,7 @@
             tr
               - @index_fields.each do |field|
                 th
-                  = _(field.to_s).humanize
+                  = t(field.to_s).humanize
               th.text-center
                 = _('Actions')
 

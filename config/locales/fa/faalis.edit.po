@@ -34,7 +34,7 @@ msgid "Email"
 msgstr "ایمیل"
 
 msgid "Faalis"
-msgstr ""
+msgstr "فالیس"
 
 msgid "For changing your password fill and submit the form."
 msgstr ""
