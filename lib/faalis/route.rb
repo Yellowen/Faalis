@@ -9,7 +9,7 @@ module Faalis
     end
 
     # Allow localized scope
-    def localized_scop
+    def localized_scope
       langs = ::I18n.available_locales.join('|')
       scope '(:locale)', locale: Regexp.new(langs) do
           yield

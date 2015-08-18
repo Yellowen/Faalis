@@ -20,8 +20,7 @@ class Faalis::ApplicationController < ActionController::Base
 
   include Pundit
 
-  #include FastGettext::Translation
-  before_filter :set_gettext_locale
+  include FastGettext::Translation
   before_filter :set_locale
 
  def set_locale

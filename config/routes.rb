@@ -15,7 +15,7 @@ Faalis::Engine.routes.draw do
     }
   end
 
-  localized_scop do
+  localized_scope do
     in_dashboard do
       scope :auth do
         resources :groups, as: 'auth_groups'
