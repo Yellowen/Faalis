@@ -43,6 +43,7 @@ module Faalis
     # Map `api` to `API` in Rails autoload
     ActiveSupport::Inflector.inflections(:en) do |inflect|
       inflect.acronym 'API'
+      inflect.acronym 'DSL'
     end
 
     config.generators do |g|

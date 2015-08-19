@@ -26,42 +26,39 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-      <li class="header"><%= _('MAIN NAVIGATION') %></li>
+      <li class="header"><%= @sidebar.title %></li>
 
       <li class="active treeview">
         <a href="/<%= Faalis::Engine.dashboard_namespace.to_s %>/">
           <i class="fa fa-dashboard"></i>
           <span>
-            <%= _('Dashboard') %>
+            <%= t('faalis.dashboard.dashboard') %>
           </span>
         </a>
       </li>
 
-      <% cache @sidebar do  %>
-        <% @sidebar.menu_entries.each do |menu| %>
-          <li class="treeview">
-            <a href="#">
-              <i class="<%= menu.icon %>"></i>
-              <span><%= menu.title %></span>
-              <!-- <span class="label label-primary pull-right">4</span> -->
-            </a>
-            <% unless menu.children.nil? %>
-              <ul class="treeview-menu slide">
-                <% menu.children.each do |submenu| %>
-                  <% unless menu.children.nil? %>
-                    <li>
-                      <a href="<%= submenu.url %>">
-                        <i class="<%= submenu.icon %>"></i>
-                        <%= submenu.title %>
-                      </a>
-                    </li>
-                  <% end %>
-                <% end %>
-              </ul>
-            <% end %>
-          </li>
-        <% end %>
+      <% @sidebar.children.each do |menu| %>
+        <li class="treeview">
+          <a href="#">
+            <i class="<%= menu.icon %>"></i>
+            <span><%= menu.title %></span>
+            <!-- <span class="label label-primary pull-right">4</span> -->
+          </a>
+          <% unless menu.children.nil? %>
+            <ul class="treeview-menu slide">
+              <% menu.children.each do |submenu| %>
+                <li>
+                  <a href="<%= submenu.url %>">
+                    <i class="<%= submenu.icon %>"></i>
+                    <%= submenu.title %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
       <% end %>
+
     </ul>
   </section>
   <!-- /.sidebar -->
