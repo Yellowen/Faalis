@@ -124,9 +124,13 @@ module Faalis::Dashboard::DSL
         relations = model.reflections
 
         relations.keys.each do |name|
-          col    = relations[name]
-          column = columns.delete col.foreign_key
-          columns[name] = column
+          has_many = ActiveRecord::Reflection::HasManyReflection
+
+          unless relations[name].is_a? has_many
+            col    = relations[name]
+            column = columns.delete col.foreign_key
+            columns[name] = column
+          end
         end
 
         columns.delete('id')

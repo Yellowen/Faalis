@@ -14,7 +14,10 @@ module Faalis::Dashboard
 
       all_fields.each do |name, field|
         unless fields.include?(name.to_sym)
-          Rails.logger.debug("FIELD NAME: #{name}, FIELD: #{field.type}")
+
+          Rails.logger.debug("FIELD NAME: #{name}")
+          Rails.logger.debug("FIELD TYPE: #{field.type}")
+
           if self.respond_to? "setup_#{field.type}".to_sym
             send("setup_#{field.type}", name)
           end
