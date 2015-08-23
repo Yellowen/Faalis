@@ -1,4 +1,4 @@
-module Faalis::Dashboard::DSL
+module Faalis::Dashboard::Sections
   module Resource
 
     extend ActiveSupport::Concern

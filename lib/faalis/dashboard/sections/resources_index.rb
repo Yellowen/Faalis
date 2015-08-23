@@ -1,4 +1,6 @@
-module Faalis::Dashboard::DSL
+require_dependency 'faalis/dashboard/dsl/index'
+
+module Faalis::Dashboard::Sections
   module ResourcesIndex
 
     extend ActiveSupport::Concern
@@ -18,7 +20,11 @@ module Faalis::Dashboard::DSL
 
 
       def fetch_index_objects
-        model.page(params[:page])
+        index_properties.scope(params)
+      end
+
+      def index_properties
+        Faalis::Dashboard::DSL::Index.new(model)
       end
 
     private
@@ -31,26 +37,35 @@ module Faalis::Dashboard::DSL
         result = fetch_index_objects
         instance_variable_set("@#{plural_name}", result)
 
-        @index_fields = _fields || model.column_names
+        @index_fields = index_properties.fields
         @resources    = result
       end
 
     # The actual DSL for index ages
     module ClassMethods
-      # User can provides the fields that he/she wants to be shown
-      # in the index page. By default `to_s` method will call on
-      # the field value.
-      # for example:
+
+      # To specify any property and action for `index` section
+      # you must use `in_index` class method with block of
+      # properties. For example:
       #
-      # class Dashboard::PostsController < Dashboard::ApplicationController
-      #   index_fields :title, created_at
-      # end
-      def index_fields(*fields)
-        define_method(:_fields) do
-          return fields
+      #   class ExamplesController < Dashboard::Application
+      #     in_index do
+      #       attributes :name, :description
+      #       action_button :close, dashboard_example_close_path
+      #     end
+      #   end
+      def in_index
+        index_props = Faalis::Dashboard::DSL::Index.new(model)
+
+        unless block_given?
+          fail ArgumentError, "You have to provide a block for 'in_index'"
         end
 
-        private :_fields
+        yield index_props
+
+        define_method(:index_properties) do
+          return index_props
+        end
       end
     end
   end

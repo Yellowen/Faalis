@@ -1,6 +1,6 @@
 require_dependency 'faalis/dashboard/models/sidebar'
 
-module Faalis::Dashboard::DSL
+module Faalis::Dashboard::Sections
   module Sidebar
 
     extend ActiveSupport::Concern
