@@ -20,7 +20,7 @@ module Faalis::Dashboard::Sections
 
 
       def fetch_index_objects
-        index_properties.scope(params)
+        index_properties.default_scope(params)
       end
 
       def index_properties
@@ -28,11 +28,6 @@ module Faalis::Dashboard::Sections
       end
 
     private
-
-      def _fields
-        nil
-      end
-
       def fetch_and_set_all
         result = fetch_index_objects
         instance_variable_set("@#{plural_name}", result)
@@ -54,14 +49,15 @@ module Faalis::Dashboard::Sections
       #       action_button :close, dashboard_example_close_path
       #     end
       #   end
-      def in_index
+      def in_index(&block)
+        model = controller_name.classify.constantize
         index_props = Faalis::Dashboard::DSL::Index.new(model)
 
         unless block_given?
           fail ArgumentError, "You have to provide a block for 'in_index'"
         end
 
-        yield index_props
+        index_props.instance_eval(&block) if block_given?
 
         define_method(:index_properties) do
           return index_props

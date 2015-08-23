@@ -52,8 +52,12 @@ module Faalis::Dashboard::DSL
     #
     # Arguments:
     # * **params**: Is the same params passed to controller action.
-    def scope(params)
-      return yield params if block_given?
+    def scope(&block)
+      @_default_scope = block
+    end
+
+    def default_scope(params)
+      return @_default_scope.call(params) if defined? @_default_scope
       model.page(params[:page])
     end
 
