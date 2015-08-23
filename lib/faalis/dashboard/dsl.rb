@@ -1,21 +1,21 @@
 require_dependency 'faalis/dashboard/dsl/form_fields_properties'
-require_dependency 'faalis/dashboard/dsl/resource'
-require_dependency 'faalis/dashboard/dsl/resources_index'
-require_dependency 'faalis/dashboard/dsl/resource_create'
-require_dependency 'faalis/dashboard/dsl/resource_show'
-require_dependency 'faalis/dashboard/dsl/resource_destroy'
-require_dependency 'faalis/dashboard/dsl/sidebar'
+require_dependency 'faalis/dashboard/sections/resource'
+require_dependency 'faalis/dashboard/sections/resources_index'
+require_dependency 'faalis/dashboard/sections/resource_create'
+require_dependency 'faalis/dashboard/sections/resource_show'
+require_dependency 'faalis/dashboard/sections/resource_destroy'
+require_dependency 'faalis/dashboard/sections/sidebar'
 
 module Faalis::Dashboard
   module DSL
     extend ActiveSupport::Concern
 
-    include Faalis::Dashboard::DSL::Resource
-    include Faalis::Dashboard::DSL::ResourcesIndex
-    include Faalis::Dashboard::DSL::ResourceCreate
-    include Faalis::Dashboard::DSL::ResourceShow
-    include Faalis::Dashboard::DSL::ResourceDestroy
-    include Faalis::Dashboard::DSL::Sidebar
+    include Faalis::Dashboard::Sections::Resource
+    include Faalis::Dashboard::Sections::ResourcesIndex
+    include Faalis::Dashboard::Sections::ResourceCreate
+    include Faalis::Dashboard::Sections::ResourceShow
+    include Faalis::Dashboard::Sections::ResourceDestroy
+    include Faalis::Dashboard::Sections::Sidebar
 
     attr_accessor :_override_views
 
