@@ -125,11 +125,16 @@ module Faalis::Dashboard::Sections
 
         relations.keys.each do |name|
           has_many = ActiveRecord::Reflection::HasManyReflection
+          has_and_belongs_to_many = ActiveRecord::Reflection::HasAndBelongsToManyReflection
 
           unless relations[name].is_a? has_many
-            col    = relations[name]
-            column = columns.delete col.foreign_key
-            columns[name] = column
+            if relations[name].is_a? has_and_belongs_to_many
+              columns[name] = Class.new { def self.type() :multiple_select end }
+            else
+              col    = relations[name]
+              column = columns.delete col.foreign_key
+              columns[name] = column
+            end
           end
         end
 

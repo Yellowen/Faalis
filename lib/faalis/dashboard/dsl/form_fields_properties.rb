@@ -18,7 +18,8 @@ module Faalis::Dashboard
           Rails.logger.debug("FIELD NAME: #{name}")
           Rails.logger.debug("FIELD TYPE: #{field.type}")
 
-          if self.respond_to? "setup_#{field.type}".to_sym
+          if self.respond_to?("setup_#{field.type}".to_sym, true)
+            puts "sdasda" * 100
             send("setup_#{field.type}", name)
           end
         end
@@ -76,6 +77,10 @@ module Faalis::Dashboard
 
       end
 
+      def setup_multiple_select(name)
+        self[name] = { as: :select,
+                       input_html: { class: 'multiple select' } }
+      end
 
   end
 end
