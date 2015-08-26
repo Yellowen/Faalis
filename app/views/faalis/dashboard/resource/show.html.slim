@@ -18,6 +18,6 @@
           .row
 
             .col-sm-2.pull-right
-              a.btn.btn-warning.btn-block href=(get_url(@index_route))
+              a.btn.btn-warning.btn-block href=(get_url(@index_route, @engine))
                 i class=("fa fa-chevron-#{Faalis::I18n.direction(I18n.locale) == 'ltr' ? 'left' : 'right'}")
                 = _('Back')

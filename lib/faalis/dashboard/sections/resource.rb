@@ -17,21 +17,36 @@ module Faalis::Dashboard::Sections
       end
 
       def model_name
-        controller_name.classify
+        controller_path.gsub('dashboard/', '').classify
       end
 
       def model
-        model_name.constantize
+        "::#{model_name}".constantize
+      rescue
+        msg = "Can't find model '::#{model_name}'. Please override \
+              'model' method in your dashboard controller."
+        fail NameError, msg
+      end
+
+      def namespace
+        pieces = controller_path.gsub('dashboard/', '').split('/')
+        return '' if pieces.length == 1
+        pieces.pop
+        pieces.join('/')
+      end
+
+      def _route_engine
+        if namespace.empty?
+          Rails.application
+        else
+          "#{namespace.split('/')[0]}::Engine".classify.constantize
+        end
       end
 
     private
 
       def _route_name
         nil
-      end
-
-      def _route_engine
-        Rails.application
       end
 
       def guess_index_route(scope  = 'dashboard')
@@ -64,11 +79,11 @@ module Faalis::Dashboard::Sections
       end
 
       def setup_named_routes
-        @engine      = _route_engine
-        @index_route = guess_index_route
-        @new_route   = guess_new_route
-        @show_route  = guess_show_route
-        @edit_route  = guess_edit_route
+        @engine        = _route_engine
+        @index_route   = guess_index_route
+        @new_route     = guess_new_route
+        @show_route    = guess_show_route
+        @edit_route    = guess_edit_route
       end
 
       def successful_response(section)

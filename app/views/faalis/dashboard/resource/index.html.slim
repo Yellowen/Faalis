@@ -5,7 +5,7 @@
         h3.box-title
           |
         .box-tools
-          a.btn.btn-success.pull-right.btn-sm href=(get_url(@new_route))
+          a.btn.btn-success.pull-right.btn-sm href=(get_url(@new_route, nil, @engine))
             i.fa.fa-plus
             = t("new #{@dashboard_section_title}")
 
@@ -15,9 +15,10 @@
             tr
               - @index_fields.each do |field|
                 th
-                  = t(field.to_s).humanize
+                  /= field
+                  = t("main_app.#{field}").humanize
               th.text-center
-                = _('Actions')
+                = t('actions')
 
             - @resources.each do |resource|
 
@@ -27,11 +28,11 @@
                     = resource.try(field.to_s).to_s || '-'
                 td.btn-user.text-center
                   .btn-group
-                    a.pull-left.link.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id))
+                    a.pull-left.link.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id, @engine))
                       i.fa.fa-eye
-                    a.warning.link.pull-left.btn.btn-xs.btn-default href=(get_url(@edit_route, resource.id))
+                    a.warning.link.pull-left.btn.btn-xs.btn-default href=(get_url(@edit_route, resource.id, @engine))
                       i.fa.fa-edit
-                    a.link.pull-left.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id)) data-remote="true" data-method="delete"
+                    a.link.pull-left.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete"
                       i.fa.fa-remove.btn-remove
       .box-footer
         .row

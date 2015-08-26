@@ -5,6 +5,8 @@ module Faalis
 
       desc 'Generates new Faalis resource.'
       argument :resource_name , type: :string, required: true
+      class_option :namespace, desc: 'The parent namespace'
+
       source_root File.expand_path('../templates', __FILE__)
 
       def create_pundit_file
@@ -13,7 +15,7 @@ module Faalis
 
       def create_controller
         template('dashboard/controller.rb.erb',
-                 "app/controllers/dashboard/#{resources}_controller.rb")
+                 "app/controllers/#{namespace.underscore + '/'}dashboard/#{resources}_controller.rb")
       end
 
       def inject_routes
@@ -32,6 +34,9 @@ module Faalis
         resource_name.pluralize.underscore
       end
 
+      def namespace
+        options["namespace"] || ''
+      end
     end
   end
 end

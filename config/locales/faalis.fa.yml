@@ -1,8 +1,12 @@
 ---
 fa:
   faalis:
+    engine_name: فالیس
     dashboard:
       users: کاربران
       groups: گروه ها
       user_management: مدیریت کاربران
       dashboard: داشبرد
+      sidebar:
+        online: آنلاین
+        search: جستوجو
