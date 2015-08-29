@@ -30,30 +30,3 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 Perform `rake db:migrate db:seed` and enjoy Faalis
 
 > **NOTE**: You can specify the ORM you'd like to use in `config/initializers/faalis.rb`
-
-## Documents
-There are a couple of guides along with **Ruby** and **JavaScript** API documents
-inside the source tree. We use `yardoc` so you can build them easily or look at automated [rubydoc](http://rubydoc.info/gems/faalis)
-docs.
-
-Also take a look at [Wiki of Faalis](https://github.com/Yellowen/Faalis/wiki).
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-Also you can join us in our `IRC` channel: **#Faalis** on freenode. ( It will redirect you to #5hit :P )
-
-## Credit
-![Yellowen](http://www.yellowen.com/images/logo.png)
-
-**Faalis**  is maintained and funded by Yellowen. Whenever a code snippet is borrowed or inspired by existing code, we try to credit the original developer/designer in our source code. Let us know if you think we have missed to do this.
-
-
-# License
-
-**Faalis** is Copyright © 2013-2015 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
