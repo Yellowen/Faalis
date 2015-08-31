@@ -30,3 +30,5 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 Perform `rake db:migrate db:seed` and enjoy Faalis
 
 > **NOTE**: You can specify the ORM you'd like to use in `config/initializers/faalis.rb`
+
+Done. Now you're ready to start developing your application using **Faalis**. Have fun.
