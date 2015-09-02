@@ -151,6 +151,32 @@ module Faalis::Dashboard::Sections
 
     # The actual DSL for index ages
     module ClassMethods
+
+      # To specify any property and action for `form` section both new and edit
+      # You must use `in_form` class method with block of properties. For
+      # example:
+      #
+      #   class ExamplesController < Dashboard::Application
+      #     in_form do
+      #       attributes :name, :description
+      #       action_button :close, dashboard_example_close_path
+      #     end
+      #   end
+      def in_form(&block)
+        model = controller_name.classify.constantize
+        form_props = Faalis::Dashboard::DSL::Create.new(model)
+
+        unless block_given?
+          fail ArgumentError, "You have to provide a block for 'in_form'"
+        end
+
+        form_props.instance_eval(&block) if block_given?
+
+        define_method(:form_properties) do
+          return form_props
+        end
+      end
+
       # User can provides the fields that he/she wants to be shown
       # in the form for resource creation page.
       # for example:
