@@ -90,15 +90,17 @@ module Faalis
         end
       end
 
-      def install_formtastic
-        generate 'formtastic:install'
-        inject_into_file 'config/initializers/formtastic.rb' do
-          'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
-        end
-      end
 
       def configure_kaminari
         generate 'kaminari:config'
+      end
+
+      def install_formtastic
+        generate 'formtastic:install'
+
+        append_to_file 'config/initializers/formtastic.rb' do
+          'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
+        end
       end
 
       def show_readme
