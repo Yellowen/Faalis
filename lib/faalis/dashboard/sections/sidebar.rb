@@ -8,7 +8,7 @@ module Faalis::Dashboard::Sections
     protected
 
       def setup_sidebar
-        @sidebar = sidebar do |sidebar|
+        @sidebar = sidebar(t('dashboard')) do |sidebar|
           sidebar.faalis_entries
         end
       end
