@@ -1,3 +1,5 @@
+require_dependency 'faalis/dashboard/dsl/create'
+
 module Faalis::Dashboard::Sections
   module ResourceCreate
 
