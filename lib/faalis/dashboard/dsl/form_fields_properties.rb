@@ -57,30 +57,6 @@ module Faalis::Dashboard
       fields
     end
 
-    private
-
-      def setup_datetime(name)
-        self[name] = { as: :string,
-                       input_html: { class: 'datetimepicker' }}
-
-      end
-
-      def setup_time(name)
-        self[name] = { as: :string,
-                       input_html: { class: 'timepicker' }}
-
-      end
-
-      def setup_date(name)
-        self[name] = { as: :string,
-                       input_html: { class: 'datepicker' }}
-
-      end
-
-      def setup_multiple_select(name)
-        self[name] = { as: :select,
-                       input_html: { class: 'multiple select' } }
-      end
 
   end
 end

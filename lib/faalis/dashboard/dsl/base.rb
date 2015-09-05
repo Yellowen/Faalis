@@ -14,6 +14,10 @@ module Faalis::Dashboard::DSL
     #  in_index do
     #    # This will yield an instance of this class child
     #  end
+    #
+    # The most important note in this class is that all the public
+    # methods that their name starts with an underscore (_) not meant to
+    # be used as DSL.
     def initialize(model)
       @action_buttons = {}
       @model          = model
@@ -35,26 +39,15 @@ module Faalis::Dashboard::DSL
     # columns in index section
     def attributes(*fields_name, **options, &block)
       # TODO: use options parameter to implement an except feature
-      @fields = fields_name unless fields_name.empty?
-      @fields.concat(block.call) if block_given?
-    end
 
-    # Specify attributes type, for example if you want to change a datetime
-    # field type to string you need to do like this:
-    #
-    #  in_form do
-    #    attributes_type date: :string
-    #  end
-    def attributes_type(**options)
-      options_set = Set.new options.keys.map(&:to_s)
-
-      unless options_set.subset? Set.new(@fields)
-        fail "You have to provide correct attribute names in" +
-             "'attributes_type' for '#{@model}'."
+      fields_name.each do |name|
+        unless @fields.include? name.to_s
+          raise ArgumentError, "can't find '#{name}' field for model '#{model}'."
+        end
       end
 
-      # TODO: Check for valid value for each key
-      @field_types = options
+      @fields = fields_name.map(&:to_s) unless fields_name.empty?
+      @fields.concat(block.call.map(&:to_s)) if block_given?
     end
 
     # Return the default scope for current properties object.
