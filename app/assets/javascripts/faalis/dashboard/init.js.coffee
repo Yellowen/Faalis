@@ -10,6 +10,7 @@ setup_icheck = ->
 
 setup_datepicker = ->
   $('.datetimepicker').datetimepicker()
+  $('.datepicker').datetimepicker()
 
 
 setup_loadindicator = ->

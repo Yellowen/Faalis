@@ -6,7 +6,7 @@
           .box-title
             / TODO: add a DSL to provide a message for this section
         .box-body
-          - @_fields.keys.each_with_index do |name, index|
+          - @_fields.each_with_index do |name, index|
             - if index % 2 == 0
              | <div class="row">
             .col-sm-12.col-lg-6.col-md-6
