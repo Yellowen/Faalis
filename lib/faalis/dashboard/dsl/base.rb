@@ -1,3 +1,5 @@
+require 'set'
+
 module Faalis::Dashboard::DSL
   class Base
     attr_reader :action_buttons, :fields, :model
@@ -16,6 +18,7 @@ module Faalis::Dashboard::DSL
       @action_buttons = {}
       @model          = model
       @fields         = resolve_model_reflections
+      @fields_type    = {}
     end
 
     # Define a new action button to be added to the
@@ -34,6 +37,24 @@ module Faalis::Dashboard::DSL
       # TODO: use options parameter to implement an except feature
       @fields = fields_name unless fields_name.empty?
       @fields.concat(block.call) if block_given?
+    end
+
+    # Specify attributes type, for example if you want to change a datetime
+    # field type to string you need to do like this:
+    #
+    #  in_form do
+    #    attributes_type date: :string
+    #  end
+    def attributes_type(**options)
+      options_set = Set.new options.keys.map(&:to_s)
+
+      unless options_set.subset? Set.new(@fields)
+        fail "You have to provide correct attribute names in" +
+             "'attributes_type' for '#{@model}'."
+      end
+
+      # TODO: Check for valid value for each key
+      @field_types = options
     end
 
     # Return the default scope for current properties object.
@@ -68,15 +89,31 @@ module Faalis::Dashboard::DSL
     def resolve_model_reflections
       # TODO: cach the result using and instance_var or something
       reflections = model.reflections
-      columns = model.column_names
+      columns     = Set.new model.column_names
+      new_fields  = Set.new
+      fields_to_remove = Set.new
 
       reflections.each do |name, column|
-        if columns.include? column.foreign_key.to_s
-          index          = columns.index(column.foreign_key)
-          columns[index] = name.to_s
+        has_many = ActiveRecord::Reflection::HasManyReflection
+        has_and_belongs_to_many = ActiveRecord::Reflection::HasAndBelongsToManyReflection
+
+        if !column.is_a?(has_many) && !column.is_a?(has_and_belongs_to_many)
+          new_fields << name.to_s
+          fields_to_remove << column.foreign_key.to_s
         end
       end
-      columns
+
+      if model.respond_to? :attachment_definitions
+        # Paperclip is installed and model contains attachments
+        model.attachment_definitions.each do |name, _|
+          new_fields << name.to_s
+          ["file_name", "content_type", "file_size", "updated_at"].each do |x|
+            fields_to_remove << "#{name}_#{x}"
+          end
+        end
+      end
+
+      columns.union(new_fields) - fields_to_remove
     end
   end
 end
