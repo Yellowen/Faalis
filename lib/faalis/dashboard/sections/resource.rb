@@ -8,6 +8,7 @@ module Faalis::Dashboard::Sections
     end
 
     protected
+
       def _resources
         instance_variable_get("@{plural_name")
       end
@@ -47,6 +48,14 @@ module Faalis::Dashboard::Sections
 
       def _route_name
         nil
+      end
+
+      def attachment_fields
+        if model.respond_to? :attachment_definitions
+          model.attachment_definitions.keys
+        end
+
+        []
       end
 
       def guess_index_route(scope  = 'dashboard')

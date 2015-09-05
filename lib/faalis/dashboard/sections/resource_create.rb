@@ -14,8 +14,7 @@ module Faalis::Dashboard::Sections
 
       @resource           = model.new
       @resource_title     = _resource_title.singularize
-      @_fields_properties = _form_fields
-      @_fields_properties.fields = all_valid_columns_for_form
+      @_fields_properties = form_properties._field_details
 
       return if _override_views.include? :new
       render 'faalis/dashboard/resource/new'
@@ -29,9 +28,8 @@ module Faalis::Dashboard::Sections
       setup_named_routes
       collect_model_fields_for_form
 
-      @resource_title = _resource_title.singularize
-      @_fields_properties = _form_fields
-      @_fields_properties.fields = all_valid_columns_for_form
+      @resource_title     = _resource_title.singularize
+      @_fields_properties = form_properties._field_details
 
       return if _override_views.include? :edit
       render 'faalis/dashboard/resource/edit'
@@ -77,16 +75,7 @@ module Faalis::Dashboard::Sections
     protected
 
       def collect_model_fields_for_form
-        @_fields ||= {}
-        valid_columns = all_valid_columns_for_form
-
-        _new_form_fields.each do |name|
-          if valid_columns.keys.include? name.to_s
-            @_fields[name.to_sym] = valid_columns[name.to_s]
-          else
-            raise ArgumentError, "can't find '#{name}' field."
-          end
-        end
+        @_fields ||= form_properties.fields_for_form
       end
 
       def reflections_hash
@@ -108,17 +97,13 @@ module Faalis::Dashboard::Sections
 
         # TODO: replace this line with a better solution to not
         #       allowing the blacklisted fields like id, created_at and ...
-        fields   = model.columns_hash.keys.map(&:to_sym)
+        fields = model.columns_hash.keys.map(&:to_sym)
+        fields.concat(attachment_fields)
+
         params.require(resource).permit(*fields)
       end
 
     private
-
-      def _form_fields
-        form = ::Faalis::Dashboard::FormFieldsProperties.new
-        form.fields = all_valid_columns_for_form
-        form
-      end
 
       def all_valid_columns_for_form
         return @all_valid_columns_for_form unless @all_valid_columns_for_form.nil?
@@ -145,6 +130,10 @@ module Faalis::Dashboard::Sections
         columns.delete('updated_at')
 
         @all_valid_columns_for_form = columns
+      end
+
+      def form_properties
+        Faalis::Dashboard::DSL::Create.new(model)
       end
 
       def _new_form_fields
@@ -177,6 +166,8 @@ module Faalis::Dashboard::Sections
         define_method(:form_properties) do
           return form_props
         end
+
+        private :form_properties
       end
 
       # User can provides the fields that he/she wants to be shown
