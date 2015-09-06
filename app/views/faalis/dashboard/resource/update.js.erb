@@ -1,3 +1,3 @@
-success_message('<%= _("%s saved successfully.") % @resource_title %>');
+success_message('<%= @_msg || t("faalis.dashboard.edit_success_msg", resource: @resource_title) %>');
 var target = '<%= get_url(@index_route, @engine) %>';
 redirect_to(target);

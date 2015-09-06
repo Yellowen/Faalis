@@ -1,3 +1,4 @@
+require 'set'
 require_dependency 'faalis/dashboard/dsl/create'
 
 module Faalis::Dashboard::Sections
@@ -15,6 +16,7 @@ module Faalis::Dashboard::Sections
       @resource           = model.new
       @resource_title     = _resource_title.singularize
       @_fields_properties = form_properties._field_details
+      @multipart          = has_attachment?
 
       return if _override_views.include? :new
       render 'faalis/dashboard/resource/new'
@@ -30,6 +32,7 @@ module Faalis::Dashboard::Sections
 
       @resource_title     = _resource_title.singularize
       @_fields_properties = form_properties._field_details
+      @multipart          = has_attachment?
 
       return if _override_views.include? :edit
       render 'faalis/dashboard/resource/edit'
@@ -98,8 +101,8 @@ module Faalis::Dashboard::Sections
         # TODO: replace this line with a better solution to not
         #       allowing the blacklisted fields like id, created_at and ...
         fields = model.columns_hash.keys.map(&:to_sym)
-        fields.concat(attachment_fields)
-
+        fields.concat(attachment_fields.map(&:to_sym ))
+        fields = Set.new(fields).map(&:to_sym)
         params.require(resource).permit(*fields)
       end
 

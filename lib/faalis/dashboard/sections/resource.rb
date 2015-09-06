@@ -52,10 +52,14 @@ module Faalis::Dashboard::Sections
 
       def attachment_fields
         if model.respond_to? :attachment_definitions
-          model.attachment_definitions.keys
+          return model.attachment_definitions.keys
         end
 
         []
+      end
+
+      def has_attachment?
+        !attachment_fields.empty?
       end
 
       def guess_index_route(scope  = 'dashboard')
@@ -95,24 +99,34 @@ module Faalis::Dashboard::Sections
         @edit_route    = guess_edit_route
       end
 
-      def successful_response(section)
+      def successful_response(section, msg = nil)
+        @_msg = msg
+
         respond_to do |f|
           if _override_views.include? section.to_sym
             f.js
             f.html
           else
+            flash[:success] = msg
+            # TODO: We really need to put setup routed on top of this method
             f.js { render "faalis/dashboard/resource/#{section}" }
+            f.html { redirect_to @index_route }
           end
         end
       end
 
-      def errorful_resopnse(section)
+      def errorful_resopnse(section, msg = nil)
+        @_msg = msg
+
         respond_to do |f|
           if _override_views.include? section.to_sym
             f.js { render :errors }
             f.html { render :errors }
           else
+            flash[:error] = msg
+            # TODO: We really need to put setup routed on top of this method
             f.js { render 'faalis/shared/errors' }
+            f.html { redirect_to @index_route }
           end
         end
       end
