@@ -38,15 +38,22 @@ module Faalis::Dashboard::DSL
     # in respected section. For example attributes to show as header
     # columns in index section
     def attributes(*fields_name, **options, &block)
-      # TODO: use options parameter to implement an except feature
-
-      fields_name.each do |name|
-        unless @fields.include? name.to_s
-          raise ArgumentError, "can't find '#{name}' field for model '#{model}'."
+      if options.include? :except
+        @fields = resolve_model_reflections.reject do |field|
+          options[:except].include? field.to_sym
         end
+      else
+
+        # Check for valid field names
+        fields_name.each do |name|
+          unless @fields.include? name.to_s
+            raise ArgumentError, "can't find '#{name}' field for model '#{model}'."
+          end
+        end
+        # set new value for fields
+        @fields = fields_name.map(&:to_s) unless fields_name.empty?
       end
 
-      @fields = fields_name.map(&:to_s) unless fields_name.empty?
       @fields.concat(block.call.map(&:to_s)) if block_given?
     end
 

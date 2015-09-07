@@ -1,0 +1,14 @@
+---
+en:
+  faalis:
+    home: Home
+    not_authorized: You are not authorized to perform this action.
+    engine_name: Faalis
+    dashboard:
+      users: Users
+      groups: Groups
+      user_management: User Management
+      dashboard: Dashboard
+      sidebar:
+        online: Online
+        search: Search

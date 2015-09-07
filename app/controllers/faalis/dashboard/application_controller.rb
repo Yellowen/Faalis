@@ -18,14 +18,14 @@ module Faalis
       protected
 
         def setup_header
-          @dashboard_section_title = _(controller_name).humanize
-          @dashboard_section_slug  = _(action_name).humanize
+          @dashboard_section_title = t(controller_name.underscore)
+          @dashboard_section_slug  = t(action_name)
         end
 
       private
 
         def user_not_authorized
-          flash[:alert] = _('You are not authorized to perform this action.')
+          flash[:alert] = t('faalis.not_authorized')
           redirect_to new_user_session_path
         end
 

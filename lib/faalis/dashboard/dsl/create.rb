@@ -108,5 +108,10 @@ module Faalis::Dashboard::DSL
           input_html: { class: 'multiple select' }
         }
       end
+
+      def setup_integer(name)
+        { as: nil }
+      end
+
   end
 end

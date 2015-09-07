@@ -1,7 +1,7 @@
 // Content Header (Page header)
 section.content-header
       h1
-        = @dashboard_section_title || _('Dashboard')
+        = @dashboard_section_title || t('faalis.dashboard.dashboard')
         small
           = @dashboard_section_slug || Faalis::Engine.try(:slug)  || 'SLUG'
 
@@ -9,7 +9,7 @@ section.content-header
         li
           a href="#"
             i.fa.fa-dashboard
-            = _('Home')
+            = t('faalis.home')
 
         li.active
-          = _('Dashboard')
+          = t('faalis.dashboard.dashboard')

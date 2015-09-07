@@ -1,8 +1,13 @@
 ---
 fa:
   faalis:
+    actions: فرامین
+    home: 'خانه'
+    not_authorized: شما مجاز به انجام این فعالیت نیستید.
     engine_name: فالیس
     dashboard:
+      index_view:
+        new_button: '%{title} جدید'
       users: کاربران
       groups: گروه ها
       user_management: مدیریت کاربران
