@@ -3,6 +3,15 @@ Generally **Dashboard** subsystem will be installed with a default **Faalis** in
 mount point and just contains necessary views and controllers to do **CRUD** actions on `Faalis::Users` and
 `Faalis::Group` models. Basically just working with users, groups and their permissions.
 
+Before continue you should be aware of two main rules:
+
+1- Dashboard subsystem is just like a normal Rails application. There is nothing magical about it. So
+you can easily do what ever you like with Rails for your dashboard. **Faalis** just provides easier
+way to do the whole thing.
+
+2- If you use the **Faalis** approach to extend your dashboard you should know that models play the main role
+in **Faalis** dashboard's scenario.
+
 Let's explain the **dashboard** system in the hard way first. If you don't like the hard way approach skip
 it.
 
