@@ -30,3 +30,15 @@ end
 ```
 
 pretty simple right ?
+
+
+## Dashboard the easy way
+Ok, let's say you have a model called `Post` and you want to create a CRUD interface for it in you dashboard. all
+you have to do is to invoke `faalis:resource` generator like this:
+
+```bash
+$ rails generate faalis:resource post
+```
+
+This generator will creates all the means necessary to grant your wish. Now if you navigate to `/dashboard/posts` you'll
+see the list of your posts. Piece of cake, right ?
