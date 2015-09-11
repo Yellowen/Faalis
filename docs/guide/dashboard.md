@@ -42,3 +42,9 @@ $ rails generate faalis:resource post
 
 This generator will creates all the means necessary to grant your wish. Now if you navigate to `/dashboard/posts` you'll
 see the list of your posts. Piece of cake, right ?
+
+## Dashboard Controller DSL
+Do you remember the rule one ? The dashboard subsystem is just a Rails application nothing special. But you can use
+the `Faalis::Dashboard::ApplicationController` as you're parent controller ( if you use the easy solution you're already
+doing that ) and benefit from the **DSL** of **Faalis** dashboard controller. This way you can tweak your dashboard interface in
+the way you want.
