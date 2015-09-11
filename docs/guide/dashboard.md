@@ -43,6 +43,9 @@ $ rails generate faalis:resource post
 This generator will creates all the means necessary to grant your wish. Now if you navigate to `/dashboard/posts` you'll
 see the list of your posts. Piece of cake, right ?
 
+> Note: If you want to create a menu entry on the sidebar for your created dashboard resource, checkout
+> [Sidebar Guide](sidebar.md).
+
 ## Dashboard Controller DSL
 Do you remember the rule one ? The dashboard subsystem is just a Rails application nothing special. But you can use
 the `Faalis::Dashboard::ApplicationController` as you're parent controller ( if you use the easy solution you're already
@@ -66,3 +69,4 @@ DSL.
 Let's start with the shared DSLs
 
 ### attributes
+### actions
