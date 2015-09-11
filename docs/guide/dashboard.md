@@ -48,3 +48,21 @@ Do you remember the rule one ? The dashboard subsystem is just a Rails applicati
 the `Faalis::Dashboard::ApplicationController` as you're parent controller ( if you use the easy solution you're already
 doing that ) and benefit from the **DSL** of **Faalis** dashboard controller. This way you can tweak your dashboard interface in
 the way you want.
+
+Generally there is three main sections for each resource in dashboard, `index`, `new` and `edit` sections. And a forth section that
+is just a shortcut for both `new` and `edit` sections that is `form` section. Each section have different DSL but there are several
+shared methods between them. First of all you need to specify the section you want to tweak. This is easy, you can do like this:
+
+```ruby
+in_<section> do
+  # Tweak DSL goes here . . .
+end
+```
+
+As you already guessed you should fill `<section>` which the corresponding section. for example in case of `index` section you should
+do like this `in_index` and provide a block for this method. Then you can tweak the index section as you want using the dashboard tweaking
+DSL.
+
+Let's start with the shared DSLs
+
+### attributes
