@@ -57,15 +57,13 @@ module Faalis
       end
 
       def install_routes
-         route 'end'
+         route "end\n"
          route '  # Your dashboard routes goes here.'
          route 'in_dashboard do'
-         route ''
-         route 'end'
+         route "end\n"
          route '  # Your API routes goes here.'
          route 'api_routes do'
-         route ''
-         route "mount Faalis::Engine => '/'"
+         route "mount Faalis::Engine => '/'\n"
       end
 
       def assets_manifests_initializer
@@ -79,12 +77,24 @@ module Faalis
       end
 
       def add_gems
-        add_source 'http://rails-assets.org'
-        gem 'rails-assets-bootstrap-rtl'
-        gem 'rails-assets-jquery-knob'
-        gem 'rails-assets-bootstrap-daterangepicker'
-        gem 'rails-assets-jquery-sparkline'
-        gem 'rails-assets-jquery-icheck'
+        # Inject necessary gem files
+        if Rails.version.starts_with? '5'
+          add_source 'http://rails-assets.org' do
+            gem 'rails-assets-bootstrap-rtl'
+            gem 'rails-assets-jquery-knob'
+            gem 'rails-assets-bootstrap-daterangepicker'
+            gem 'rails-assets-jquery-sparkline'
+            gem 'rails-assets-jquery-icheck'
+          end
+
+        else
+          add_source 'http://rails-assets.org'
+          gem 'rails-assets-bootstrap-rtl'
+          gem 'rails-assets-jquery-knob'
+          gem 'rails-assets-bootstrap-daterangepicker'
+          gem 'rails-assets-jquery-sparkline'
+          gem 'rails-assets-jquery-icheck'
+        end
 
         #gem 'turbolinks', github: 'rails/turbolinks'
         gem 'jquery-turbolinks'
