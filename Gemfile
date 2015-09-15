@@ -5,9 +5,6 @@ source 'http://rails-assets.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
-dashstrap = [File.expand_path(File.dirname(__FILE__)),
-             '../dashstrap'].join('/')
-
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
@@ -38,7 +35,6 @@ group :development, :test do
   gem 'shoulda'
   #gem 'did_you_mean', github: 'yuki24/did_you_mean'
   gem 'slim-rails'
-  gem 'dashstrap'#, path: dashstrap
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
   gem 'capybara-webkit'

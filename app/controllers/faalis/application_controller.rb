@@ -20,7 +20,6 @@ class Faalis::ApplicationController < ActionController::Base
 
   include Pundit
 
-  include FastGettext::Translation
   before_filter :set_locale
 
  def set_locale
@@ -30,7 +29,6 @@ class Faalis::ApplicationController < ActionController::Base
      lang = I18n.default_locale
    end
 
-   FastGettext.set_locale(lang.to_s)
    session[:locale] = I18n.locale = :"#{lang}"
  end
 end

@@ -16,7 +16,6 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-require 'fast_gettext'
 require 'modernizr-rails'
 require 'model_discovery'
 require 'pundit'
@@ -26,8 +25,6 @@ require 'kaminari'
 
 require_relative './middlewares/locale'
 
-# required gettext related gem only in developement
-require 'gettext_i18n_rails' if Rails.env.development?
 
 module Faalis
 
@@ -91,21 +88,9 @@ module Faalis
       yield self
     end
 
-    # Fast Gettext Configuration
-    Object.send(:include, FastGettext::Translation)
-
-    # TODO: Check for possible error in this configurations
-    @@locale_path = File.expand_path("../../../config/locales", __FILE__)
-    FastGettext.add_text_domain 'faalis', path: @@locale_path, type: :po
-    # All languages you want to allow
-    FastGettext.default_available_locales = I18n.available_locales
-
-    FastGettext.default_text_domain = 'faalis'
-    FastGettext.locale = I18n.default_locale
-
     # Site Title
     mattr_accessor :site_title
-    @@site_title = _('Faalis')
+    @@site_title = I18n.t('faalis.engine_name')
 
     mattr_accessor :slug
 
@@ -119,22 +104,6 @@ module Faalis
       Devise::PasswordsController.layout 'faalis/application'
     end
     #Devise.omniauth_path_prefix = ["/en", "/fa"]
-
-    # TODO: Write a complete doc about dashboard_modules
-    # Dashboard configurations
-    mattr_accessor :dashboard_modules
-
-    # This class variable should be a hash
-    # that each key is a resource name and its value
-    # is some of these:
-    #       resource: provide resource name explicitly
-    #       title: resource title (will show in dashboard)
-    #       icon: icon class checkout font-awesome
-    @@dashboard_modules = { auth: { title: _('Authentication') } }
-
-    def self.dashboard_modules=(value)
-      @@dashboard_modules.merge!(value)
-    end
 
     # Dashboard default javascript manifest
     mattr_accessor :dashboard_js_manifest

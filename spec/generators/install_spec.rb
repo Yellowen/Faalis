@@ -34,7 +34,6 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
   it 'copies the config files' do
     file_exists('config/initializers/faalis.rb')
     file_exists('config/initializers/devise.rb')
-    file_exists('config/initializers/fast_gettext.rb')
     file_exists('config/initializers/formstatic.rb')
     file_exists('db/seeds.rb')
     file_exists('app/controllers/api_controller.rb')
