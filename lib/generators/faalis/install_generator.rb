@@ -80,9 +80,15 @@ module Faalis
 
       def add_gems
         add_source 'http://rails-assets.org'
+        gem 'rails-assets-bootstrap-rtl'
+        gem 'rails-assets-jquery-knob'
+        gem 'rails-assets-bootstrap-daterangepicker'
+        gem 'rails-assets-jquery-sparkline'
+        gem 'rails-assets-jquery-icheck'
 
         #gem 'turbolinks', github: 'rails/turbolinks'
         gem 'jquery-turbolinks'
+
 
         inside Rails.root do
           run 'rm Gemfile.lock'
