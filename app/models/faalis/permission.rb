@@ -27,7 +27,8 @@ module Faalis
     #alias_method :action, :permission_type
 
     def to_s
-      _("can %s %s") % [_(self.permission_type.to_s), self.model.underscore.humanize]
+      t('permission_string', action: t(self.permission_type.to_s),
+        model: t(self.model.underscore.humanize))
     end
 
     def id_repr

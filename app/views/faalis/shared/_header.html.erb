@@ -33,14 +33,14 @@
           </a>
 
           <ul class="dropdown-menu">
-            <li class="header"><%= _("Select a language")%></li>
+            <li class="header"><%= t("faalis.select_a_language")%></li>
             <% I18n.available_locales.each do |lang| %>
             <li>
               <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
                   <a href="/<%= lang %><%= request.env['PATH_INFO'] %>">
-                    <%= _(lang) %>
+                    <%= t(lang) %>
                   </a>
                   </li><!-- end task item -->
                 </ul>
@@ -62,7 +62,7 @@
               <img src="<%= current_user.gravatar %>" class="img-circle" alt="User Image" />
               <p>
                 <%= current_user.full_name %>
-                <small><%= _('Member since %s') % current_user.created_at %></small>
+                <small><%= t('faalis.member_since', date: current_user.created_at) %></small>
               </p>
             </li>
             <!-- Menu Body -->
@@ -83,7 +83,7 @@
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="<%= faalis.destroy_user_session_path %>" data-method="delete" class="btn btn-default btn-flat"><%= _('Sign out') %></a>
+                <a href="<%= faalis.destroy_user_session_path %>" data-method="delete" class="btn btn-default btn-flat"><%= t('sign_out') %></a>
               </div>
             </li>
           </ul>

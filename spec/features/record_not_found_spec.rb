@@ -10,18 +10,18 @@ feature 'Dashboard resource finder exception' do
   end
 
   scenario 'User try to find a resource which does not exists.' do
-    visit faalis.dashboard_auth_users_show_url({ id: 3242 })
+    visit faalis.dashboard_auth_user_url({ id: 3242 })
     expect(page).to have_text('404')
     expect(page).to have_text('Oops!')
   end
 
   scenario 'User try to find a resource which does not exists via js format.' do
-    visit @faalis.dashboard_auth_users_show_path({ id: 3242, format: :js})
+    visit @faalis.dashboard_auth_user_path({ id: 3242, format: :js})
     expect(page).to have_text('error_message(')
   end
 
   scenario 'User try to find a valid resource' do
-    visit @faalis.dashboard_auth_users_show_path({ id: 1 })
+    visit @faalis.dashboard_auth_user_path({ id: 1 })
     expect(page).not_to have_text('404')
     expect(page).to have_text('User')
     expect(page).not_to have_text('Oops!')

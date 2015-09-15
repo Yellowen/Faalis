@@ -1,7 +1,7 @@
 footer.main-footer
   .pull-right.hidden-xs
     b
-      = _('Faalis Version: ')
+      = "#{t('faalis.faalis_version')}: "
     = Faalis::VERSION
   strong
-    = _('&copy; 2013-2015 <a href="http://yellowen.com">Yellowen</a>.').html_safe
+    = t('faalis.copyright_html')

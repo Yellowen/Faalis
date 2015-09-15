@@ -1,10 +1,23 @@
 ---
 fa:
   faalis:
+    faalis_version: نسخه فالیس
+    copyright_html: |
+      &copy; 2013-2015 <a href="http://yellowen.com">Yellowen</a>.
+
+    page_not_found: آدرس پیدا نشد.
+    page_not_found_desc: آدرس که دنبال آن می گردید پیدا نشد
+
+    select_a_language: یک زبان را انتخاب کیند
+    en: English
+    fa: فارسی
     actions: فرامین
     home: 'خانه'
+    member_since: عضو از %{date}
     not_authorized: شما مجاز به انجام این فعالیت نیستید.
     engine_name: فالیس
+    sign_in: ورود
+    sign_out: خروج
     dashboard:
       index_view:
         new_button: '%{title} جدید'
