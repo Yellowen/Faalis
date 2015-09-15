@@ -37,7 +37,6 @@ module Faalis
       def copy_init_files
         template 'devise.rb', 'config/initializers/devise.rb'
         template 'faalis.rb', 'config/initializers/faalis.rb'
-        template 'fast_gettext.rb', 'config/initializers/fast_gettext.rb'
         template 'seeds.rb', 'db/seeds.rb'
         template 'api_controller.rb', 'app/controllers/api_controller.rb'
         template 'policy/application_policy.rb', 'app/policies/application_policy.rb'

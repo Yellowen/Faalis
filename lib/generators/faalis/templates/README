@@ -9,26 +9,13 @@ Steps to finish up installation:
 
      In production, :host should be set to the actual host of your application.
 
-  2. You can override your root controller through Faalis::HomeController class.
+  2. Migrate your database and run `db:seed` too. For example:
 
-  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
-     Only if you want to change the layout
+     $ rake db:migrate db:seed
 
-     For example:
-
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-  4. Create a javascript manifest in 'app/assets/javascripts/dashboard/application.js'
-     and require 'faalis/dashboard/application.js'.
-
-     NOTE: You can change the default manifest name and path via 'config.dashboard_js_manifest'
-           in 'config/initializers/faalis.rb'.
-
-  5. Make sure you take a look and configured conf/initializer/devise.rb
+  4. Make sure you take a look and configured conf/initializer/devise.rb (optional)
 
      NOTE: if you want to use devise with omniauth configure them in
            conf/initializer/devise.rb according to devise wiki
 
-  6. Make sure you take a look and configured conf/initializer/fast_gettext.rb
-  7. Make sure you take a look and configured conf/initializer/formtastic.rb
+  5. Make sure you take a look and configured conf/initializer/formtastic.rb (optional)

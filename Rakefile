@@ -1,4 +1,3 @@
-require 'gettext_i18n_rails/tasks'
 require 'rubygems'
 
 begin
@@ -18,7 +17,5 @@ require 'rspec/core'
 require 'rspec/core/rake_task'
 
 desc 'Run all specs in spec directory (excluding plugin specs)'
-RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
-task :default => :spec
-
-#load "#{File.dirname(__FILE__)}/lib/tasks/**/*.rake") {|f| load f}
+RSpec::Core::RakeTask.new(spec: 'app:db:test:prepare')
+task default: :spec

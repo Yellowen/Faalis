@@ -1,6 +1,0 @@
-<% if has_menu? %>
-<%= resource.pluralize %>.controller("<%= resource %>MenuController", ["gettext", function(gettext){
-    this.menu_items = [<% resource_data["menu"].each do |menu| %>
-        {title: gettext("<%= menu["title"] %>"), url: "<%= menu["url"] %>"<% if menu.include? "model" %>, permission: {action: "<%= menu["perm_action"] || 'read' %>", model: "<%= menu["model"] %>"}<% end %>},<% end %>
-        ];
-}]);<% end %>
