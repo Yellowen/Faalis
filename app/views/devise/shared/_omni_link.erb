@@ -7,20 +7,20 @@
         <% if service == :facebook %>
           <a href='/auth/facebook/' class="btn btn-block btn-social btn-facebook btn-flat">
             <i class="fa fa-facebook"></i>
-            <%= _('Sign in using Facebook') %>
+            <%= t('sign_in_using_facebook') %>
           </a>
         <% end %>
 
         <% if service == :twitter %>
           <a href='/auth/twitter/' class="btn btn-block btn-social btn-twitter btn-flat">
             <i class="fa fa-twitter"></i>
-            <%= _('Sign in using Twitter') %>
+            <%= t('sign_in_using_twitter') %>
           </a>
         <% end %>
 
         <% if service == :google_oauth2 %><a href='/auth/google_oauth2/' class="btn btn-block btn-social btn-google btn-flat">
           <i class="fa fa-google-plus"></i>
-          <%= _('Sign in using Google+') %>
+          <%= t('sign_in_using_google') %>
         </a>
         <% end %>
 

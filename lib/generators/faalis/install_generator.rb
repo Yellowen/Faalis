@@ -59,10 +59,12 @@ module Faalis
       def install_routes
          route "end\n"
          route '  # Your dashboard routes goes here.'
-         route 'in_dashboard do'
+         route "in_dashboard do"
+
          route "end\n"
          route '  # Your API routes goes here.'
          route 'api_routes do'
+
          route "mount Faalis::Engine => '/'\n"
       end
 
@@ -114,8 +116,10 @@ module Faalis
       def install_formtastic
         generate 'formtastic:install'
 
-        append_to_file 'config/initializers/formtastic.rb' do
+        if File.exist? "#{Rails.root}config/initializers/formtastic.rb"
+          append_to_file 'config/initializers/formtastic.rb' do
           'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
+          end
         end
       end
 

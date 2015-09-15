@@ -23,10 +23,12 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
 
     path = File.expand_path('../../dummy/tmp/', __FILE__)
 
-    FileUtils.mkdir_p("#{path}/config")
+    FileUtils.mkdir_p("#{path}/config/initializers")
     FileUtils.mkdir_p("#{path}/app/controllers")
 
     FileUtils.touch("#{path}/config/routes.rb")
+    FileUtils.touch("#{path}/Gemfile")
+
     FileUtils.touch("#{path}/app/controllers/application_controller.rb")
     run_generator
   end
@@ -34,9 +36,9 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
   it 'copies the config files' do
     file_exists('config/initializers/faalis.rb')
     file_exists('config/initializers/devise.rb')
-    file_exists('config/initializers/formstatic.rb')
     file_exists('db/seeds.rb')
     file_exists('app/controllers/api_controller.rb')
+    file_exists('app/controllers/dashboard/application_controller.rb')
     file_exists('app/policies/application_policy.rb')
   end
 
