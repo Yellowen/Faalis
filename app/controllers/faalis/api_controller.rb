@@ -42,13 +42,13 @@ module Faalis
 
     # Rescue from any access denied exception raised from cancan and
     # returns a useful error message in json
- #   rescue_from CanCan::AccessDenied do |exception|
- #     render :status => 403, :json => {
- #       :error => _('You don\'t have access to this page'),
- #       :orig_msg => exception.message,
- #       :action => exception.action
- #     }
- #   end
+    #   rescue_from CanCan::AccessDenied do |exception|
+    #     render :status => 403, :json => {
+    #       :error => t('You don\'t have access to this page'),
+    #       :orig_msg => exception.message,
+    #       :action => exception.action
+    #     }
+    #   end
 
     def set_csrf_cookie_for_ng
       cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?

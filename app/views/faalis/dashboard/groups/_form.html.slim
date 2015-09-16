@@ -5,23 +5,19 @@ div
         .box.box-primary
           .box-header
             .box-title
-              - if @group.new_record?
-                = _('New Group')
-              - else
-                = _('Edit Group')
 
           .box-body
             .row
               .col-sm-12.col-lg-6
                 .form-group data-name="role"
                   label for="group_name"
-                    = ('Group name')
+                    = ('faalis.group.group_name')
 
-                  input#group_name.form-control[placeholder==(_('Enter the name of group you want to create')) name="group[name]" type="text" required value=(@group.name)]
+                  input#group_name.form-control[name="group[name]" type="text" required value=(@group.name)]
 
 
 
-      .col-sm-12.col-lg-3
+      /.col-sm-12.col-lg-3
         .box
           .box-header
             .box-title
@@ -31,7 +27,7 @@ div
         .box.box-warning
           .box-header
             .box-title
-              = _("Permissions")
+              = t("faalis.permission.permissions")
 
           .box-body
             .row
@@ -40,9 +36,9 @@ div
                   tbody
                     tr
                       th.col-md-4
-                        = _('Entity Name')
+                        = t('faalis.permission.entity_name')
                       th.col-md-8
-                        = _('Permission')
+                        = t('faalis.permission.permission')
 
                     - @permissions.each do |perm, actions|
                       tr
@@ -52,10 +48,10 @@ div
                             - actions.each do |action|
                               span.col-sm-3
                                 - if @group.include_permission? action[1]
-                                  input[type="checkbox" checked name=("group[permissions][#{action[1]}]") label=(_(action[0].humanize()))]
+                                  input[type="checkbox" checked name=("group[permissions][#{action[1]}]") label=(t(action[0].humanize()))]
                                     = " #{action[0].humanize()}"
                                 - else
-                                  input[type="checkbox" name=("group[permissions][#{action[1]}]") label=(_(action[0].humanize()))]
+                                  input[type="checkbox" name=("group[permissions][#{action[1]}]") label=(t(action[0].humanize()))]
                                     = " #{action[0].humanize()}"
 
     .row
@@ -63,10 +59,10 @@ div
         button.btn.btn-primary.btn-block type="submit"
           i.fa.fa-check
           |
-          = _('Save')
+          = t('faalis.save')
 
       .col-sm-2
 
         div.btn.btn-danger.btn-block onclick=("redirect_to('#{index}')")
           i.fa.fa-times
-          = _('Cancel')
+          = t('faalis.cancel')

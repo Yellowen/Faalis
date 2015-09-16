@@ -1,3 +1,3 @@
 var  msg = <%= @resource.errors.to_json.html_safe %>;
-msg.title = "<%= _("Please fix these errors first.") %>";
+msg.title = "<%= t("faalis.errors.fix_errors") %>";
 form_error(msg);

@@ -20,27 +20,27 @@
                   </a>
                 </h1>
               </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><%= _('Menu') %></a></li>
+              <li class="toggle-topbar menu-icon"><a href="#"><%= t('faalis.menu') %></a></li>
             </ul>
 
             <section class="top-bar-section">
               <!-- Right Nav Section -->
               <ul class="<%= Faalis::I18n.direction(I18n.locale) == "ltr" ? "right" : "left" %>">
                 <% unless user_signed_in? %>
-                <li class="has-form"><%= link_to(faalis.new_user_registration_path, :class => "alert button expand") { content_tag(:i, "", class: "fa fa-user") + " #{_('Register')}" } %></li>
+                <li class="has-form"><%= link_to(faalis.new_user_registration_path, :class => "alert button expand") { content_tag(:i, "", class: "fa fa-user") + " #{t('faalis.register')}" } %></li>
 
-                <li class="has-form"><%= link_to(faalis.user_session_path, :class => "button expand") { content_tag(:i, "", class: "fa fa-sign-in") + " #{_('Sign in')}" } %></li>
+                <li class="has-form"><%= link_to(faalis.user_session_path, :class => "button expand") { content_tag(:i, "", class: "fa fa-sign-in") + " #{t('faalis.sign_in')}" } %></li>
                 <% else %>
-                <li class="has-form"><%= link_to(faalis.dashboard_path, :class => "success button expand") { content_tag(:i, "", class: "fa fa-dashboard") + " #{_('Dashboard')}" }%></li>
+                <li class="has-form"><%= link_to(faalis.dashboard_path, :class => "success button expand") { content_tag(:i, "", class: "fa fa-dashboard") + " #{t('faalis.dashboard')}" }%></li>
                 </li>
-                <li class="has-form"><%= link_to(faalis.destroy_user_session_path, :class => "alert button expand", :method => :delete) { content_tag(:i, "", class: "fa fa-sign-out") + " #{_('Sign out')}" } %></li>
+                <li class="has-form"><%= link_to(faalis.destroy_user_session_path, :class => "alert button expand", :method => :delete) { content_tag(:i, "", class: "fa fa-sign-out") + " #{t('faalis.sign_out')}" } %></li>
                 <% end %>
               </ul>
 
               <!-- Left Nav Section -->
               <ul  class="<%= Faalis::I18n.direction(I18n.locale) == "ltr" ? "left" : "right" %>">
 
-                <li class="has-dropdown"><a href="#"><i class="fa fa-flag"></i> <%= _("Languages") %></a>
+                <li class="has-dropdown"><a href="#"><i class="fa fa-flag"></i> <%= t("faalis.languages") %></a>
                   <ul class="dropdown">
                     <% ::I18n.available_locales.each do |locale| %>
                       <li><a href="<%= "/#{locale.to_s}/" %>"><%= locale %></a></li>

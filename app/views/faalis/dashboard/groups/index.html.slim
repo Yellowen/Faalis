@@ -3,12 +3,12 @@
     .box.box-default
       .box-header.with-border
         h3.box-title
-          = _('Groups')
+          = t('faalis.group.groups')
         .box-tools
           - new_group = new_dashboard_auth_group_path
           a.btn.btn-success.pull-right.btn-sm href=(new_group)
             i.fa.fa-plus
-            = _('Add group')
+            = t('faalis.dashboard.index_section.add_button', resource: t('faalis.group.group'))
 
       .box-body.no-padding
         table.table.table-striped
@@ -17,13 +17,13 @@
               th
                 |#
               th
-                = _("Name")
+                = t("faalis.group.name")
               th
-                =_("Role")
+                = t("faalis.group.role")
               th
-                = _('Created at')
+                = t('created_at')
               th
-                = _('Actions')
+                = t('faalis.dashboard.actions')
 
             - @groups.each do |group|
               - edit_target = edit_dashboard_auth_group_path(id: group.id)

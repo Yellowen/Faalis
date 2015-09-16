@@ -31,7 +31,7 @@ module Faalis
           @@permissions.each do |key, value|
             strings << {
               name: "#{key}|#{model_name}",
-              string: _("can %s %s") % [_(key.to_s), humanize_name]
+              string: t("faalis.permission_string", action: key.to_s, model: humanize_name)
             }
           end
           strings

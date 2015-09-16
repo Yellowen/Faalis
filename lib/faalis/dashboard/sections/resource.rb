@@ -4,7 +4,7 @@ module Faalis::Dashboard::Sections
     extend ActiveSupport::Concern
 
     def _resource_title
-      _(controller_name.humanize)
+      t(controller_name.humanize)
     end
 
     protected

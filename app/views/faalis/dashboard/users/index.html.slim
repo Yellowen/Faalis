@@ -3,12 +3,12 @@
     .box.box-default
       .box-header.with-border
         h3.box-title
-          = _('Users')
+          = t('faalis.users')
         .box-tools
           - new_user = new_dashboard_auth_user_path
           a.btn.btn-success.pull-right.btn-sm href=(new_user)
             i.fa.fa-plus
-            = _('Add user')
+            = t('faalis.dashboard.index_section.add_button' , resource:  'user')
 
       .box-body.no-padding
         table.table.table-striped
@@ -17,17 +17,17 @@
               th
                 |#
               th
-                = _("First Name")
+                = t("faalis.user.first_name")
               th
-                =_("Last Name")
+                = t("faalis.user.last_name")
               th
-                = _("Email")
+                = t("faalis.user.email")
               th
-                = _('Created at')
+                = t('created_at')
               th
-                =_('Last sing in at')
+                = t('faalis.user.last_signed_in_at')
               th
-                = _('Actions')
+                = t('faalis.dashboard.actions')
 
             - @users.each do |user|
               - edit_target = edit_dashboard_auth_user_path(id: user.id)

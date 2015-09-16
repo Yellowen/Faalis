@@ -1,2 +1,2 @@
-success_message('<%= _("%s removed successfully.") % @resource_title %>');
+success_message('<%= t("faalis.successfully_removed", resource: @resource_title) %>');
 fade_out_and_remove('#<%= "#{controller_name.singularize.underscore}_#{@resource.id}" %>');

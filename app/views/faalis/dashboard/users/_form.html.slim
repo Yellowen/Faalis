@@ -5,54 +5,54 @@
         .box-header
           .box-title
             - if @user.new_record?
-              = _('New User')
+              = t('faalis.dashboard.new_resource_title', resource: t('faalis.user.user'))
             - else
-              = _('Edit User')
+              = t('faalis.dashboard.edit_resource_title', resource: t('faalis.user.user'))
 
         .box-body
           .row
             .col-sm-12.col-lg-6
               .form-group data-name="first_name"
                 label for="first_name"
-                  = _('First name')
-                input#group_name.form-control[placeholder==(_('Enter the first name of user')) name="user[first_name]" type="text" required value=(@user.first_name)]
+                  = t('faalis.user.first_name')
+                input#group_name.form-control[name="user[first_name]" type="text" required value=(@user.first_name)]
 
             .col-sm-12.col-lg-6
               .form-group data-name="last_name"
                 label for="last_name"
-                  = _('Last name')
-                input#group_name.form-control[placeholder==(_('Enter the last name of user')) name="user[last_name]" type="text" required value=(@user.last_name)]
+                  = t('faalis.user.last_name')
+                input#group_name.form-control[name="user[last_name]" type="text" required value=(@user.last_name)]
 
           .row
             .col-sm-12.col-lg-6
               .form-group data-name="email"
                 label for="email"
-                  = _('Email')
-                input#group_name.form-control[placeholder==(_('Enter the name of group you want to create')) name="user[email]" type="text" required value=(@user.email)]
+                  = t('faalis.user.user.email')
+                input#group_name.form-control[name="user[email]" type="text" required value=(@user.email)]
 
           .row
             .col-sm-12.col-lg-6
               .form-group data-name="password"
                 label for="password"
-                  = _('Password')
+                  = t('password')
                 input#group_name.form-control[name="user[password]" type="password"]
 
             .col-sm-12.col-lg-6
               .form-group data-name="password_confirmation"
                 label for="password_confirmation"
-                  = _('Password confirmation')
+                  = t('password_confirmation')
                 input#group_name.form-control[name="user[password_confirmation]" type="password"]
 
           .row
             .col-sm-12
               h3
-                = _('Groups of user')
+                = t('faalis.user.groups_of_user')
           .row
             .col-sm-12.col-lg-12
               .form-group data-name="groups"
                 label
-                  = _('Goups')
-                select.multiple.select.form-control name="user[groups]" multiple="multiple" placeholder=(_("Start typing the group name"))
+                  = t('faalis.group.groups')
+                select.multiple.select.form-control name="user[groups]" multiple="multiple"
                   - @groups.each do |group|
                     - if @user.member_of? group
                       option[value=(group.id) selected]
@@ -68,10 +68,10 @@
               button.btn.btn-success.btn-block type="submit"
                 i.fa.fa-check
                 |
-                = _('Save')
+                = t('faalis.save')
 
             .col-sm-2.pull-right
 
               a.btn.btn-danger.btn-block href=(index)
                 i.fa.fa-times
-                = _('Cancel')
+                = f('faalis.cancel')
