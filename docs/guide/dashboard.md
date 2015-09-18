@@ -56,8 +56,7 @@ This generator will creates all the means necessary to grant your wish. Now if y
 see the list of your posts. Piece of cake, right ?
 
 > Note: If you want to create a menu entry on the sidebar for your created dashboard resource, checkout
-> [Sidebar Guide](sidebar.md).
-
+> [Sidebar Guide](file.sidebar.html).
 
 
 ## Dashboard Controller DSL
@@ -82,5 +81,8 @@ DSL.
 
 Let's start with the shared DSLs
 
+### in_<section>
+
 ### attributes
+You can specify the model fields that you wanted to show in the corresponding section like `index` or `form`.
 ### actions
