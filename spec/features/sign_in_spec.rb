@@ -24,7 +24,7 @@ feature 'Sign in page', js: true do
   scenario 'allow user to successfully log in using valid credentials' do
     visit @faalis.dashboard_index_path
 
-    fill_in 'user[email]', with: @admin.email
+    fill_in 'email', with: @admin.email
     fill_in 'user[password]', with: '123123123'
 
     click_button 'Sign in'

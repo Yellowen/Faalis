@@ -18,7 +18,7 @@ feature 'Dashboard section' do
     expect(page).not_to have_text('Oops!')
     expect(page).to have_text('Faalis')
     expect(page).to have_text('Dashboard')
-    expect(page).to have_text('Authentication')
+    expect(page).to have_text('User Management')
     expect(current_path).to eq(path)
   end
 
@@ -29,7 +29,7 @@ feature 'Dashboard section' do
 
   scenario 'does not provide authentication section for guests' do
     visit @faalis.dashboard_index_path
-    expect(page).not_to have_text('Authentication')
+    expect(page).not_to have_text('User Management')
     expect(page).not_to have_text('Users')
     expect(page).not_to have_text('Groups')
   end
