@@ -31,6 +31,18 @@ end
 
 pretty simple right ?
 
+The `Faalis::Dashboard::ApplicationController` controller class provides the basic CRUD actions for a resource
+that should be available via dashboard interface. So when you use this class as the superclass for your dashboard
+controller, you won't need do define any action in you controller.
+
+But if you don't want to use that controller or even if you want to override any section in dashboard all you have
+to do is to override the given action. Well that's **Ruby** and I don't have to lecture you how to do it, I'm sure
+that you already know.
+
+Another way to enhance any section in dashboard is to use the **Faalis dashboard DSL** in your controller which
+allows you to easily enhance your desire section. **We highly recommend you to use this approach**
+
+For mode information checkout the [Dashboard Controller DSL][#Dashboard_Controller_DSL] section on this doc.
 
 ## Dashboard the easy way
 Ok, let's say you have a model called `Post` and you want to create a CRUD interface for it in you dashboard. all
@@ -44,7 +56,8 @@ This generator will creates all the means necessary to grant your wish. Now if y
 see the list of your posts. Piece of cake, right ?
 
 > Note: If you want to create a menu entry on the sidebar for your created dashboard resource, checkout
-> [Sidebar Guide](sidebar.md).
+> [Sidebar Guide](file.sidebar.html).
+
 
 ## Dashboard Controller DSL
 Do you remember the rule one ? The dashboard subsystem is just a Rails application nothing special. But you can use
@@ -68,5 +81,8 @@ DSL.
 
 Let's start with the shared DSLs
 
+### in_<section>
+
 ### attributes
+You can specify the model fields that you wanted to show in the corresponding section like `index` or `form`.
 ### actions
