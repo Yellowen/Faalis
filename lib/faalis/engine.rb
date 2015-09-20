@@ -16,12 +16,6 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-require 'modernizr-rails'
-require 'model_discovery'
-require 'pundit'
-require 'slim-rails'
-require 'formtastic'
-require 'kaminari'
 
 require_relative './middlewares/locale'
 
@@ -55,18 +49,6 @@ module Faalis
     mattr_accessor :logger
     @@logger = Logger.new(STDOUT)
 
-    # Permissions configuration
-    mattr_accessor :models_with_permission
-
-    # TODO: create a basic setup for this option
-    @@models_with_permission = ['Faalis::User',
-                                'Faalis::Group',
-                               ]
-
-    def self.models_with_permission=(value)
-      @@models_with_permission.concat(value).uniq!
-    end
-
     # Dashboard url prefix
     mattr_accessor :dashboard_namespace
     @@dashboard_namespace = :dashboard
@@ -88,9 +70,10 @@ module Faalis
       yield self
     end
 
+
     # Site Title
     mattr_accessor :site_title
-    @@site_title = I18n.t('faalis.engine_name')
+    @@site_title = 'Faalis'
 
     mattr_accessor :slug
 

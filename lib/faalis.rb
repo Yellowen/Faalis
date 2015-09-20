@@ -17,8 +17,15 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
+require 'i18n'
 require 'devise'
 require 'turbolinks'
+require 'modernizr-rails'
+require 'model_discovery'
+require 'pundit'
+require 'slim-rails'
+require 'formtastic'
+require 'kaminari'
 
 # Faalis Module
 module Faalis

@@ -60,6 +60,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'execjs'
 
   # i18n
+  s.add_dependency 'i18n'
   s.add_dependency 'rails-i18n'
   s.add_dependency 'colorize'
 
