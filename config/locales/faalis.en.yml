@@ -16,12 +16,15 @@ en:
     sign_in: Sign In
     sign_out: Sign Out
     home: Home
+    email: Email
+    password: Password
+    remember_me: Remember Me
 
     not_authorized: You are not authorized to perform this action.
     engine_name: Faalis
 
     recent_activity: Recent Activity
-    successfully_removed: ${resource} removed successfully.
+    successfully_removed: "%{resource} removed successfully."
     back: Back
     save: Save
     cancel: Cancel
@@ -29,7 +32,7 @@ en:
     login_required: You need to login to use dashboard.
     profile_saved_successfully: Profile Saved successfully
     permissions:
-      permission_string: can ${action} ${model}
+      permission_string: "can %{action} %{model}"
 
     errors:
       fix_errors: Please fix these errors first.
@@ -55,15 +58,15 @@ en:
       user_management: User Management
       actions: Actions
       dashboard: Dashboard
-      updated_successfully: ${resource} updated successfully.
-      removed_successfully: ${resource} removed successfully.
-      saved_successfully: ${resource} saved successfully.
+      updated_successfully: "%{resource} updated successfully."
+      removed_successfully: "%{resource} removed successfully."
+      saved_successfully:  "%{resource} saved successfully."
 
-      new_resource_title: New ${resource}
-      edit_resource_title: Edit ${resource}
+      new_resource_title: "New %{resource}"
+      edit_resource_title: "Edit %{resource}"
       sidebar:
         online: Online
         search: Search
 
       index_section:
-        add_button: new ${resource}
+        add_button: "New %{resource}"

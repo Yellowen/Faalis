@@ -13,14 +13,18 @@ fa:
     fa: فارسی
     actions: فرامین
     home: 'خانه'
-    member_since: عضو از ${date}
+    email: ایمیل
+    password: گذرواژه
+    remember_me: مرا بخاطر بسپار
+
+    member_since: "عضو از %{date}"
     not_authorized: شما مجاز به انجام این فعالیت نیستید.
     engine_name: فالیس
     sign_in: ورود
     sign_out: خروج
     dashboard:
       index_view:
-        new_button: '${title} جدید'
+        new_button: '%{title} جدید'
       users: کاربران
       groups: گروه ها
       user_management: مدیریت کاربران
