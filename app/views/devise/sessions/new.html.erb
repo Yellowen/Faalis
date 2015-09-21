@@ -6,12 +6,12 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   <div class="form-group has-feedback <% if resource.errors[:email] -%>has-error<% end %>">
-    <%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder=>t("email") %>
+    <%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder=>t("faalis.email") %>
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
   </div>
 
   <div class="form-group has-feedback <% if resource.errors[:password] -%>has-error<% end %>">
-    <%= f.password_field :password, :class => "form-control", :placeholder=>t("password") %>
+    <%= f.password_field :password, :class => "form-control", :placeholder=>t("faalis.password") %>
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
 
@@ -21,13 +21,13 @@
     <div class="col-xs-8">
       <div class="checkbox icheck">
         <label>
-          <%= f.check_box :remember_me, :class=>"checkbox" %> <%= t('remember_me') %>
+          <%= f.check_box :remember_me, :class=>"checkbox" %> <%= t('faalis.remember_me') %>
         </label>
       </div>
     </div><!-- /.col -->
     <% end %>
     <div class="col-xs-4">
-      <button type="submit" class="btn btn-primary btn-block btn-flat"><%= t('sign_in') %></button>
+      <button type="submit" class="btn btn-primary btn-block btn-flat"><%= t('faalis.sign_in') %></button>
     </div><!-- /.col -->
   </div>
 </form>

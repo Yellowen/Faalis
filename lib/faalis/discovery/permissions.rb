@@ -22,15 +22,6 @@ module Faalis
             block.call(model)
           end
         end
-
-        # Check also for entities which don't have a model but
-        # we need to use them in our permissions.
-        Faalis::Engine.models_with_permission.each do |m|
-          model = m.constantize
-          if model.respond_to? :permission_strings
-            block.call(model)
-          end
-        end
       end
 
       def self.all_permissions
