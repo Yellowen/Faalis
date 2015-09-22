@@ -81,7 +81,16 @@ DSL.
 
 Let's start with the shared DSLs
 
-### in_<section>
+### in_\<section\>
+In order to customize a section of a resource you need to specify the section first like this:
+
+```ruby
+in_index do
+  # index section customization goes here . . .
+end
+```
+
+Also you can do this for other sections too. In fact you have to.
 
 ### attributes
 You can specify the model fields that you wanted to show in the corresponding section like `index` or `form`.
