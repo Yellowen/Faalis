@@ -28,7 +28,13 @@ module Faalis::Dashboard
       # of the given block, by the one from the application
       def override_views(*views, &block)
         views.concat(block.call) if block_given?
-        instance_variable_set('@_overrided_views', views)
+
+        define_method(:_override_views) do
+          result = views || []
+          result.concat(block.call) if block_given?
+          result
+        end
+
       end
     end
   end
