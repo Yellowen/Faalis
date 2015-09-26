@@ -52,7 +52,7 @@ function form_error(data) {
   delete data.title;
 
   Object.keys(data, function(k, v){
-    msg += "<li>" + v + "</li>";
+    msg += "<li><strong>" + k + "</strong> " + v + "</li>";
     $('input[name="' + k + '"], [data-name="' + k + '"]').addClass('has-error');
   });
 
