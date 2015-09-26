@@ -22,6 +22,9 @@ fa:
     engine_name: فالیس
     sign_in: ورود
     sign_out: خروج
+
+    errors:
+      fix_errors: ابتدا این خطا ها را رفع کنید
     dashboard:
       index_view:
         new_button: '%{title} جدید'

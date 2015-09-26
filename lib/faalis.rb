@@ -32,6 +32,7 @@ module Faalis
   autoload :Configuration, 'faalis/configuration'
 end
 
+require 'faalis/development'
 require 'faalis/engine'
 require 'faalis/orm'
 require 'faalis/concerns'

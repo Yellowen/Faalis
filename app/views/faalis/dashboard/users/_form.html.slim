@@ -1,7 +1,7 @@
 = form_tag(form_target, remote: true, method: method) do
   .row
     .col-sm-12.col-lg-12
-      .box.box-primary
+     .box.box-primary
         .box-header
           .box-title
             - if @user.new_record?
@@ -74,4 +74,4 @@
 
               a.btn.btn-danger.btn-block href=(index)
                 i.fa.fa-times
-                = f('faalis.cancel')
+                = t('faalis.cancel')

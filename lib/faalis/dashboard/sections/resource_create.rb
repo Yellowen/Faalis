@@ -66,7 +66,10 @@ module Faalis::Dashboard::Sections
       setup_named_routes
 
       @resource = model.new(creation_params)
-      @resource.assign_attributes(**reflections_hash) if reflections_hash
+
+      @resource.assign_attributes(**reflections_hash) unless reflections_hash.nil?
+
+      # TODO: Handle M2M relations in here
 
       if @resource.save
         successful_response(:create)
@@ -87,8 +90,13 @@ module Faalis::Dashboard::Sections
         result      = {}
 
         reflections.each do |name, column|
-          value = creation_params[column.foreign_key]
-          result[column.foreign_key.to_sym] = value
+          has_many = ActiveRecord::Reflection::HasManyReflection
+          has_and_belongs_to_many = ActiveRecord::Reflection::HasAndBelongsToManyReflection
+
+          if !column.is_a?(has_many) && !column.is_a?(has_and_belongs_to_many)
+            value = creation_params[column.foreign_key]
+            result[column.foreign_key.to_sym] = value
+          end
         end
 
         return result unless result.empty?
