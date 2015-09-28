@@ -26,8 +26,8 @@ Faalis::Engine.routes.draw do
           end
         end
       end
-      get '', to: 'dashboard#index', as: 'index'
-      get '/404', to: 'dashboard#not_found', as: 'not_found'
+      get '', to: '/faalis/dashboard#index', as: 'index'
+      get '/404', to: '/faalis/dashboard#not_found', as: 'not_found'
     end
 
     devise_for :users, devise_config
