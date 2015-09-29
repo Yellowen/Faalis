@@ -23,7 +23,7 @@ group :development, :test do
   gem 'redcarpet'
   gem 'github-markup'
   gem 'yard-sitemap'
-
+  gem 'fit-commit'
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
@@ -33,11 +33,11 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'shoulda'
-  #gem 'did_you_mean', github: 'yuki24/did_you_mean'
-  gem 'slim-rails'
+    gem 'slim-rails'
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
   gem 'capybara-webkit'
+  
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
