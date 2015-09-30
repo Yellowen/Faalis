@@ -94,4 +94,40 @@ Also you can do this for other sections too. In fact you have to.
 
 ### attributes
 You can specify the model fields that you wanted to show in the corresponding section like `index` or `form`.
+
+for example assume we have a `Post` model like this:
+
+```ruby
+# title       String
+# content     Text
+# user_id     Integer
+# created_at  Datetime
+# updated_at  Datetime
+class Post
+  belongs_to :user, class_name: 'Faalis::User'
+
+  delegate :name, to: :user, prefix: true
+
+  def rendered_content
+    # render content using markdown
+  end
+end
+```
+
+By default all the fields in model will appear in the `index` section of your resource UI in dashboard. To reduce
+the number of `attributes` in the `index` section all you have to do is to do this:
+
+```ruby
+  # some where in your Dashboard::PostsController
+  in_index do
+    attribtues :title, :user_name, :created_at
+
+    # OR
+
+    attributes except: [:updated_at, :content]
+  end
+```
+
+Pretty simple right?
+
 ### actions
