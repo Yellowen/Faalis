@@ -41,3 +41,4 @@ Gemfile.lock
 spec/dummy/db/
 docs/annotated_source/
 **/*/.tern-port
+.yardoc/
