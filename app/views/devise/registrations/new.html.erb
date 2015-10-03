@@ -1,8 +1,10 @@
 <div class="form-box" id="login-box">
-  <div class="header"><%= t("faalis.sign_up") %></div>
+
+  <p class="login-box-msg"><%= t('faalis.sign_up') %></p>
+  <br />
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
-    <div class="body bg-gray">
+    <div class="body">
       <% unless resource.errors.empty? %>
         <br />
         <div class="alert alert-danger" role="alert">

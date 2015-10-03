@@ -1,6 +1,11 @@
 ---
 fa:
   faalis:
+    confirm_password: تکرار گذرواژه
+    forgot_your_password: گذرواژه را فراموش کردم
+    didnt_receive_confirmation_instructions: "ایمیل اعتبارسنجی را دریافت نکردم"
+    didnt_receive_unlock_instructions: "ایمیل فعال سازی را دریافت نکردم"
+
     faalis_version: نسخه فالیس
     copyright_html: |
       &copy; 2013-2015 <a href="http://yellowen.com">Yellowen</a>.
@@ -22,7 +27,7 @@ fa:
     engine_name: فالیس
     sign_in: ورود
     sign_out: خروج
-
+    sign_up: ثبت نام
     errors:
       fix_errors: ابتدا این خطا ها را رفع کنید
     dashboard:

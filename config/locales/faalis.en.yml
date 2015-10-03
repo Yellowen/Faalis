@@ -1,6 +1,11 @@
 ---
 en:
   faalis:
+    confirm_password: Password Confirmation
+    forgot_your_password: Forget your password
+    didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions"
+    didnt_receive_unlock_instructions: "Didn't receive unlock instructions"
+
     faalis_version: Faalis Version
     copyright_html: |
       &copy; 2013-2015 <a href="http://yellowen.com">Yellowen</a>.
@@ -15,6 +20,7 @@ en:
     member_since: Member since %{date}
     sign_in: Sign In
     sign_out: Sign Out
+    sign_up: Sign up
     home: Home
     email: Email
     password: Password
