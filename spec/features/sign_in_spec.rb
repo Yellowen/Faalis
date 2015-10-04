@@ -16,7 +16,7 @@ feature 'Sign in page', js: true do
     visit @faalis.user_session_path
 
     expect(page).to have_text('Sign In')
-    expect(page).to have_css('.form-box')
+    expect(page).to have_css('.login-box-msg')
     expect(page).to have_selector('#user_email')
     expect(page).to have_selector('#user_password')
   end
@@ -24,10 +24,10 @@ feature 'Sign in page', js: true do
   scenario 'allow user to successfully log in using valid credentials' do
     visit @faalis.dashboard_index_path
 
-    fill_in 'email', with: @admin.email
-    fill_in 'user[password]', with: '123123123'
+    fill_in 'user_email', with: @admin.email
+    fill_in 'user_password', with: '123123123'
 
-    click_button 'Sign in'
+    click_button 'sign_in'
 
     expect(page).to have_text('Dashboard')
     expect(page).not_to have_text('Sign In')
