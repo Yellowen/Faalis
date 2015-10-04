@@ -9,12 +9,6 @@ feature 'Dashboard resource finder exception' do
     @faalis = Faalis::Engine.routes.url_helpers
   end
 
-  scenario 'User try to find a resource which does not exists.' do
-    visit faalis.dashboard_auth_user_url({ id: 3242 })
-    expect(page).to have_text('404')
-    expect(page).to have_text('Oops!')
-  end
-
   scenario 'User try to find a resource which does not exists via js format.' do
     visit @faalis.dashboard_auth_user_path({ id: 3242, format: :js})
     expect(page).to have_text('error_message(')
