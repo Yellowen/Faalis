@@ -19,18 +19,32 @@ module Faalis::Dashboard::Sections
     protected
 
       # Fetch all or part of the corresponding resource
-      # from data base with respect to `scope` DSL
+      # from data base with respect to `scope` DSL.
+      #
+      # The important thing here is that by using `scope`
+      # DSL this method will chain the resulted scope
+      # with other scopes like `page` and `policy_scope`
       def fetch_index_objects
         scope = index_properties._default_scope
 
-        puts "<<<<<<<<<<<<<<", scope, model, policy_scope(model.page(params[:page]))
-        return policy_scope(model.page(params[:page])) if scope.nil?
+        if !scope.nil?
+          # If user provided an scope for `index` section.
 
-        if scope.respond_to? :call
-          return scope.call.page(params[:page])
+          if scope.respond_to? :call
+            # If scope provided by a block
+            scope = scope.call
+          else
+            # If scope provided by a symbol
+            # which should be a method name
+            scope = self.send(scope)
+          end
+
         else
-          return self.send(scope, true).page(params[:page])
+          scope = model.all
         end
+
+        scope = scope.order('created_at DESC').page(params[:page])
+        policy_scope(scope)
       end
 
       def index_properties

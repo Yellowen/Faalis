@@ -135,4 +135,7 @@ Pretty simple right?
 Some time you want to change the behavior in an specific section. For example you want to render an textarea
 for a field instead of simple input in `form` section. You can achieve that with `attributes_properties`.
 
+### scope
+TODO
+
 ### actions
