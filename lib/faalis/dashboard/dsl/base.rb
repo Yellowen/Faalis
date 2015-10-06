@@ -2,7 +2,8 @@ require 'set'
 
 module Faalis::Dashboard::DSL
   class Base
-    attr_reader :action_buttons, :fields, :model, :_default_scope
+    attr_reader(:action_buttons, :fields, :model, :_default_scope,
+                :_action_buttons)
 
     # Base class for all the DSL property classes to be
     # used as the yielded object inside each section DSL
