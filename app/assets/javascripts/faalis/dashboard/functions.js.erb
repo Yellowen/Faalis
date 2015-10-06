@@ -4,7 +4,7 @@ function redirect_to(target) {
                            "/" + dashboard_namespace + "#/");
 
   console.log("Redirecting to: %s", uri);
-  Turbolinks.visit(target);
+  Turbolinks.visit(target, { keep: ['sidebar', 'topnav']});
 }
 
 function big_random() {
