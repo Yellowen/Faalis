@@ -136,6 +136,16 @@ Some time you want to change the behavior in an specific section. For example yo
 for a field instead of simple input in `form` section. You can achieve that with `attributes_properties`.
 
 ### scope
-TODO
+Using this method you can override the default scope of a section (generally `index` section). By default **Faalis**
+will use this scope on your Model:
+
+```ruby
+
+Model.policy_scope(Model.order('created_at DESC').page(params[:page]))
+```
+
+This scope will order the result based on `created_at` and fetch a page only. Then it will pass the resulted scope
+to scope class inside of the related `Pundit` policy. This way you can easily change the scope base on user permissions.
+For more information checkout `Pundit` [documents](https://github.com/elabs/pundit#scopes).
 
 ### actions
