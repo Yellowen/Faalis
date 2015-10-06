@@ -11,6 +11,7 @@ module Faalis::Dashboard::Sections
 
       fetch_and_set_all
       setup_named_routes
+      action_buttons(index_properties)
 
       return if _override_views.include? :index
       render 'faalis/dashboard/resource/index'

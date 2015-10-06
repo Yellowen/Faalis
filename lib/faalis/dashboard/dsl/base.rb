@@ -88,6 +88,18 @@ module Faalis::Dashboard::DSL
       @_default_scope = name.to_sym
     end
 
+    # Define a new action on the `action` place of the current section
+    # **options**: Is a hash which contains the action button properties.
+    #
+    # `label`: Label to use with the button.
+    # `href`: The link href to use in the `a` tag
+    # `class`:  classes of the button.
+    # `icon_class`: font awesome icon to use in button.
+    def action_button(**options)
+      @_action_buttons ||= []
+      @_action_buttons << options
+    end
+
   private
 
     # Replace foreign key names with their reflection names
