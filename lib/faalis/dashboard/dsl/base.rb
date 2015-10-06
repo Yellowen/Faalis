@@ -2,7 +2,7 @@ require 'set'
 
 module Faalis::Dashboard::DSL
   class Base
-    attr_reader :action_buttons, :fields, :model
+    attr_reader :action_buttons, :fields, :model, :_default_scope
 
     # Base class for all the DSL property classes to be
     # used as the yielded object inside each section DSL
@@ -69,17 +69,23 @@ module Faalis::Dashboard::DSL
     #    scope do |params|
     #      YourModel.all
     #    end
+    #
+    #    # or ...
+    #
+    #    scope :my_scope
     #  end
+    #
+    #  private
+    #    def my_scope
+    #      YourModel.where(...)
+    #
+    #    end
     #
     # Arguments:
     # * **params**: Is the same params passed to controller action.
-    def scope(&block)
-      @_default_scope = block
-    end
-
-    def default_scope(params)
-      return @_default_scope.call(params) if defined? @_default_scope
-      model.page(params[:page])
+    def scope(name = nil, &block)
+      return @_default_scope = block if block_given?
+      @_default_scope = name.to_sym
     end
 
   private

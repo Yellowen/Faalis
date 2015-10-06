@@ -18,9 +18,19 @@ module Faalis::Dashboard::Sections
 
     protected
 
-
+      # Fetch all or part of the corresponding resource
+      # from data base with respect to `scope` DSL
       def fetch_index_objects
-        index_properties.default_scope(params)
+        scope = index_properties._default_scope
+
+        puts "<<<<<<<<<<<<<<", scope, model, policy_scope(model.page(params[:page]))
+        return policy_scope(model.page(params[:page])) if scope.nil?
+
+        if scope.respond_to? :call
+          return scope.call.page(params[:page])
+        else
+          return self.send(scope, true).page(params[:page])
+        end
       end
 
       def index_properties
