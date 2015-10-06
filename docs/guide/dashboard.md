@@ -148,4 +148,19 @@ This scope will order the result based on `created_at` and fetch a page only. Th
 to scope class inside of the related `Pundit` policy. This way you can easily change the scope base on user permissions.
 For more information checkout `Pundit` [documents](https://github.com/elabs/pundit#scopes).
 
-### actions
+### action_button
+
+Using this method you can define different buttons on action area of each section. For example you can simply add another
+button in `index` section next to `add new` button. Each section has it's own action area. Defining new action buttons is
+super easy:
+
+```ruby
+
+  # inside Dashboard::PostController
+  in_index do
+    action_button(label: t('Disable'), href: someaction_path,
+                  class: 'btn-info', icon_button: 'remove')
+  end
+
+  # . . .
+```
