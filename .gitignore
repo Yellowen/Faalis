@@ -42,3 +42,4 @@ spec/dummy/db/
 docs/annotated_source/
 **/*/.tern-port
 .yardoc/
+docs/guides/output/
