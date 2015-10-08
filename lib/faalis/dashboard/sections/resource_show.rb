@@ -1,3 +1,5 @@
+require_dependency 'faalis/dashboard/dsl/show'
+
 module Faalis::Dashboard::Sections
   module ResourceShow
 
