@@ -32,10 +32,15 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'shoulda'
-    gem 'slim-rails'
+  gem 'slim-rails'
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
   gem 'capybara-webkit'
+  gem 'rails-assets-bootstrap-rtl'
+  gem 'rails-assets-jquery-knob'
+  gem 'rails-assets-bootstrap-daterangepicker'
+  gem 'rails-assets-jquery-sparkline'
+  gem 'rails-assets-jquery-icheck'
 
 end
 
