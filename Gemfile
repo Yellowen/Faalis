@@ -23,7 +23,6 @@ group :development, :test do
   gem 'redcarpet'
   gem 'github-markup'
   gem 'yard-sitemap'
-  gem 'fit-commit'
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
@@ -37,7 +36,7 @@ group :development, :test do
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
   gem 'capybara-webkit'
-  
+
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
