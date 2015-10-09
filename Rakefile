@@ -1,4 +1,5 @@
 require 'rubygems'
+import 'docs/guides/Rakefile'
 
 begin
   require 'bundler/setup'
