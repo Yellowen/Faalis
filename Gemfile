@@ -41,7 +41,8 @@ group :development, :test do
   gem 'rails-assets-bootstrap-daterangepicker'
   gem 'rails-assets-jquery-sparkline'
   gem 'rails-assets-jquery-icheck'
-
+  gem 'rails-assets-jquery-icheck'
+  gem 'rails-assets-admin-lte'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
