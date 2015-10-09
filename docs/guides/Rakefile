@@ -28,6 +28,20 @@ namespace :guides do
     end
   end
 
+
+  desc "Deploy guides to gh-pages branch"
+  task :deploy do
+    system('git branch -D gh-pages')
+    system('git checkout --orphan gh-pages')
+    system('git rm . -rf')
+    system('cp docs/guides/output/* ./ -r')
+    system('git add .')
+    system("git commit -a -m \"Release at #{Time.now.utc}\"")
+    system('git push origin gh-pages -f')
+    system('git checkout master')
+  end
+
+
   # Validate guides -------------------------------------------------------------------------
   desc 'Validate guides, use ONLY=foo to process just "foo.html"'
   task :validate do
