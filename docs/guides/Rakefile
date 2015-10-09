@@ -36,7 +36,7 @@ namespace :guides do
     system('cp docs/guides/output/* ./ -rv')
     system('git rm . -rf')
     system('git add .')
-    system("git commit -a -m \"Release at #{Time.now.utc}\"")
+    system("git commit -a -m 'New release'")
     system("git log")
     system('git push origin gh-pages -f')
     system('git checkout master')
