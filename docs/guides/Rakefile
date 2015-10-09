@@ -31,12 +31,13 @@ namespace :guides do
 
   desc "Deploy guides to gh-pages branch"
   task :deploy do
-    #system('git branch -D gh-pages')
+    system('git branch -D gh-pages')
     system('git checkout --orphan gh-pages')
-    system('git rm . -rf')
     system('cp docs/guides/output/* ./ -rv')
+    system('git rm . -rf')
     system('git add .')
     system("git commit -a -m \"Release at #{Time.now.utc}\"")
+    system("git log")
     system('git push origin gh-pages -f')
     system('git checkout master')
   end
