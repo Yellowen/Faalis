@@ -47,7 +47,7 @@ module Faalis::Dashboard::Sections
       # Return the array of action buttons in given `property_object`.
       # `property_object` is an instance of once of DSL classes.
       def action_buttons(property_object)
-        @_action_buttons = property_object._action_buttons || []
+        @_action_buttons = property_object.action_buttons || []
       end
 
     private
