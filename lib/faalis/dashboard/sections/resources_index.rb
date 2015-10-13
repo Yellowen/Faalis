@@ -12,6 +12,7 @@ module Faalis::Dashboard::Sections
       fetch_and_set_all
       setup_named_routes
       action_buttons(index_properties)
+      @_tools_buttons = index_properties.tool_buttons
 
       return if _override_views.include? :index
       render 'faalis/dashboard/resource/index'
@@ -26,7 +27,7 @@ module Faalis::Dashboard::Sections
       # DSL this method will chain the resulted scope
       # with other scopes like `page` and `policy_scope`
       def fetch_index_objects
-        scope = index_properties._default_scope
+        scope = index_properties.default_scope
 
         if !scope.nil?
           # If user provided an scope for `index` section.
@@ -88,6 +89,7 @@ module Faalis::Dashboard::Sections
           return index_props
         end
       end
+
     end
   end
 end

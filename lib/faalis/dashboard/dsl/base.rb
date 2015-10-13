@@ -2,8 +2,8 @@ require 'set'
 
 module Faalis::Dashboard::DSL
   class Base
-    attr_reader(:action_buttons, :fields, :model, :_default_scope,
-                :_action_buttons)
+    attr_reader(:action_buttons, :fields, :model, :default_scope,
+                :action_buttons)
 
     # Base class for all the DSL property classes to be
     # used as the yielded object inside each section DSL
@@ -85,8 +85,8 @@ module Faalis::Dashboard::DSL
     # Arguments:
     # * **params**: Is the same params passed to controller action.
     def scope(name = nil, &block)
-      return @_default_scope = block if block_given?
-      @_default_scope = name.to_sym
+      return @default_scope = block if block_given?
+      @default_scope = name.to_sym
     end
 
     # Define a new action on the `action` place of the current section
@@ -97,8 +97,8 @@ module Faalis::Dashboard::DSL
     # `class`:  classes of the button.
     # `icon_class`: font awesome icon to use in button.
     def action_button(**options)
-      @_action_buttons ||= []
-      @_action_buttons << options
+      @action_buttons ||= []
+      @action_buttons << options
     end
 
   private
