@@ -54,6 +54,7 @@ module Faalis::Dashboard::Sections
       end
 
     private
+
       def fetch_and_set_all
         result = fetch_index_objects
         instance_variable_set("@#{plural_name}", result)
@@ -69,12 +70,15 @@ module Faalis::Dashboard::Sections
       # you must use `in_index` class method with block of
       # properties. For example:
       #
+      # ```ruby
       #   class ExamplesController < Dashboard::Application
       #     in_index do
       #       attributes :name, :description
-      #       action_button :close, dashboard_example_close_path
+      #       action_button :close, label: 'Close', href: dashboard_example_close_path
       #     end
       #   end
+      # ```
+      #
       def in_index(&block)
         model = controller_name.classify.constantize
         index_props = Faalis::Dashboard::DSL::Index.new(model)

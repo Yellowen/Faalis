@@ -81,11 +81,14 @@ module RailsGuides
     end
 
     def set_flags_from_environment
+      #path = File.expand_path('../../lib/faalis/version.rb')
+      #load path
+
       @edge     = ENV['EDGE']     == '1'
       @warnings = ENV['WARNINGS'] == '1'
       @all      = ENV['ALL']      == '1'
       @kindle   = ENV['KINDLE']   == '1'
-      @version  = ENV['RAILS_VERSION'] || 'local'
+      @version  = Faalis::VERSION
       @lang     = ENV['GUIDES_LANGUAGE']
     end
 

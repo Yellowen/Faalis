@@ -1,3 +1,5 @@
+require_dependency 'faalis/dashboard/dsl/show'
+
 module Faalis::Dashboard::Sections
   module ResourceShow
 
@@ -20,16 +22,12 @@ module Faalis::Dashboard::Sections
     protected
 
       def collect_model_fields_for_show
-        @_fields ||= {}
+        @_fields ||= show_properties.fields
         valid_columns = all_valid_columns_for_show
+      end
 
-        _show_fields.each do |name|
-          if valid_columns.keys.include? name.to_s
-            @_fields[name.to_sym] = valid_columns[name.to_s]
-          else
-            raise ArgumentError, "can't find '#{name}' field."
-          end
-        end
+      def show_properties
+        Faalis::Dashboard::DSL::Show.new(model)
       end
 
     private
@@ -68,6 +66,34 @@ module Faalis::Dashboard::Sections
         end
 
         private :_show_fields
+      end
+
+      # To specify any property and action for `show` section
+      # you must use `in_index` class method with block of
+      # properties. For example:
+      #
+      # ```ruby
+      #   class ExamplesController < Dashboard::Application
+      #     in_show do
+      #       attributes :name, :description
+      #       action_button :close, label: 'Close', href: dashboard_example_close_path
+      #     end
+      #   end
+      # ```
+      #
+      def in_show(&block)
+        model = controller_name.classify.constantize
+        show_props = Faalis::Dashboard::DSL::Show.new(model)
+
+        unless block_given?
+          fail ArgumentError, "You have to provide a block for 'in_show'"
+        end
+
+        show_props.instance_eval(&block) if block_given?
+
+        define_method(:show_properties) do
+          return show_props
+        end
       end
     end
   end

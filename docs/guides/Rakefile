@@ -8,7 +8,11 @@ namespace :guides do
     desc "Generate HTML guides"
     task :html do
       ENV['WARNINGS'] = "1" # authors can't disable this
-      ruby 'rails_guides.rb'
+      Dir.chdir "#{Faalis::Engine.root}/docs/guides" do
+        ruby 'rails_guides.rb'
+      end
+
+      `cp #{Faalis::Engine.root}/docs/guides/CNAME #{Faalis::Engine.root}/docs/guides/output`
     end
 
     desc 'Generate .mobi file. The kindlegen executable must be in your PATH. You can get it for free from http://www.amazon.com/gp/feature.html?docId=1000765211'
@@ -22,6 +26,20 @@ namespace :guides do
       ENV['KINDLE'] = '1'
       Rake::Task['guides:generate:html'].invoke
     end
+  end
+
+
+  desc "Deploy guides to gh-pages branch"
+  task :deploy do
+    system('git branch -D gh-pages')
+    system('git checkout --orphan gh-pages')
+    system('cp docs/guides/output/* ./ -rv')
+    system('git rm . -rf')
+    system('git add .')
+    system("git commit -a -m 'New release'")
+    system("git log")
+    system('git push origin gh-pages -f')
+    system('git checkout master')
   end
 
   # Validate guides -------------------------------------------------------------------------
