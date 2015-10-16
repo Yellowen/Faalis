@@ -9,7 +9,7 @@ This guide covers the overview of dashboard system and how it works.
 
 After reading this guide, you will know:
 
-* How to use Faalish dashboard.
+* How to use Faalis dashboard.
 * How Faalis dashboard works in general.
 * How to hack dashboard.
 
@@ -77,4 +77,4 @@ This generator will creates all the means necessary to grant your wish. Now if y
 see the list of your posts. Piece of cake, right ?
 
 NOTE: If you want to create a menu entry on the sidebar for your created dashboard resource, checkout
-[Sidebar Guide](file.sidebar.html).
+[Sidebar Guide](dashboard_sidebar.html).
