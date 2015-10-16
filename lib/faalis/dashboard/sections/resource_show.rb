@@ -92,7 +92,11 @@ module Faalis::Dashboard::Sections
         show_props.instance_eval(&block) if block_given?
 
         define_method(:show_properties) do
-          return show_props
+          unless defined? @__show_props__
+            instance_exec(show_props, &block)
+            @__show_props__ = show_props
+          end
+          return @__show_props__
         end
       end
     end
