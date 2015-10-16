@@ -28,7 +28,7 @@ is just a shortcut for both `new` and `edit` sections that is `form` section. Ea
 shared methods between them. First of all you need to specify the section you want to tweak. This is easy, you can do like this:
 
 ```ruby
-in_<section> do
+in_<section> do |section|
   # Tweak DSL goes here . . .
 end
 ```
@@ -43,7 +43,7 @@ Let's start with the shared DSLs
 In order to customize a section of a resource you need to specify the section first like this:
 
 ```ruby
-in_index do
+in_index do |index|
   # index section customization goes here . . .
 end
 ```
@@ -77,12 +77,12 @@ the number of `attributes` in the `index` section all you have to do is to do th
 
 ```ruby
   # some where in your Dashboard::PostsController
-  in_index do
-    attribtues :title, :user_name, :created_at
+  in_index do |index|
+    index.attribtues :title, :user_name, :created_at
 
     # OR
 
-    attributes except: [:updated_at, :content]
+    index.attributes except: [:updated_at, :content]
   end
 ```
 
@@ -115,9 +115,9 @@ super easy:
 ```ruby
 
   # inside Dashboard::PostController
-  in_index do
-    action_button(label: t('Disable'), href: someaction_path,
-                  class: 'btn-info', icon_button: 'remove')
+  in_index do |index|
+    index.action_button(label: t('Disable'), href: someaction_path,
+                        class: 'btn-info', icon_button: 'remove')
   end
 
   # . . .
