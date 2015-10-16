@@ -172,10 +172,13 @@ module Faalis::Dashboard::Sections
           fail ArgumentError, "You have to provide a block for 'in_form'"
         end
 
-        form_props.instance_eval(&block) if block_given?
 
         define_method(:form_properties) do
-          return form_props
+          unless defined? @__form_props__
+            instance_exec(form_props, &block)
+            @__form_props__ = form_props
+          end
+          return @__form_props__
         end
 
         private :form_properties
