@@ -20,19 +20,10 @@ module Faalis::Dashboard::DSL
     # methods that their name starts with an underscore (_) not meant to
     # be used as DSL.
     def initialize(model)
-      @action_buttons = {}
+      @action_buttons = []
       @model          = model
       @fields         = resolve_model_reflections
       @fields_type    = {}
-    end
-
-    # Define a new action button to be added to the
-    # action_buttons list on the corresponding view.
-    def action_button(name, **options, &block)
-      button = { name: name }
-      button.merge! options
-      button.merge!(block.call) if block_given?
-      @action_buttons[name] = button
     end
 
     # Allow user to specify an array of model attributes to be used

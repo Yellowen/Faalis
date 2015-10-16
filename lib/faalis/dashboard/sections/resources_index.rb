@@ -87,10 +87,13 @@ module Faalis::Dashboard::Sections
           fail ArgumentError, "You have to provide a block for 'in_index'"
         end
 
-        index_props.instance_eval(&block) if block_given?
-
         define_method(:index_properties) do
-          return index_props
+          unless defined? @__index_props__
+            instance_exec(index_props, &block)
+            @__index_props__ = index_props
+          end
+
+          return @__index_props__
         end
       end
 
