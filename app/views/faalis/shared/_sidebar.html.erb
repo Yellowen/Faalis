@@ -38,6 +38,7 @@
       </li>
 
       <% @sidebar.children.each do |menu| %>
+        <% if menu.visible? current_user %>
         <li class="treeview">
           <a href="#">
             <i class="<%= menu.icon %>"></i>
@@ -47,16 +48,19 @@
           <% unless menu.children.nil? %>
             <ul class="treeview-menu slide">
               <% menu.children.each do |submenu| %>
+                <% if submenu.visible? current_user %>
                 <li>
                   <a href="<%= submenu.url %>">
                     <i class="<%= submenu.icon %>"></i>
                     <%= submenu.title %>
                   </a>
                 </li>
+                <% end %>
               <% end %>
             </ul>
           <% end %>
         </li>
+        <% end %>
       <% end %>
 
     </ul>

@@ -4,7 +4,27 @@ module Faalis::Dashboard::Models
     attr_reader :title, :url, :icon, :model
     def initialize(title, options)
       @title = title
+      @model = nil
       extract_options(options)
+    end
+
+    def visible?(user)
+      return true if @model.nil?
+
+      if @model.respond_to? :map
+        permissions = @model.map do |model|
+          # Find the appropriate policy for each model
+          # and authorize the user against that.
+          Pundit.policy!(user, model.to_sym).index?
+        end
+        # If user don't have access to none of the models
+        # then the menu should not be visible
+        permissions.any?
+      else
+
+        # Authorize the menu visibility against user and given model
+        Pundit.policy!(user, @model.to_sym).index?
+      end
     end
 
     private
@@ -24,6 +44,7 @@ module Faalis::Dashboard::Models
       @children ||= []
       @children << child
     end
+
   end
 
   class RootMenu < Array
