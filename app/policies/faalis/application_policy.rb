@@ -12,7 +12,15 @@ class Faalis::ApplicationPolicy
     return false if @user.nil?
     return true if @user.admin?
 
-    @user.have_permission? action, @record.class.to_s
+    # Check for ownership of the reocrd
+    record_class = @record.class
+
+    unless [Class, String, Symbol].include?(record_class)
+      return false if !@user.owned? @record
+      @record = @record.class
+    end
+
+    user.can? action, @record.to_s
   end
 
   def method_missing(m, *args, &block_given)
@@ -37,4 +45,5 @@ class Faalis::ApplicationPolicy
       scope
     end
   end
+
 end

@@ -11,10 +11,12 @@ module Faalis
       module ClassMethods
         # Default permission hash
         @@permissions = {
-          read: nil,
-          update: nil,
+          index: nil,
+          show: nil,
           create: nil,
+          update: nil,
           destroy: nil,
+          ownership: nil,
         }
 
         @@only_owner = false

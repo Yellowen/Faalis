@@ -9,7 +9,7 @@ module Faalis
       @group_ids.include? group.id
     end
 
-    def have_permission? action, obj
+    def has_permission? action, obj
       perm = self.groups.includes(:permissions)
         .where(faalis_permissions: { model: obj, permission_type: action })
         .count
@@ -17,10 +17,24 @@ module Faalis
     end
 
     def can_not? action, obj
-      !have_permission? action, obj
+      !has_permission? action, obj
     end
 
-    alias_method :can?, :have_permission?
+    alias_method :can?, :has_permission?
+
+    def owned?(record)
+      if has_permission? :ownership, record.class.to_s
+        if record.respond_to? :user
+          return true if record.user == self
+          return false
+        end
+
+        if record.respond_to? :__owned_by
+          return true if record.__owned_by == self
+        end
+      end
+      false
+    end
 
     def permissions
       groups.includes(:permissions).map(&:permissions).flatten.uniq
