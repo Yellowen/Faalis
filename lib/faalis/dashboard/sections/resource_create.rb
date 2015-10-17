@@ -8,7 +8,7 @@ module Faalis::Dashboard::Sections
 
     # The actual action method of a dashboard controller
     def new
-      authorize model
+      authorize model, :create?
       setup_named_routes
 
       collect_model_fields_for_form
@@ -25,7 +25,7 @@ module Faalis::Dashboard::Sections
     def edit
       # TODO: Handle nested resource in here
       @resource = model.find(params[:id])
-      authorize @resource
+      authorize @resource, :update?
 
       setup_named_routes
       collect_model_fields_for_form
