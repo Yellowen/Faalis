@@ -6,6 +6,7 @@ en:
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions"
 
+
     faalis_version: Faalis Version
     copyright_html: |
       &copy; 2013-2015 <a href="http://yellowen.com">Yellowen</a>.
@@ -76,3 +77,13 @@ en:
 
       index_section:
         add_button: "New %{resource}"
+
+
+    permissions:
+      read: Read
+      update: Update
+      create: Create
+      destroy: Destroy
+      index: Index
+      show: Show
+      ownershio: ownership

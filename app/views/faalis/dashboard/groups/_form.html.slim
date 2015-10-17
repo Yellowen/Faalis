@@ -11,7 +11,7 @@ div
               .col-sm-12.col-lg-6
                 .form-group data-name="role"
                   label for="group_name"
-                    = ('faalis.group.group_name')
+                    = t('faalis.group.group_name')
 
                   input#group_name.form-control[name="group[name]" type="text" required value=(@group.name)]
 
@@ -48,11 +48,11 @@ div
                             - actions.each do |action|
                               span.col-sm-3
                                 - if @group.include_permission? action[1]
-                                  input[type="checkbox" checked name=("group[permissions][#{action[1]}]") label=(t(action[0].humanize()))]
-                                    = " #{action[0].humanize()}"
+                                  input[type="checkbox" checked name=("group[permissions][#{action[1]}]") label=(t("faalis.permissions.#{action[0]}"))]
+                                    = t("faalis.permissions.#{action[0]}")
                                 - else
-                                  input[type="checkbox" name=("group[permissions][#{action[1]}]") label=(t(action[0].humanize()))]
-                                    = " #{action[0].humanize()}"
+                                  input[type="checkbox" name=("group[permissions][#{action[1]}]") label=(t("faalis.permissions.#{action[0]}"))]
+                                    = t("faalis.permissions.#{action[0]}")
 
     .row
       .col-sm-2
