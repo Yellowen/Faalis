@@ -14,17 +14,17 @@ module Faalis
         klass  = button.fetch(:class, 'btn-success')
         remote = button.fetch(:remote, true).to_s
         icons  = button.fetch(:icon_class, "")
-        label  = button.fetch(:laebl, "")
+        label  = button.fetch(:label, '')
         model  = button.fetch(:model, nil)
 
         buttons_html += "<a class='action-button btn pull-right btn-sm " +
                         "#{klass}' href='#{href}' data-remote='#{remote}'>\n" +
                         "<i class='fa fa-#{icons}'></i>" +
-                        laebl +
-                        "</a>"
+                        label +
+                        '</a>'
 
       end
-      buttons_html
+      buttons_html.html_safe
     end
 
     # Translate route name to url dynamically

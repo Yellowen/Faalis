@@ -19,6 +19,7 @@ module Faalis
 
         def setup_header
           @dashboard_section_title = t(controller_name.underscore)
+          @dashboard_resource_name = t(controller_name.underscore.singularize)
           @dashboard_section_slug  = t(action_name)
         end
 
