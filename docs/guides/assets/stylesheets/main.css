@@ -288,7 +288,7 @@ body {
 --------------------------------------- */
 
 a, a:link, a:visited {
-  color: #5d2553;
+  color: #d5e9f6;
   text-decoration: underline;
 }
 
@@ -501,7 +501,7 @@ h6 {
   margin: 0 2em 2em 0;
 }
 
-#topNav strong {color: #999; margin-right: 0.5em;}
+#topNav strong {color: #FCAFAF; margin-right: 0.5em;}
 #topNav strong a {color: #FFF;}
 
 #header h1 {
