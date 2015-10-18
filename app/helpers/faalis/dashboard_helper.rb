@@ -6,6 +6,27 @@ module Faalis
       time.strftime("%Y-%m-%d %H:%M")
     end
 
+    def action_buttons(buttons)
+      buttons_html = ''
+
+      buttons.each do |button|
+        href   = button.fetch(:href, '#')
+        klass  = button.fetch(:class, 'btn-success')
+        remote = button.fetch(:remote, true).to_s
+        icons  = button.fetch(:icon_class, "")
+        label  = button.fetch(:laebl, "")
+        model  = button.fetch(:model, nil)
+
+        buttons_html += "<a class='action-button btn pull-right btn-sm " +
+                        "#{klass}' href='#{href}' data-remote='#{remote}'>\n" +
+                        "<i class='fa fa-#{icons}'></i>" +
+                        laebl +
+                        "</a>"
+
+      end
+      buttons_html
+    end
+
     # Translate route name to url dynamically
     def get_url(route_name, id = nil, engine = Rails.application)
       return engine.routes.url_helpers.send(route_name, id.to_s) unless id.nil?
