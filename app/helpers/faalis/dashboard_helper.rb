@@ -12,7 +12,7 @@ module Faalis
       buttons.each do |button|
         href    = button.fetch(:href, '#')
         klass   = button.fetch(:class, 'btn-success')
-        remote  = button.fetch(:remote, true).to_s
+        remote  = button.fetch(:remote, false).to_s
         icons   = button.fetch(:icon_class, "")
         label   = button.fetch(:label, '')
         model   = button.fetch(:model, nil)
