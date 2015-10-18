@@ -20,14 +20,14 @@
           |
         .box-tools
           - if policy(@resources.model).create?
-            a.btn.btn-success.action-button.pull-right.btn-sm href=(get_url(@new_route, nil, @engine))
+            a.btn.btn-success.action-button.pull-right href=(get_url(@new_route, nil, @engine))
               i.fa.fa-plus
               = t("faalis.dashboard.index_view.new_button", title: @dashboard_resource_name)
 
           = action_buttons(@_action_buttons)
           /- @_action_buttons.each do |action|
 
-            a class=("action-button btn pull-right btn-sm #{action.fetch(:class, 'btn-success')}") href=(action.fetch(:href, '#')) data-remote=(action.fetch(:remote, true).to_s)
+            a class=("action-button btn pull-right  #{action.fetch(:class, 'btn-success')}") href=(action.fetch(:href, '#')) data-remote=(action.fetch(:remote, true).to_s)
               i class=("fa fa-#{action.fetch(:icon_class, "")}")
               = action.fetch(:label, '')
 

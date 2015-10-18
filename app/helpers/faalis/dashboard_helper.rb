@@ -19,8 +19,9 @@ module Faalis
         action  = button.fetch(:policy, nil)
 
         with_policy(model, action) do
-          buttons_html += "<a class='action-button btn pull-right btn-sm " +
-                          "#{klass}' href='#{href}' data-remote='#{remote}'>\n" +
+          buttons_html += "<a class='action-button btn pull-right " +
+                          "#{klass}' href='#{href}' data-remote='#{remote}'"+
+                          "data-disable-with='#{spinner} #{label}'>\n" +
                           "<i class='fa fa-#{icons}'></i>" +
                           label +
                           '</a>'
@@ -63,6 +64,10 @@ module Faalis
     end
 
     private
+
+    def spinner
+      h "<i class='fa fa-cog fa-lg fa-spin'></i>"
+    end
 
     def with_policy(model, action, &block)
       if model && action
