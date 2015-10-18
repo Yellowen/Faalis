@@ -90,6 +90,7 @@ module Faalis::Dashboard::DSL
     def action_button(**options)
       @action_buttons ||= []
       @action_buttons << options
+      @action_buttons.uniq!
     end
 
   private
