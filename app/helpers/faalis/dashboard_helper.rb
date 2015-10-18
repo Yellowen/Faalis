@@ -10,19 +10,21 @@ module Faalis
       buttons_html = ''
 
       buttons.each do |button|
-        href   = button.fetch(:href, '#')
-        klass  = button.fetch(:class, 'btn-success')
-        remote = button.fetch(:remote, true).to_s
-        icons  = button.fetch(:icon_class, "")
-        label  = button.fetch(:label, '')
-        model  = button.fetch(:model, nil)
+        href    = button.fetch(:href, '#')
+        klass   = button.fetch(:class, 'btn-success')
+        remote  = button.fetch(:remote, true).to_s
+        icons   = button.fetch(:icon_class, "")
+        label   = button.fetch(:label, '')
+        model   = button.fetch(:model, nil)
+        action  = button.fetch(:policy, nil)
 
-        buttons_html += "<a class='action-button btn pull-right btn-sm " +
-                        "#{klass}' href='#{href}' data-remote='#{remote}'>\n" +
-                        "<i class='fa fa-#{icons}'></i>" +
-                        label +
-                        '</a>'
-
+        with_policy(model, action) do
+          buttons_html += "<a class='action-button btn pull-right btn-sm " +
+                          "#{klass}' href='#{href}' data-remote='#{remote}'>\n" +
+                          "<i class='fa fa-#{icons}'></i>" +
+                          label +
+                          '</a>'
+        end
       end
       buttons_html.html_safe
     end
@@ -57,6 +59,18 @@ module Faalis
           result += '</li>'
         end
         result += '</ul>'
+      end
+    end
+
+    private
+
+    def with_policy(model, action, &block)
+      if model && action
+        if policy(model).send("#{action}?")
+          block.call
+        end
+      else
+        block.call
       end
     end
   end
