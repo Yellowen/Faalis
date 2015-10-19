@@ -22,3 +22,16 @@
       name: Dashboard DSL
       url: dashboard_dsl.html
       description: This is guide will teach you how to enhance your dashboard using **Faalis** dashboard.
+
+-
+  name: Authentication & Authorization
+  documents:
+    -
+      name: Authentication
+      url: authentication.html
+      description: Everything you need to know about how does **Faalis** authenticate users.
+
+    -
+      name: Authorization
+      url: authorization.html
+      description: How does **Faalis** authorization and permissions work?
