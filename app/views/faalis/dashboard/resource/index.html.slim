@@ -20,7 +20,7 @@
           |
         .box-tools
           - if policy(@resources.model).create?
-            a.btn.btn-success.action-button.pull-right href=(get_url(@new_route, nil, @engine))
+            a.btn.btn-success.action-button.pull-right.btn-sm href=(get_url(@new_route, nil, @engine))
               i.fa.fa-plus
               = t("faalis.dashboard.index_view.new_button", title: @dashboard_resource_name)
 
