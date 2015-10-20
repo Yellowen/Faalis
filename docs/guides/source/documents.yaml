@@ -35,3 +35,12 @@
       name: Authorization
       url: authorization.html
       description: How does **Faalis** authorization and permissions work?
+
+-
+  name: Client Side application
+  documents:
+
+    -
+      name: Misc Functions
+      url: misc_functions.html
+      description: Useful javascript functions to use in your applications
