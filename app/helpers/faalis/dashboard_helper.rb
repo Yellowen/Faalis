@@ -6,6 +6,25 @@ module Faalis
       time.strftime("%Y-%m-%d %H:%M")
     end
 
+    def link_button(title, **options)
+      classes    = "btn pull-right btn-sm #{options.fetch(:classes, '')}"
+      icon_class = options[:icon_class]
+      href       = options.fetch(:href, '#')
+      remote     = options.fetch(:remote, false).to_s
+
+      button = "<a class='#{classes}' href='#{href}'" +
+               "data-disable-with='#{title} . . .' data-remote='#{remote}'" +
+               "data-disable-class='disabled'>"
+
+      if icon_class
+        button += "<i class='fa fa-#{icon_class}'></i>"
+      end
+
+      button += title + '</a>'
+
+      button.html_safe
+    end
+
     def action_buttons(buttons)
       buttons_html = ''
 
