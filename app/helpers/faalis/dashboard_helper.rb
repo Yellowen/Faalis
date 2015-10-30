@@ -38,7 +38,7 @@ module Faalis
         action  = button.fetch(:policy, nil)
 
         with_policy(model, action) do
-          buttons_html += "<a class='action-button btn pull-right " +
+          buttons_html += "<a class='action-button btn btn-sm pull-right " +
                           "#{klass}' href='#{href}' data-remote='#{remote}'"+
                           "data-disable-with='#{spinner} #{label}'>\n" +
                           "<i class='fa fa-#{icons}'></i>" +
