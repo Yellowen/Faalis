@@ -114,6 +114,7 @@ module Faalis::Dashboard::Sections
             f.html
           else
             flash[:success] = msg
+
             path = Rails.application.routes.url_helpers.send(@index_route)
             # TODO: We really need to put setup routed on top of this method
             f.js { render "faalis/dashboard/resource/#{section}" }
