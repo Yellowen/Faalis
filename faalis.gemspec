@@ -26,12 +26,12 @@ Gem::Specification.new do |s|
   # Authentication
   s.add_dependency 'omniauth'
   s.add_dependency 'devise', '~> 3.5', '>= 3.4.0'
-  s.add_dependency 'admin_lte-rails', '~> 2.2.0.7'
+  s.add_dependency 'admin_lte-rails', '~> 2.3.0'
   s.add_dependency 'nprogress-rails'
   #s.add_dependency 'rails-assets-admin-lte'
+
   # Authorization
   s.add_dependency 'pundit'
-  #s.add_dependency 'mailboxer'
 
   # API
   s.add_dependency 'jbuilder'
@@ -54,7 +54,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'modernizr-rails'
 
   # We have to give up lodash for sugar
-  #s.add_dependency 'lodash-rails', '~>2.4'
   s.add_dependency 'rails-assets-sugar', '1.4.1'
 
   s.add_development_dependency 'execjs'
