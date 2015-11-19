@@ -5,7 +5,7 @@
         h3.box-title
           = t('faalis.users')
         .box-tools
-          - new_user = new_dashboard_auth_user_path
+          - new_user = faalis.new_dashboard_auth_user_path
           a.btn.btn-success.pull-right.btn-sm href=(new_user)
             i.fa.fa-plus
             = t('faalis.dashboard.index_section.add_button' , resource:  'user')
@@ -30,8 +30,8 @@
                 = t('faalis.dashboard.actions')
 
             - @users.each do |user|
-              - edit_target = edit_dashboard_auth_user_path(id: user.id)
-              - show_target = dashboard_auth_user_path(id: user.id)
+              - edit_target = faalis.edit_dashboard_auth_user_path(id: user.id)
+              - show_target = faalis.dashboard_auth_user_path(id: user.id)
               tr id=("user_#{user.id}")
 
                 td

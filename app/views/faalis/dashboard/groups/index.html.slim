@@ -5,7 +5,7 @@
         h3.box-title
           = t('faalis.group.groups')
         .box-tools
-          - new_group = new_dashboard_auth_group_path
+          - new_group = faalis.new_dashboard_auth_group_path
           a.btn.btn-success.pull-right.btn-sm href=(new_group)
             i.fa.fa-plus
             = t('faalis.dashboard.index_section.add_button', resource: t('faalis.group.group'))
@@ -26,9 +26,9 @@
                 = t('faalis.dashboard.actions')
 
             - @groups.each do |group|
-              - edit_target = edit_dashboard_auth_group_path(id: group.id)
-              - destroy_target = dashboard_auth_groups_path
-              - show_target = dashboard_auth_group_path(id: group.id)
+              - edit_target    = faalis.edit_dashboard_auth_group_path(id: group.id)
+              - destroy_target = faalis.dashboard_auth_groups_path
+              - show_target    = faalis.dashboard_auth_group_path(id: group.id)
               tr id=("group_#{group.id}")
 
                 td
