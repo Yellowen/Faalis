@@ -20,7 +20,6 @@ when 'active_record'
   user = Faalis::User.create(email: 'user@example.com',
                              password: '123123123',
                              password_confirmation: '123123123')
-  user.groups << guest_group
 
 when 'mongoid'
   admin_group = Faalis::Group.create(name: 'Admin', role: 'admin')
@@ -43,7 +42,7 @@ when 'mongoid'
                           password_confirmation: '123123123')
 
   guest_group = Faalis::Group.new(name: 'Guest', role: 'guest')
-  user.groups = [guest_group]
+
 end
 
 admin.save
