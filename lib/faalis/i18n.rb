@@ -18,7 +18,6 @@
 # -----------------------------------------------------------------------------
 
 module Faalis
-
   # I18n related utility functions
   class I18n
     RTL = [:fa, :ar]
@@ -35,6 +34,17 @@ module Faalis
       def self.default_url_options
         binding.pry
         { :locale => I18n.locale }
+      end
+    end
+
+    class MissingKeyHandler < ::I18n::ExceptionHandler
+      def call(exception, locale, key, options)
+        if exception.is_a?(MissingTranslation)
+          puts "<<<<<<<<<<<<<,", key
+          super
+        else
+          super
+        end
       end
     end
   end
