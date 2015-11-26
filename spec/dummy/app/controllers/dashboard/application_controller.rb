@@ -1,7 +1,7 @@
 class Dashboard::ApplicationController < Faalis::Dashboard::ApplicationController
 
   def setup_sidebar
-    @sidebar = sidebar(t('faaalis.engine_name')) do |s|
+    @sidebar = sidebar(t('faalis.engine_name')) do |s|
       s.faalis_entries
 
       # Put your sidebar entries in here like this:
