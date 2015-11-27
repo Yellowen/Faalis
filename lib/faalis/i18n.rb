@@ -38,9 +38,19 @@ module Faalis
     end
 
     class MissingKeyHandler < ::I18n::ExceptionHandler
+      require 'fileutils'
+
+      def create_key_cache(locale, key)
+        locale_dir = "#{Rails.root}/tmp/i18n/#{locale}"
+        key_file   = "#{locale_dir}/#{key}"
+
+        FileUtils.mkdir_p locale_dir
+        FileUtils.touch [key_file]
+      end
+
       def call(exception, locale, key, options)
-        if exception.is_a?(MissingTranslation)
-          puts "<<<<<<<<<<<<<,", key
+        if exception.is_a?(::I18n::MissingTranslation)
+          create_key_cache(locale, key)
           super
         else
           super
