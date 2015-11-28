@@ -4,6 +4,7 @@ namespace :faalis do
     task :collect do
       def merge_recursively(a, b)
         puts "Rec: ", a, b
+        return b if a.is_a?(String)
         a.merge(b) {|key, a_item, b_item| merge_recursively(a_item, b_item) }
       end
 
