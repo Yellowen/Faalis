@@ -30,7 +30,7 @@ fa:
     sign_out: خروج
     sign_up: ثبت نام
     errors:
-      fix_errors: ابتدا این خطا ها را رفع کنید
+      fix_errors: ابتدا این خطاها را رفع کنید
     dashboard:
       index_view:
         new_button: '%{title} جدید'
@@ -40,7 +40,7 @@ fa:
       dashboard: داشبرد
       sidebar:
         online: آنلاین
-        search: جستوجو
+        search: جستجو
 
     permissions:
       read: خواندن
