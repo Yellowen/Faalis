@@ -70,6 +70,12 @@ module Faalis
       yield self
     end
 
+    # We have to move this method somewhere else
+    def self.collect_i18n_missing_keys=(value)
+      if value
+        ::I18n.exception_handler = Faalis::I18n::MissingKeyHandler.new
+      end
+    end
 
     # Site Title
     mattr_accessor :site_title
