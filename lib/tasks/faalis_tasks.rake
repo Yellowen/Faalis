@@ -3,6 +3,7 @@ namespace :faalis do
     desc 'Add all the missing keys to the locale files'
     task :collect do
       def merge_recursively(a, b)
+        puts "Rec: ", a, b
         a.merge(b) {|key, a_item, b_item| merge_recursively(a_item, b_item) }
       end
 
@@ -17,6 +18,8 @@ namespace :faalis do
 
         Dir["#{Rails.root}/tmp/i18n/#{locale}/*"].each do |key_file|
           key   = key_file.split('/')[-1]
+          puts "Key", key
+
           title = key.split('.')[-1].titleize
           array = ::I18n.normalize_keys(locale, key, nil)
           tmp   = array.reverse.inject(title) do |a, n|
