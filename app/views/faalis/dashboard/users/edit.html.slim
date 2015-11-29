@@ -1,3 +1,3 @@
-- form_target = dashboard_auth_user_path(id: @user.id)
-- index =  dashboard_auth_users_path
+- form_target = faalis.dashboard_auth_user_path(id: @user.id)
+- index =  faalis.dashboard_auth_users_path
 = render partial: 'form', locals: { method: :put, form_target: form_target, index: index }
