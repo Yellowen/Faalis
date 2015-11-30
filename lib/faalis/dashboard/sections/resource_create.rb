@@ -69,6 +69,7 @@ module Faalis::Dashboard::Sections
 
       @resource.assign_attributes(**reflections_hash) unless reflections_hash.nil?
 
+      before_create_hook(@resource)
       # TODO: Handle M2M relations in here
 
       if @resource.save
@@ -115,6 +116,9 @@ module Faalis::Dashboard::Sections
       end
 
     private
+
+      def before_create_hook(resource)
+      end
 
       def all_valid_columns_for_form
         return @all_valid_columns_for_form unless @all_valid_columns_for_form.nil?
