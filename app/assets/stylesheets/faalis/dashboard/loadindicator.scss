@@ -1,11 +1,17 @@
 
-.skin-blue {
+
+.skin-blue, .skin-blue-light{
   #nprogress .bar {
   background: #FD7D00;
   }
 
 
   #nprogress .peg {
-    box-shadow: 10px 10px 10px  #4FF0A6, 0 0 10px red;
+    box-shadow: 5px 2px 2px  #4FF0A6, 0 0 10px red;
   }
+}
+
+
+.skin-yellow, .skin-yellow-light{
+
 }
