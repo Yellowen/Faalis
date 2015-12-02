@@ -50,6 +50,41 @@ end
 
 Also you can do this for other sections too. In fact you have to.
 
+#### in_index
+TODO
+
+#### in_form
+TODO
+
+#### in_show
+Any customization you want to apply to `show` section will goes here. For example:
+
+```ruby
+in_show do |show|
+  show.attributes :id, :name, :custom_method1
+end
+```
+But if you don't do any customization, `show` section will create a list of all the
+columns your resource have including the relations and possible attachment urls.
+
+If you looked at the show list before, you may saw that **Faalis** returns the ruby
+representation of each relationship in your resource. For example for a relationship
+with `Faalis::User` you should see something like:
+
+```
+#<Faalis::User:0x007f22977b7a30>
+```
+
+It's totally fine because **Faalis** does not know about your relationship context and
+what field should be used on the relation object. It simply apply `to_s` on the relation
+object.
+
+So you can change this behavior by overriding your model `to_s` method. This way instead
+of ruby representation of the relation object you'll see much more suitable string.
+
+There are lots of way to fix this problem. For instance, as we mentioned earlier attribute
+delegation and custom methods are always fine solutions.
+
 ### attributes
 You can specify the model fields that you wanted to show in the corresponding section like `index` or `form`.
 
@@ -92,6 +127,17 @@ Pretty simple right?
 
 Some time you want to change the behavior in an specific section. For example you want to render an textarea
 for a field instead of simple input in `form` section. You can achieve that with `attributes_properties`.
+
+For example:
+
+```ruby
+in_form do 'form'
+  form.attributes_properties name: { #name_properties }
+end
+```
+
+`name_properties` would be any [formtastic](https://github.com/justinfrench/formtastic) configuration you needed.
+It will directly apply to the given property.
 
 ### scope
 Using this method you can override the default scope of a section (generally `index` section). By default **Faalis**
