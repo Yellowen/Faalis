@@ -23,9 +23,7 @@ module Faalis::Dashboard::Sections
 
       def collect_model_fields_for_show
         @_fields ||= show_properties.fields
-        puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", @_fields
-        valid_columns = all_valid_columns_for_show
-        puts "<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", valid_columns
+        #valid_columns = all_valid_columns_for_show
       end
 
       def show_properties
@@ -35,19 +33,19 @@ module Faalis::Dashboard::Sections
     private
 
 
-      def all_valid_columns_for_show
-        return @all_valid_columns_for_show unless @all_valid_columns_for_show.nil?
-        columns   = model.columns_hash.dup
-        relations = model.reflections
+      # def all_valid_columns_for_show
+      #   return @all_valid_columns_for_show unless @all_valid_columns_for_show.nil?
+      #   columns   = model.columns_hash.dup
+      #   relations = model.reflections
 
-        relations.keys.each do |name|
-          col    = relations[name]
-          column = columns.delete col.foreign_key
-          columns[name] = column
-        end
+      #   relations.keys.each do |name|
+      #     col    = relations[name]
+      #     column = columns.delete col.foreign_key
+      #     columns[name] = column
+      #   end
 
-        @all_valid_columns_for_show = columns
-      end
+      #   @all_valid_columns_for_show = columns
+      # end
 
       def _show_fields
         all_valid_columns_for_show.keys.map(&:to_sym)
