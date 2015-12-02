@@ -11,7 +11,7 @@
               h5.header
                 = t("#{@resource.class.name.underscore}.show.#{name.to_s.underscore}") + ':'
               h4.result
-                = @resource.send(name.to_sym) || "-"
+                = @resource.send(name.to_sym).to_s || "-"
 
 
       .box-footer

@@ -38,5 +38,6 @@ module Faalis
     def model_name
       model.underscore.humanize
     end
+
   end
 end

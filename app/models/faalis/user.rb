@@ -79,5 +79,9 @@ module Faalis
       Faalis::UserPolicy
     end
 
+    def to_s
+      full_name || email
+    end
+
   end
 end
