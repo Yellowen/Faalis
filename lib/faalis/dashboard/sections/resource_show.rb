@@ -13,7 +13,7 @@ module Faalis::Dashboard::Sections
       setup_named_routes
       collect_model_fields_for_show
 
-      @resource_title     = _resource_title.singularize
+      @resource_title = _resource_title.singularize
 
       return if _override_views.include? :show
       render 'faalis/dashboard/resource/show'
@@ -23,7 +23,9 @@ module Faalis::Dashboard::Sections
 
       def collect_model_fields_for_show
         @_fields ||= show_properties.fields
+        puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", @_fields
         valid_columns = all_valid_columns_for_show
+        puts "<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", valid_columns
       end
 
       def show_properties
@@ -53,21 +55,6 @@ module Faalis::Dashboard::Sections
 
     # The actual DSL for index ages
     module ClassMethods
-      # User can provides the fields that he/she wants to be shown
-      # in the resource preview
-      # for example:
-      #
-      # class Dashboard::PostsController < Dashboard::ApplicationController
-      #   show_fields :title, created_at
-      # end
-      def show_fields(*fields, **options)
-        define_method(:_new_form_fields) do
-          fields.map(&:to_sym)
-        end
-
-        private :_show_fields
-      end
-
       # To specify any property and action for `show` section
       # you must use `in_index` class method with block of
       # properties. For example:

@@ -6,10 +6,10 @@
           / TODO: add a DSL to provide a message for this section
       .box-body
         ul.resource.details.col-sm-12.col-lg-6.col-md-6
-          - @_fields.keys.each_with_index do |name, index|
+          - @_fields.each_with_index do |name, index|
             li
               h5.header
-                = t(name.to_s.titleize) + ':'
+                = t("#{@resource.class.name.underscore}.show.#{name.to_s.underscore}") + ':'
               h4.result
                 = @resource.send(name.to_sym) || "-"
 
