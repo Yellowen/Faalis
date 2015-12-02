@@ -19,6 +19,8 @@ fa:
       invalid_token: 'کلمه رمز نامعتبر.'
       timeout: 'نشست شما منقضی شده است. برای ادامه دوباره وارد شوید.'
       inactive: 'حساب شما هنوز فعال نشده است.'
+      user:
+        not_found_in_database: 'کاربری با این مشخصات پیدا نشد'
     sessions:
       signed_in: 'ورود موفق.'
       signed_out: 'خروج موفق.'
