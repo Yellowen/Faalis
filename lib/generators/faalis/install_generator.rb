@@ -104,8 +104,9 @@ module Faalis
 
         inside Rails.root do
           run 'rm Gemfile.lock'
-          run 'bundle install'
         end
+
+        bundle_command "install"
       end
 
 
