@@ -23,7 +23,7 @@ source 'http://rails-assets.org' do
   gem 'rails-assets-jquery-sparkline'
   gem 'rails-assets-jquery-icheck'
   gem 'rails-assets-admin-lte'
-  end
+end
 
 gem "faalis", github: 'Yellowen/Faalis'
 ```
