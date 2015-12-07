@@ -103,10 +103,8 @@ module Faalis
 
 
         inside Rails.root do
-          run 'rm Gemfile.lock'
+          run 'bundle update'
         end
-
-        bundle_command "install"
       end
 
 
