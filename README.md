@@ -15,7 +15,17 @@ cool stuff.
 Simply add `faalis` to your gem file with following command:
 
 ```ruby
-gem "faalis"
+source 'http://rails-assets.org' do
+  gem 'rails-assets-sugar'
+  gem 'rails-assets-bootstrap-rtl'
+  gem 'rails-assets-jquery-knob'
+  gem 'rails-assets-bootstrap-daterangepicker'
+  gem 'rails-assets-jquery-sparkline'
+  gem 'rails-assets-jquery-icheck'
+  gem 'rails-assets-admin-lte'
+  end
+
+gem "faalis", github: 'Yellowen/Faalis'
 ```
 
 Then install your project dependencies using `bundle` command:

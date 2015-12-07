@@ -79,24 +79,24 @@ module Faalis
       end
 
       def add_gems
-        # Inject necessary gem files
-        if Rails.version.starts_with? '5'
-          add_source 'http://rails-assets.org' do
-            gem 'rails-assets-bootstrap-rtl'
-            gem 'rails-assets-jquery-knob'
-            gem 'rails-assets-bootstrap-daterangepicker'
-            gem 'rails-assets-jquery-sparkline'
-            gem 'rails-assets-jquery-icheck'
-          end
+      #   # Inject necessary gem files
+      #   if Rails.version.starts_with? '5'
+      #     add_source 'http://rails-assets.org' do
+      #       gem 'rails-assets-bootstrap-rtl'
+      #       gem 'rails-assets-jquery-knob'
+      #       gem 'rails-assets-bootstrap-daterangepicker'
+      #       gem 'rails-assets-jquery-sparkline'
+      #       gem 'rails-assets-jquery-icheck'
+      #     end
 
-        else
-          add_source 'http://rails-assets.org'
-          gem 'rails-assets-bootstrap-rtl'
-          gem 'rails-assets-jquery-knob'
-          gem 'rails-assets-bootstrap-daterangepicker'
-          gem 'rails-assets-jquery-sparkline'
-          gem 'rails-assets-jquery-icheck'
-        end
+      #   else
+      #     add_source 'http://rails-assets.org'
+      #     gem 'rails-assets-bootstrap-rtl'
+      #     gem 'rails-assets-jquery-knob'
+      #     gem 'rails-assets-bootstrap-daterangepicker'
+      #     gem 'rails-assets-jquery-sparkline'
+      #     gem 'rails-assets-jquery-icheck'
+      #   end
 
         #gem 'turbolinks', github: 'rails/turbolinks'
         gem 'jquery-turbolinks'
@@ -115,11 +115,18 @@ module Faalis
 
       def install_formtastic
         generate 'formtastic:install'
+      end
 
+      def patch_formtastic
         if File.exist? "#{Rails.root}config/initializers/formtastic.rb"
           append_to_file 'config/initializers/formtastic.rb' do
-          'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
+            'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
           end
+        else
+          puts "[WARNING]: Please add the following to your 'config/initializers/formtastic.rb' file:"
+          puts " "
+          puts 'Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder'
+          puts " "
         end
       end
 
