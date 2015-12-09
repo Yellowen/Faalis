@@ -57,7 +57,23 @@ Installation
 Simply add `faalis` to your gem file like this:
 
 ```ruby
+source 'http://rails-assets.org' do
+  gem 'rails-assets-sugar'
+  gem 'rails-assets-bootstrap-rtl'
+  gem 'rails-assets-jquery-knob'
+  gem 'rails-assets-bootstrap-daterangepicker'
+  gem 'rails-assets-jquery-sparkline'
+  gem 'rails-assets-jquery-icheck'
+  gem 'rails-assets-admin-lte'
+end
+
 gem "faalis"
+```
+
+If you want to install **faalis** from github just replace previous `gem "faalis"` with this:
+
+```ruby
+gem "faalis", github: 'Yellowen/Faalis'
 ```
 
 Then install your project dependencies using `bundle`
@@ -82,5 +98,8 @@ NOTE: In production, `:host` should be set to the actual host of your applicatio
 Perform `rake db:migrate db:seed` and enjoy Faalis
 
 NOTE: You can specify the ORM you'd like to use in `config/initializers/faalis.rb`
+
+Perform `rake db:migrate db:seed`. If you're using different database engine rather than
+`sqlite`, then you have to create the db first.
 
 Done. Now you're ready to start developing your application using **Faalis**. Have fun.
