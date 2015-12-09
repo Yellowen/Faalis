@@ -23,6 +23,7 @@ module Faalis::Dashboard::DSL
     # Define a new tool on the `tool` place of the index section
     # **options**: Is a hash which contains the tool button properties.
     #
+    # `name`:  name of the button. used as identifier
     # `class`:  classes of the button.
     # `icon_class`: font awesome icon to use in button.
     # `remote`: whether
@@ -33,8 +34,8 @@ module Faalis::Dashboard::DSL
       fail 'You have to provide a block for `tool_button`' if !block_given?
 
       options[:block] = block
-      @tool_buttons ||= []
-      @tool_buttons << options
+      @tool_buttons ||= {}
+      @tool_buttons[options[:name]] = options
     end
 
     alias_method :table_fields, :attributes

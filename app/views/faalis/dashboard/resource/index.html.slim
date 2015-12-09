@@ -50,8 +50,8 @@
                     a.link.pull-left.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete"
                       i.fa.fa-remove.btn-remove
 
-                    - @_tools_buttons.each do |btn|
-                      a class=("link pull-left btn btn-xs #{btn[:class] || 'btn-default'}") href=(btn[:block].call(resource)) data-remote=("#{btn[:remote]}")
+                    - @_tools_buttons.each do |btn_name, btn|
+                      a id=("tool_button_#{btn_name}") class=("link pull-left btn btn-xs #{btn[:class] || 'btn-default'}") href=(btn[:block].call(resource)) data-remote=("#{btn[:remote]}")
                         i class=("fa #{btn[:icon_class]}")
       .box-footer
         .row
