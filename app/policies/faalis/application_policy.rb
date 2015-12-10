@@ -16,7 +16,9 @@ class Faalis::ApplicationPolicy
     record_class = @record.class
 
     unless [Class, String, Symbol].include?(record_class)
-      return false if !@user.owned? @record
+      if @user.has_ownership?(@record)
+        return false if !@user.owned? @record
+      end
       @record = @record.class
     end
 

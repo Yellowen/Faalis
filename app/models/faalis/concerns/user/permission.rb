@@ -22,6 +22,10 @@ module Faalis
 
     alias_method :can?, :has_permission?
 
+    def has_ownership?(record)
+      has_permission? :ownership, record.class.to_s
+    end
+
     def owned?(record)
       if has_permission? :ownership, record.class.to_s
         if record.respond_to? :user
