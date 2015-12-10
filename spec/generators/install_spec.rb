@@ -28,6 +28,9 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
 
     FileUtils.touch("#{path}/config/routes.rb")
     FileUtils.touch("#{path}/Gemfile")
+    FileUtils.touch("#{path}/config/initializers/assets.rb")
+    FileUtils.touch("#{path}/config/initializers/formtastic.rb")
+
 
     FileUtils.touch("#{path}/app/controllers/application_controller.rb")
     run_generator
