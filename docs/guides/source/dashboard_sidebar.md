@@ -17,3 +17,11 @@ After reading this guide, you will know:
 
 How sidebar works?
 ------------------
+Sidebar is not very complicated. It's just a nested hash which **Faalis** uses it
+to render a nested menu in dashboard. You can build this hash easily by yourself
+and via any source you want. For example you can fetch the entries from database
+of a remote API. But **Faalis** provides a simple DSL for you to build this hash
+more easily. It's a bit limited but far from enough.
+
+
+## Sidebar DSL
