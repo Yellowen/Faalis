@@ -13,6 +13,8 @@ module Faalis::Dashboard::Sections
       action_buttons(index_properties)
       @_tools_buttons = index_properties.tool_buttons || {}
 
+      index_hook(@resources)
+
       return if _override_views.include? :index
       render 'faalis/dashboard/resource/index'
     end
@@ -62,7 +64,11 @@ module Faalis::Dashboard::Sections
         @resources    = result
       end
 
+      # You can override this method to change the behaviour of `index`
+      # action
+      def index_hook(resources)
 
+      end
     # The actual DSL for index ages
     module ClassMethods
 

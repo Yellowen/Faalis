@@ -14,6 +14,8 @@ module Faalis::Dashboard::Sections
 
       @resource_title = _resource_title.singularize
 
+      show_hook(@resource)
+
       return if _override_views.include? :show
       render 'faalis/dashboard/resource/show'
     end
@@ -45,9 +47,13 @@ module Faalis::Dashboard::Sections
 
       #   @all_valid_columns_for_show = columns
       # end
-
       def _show_fields
         all_valid_columns_for_show.keys.map(&:to_sym)
+      end
+
+      # You can override this method to change the behaviour of `show`
+      # action
+      def show_hook(resource)
       end
 
     # The actual DSL for index ages

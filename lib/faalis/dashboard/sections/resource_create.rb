@@ -17,6 +17,7 @@ module Faalis::Dashboard::Sections
       @_fields_properties = form_properties._field_details
       @multipart          = has_attachment?
 
+      new_hook(resource)
       return if _override_views.include? :new
       render 'faalis/dashboard/resource/new'
     end
@@ -32,6 +33,8 @@ module Faalis::Dashboard::Sections
       @_fields_properties = form_properties._field_details
       @multipart          = has_attachment?
 
+      edit_hook(@resource)
+
       return if _override_views.include? :edit
       render 'faalis/dashboard/resource/edit'
     end
@@ -43,6 +46,9 @@ module Faalis::Dashboard::Sections
 
       new_params = creation_params
       new_params.merge(reflections_hash) if reflections_hash
+
+      # Customize update behaviour
+      before_update_hook(@resource)
 
       # TODO: Move this method to a suitable place instead of controller
       #       itself
@@ -65,7 +71,9 @@ module Faalis::Dashboard::Sections
 
       @resource.assign_attributes(**reflections_hash) unless reflections_hash.nil?
 
+      # Customize the create behaviour
       before_create_hook(@resource)
+
       # TODO: Handle M2M relations in here
 
       if @resource.save
@@ -102,7 +110,7 @@ module Faalis::Dashboard::Sections
 
       def creation_params
         resource = model_name.underscore.to_sym
-x
+
         # TODO: replace this line with a better solution to not
         #       allowing the blacklisted fields like id, created_at and ...
         fields = model.columns_hash.keys.map(&:to_sym)
@@ -113,7 +121,24 @@ x
 
     private
 
+      # You can override this method to change the behaviour of `create`
+      # action
       def before_create_hook(resource)
+      end
+
+      # You can override this method to change the behaviour of `update`
+      # action
+      def before_update_hook(resource)
+      end
+
+      # You can override this method to change the behaviour of `new`
+      # action
+      def new_hook(resource)
+      end
+
+      # You can override this method to change the behaviour of `edit`
+      # action
+      def edit_hook(resource)
       end
 
       def all_valid_columns_for_form
