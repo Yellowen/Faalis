@@ -25,11 +25,13 @@ describe Faalis::Generators::InstallGenerator, type: :generator do
 
     FileUtils.mkdir_p("#{path}/config/initializers")
     FileUtils.mkdir_p("#{path}/app/controllers")
+    FileUtils.mkdir_p("#{path}/db")
 
     FileUtils.touch("#{path}/config/routes.rb")
     FileUtils.touch("#{path}/Gemfile")
     FileUtils.touch("#{path}/config/initializers/assets.rb")
     FileUtils.touch("#{path}/config/initializers/formtastic.rb")
+    FileUtils.touch("#{path}/db/seeds.rb")
 
 
     FileUtils.touch("#{path}/app/controllers/application_controller.rb")
