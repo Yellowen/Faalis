@@ -37,10 +37,15 @@ module Faalis
       def copy_init_files
         template 'devise.rb', 'config/initializers/devise.rb'
         template 'faalis.rb', 'config/initializers/faalis.rb'
-        template 'seeds.rb', 'db/seeds.rb'
         template 'api_controller.rb', 'app/controllers/api_controller.rb'
         template 'dashboard_controller.rb', 'app/controllers/dashboard/application_controller.rb'
         template 'policy/application_policy.rb', 'app/policies/application_policy.rb'
+      end
+
+      def patch_seed
+        prepend_to_file 'db/seeds.rb' do
+          "Faalis::Engine.load_seed\n"
+        end
       end
 
       def copy_js_manifest
