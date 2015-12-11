@@ -10,7 +10,6 @@ module Faalis::Dashboard::Sections
       @resource = model.find(params[:id])
       authorize @resource
 
-      setup_named_routes
       collect_model_fields_for_show
 
       @resource_title = _resource_title.singularize

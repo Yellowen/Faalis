@@ -10,7 +10,6 @@ module Faalis::Dashboard::Sections
       authorize model
 
       fetch_and_set_all
-      setup_named_routes
       action_buttons(index_properties)
       @_tools_buttons = index_properties.tool_buttons || {}
 

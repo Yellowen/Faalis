@@ -7,7 +7,7 @@ module Faalis::Dashboard::Sections
     def destroy
       @resource = model.find(params[:id])
       authorize @resource
-      setup_named_routes
+
       @resource_title = _resource_title.singularize
       @resource.destroy
 

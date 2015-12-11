@@ -9,7 +9,6 @@ module Faalis::Dashboard::Sections
     # The actual action method of a dashboard controller
     def new
       authorize model, :create?
-      setup_named_routes
 
       collect_model_fields_for_form
 
@@ -27,7 +26,6 @@ module Faalis::Dashboard::Sections
       @resource = model.find(params[:id])
       authorize @resource, :update?
 
-      setup_named_routes
       collect_model_fields_for_form
 
       @resource_title     = _resource_title.singularize
@@ -43,7 +41,6 @@ module Faalis::Dashboard::Sections
       @resource = model.find(params[:id])
       authorize @resource
 
-      setup_named_routes
       new_params = creation_params
       new_params.merge(reflections_hash) if reflections_hash
 
@@ -63,7 +60,6 @@ module Faalis::Dashboard::Sections
     # The actual action method for creating new resource.
     def create
       authorize model
-      setup_named_routes
 
       @resource = model.new(creation_params)
 
@@ -106,7 +102,7 @@ module Faalis::Dashboard::Sections
 
       def creation_params
         resource = model_name.underscore.to_sym
-
+x
         # TODO: replace this line with a better solution to not
         #       allowing the blacklisted fields like id, created_at and ...
         fields = model.columns_hash.keys.map(&:to_sym)

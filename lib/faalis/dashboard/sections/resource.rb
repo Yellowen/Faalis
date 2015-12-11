@@ -3,6 +3,10 @@ module Faalis::Dashboard::Sections
 
     extend ActiveSupport::Concern
 
+    included do |base|
+      base.before_action :setup_named_routes
+    end
+
     def _resource_title
       t(controller_name.humanize)
     end
