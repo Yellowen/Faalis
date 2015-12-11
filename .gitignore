@@ -43,3 +43,4 @@ docs/annotated_source/
 **/*/.tern-port
 .yardoc/
 docs/guides/output/
+.yardoc/
