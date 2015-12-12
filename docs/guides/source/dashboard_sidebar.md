@@ -23,5 +23,30 @@ and via any source you want. For example you can fetch the entries from database
 of a remote API. But **Faalis** provides a simple DSL for you to build this hash
 more easily. It's a bit limited but far from enough.
 
+The best place to build your sidebar hash is in `Dashboard::ApplicationController`.
+**Faalis** will generate a very besic skel for you to easily create your hash.
 
 ## Sidebar DSL
+
+```ruby
+  def setup_sidebar
+
+    @sidebar = sidebar('') do |s|
+      s.faalis_entries
+      s.menu(t('Base Data'), icon: 'fa fa-book') do
+        s.item(t('Provinces'),
+               url: main_app.dashboard_provinces_path,
+               model: 'Province')
+        s.item(t('Cities'),
+               url: main_app.dashboard_cities_path,
+               model: 'City')
+        s.item(t('Areas'),
+               url: main_app.dashboard_areas_path,
+               model: 'Area')
+        s.item(t('Religions'),
+               url: main_app.dashboard_religions_path,
+               model: 'Religion')
+      end
+    end
+  end
+```
