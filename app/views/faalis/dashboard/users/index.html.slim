@@ -59,7 +59,7 @@
                 td.btn-user
                   a.warning.link.pull-left href=(edit_target)
                     i.fa.fa-edit
-                  a.pass-change.link.pull-left href=()
+                  a.pass-change.link.pull-left href=(faalis.auth_users_edit_password_dashboard_auth_user_path({id: user.id}))
                     i.fa.fa-key.change-pass
                   a.link.pull-left href=(show_target) data-remote="true" data-method="delete"
                     i.fa.fa-remove.btn-remove

@@ -32,7 +32,7 @@ module Faalis
 
         def redirect_to_404(e)
           respond_to do |f|
-            f.html { redirect_to dashboard_not_found_url }
+            f.html { redirect_to faalis.dashboard_not_found_url }
             f.js { render 'faalis/dashboard/not_found' }
           end
         end

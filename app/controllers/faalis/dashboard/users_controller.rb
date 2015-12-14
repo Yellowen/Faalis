@@ -42,7 +42,6 @@ module Faalis::Dashboard
     end
 
     def update
-      puts "---", user_params
       parameters = user_params
       groups     = parameters.delete(:groups)
 
