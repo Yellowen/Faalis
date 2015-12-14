@@ -3,11 +3,6 @@
     .col-sm-12.col-lg-12
      .box.box-primary
         .box-header
-          .box-title
-            - if @user.new_record?
-              = t('faalis.dashboard.new_resource_title', resource: t('faalis.user.user'))
-            - else
-              = t('faalis.dashboard.edit_resource_title', resource: t('faalis.user.user'))
 
         .box-body
           .row
@@ -30,18 +25,19 @@
                   = t('faalis.user.user.email')
                 input#group_name.form-control[name="user[email]" type="text" required value=(@user.email)]
 
-          .row
-            .col-sm-12.col-lg-6
-              .form-group data-name="password"
-                label for="password"
-                  = t('password')
-                input#group_name.form-control[name="user[password]" type="password"]
+          - if @user.new_record?
+            .row
+              .col-sm-12.col-lg-6
+                .form-group data-name="password"
+                  label for="password"
+                    = t('password')
+                  input#group_name.form-control[name="user[password]" type="password"]
 
-            .col-sm-12.col-lg-6
-              .form-group data-name="password_confirmation"
-                label for="password_confirmation"
-                  = t('password_confirmation')
-                input#group_name.form-control[name="user[password_confirmation]" type="password"]
+              .col-sm-12.col-lg-6
+                .form-group data-name="password_confirmation"
+                  label for="password_confirmation"
+                    = t('password_confirmation')
+                  input#group_name.form-control[name="user[password_confirmation]" type="password"]
 
           .row
             .col-sm-12

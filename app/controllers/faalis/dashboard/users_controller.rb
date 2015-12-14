@@ -44,14 +44,17 @@ module Faalis::Dashboard
     def update
       puts "---", user_params
       parameters = user_params
-      #groups     = parameters.delete(:groups)
-      group_ids  = parameters.delete(:groups).map(&:to_i)
+      groups     = parameters.delete(:groups)
+
 
       @user = Faalis::User.find(params[:id])
       authorize @user
 
-      @user.groups = Faalis::Group.where(id: group_ids)
-      @user.save
+      unless groups.nil?
+        group_ids    = groups.map(&:to_i)
+        @user.groups = Faalis::Group.where(id: group_ids)
+        @user.save
+      end
 
       respond_to do |f|
         if @user.update_without_password(parameters)
