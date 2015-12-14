@@ -29,9 +29,10 @@ require 'kaminari'
 
 # Faalis Module
 module Faalis
-  autoload :Configuration, 'faalis/configuration'
+
 end
 
+require 'faalis/configuration'
 require 'faalis/engine'
 require 'faalis/orm'
 require 'faalis/concerns'
