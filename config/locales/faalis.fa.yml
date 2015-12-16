@@ -23,6 +23,12 @@ fa:
     password: گذرواژه
     remember_me: مرا بخاطر بسپار
 
+    group:
+      group: گروه
+
+    user:
+      user: کاربر
+
     member_since: "عضو از %{date}"
     not_authorized: شما مجاز به انجام این فعالیت نیستید.
     engine_name: فالیس
@@ -41,7 +47,8 @@ fa:
       sidebar:
         online: آنلاین
         search: جستجو
-
+      index_section:
+        add_button: "%{resource} جدید"
     permissions:
       read: خواندن
       update: بروزرسانی
