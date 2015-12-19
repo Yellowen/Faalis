@@ -2,8 +2,11 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  config.secret_key = '04671846f794e5df0e032abb7d3d3876016f1cf0a1ced726429b2807c798de67f08035cc45e953eca23e08661a7f8030f4bcaec91ef184d89f4c721b5925d36b'
-
+  if Rails.env.development? || Rails.env.test?
+    config.secret_key = '04671846f794e5df0e032abb7d3d3876016f1cf0a1ced726429b2807c798de67f08035cc45e953eca23e08661a7f8030f4bcaec91ef184d89f4c721b5925d36b'
+  else
+    config.secret_key = ENV['DEVISE_SECRET_KEY'] || ENV["SECRET_KEY_BASE"]
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
