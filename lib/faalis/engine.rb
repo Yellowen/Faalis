@@ -26,7 +26,6 @@ module Faalis
 
     extend Faalis::Configuration
 
-    # TODO: Break this class to modules
     # TODO: Add a facility to allow developers to select
     #       features of faalis
     isolate_namespace Faalis
@@ -46,12 +45,9 @@ module Faalis
       g.helper              false
     end
 
-
     def self.setup
       yield self
     end
-
-
 
     # Override devise layout
     config.to_prepare do
@@ -61,7 +57,6 @@ module Faalis
       Devise::UnlocksController.layout 'faalis/application'
       Devise::PasswordsController.layout 'faalis/application'
     end
-
 
     middleware.use Faalis::Middlewares::Locale
 

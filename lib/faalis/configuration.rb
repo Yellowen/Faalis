@@ -15,7 +15,7 @@ module Faalis::Configuration
   # ORM name to use. either 'active_record' or 'mongoid'
   mattr_accessor :orm
 
-  def self.orm=(orm_name)
+  def orm=(orm_name)
     @@orm = orm_name
     require "devise/orm/#{orm_name}"
   end
