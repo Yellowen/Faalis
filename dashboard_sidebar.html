@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Dashboard Sidebar — Faalis Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://faalis.io/"> Faalis.io:</a> </strong>
+      <span class="red-button more-info-button">
+        More Faalis
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://faalis.io/">Overview</a></li>
+        <li class="more-info"><a href="https://github.com/Yellowen/Faalis">Code</a></li>
+        <li class="more-info"><a href="http://faalis.io/documentation">API Documentation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">guides.faalis.io</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">Home</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">Guides Index</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>Start Here</dt>
+                <dd><a href="getting_started.html">Getting Started with Faalis</a></dd>
+                <dt>Dashboard</dt>
+                <dd><a href="dashboard.html">Overview</a></dd>
+                <dd><a href="dashboard_sidebar.html">Dashboard Sidebar</a></dd>
+                <dd><a href="dashboard_dsl.html">Dashboard DSL</a></dd>
+                <dt>Authentication &amp; Authorization</dt>
+                <dd><a href="authentication.html">Authentication</a></dd>
+                <dd><a href="authorization.html">Authorization</a></dd>
+                <dt>Client Side application</dt>
+                <dd><a href="misc_functions.html">Misc Functions</a></dd>
+              </dl>
+              <dl class="R">
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="credits.html">Credits</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">Guides Index</option>
+              <optgroup label="Start Here">
+                  <option value="getting_started.html">Getting Started with Faalis</option>
+              </optgroup>
+              <optgroup label="Dashboard">
+                  <option value="dashboard.html">Overview</option>
+                  <option value="dashboard_sidebar.html">Dashboard Sidebar</option>
+                  <option value="dashboard_dsl.html">Dashboard DSL</option>
+              </optgroup>
+              <optgroup label="Authentication &amp; Authorization">
+                  <option value="authentication.html">Authentication</option>
+                  <option value="authorization.html">Authorization</option>
+              </optgroup>
+              <optgroup label="Client Side application">
+                  <option value="misc_functions.html">Misc Functions</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Dashboard Sidebar</h2><p>This guide will get you started with sidebar menu of <strong>Faalis</strong> dashboard.</p><p>This guide covers the overview of dashboard sidebar and how it works.</p><p>After reading this guide, you will know:</p>
+<ul>
+<li>How to use Sidebar in dashboard</li>
+<li>How to populate the sidebar</li>
+<li>How authorization works with sidebar</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#how-sidebar-works-questionmark">How sidebar works?</a></li>
+<li>
+<a href="#sidebar-dsl">Sidebar DSL</a>
+
+<ul>
+<li><a href="#faalis-entries">faalis_entries</a></li>
+<li><a href="#menu">menu</a></li>
+<li><a href="#item">item</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <blockquote>
+<p>Warning: Sidebar API is in beta state and may change in the future.</p>
+</blockquote>
+<h3 id="how-sidebar-works-questionmark">1 How sidebar works?</h3><p>Sidebar is not very complicated. It's just a nested hash which <strong>Faalis</strong> uses it
+to render a nested menu in dashboard. You can build this hash easily by yourself
+and via any source you want. For example you can fetch the entries from database
+of a remote API. But <strong>Faalis</strong> provides a simple DSL for you to build this hash
+more easily. It's a bit limited but far from enough.</p><p>The best place to build your sidebar hash is in <code>Dashboard::ApplicationController</code>.
+<strong>Faalis</strong> will generate a very besic skel for you to easily create your hash.</p><h3 id="sidebar-dsl">2 Sidebar DSL</h3><p>In <code>Dashboard::ApplicationController</code> of your application. You should define
+a method called <code>setup_sidebar</code>. In fact by overriding this method you will
+allow <strong>Faalis</strong> to know about the sidebar.</p><p>In <code>setup_sidebar</code> method you should build your suitable sidebar menu hash and
+assign it to <code>@sidebar</code> instance variable.</p><p><strong>Faalis</strong> provides a nice little DSL for you to helps you build your hash easily.
+Here is an example of the sidebar DSL:</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+  # Dashboard::ApplicationController
+  # ...
+  def setup_sidebar
+
+    @sidebar = sidebar('') do |s|
+      s.faalis_entries
+      s.menu(t('Base Data'), icon: 'fa fa-book') do
+        s.item(t('Provinces'),
+               url: main_app.dashboard_provinces_path,
+               model: 'Province')
+        s.item(t('Cities'),
+               url: main_app.dashboard_cities_path,
+               model: 'City')
+        s.item(t('Areas'),
+               url: main_app.dashboard_areas_path,
+               model: 'Area')
+      end
+    end
+  end
+  #...
+
+</pre>
+</div>
+<p>As you can see in the above example you can start defining your sidebar hash using
+<a href="http://api.faalis.io/Faalis/Dashboard/Sections/Sidebar/ClassMethods.html#sidebar-instance_method">sidebar</a>
+method (Checkout the API documents for this method for more information). This method yields an
+<a href="http://api.faalis.io/Faalis/Dashboard/Models/Sidebar.html">Sidebar</a> instance which provides following methods.</p><h4 id="faalis-entries">2.1 faalis_entries</h4><p>This method will render all the menu entries provided by <strong>Faalis</strong> itself. Currently <strong>Faalis</strong> only
+provides the authentication and authorization menu.</p>
+<blockquote>
+<div class="note"><p>If you wish your users to not see this menu don't worry you can handle it via permissions.</p></div>
+</blockquote>
+<h4 id="menu">2.2 menu</h4><p>Using <code>menu</code> item you can define a head menu which can contains several <code>item</code>s. Checkout the API
+docs for <a href="http://api.faalis.io/Faalis/Dashboard/Models/Sidebar.html#menu-instance_method">menu</a></p><h4 id="item">2.3 item</h4><p>This method will define a single clickable entry inside a <code>menu</code>. The most important thing about this
+method is the <code>model</code> argument which is optional and indicates that user have to has <code>read</code> access to
+what model to see this entry. If user does not have read access on the given model name, he/she won't
+see this <code>item</code> and <code>menu</code>s with no visible item won't be visible to user too. For more information
+on <a href="http://api.faalis.io/Faalis/Dashboard/Models/Sidebar.html#item-instance_method">item</a> take a look at its API docs.</p>
+
+        <h3>Feedback</h3>
+        <p>
+          You're encouraged to help improve the quality of this guide.
+        </p>
+        <p>
+          Please contribute if you see any typos or factual errors.
+          To get started, you can read our <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">documentation contributions</a> section.
+        </p>
+        <p>
+          You may also find incomplete content, or stuff that is not up to date.
+          Please do add any missing documentation for master. Make sure to check
+          <a href="http://edgeguides.rubyonrails.org">Edge Guides</a> first to verify
+          if the issues are already fixed or not on the master branch.
+          Check the <a href="ruby_on_rails_guides_guidelines.html">Faalis Guides Guidelines</a>
+          for style and conventions.
+        </p>
+        <p>
+          If for whatever reason you spot something to fix but cannot patch it yourself, please
+          <a href="https://github.com/rails/rails/issues">open an issue</a>.
+        </p>
+        <p>And last but not least, any kind of discussion regarding Ruby on Rails
+          documentation is very welcome in the <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> License</p>
+<p>"Faalis" and the Faalis logo are trademarks of Yellowen. All rights reserved.</p>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shCore.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushRuby.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushXml.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushSql.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushPlain.js"></script>
+  <script type="text/javascript">
+    SyntaxHighlighter.all();
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Getting Started with Faalis — Faalis Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://faalis.io/"> Faalis.io:</a> </strong>
+      <span class="red-button more-info-button">
+        More Faalis
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://faalis.io/">Overview</a></li>
+        <li class="more-info"><a href="https://github.com/Yellowen/Faalis">Code</a></li>
+        <li class="more-info"><a href="http://faalis.io/documentation">API Documentation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">guides.faalis.io</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">Home</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">Guides Index</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>Start Here</dt>
+                <dd><a href="getting_started.html">Getting Started with Faalis</a></dd>
+                <dt>Dashboard</dt>
+                <dd><a href="dashboard.html">Overview</a></dd>
+                <dd><a href="dashboard_sidebar.html">Dashboard Sidebar</a></dd>
+                <dd><a href="dashboard_dsl.html">Dashboard DSL</a></dd>
+                <dt>Authentication &amp; Authorization</dt>
+                <dd><a href="authentication.html">Authentication</a></dd>
+                <dd><a href="authorization.html">Authorization</a></dd>
+                <dt>Client Side application</dt>
+                <dd><a href="misc_functions.html">Misc Functions</a></dd>
+              </dl>
+              <dl class="R">
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="credits.html">Credits</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">Guides Index</option>
+              <optgroup label="Start Here">
+                  <option value="getting_started.html">Getting Started with Faalis</option>
+              </optgroup>
+              <optgroup label="Dashboard">
+                  <option value="dashboard.html">Overview</option>
+                  <option value="dashboard_sidebar.html">Dashboard Sidebar</option>
+                  <option value="dashboard_dsl.html">Dashboard DSL</option>
+              </optgroup>
+              <optgroup label="Authentication &amp; Authorization">
+                  <option value="authentication.html">Authentication</option>
+                  <option value="authorization.html">Authorization</option>
+              </optgroup>
+              <optgroup label="Client Side application">
+                  <option value="misc_functions.html">Misc Functions</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Getting Started with Faalis</h2><p>In this guide we will review the whole <strong>Faalis</strong> platform at once.</p><p>This guide covers getting up and running with Faalis.</p><p>After reading this guide, you will know:</p>
+<ul>
+<li>How to install Faalis on your Rails application.</li>
+<li>The general layout of Faalis.</li>
+<li>The basic principles of a Faalis application.</li>
+<li>How to quickly generate the starting pieces of a Faalis application.</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#guide-assumptions">Guide Assumptions</a></li>
+<li><a href="#what-is-faalis-generally-questionmark">What is Faalis generally?</a></li>
+<li><a href="#installation">Installation</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="guide-assumptions">1 Guide Assumptions</h3><p>This guide is designed for beginners who want to get started with a Faalis
+application from scratch. It does not assume that you have any prior experience
+with Faalis. Also you need to know about general concepts of Rails framework. However,
+to get the most out of it, you need to have some prerequisites installed:</p>
+<ul>
+<li>The <a href="https://www.ruby-lang.org/en/downloads">Ruby</a> language version 2.2.2 or newer.</li>
+<li>Right version of <a href="http://rubyinstaller.org/downloads/">Development Kit</a>, if you
+are using Windows.</li>
+<li>The <a href="https://rubygems.org">RubyGems</a> packaging system, which is installed with
+Ruby by default. To learn more about RubyGems, please read the
+<a href="http://guides.rubygems.org">RubyGems Guides</a>.</li>
+<li>A working installation of the <a href="https://www.sqlite.org">SQLite3 Database</a>.</li>
+</ul>
+<h3 id="what-is-faalis-generally-questionmark">2 What is Faalis generally?</h3><p><strong>Faalis</strong> is development platform which provides lots of functionality for developers to create
+their apps much easier. For example <strong>Faalis</strong> provides a very flexible and easy to use dashboard
+system. Dashboard system is an administration panel and a user dashboard to easily manage different
+resource on the application. Most of web applications need such facility.</p><p>There are other features like dashboard in <strong>Faalis</strong>. That's why make it a good platform to speed
+up your development process and make better applications.</p><p>Lots of great tools been used in <strong>Faalis</strong>, tools that you might used on daily basis. Tools like
+<code>Pundit</code>, <code>Devise</code> and other greate tools.</p><p><strong>Faalis</strong> is a <strong>RubyOnRails</strong> Platform for rapid web application development. It provides a very
+robust dashboard subsystem with some fantastic generators to improve productivity as much as possible.</p><h3 id="installation">3 Installation</h3><p>Simply add these to the end of your <code>Gemfile</code>:</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+source 'http://rails-assets.org' do
+  gem 'rails-assets-sugar'
+  gem 'rails-assets-bootstrap-rtl'
+  gem 'rails-assets-jquery-knob'
+  gem 'rails-assets-bootstrap-daterangepicker'
+  gem 'rails-assets-jquery-sparkline'
+  gem 'rails-assets-jquery-icheck'
+  gem 'rails-assets-admin-lte'
+end
+
+gem "faalis"
+
+</pre>
+</div>
+<p>If you want to install <strong>faalis</strong> from github just replace previous <code>gem "faalis"</code> with this:</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+gem "faalis", github: 'Yellowen/Faalis'
+
+</pre>
+</div>
+<p>Then install your project dependencies using <code>bundle</code></p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+bundle install
+
+</pre>
+</div>
+<p>use <code>faalis:install</code> generator to install <strong>faalis</strong> into your project.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+rails g faalis:install
+
+</pre>
+</div>
+<p>Add this to your <code>config/environments/development.rb</code></p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.action_mailer.default_url_options = { :host =&gt; 'localhost:3000' }
+
+</pre>
+</div>
+<div class="note"><p>In production, <code>:host</code> should be set to the actual host of your application.</p></div><p>Perform <code>rake db:migrate db:seed</code> and enjoy Faalis</p><div class="note"><p>You can specify the ORM you'd like to use in <code>config/initializers/faalis.rb</code></p></div><p>Perform <code>rake db:migrate db:seed</code>. If you're using different database engine rather than
+<code>sqlite</code>, then you have to create the db first.</p><p>Done. Now you're ready to start developing your application using <strong>Faalis</strong>. Have fun.</p>
+
+        <h3>Feedback</h3>
+        <p>
+          You're encouraged to help improve the quality of this guide.
+        </p>
+        <p>
+          Please contribute if you see any typos or factual errors.
+          To get started, you can read our <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">documentation contributions</a> section.
+        </p>
+        <p>
+          You may also find incomplete content, or stuff that is not up to date.
+          Please do add any missing documentation for master. Make sure to check
+          <a href="http://edgeguides.rubyonrails.org">Edge Guides</a> first to verify
+          if the issues are already fixed or not on the master branch.
+          Check the <a href="ruby_on_rails_guides_guidelines.html">Faalis Guides Guidelines</a>
+          for style and conventions.
+        </p>
+        <p>
+          If for whatever reason you spot something to fix but cannot patch it yourself, please
+          <a href="https://github.com/rails/rails/issues">open an issue</a>.
+        </p>
+        <p>And last but not least, any kind of discussion regarding Ruby on Rails
+          documentation is very welcome in the <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> License</p>
+<p>"Faalis" and the Faalis logo are trademarks of Yellowen. All rights reserved.</p>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shCore.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushRuby.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushXml.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushSql.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushPlain.js"></script>
+  <script type="text/javascript">
+    SyntaxHighlighter.all();
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>
