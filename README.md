@@ -12,7 +12,7 @@ tools, and provides additional features like a robust dashboard, pre-baked authe
 cool stuff.
 
 ## Installation
-Simply add `faalis` to your gem file with following command:
+Simply add these to the end of your `Gemfile`:
 
 ```ruby
 source 'http://rails-assets.org' do
@@ -25,7 +25,7 @@ source 'http://rails-assets.org' do
   gem 'rails-assets-admin-lte'
 end
 
-gem "faalis", github: 'Yellowen/Faalis'
+gem "faalis"
 ```
 
 Then install your project dependencies using `bundle` command:

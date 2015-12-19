@@ -54,7 +54,7 @@ robust dashboard subsystem with some fantastic generators to improve productivit
 Installation
 -------------
 
-Simply add `faalis` to your gem file like this:
+Simply add these to the end of your `Gemfile`:
 
 ```ruby
 source 'http://rails-assets.org' do
