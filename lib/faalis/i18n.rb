@@ -108,10 +108,7 @@ module Faalis
       def call(exception, locale, key, options)
         if exception.is_a?(::I18n::MissingTranslation)
           create_key_cache(locale, key)
-          #super
-          puts '<<<<<<<<<<<<<<<', key , locale, options
-          #"translation missing: #{locale}.#{key}"
-          nil
+          super
         else
           super
         end
