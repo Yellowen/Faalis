@@ -12,7 +12,7 @@ module Faalis::Dashboard::Sections
 
       collect_model_fields_for_show
 
-      @resource_title = _resource_title.singularize
+      @resource_title = t(_resource_title.singularize)
 
       show_hook(@resource)
 

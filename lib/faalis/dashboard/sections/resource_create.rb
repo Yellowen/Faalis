@@ -13,11 +13,11 @@ module Faalis::Dashboard::Sections
       collect_model_fields_for_form
 
       @resource           = model.new
-      @resource_title     = _resource_title.singularize
+      @resource_title     = t(_resource_title.singularize)
       @_fields_properties = form_properties._field_details
       @multipart          = has_attachment?
 
-      new_hook(resource)
+      new_hook(@resource)
       return if _override_views.include? :new
       render 'faalis/dashboard/resource/new'
     end
@@ -29,7 +29,7 @@ module Faalis::Dashboard::Sections
 
       collect_model_fields_for_form
 
-      @resource_title     = _resource_title.singularize
+      @resource_title     = t(_resource_title.singularize)
       @_fields_properties = form_properties._field_details
       @multipart          = has_attachment?
 

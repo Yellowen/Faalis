@@ -8,7 +8,7 @@ module Faalis::Dashboard::Sections
       @resource = model.find(params[:id])
       authorize @resource
 
-      @resource_title = _resource_title.singularize
+      @resource_title = t(_resource_title.singularize)
 
       before_destroy_hook(@resource)
       @resource.destroy
