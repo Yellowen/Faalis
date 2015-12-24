@@ -8,7 +8,7 @@ module Faalis::Dashboard::Sections
     end
 
     def _resource_title
-      t(controller_name.humanize)
+      controller_name.humanize
     end
 
     protected
@@ -74,7 +74,12 @@ module Faalis::Dashboard::Sections
 
       def guess_index_route(scope  = 'dashboard')
         scope_ = "#{scope}_"
-        "#{scope_}#{controller_name}_path"
+        name   = controller_name
+        if name.singularize == name.pluralize
+          "#{scope_}#{name}_index_path"
+        else
+          "#{scope_}#{name}_path"
+        end
       end
 
       def guess_show_route(scope  = 'dashboard')

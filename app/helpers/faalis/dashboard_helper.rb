@@ -51,7 +51,7 @@ module Faalis
 
     # Translate route name to url dynamically
     def get_url(route_name, id = nil, engine = Rails.application)
-      return engine.routes.url_helpers.send(route_name, id.to_s) unless id.nil?
+      return engine.routes.url_helpers.send(route_name, { id: id.to_s }) unless id.nil?
       engine.routes.url_helpers.send(route_name)
     end
 
