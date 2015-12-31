@@ -13,9 +13,9 @@ Steps to finish up installation:
 
      $ rake db:migrate db:seed
 
-  4. Make sure you take a look and configured conf/initializer/devise.rb (optional)
+  4. Make sure you take a look and configured config/initializers/devise.rb (optional)
 
      NOTE: if you want to use devise with omniauth configure them in
-           conf/initializer/devise.rb according to devise wiki
+           config/initializers/devise.rb according to devise wiki
 
-  5. Make sure you take a look and configured conf/initializer/formtastic.rb (optional)
+  5. Make sure you take a look and configured config/initializers/formtastic.rb (optional)
