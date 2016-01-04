@@ -3,13 +3,14 @@ namespace :faalis do
     desc 'Add all the missing keys to the locale files'
     task :collect do
       def merge_recursively(a, b)
-        puts "Rec: ", a, b
+        #puts "Rec: ", a, b
         return b if a.is_a?(String)
         a.merge(b) {|key, a_item, b_item| merge_recursively(a_item, b_item) }
       end
 
       Dir["#{Rails.root}/tmp/i18n/*"].each do |locale_file|
         locale = locale_file.split('/')[-1]
+
         if File.exist? "#{Rails.root}/config/locales/#{locale}.yml"
           raw_data = File.read("#{Rails.root}/config/locales/#{locale}.yml")
           locale_data = YAML.load(raw_data)
@@ -19,7 +20,7 @@ namespace :faalis do
 
         Dir["#{Rails.root}/tmp/i18n/#{locale}/*"].each do |key_file|
           key   = key_file.split('/')[-1]
-          puts "Key", key
+          #puts "Key", key
 
           title = key.split('.')[-1].titleize
           array = ::I18n.normalize_keys(locale, key, nil)
