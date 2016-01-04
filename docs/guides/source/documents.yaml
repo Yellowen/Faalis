@@ -11,7 +11,7 @@
     -
       name: Overview
       url: dashboard.html
-      description: This guide will get you started with **Faalis** dashboard.
+      description: This guide will get you started with Faalis dashboard.
 
     -
       name: Dashboard Sidebar
@@ -21,7 +21,12 @@
     -
       name: Dashboard DSL
       url: dashboard_dsl.html
-      description: This is guide will teach you how to enhance your dashboard using **Faalis** dashboard.
+      description: This is guide will teach you how to enhance your dashboard using Faalis dashboard.
+
+    -
+      name: Dashboard Customizations
+      url: dashboard_customizations.html
+      description: This is guide help you customize your dashboard interface.
 
 -
   name: Authentication & Authorization
@@ -29,12 +34,12 @@
     -
       name: Authentication
       url: authentication.html
-      description: Everything you need to know about how does **Faalis** authenticate users.
+      description: Everything you need to know about how does Faalis authenticate users.
 
     -
       name: Authorization
       url: authorization.html
-      description: How does **Faalis** authorization and permissions work?
+      description: How does Faalis authorization and permissions work?
 
 -
   name: Client Side application
