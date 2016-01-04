@@ -19,12 +19,13 @@
   </head>
   <body class="skin-blue sidebar-mini sidebar-collapse">
     <div class="wrapper">
-      <%= render 'faalis/shared/header' %>
-      <%= render 'faalis/shared/sidebar' %>
+      <%= render 'faalis/dashboard/shared/header' %>
+      <%= render 'faalis/dashboard/shared/sidebar' %>
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <%= render 'faalis/shared/content_header' %>
+        <%= render 'faalis/dashboard/shared/content_header' %>
+        <%= render 'faalis/dashboard/shared/toolbar' %>
 
         <!-- Main content -->
         <section class="content">
@@ -43,8 +44,8 @@
           <%= yield %>
         </section><!-- /.content -->
       </div>
-      <%= render 'faalis/shared/footer' %>
-      <%= render 'faalis/shared/control_sidebar' %>
+      <%= render 'faalis/dashboard/shared/footer' %>
+      <%= render 'faalis/dashboard/shared/control_sidebar' %>
     </div>
   </body>
 </html>
