@@ -18,13 +18,13 @@
 
   <div class="row">
     <% if devise_mapping.rememberable? -%>
-    <div class="col-xs-8">
-      <div class="checkbox icheck">
-        <label>
-          <%= f.check_box :remember_me, :class=>"checkbox" %> <%= t('faalis.remember_me') %>
-        </label>
-      </div>
-    </div><!-- /.col -->
+      <div class="col-xs-8">
+        <div class="checkbox icheck">
+          <label>
+            <%= f.check_box :remember_me, :class=>"checkbox" %> <%= t('faalis.remember_me') %>
+          </label>
+        </div>
+      </div><!-- /.col -->
     <% end %>
     <div class="col-xs-4">
       <button type="submit" id="sign_in" class="btn btn-primary btn-block btn-flat"><%= t('faalis.sign_in') %></button>
@@ -33,6 +33,5 @@
 </form>
 
 <%= render "devise/shared/omni_link" %>
-
 <%= render "devise/shared/links" %>
 <% end %>
