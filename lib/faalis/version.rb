@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 #    Faalis
-#    Copyright (C) 2012-2015 Yellowen
+#    Copyright (C) 2012-2016 Yellowen
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,5 +18,5 @@
 # -----------------------------------------------------------------------------
 
 module Faalis
-  VERSION = '2.0.3'
+  VERSION = '2.0.4'
 end
