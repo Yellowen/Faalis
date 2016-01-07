@@ -30,7 +30,7 @@ Faalis::Engine.routes.draw do
       get '/404', to: '/faalis/dashboard#not_found', as: 'not_found'
     end
 
-    devise_config.merge!(Faalis::Engine.device_for)
+    devise_config.merge!(Faalis::Engine.devise_for)
     devise_for :users, devise_config
   end
 
