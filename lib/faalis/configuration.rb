@@ -50,4 +50,7 @@ module Faalis::Configuration
                       :lockable,
                       :timeoutable,
                       :validatable]
+
+  mattr_accessor :devise_for
+  @@devise_for = {}
 end
