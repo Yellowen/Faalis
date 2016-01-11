@@ -132,7 +132,7 @@ module Faalis::Dashboard::Sections
         end
       end
 
-      def errorful_resopnse(section, msg = nil)
+      def errorful_resopnse(section, msg = nil, &block)
         @_msg = msg
 
         respond_to do |f|
@@ -141,11 +141,16 @@ module Faalis::Dashboard::Sections
             f.html { render :errors }
           else
             flash[:error] = msg
+
             path = Rails.application.routes.url_helpers.send(@index_route)
             # TODO: We really need to put setup routed on top of this method
 
             f.js { render 'faalis/shared/errors' }
-            f.html { redirect_to path }
+            if block_given?
+              f.html(&block)
+            else
+              f.html { redirect_to path }
+            end
           end
         end
       end
