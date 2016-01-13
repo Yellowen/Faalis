@@ -78,6 +78,8 @@ en:
       index_section:
         add_button: "New %{resource}"
 
+      buttons:
+        back: Back
 
     permissions:
       read: Read
