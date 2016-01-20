@@ -49,6 +49,9 @@ fa:
         search: جستجو
       index_section:
         add_button: "%{resource} جدید"
+        edit: ویرایش
+        show: نمایش
+        delete: حذف
       buttons:
         back: برگشت
     permissions:
