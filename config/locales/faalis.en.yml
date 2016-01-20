@@ -77,6 +77,9 @@ en:
 
       index_section:
         add_button: "New %{resource}"
+        edit: Edit
+        show: Show
+        delete: Delete
 
       buttons:
         back: Back
