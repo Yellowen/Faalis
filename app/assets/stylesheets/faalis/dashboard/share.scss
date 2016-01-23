@@ -40,3 +40,12 @@
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+.action-bar {
+  .tool {
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
