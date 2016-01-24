@@ -47,7 +47,7 @@
                       i.fa.fa-eye.fa-lg
                     a.warning.link.pull-left.btn.btn-xs.btn.edit.tool href=(get_url(@edit_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.edit"))
                       i.fa.fa-edit.fa-lg
-                    a.link.pull-left.btn.btn-xs.delete.tool href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete" data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.delete"))
+                    a.link.pull-left.btn.btn-xs.delete.tool href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete" data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.delete")) data-confirm=(t('faalis.dashboard.index_section.delete_msg'))
                       i.fa.fa-remove.fa-lg.btn-remove
 
                     - @_tools_buttons.each do |btn_name, btn|
