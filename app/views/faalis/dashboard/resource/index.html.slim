@@ -42,13 +42,13 @@
                   td
                     = resource.try(field.to_s).to_s || '-'
                 td.btn-user.text-center.hidden-print
-                  .btn-group
-                    a.pull-left.link.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.show"))
-                      i.fa.fa-eye
-                    a.warning.link.pull-left.btn.btn-xs.btn-default href=(get_url(@edit_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.edit"))
-                      i.fa.fa-edit
-                    a.link.pull-left.btn.btn-xs.btn-default  class="delete" href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete" data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.delete"))
-                      i.fa.fa-remove.btn-remove
+                  .btn-group.action-bar
+                    a.pull-left.link.btn.btn-xs.btn.show.tool href=(get_url(@show_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.show"))
+                      i.fa.fa-eye.fa-lg
+                    a.warning.link.pull-left.btn.btn-xs.btn.edit.tool href=(get_url(@edit_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.edit"))
+                      i.fa.fa-edit.fa-lg
+                    a.link.pull-left.btn.btn-xs.delete.tool href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete" data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.delete")) data-confirm=(t('faalis.dashboard.index_section.delete_msg'))
+                      i.fa.fa-remove.fa-lg.btn-remove
 
                     - @_tools_buttons.each do |btn_name, btn|
                       a id=("tool_button_#{btn_name}") class=("link pull-left btn btn-xs #{btn[:class] || 'btn-default'}") href=(btn[:block].call(resource)) data-remote=("#{btn[:remote]}")

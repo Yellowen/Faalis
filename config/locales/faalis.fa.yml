@@ -52,6 +52,7 @@ fa:
         edit: ویرایش
         show: نمایش
         delete: حذف
+        delete_msg: آیا مطمئن هستید که می خواهید حذف کنید؟
       buttons:
         back: برگشت
     permissions:
