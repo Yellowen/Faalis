@@ -21,11 +21,11 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '~> 4.2', '>= 4.2.0'
+  s.add_dependency 'rails', '>= 4.2.0'
 
   # Authentication
   s.add_dependency 'omniauth'
-  s.add_dependency 'devise', '~> 3.5', '>= 3.4.0'
+  s.add_dependency 'devise', '>3.4'
   s.add_dependency 'admin_lte-rails', '~> 2.3.0'
   s.add_dependency 'nprogress-rails'
   #s.add_dependency 'rails-assets-admin-lte'
@@ -64,7 +64,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'colorize'
 
   # model_discovery
-  s.add_dependency 'model_discovery', '~> 0.3.0'
+  s.add_dependency 'model_discovery', '~> 0.3.8'
 
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'
