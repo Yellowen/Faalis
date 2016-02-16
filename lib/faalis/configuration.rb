@@ -52,5 +52,5 @@ module Faalis::Configuration
                       :validatable]
 
   mattr_accessor :devise_for
-  @devise_for = {}
+  @@devise_for = {}
 end
