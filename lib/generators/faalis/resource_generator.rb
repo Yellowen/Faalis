@@ -9,12 +9,12 @@ module Faalis
       source_root File.expand_path('../templates', __FILE__)
 
       def create_pundit_file
-        generate 'pundit:policy', resource
+        generate 'pundit:policy', resource_name
       end
 
       def create_controller
         template('dashboard/controller.rb.erb',
-                 "app/controllers/#{module_path}dashboard/#{resources}_controller.rb")
+                 "app/controllers/dashboard/#{module_path}#{resources}_controller.rb")
       end
 
       def inject_routes
@@ -32,7 +32,7 @@ module Faalis
           puts "            `School::Student`, then you should have your route like this:"
           puts ""
           puts "            in_dashboard do"
-          puts "               scope :school do"
+          puts "               namespace :school do"
           puts "                  resources students"
           puts "               end"
           puts "            end"
@@ -54,7 +54,7 @@ module Faalis
       end
 
       def controller_module
-        path = module_path + 'dashboard/'
+        path = 'dashboard/' + module_path
         path.classify
       end
 

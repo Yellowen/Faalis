@@ -20,7 +20,7 @@ class Faalis::ApplicationController < ActionController::Base
 
   include Pundit
 
-  before_filter :set_locale
+  before_action :set_locale
 
  def set_locale
    if I18n.available_locales.length > 1

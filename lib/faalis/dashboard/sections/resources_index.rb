@@ -11,8 +11,8 @@ module Faalis::Dashboard::Sections
 
       fetch_and_set_all
       action_buttons(index_properties)
-      @_tools_buttons = index_properties.tool_buttons || {}
 
+      @_tools_buttons = index_properties.tool_buttons || {}
       index_hook(@resources)
 
       return if _override_views.include? :index

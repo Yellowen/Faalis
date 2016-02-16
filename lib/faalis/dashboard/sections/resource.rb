@@ -61,6 +61,10 @@ module Faalis::Dashboard::Sections
         @_action_buttons = property_object.action_buttons || []
       end
 
+      def _engine
+        nil
+      end
+
     private
 
       def _route_name
@@ -81,7 +85,7 @@ module Faalis::Dashboard::Sections
 
       def guess_index_route(scope  = 'dashboard')
         scope_ = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
 
         name   = controller_name
         if name.singularize == name.pluralize
@@ -93,38 +97,38 @@ module Faalis::Dashboard::Sections
 
       def guess_show_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
 
         resource_name = controller_name.singularize.underscore
-        "#{scope_}#{resource_name}_path"
+        "#{scope_}#{resource_name}_path".gsub('/', '_')
       end
 
       def guess_edit_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
 
         resource_name = controller_name.singularize.underscore
-        "edit_#{scope_}#{resource_name}_path"
+        "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
       end
 
       def guess_new_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
 
         resource_name = controller_name.singularize.underscore
-        "new_#{scope_}#{resource_name}_path"
+        "new_#{scope_}#{resource_name}_path".gsub('/', '_')
       end
 
       def guess_edit_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
 
         resource_name = controller_name.singularize.underscore
-        "edit_#{scope_}#{resource_name}_path"
+        "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
       end
 
       def setup_named_routes
-        @engine        = _route_engine
+        @engine        = _engine || _route_engine
         @index_route   = guess_index_route
         @new_route     = guess_new_route
         @show_route    = guess_show_route
@@ -182,10 +186,11 @@ module Faalis::Dashboard::Sections
       # Via this method user can specify the engine or application name
       # which current resource is defined under. Default value is:
       # Rails.application
-      def route_engine(name, &block)
+      def route_engine(name = nil, &block)
         define_method(:_route_engine) do
           return block.call if block_given?
-          name
+          return name unless name.nil?
+          fail 'You have to provide a name or a block'
         end
       end
 
@@ -195,6 +200,15 @@ module Faalis::Dashboard::Sections
         define_method(:_route_scope) do
           return block.call if block_given?
           name
+        end
+      end
+
+      # Set the engine name of current controller. It's necessary to provide and
+      # engine name if the controller belongs to an engine other than Faalis or
+      # Rails.application.
+      def engine(name)
+        define_method(:_engine) do
+          name.constantize
         end
       end
     end
