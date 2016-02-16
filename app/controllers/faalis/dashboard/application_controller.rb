@@ -31,6 +31,8 @@ module Faalis
         end
 
         def redirect_to_404(e)
+          logger.warn "Catch and ActiveRecord::RecordNotFoundL: '#{e}'"
+
           respond_to do |f|
             f.html { redirect_to faalis.dashboard_not_found_url }
             f.js { render 'faalis/dashboard/not_found' }
