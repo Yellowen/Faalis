@@ -1,5 +1,8 @@
+require_dependency 'faalis/dashboard/helpers/box_helpers'
+
 module Faalis
   module DashboardHelper
+    include Faalis::Dashboard::Helpers::BoxHelpers
 
     def localized_time(time)
       # Fixme: Setup and use Rails l10n

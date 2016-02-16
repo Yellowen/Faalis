@@ -36,6 +36,7 @@ module Faalis::Dashboard::Sections
       def namespace
         pieces = controller_path.gsub('dashboard/', '').split('/')
         return '' if pieces.length == 1
+
         pieces.pop
         pieces.join('/')
       end
@@ -44,7 +45,13 @@ module Faalis::Dashboard::Sections
         if namespace.empty?
           Rails.application
         else
-          "#{namespace.split('/')[0]}::Engine".classify.constantize
+          engine = "#{namespace.split('/')[0]}::Engine".classify
+          if Object.const_defined? engine
+            engine.constantize
+          else
+            logger.info 'You are using locale modules please define route_engine in your controller'
+            Rails.application
+          end
         end
       end
 
@@ -74,6 +81,8 @@ module Faalis::Dashboard::Sections
 
       def guess_index_route(scope  = 'dashboard')
         scope_ = "#{scope}_"
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+
         name   = controller_name
         if name.singularize == name.pluralize
           "#{scope_}#{name}_index_path"
@@ -84,24 +93,32 @@ module Faalis::Dashboard::Sections
 
       def guess_show_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+
         resource_name = controller_name.singularize.underscore
         "#{scope_}#{resource_name}_path"
       end
 
       def guess_edit_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+
         resource_name = controller_name.singularize.underscore
         "edit_#{scope_}#{resource_name}_path"
       end
 
       def guess_new_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+
         resource_name = controller_name.singularize.underscore
         "new_#{scope_}#{resource_name}_path"
       end
 
       def guess_edit_route(scope  = 'dashboard')
         scope_        = "#{scope}_"
+        scope_ = "#{scope_}#{namespace}_" if !namespace.blank?
+
         resource_name = controller_name.singularize.underscore
         "edit_#{scope_}#{resource_name}_path"
       end
@@ -132,7 +149,7 @@ module Faalis::Dashboard::Sections
         end
       end
 
-      def errorful_resopnse(section, msg = nil)
+      def errorful_resopnse(section, msg = nil, &block)
         @_msg = msg
 
         respond_to do |f|
@@ -141,11 +158,16 @@ module Faalis::Dashboard::Sections
             f.html { render :errors }
           else
             flash[:error] = msg
+
             path = Rails.application.routes.url_helpers.send(@index_route)
             # TODO: We really need to put setup routed on top of this method
 
             f.js { render 'faalis/shared/errors' }
-            f.html { redirect_to path }
+            if block_given?
+              f.html(&block)
+            else
+              f.html { redirect_to path }
+            end
           end
         end
       end

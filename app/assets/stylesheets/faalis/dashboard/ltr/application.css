@@ -19,3 +19,18 @@
 .dropdown.user.user-menu {
   width: auto;
 }
+
+.delete {
+  padding-left: 8px;
+}
+
+.btn-group {
+  padding-top: 10px;
+  width: 120px;
+
+}
+
+.pull-left.link.btn.btn-xs {
+  margin: 2px;
+
+}

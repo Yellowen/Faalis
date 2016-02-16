@@ -4,6 +4,9 @@ module Faalis::Dashboard
   module DSL
   end
 
+  module Helpers
+  end
+
   module Sections
   end
 end

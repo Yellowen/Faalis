@@ -59,7 +59,9 @@ module Faalis::Dashboard::Sections
       if @resource.save
         successful_response(:update)
       else
-        errorful_resopnse(:update)
+        errorful_resopnse(:update, @resource.errors) do
+          redirect_to :edit
+        end
       end
     end
 
@@ -68,7 +70,6 @@ module Faalis::Dashboard::Sections
       authorize model
 
       @resource = model.new(creation_params)
-
       @resource.assign_attributes(**reflections_hash) unless reflections_hash.nil?
 
       # Customize the create behaviour
@@ -79,7 +80,9 @@ module Faalis::Dashboard::Sections
       if @resource.save
         successful_response(:create)
       else
-        errorful_resopnse(:create)
+        errorful_resopnse(:create, @resource.errors) do
+          redirect_to Rails.application.routes.url_helpers.send(@new_route), turbolinks: true
+        end
       end
     end
 
@@ -95,10 +98,8 @@ module Faalis::Dashboard::Sections
         result      = {}
 
         reflections.each do |name, column|
-          has_many = ActiveRecord::Reflection::HasManyReflection
-          has_and_belongs_to_many = ActiveRecord::Reflection::HasAndBelongsToManyReflection
+          unless is_reflection?(column)
 
-          if !column.is_a?(has_many) && !column.is_a?(has_and_belongs_to_many)
             value = creation_params[column.foreign_key]
             result[column.foreign_key.to_sym] = value
           end
@@ -117,6 +118,16 @@ module Faalis::Dashboard::Sections
         fields.concat(attachment_fields.map(&:to_sym ))
         fields = Set.new(fields).map(&:to_sym)
         params.require(resource).permit(*fields)
+      end
+
+      # Check whether the given column is a reflection or not.
+      def is_reflection?(c)
+        has_many = ActiveRecord::Reflection::HasManyReflection
+        has_and_belongs_to_many = ActiveRecord::Reflection::HasAndBelongsToManyReflection
+        has_many_through = ActiveRecord::Reflection::ThroughReflection
+
+        result = c.is_a?(has_many) || c.is_a?(has_and_belongs_to_many)
+        result || c.is_a?(has_many_through)
       end
 
     private

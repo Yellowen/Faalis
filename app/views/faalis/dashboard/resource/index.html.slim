@@ -1,4 +1,4 @@
-.row
+.row.hidden-print
   .col-xs-12
     - if flash[:error]
       .alert.alert-danger.alert-dismissable
@@ -18,7 +18,7 @@
       .box-header.with-border
         h3.box-title
           |
-        .box-tools
+        .box-tools.hidden-print
           - if policy(@resources.model).create?
             = link_button(t("faalis.dashboard.index_view.new_button", title: t("resources.#{@resources.model.name.underscore}")), remote: false, href: get_url(@new_route, nil, @engine), classes: 'btn-success', icon_class: 'plus')
 
@@ -32,7 +32,7 @@
                 th
                   /= field
                   = t("main_app.#{field}").humanize
-              th.text-center
+              th.text-center.hidden-print
                 = t('faalis.actions')
 
             - @resources.each do |resource|
@@ -41,19 +41,20 @@
                 - @index_fields.each do |field|
                   td
                     = resource.try(field.to_s).to_s || '-'
-                td.btn-user.text-center
-                  .btn-group
-                    a.pull-left.link.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id, @engine))
-                      i.fa.fa-eye
-                    a.warning.link.pull-left.btn.btn-xs.btn-default href=(get_url(@edit_route, resource.id, @engine))
-                      i.fa.fa-edit
-                    a.link.pull-left.btn.btn-xs.btn-default href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete"
-                      i.fa.fa-remove.btn-remove
+                td.btn-user.text-center.hidden-print
+                  .btn-group.action-bar
+                    a.pull-left.link.btn.btn-xs.btn.show.tool href=(get_url(@show_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.show"))
+                      i.fa.fa-eye.fa-lg
+                    a.warning.link.pull-left.btn.btn-xs.btn.edit.tool href=(get_url(@edit_route, resource.id, @engine)) data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.edit"))
+                      i.fa.fa-edit.fa-lg
+                    a.link.pull-left.btn.btn-xs.delete.tool href=(get_url(@show_route, resource.id, @engine)) data-remote="true" data-method="delete" data-toggle="tooltip" data-placement="top" title=(t("faalis.dashboard.index_section.delete")) data-confirm=(t('faalis.dashboard.index_section.delete_msg'))
+                      i.fa.fa-remove.fa-lg.btn-remove
 
                     - @_tools_buttons.each do |btn_name, btn|
                       a id=("tool_button_#{btn_name}") class=("link pull-left btn btn-xs #{btn[:class] || 'btn-default'}") href=(btn[:block].call(resource)) data-remote=("#{btn[:remote]}")
                         i class=("fa #{btn[:icon_class]}")
-      .box-footer
+                        = btn_name
+      .box-footer.hidden-print
         .row
           .col-xs-12.col-sm-12
             = paginate @resources

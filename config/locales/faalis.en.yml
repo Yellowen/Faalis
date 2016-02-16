@@ -77,7 +77,13 @@ en:
 
       index_section:
         add_button: "New %{resource}"
+        edit: Edit
+        show: Show
+        delete: Delete
+        delete_msg: Are you sure want to delete?
 
+      buttons:
+        back: Back
 
     permissions:
       read: Read
