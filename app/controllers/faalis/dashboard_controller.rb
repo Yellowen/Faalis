@@ -7,7 +7,7 @@ module Faalis
     before_action :authenticate_user!, :only => [:modules, :index]
 
     def index
-      redirect_to dashboard_path if params.include? :signin
+      redirect_to dashboard_path if params.to_h.include? :signin
     end
 
     def not_found
