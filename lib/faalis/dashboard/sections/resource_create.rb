@@ -201,7 +201,9 @@ module Faalis::Dashboard::Sections
       #     end
       #   end
       def in_form(&block)
-        model = controller_name.classify.constantize
+        name  = controller_name
+        path  = controller_path.gsub(name, '').gsub(/dashboard\//, '')
+        model = "#{path}#{name}".classify.constantize
         form_props = Faalis::Dashboard::DSL::Create.new(model)
 
         unless block_given?

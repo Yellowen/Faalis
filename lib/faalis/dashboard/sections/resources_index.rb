@@ -86,7 +86,10 @@ module Faalis::Dashboard::Sections
       # ```
       #
       def in_index(&block)
-        model = controller_name.classify.constantize
+        name  = controller_name
+        path  = controller_path.gsub(name, '').gsub(/dashboard\//, '')
+        model = "#{path}#{name}".classify.constantize
+
         index_props = Faalis::Dashboard::DSL::Index.new(model)
 
         unless block_given?

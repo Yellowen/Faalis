@@ -72,7 +72,9 @@ module Faalis::Dashboard::Sections
       # ```
       #
       def in_show(&block)
-        model = controller_name.classify.constantize
+        name  = controller_name
+        path  = controller_path.gsub(name, '').gsub(/dashboard\//, '')
+        model = "#{path}#{name}".classify.constantize
         show_props = Faalis::Dashboard::DSL::Show.new(model)
 
         unless block_given?
