@@ -4,6 +4,10 @@ module Faalis
   module DashboardHelper
     include Faalis::Dashboard::Helpers::BoxHelpers
 
+    def form_label(resource, name)
+      ::I18n.t("forms.#{@resource.class.name.underscore.to_s.gsub('/', '.')}.#{name}")
+    end
+
     def localized_time(time)
       # Fixme: Setup and use Rails l10n
       time.strftime("%Y-%m-%d %H:%M")
