@@ -144,8 +144,9 @@ module Faalis::Dashboard::Sections
             f.html
           else
             flash[:success] = msg
-
-            path = Rails.application.routes.url_helpers.send(@index_route)
+            # Engine to fetch the route from
+            engine = _engine || Rails.application
+            path   = engine.routes.url_helpers.send(@index_route)
             # TODO: We really need to put setup routed on top of this method
             f.js { render "faalis/dashboard/resource/#{section}" }
             f.html { redirect_to path }
@@ -163,7 +164,9 @@ module Faalis::Dashboard::Sections
           else
             flash[:error] = msg
 
-            path = Rails.application.routes.url_helpers.send(@index_route)
+            # Engine to fetch the route from
+            engine = _engine || Rails.application
+            path   = engine.routes.url_helpers.send(@index_route)
             # TODO: We really need to put setup routed on top of this method
 
             f.js { render 'faalis/shared/errors' }

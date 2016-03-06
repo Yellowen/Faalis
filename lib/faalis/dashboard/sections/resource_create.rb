@@ -76,7 +76,6 @@ module Faalis::Dashboard::Sections
       before_create_hook(@resource)
 
       # TODO: Handle M2M relations in here
-
       if @resource.save
         successful_response(:create)
       else
@@ -110,7 +109,7 @@ module Faalis::Dashboard::Sections
       end
 
       def creation_params
-        resource = model_name.underscore.to_sym
+        resource = controller_name.singularize.underscore.to_sym
 
         # TODO: replace this line with a better solution to not
         #       allowing the blacklisted fields like id, created_at and ...
