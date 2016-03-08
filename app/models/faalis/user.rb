@@ -25,7 +25,7 @@
 
 module Faalis
   # **User** model for **Faalis** platform
-  class User < Faalis::ORM.proper_base_class
+  class User < ORM.proper_base_class
 
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?

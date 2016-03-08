@@ -11,13 +11,13 @@
 
 module Faalis
   # **Group** model for **Faalis** platform
-  class Group < Faalis::ORM.proper_base_class
+  class Group < ORM.proper_base_class
 
     # Make this model authorizable
-    include Faalis::Concerns::Authorizable
+    include Concerns::Authorizable
 
     # Define **Group** fields if current ORM was **Mongoid**
-    if Faalis::ORM.mongoid?
+    if ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
 

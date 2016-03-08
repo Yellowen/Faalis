@@ -10,9 +10,9 @@
 #
 
 module Faalis
-  class Permission < Faalis::ORM.proper_base_class
+  class Permission < ORM.proper_base_class
 
-    if Faalis::ORM.mongoid?
+    if ::Faalis::ORM.mongoid?
       include Mongoid::Document
       include Mongoid::Timestamps
 
