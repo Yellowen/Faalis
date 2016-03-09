@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '>= 4.2.0'
-
+  #s.add_dependency 'rails', '>= 4.2.0'
+  s.add_dependency 'rails'
   # Authentication
   s.add_dependency 'omniauth'
   s.add_dependency 'devise', '>3.4'
@@ -70,7 +70,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'orm_adapter'
 
   s.add_development_dependency 'rdoc'
-  s.add_development_dependency 'rspec-rails'
+  #s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'generator_spec'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'database_cleaner'
