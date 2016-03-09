@@ -18,13 +18,13 @@
 # -----------------------------------------------------------------------------
 
 require_relative './middlewares/locale'
+require_relative './configuration'
 
 module Faalis
 
   # `Engine` class of **Faalis**.
   class Engine < ::Rails::Engine
-
-    extend Faalis::Configuration
+    extend ::Faalis::Configuration
 
     # TODO: Add a facility to allow developers to select
     #       features of faalis

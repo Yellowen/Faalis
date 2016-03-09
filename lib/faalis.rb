@@ -13,7 +13,6 @@ module Faalis
 
 end
 
-require 'faalis/configuration'
 require 'faalis/engine'
 require 'faalis/orm'
 require 'faalis/concerns'
