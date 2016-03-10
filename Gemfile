@@ -1,3 +1,4 @@
+# coding: utf-8
 source 'http://rubygems.org'
 source 'http://rails-assets.org'
 # Declare your gem's dependencies in faalis.gemspec.
