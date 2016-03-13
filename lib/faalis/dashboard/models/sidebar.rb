@@ -104,10 +104,10 @@ module Faalis::Dashboard::Models
 
       menu(t('faalis.dashboard.user_messages'),
         icon: 'fa fa-comments',
-        model: 'Faalis::UserMessages') do
+        model: 'Faalis::UserMessage') do
         item(I18n.t('faalis.dashboard.user_messages'),
           model: 'Faalis::UserMessage',
-          url: Faalis::Engine.routes.url_helpers.dashboard_user_messages)
+          url: Faalis::Engine.routes.url_helpers.dashboard_user_messages_path)
       end
     end
 
