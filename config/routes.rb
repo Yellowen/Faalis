@@ -19,6 +19,7 @@ Faalis::Engine.routes.draw do
     in_dashboard do
       scope :auth do
         resources :groups, as: 'auth_groups'
+        resources :user_messages
         resources :users, as: 'auth_users' do
           member do
             get   'password', to: 'users#edit_password', as: 'auth_users_edit_password'
