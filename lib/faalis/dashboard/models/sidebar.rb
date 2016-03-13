@@ -103,7 +103,7 @@ module Faalis::Dashboard::Models
       end
 
       menu(t('faalis.dashboard.user_messages'),
-        icon: 'fa fa-comments',
+        icon: 'fa fa-envelope-o',
         model: 'Faalis::UserMessage') do
         item(I18n.t('faalis.dashboard.user_messages'),
           model: 'Faalis::UserMessage',
