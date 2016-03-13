@@ -28,11 +28,11 @@ module Faalis::Dashboard::Models
     end
 
     private
-      def extract_options(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
+    def extract_options(options)
+      options.each do |key, value|
+        instance_variable_set("@#{key}", value)
       end
+    end
   end
 
   class Menu < Item
@@ -91,23 +91,31 @@ module Faalis::Dashboard::Models
 
     def faalis_entries
       menu(t('faalis.dashboard.user_management'),
-           icon: 'fa fa-users',
-           model: 'Faalis::User') do
+        icon: 'fa fa-users',
+        model: 'Faalis::User') do
         item(I18n.t('faalis.dashboard.users'),
-             model: 'Faalis::User',
-             url: Faalis::Engine.routes.url_helpers.dashboard_auth_users_path)
+          model: 'Faalis::User',
+          url: Faalis::Engine.routes.url_helpers.dashboard_auth_users_path)
 
         item(I18n.t('faalis.dashboard.groups'),
-             model: 'Faalis::Group',
-             url: Faalis::Engine.routes.url_helpers.dashboard_auth_groups_path)
+          model: 'Faalis::Group',
+          url: Faalis::Engine.routes.url_helpers.dashboard_auth_groups_path)
+      end
+
+      menu(t('faalis.dashboard.user_messages'),
+        icon: 'fa fa-comments',
+        model: 'Faalis::UserMessages') do
+        item(I18n.t('faalis.dashboard.user_messages'),
+          model: 'Faalis::UserMessage',
+          url: Faalis::Engine.routes.url_helpers.dashboard_user_messages)
       end
     end
 
     private
-      def extract_options(options)
-        @icon  = options.delete(:icon)
-        @id    = options.delete(:id)
-        @class = options.delete(:class)
-      end
+    def extract_options(options)
+      @icon  = options.delete(:icon)
+      @id    = options.delete(:id)
+      @class = options.delete(:class)
+    end
   end
 end
