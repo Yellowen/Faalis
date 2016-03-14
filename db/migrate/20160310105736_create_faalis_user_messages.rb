@@ -9,5 +9,8 @@ class CreateFaalisUserMessages < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index :faalis_user_messages, :sender_id
+    add_index :faalis_user_messages, :reciver_id
   end
 end
