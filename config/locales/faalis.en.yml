@@ -58,7 +58,7 @@ en:
 
     permission:
       permissions: Permissions
-
+      
     dashboard:
       users: Users
       groups: Groups
@@ -68,6 +68,7 @@ en:
       updated_successfully: "%{resource} updated successfully."
       removed_successfully: "%{resource} removed successfully."
       saved_successfully:  "%{resource} saved successfully."
+      user_messages: User Messages
 
       new_resource_title: "New %{resource}"
       edit_resource_title: "Edit %{resource}"

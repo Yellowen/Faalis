@@ -1,5 +1,6 @@
 module Faalis::Dashboard
   class UserMessagesController < ::Dashboard::ApplicationController
+
     engine 'Faalis::Engine'
 
     override_views :show, :new
