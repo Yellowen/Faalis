@@ -1,0 +1,8 @@
+.row
+  .col-xs-12
+    .box-header.with-border
+      h3.box-title
+        = t('faalis.dashboard.user_messages')
+      .box-tools
+        - new_group = faalis.new_dashboard_user_message_path
+        a.btn.btn-success.pull-right.btn-sm href=(new_user_messages)
