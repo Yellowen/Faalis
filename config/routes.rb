@@ -26,7 +26,11 @@ Faalis::Engine.routes.draw do
           end
         end
       end
-      resources :user_messages
+      resources :user_messages do
+        collection do
+          get 'sent', to: 'user_messages#sent', as: :sent
+        end
+      end
       get '', to: '/faalis/dashboard#index', as: 'index'
       get '/404', to: '/faalis/dashboard#not_found', as: 'not_found'
     end
