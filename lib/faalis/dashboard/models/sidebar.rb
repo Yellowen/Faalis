@@ -100,14 +100,23 @@ module Faalis::Dashboard::Models
         item(I18n.t('faalis.dashboard.groups'),
           model: 'Faalis::Group',
           url: Faalis::Engine.routes.url_helpers.dashboard_auth_groups_path)
+
       end
 
       menu(t('faalis.dashboard.user_messages'),
         icon: 'fa fa-envelope-o',
         model: 'Faalis::UserMessage') do
-        item(I18n.t('faalis.dashboard.user_messages'),
+
+        item(I18n.t('faalis.dashboard.user_messages.inbox'),
           model: 'Faalis::UserMessage',
           url: Faalis::Engine.routes.url_helpers.dashboard_user_messages_path)
+        item(I18n.t('faalis.dashboard.user_messages.sent'),
+          model: 'Faalis::UserMessage',
+          url: Faalis::Engine.routes.url_helpers.dashboard_user_messages_path)
+        item(I18n.t('faalis.dashboard.user_messages.draft'),
+          model: 'Faalis::UserMessage',
+          url: Faalis::Engine.routes.url_helpers.dashboard_user_messages_path)
+
       end
     end
 
