@@ -70,6 +70,17 @@ Gem::Specification.new do |s|
   s.add_dependency 'orm_adapter'
 
   s.add_development_dependency 'rdoc'
+
+  s.add_development_dependency 'minitest-rails'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-minitest'
+  s.add_development_dependency 'rb-fsevent'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'connection_pool'
+  s.add_development_dependency 'launchy'
+  s.add_development_dependency 'minitest-reporters'
+  s.add_development_dependency 'mocha'
+  s.add_development_dependency 'poltergeist'
   #s.add_development_dependency 'rspec-rails'
   # s.add_development_dependency 'generator_spec'
   # s.add_development_dependency 'capybara'
