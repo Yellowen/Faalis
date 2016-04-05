@@ -1,4 +1,4 @@
-class CreateFaalisUserMessages < ActiveRecord::Migration[5.0]
+class CreateFaalisUserMessages < ActiveRecord::Migration
   def change
     create_table :faalis_user_messages do |t|
       t.integer :sender_id

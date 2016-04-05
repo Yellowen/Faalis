@@ -15,7 +15,6 @@ gemspec
 # gem 'debugger'
 
 group :development, :test do
-  gem 'factory_girl'
   gem 'rails', '~>4.2'
   gem 'yard'
   #gem 'yard-rspec'
@@ -31,18 +30,10 @@ group :development, :test do
   gem 'faker'
   gem 'rake'
   gem 'spring'
-  #gem 'spring-commands-rspec'
-
   gem 'shoulda'
   gem 'slim-rails'
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
-  # gem 'capybara-webkit'
-  # gem 'rspec-rails', github: 'rspec/rspec-rails'
-  # gem 'rspec-mocks', github: 'rspec/rspec-mocks'
-  # gem 'rspec-support', github: 'rspec/rspec-support'
-  # gem 'rspec-core', github: 'rspec/rspec-core'
-  # gem 'rspec-expectations', github: 'rspec/rspec-expectations'
 
   gem 'rails-assets-bootstrap-rtl'
   gem 'rails-assets-jquery-knob'

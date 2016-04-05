@@ -83,6 +83,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'fabrication'
   s.add_development_dependency 'minitest-rails-capybara'
+  s.add_development_dependency 'minitest-around'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'guard-minitest'
+
   # We need to use next version of did you mean gem
   # for JRuby support. current version: 0.9.5
   #s.add_development_dependency 'did_you_mean'

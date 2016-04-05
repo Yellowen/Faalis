@@ -40,7 +40,7 @@ module Faalis
     config.generators do |g|
       g.test_framework      :minitest, fixture_replacement: :fabrication
       g.fixture_replacement :fabrication, dir: "test/fabricators"
-      g.integration_tool    :rspec
+      g.integration_tool    :minitest
       g.assets              false
       g.helper              false
     end
