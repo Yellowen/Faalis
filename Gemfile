@@ -34,7 +34,7 @@ group :development, :test do
   gem 'slim-rails'
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
-
+  gem 'pry-byebug'
   gem 'rails-assets-bootstrap-rtl'
   gem 'rails-assets-jquery-knob'
   gem 'rails-assets-bootstrap-daterangepicker'
