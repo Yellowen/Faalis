@@ -32,6 +32,7 @@ require 'capybara/poltergeist'
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+  include Capybara::Assertions
   include Faalis::Engine.routes.url_helpers
   include Warden::Test::Helpers
 
