@@ -12,6 +12,7 @@ Minitest::Reporters.use!(Minitest::Reporters::ProgressReporter.new,
                          Minitest.backtrace_filter)
 
 # Capybara and poltergeist integration
+require "minitest/rails/capybara"
 require "capybara/rails"
 require "capybara/poltergeist"
 Capybara.javascript_driver = :poltergeist
