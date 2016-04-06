@@ -3,57 +3,53 @@
 
 # class InstallGeneratorTest < Rails::Generators::TestCase
 #   tests ::Faalis::Generators::InstallGenerator
-#   arguments []
-#   @@dest = File.expand_path('../../dummy/tmp', __FILE__)
-#   destination @@dest
-
+#   destination File.expand_path('../../dummy/tmp/install', __FILE__)
 #   setup :prepare_destination
 
-#   def self.run_generator(args=[], config={})
-#     capture(:stdout) do
-#       capture(:stderr) do
-#         args += ['--skip-bundle'] unless args.include? '--dev'
-#         self.generator_class.start(args, config.reverse_merge(destination_root: @dest))
-#       end
-#     end
+#   def run_generator(args=self.default_arguments, config={})
+#       args += ['--skip-bundle'] unless args.include? '--dev'
+#       self.generator_class.start(args, config.reverse_merge(destination_root: destination_root))
 #   end
 
-#   def self.bootstrap
-#     capture (:stdout) do
-#       path  = File.expand_path('../../dummy/tmp/', __FILE__)
+#   before do
+#       path  = File.expand_path('../../dummy/tmp/install', __FILE__)
 #       dummy = File.expand_path('../../dummy/', __FILE__)
+
+#       mkdir_p path
 #       mkdir_p("#{path}/config/initializers")
 #       mkdir_p("#{path}/app/controllers")
 #       mkdir_p("#{path}/db")
 #       mkdir_p("#{path}/bin")
-
 #       touch("#{path}/config/routes.rb")
 #       touch("#{path}/Gemfile")
 #       touch("#{path}/config/initializers/assets.rb")
 #       touch("#{path}/config/initializers/formtastic.rb")
 #       touch("#{path}/db/seeds.rb")
 #       cp("#{dummy}/bin/rails", "#{path}/bin/rails")
+#       cp("#{dummy}/config/boot.rb", "#{path}/config/boot.rb")
+#       cp("#{dummy}/config/application.rb", "#{path}/config/application.rb")
 #       touch("#{path}/app/controllers/application_controller.rb")
-#     end
-#     run_generator
+
+# #    run_generator
 #   end
 
-#   bootstrap
+#   after do
+#     capture(:stdout) do
+#       path  = File.expand_path('../../dummy/tmp/install', __FILE__)
+#       rm_rf path
+#     end
+#   end
 
-#   def test_copies_the_config_files
+#   def test_copies_the_files
+#     run_generator
+
 #     assert_file 'config/initializers/faalis.rb'
 #     assert_file 'config/initializers/devise.rb'
 #     assert_file 'db/seeds.rb'
 #     assert_file 'app/controllers/api_controller.rb'
 #     assert_file 'app/controllers/dashboard/application_controller.rb'
 #     assert_file 'app/policies/application_policy.rb'
-#   end
-
-#   def test_copies_the_javascripts_manifest_for_dashboard
 #     assert_file 'app/assets/javascripts/dashboard/application.js'
-#   end
-
-#   def test_copies_stylesheet_filese
 #     assert_file 'app/assets/stylesheets/dashboard/ltr/application.css'
 #     assert_file 'app/assets/stylesheets/dashboard/rtl/application.css'
 #   end

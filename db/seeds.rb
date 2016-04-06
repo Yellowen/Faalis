@@ -1,3 +1,4 @@
+Faalis::Engine.load_seed
 # Database initial data
 ModelDiscovery::Engine.load_seed
 
