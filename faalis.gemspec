@@ -18,11 +18,12 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile',
                 'README.md']
 
-  s.test_files = Dir['spec/**/*']
+  s.test_files = Dir['test/**/*']
   s.require_paths = ['lib']
 
   #s.add_dependency 'rails', '>= 4.2.0'
-  s.add_dependency 'rails'
+  #s.add_dependency 'rails'
+  s.add_dependency 'railties'
   # Authentication
   s.add_dependency 'omniauth'
   s.add_dependency 'devise', '>3.4'
@@ -53,9 +54,6 @@ Gem::Specification.new do |s|
   # dashboard or main template
   s.add_dependency 'modernizr-rails'
 
-  # We have to give up lodash for sugar
-  s.add_dependency 'rails-assets-sugar', '1.4.1'
-
   s.add_development_dependency 'execjs'
 
   # i18n
@@ -73,7 +71,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest-rails'
   s.add_development_dependency 'guard'
-  s.add_development_dependency 'guard-minitest'
   s.add_development_dependency 'rb-fsevent'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'connection_pool'
