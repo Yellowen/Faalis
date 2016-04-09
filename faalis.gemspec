@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
   # Assets
   s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
+  s.add_dependency 'requirejs-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'sprockets'
   s.add_dependency 'turbolinks'
@@ -71,7 +72,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'orm_adapter'
 
   s.add_development_dependency 'rdoc'
-
   s.add_development_dependency 'minitest-rails'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'rb-fsevent'
