@@ -9,8 +9,8 @@ This guide covers the overview of dashboard sidebar and how it works.
 
 After reading this guide, you will know:
 
-* How to use Faalis authorization
-* How Faalis authorization works?
+* How to use **Faalis** authorization
+* How **Faalis** authorization works?
 
 --------------------------------------------------------------------------------
 
