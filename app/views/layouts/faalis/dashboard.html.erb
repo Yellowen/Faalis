@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag   "dashboard/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
     <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
-    <%= requirejs_include_tag 'faalis/dashboard/amd_loader' %>
 
     <%= csrf_meta_tags %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

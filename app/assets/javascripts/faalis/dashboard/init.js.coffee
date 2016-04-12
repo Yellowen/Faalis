@@ -28,7 +28,9 @@ setup_controls = ->
 
 $(document).on "page:load", ->
   setup_controls()
+  guess_module()
 
 
 $ ->
   setup_controls()
+  guess_module()
