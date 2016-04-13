@@ -39,25 +39,5 @@ Faalis::Engine.routes.draw do
     devise_for :users, devise_config
   end
 
-  #scope '(:locale)', locale: Regexp.new(::I18n.available_locales.join('|')) do
-  #  scope Faalis::Engine.dashboard_namespace.to_sym do
-      #get '' => 'dashboard#index', :as => 'dashboard'
-  #    get 'modules' => 'dashboard#modules'
-  #  end
-
-  #devise_for :users, devise_config
-  #end
-
-  # match('/users/auth/:provider',
-  #       constraints: { provider: /#{Devise.omniauth_configs.keys.join("|")}/ },
-  #       controller: "devise/omniauth_callbacks#passthru",
-  #       as: :user_omniauth_authorize,
-  #       via: [:get, :post])
-
-  # match('/users/auth/:action/callback',
-  #       constraints: { action: /#{Devise.omniauth_configs.keys.join("|")}/ },
-  #       controller: 'devise/omniauth_callbacks',
-  #       as: :user_omniauth_callback,
-  #       via: [:get, :post])
-
+  get '/amd/*asset', to: 'assets#finder'
 end
