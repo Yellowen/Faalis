@@ -54,5 +54,8 @@ module Faalis
 
     mattr_accessor :devise_for
     @@devise_for = {}
+
+    mattr_accessor :amd_dir
+    @@amd_dir = 'amd'
   end
 end

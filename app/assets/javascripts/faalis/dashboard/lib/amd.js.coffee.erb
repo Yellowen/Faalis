@@ -24,7 +24,7 @@ window.fetch_js = (url, callback) ->
   body        = document.getElementsByTagName('body')[0]
   script      = document.createElement 'script'
   script.type = 'text/javascript'
-  script.src  = "<%= Faalis::Engine.amd_dir %>" + url
+  script.src  = "<%= Faalis::Engine.amd_dir %>/" + url
 
   # Then bind the event to the callback function.
   # There are several events for cross browser compatibility.
