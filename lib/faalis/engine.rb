@@ -47,6 +47,8 @@ module Faalis
 
     def self.setup
       yield self
+
+      load_dependencies_based_on_configuration
     end
 
     # Override devise layout

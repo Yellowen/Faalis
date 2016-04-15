@@ -1,6 +1,8 @@
 module Faalis
   module Configuration
 
+    @@modules_to_load = {}
+
     # Configure logger
     mattr_accessor :logger
     @@logger = Logger.new(STDOUT)
@@ -57,5 +59,17 @@ module Faalis
 
     mattr_accessor :amd_dir
     @@amd_dir = 'amd'
+
+    mattr_accessor :amd
+    @@amd = true
+    @@modules_to_load[:amd] = ['amd']
+
+    def load_dependencies_based_on_configuration
+      puts "Asdasdasdasdasdasdasdasdasd"
+      @@modules_to_load.each do |k, v|
+        puts "asdasdasdasd"
+        v.map { |mod| puts "<<<<<<<<<", mod; require mod } if send(k)
+      end
+    end
   end
 end

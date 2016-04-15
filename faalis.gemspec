@@ -34,6 +34,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'nprogress-rails'
   #s.add_dependency 'rails-assets-admin-lte'
 
+  s.add_dependency 'amd'
+
   # Authorization
   s.add_dependency 'pundit'
 
