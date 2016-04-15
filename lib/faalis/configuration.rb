@@ -65,10 +65,9 @@ module Faalis
     @@modules_to_load[:amd] = ['amd']
 
     def load_dependencies_based_on_configuration
-      puts "Asdasdasdasdasdasdasdasdasd"
+
       @@modules_to_load.each do |k, v|
-        puts "asdasdasdasd"
-        v.map { |mod| puts "<<<<<<<<<", mod; require mod } if send(k)
+        v.map { |mod| require mod } if send(k)
       end
     end
   end
