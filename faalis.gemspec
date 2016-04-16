@@ -49,7 +49,6 @@ Gem::Specification.new do |s|
   # Assets
   s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
-  s.add_dependency 'requirejs-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'sprockets'
   s.add_dependency 'turbolinks'

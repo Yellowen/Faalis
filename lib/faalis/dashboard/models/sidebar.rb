@@ -1,7 +1,7 @@
 module Faalis::Dashboard::Models
   class Item
 
-    attr_reader :title, :url, :icon, :model
+    attr_reader :title, :url, :icon, :model, :members_only
     def initialize(title, options)
       @title = title
       @model = nil
@@ -45,6 +45,15 @@ module Faalis::Dashboard::Models
       @children << child
     end
 
+    def initialize(title, options)
+      children = options.delete :children
+      if children
+        @children = children.map do |child|
+          Item.new(child.delete(:title), child)
+        end
+      end
+      super
+    end
   end
 
   class RootMenu < Array

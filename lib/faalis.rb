@@ -7,7 +7,6 @@ require 'pundit'
 require 'slim-rails'
 require 'formtastic'
 require 'kaminari'
-require 'requirejs-rails'
 
 # Faalis Module
 module Faalis
