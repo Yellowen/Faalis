@@ -1,0 +1,16 @@
+<h2>Faalis Guides (<%= @edge ? @version[0, 7] : @version %>)</h2>
+
+<% if @edge %>
+<p>
+  These are <b>Edge Guides</b>, based on the current <a href="https://github.com/Yellowen/Faalis/tree/<%= @version %>">master</a> branch.
+</p>
+<p>
+  If you are looking for the ones for the stable version, please check
+  <a href="http://guides.faalis.io">http://guides.faalis.io</a> instead.
+</p>
+<% else %>
+<p>
+  These are the new guides for Faalis 2.0 based on <a href="https://github.com/Yellowen/Faalis/tree/<%= @version %>"><%= @version %></a>.
+  These guides are designed to make you immediately productive with Faalis, and to help you understand how all of the pieces fit together.
+</p>
+<% end %>
