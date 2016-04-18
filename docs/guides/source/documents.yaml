@@ -49,7 +49,10 @@
 -
   name: Client Side application
   documents:
-
+    -
+      name: Asynchronous module definaton
+      url: asynchronous_module_definaton.html
+      description: How Faalis use AMD to load js code in async fashion alongside Rails assets pipeline
     -
       name: Misc Functions
       url: misc_functions.html
