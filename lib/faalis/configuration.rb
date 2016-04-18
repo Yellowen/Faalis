@@ -70,5 +70,10 @@ module Faalis
         v.map { |mod| require mod } if send(k)
       end
     end
+
+    def enabled?(configuration)
+      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", configuration, @@modules_to_load.include?(configuration)
+      @@modules_to_load.include? configuration
+    end
   end
 end

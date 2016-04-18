@@ -23,7 +23,9 @@
 //= require nprogress
 //= require nprogress-turbolinks
 
-//= require amd/amd
+<% if Faalis::Engine.enabled? :amd %>
+  //= require amd/amd
+<% end %>
 //= require_tree ./lib/
 //= require faalis/dashboard/init
 //= require turbolinks
