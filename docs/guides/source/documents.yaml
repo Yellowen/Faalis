@@ -41,7 +41,7 @@
       url: authorization.html
       description: How does Faalis authorization and permissions work?
 
-      -
+    -
       name: Configuration
       url: authenticaion_configuration.html
       description: How to configure authentication for custome uses?
