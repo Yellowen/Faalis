@@ -47,6 +47,7 @@ module Faalis
     def to_s
       name
     end
+
     private
 
     def permission_ids
