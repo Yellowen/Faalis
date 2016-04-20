@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag   "dashboard/" + Faalis::I18n.direction(I18n.locale) + "/application", media: "all" %>
     <%= javascript_include_tag :modernizr %>
+
     <%= javascript_include_tag Faalis::Engine.dashboard_js_manifest %>
 
     <%= csrf_meta_tags %>
