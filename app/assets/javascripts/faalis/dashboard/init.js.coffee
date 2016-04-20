@@ -26,11 +26,9 @@ setup_controls = ->
   setup_datepicker()
   setup_loadindicator()
 
-$(document).on "page:load", ->
+$(document).on "page:changed", ->
   setup_controls()
-  guess_module()
 
 
 $ ->
   setup_controls()
-  guess_module()
