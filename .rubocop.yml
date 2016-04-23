@@ -1,0 +1,6 @@
+Rails:
+  Enabled: true
+
+require:
+  - rails
+  - amd

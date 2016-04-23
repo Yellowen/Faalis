@@ -4,12 +4,14 @@ module Faalis
     @@modules_to_load = {}
 
     # Configure logger
-    mattr_accessor :logger
-    @@logger = Logger.new(STDOUT)
+    mattr_accessor :logger do
+      Logger.new(STDOUT)
+    end
 
     # Dashboard url prefix
-    mattr_accessor :dashboard_namespace
-    @@dashboard_namespace = :dashboard
+    mattr_accessor :dashboard_namespace do
+      :dashboard
+    end
 
     # ==> ORM configuration
     # Load and configure the ORM. Supports :active_record (default) and
@@ -31,37 +33,39 @@ module Faalis
     end
 
     # Site Title
-    attr_accessor :site_title
-    @site_title = 'Faalis'
+    attr_accessor :site_title do
+      'Faalis'
+    end
 
     mattr_accessor :slug
 
     # Dashboard default javascript manifest
-    mattr_accessor :dashboard_js_manifest
-    @@dashboard_js_manifest = 'dashboard/application.js'
+    mattr_accessor :dashboard_js_manifest do
+      'dashboard/application.js'
+    end
 
     # Devise options
     # Include default devise modules. Others available are:
     # :token_authenticatable, :confirmable,
     # :lockable, :timeoutable and :omniauthable
-    mattr_accessor :devise_options
-    @@devise_options = [:database_authenticatable,
-                        :registerable,
-                        :recoverable,
-                        :rememberable,
-                        :trackable,
-                        :lockable,
-                        :timeoutable,
-                        :validatable]
+    mattr_accessor :devise_options do
+      [:database_authenticatable, :registerable,
+        :recoverable, :rememberable, :trackable,
+        :lockable, :timeoutable, :validatable]
+    end
 
-    mattr_accessor :devise_for
-    @@devise_for = {}
+    mattr_accessor :devise_for do
+      {}
+    end
 
-    mattr_accessor :amd_dir
-    @@amd_dir = 'amd'
+    mattr_accessor :amd_dir do
+      'amd'
+    end
 
-    mattr_accessor :amd
-    @@amd = true
+    mattr_accessor :amd do
+      true
+    end
+
     @@modules_to_load[:amd] = ['amd']
 
     def load_dependencies_based_on_configuration
@@ -69,6 +73,11 @@ module Faalis
       @@modules_to_load.each do |k, v|
         v.map { |mod| require mod } if send(k)
       end
+    end
+
+    def enabled?(configuration)
+      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", configuration, @@modules_to_load.include?(configuration)
+      @@modules_to_load.include? configuration
     end
   end
 end

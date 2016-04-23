@@ -1,5 +1,6 @@
 # coding: utf-8
 source 'http://rubygems.org'
+
 source 'http://rails-assets.org' do
   group :development, :test do
     gem 'rails-assets-bootstrap-rtl'
@@ -45,6 +46,8 @@ group :development, :test do
   gem 'turbolinks', github: 'rails/turbolinks'
   gem 'jquery-turbolinks'
   gem 'pry-byebug'
+  gem 'method_source'
+
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil

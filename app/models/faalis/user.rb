@@ -50,12 +50,6 @@ module Faalis
     # Make this model authorizable
     include Faalis::Concerns::Authorizable
 
-    # Define **User** fields if current ORM was ActiveRecord-------------------
-    if Faalis::ORM.active_record?
-      # acts as messageable for mailboxer
-      #acts_as_messageable
-    end
-
     has_and_belongs_to_many :groups, class_name: 'Faalis::Group', uniq: true
 
     # Validations
