@@ -11,7 +11,7 @@ module Faalis::Dashboard::Sections
       authorize model, :create?
 
       collect_model_fields_for_form
-      byebug
+
       @resource           = model.new
       @resource_title     = t(_resource_title.singularize)
       @_fields_properties = form_properties._field_details

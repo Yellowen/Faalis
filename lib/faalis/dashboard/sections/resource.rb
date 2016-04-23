@@ -22,14 +22,13 @@ module Faalis::Dashboard::Sections
     end
 
     def model_name
-      controller_path.gsub('dashboard/', '').classify
+      "::#{controller_path.gsub('dashboard/', '').classify}"
     end
 
     def model
-      "::#{model_name}".constantize
+      model_name.constantize
     rescue
-      msg = "Can't find model '::#{model_name}'. Please override \
-              'model' method in your dashboard controller."
+      msg = "Can't find model '#{model_name}'. Please override 'model' method in your dashboard controller."
       fail NameError, msg
     end
 
@@ -215,12 +214,22 @@ module Faalis::Dashboard::Sections
         end
       end
 
+      # Specify the model name of controller. This method overrides the
+      # `model_class` **class method** and `model_name` instance method.
       def model_name(name)
         define_singleton_method :model_class do
           name.constantize
         end
+
+        define_method :model_name do
+          name
+        end
       end
 
+      # Returns the actual model class by looking at `controller_name` and
+      # and `controller_path`. If user uses the `model_name` **class method**
+      # (the `model_name` DSL) then this method will override by the
+      # `model_name` defination of `model_class`
       def model_class
         name  = controller_name
         path  = controller_path.gsub(name, '').gsub(/dashboard\//, '')
