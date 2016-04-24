@@ -76,7 +76,6 @@ module Faalis
     end
 
     def enabled?(configuration)
-      puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", configuration, @@modules_to_load.include?(configuration)
       @@modules_to_load.include? configuration
     end
   end
