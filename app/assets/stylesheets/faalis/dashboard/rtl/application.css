@@ -5,3 +5,7 @@
 //= require faalis/dashboard/share
 //= require faalis/dashboard/rtl/base
 //= require_self
+
+.btn span {
+  padding-right: 0.4em;
+}
