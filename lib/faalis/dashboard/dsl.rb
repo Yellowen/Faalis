@@ -8,6 +8,7 @@ require_dependency 'faalis/dashboard/sections/sidebar'
 
 module Faalis::Dashboard
   module DSL
+
     extend ActiveSupport::Concern
 
     include Faalis::Dashboard::Sections::Resource

@@ -13,176 +13,175 @@ module Faalis::Dashboard::Sections
 
     protected
 
-      def _resources
-        instance_variable_get("@{plural_name")
-      end
+    def _resources
+      instance_variable_get("@{plural_name")
+    end
 
-      def plural_name
-        controller_name.underscore
-      end
+    def plural_name
+      controller_name.underscore
+    end
 
-      def model_name
-        controller_path.gsub('dashboard/', '').classify
-      end
+    def model_name
+      "::#{controller_path.gsub('dashboard/', '').classify}"
+    end
 
-      def model
-        "::#{model_name}".constantize
-      rescue
-        msg = "Can't find model '::#{model_name}'. Please override \
-              'model' method in your dashboard controller."
-        fail NameError, msg
-      end
+    def model
+      model_name.constantize
+    rescue
+      msg = "Can't find model '#{model_name}'. Please override 'model' method in your dashboard controller."
+      fail NameError, msg
+    end
 
-      def namespace
-        pieces = controller_path.gsub('dashboard/', '').split('/')
-        return '' if pieces.length == 1
+    def namespace
+      pieces = controller_path.gsub('dashboard/', '').split('/')
+      return '' if pieces.length == 1
 
-        pieces.pop
-        pieces.join('/')
-      end
+      pieces.pop
+      pieces.join('/')
+    end
 
-      def _route_engine
-        if namespace.empty?
-          Rails.application
+    def _route_engine
+      if namespace.empty?
+        Rails.application
+      else
+        engine = "#{namespace.split('/')[0]}::Engine".classify
+        if Object.const_defined? engine
+          engine.constantize
         else
-          engine = "#{namespace.split('/')[0]}::Engine".classify
-          if Object.const_defined? engine
-            engine.constantize
-          else
-            logger.info 'You are using locale modules please define route_engine in your controller'
-            Rails.application
-          end
+          logger.info 'You are using locale modules please define route_engine in your controller'
+          Rails.application
         end
       end
+    end
 
-      # Return the array of action buttons in given `property_object`.
-      # `property_object` is an instance of once of DSL classes.
-      def action_buttons(property_object)
-        @_action_buttons = property_object.action_buttons || []
-      end
+    # Return the array of action buttons in given `property_object`.
+    # `property_object` is an instance of once of DSL classes.
+    def action_buttons(property_object)
+      @_action_buttons = property_object.action_buttons || []
+    end
 
-      def _engine
-        nil
-      end
+    def _engine
+      nil
+    end
 
     private
 
-      def _route_name
-        nil
+    def _route_name
+      nil
+    end
+
+    def attachment_fields
+      if model.respond_to? :attachment_definitions
+        return model.attachment_definitions.keys
       end
 
-      def attachment_fields
-        if model.respond_to? :attachment_definitions
-          return model.attachment_definitions.keys
-        end
+      []
+    end
 
-        []
+    def has_attachment?
+      !attachment_fields.empty?
+    end
+
+    def guess_index_route(scope  = 'dashboard')
+      scope_ = "#{scope}_"
+      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+
+      name   = controller_name
+      if name.singularize == name.pluralize
+        "#{scope_}#{name}_index_path"
+      else
+        "#{scope_}#{name}_path"
       end
+    end
 
-      def has_attachment?
-        !attachment_fields.empty?
-      end
+    def guess_show_route(scope  = 'dashboard')
+      scope_        = "#{scope}_"
+      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
 
-      def guess_index_route(scope  = 'dashboard')
-        scope_ = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+      resource_name = controller_name.singularize.underscore
+      "#{scope_}#{resource_name}_path".gsub('/', '_')
+    end
 
-        name   = controller_name
-        if name.singularize == name.pluralize
-          "#{scope_}#{name}_index_path"
+    def guess_edit_route(scope  = 'dashboard')
+      scope_        = "#{scope}_"
+      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+
+      resource_name = controller_name.singularize.underscore
+      "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
+    end
+
+    def guess_new_route(scope  = 'dashboard')
+      scope_        = "#{scope}_"
+      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+
+      resource_name = controller_name.singularize.underscore
+      "new_#{scope_}#{resource_name}_path".gsub('/', '_')
+    end
+
+    def guess_edit_route(scope  = 'dashboard')
+      scope_        = "#{scope}_"
+      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+
+      resource_name = controller_name.singularize.underscore
+      "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
+    end
+
+    def setup_named_routes
+      @engine        = _engine || _route_engine
+      @index_route   = guess_index_route
+      @new_route     = guess_new_route
+      @show_route    = guess_show_route
+      @edit_route    = guess_edit_route
+    end
+
+    def successful_response(section, msg = nil)
+      @_msg = msg
+
+      respond_to do |f|
+        if _override_views.include? section.to_sym
+          f.js
+          f.html
         else
-          "#{scope_}#{name}_path"
+          flash[:success] = msg
+          # Engine to fetch the route from
+          engine = _engine || Rails.application
+          path   = engine.routes.url_helpers.send(@index_route)
+          # TODO: We really need to put setup routed on top of this method
+          f.js { render "faalis/dashboard/resource/#{section}" }
+          f.html { redirect_to path }
         end
       end
+    end
 
-      def guess_show_route(scope  = 'dashboard')
-        scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+    def errorful_resopnse(section, msg = nil, &block)
+      @_msg = msg
 
-        resource_name = controller_name.singularize.underscore
-        "#{scope_}#{resource_name}_path".gsub('/', '_')
-      end
+      respond_to do |f|
+        if _override_views.include? section.to_sym
+          f.js { render :errors }
+          f.html { render :errors }
+        else
+          flash[:error] = msg
 
-      def guess_edit_route(scope  = 'dashboard')
-        scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+          # Engine to fetch the route from
+          engine = _engine || Rails.application
+          path   = engine.routes.url_helpers.send(@index_route)
+          # TODO: We really need to put setup routed on top of this method
 
-        resource_name = controller_name.singularize.underscore
-        "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
-      end
-
-      def guess_new_route(scope  = 'dashboard')
-        scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
-
-        resource_name = controller_name.singularize.underscore
-        "new_#{scope_}#{resource_name}_path".gsub('/', '_')
-      end
-
-      def guess_edit_route(scope  = 'dashboard')
-        scope_        = "#{scope}_"
-        scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
-
-        resource_name = controller_name.singularize.underscore
-        "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
-      end
-
-      def setup_named_routes
-        @engine        = _engine || _route_engine
-        @index_route   = guess_index_route
-        @new_route     = guess_new_route
-        @show_route    = guess_show_route
-        @edit_route    = guess_edit_route
-      end
-
-      def successful_response(section, msg = nil)
-        @_msg = msg
-
-        respond_to do |f|
-          if _override_views.include? section.to_sym
-            f.js
-            f.html
+          f.js { render 'faalis/shared/errors' }
+          if block_given?
+            f.html(&block)
           else
-            flash[:success] = msg
-            # Engine to fetch the route from
-            engine = _engine || Rails.application
-            path   = engine.routes.url_helpers.send(@index_route)
-            # TODO: We really need to put setup routed on top of this method
-            f.js { render "faalis/dashboard/resource/#{section}" }
             f.html { redirect_to path }
           end
         end
       end
+    end
 
-      def errorful_resopnse(section, msg = nil, &block)
-        @_msg = msg
-
-        respond_to do |f|
-          if _override_views.include? section.to_sym
-            f.js { render :errors }
-            f.html { render :errors }
-          else
-            flash[:error] = msg
-
-            # Engine to fetch the route from
-            engine = _engine || Rails.application
-            path   = engine.routes.url_helpers.send(@index_route)
-            # TODO: We really need to put setup routed on top of this method
-
-            f.js { render 'faalis/shared/errors' }
-            if block_given?
-              f.html(&block)
-            else
-              f.html { redirect_to path }
-            end
-          end
-        end
-      end
-
-      # TODO: Move this method to a suitable place
-      def symbolify_keys(hash)
-        hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-      end
+    # TODO: Move this method to a suitable place
+    def symbolify_keys(hash)
+      hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+    end
 
     # The actual DSL for resource ages
     module ClassMethods
@@ -213,6 +212,29 @@ module Faalis::Dashboard::Sections
         define_method(:_engine) do
           name.constantize
         end
+      end
+
+      # Specify the model name of controller. This method overrides the
+      # `model_class` **class method** and `model_name` instance method.
+      def model_name(name)
+        define_singleton_method :model_class do
+          name.constantize
+        end
+
+        define_method :model_name do
+          name
+        end
+      end
+
+      # Returns the actual model class by looking at `controller_name` and
+      # and `controller_path`. If user uses the `model_name` **class method**
+      # (the `model_name` DSL) then this method will override by the
+      # `model_name` defination of `model_class`
+      def model_class
+        name  = controller_name
+        path  = controller_path.gsub(name, '').gsub(/dashboard\//, '')
+
+        "#{path}#{name}".classify.constantize
       end
     end
 
