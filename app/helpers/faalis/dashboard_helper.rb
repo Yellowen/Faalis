@@ -27,7 +27,7 @@ module Faalis
         button += "<i class='fa fa-#{icon_class}'></i>"
       end
 
-      button += title + '</a>'
+      button += "<span>#{title}</span>" + '</a>'
 
       button.html_safe
     end

@@ -20,7 +20,7 @@
           |
         .box-tools.hidden-print
           - if policy(@resources.model).create?
-            = link_button(t("faalis.dashboard.index_view.new_button", title: t("resources.#{@resources.model.name.underscore}")), remote: false, href: get_url(@new_route, nil, @engine), classes: 'btn-success', icon_class: 'plus')
+            = link_button(t("faalis.dashboard.index_view.new_button", title: t("resources.#{@resources.model.name.underscore}")), remote: false, href: get_url(@new_route, nil, @engine), classes: 'btn-success btn-flat', icon_class: 'plus fa-lg')
 
           = action_buttons(@_action_buttons)
 
