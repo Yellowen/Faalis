@@ -168,7 +168,7 @@ module Faalis::Dashboard::Sections
           path   = engine.routes.url_helpers.send(@index_route)
           # TODO: We really need to put setup routed on top of this method
 
-          f.js { render 'faalis/shared/errors' }
+          f.js { render 'faalis/dashboard/shared/errors' }
           if block_given?
             f.html(&block)
           else
