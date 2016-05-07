@@ -11,7 +11,7 @@ require 'amd'
 
 # Faalis Module
 module Faalis
-
+  autoload :Helpers, 'faalis/helpers/autoload_helper'
 end
 
 require 'faalis/engine'
