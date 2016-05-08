@@ -47,7 +47,7 @@ module Faalis::Dashboard::Sections
       new_params = creation_params
       new_params.merge(reflections_hash) if reflections_hash
 
-      # Customize update behaviour
+      # Customize update behaviour before updating resource
       before_update_hook(@resource)
 
       # TODO: Move this method to a suitable place instead of controller
@@ -57,6 +57,8 @@ module Faalis::Dashboard::Sections
       @resource.assign_attributes(**new_params)
 
       if @resource.save
+        # Customize update behaviour after updating resource
+        after_update_hook(@resource)
         successful_response(:update)
       else
         errorful_resopnse(:update, @resource.errors) do
@@ -77,6 +79,7 @@ module Faalis::Dashboard::Sections
 
       # TODO: Handle M2M relations in here
       if @resource.save
+        after_create_hook(@resource)
         successful_response(:create)
       else
         errorful_resopnse(:create, @resource.errors) do
@@ -132,13 +135,24 @@ module Faalis::Dashboard::Sections
     private
 
       # You can override this method to change the behaviour of `create`
-      # action
+      # action before save resource
       def before_create_hook(resource)
       end
 
+      # You can override this method to change the behaviour of `create`
+      # action afer save resource
+      def after_create_hook(resource)
+      end
+
       # You can override this method to change the behaviour of `update`
-      # action
+      # action before save resource
       def before_update_hook(resource)
+      end
+
+
+      # You can override this method to change the behaviour of `update`
+      # action after save resource
+      def after_update_hook(resource)
       end
 
       # You can override this method to change the behaviour of `new`
