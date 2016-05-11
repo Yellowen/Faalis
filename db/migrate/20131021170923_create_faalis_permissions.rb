@@ -1,6 +1,9 @@
 class CreateFaalisPermissions < ActiveRecord::Migration
   def change
-    create_table :faalis_permissions do |t|
+    args = {}
+    args[:id] = :uuid if Faalis::Engine.use_uuid
+
+    create_table :faalis_permissions, **args do |t|
       t.string :model
       t.string :permission_type
 

@@ -58,6 +58,11 @@ module Faalis
       {}
     end
 
+    # Whether using UUID with models or not.
+    mattr_accessor :use_uuid do
+      false
+    end
+
     mattr_accessor :amd_dir do
       'amd'
     end
