@@ -57,8 +57,8 @@ module Faalis::Dashboard::DSL
     # You can easily change it via the corresponding section dsl.
     # For example in case of `index` section:
     #
-    #  in_index do
-    #    scope do |params|
+    #  in_index do |index|
+    #    index.scope do |params|
     #      YourModel.all
     #    end
     #
@@ -83,7 +83,7 @@ module Faalis::Dashboard::DSL
     # Define a new action on the `action` place of the current section
     # **options**: Is a hash which contains the action button properties.
     #
-    # `label`: Label to use with the button.
+    # `name`: Label to use with the button.
     # `href`: The link href to use in the `a` tag
     # `class`:  classes of the button.
     # `icon_class`: font awesome icon to use in button.

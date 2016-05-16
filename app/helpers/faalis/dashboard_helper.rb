@@ -19,9 +19,7 @@ module Faalis
       href       = options.fetch(:href, '#')
       remote     = options.fetch(:remote, false).to_s
 
-      button = "<a class='#{classes}' href='#{href}'" +
-               "data-disable-with='#{title} . . .' data-remote='#{remote}'" +
-               "data-disable-class='disabled'>"
+      button = "<a class='#{classes}' href='#{href}' data-remote='#{remote}'>"
 
       if icon_class
         button += "<i class='fa fa-#{icon_class}'></i>"
@@ -40,7 +38,7 @@ module Faalis
         klass   = button.fetch(:class, 'btn-success')
         remote  = button.fetch(:remote, false).to_s
         icons   = button.fetch(:icon_class, "")
-        label   = button.fetch(:label, '')
+        label   = button.fetch(:name, '')
         model   = button.fetch(:model, nil)
         action  = button.fetch(:policy, nil)
 
