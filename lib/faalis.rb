@@ -11,7 +11,9 @@ require 'amd'
 
 # Faalis Module
 module Faalis
-  autoload :Helpers, 'faalis/helpers/autoload_helper'
+  autoload :Helpers,      'faalis/helpers/autoload_helper'
+  autoload :Routes,       'faalis/routes'
+  autoload :RouteHelpers, 'faalis/routes'
 end
 
 require 'faalis/engine'
@@ -21,7 +23,7 @@ require 'faalis/dashboard'
 require 'faalis/extension'
 require 'faalis/omniauth'
 require 'faalis/i18n'
-require 'faalis/route'
+#require 'faalis/route'
 require 'faalis/action_dispatch'
 require 'faalis/discovery'
 require 'faalis/fake_assets'
