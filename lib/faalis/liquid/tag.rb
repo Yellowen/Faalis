@@ -30,7 +30,7 @@ module Faalis
             raise ArgumentError.new "'#{count}' argument(s) is/are needed for '#{self.class.name}' tag."
         end
 
-        @direction   = Faalis::I18n.direction(I18n.locale)
+        @direction   = ::Faalis::I18n.direction(::I18n.locale)
 
         @args = args.split(',').map do |x|
           x.strip.tr('""', '').tr("''", '')

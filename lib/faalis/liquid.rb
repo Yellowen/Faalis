@@ -1,6 +1,7 @@
 module Faalis
   module Liquid
-    audoload :Tag,   'faalis/liquid/tag'
-    audoload :Block, 'faalis/liquid/block'
+    autoload :Tag,       'faalis/liquid/tag'
+    autoload :Block,     'faalis/liquid/block'
+    autoload :RenderTag, 'faalis/liquid/render_tag'
   end
 end
