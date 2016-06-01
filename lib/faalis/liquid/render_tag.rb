@@ -41,7 +41,11 @@ module Faalis
       end
 
       def assignments
-        {}
+        tmp = instance_variable_names.map do |x|
+          [x[1..-1], instance_variable_get(x)]
+        end
+
+        { assigns: Hash[tmp] }
       end
     end
   end
