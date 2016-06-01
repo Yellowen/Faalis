@@ -14,6 +14,7 @@ module Faalis
   autoload :Helpers,      'faalis/helpers/autoload_helper'
   autoload :Routes,       'faalis/routes'
   autoload :RouteHelpers, 'faalis/routes'
+  audoload :Liquid,       'faalis/liquid'
 end
 
 require 'faalis/engine'
