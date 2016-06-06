@@ -1,4 +1,6 @@
 module Faalis::Dashboard::Sections
+  # This module contains several helpers method which would
+  # be useful for the rest of faalis dashboard operation.
   module Resource
 
     extend ActiveSupport::Concern

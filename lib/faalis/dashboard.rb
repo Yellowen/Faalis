@@ -1,12 +1,11 @@
-require_dependency 'faalis/dashboard/dsl'
+#require_dependency 'faalis/dashboard/dsl'
 
 module Faalis::Dashboard
-  module DSL
-  end
+  autoload :DSL, 'faalis/dashboard/dsl'
 
   module Helpers
   end
 
-  module Sections
+  autoload :Sections, 'faalis/dashboard/sections.rb'
   end
 end

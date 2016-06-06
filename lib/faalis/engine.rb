@@ -45,9 +45,15 @@ module Faalis
       g.helper              false
     end
 
+    # The actual setup method which is responsible for configuring
+    # `Faalis` environment. This method simply yield the current
+    # class and allows developers to change the configuration via
+    # the class methods defined in `Faalis::Configuration` ( which is
+    # extended in this class ).
     def self.setup
       yield self
 
+      # Load the dependencies needed by each particular feature.
       load_dependencies_based_on_configuration
     end
 

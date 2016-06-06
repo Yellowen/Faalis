@@ -26,16 +26,19 @@ module Faalis
           strings = []
           model_name = model.to_s
           humanize_name = ActiveModel::Name.new(model).human
+
           if model.respond_to? :model_name
             model_name = model.model_name
             humanize_name = model_name.human
           end
+
           @@permissions.each do |key, value|
             strings << {
               name: "#{key}|#{model_name}",
               string: t("faalis.permission_string", action: key.to_s, model: humanize_name)
             }
           end
+
           strings
         end
 
@@ -45,7 +48,6 @@ module Faalis
 
         # Define permissions using this method
         def permissions(*args)
-
           args.each do |permission|
             if permission.class == Symbol
               if not @@permissions.include? permission

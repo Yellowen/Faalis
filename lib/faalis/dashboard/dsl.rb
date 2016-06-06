@@ -28,7 +28,6 @@ module Faalis::Dashboard
       # override the default view for given views or the result
       # of the given block, by the one from the application
       def override_views(*views, &block)
-        views.concat(block.call) if block_given?
 
         define_method(:_override_views) do
           result = views || []

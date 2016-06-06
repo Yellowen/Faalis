@@ -1,4 +1,6 @@
 module Faalis
+  # This module contains all the configuration of `Faalis::Engine`
+  # which can be setup in `config/initializer/faalis.rb`
   module Configuration
 
     @@modules_to_load = {}
@@ -70,11 +72,15 @@ module Faalis
     mattr_accessor :amd do
       true
     end
-
+    # This hash map contains all the features as keys and
+    # the required dependencies of each feature in form of
+    # an array as value
     @@modules_to_load[:amd] = ['amd']
 
+    # Load all the features dependencies based on their configuration
+    # value. For example if `amd` class method returns true all of its
+    # dependencies will be loaded.
     def load_dependencies_based_on_configuration
-
       @@modules_to_load.each do |k, v|
         v.map { |mod| require mod } if send(k)
       end

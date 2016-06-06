@@ -20,6 +20,7 @@ module Faalis
     # It will be used in models to specify which class to inherit
     # from, based on current ORM
     def self.proper_base_class
+      #TODO: fix this for rails 5 which has a new parent for each model
       return ::ActiveRecord::Base if active_record?
       return ::Object if mongoid?
       ::Faalis::Engine.orm = 'active_record'
