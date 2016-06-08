@@ -15,13 +15,13 @@ module Faalis
   autoload :Routes,       'faalis/routes'
   autoload :RouteHelpers, 'faalis/routes'
   autoload :Liquid,       'faalis/liquid'
-  autoload :Engine,       'faalis/engine'
+#  autoload :Engine,       'faalis/engine'
   autoload :Dashboard,    'faalis/dashboard'
   autoload :Concerns,     'faalis/concerns'
   autoload :ORM,          'faalis/orm'
 end
 
-#require 'faalis/engine'
+require 'faalis/engine'
 #require 'faalis/orm'
 #require 'faalis/concerns'
 #require 'faalis/dashboard'
