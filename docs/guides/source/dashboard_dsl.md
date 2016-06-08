@@ -162,7 +162,7 @@ super easy:
 
   # inside Dashboard::PostController
   in_index do |index|
-    index.action_button(label: t('Disable'), href: someaction_path,
+    index.action_button(name: t('Disable'), href: someaction_path,
                         class: 'btn-info', icon_button: 'remove')
   end
 
