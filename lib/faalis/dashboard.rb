@@ -6,6 +6,6 @@ module Faalis::Dashboard
   module Helpers
   end
 
+  autoload :Models,   'faalis/dashboard/models'
   autoload :Sections, 'faalis/dashboard/sections.rb'
-  end
 end

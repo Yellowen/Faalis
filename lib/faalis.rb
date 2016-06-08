@@ -15,7 +15,7 @@ module Faalis
   autoload :Routes,       'faalis/routes'
   autoload :RouteHelpers, 'faalis/routes'
   autoload :Liquid,       'faalis/liquid'
-  audoload :Engine,       'faalis/engine'
+  autoload :Engine,       'faalis/engine'
   autoload :Dashboard,    'faalis/dashboard'
   autoload :Concerns,     'faalis/concerns'
   autoload :ORM,          'faalis/orm'
