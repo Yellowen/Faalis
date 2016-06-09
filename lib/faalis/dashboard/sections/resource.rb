@@ -34,7 +34,7 @@ module Faalis::Dashboard::Sections
       fail NameError, msg
     end
 
-    def namespace
+    def _namespace
       pieces = controller_path.gsub('dashboard/', '').split('/')
       return '' if pieces.length == 1
 
@@ -43,10 +43,10 @@ module Faalis::Dashboard::Sections
     end
 
     def _route_engine
-      if namespace.empty?
+      if _namespace.empty?
         Rails.application
       else
-        engine = "#{namespace.split('/')[0]}::Engine".classify
+        engine = "#{_namespace.split('/')[0]}::Engine".classify
         if Object.const_defined? engine
           engine.constantize
         else
@@ -86,43 +86,43 @@ module Faalis::Dashboard::Sections
 
     def guess_index_route(scope  = 'dashboard')
       scope_ = "#{scope}_"
-      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
 
       name   = controller_name
       if name.singularize == name.pluralize
         "#{scope_}#{name}_index_path"
       else
-        "#{scope_}#{name}_path"
+        "#{scope_}#{name.pluralize}_path"
       end
     end
 
     def guess_show_route(scope  = 'dashboard')
-      scope_        = "#{scope}_"
-      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+      scope_ = "#{scope}_"
+      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
 
       resource_name = controller_name.singularize.underscore
       "#{scope_}#{resource_name}_path".gsub('/', '_')
     end
 
     def guess_edit_route(scope  = 'dashboard')
-      scope_        = "#{scope}_"
-      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+      scope_ = "#{scope}_"
+      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
 
       resource_name = controller_name.singularize.underscore
       "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
     end
 
     def guess_new_route(scope  = 'dashboard')
-      scope_        = "#{scope}_"
-      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+      scope_ = "#{scope}_"
+      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
 
       resource_name = controller_name.singularize.underscore
       "new_#{scope_}#{resource_name}_path".gsub('/', '_')
     end
 
     def guess_edit_route(scope  = 'dashboard')
-      scope_        = "#{scope}_"
-      scope_ = "#{scope_}#{namespace}_" if !namespace.blank? && _engine.nil?
+      scope_ = "#{scope}_"
+      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
 
       resource_name = controller_name.singularize.underscore
       "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
@@ -207,6 +207,14 @@ module Faalis::Dashboard::Sections
         end
       end
 
+      # Using this method user can override the route namespace guessed by
+      # Faalis.
+      def route_namespace(name, &block)
+        define_method(:_namespace) do
+          return block.call if block_given?
+          name
+        end
+      end
       # Set the engine name of current controller. It's necessary to provide and
       # engine name if the controller belongs to an engine other than Faalis or
       # Rails.application.
