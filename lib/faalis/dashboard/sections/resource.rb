@@ -152,7 +152,7 @@ module Faalis::Dashboard::Sections
 
           # Engine to fetch the route from
           engine = _engine || Rails.application
-          path   = engine.routes.url_helpers.send(@index_route)
+          path   = engine.routes.url_helpers.send(_index_route())
           # TODO: We really need to put setup routed on top of this method
 
           f.js { render 'faalis/dashboard/shared/errors' }
