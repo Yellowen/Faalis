@@ -115,8 +115,8 @@ module Faalis::Dashboard::Sections
 
     def setup_named_routes
       @engine        = _engine || _route_engine
-      @index_route   = _index_route
-      @new_route     = _new_route
+      @index_route   = method(:_index_route)
+      @new_route     = method(:_new_route)
       @show_route    = method(:_show_route)
       @edit_route    = method(:_edit_route)
     end
