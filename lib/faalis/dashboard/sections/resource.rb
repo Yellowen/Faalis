@@ -84,56 +84,41 @@ module Faalis::Dashboard::Sections
       !attachment_fields.empty?
     end
 
-    def guess_index_route(scope  = 'dashboard')
-      scope_ = "#{scope}_"
-      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
-
-      name   = controller_name
-      if name.singularize == name.pluralize
-        "#{scope_}#{name}_index_path"
-      else
-        "#{scope_}#{name.pluralize}_path"
+    def _index_route
+      if respond_to? :index
+        url_for(controller: params[:controller],
+                action: :index)
       end
     end
 
-    def guess_show_route(scope  = 'dashboard')
-      scope_ = "#{scope}_"
-      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
-
-      resource_name = controller_name.singularize.underscore
-      "#{scope_}#{resource_name}_path".gsub('/', '_')
+    def _show_route(id)
+      if respond_to? :show
+        url_for(controller: params[:controller],
+                action: :show,
+                id: id)
+      end
     end
 
-    def guess_edit_route(scope  = 'dashboard')
-      scope_ = "#{scope}_"
-      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
-
-      resource_name = controller_name.singularize.underscore
-      "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
+    def _edit_route(id)
+      if respond_to? :edit
+        url_for(controller: params[:controller],
+                action: :edit,
+                id: id)
+      end
     end
 
-    def guess_new_route(scope  = 'dashboard')
-      scope_ = "#{scope}_"
-      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
-
-      resource_name = controller_name.singularize.underscore
-      "new_#{scope_}#{resource_name}_path".gsub('/', '_')
-    end
-
-    def guess_edit_route(scope  = 'dashboard')
-      scope_ = "#{scope}_"
-      scope_ = "#{scope_}#{_namespace}_" if !_namespace.blank? && _engine.nil?
-
-      resource_name = controller_name.singularize.underscore
-      "edit_#{scope_}#{resource_name}_path".gsub('/', '_')
+    def _new_route
+      if respond_to? :new
+        url_for(controller: params[:controller], action: :new)
+      end
     end
 
     def setup_named_routes
       @engine        = _engine || _route_engine
-      @index_route   = guess_index_route
-      @new_route     = guess_new_route
-      @show_route    = guess_show_route
-      @edit_route    = guess_edit_route
+      @index_route   = _index_route
+      @new_route     = _new_route
+      @show_route    = method(:_show_route)
+      @edit_route    = method(:_edit_route)
     end
 
     def successful_response(section, msg = nil)
