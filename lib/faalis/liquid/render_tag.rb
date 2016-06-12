@@ -6,21 +6,20 @@ module Faalis
     class RenderTag < Tag
 
       class << self
-        def template(value)
-          @@_template = value
+        def view(value)
+          define_method(:_view) do
+            value
+          end
         end
       end
 
       def before_render(context)
-        raise NotImplemented.new 'You must override `before_render` method.'
       end
 
       def render(context)
         before_render(context)
         render_template(context)
       end
-
-      class NotImplemented < Exception; end
 
       private
 
@@ -36,7 +35,7 @@ module Faalis
         patched_request = assignments.merge(request.env)
         renderer = controller.renderer.new(patched_request)
 
-        renderer.render @@_template, layout: nil
+        renderer.render _view, layout: nil
       end
 
       def assignments
