@@ -32,12 +32,11 @@ module Faalis
         controller = controller.class
 
         controller.view_paths = view_paths
-        controller.layout nil
 
         patched_request = assignments.merge(request.env)
         renderer = controller.renderer.new(patched_request)
 
-        renderer.render @@_template
+        renderer.render @@_template, layout: nil
       end
 
       def assignments
