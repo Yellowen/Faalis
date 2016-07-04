@@ -1,15 +1,27 @@
----
 fa:
+  dashboard: 'داشبرد'
+  created_at: 'تاریخ ساخت'
+  updated_at: 'تاریخ ویرایش'
+  password: 'گذرواژه'
+  password_confirmation: 'تکرار گذرواژه'
+  index: 'لیست'
+  edit: 'ویرایش'
+  new: 'جدید'
+  edit_password: 'تغییر گذرواژه'
+  sign_out: 'خروج'
+  users: 'کاربران'
+  groups: 'گروه ها'
   faalis:
+    save: 'ذخیره'
+    cancel: 'انصراف'
     confirm_password: تکرار گذرواژه
     forgot_your_password: گذرواژه را فراموش کردم
     didnt_receive_confirmation_instructions: "ایمیل اعتبارسنجی را دریافت نکردم"
     didnt_receive_unlock_instructions: "ایمیل فعال سازی را دریافت نکردم"
 
-
     faalis_version: نسخه فالیس
     copyright_html: |
-      &copy; 2013-2015 <a href="http://yellowen.com">Yellowen</a>.
+      &copy; 2013-2016 <a href="http://yellowen.com">Yellowen</a>.
 
     page_not_found: آدرس پیدا نشد.
     page_not_found_desc: آدرس که دنبال آن می گردید پیدا نشد
@@ -25,6 +37,10 @@ fa:
 
     group:
       group: گروه
+      groups: 'گروه ها'
+      name: 'نام'
+      role: 'نقش'
+      group_name: 'نام گروه'
 
     user:
       user: کاربر
@@ -38,9 +54,24 @@ fa:
     errors:
       fix_errors: ابتدا این خطاها را رفع کنید
     dashboard:
+      user_messages: 'پیام خصوصی'
+      user_messages:
+        inbox: 'صندوق پیام ها'
+        sent: 'ارسال شده ها'
+        draft: 'پیش نویس'
+      change_password: 'تغییر گذرواژه'
+      actions: 'عملیات'
       index_view:
         new_button: '%{title} جدید'
       users: کاربران
+      user:
+      first_name: 'نام'
+      last_name: 'نام خانوادگی'
+      email: 'ایمیل'
+      last_signed_in_at: 'آخرین ورود'
+      groups_of_user: 'گروه های کاربر'
+      user:
+        email: 'ایمیل'
       groups: گروه ها
       user_management: مدیریت کاربران
       dashboard: داشبرد
@@ -63,3 +94,7 @@ fa:
       show: نمایش
       index: لیست
       ownership: مالکیت
+    permission:
+      permissions: 'سطوح دسترسی'
+      entity_name: 'نام بخش'
+      permission: 'سطح دسترسی'
