@@ -303,6 +303,9 @@ fourth-array = [1, [2, 6], “Omid”, {:one => “1”}, 402]
 our-hash = {:ruby => “ruby on rails”, :python => “flask”}
 ```
 * ساخت شرط ها
+
+> first exam 
+
 ```ruby
 x=1
 if x > 2
@@ -313,12 +316,13 @@ else
  puts "I can't guess the number"
 end
 ```
-> نتیجه در خروجی:
 
 ```
+نتیجه در خروجی:
+
 X is 1
 ```
-
+> secound exam
 ```ruby
 grade = B
 
