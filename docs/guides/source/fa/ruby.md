@@ -165,56 +165,56 @@ $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804B
 $ \curl -sSL https://get.rvm.io | bash -s stable
 ```
 2. برای نصب نسخه ی دولپمنت و ناپایدار RVM میتوان دستور زیر را اعمال کرد
-```
+```{r, engine='bash', count_lines}
 $ \curl -sSL https://get.rvm.io | bash 
 ```
 3. برای نصب ورژنی خاص از RVM از دستوری شبیه دستور زیر را وارد کنید
-```
+```{r, engine='bash', count_lines}
 $ \curl -sSL https://get.rvm.io | bash -s -- --version latest
 ```
-```
+```{r, engine='bash', count_lines}
 $ \curl -sSL https://get.rvm.io | bash -s -- --branch [owner/][repo]
 ```
 4. برای اشکال زدایی RVM از دستور زیر استفاده می کنند
-```
+```{r, engine='bash', count_lines}
 $ \curl -sSL https://get.rvm.io | bash -s -- --trace
 ```
 5. برای نشاندن دستورات RVM بر روی Terminal از دستورات زیر استفاده میکنند
-```
+```{r, engine='bash', count_lines}
 $ \curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
 ```
-```
+```{r, engine='bash', count_lines}
 $ echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
 ```
 6. برای قرار دادن RVM بر روی یوزری خاص از دستوری شبیه دستور زیر استفاده کنید
-```
+```{r, engine='bash', count_lines}
 $ rvm user gemsets 
 ```
 7. ترمینال را بسته و دوباره باز کنید و دستور زیر را جهت راه اندازی اولیه RVM تایپ کنید
-```
+```{r, engine='bash', count_lines}
 $ source ~/.rvm/scripts/rvm
 ```
 8. برای فهمیدن صحت فرایند نصب از دستور زیر استفاده کنید(در خوجی باید شاهد پیغامی شبیه به این باشید «rvm is a function» تا از صحت نصب آن مطمئن شوید ) .
-```
+```{r, engine='bash', count_lines}
 $ type rvm | head -n 1
 ```
 9. برای قهمیدن از ورژن های روبی موجود در RVM از دستور زیر استفاده می کنیم
-```
+```{r, engine='bash', count_lines}
 $ rvm list known
 ```
 10. برای نصب نسخه مورد نظرمان و استفاده از آن به شکل محلی باید دستوراتی شبیه دستورات زیر را وارد می کنیم
-```
+```{r, engine='bash', count_lines}
 $ rvm install 2.2.2
 ```
-```
+```{r, engine='bash', count_lines}
 $ rvm use 2.2.2
 ```
 11. برای استفاده از همان ورژن به صورت پیشفرض از دستور زیر استفاده کنید
-```
+```{r, engine='bash', count_lines}
 $ rvm use 2.2.2 --default
 ```
 12. برای قهمیدن از نسخه روبی پیشفرض شده از دستور زیر استفاده می کنیم
-```
+```{r, engine='bash', count_lines}
 $ ruby -v
 ```
 روش نصب را عرض کردم اما برای اطلاع از فرایند نصب آن به سایت rvm.io مراجعه کنید تا متوجه تنزیمات دیگر آن شوید .
@@ -224,20 +224,185 @@ $ ruby -v
 یکی دیگر از راه های دیگر جهت نصب روبی استفاده از فایل قابل نصب است . به گونه ای که شما ابتدا فایل را از بخش دانلود در سایت رسمی روبی (www.ruby-lang.org) دانلود می کنید و پس از unzip کردن آن مراحل زیر را انجام می دهید.
 
 1. پس از unzip کردن فایل، Terminal را باز کنید و به دایرکتوری unzip شده بروید.(بر فرض مثال دایرکتوری ما به اسم ruby-1.9.0 است که در دایرکتوری Download قرار گرفته)
-```
+```{r, engine='bash', count_lines}
 $ cd ~/Download/ruby-1.9.0
 ```
 2. پس از رفتن به دایرکتوری مورد نظر دستورات زیر را به ترتیب جهت نصب وارد Terminal کنید
-```
+```{r, engine='bash', count_lines}
 $ ./configure
 $ make
 $ sudo make install
 ```
 3. یک بار Terminal را بسته و دوباره باز کنید و سپس دستور زیر را برای مطلع شدن از صحت نصب روبی وارد کنید
-```
+```{r, engine='bash', count_lines}
 $ ruby -v
 ```
 نصب بر روی ویندوز
 -----------------
 نصب روبی در Windows بسیار ساده است . به گونه ای که با نصب فقط یک فایل بر روی سیستمتان امکان پذیر است . فایل نصبی روبی در ویندوز را rubyinstaller می گویند که بسیار ساده و قابل فهم Ruby را نصب می کند.
 برای تهیه فایل قابل نصب روبی باید به بخش Download , موجود سایت http://rubyinstaller.org بروید و نسخه مورد استفاده خود را نصب کنید.
+
+آشنایی جزعی با سینتکس روبی
+==========================
+همان گونه که در قسمت های قبلی اشاره کردم سینتکس روبی بسیار شبیه سینتکس پرل و پایتون است. اعلان کلاسها و متدها توسط کلمات کلیدی انجام می‌شود. در مقایسه با پرل متغیرها الزاماً با یک علامت خاص شروع نمی‌شوند. (وقتی از چنین علائمی استفاده شود علامت حوزه دید متغیر را تغییر می‌دهد) بارزترین تفاوت روبی از سی و پرل آنست که کلمات کلیدی (بجای براکت) برای تعریف بلوکهای کد استفاده می‌شوند. سطر جدید به‌عنوان پایان یک جمله بکار برده می‌شود در عین حال که برای اینکار می‌توان از یک سمی کالون (;) نیز استفاده کرد . برعکس پایتون تو رفتگیها در روبی معنی خاصی ندارند .
+روبی دارای یک مفسر تعاملی خط فرمان بنام irb است که می‌تواند برای آزمایش سریع کد بکار رود. Irb را خیلی راحت از طریق Terminal می توان فراخانی کرد.
+ نمونه‌هایی از سینتکس روبی را در ادامه به شما نشان خواهم  داد و شما می توانید آنها را در irb تست کنید.
+
+* پرینت کردن یک پیام 
+```ruby
+print “Hello ”
+print “World \n”
+puts “Hello “
+puts “Iran”
+```
+> نتیجه در خروجی 
+ 
+  ```
+  Hello World 
+  Hello 
+  Iran
+  ```
+
+* کامنت کردن یک خط
+```ruby
+#this is a comment to this code and it doesn't  see on  output 
+
+a = “I am Ruby”
+print “#{a}”
+
+=begin
+This is another way to make some line to comments  .
+we only can see:
+ “I am Ruby”
+ on output when we run this code
+=end
+```
+> نتیجه در خروجی:
+
+```
+I am Ruby
+```
+* ساخت متغیرها
+```ruby
+string = “Ruby On Rails”
+first-numerical-variable = 102
+second-numerical-variable = 2103.23
+boolean = true
+@instance-variable = “hello Faalis”
+@@glubal-variable = 192.3202
+```
+* ساخت آرایه ها
+```ruby
+first-array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+second-array = [1..10]
+third-array = [“ruby”, ”pry”, ”Yellowen”, ”Iran”]
+fourth-array = [1, [2, 6], “Omid”, {:one => “1”}, 402]
+```
+* تولید هش ها
+```ruby
+our-hash = {:ruby => “ruby on rails”, :python => “flask”}
+```
+* ساخت شرط ها
+```ruby
+x=1
+if x > 2
+ puts "x is greater than 2"
+elsif x <= 2 and x!=0
+ puts "X is 1"
+else
+ puts "I can't guess the number"
+end
+```
+> نتیجه در خروجی:
+
+```
+X is 1
+```
+
+```ruby
+grade = B
+
+case grade
+when "A", "B"
+  puts 'You pretty smart!'
+when "C", "D"
+  puts 'You pretty dumb!!'
+else
+  puts "You can't even use a computer!"
+end
+```
+> نتیجه در خروجی:
+
+``` 
+You pretty smart!
+```
+* ساخت حلقه ها
+```ruby
+i = 0
+num = 5
+
+while i < num  do
+ puts("now Inside the loop, i = #{i}" )
+  i +=1
+end
+```
+> نتیجه در خروجی:
+
+```
+Value of local variable is 0
+Value of local variable is 1
+Value of local variable is 2
+Value of local variable is 3
+Value of local variable is 4
+-----another way to do last example----
+Value of local variable is 0
+Value of local variable is 1
+Value of local variable is 2
+Value of local variable is 3
+Value of local variable is 4
+```
+* استفاده از متود ها
+```ruby
+def first
+    puts "one"
+  end
+
+  def second
+first
+   puts "two"
+  end
+  
+second 
+```
+* استفاده از کلاس ها (شی گرایی)
+```ruby 
+class Person
+   def initialize(name, age)
+     @name, @age = name, age
+   end
+
+   def <=>(person)
+     @age <=> person.age
+   end
+   
+    def to_s
+     "#{@name} (#{@age})"
+   end
+
+   attr_reader :name, :age
+ end
+
+ group = [ Person.new("John", 20),
+           Person.new("Markus", 63),
+           Person.new("Ash", 16)
+         ]
+
+ puts group.sort.reverse       #sort and reverse object to sorting and reversing 
+```
+> نتیجه در خروجی (کد بالا سه نام را بر حسب سن از زیاد به کم چاپ می‌کند):
+
+```
+Markus (63)
+John (20)
+Ash (16)
+```
