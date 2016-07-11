@@ -46,5 +46,6 @@ $ cd my_project
 پس از ورود به پوشه پروژه، اگر یک لیست از فایل های موجود بگیرید ، خواهید دید که محتویات یک پروژه ریلز را در خود دارد.
 
 ```{r, engine='bash', count_lines}
-$ app  bin  config  config.ru  db  Gemfile  Gemfile.lock  lib  log  public  Rakefile  README.rdoc  test  tmp  vendor
+$ ls 
+app  bin  config  config.ru  db  Gemfile  Gemfile.lock  lib  log  public  Rakefile  README.rdoc  test  tmp  vendor
 ```
