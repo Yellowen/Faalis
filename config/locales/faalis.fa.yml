@@ -42,8 +42,14 @@ fa:
       role: 'نقش'
       group_name: 'نام گروه'
 
+    users: 'کاربران'
     user:
       user: کاربر
+      first_name: 'نام'
+      last_name: 'نام خانوادگی'
+      email: 'ایمیل'
+      last_signed_in_at: 'آخرین ورود'
+      groups_of_user: 'گروه های کاربر'
 
     member_since: "عضو از %{date}"
     not_authorized: شما مجاز به انجام این فعالیت نیستید.
