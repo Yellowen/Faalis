@@ -42,7 +42,6 @@ module Faalis::Dashboard
     def update
       @group = Faalis::Group.find(params[:id])
       authorize @group
-
       @group.permissions = populate_permissions
       @group.name        = group_params[:name]
       @group.role        = group_params[:name].underscore

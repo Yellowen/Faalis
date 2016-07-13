@@ -48,7 +48,7 @@
               .form-group data-name="groups"
                 label
                   = t('faalis.group.groups')
-                select.multiple.select.form-control name="user[groups]" multiple="multiple"
+                select.multiple.select.form-control name="user[groups][]" multiple="multiple"
                   - @groups.each do |group|
                     - if @user.member_of? group
                       option[value=(group.id) selected]
