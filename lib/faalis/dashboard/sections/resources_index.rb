@@ -8,7 +8,6 @@ module Faalis::Dashboard::Sections
     # The actual action method of a dashboard controller
     def index
       authorize model
-
       fetch_and_set_all
       action_buttons(index_properties)
 
@@ -27,10 +26,11 @@ module Faalis::Dashboard::Sections
       # The important thing here is that by using `scope`
       # DSL this method will chain the resulted scope
       # with other scopes like `page` and `policy_scope`
-      def fetch_index_objects
-        scope = index_properties.default_scope
+    def fetch_index_objects
+      scope = index_properties.default_scope
 
         if !scope.nil?
+
           # If user provided an scope for `index` section.
 
           if scope.respond_to? :call
@@ -44,10 +44,12 @@ module Faalis::Dashboard::Sections
 
         else
           scope = model.all
+          #scope = ApplicationPolicy::Scope.new(current_user, model.all).resolve
         end
 
         scope = scope.order('created_at DESC').page(params[:page])
         policy_scope(scope)
+
       end
 
       def index_properties
