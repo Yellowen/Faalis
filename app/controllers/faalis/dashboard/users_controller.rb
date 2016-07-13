@@ -24,10 +24,14 @@ module Faalis::Dashboard
     end
 
     def create
-      authorize Faalis::User
-      group_ids = user_params[:groups]
 
-      @user = Faalis::User.new(user_params)
+      authorize Faalis::User
+      #group_ids = user_params[:groups]
+
+      parameters = user_params
+      groups     = parameters.delete(:groups)
+      @user = Faalis::User.new(parameters)
+      group_ids    = groups.map(&:to_i)
       @user.groups = Faalis::Group.where(id: group_ids)
 
       respond_to do |f|
