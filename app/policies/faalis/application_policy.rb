@@ -44,7 +44,11 @@ class Faalis::ApplicationPolicy
     end
 
     def resolve
-      scope
+      if @user.has_ownership?(scope)
+        scope.where(user: @user)
+      else
+        scope
+      end
     end
   end
 

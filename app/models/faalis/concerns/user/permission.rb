@@ -23,11 +23,11 @@ module Faalis
     alias_method :can?, :has_permission?
 
     def has_ownership?(record)
-      has_permission? :ownership, record.class.to_s
+      has_permission? :ownership, record.name
     end
 
     def owned?(record)
-      if has_permission? :ownership, record.class.to_s
+      if has_permission? :ownership, record.name
         if record.respond_to? :user
           return true if record.user == self
           return false
