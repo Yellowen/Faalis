@@ -1,7 +1,6 @@
 # Setup select2 for selects with multiple class
 setup_select2 = ->
-  $("select.multiple.select").select2()
-
+  $("select.multiple.select").select2({tags:[]})
 setup_icheck = ->
   $('input').iCheck {
     labelHover: false,
