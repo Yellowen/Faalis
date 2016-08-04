@@ -5,7 +5,7 @@
 //= require turbolinks
 
 // Misc ---------------------------
-//= require sugar/sugar-full.development
+//= require sugar
 
 // JQuery Libraries ---------------
 //= require admin_lte/admin_lte
