@@ -14,10 +14,12 @@ fa:
   faalis:
     save: 'ذخیره'
     cancel: 'انصراف'
+    back: 'بازگشت'
     confirm_password: تکرار گذرواژه
     forgot_your_password: گذرواژه را فراموش کردم
     didnt_receive_confirmation_instructions: "ایمیل اعتبارسنجی را دریافت نکردم"
     didnt_receive_unlock_instructions: "ایمیل فعال سازی را دریافت نکردم"
+    back: 'بازگشت'
 
     faalis_version: نسخه فالیس
     copyright_html: |
@@ -60,15 +62,15 @@ fa:
     errors:
       fix_errors: ابتدا این خطاها را رفع کنید
     dashboard:
-      user_messages: 'پیام خصوصی'
-      user_messages:
-        inbox: 'صندوق پیام ها'
-        sent: 'ارسال شده ها'
-        draft: 'پیش نویس'
       change_password: 'تغییر گذرواژه'
       actions: 'عملیات'
       index_view:
         new_button: '%{title} جدید'
+      user_message: 'پیام خصوصی'
+      user_messages:
+        inbox: 'صندوق پیام ها'
+        sent: 'ارسال شده ها'
+        draft: 'پیش نویس'
       users: کاربران
       user:
       first_name: 'نام'

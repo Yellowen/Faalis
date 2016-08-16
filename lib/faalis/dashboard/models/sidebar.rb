@@ -112,7 +112,7 @@ module Faalis::Dashboard::Models
 
       end
 
-      menu(t('faalis.dashboard.user_messages'),
+      menu(t('faalis.dashboard.user_message'),
         icon: 'fa fa-envelope-o',
         model: 'Faalis::UserMessage') do
 
