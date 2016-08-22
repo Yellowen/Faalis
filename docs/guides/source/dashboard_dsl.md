@@ -169,5 +169,14 @@ super easy:
   # . . .
 ```
 
-### tool_action
+### tool_button
 TODO
+
+```
+  in_index do |index|
+    index.tool_button(name: t('Approve'),
+      icon_button: 'approve', class: 'class') do |obj|
+      "/dashboard/entries/approve/#{obj.id}"
+    end
+  end
+```

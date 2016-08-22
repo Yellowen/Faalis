@@ -34,6 +34,9 @@ module Faalis::Dashboard::DSL
         @fields = resolve_model_reflections.reject do |field|
           options[:except].include? field.to_sym
         end
+      elsif options.include? :append
+
+        @fields += options[:append]
       else
 
         # Check for valid field names
