@@ -60,7 +60,7 @@ module ::ActionView
           raise e if raise_error
 
           keys = I18n.normalize_keys(e.locale, e.key, e.options[:scope])
-          title = "translation missing: #{keys.join('.')}"
+          title = "+#{keys.join('.')}"
 
           interpolations = options.except(:default, :scope)
           if interpolations.any?
