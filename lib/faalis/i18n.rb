@@ -60,7 +60,7 @@ module ::ActionView
           raise e if raise_error
 
           keys = I18n.normalize_keys(e.locale, e.key, e.options[:scope])
-          title = keys.last.humanize
+          title = keys.last.to_s.humanize
           title = "#{keys.join('.')}" if Faalis::Engine.i18n_debug
 
           interpolations = options.except(:default, :scope)
