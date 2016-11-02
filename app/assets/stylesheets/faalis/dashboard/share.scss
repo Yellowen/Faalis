@@ -54,3 +54,8 @@
   margin-left: 5px;
   margin-right: 5px;
 }
+
+html, body, .wrapper {
+  min-height: 100% !important;
+  height: 100% !important;
+}
