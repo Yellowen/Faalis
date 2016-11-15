@@ -34,6 +34,10 @@ module Faalis
       end
     end
 
+    mattr_accessor :i18n_debug do
+      false
+    end
+
     # Site Title
     attr_accessor :site_title do
       'Faalis'

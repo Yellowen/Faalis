@@ -3,9 +3,10 @@ require_dependency 'faalis/dashboard/helpers/box_helpers'
 module Faalis
   module DashboardHelper
     include Faalis::Dashboard::Helpers::BoxHelpers
-
+    include ::ActionView::Helpers::TranslationHelper
     def form_label(resource, name)
-      ::I18n.t("forms.#{@resource.class.name.underscore.to_s.gsub('/', '.')}.#{name}")
+      key = "forms.#{@resource.class.name.underscore.to_s.gsub('/', '.')}.#{name}"
+      t(key)
     end
 
     def localized_time(time)

@@ -81,7 +81,6 @@ module Faalis::Dashboard::DSL
         if respond_to?("setup_#{type}".to_sym, true)
           return send("setup_#{type}", name)
         end
-
         { as: type.to_sym }
       end
 
