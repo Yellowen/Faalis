@@ -9,6 +9,11 @@ module Faalis
       @group_ids.include? group.id
     end
 
+    # TODO: merge this method and `member_of?`
+    def member_of_group?(group_name)
+      !self.groups.find_by(name: group_name).nil?
+    end
+
     def has_permission? action, obj
       perm = self.groups.includes(:permissions)
         .where(faalis_permissions: { model: obj, permission_type: action })

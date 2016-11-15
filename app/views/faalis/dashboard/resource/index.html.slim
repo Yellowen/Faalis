@@ -51,6 +51,7 @@
                       i.fa.fa-remove.fa-lg.btn-remove
 
                     - @_tools_buttons.each do |btn_name, btn|
+
                       a id=("tool_button_#{btn_name}") class=("link pull-left btn btn-xs #{btn[:class] || 'btn-default'}") href=(btn[:block].call(resource)) data-remote=("#{btn[:remote]}")
                         i class=("fa #{btn[:icon_class]}")
                         = btn_name
