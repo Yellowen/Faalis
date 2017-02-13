@@ -20,57 +20,68 @@ module Faalis::Dashboard::Sections
 
     protected
 
-      # Fetch all or part of the corresponding resource
-      # from data base with respect to `scope` DSL.
-      #
-      # The important thing here is that by using `scope`
-      # DSL this method will chain the resulted scope
-      # with other scopes like `page` and `policy_scope`
-    def fetch_index_objects
+    # Fetch all or part of the corresponding resource
+    # from data base with respect to `scope` DSL.
+    #
+    # The important thing here is that by using `scope`
+    # DSL this method will chain the resulted scope
+    # with other scopes like `page` and `policy_scope`
+    def fetch_index_all_objects
       scope = index_properties.default_scope
 
-        if !scope.nil?
+      if !scope.nil?
 
-          # If user provided an scope for `index` section.
+        # If user provided an scope for `index` section.
 
-          if scope.respond_to? :call
-            # If scope provided by a block
-            scope = scope.call
-          else
-            # If scope provided by a symbol
-            # which should be a method name
-            scope = self.send(scope)
-          end
-
+        if scope.respond_to? :call
+          # If scope provided by a block
+          scope = scope.call
         else
-          scope = model.all
-          #scope = ApplicationPolicy::Scope.new(current_user, model.all).resolve
+          # If scope provided by a symbol
+          # which should be a method name
+          scope = self.send(scope)
         end
 
-        scope = scope.order('created_at DESC').page(params[:page])
-        policy_scope(scope)
-
+      else
+        scope = model.all
+        #scope = ApplicationPolicy::Scope.new(current_user, model.all).resolve
       end
 
-      def index_properties
-        Faalis::Dashboard::DSL::Index.new(model)
-      end
+      scope = scope.order('created_at DESC').page(params[:page])
+      policy_scope(scope)
+
+    end
+
+    def fetch_index_filtered_objects
+      #strong.each do |k, v|
+      #  q.where(k.to_sym => v)
+      #end
+    end
+
+    def index_properties
+      Faalis::Dashboard::DSL::Index.new(model)
+    end
 
     private
 
-      def fetch_and_set_all
-        result = fetch_index_objects
-        instance_variable_set("@#{plural_name}", result)
-
-        @index_fields = index_properties.fields
-        @resources    = result
+    def fetch_and_set_all
+      # rename ---- fetch_all_index_objects
+      if params.has_key? :filter
+        result = fetch_index_filtered_objects
+      else
+        result = fetch_index_all_objects
       end
+      instance_variable_set("@#{plural_name}", result)
 
-      # You can override this method to change the behaviour of `index`
-      # action
-      def index_hook(resources)
+      @index_fields = index_properties.fields
+      @resources    = result
+    end
 
-      end
+    # You can override this method to change the behaviour of `index`
+    # action
+    def index_hook(resources)
+
+    end
     # The actual DSL for index ages
     module ClassMethods
 
