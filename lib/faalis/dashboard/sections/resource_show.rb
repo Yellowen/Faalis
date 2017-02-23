@@ -13,6 +13,10 @@ module Faalis::Dashboard::Sections
       collect_model_fields_for_show
 
       @resource_title = t(_resource_title.singularize)
+      @reflection_models = model.reflect_on_all_associations(:has_many).
+        map(&:klass)
+
+      byebug
 
       show_hook(@resource)
 
