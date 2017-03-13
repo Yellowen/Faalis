@@ -1,4 +1,11 @@
 fa:
+  activerecord:
+    errors:
+      models:
+        faalis/user:
+          attributes:
+            email:
+              taken: ' قبلا در سیستم ثبت شده است'
   errors:
     messages:
       expired: 'منقضی شده، لطفا درخواست جدید بدهید'
