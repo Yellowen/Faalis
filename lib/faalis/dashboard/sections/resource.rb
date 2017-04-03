@@ -68,6 +68,12 @@ module Faalis::Dashboard::Sections
 
     private
 
+    def filter_params
+      params_keys = Set.new(params).map(&:to_sym)
+      fields = model.columns_hash.keys.map(&:to_sym)
+      params_keys & fields
+    end
+
     def _route_name
       nil
     end
@@ -101,15 +107,18 @@ module Faalis::Dashboard::Sections
 
     def _edit_route(id)
       if respond_to? :edit
+        filter_params_hash = Hash[filter_params.map{|key| [key, params[key]]}]
         url_for(controller: params[:controller],
                 action: :edit,
-                id: id)
+                id: id,
+               **filter_params_hash)
       end
     end
 
     def _new_route
       if respond_to? :new
-        url_for(controller: params[:controller], action: :new)
+        filter_params_hash = Hash[filter_params.map{|key| [key, params[key]]}]
+        url_for(controller: params[:controller], action: :new, **filter_params_hash)
       end
     end
 

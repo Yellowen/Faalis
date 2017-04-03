@@ -52,9 +52,9 @@ module Faalis::Dashboard::Sections
 
     end
 
-    def fetch_index_filtered_objects(filter_keys)
+    def fetch_index_filtered_objects(filter_params)
       items = fetch_index_all_objects
-      filter_keys.each do |v|
+      filter_params.each do |v|
         items = items.where(v => params[v])
       end
       items
@@ -68,19 +68,16 @@ module Faalis::Dashboard::Sections
 
     def fetch_and_set_all
       # rename ---- fetch_all_index_objects
-      params_keys = Set.new(params).map(&:to_sym)
-      fields = model.columns_hash.keys.map(&:to_sym)
-      filter_keys = params_keys & fields
 
       # Check if the params have common with model fields
       # pass it to the `fetch_index_filtered_objects` to
       # filtering the query. it used for nested sections
       # and search result
 
-      if filter_keys.empty?
+      if filter_params.empty?
         result = fetch_index_all_objects
       else
-        result = fetch_index_filtered_objects(filter_keys)
+        result = fetch_index_filtered_objects(filter_params)
       end
 
       instance_variable_set("@#{plural_name}", result)

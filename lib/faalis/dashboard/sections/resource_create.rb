@@ -70,7 +70,6 @@ module Faalis::Dashboard::Sections
     # The actual action method for creating new resource.
     def create
       authorize model
-
       @resource = model.new(creation_params)
       @resource.assign_attributes(**reflections_hash) unless reflections_hash.nil?
 
