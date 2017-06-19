@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = 'Faalis is a ruby on rails engine which provides a platform to easily build a web application. Features like Dashboard, complex code generation and other awesome features. For more information checkout the docs.'
   s.required_ruby_version = '~> 2.0'
 
-  s.licenses = ['GPL-2']
+  s.licenses = ['GPL-2.0']
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile',
                 'README.md']
 

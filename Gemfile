@@ -43,7 +43,7 @@ group :development, :test do
   gem 'spring'
   gem 'shoulda'
   gem 'slim-rails'
-  gem 'turbolinks', github: 'rails/turbolinks'
+  gem 'turbolinks'
   gem 'jquery-turbolinks'
   gem 'pry-byebug'
   gem 'method_source'
