@@ -69,17 +69,17 @@ module Faalis
       false
     end
 
-    mattr_accessor :amd_dir do
-      'amd'
-    end
+    #mattr_accessor :amd_dir do
+    #  'amd'
+    #end
 
-    mattr_accessor :amd do
-      true
-    end
+    #mattr_accessor :amd do
+    #  true
+    #end
     # This hash map contains all the features as keys and
     # the required dependencies of each feature in form of
     # an array as value
-    @@modules_to_load[:amd] = ['amd']
+    #@@modules_to_load[:amd] = ['amd']
 
     # Load all the features dependencies based on their configuration
     # value. For example if `amd` class method returns true all of its

@@ -39,5 +39,5 @@ Faalis::Engine.routes.draw do
     devise_for :users, devise_config
   end
 
-  get '/amd/*asset', to: 'assets#finder'
+  #get '/amd/*asset', to: 'assets#finder'
 end
