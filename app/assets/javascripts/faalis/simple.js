@@ -1,8 +1,8 @@
 //= require faalis/dashboard/variables
 //= require jquery
-//= require jquery.turbolinks
+// require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 
 // Misc ---------------------------
 //= require sugar

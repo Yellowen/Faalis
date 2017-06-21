@@ -1,6 +1,5 @@
 require 'i18n'
 require 'devise'
-require 'turbolinks'
 require 'modernizr-rails'
 require 'model_discovery'
 require 'pundit'

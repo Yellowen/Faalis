@@ -93,7 +93,7 @@ module Faalis
       end
 
       def add_gems
-        gem 'jquery-turbolinks'
+        #gem 'jquery-turbolinks'
 
         inside Rails.root do
           run 'bundle update'

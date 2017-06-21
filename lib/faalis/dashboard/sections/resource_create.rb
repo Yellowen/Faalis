@@ -83,7 +83,7 @@ module Faalis::Dashboard::Sections
         successful_response(:create)
       else
         errorful_resopnse(:create, @resource.errors) do
-          redirect_to Rails.application.routes.url_helpers.send(@new_route), turbolinks: true
+          redirect_to Rails.application.routes.url_helpers.send(@new_route)
         end
       end
     end

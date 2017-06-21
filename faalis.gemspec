@@ -29,12 +29,12 @@ Gem::Specification.new do |s|
   #s.add_dependency 'railties'
   # Authentication
   s.add_dependency 'omniauth'
-  s.add_dependency 'devise', '>3.4'
+  s.add_dependency 'devise', '~4.3.0'
   s.add_dependency 'admin_lte-rails', '~> 2.3.0'
   s.add_dependency 'nprogress-rails'
   #s.add_dependency 'rails-assets-admin-lte'
 
-  s.add_dependency 'amd'
+  #s.add_dependency 'amd'
 
   # Authorization
   s.add_dependency 'pundit'
@@ -51,8 +51,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'slim-rails'
   s.add_dependency 'sprockets'
-  s.add_dependency 'turbolinks'
-  s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'kaminari'
 
   # TODO: It should be dependency of
