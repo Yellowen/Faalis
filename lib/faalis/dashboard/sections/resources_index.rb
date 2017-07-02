@@ -28,8 +28,8 @@ module Faalis::Dashboard::Sections
       # with other scopes like `page` and `policy_scope`
     def fetch_index_objects
       scope = index_properties.default_scope
-
-        if !scope.nil?
+      puts "<<<<<<<" * 100, scope
+      if !scope.nil?
 
           # If user provided an scope for `index` section.
 
@@ -58,13 +58,13 @@ module Faalis::Dashboard::Sections
 
     private
 
-      def fetch_and_set_all
-        result = fetch_index_objects
-        instance_variable_set("@#{plural_name}", result)
+    def fetch_and_set_all
+      result = fetch_index_objects
+      instance_variable_set("@#{plural_name}", result)
 
-        @index_fields = index_properties.fields
-        @resources    = result
-      end
+      @index_fields = index_properties.fields
+      @resources    = result
+    end
 
       # You can override this method to change the behaviour of `index`
       # action
