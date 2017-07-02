@@ -28,22 +28,23 @@ Gem::Specification.new do |s|
   s.add_dependency 'railties'
 
   # Authentication
-  s.add_dependency 'omniauth'
   s.add_dependency 'devise', '~>4.3.0'
   s.add_dependency 'admin_lte-rails', '~> 2.3.0'
 
   # Authorization
-  s.add_dependency 'pundit'
+  s.add_dependency 'pundit', '~>1.1.0'
 
   # Forms
-  s.add_dependency 'formtastic'
+  s.add_dependency 'formtastic', '~>3.1.5'
+
+  # TODO: Move this gem to template gems
   s.add_dependency 'formtastic-bootstrap'
 
   # Assets
   s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'slim-rails'
-  s.add_dependency 'sprockets'
+  s.add_dependency 'sprockets', '~>3.7.1'
   s.add_dependency 'kaminari'
 
   # i18n
@@ -60,8 +61,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest-rails'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'rb-fsevent'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'connection_pool'
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'minitest-reporters'
   s.add_development_dependency 'mocha'
@@ -69,7 +68,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fabrication'
   s.add_development_dependency 'minitest-rails-capybara'
   s.add_development_dependency 'minitest-around'
-  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'guard-minitest'
 
   # We need to use next version of did you mean gem
