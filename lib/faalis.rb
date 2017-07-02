@@ -1,6 +1,5 @@
 require 'i18n'
 require 'devise'
-require 'modernizr-rails'
 require 'model_discovery'
 require 'pundit'
 require 'slim-rails'
@@ -9,25 +8,22 @@ require 'kaminari'
 
 # Faalis Module
 module Faalis
-  autoload :Helpers,      'faalis/helpers/autoload_helper'
   autoload :Routes,       'faalis/routes'
   autoload :RouteHelpers, 'faalis/routes'
+
+  # TODO: Move to different gem
   autoload :Liquid,       'faalis/liquid'
-#  autoload :Engine,       'faalis/engine'
+  #  autoload :Engine,       'faalis/engine'
+
   autoload :Dashboard,    'faalis/dashboard'
   autoload :Concerns,     'faalis/concerns'
   autoload :ORM,          'faalis/orm'
 end
 
 require 'faalis/engine'
-#require 'faalis/orm'
-#require 'faalis/concerns'
-#require 'faalis/dashboard'
 require 'faalis/extension'
-require 'faalis/omniauth'
 require 'faalis/i18n'
 #require 'faalis/route'
 require 'faalis/action_dispatch'
 require 'faalis/discovery'
-require 'faalis/fake_assets'
 require 'faalis/version'
