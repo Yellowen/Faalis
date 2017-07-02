@@ -1,17 +1,6 @@
 # coding: utf-8
 source 'http://rubygems.org'
 
-source 'http://rails-assets.org' do
-  group :development, :test do
-    gem 'rails-assets-bootstrap-rtl'
-    gem 'rails-assets-jquery-knob'
-    gem 'rails-assets-bootstrap-daterangepicker'
-    gem 'rails-assets-jquery-sparkline'
-    gem 'rails-assets-jquery-icheck'
-    gem 'rails-assets-admin-lte'
-    gem 'rails-assets-sugar', '1.4.1'
-  end
-end
 # Declare your gem's dependencies in faalis.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
@@ -26,7 +15,6 @@ gemspec
 # gem 'debugger'
 
 group :development, :test do
-  gem 'rails', '~>4.2'
   gem 'yard'
   #gem 'yard-rspec'
   gem 'yardstick'

@@ -24,23 +24,16 @@ Gem::Specification.new do |s|
   s.cert_chain  = ['certs/lxsameer.pem']
   s.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $0 =~ /gem\z/
 
-  #s.add_dependency 'rails', '>= 4.2.0'
-  s.add_dependency 'rails'
-  #s.add_dependency 'railties'
+  s.add_dependency 'rails', '~> 5.1.0'
+  s.add_dependency 'railties'
+
   # Authentication
   s.add_dependency 'omniauth'
   s.add_dependency 'devise', '~>4.3.0'
   s.add_dependency 'admin_lte-rails', '~> 2.3.0'
-  s.add_dependency 'nprogress-rails'
-  #s.add_dependency 'rails-assets-admin-lte'
-
-  #s.add_dependency 'amd'
 
   # Authorization
   s.add_dependency 'pundit'
-
-  # API
-  s.add_dependency 'jbuilder'
 
   # Forms
   s.add_dependency 'formtastic'
@@ -53,12 +46,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'sprockets'
   s.add_dependency 'kaminari'
 
-  # TODO: It should be dependency of
-  # dashboard or main template
-  s.add_dependency 'modernizr-rails'
-
-  s.add_development_dependency 'execjs'
-
   # i18n
   s.add_dependency 'i18n'
   s.add_dependency 'rails-i18n'
@@ -70,7 +57,6 @@ Gem::Specification.new do |s|
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'
 
-  s.add_development_dependency 'rdoc'
   s.add_development_dependency 'minitest-rails'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'rb-fsevent'
