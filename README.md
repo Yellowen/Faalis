@@ -7,6 +7,9 @@
 [![Dependency Status](https://gemnasium.com/Yellowen/Faalis.svg)](https://gemnasium.com/Yellowen/Faalis)
 [![Lisence](https://img.shields.io/github/license/Yellowen/Faalis.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
+**IMPORTANT NOTE**: We are planning for `v3.0.0` of **Faalis**. This version would be a totally different version.
+If you like to know more or even join this process please visit our [website](http://faalis.io) and join th gitter chat.
+
 **Faalis** is well tuned platform to create web applications as fast as possible. It is built on top of other quality
 tools, and provides additional features like a robust dashboard, pre-baked authentication and authorization and other
 cool stuff.
@@ -77,4 +80,4 @@ manner.
 
 # License
 
-**Faalis** is Copyright © 2013-2015 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+**Faalis** is Copyright © 2013-2017 Yellowen. It is free software, and may be redistributed under the terms specified in the LICENSE file.
