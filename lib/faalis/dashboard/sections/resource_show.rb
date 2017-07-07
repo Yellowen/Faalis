@@ -14,6 +14,19 @@ module Faalis::Dashboard::Sections
 
       @resource_title = t(_resource_title.singularize)
 
+      # list all the model names that have :has_many relation
+      reflection_models = model.reflect_on_all_associations(:has_many).
+        map(&:class_name)
+
+      @reflection_controller = []
+
+      if reflection_models.length > 0
+        reflection_models.each do |mdl|
+          @reflection_controller.push mdl.tableize.split('/')[-1]
+        end
+      end
+
+
       show_hook(@resource)
 
       return if _override_views.include? :show

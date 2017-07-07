@@ -1,3 +1,8 @@
+.nav-tabs-custom
+  ul.nav.nav-tabs
+    - @reflection_controller.each do |mdl|
+      li = link_to(t(mdl), controller: mdl, "#{controller_name.singularize}_id" => @resource.id)
+
 .row
   .col-sm-12.col-lg-12
     .box.box-primary
