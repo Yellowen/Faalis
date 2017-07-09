@@ -1,5 +1,4 @@
 Faalis::Engine.routes.draw do
-  devise_for :users, class_name: "Faalis::User"
   get 'templates/*path' => 'dashboard#jstemplate'
 
   # Authentications

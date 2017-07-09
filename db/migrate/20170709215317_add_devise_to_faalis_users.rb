@@ -3,7 +3,7 @@ class AddDeviseToFaalisUsers < ActiveRecord::Migration[5.1]
     args = {}
     args[:id] = :uuid if Faalis::Engine.use_uuid
 
-    change_table :faalis_users do |t|
+    create_table :faalis_users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
