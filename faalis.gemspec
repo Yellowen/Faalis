@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
 
   # Authentication
   s.add_dependency 'devise', '~>4.3.0'
-  s.add_dependency 'admin_lte-rails', '~> 2.3.0'
+  #s.add_dependency 'admin_lte-rails', '~> 2.3.0'
 
   # Authorization
   s.add_dependency 'pundit', '~>1.1.0'
