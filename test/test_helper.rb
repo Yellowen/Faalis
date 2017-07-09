@@ -9,11 +9,15 @@ require "rails/test_help"
 require 'fabrication'
 
 # MINITEST REPORTER -----------------------------
-#require "minitest/reporters"
+require "minitest/reporters"
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
+Minitest::Reporters.use!(Minitest::Reporters::ProgressReporter.new,
+                         ENV,
+                         Minitest.backtrace_filter)
+
 
 # Load fixtures from the engine
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
@@ -24,15 +28,12 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
 end
 
 
-Fabrication.configure do |config|
-  config.fabricator_path = 'test/fabricators/faalis/'
-  config.path_prefix = Faalis::Engine.root
-end
+# Fabrication.configure do |config|
+#   config.fabricator_path = 'test/fabricators/faalis/'
+#   config.path_prefix = Faalis::Engine.root
+# end
 
 
-# Minitest::Reporters.use!(Minitest::Reporters::ProgressReporter.new,
-#                          ENV,
-#                          Minitest.backtrace_filter)
 
 # CONNECTION POOL --------------------------------
 # require 'connection_pool'

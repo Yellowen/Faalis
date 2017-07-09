@@ -19,21 +19,23 @@ group :development, :test do
   #gem 'yard-rspec'
   gem 'yardstick'
   gem 'yard-rails'
-  gem 'redcarpet'
-  gem 'github-markup'
   gem 'yard-sitemap'
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'pry'
   gem 'pry-doc'
-  gem 'faker'
   gem 'rake'
   gem 'spring'
-  gem 'shoulda'
-  gem 'slim-rails'
   gem 'pry-byebug'
   gem 'method_source'
 
+  #gem 'minitest-rails'
+  gem 'guard'
+  gem 'rb-fsevent'
+  gem 'launchy'
+  gem 'minitest-reporters'
+  gem 'fabrication'
+  gem 'guard-minitest'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil

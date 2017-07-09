@@ -58,18 +58,6 @@ Gem::Specification.new do |s|
   # To support multiple ORM at once
   s.add_dependency 'orm_adapter'
 
-  s.add_development_dependency 'minitest-rails'
-  s.add_development_dependency 'guard'
-  s.add_development_dependency 'rb-fsevent'
-  s.add_development_dependency 'launchy'
-  s.add_development_dependency 'minitest-reporters'
-  s.add_development_dependency 'mocha'
-  s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'fabrication'
-  s.add_development_dependency 'minitest-rails-capybara'
-  s.add_development_dependency 'minitest-around'
-  s.add_development_dependency 'guard-minitest'
-
   # We need to use next version of did you mean gem
   # for JRuby support. current version: 0.9.5
   #s.add_development_dependency 'did_you_mean'
