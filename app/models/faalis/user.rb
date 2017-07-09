@@ -26,6 +26,10 @@
 module Faalis
   # **User** model for **Faalis** platform
   class User < ORM.proper_base_class
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable and :omniauthable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :trackable, :validatable
 
     # Define **User** fields if current ORM was Mongoid -----------------------
     if Faalis::ORM.mongoid?
