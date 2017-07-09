@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.2.3
+  - 2.4.1
 
 before_install:
   - "export DISPLAY=:99.0"
@@ -9,4 +9,4 @@ before_install:
 install: bundle
 
 before_script: bundle exec rake db:migrate
-script: xvfb-run bundle exec rake test
+script: xvfb-run bundle exec rails test
