@@ -27,9 +27,3 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
   ActiveSupport::TestCase.fixtures :all
 end
-
-
-# Fabrication.configure do |config|
-#   config.fabricator_path = 'test/fabricators/faalis/'
-#   config.path_prefix = Faalis::Engine.root
-# end
