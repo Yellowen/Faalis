@@ -36,6 +36,7 @@ group :development, :test do
   gem 'minitest-reporters'
   gem 'fabrication'
   gem 'guard-minitest'
+  gem 'simplecov', :require => false
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil

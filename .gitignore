@@ -46,3 +46,4 @@ docs/annotated_source/
 docs/guides/output/
 .yardoc/
 tags
+coverage/
