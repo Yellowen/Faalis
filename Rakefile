@@ -1,5 +1,3 @@
-import 'docs/guides/Rakefile'
-
 begin
   require 'bundler/setup'
 rescue LoadError
