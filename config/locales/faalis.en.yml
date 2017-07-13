@@ -1,5 +1,7 @@
 ---
 en:
+  dashboard: Dashboard
+  index: index
   faalis:
     confirm_password: Password Confirmation
     forgot_your_password: Forget your password
@@ -58,7 +60,7 @@ en:
 
     permission:
       permissions: Permissions
-      
+
     dashboard:
       users: Users
       groups: Groups
